@@ -1,0 +1,42 @@
+.awards-list {
+  display: grid;
+  margin-top: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  list-style: none;
+  gap: 0.75rem;
+}
+
+.award-item {
+  display: grid;
+  position: relative;
+  padding: var(--side-padding);
+  grid-template-columns: 1fr;
+  grid-template-rows: 12em max-content max-content;
+  border: 2px solid var(--secondary-blue);
+  border-radius: 0.27em;
+  list-style: none;
+}
+
+.award-image {
+  filter: grayscale(1);
+  align-self: center;
+  justify-self: center;
+}
+
+.award-item:hover,
+.award-item:focus,
+.award-item:focus-within {
+  .award-image {
+    filter: grayscale(0);
+  }
+}
+
+.award-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+}

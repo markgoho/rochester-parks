@@ -21,6 +21,12 @@
   },
   "homepage": "https://github.com/markgoho/rochester-parks#readme",
   "devDependencies": {
-    "firebase-tools": "^9.9.0"
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.24.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.2.0",
+    "firebase-tools": "^9.9.0",
+    "prettier": "^2.2.1"
   }
 }

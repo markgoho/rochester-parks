@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.rochesterparks.org/#website",
+      "url": "https://www.rochesterparks.org/",
+      "name": "Rochester Parks - Rochester NY",
+      "description": "Exploring and sharing the parks of Rochester NY",
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": "https://www.rochesterparks.org/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      ],
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/#primaryimage",
+      "inLanguage": "en-US",
+      "url": "http://www.rochesterparks.org/wp-content/uploads/2012/08/Joshua-placard1-300x200.jpg",
+      "contentUrl": "http://www.rochesterparks.org/wp-content/uploads/2012/08/Joshua-placard1-300x200.jpg"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/#webpage",
+      "url": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/",
+      "name": "Joshua Park - Irondequoit Parks - Rochester Parks",
+      "isPartOf": { "@id": "https://www.rochesterparks.org/#website" },
+      "primaryImageOfPage": {
+        "@id": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/#primaryimage"
+      },
+      "datePublished": "2012-08-30T14:14:27+00:00",
+      "dateModified": "2016-10-18T02:47:07+00:00",
+      "author": {
+        "@id": "https://www.rochesterparks.org/#/schema/person/24bdf1dcd7da413daa912fedabcc7b0a"
+      },
+      "description": "In 2005, this park was renamed Joshua Park in memory of young boy that passed away while practicing soccer there. It features soccer fields and more!",
+      "breadcrumb": {
+        "@id": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/#breadcrumb"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebPage",
+            "@id": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/",
+            "url": "https://www.rochesterparks.org/town-parks/irondequoit-parks/joshua-park/",
+            "name": "Joshua Park"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.rochesterparks.org/#/schema/person/24bdf1dcd7da413daa912fedabcc7b0a",
+      "name": "Mark Goho",
+      "sameAs": [
+        "http://www.rochesterparks.org",
+        "admin",
+        "https://twitter.com/rochesterparks"
+      ]
+    }
+  ]
+}

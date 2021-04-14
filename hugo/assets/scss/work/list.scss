@@ -1,0 +1,39 @@
+@import './work-item';
+
+.work-page {
+  .work-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .work-item + .work-item {
+    margin-top: 1rem;
+  }
+}
+
+.work-content-container:empty {
+  display: none;
+}
+
+// .work-list {
+//   margin: 0;
+//   padding: 0;
+//   gap: 1rem;
+// }
+
+@media screen and (min-width: 769px) {
+  .work-page {
+    .work-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      gap: 1rem;
+    }
+
+    .work-item + .work-item {
+      margin-top: 0;
+    }
+  }
+}
+
+// @media screen and (min-width: 1128px) {
+// }

@@ -1,0 +1,85 @@
+@import './awards-list';
+
+.heading-section {
+  // display: grid;
+  column-gap: 0.5rem;
+  grid-template-columns: repeat(4, 1fr);
+
+  h1 {
+    grid-column: 1 / -1;
+  }
+
+  p {
+    grid-column: 1 / 4;
+  }
+
+  .supplemental-information {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .button + .button {
+    margin-top: 0.5rem;
+  }
+}
+
+.benefits-modules {
+  details + details {
+    margin-top: 1rem;
+  }
+
+  summary {
+    font-size: 1.33rem;
+  }
+
+  .details-container {
+    column-gap: 0.5rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    p {
+      grid-column: 1 / 4;
+    }
+  }
+
+  .supplemental-information {
+    grid-column: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+.modules-heading {
+  margin-bottom: 0.5rem;
+}
+
+.expand-modules {
+  font-size: 0.75rem;
+}
+
+.collapse-modules {
+  margin-left: 1rem;
+  font-size: 0.75rem;
+}
+
+.back-to-top {
+  float: right;
+  border: 0;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 769px) {
+  .details-container {
+    display: grid;
+    margin-top: 0.5rem;
+  }
+
+  .benefits-modules .supplemental-information {
+    display: block;
+  }
+}

@@ -1,0 +1,60 @@
+.problem,
+.solution {
+  flex: 1 1 100%;
+  padding: 1rem;
+  background-color: var(--neutral-094);
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-family: var(--sans-serif);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.75rem;
+  }
+}
+
+.solution {
+  margin-top: 0.5rem;
+}
+
+.work-content {
+  margin: 2rem auto;
+}
+
+.quote {
+  padding: 3rem 4rem;
+  background-color: var(--neutral-094);
+  color: var(--secondary-blue);
+  text-align: center;
+}
+
+.quote-content {
+  font-style: italic;
+}
+
+@media screen and (min-width: 769px) {
+  .work-summary {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .solution {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1128px) {
+  .quote {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr var(--content-width) 1fr;
+
+    * {
+      grid-column: 2 / 3;
+    }
+  }
+}
