@@ -14,6 +14,7 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
+      - uses: actions/checkout@v4
       - run: cd hugo && hugo --minify
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
