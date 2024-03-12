@@ -1,0 +1,14 @@
+{{ define "head-styles" }}
+  {{ $pageCSS := "scss/index.scss" }}
+  {{ $options := (dict "outputStyle" "compressed") }}
+  {{ $inlineCSS := resources.Get $pageCSS | resources.ToCSS $options }}
+<style>{{ $inlineCSS.Content | safeCSS }}</style>
+{{ end }}
+
+{{ define "main" }}
+  <h1 class="page-title">
+    {{ .Title }}
+  </h1>
+  {{ .Content }}
+  {{ partial "county-map.html" }}
+{{ end }}
