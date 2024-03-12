@@ -1,51 +1,51 @@
-.boundary {
-  fill: hsl(183, 12%, 49%);
-  stroke: hsl(185, 42%, 11%);
-  stroke-width: 1px;
-  stroke-linejoin: round;
-  transition: all 300ms;
-}
+// .boundary {
+//   fill: hsl(183, 12%, 49%);
+//   stroke: hsl(185, 42%, 11%);
+//   stroke-width: 1px;
+//   stroke-linejoin: round;
+//   transition: all 300ms;
+// }
 
-.boundary-text {
-  fill: hsl(185, 42%, 9%);
-  font-family: Avenir, sans-serif;
-  text-transform: uppercase;
-  font-size: 0.5rem;
-  font-weight: 800;
-  text-align: center;
-  transition: all 300ms;
-}
+// .boundary-text {
+//   fill: hsl(185, 42%, 9%);
+//   font-family: Avenir, sans-serif;
+//   text-transform: uppercase;
+//   font-size: 0.5rem;
+//   font-weight: 800;
+//   text-align: center;
+//   transition: all 300ms;
+// }
 
-.municipality:hover {
-  cursor: pointer;
-  > .boundary-text {
-    fill: hsl(45, 82%, 65%);
-    font-size: 0.75rem;
-    transform: translateX(-10px);
-  }
+// .municipality:hover {
+//   cursor: pointer;
+//   > .boundary-text {
+//     fill: hsl(45, 82%, 65%);
+//     font-size: 0.75rem;
+//     transform: translateX(-10px);
+//   }
 
-  > .boundary {
-    stroke-width: 2px;
-    fill: hsl(183, 12%, 32%);
-  }
-}
+//   > .boundary {
+//     stroke-width: 2px;
+//     fill: hsl(183, 12%, 32%);
+//   }
+// }
 
-.brockport.municipality:hover,
-.churchville.municipality:hover,
-.east-rochester.municipality:hover,
-.fairport.municipality:hover,
-.hilton.municipality:hover,
-.honeoye-falls.municipality:hover,
-.irondequoit.municipality:hover,
-.scottsville.municipality:hover,
-.spencerport.municipality:hover {
-  .boundary-text {
-    fill: hsl(185, 42%, 11%);
-  }
-}
+// .brockport.municipality:hover,
+// .churchville.municipality:hover,
+// .east-rochester.municipality:hover,
+// .fairport.municipality:hover,
+// .hilton.municipality:hover,
+// .honeoye-falls.municipality:hover,
+// .irondequoit.municipality:hover,
+// .scottsville.municipality:hover,
+// .spencerport.municipality:hover {
+//   .boundary-text {
+//     fill: hsl(185, 42%, 11%);
+//   }
+// }
 
-.scottsville.municipality:hover {
-  .boundary-text {
-    transform: translateX(-15px);
-  }
-}
+// .scottsville.municipality:hover {
+//   .boundary-text {
+//     transform: translateX(-15px);
+//   }
+// }
