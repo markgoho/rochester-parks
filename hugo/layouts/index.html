@@ -6,9 +6,7 @@
 {{ end }}
 
 {{ define "main" }}
-  <h1 class="page-title">
-    {{ .Title }}
-  </h1>
+  <h1 class="page-title">{{ .Title }}</h1>
   {{ .Content }}
   {{ partial "county-map.html" }}
 {{ end }}
