@@ -31,7 +31,7 @@
     "eslint-config-prettier": "latest",
     "firebase-tools": "latest",
     "prettier": "latest",
-    "prettier-plugin-go-template": "latest"
+    "prettier-plugin-go-template": "^0.0.15"
   },
   "dependencies": {
     "all": ""

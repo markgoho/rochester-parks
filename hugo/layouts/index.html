@@ -1,7 +1,7 @@
 {{ define "head-styles" }}
   {{ $pageCSS := "scss/index.scss" }}
   {{ $options := (dict "outputStyle" "compressed") }}
-  {{ $inlineCSS := resources.Get $pageCSS | resources.ToCSS $options }}
+  {{ $inlineCSS := resources.Get $pageCSS | css.Sass $options }}
 <style>{{ $inlineCSS.Content | safeCSS }}</style>
 {{ end }}
 

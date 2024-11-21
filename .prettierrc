@@ -2,6 +2,7 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "trailingComma": "es5",
+  "goTemplateBracketSpacing": true,
   "plugins": [
     "prettier-plugin-go-template"
   ],
