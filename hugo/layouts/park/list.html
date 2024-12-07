@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <article>
+    <h1>{{ .Title }}</h1>
+    <div>{{ .Content }}</div>
+
+    <!-- Dynamic Navigation -->
+    <nav>
+      <h2>Explore More About This Park List</h2>
+      <ul>
+        {{ range .Pages }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  </article>
+{{ end }}
