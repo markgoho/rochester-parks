@@ -1,0 +1,47 @@
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Park",
+    "name": "{{ .Title }}",
+    "description": "{{ .Params.description }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ .Params.address.streetAddress }}",
+      "addressLocality": "{{ .Params.address.addressLocality }}",
+      "addressRegion": "{{ .Params.address.addressRegion }}",
+      "postalCode": "{{ .Params.address.postalCode }}",
+      "addressCountry": "{{ .Params.address.addressCountry }}"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": {{ .Params.geo.latitude }},
+      "longitude": {{ .Params.geo.longitude }}
+    },
+    "url": "{{ .Permalink }}",
+    "image": "{{ .Params.image | absURL }}",
+    "openingHoursSpecification": [
+      {{ $openingHours := index .Params.openingHours 0 }}
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          {{ range $index, $day := $openingHours.dayOfWeek }}
+            {{ if $index }},{{ end }}"https://schema.org/{{ $day }}"
+          {{ end }}
+        ],
+        "opens": "{{ $openingHours.opens }}",
+        "closes": "{{ $openingHours.closes }}"
+      }
+    ],
+    "telephone": "{{ .Params.telephone }}",
+    "amenityFeature": [
+      {{ range $index, $amenity := .Params.amenities }}
+        {{ if $index }},{{ end }}
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "{{ $amenity }}",
+          "value": true
+        }
+      {{ end }}
+    ]
+  }
+  </script>
