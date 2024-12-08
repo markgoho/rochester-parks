@@ -21,6 +21,8 @@ openingHours:
     closes: '22:00'
 telephone: '+1-555-123-4567'
 image: '/images/persimmon-park.jpg'
+sameAs:
+  - 'https://www.townofbrighton.org/265/Persimmon-Park'
 ---
 
 What a beautiful park Persimmon Park is.
