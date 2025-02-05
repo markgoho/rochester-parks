@@ -1,4 +1,5 @@
 ---
-title: 'Webster Park'
-description: 'A monroe county park called Webster Park'
+title: 'Ontario Beach Park'
+description: 'A monroe county park called Ontario Beach Park'
+type: 'county-parks'
 ---
