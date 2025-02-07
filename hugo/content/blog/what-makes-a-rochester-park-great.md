@@ -21,6 +21,6 @@ I’m a family man and as such I have certain things that I look for at the park
 
 Some characteristics of a park have a great deal of weight when ranking. Does the size of the park have this weight? A small city park like Ellwanger and Barry Park (in my humble opinion) should not be capable of being ranked lower than Black Creek park simply because one is larger or smaller. Likewise, can a park help that it has no water (creek, beach, lake, etc.) in or around it? I personally love a park with water. However, Corbett’s Glen Nature Park should not be ranked higher than Barnard Park simply because it has a beautiful meandering creek that runs through the south end.
 
-## Here’s where you help:
+## Here’s where you help
 
 What do you look for when you visit a Rochester park? Here are a few things I look at. If you have any suggestions for new dimensions, please suggest them below in the comments section. Together we can help share the best information about the parks in Rochester!

@@ -1,18 +1,68 @@
+{{ define "head-styles" }}
+  <style>
+    .breadcrumbs ol {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+{{ end }}
+
 {{ define "main" }}
+  <nav class="breadcrumbs" aria-label="breadcrumbs">
+    <ol class="">
+      {{- range .Ancestors.Reverse }}
+        <li class="">
+          <a href="{{ .RelPermalink }}"
+            >{{ if .IsHome }}
+              Home
+            {{ else }}
+              {{ .Title }}
+            {{ end }}</a
+          >
+          <span class="" aria-hidden="true">»</span>
+        </li>
+      {{- end }}
+      <li class="active">
+        <a href="{{ .RelPermalink }}" aria-current="location">{{ .Title }}</a>
+      </li>
+    </ol>
+  </nav>
+
   <article>
     <h1>{{ .Title }}</h1>
     <div>{{ .Content }}</div>
-
-    <!-- Navigation for Subpages -->
-    <nav>
-      <nav>
-        <h2>Explore More About This Park</h2>
-        <ul>
-          {{ range .Sections }} <!-- For branch bundles -->
-            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-          {{ end }}
-        </ul>
-      </nav>
-      
   </article>
+{{ end }}
+
+{{ define "footer-scripts" }}
+<script type='application/ld+json'>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+    {{- $i := 1 }}
+    {{- range .Ancestors.Reverse }}
+      {
+        "@type": "ListItem",
+        "position": {{ $i }},
+        "name": "{{ .Title | safeJS }}",
+        "url": {{ .Permalink }},
+        "item": {{ .Permalink }}
+      },
+      {{- $i = add $i 1 -}}
+    {{ end }}
+      {
+        "@type": "ListItem",
+        "position": {{ $i }},
+        "name": "{{ .Title | safeJS }}",
+        "url": {{ .Permalink }},
+        "item": {{ .Permalink }}
+      }
+    ]
+  }
+  </script>
 {{ end }}
