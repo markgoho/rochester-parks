@@ -16,11 +16,11 @@
       {{- range .Ancestors.Reverse }}
         <li class="">
           <a href="{{ .RelPermalink }}"
-            >{{ if .IsHome }}
+            >{{ if .IsHome -}}
               Home
-            {{ else }}
-              {{ .Title }}
-            {{ end }}</a
+            {{- else -}}
+              {{- .Title -}}
+            {{- end -}}</a
           >
           <span class="" aria-hidden="true">»</span>
         </li>
