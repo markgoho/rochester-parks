@@ -1,0 +1,128 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Park",
+  "name": "Webster Park",
+  "url": "https://rochesterparks.org/monroe-county-parks/webster-park/",
+  "description": "A beautiful lakeside county park in Webster.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "255 Holt Road",
+    "addressLocality": "Webster",
+    "addressRegion": "NY",
+    "postalCode": "14580"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "43.2561239581832",
+    "longitude": "-77.4528609583807"
+  },
+  "hasMap": "https://www.monroecounty.gov/files/parks/Maps/WP.pdf",
+  "isAccessibleForFree": true,
+  "publicAccess": true,
+  "sameAs": "https://www.monroecounty.gov/parks-webster",
+  "containsPlace": [
+    {
+      "@type": "Place",
+      "name": "Creek Bend Shelter",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/creek-bend-shelter/"
+    },
+    {
+      "@type": "Place",
+      "name": "Holt Lodge",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/holt-lodge/"
+    },
+    {
+      "@type": "Place",
+      "name": "Lake View Shelter",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/lake-view-shelter/"
+    },
+    {
+      "@type": "Place",
+      "name": "Lakefront Lodge",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/lakefront-lodge/"
+    },
+    {
+      "@type": "Place",
+      "name": "Orchard Hill Shelter",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/orchard-hill-shelter/"
+    },
+    {
+      "@type": "Place",
+      "name": "Parkview Lodge",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/parkview-lodge/"
+    },
+    {
+      "@type": "Place",
+      "name": "Ridge Hill Shelter",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/ridge-hill-shelter/"
+    },
+    {
+      "@type": "Place",
+      "name": "The Beeches Shelter",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/the-beeches-shelter/"
+    },
+    {
+      "@type": "Place",
+      "name": "Valley View Shelter",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/valley-view-shelter/"
+    },
+    {
+      "@type": "Place",
+      "name": "White House Lodge",
+      "url": "https://rochesterparks.org/monroe-county-parks/webster-park/white-house-lodge/"
+    }
+  ],
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Restroom"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Camping"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Sledding Hill"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Playground"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Shelters"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Lodges"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Multi-use Field"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Tennis Court"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Hiking Trails"
+    }
+  ],
+  "photo": {
+    "@type": "ImageObject",
+    "contentUrl": "https://photos.google.com/search/Cgx3ZWJzdGVyIHBhcmsiDgoMd2Vic3RlciBwYXJrKL+RoejQMg%3D%3D/photo/AF1QipOIH4_BPYzBlzeApdiK-wuyN63O_nQ2WRBdO6nP",
+    "description": "A photo of Webster Park"
+  },
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "name": "Reserve Lodge/Shelter",
+    "target": "https://www.monroecounty.gov/mcparks/reserve"
+  },
+  "subjectOf": {
+    "@type": "Article",
+    "url": "https://foxrochester.com/news/local/new-lakefront-lodge-open-at-webster-park"
+  },
+  "telephone": "585-509-2828"
+}
