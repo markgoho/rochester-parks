@@ -12,11 +12,49 @@ The failure mode is not spam that readers see. The Moderation queue already stop
 
 ## 2. Summary of the answer
 
-TODO
+1. **The ticket's reading of the widget CAPTCHAs is correct.** Turnstile, hCaptcha and every ordinary reCAPTCHA mode need a script from a third party. reCAPTCHA's old `<noscript>` fallback has been removed from the current documentation. See section 3.
+2. **One genuine no-JavaScript exception exists, and it is not on the ticket's list.** reCAPTCHA Enterprise "express" scores a request from backend signals only, with no client integration at all. It is admissible. It is not recommended, for reasons in 3.3.
+3. **The submission timing check cannot work on this site as designed.** A statically built page has no per-request render, so it cannot carry a fresh timestamp, and with JavaScript off there is no client clock. This removes one item from the ticket's own list and feeds the write-path ticket #29. See 5.2.
+4. **The archive rules out most content heuristics.** Real Comments here are short one-liners, Reservation inquiries carrying telephone numbers, and long local-history reminiscences. Keyword lists, minimum length, all-capitals checks and duplicate detection all eat named real rows. Link count at two or more eats none. See section 4.
+5. **Akismet Personal fits, is free at $0 with unlimited monthly calls, and is verified against current terms.** One condition applies. See section 6.
+6. **The minimum viable defence is honeypot plus strict server-side validation plus a link-count flag.** Akismet joins later, as a sort key, if the queue proves noisy. See section 7.
 
 ## 3. Why the widget CAPTCHAs fail
 
-TODO
+The ticket asks us to confirm the reading rather than assume it. We checked the current official documentation on 2026-09-15. **The ticket's reading is correct for Turnstile, hCaptcha and ordinary reCAPTCHA. There is one exception, and it is not in that list.**
+
+### 3.1 Cloudflare Turnstile: fails
+
+`developers.cloudflare.com/turnstile/get-started/client-side-rendering/` shows both implicit and explicit rendering loading `https://challenges.cloudflare.com/turnstile/v0/api.js`. The overview page describes Turnstile running "non-interactive JavaScript challenges". No no-JavaScript mode appears anywhere in the Turnstile documentation. **Turnstile fails constraint 2.**
+
+We also checked Cloudflare's other bot products, because they are server side:
+
+- **Bot Fight Mode** (free plan) "Issues computationally expensive challenges that force the requesting client to perform CPU-intensive calculations", and `developers.cloudflare.com/bots/additional-configurations/javascript-detections/` states that "For Bot Fight Mode customers, JavaScript Detections is automatically enabled and cannot be disabled." So the free tier injects client JavaScript. **Fails.**
+- **Super Bot Fight Mode** and **Bot Management** can switch JavaScript Detections off and fall back to passive signals. That is genuinely script-free, but it needs a Business or Enterprise plan, and it is a coarse allow, block or log heuristic. Out of budget and out of proportion.
+- **WAF Managed Rules** with a Block action are purely server side, but they are attack-signature filtering, not comment-spam filtering, and they are not on the free plan.
+
+### 3.2 reCAPTCHA v2 checkbox, v2 invisible, v3: fail
+
+The old `<noscript>` iframe-and-textarea fallback is **gone from the current documentation**. `developers.google.com/recaptcha/docs/display` and the reCAPTCHA FAQ contain zero occurrences of `noscript`, verified against the raw HTML. The invisible and v3 pages both require `https://www.google.com/recaptcha/api.js`. **All fail constraint 2.**
+
+### 3.3 reCAPTCHA Enterprise "express": the one genuine exception
+
+`docs.cloud.google.com/recaptcha/docs/express-standalone` documents a mode that needs no browser code at all. Quoting the page:
+
+> reCAPTCHA express can be set up on an application server when a client-side integration with the reCAPTCHA JavaScript or mobile SDK is not feasible, for example, for protection of API endpoints. reCAPTCHA express is a feature that lets you create assessments without a client-side integration or client-side signals. reCAPTCHA express uses only backend signals to generate a reCAPTCHA risk score.
+
+So the honest answer to the ticket is: **yes, one product in that family offers a real no-JavaScript path.** It is not a widget. The reader never sees it. It is a server-to-server call, the same category as Akismet.
+
+Two reasons it is still not the recommendation:
+
+1. The same page states that express returns only two coarse scores, 0.3 for high risk and 0.7 for low risk, instead of a continuous 0.0 to 1.0 score, and that it **defaults to 0.7 when signals are insufficient**. A defence that defaults to "probably fine" on thin evidence is weak for a form with no other signal.
+2. It is a Google Cloud Enterprise product. Its cost for this volume is **unverified** here. Akismet covers the same job and its terms for a personal site are known (section 6).
+
+Record express as admissible but not chosen. If Akismet's terms ever stop fitting, this is the fallback to re-price.
+
+### 3.4 hCaptcha: fails
+
+`docs.hcaptcha.com/` loads `https://js.hcaptcha.com/1/api.js`. The FAQ does not address a no-JavaScript path. `www.hcaptcha.com/accessibility` documents a text-based Accessibility Challenge and an email-token flow, but both still need the widget and its script to load first; they change the kind of challenge, not the requirement. A secondary web result claimed hCaptcha "supports non-JavaScript clients". That claim traces to no hCaptcha documentation page and is **unverified**. Treat it as wrong. **hCaptcha fails constraint 2.**
 
 ## 4. The archive, and what it tells us about false positives
 
@@ -152,7 +190,59 @@ This reframes everything above. The other defences do not exist to keep spam off
 
 ## 6. Akismet and other server-side APIs
 
-TODO
+A server-side API is not a widget. The reader never loads it, never sees it, and it works with JavaScript off. It therefore passes constraint 2. It is still a third party, and section 6.4 says what that costs.
+
+### 6.1 How the Akismet API works
+
+Read 2026-09-15 from `akismet.com/developers/`.
+
+- **Verify the key**: `POST https://rest.akismet.com/1.1/verify-key`, with `api_key` and `blog`. The `blog` value must be "a full URI, including http://". The response body is the literal string `valid` or `invalid`.
+- **Check a Comment**: `POST https://rest.akismet.com/1.1/comment-check`. Required: `api_key`, `blog`, `user_ip`. Recommended: `user_agent`, `referrer` (note the spelling, it differs from the HTTP header), `permalink`, `comment_type`, `comment_author`, `comment_author_email`, `comment_author_url`, `comment_content`, `comment_date_gmt`, `blog_lang`, `blog_charset`, `honeypot_field_name`. The response body is the literal string `true` for spam or `false` for ham.
+- `is_test` marks a test query so it does not train the filter. `user_role` set to `administrator` forces a ham result, which is how the owner's own Replies bypass the filter.
+- `comment_type` accepts `comment` and `reply`, which maps cleanly onto the `Comment` and `Reply` distinction in `CONTEXT.md`.
+- **Teach it**: `POST .../1.1/submit-spam` and `.../1.1/submit-ham`, with the same arguments. This matters. Every time the owner corrects a verdict in the Moderation queue, the queue should send it back. That is how the false-positive rate falls over time.
+- **The discard header.** Quoting the comment-check page: "If the X-akismet-pro-tip header is set to discard, then Akismet has determined that the comment is blatant spam, and you can safely discard it without saving it in any spam queue." This is a documented auto-drop tier. Given section 4.2, use it cautiously: log that a discard happened, even if the body is thrown away, so a silent failure is visible.
+- **Usage**: `https://rest.akismet.com/1.2/usage-limit` returns JSON with `limit`, `usage` and `throttled`.
+
+### 6.2 Does a free key cover this site?
+
+**Yes, on the current published terms, subject to one condition in 6.3.**
+
+- The Personal plan is pay-what-you-want and **$0 is a selectable price**. The signup page slider config on `akismet.com/plan/personal` runs from a minimum of 0 to a maximum of 120 dollars a year.
+- Eligibility is self-certified with three checkboxes, quoted exactly from that page: "I don't have ads on my site / I don't sell products/services on my site / I don't promote a business on my site."
+- `akismet.com/support/getting-started/free-or-paid/` gives a fuller disqualifying list, quoted: "Loading code on your site for ad services like Google AdSense, Taboola, Infolinks, or ExoClick. Affiliate links. Using live chat plugins or services. Promoting a business or service. Using a domain recognized as commercial. Accepting donations or using donation plugins. Running on e-commerce plugins or platforms." The same page adds: "Noncompliance with these terms will result in immediate suspension of services without notice."
+- **Call volume is not a problem.** `akismet.com/support/general/akismet-api-usage-limits/` states "Akismet Personal is a non-commercial plan with unlimited API calls per month." At one Comment a month this is not close to any limit.
+- The Terms of Service at `akismet.com/tos/`, last updated 9 November 2021, say "Free keys are for personal, non-commercial sites only."
+- **Per-second rate limits and any required attribution badge: unverified.** No page we read addressed either.
+
+### 6.3 The condition the owner must check
+
+The archive contains a 2016 exchange on Devil's Cove Park where a reader complained that a survey wall blocked the content, and the owner replied that the surveys "are meant to help support this free website."
+
+That is monetisation. If anything of that kind still runs on `rochesterparks.org`, or returns later, the free Personal key does not apply, and the penalty is stated as immediate suspension without notice. **This is a condition, not a fact.** The owner must confirm the live site carries no ads, no affiliate links, no donation link and no survey wall before ticking those boxes.
+
+If it fails, the fallbacks are CleanTalk at 12 dollars a year for one site, or reCAPTCHA Enterprise express from section 3.3. Both sit inside the 25-dollar monthly ceiling, though both spend headroom the map reserved for other things.
+
+### 6.4 The privacy cost
+
+Akismet's `comment-check` requires `user_ip` and wants `comment_author_email`. Sending those means the Commenter's address and email reach Automattic. That is admissible under constraint 3, which bars a hosted comment **product**, not a server API. But it is a fact about the site's handling of reader data, and it belongs in the notice that constraint 9 already puts beside every comment area.
+
+Note the direction of travel here. Constraint 10 says the archive import must strip email and IP. It would be odd to strip them from the build and then ship them to a third party without saying so.
+
+### 6.5 The alternatives, briefly
+
+All read 2026-09-15.
+
+| Service | Cost | Free for a personal site? | Fit |
+| --- | --- | --- | --- |
+| **CleanTalk**, `cleantalk.org/price` | 12 dollars a year for one site | **No.** The page says plainly: "Is it free? Short answer is no". | A clean server-side API with no free tier. The fallback if Akismet's terms stop fitting. |
+| **OOPSpam**, `oopspam.com` | 40 free checks to start, then from 23 dollars a month | Trial only | Explicitly server side: "Runs silently — no JavaScript, fonts, or CSS needed". Too expensive for this volume. |
+| **Stop Forum Spam**, `stopforumspam.com/usage` | Free, no key needed | Yes | IP, email and username reputation only, not content. Their page warns: "Checking every incoming connection against the API will be treated as a denial of service attack against us". At one Comment a month that is not a risk. A cheap supplement, not a replacement. |
+| **Project Honey Pot http:BL**, `projecthoneypot.org/httpbl_api.php` | Free, needs a registered access key | Yes | DNS-based IP reputation. Same category and same limit as Stop Forum Spam. Remember 4.3: the address must come from the forwarded header, or this checks the CDN. |
+| **Postmark SpamCheck**, `spamcheck.postmarkapp.com` | Free | Yes | Scores raw **email messages** through SpamAssassin. It is built for MIME, not for a comment body. Poor fit. |
+| **Self-hosted** | Free | Yes | Antispam Bee is a WordPress plugin and cannot serve a SvelteKit site. No credible, maintained, general-purpose self-hostable equivalent was found in primary sources. Treat "a self-hosted Akismet equivalent exists" as **unverified**. |
+
+**Conclusion: Akismet Personal is the right choice if it is ever needed.** It is the only option that is content-aware, free at this volume, documented, and reversible.
 
 ## 7. The minimum viable defence
 
@@ -192,4 +282,18 @@ This ordering is deliberate. Akismet is admissible but it is not free of cost: i
 
 ## 8. What stays unverified
 
-TODO
+State these as open, not as settled.
+
+1. **The spam arrival rate for this site.** Not recoverable from the archive, because WordPress ran Akismet and the export shows survivors. This is the fact that decides between Tier 1 and Tier 1 plus Akismet.
+2. **How well honeypots work in 2026.** No primary quantitative source exists. Every number circulating is vendor marketing. The mechanism is sound; the effectiveness figure is not knowable from a trustworthy source.
+3. **Whether `rochesterparks.org` today carries ads, affiliate links, donations or a survey wall.** The 2016 archive exchange shows it once did. This decides whether the free Akismet key is legitimate. The owner must check the live site.
+4. **Akismet per-second rate limits and any attribution badge requirement.** Not addressed on any page we read.
+5. **The cost of reCAPTCHA Enterprise express at this volume.** Not priced here.
+6. **How well per-IP rate limiting would have performed historically.** Unknowable, because the archive logged Cloudflare edge addresses, not Commenter addresses (4.3).
+
+## 9. What this hands to other tickets
+
+- **Write path (#29).** The timing check is off the table unless the form page becomes dynamic. Rate limiting needs a small keyed record with a 24-hour TTL, and it is the one defence to drop if the chosen storage makes that awkward. The Function must read the forwarded client address header, never the socket address.
+- **Moderation surface.** The queue needs a place to show a tag ("2 or more links", "Akismet: spam") and a sort order, not just a list. It also needs a control that calls `submit-spam` or `submit-ham` when the owner corrects a verdict.
+- **The page notice (constraint 9).** If Akismet is ever switched on, the notice must say that submissions are checked by a third-party service that receives the submitter's address and email.
+- **Archive import (#?).** Nothing here changes it. Archive comments do not pass through any spam check.
