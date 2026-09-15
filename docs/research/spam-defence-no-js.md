@@ -124,10 +124,11 @@ Three consequences:
 
 The site is SvelteKit with `adapter-static`. Every page is built once and served from the Firebase Hosting CDN. There is no per-request render. Nothing can stamp "this form was shown at time T" into the HTML, because the HTML is the same for every reader and it is months old. With JavaScript off there is no client clock to read either.
 
-Only two no-JS routes exist, and both change the write-path design:
+Every no-JavaScript route puts a Function in the view path of the page, so each one changes the write-path design:
 
 1. Render the form page from a Function, so the page is dynamic and can carry a signed timestamp. This gives up static hosting for that page, and the reader clicks through to it.
 2. Embed the form as a first-party fragment served by a Function. Constraint 2 forbids a **third-party** iframe, so a first-party one is arguably admissible, but it is extra machinery for one weak signal.
+3. Serve a small asset on the page from a Function, and let it set a timestamp cookie that the POST carries. This keeps the page static, but it puts a Function in the read path of every page view.
 
 **Recommendation: drop the timing check.** It is the only item on the ticket's list that the static architecture rules out. Record this in the write-path ticket (#29), because it is a real discriminator between designs.
 
@@ -221,7 +222,7 @@ The archive contains a 2016 exchange on Devil's Cove Park where a reader complai
 
 That is monetisation. If anything of that kind still runs on `rochesterparks.org`, or returns later, the free Personal key does not apply, and the penalty is stated as immediate suspension without notice. **This is a condition, not a fact.** The owner must confirm the live site carries no ads, no affiliate links, no donation link and no survey wall before ticking those boxes.
 
-If it fails, the fallbacks are CleanTalk at 12 dollars a year for one site, or reCAPTCHA Enterprise express from section 3.3. Both sit inside the 25-dollar monthly ceiling, though both spend headroom the map reserved for other things.
+If it fails, the fallbacks are CleanTalk at 12 dollars a year for one site, or reCAPTCHA Enterprise express from section 3.3. CleanTalk sits well inside the 25-dollar monthly ceiling, though it spends headroom the map reserved for other things. Express is not priced here (see section 8).
 
 ### 6.4 The privacy cost
 
@@ -296,4 +297,4 @@ State these as open, not as settled.
 - **Write path (#29).** The timing check is off the table unless the form page becomes dynamic. Rate limiting needs a small keyed record with a 24-hour TTL, and it is the one defence to drop if the chosen storage makes that awkward. The Function must read the forwarded client address header, never the socket address.
 - **Moderation surface.** The queue needs a place to show a tag ("2 or more links", "Akismet: spam") and a sort order, not just a list. It also needs a control that calls `submit-spam` or `submit-ham` when the owner corrects a verdict.
 - **The page notice (constraint 9).** If Akismet is ever switched on, the notice must say that submissions are checked by a third-party service that receives the submitter's address and email.
-- **Archive import (#?).** Nothing here changes it. Archive comments do not pass through any spam check.
+- **Archive import (#26 and #27).** Nothing here changes it. Archive comments do not pass through any spam check.
