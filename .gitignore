@@ -8,10 +8,9 @@ lerna-debug.log*
 
 node_modules
 
-# Hugo output
-hugo/public
+# SvelteKit output
 public
-hugo/resources/_gen/
+.svelte-kit
 
 # Firebase hosting cache
 .firebase/

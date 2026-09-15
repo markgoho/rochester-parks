@@ -6,15 +6,10 @@
     "image": "mcr.microsoft.com/devcontainers/base:jammy",
   
     // Features to add to the dev container. More info: https://containers.dev/features.
-    "features": {
-      "ghcr.io/devcontainers/features/hugo:1": {
-        "extended": true
-      },
-      "ghcr.io/devcontainers/features/go:1": {}
-    },
-  
+    "features": {},
+
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [1313],
+    "forwardPorts": [5173],
   
     // Use 'postCreateCommand' to run commands after the container is created.
     "postCreateCommand": "curl -fsSL https://bun.sh/install | bash"

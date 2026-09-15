@@ -2,17 +2,16 @@
   "singleQuote": true,
   "bracketSpacing": true,
   "trailingComma": "es5",
-  "goTemplateBracketSpacing": true,
   "plugins": [
-    "prettier-plugin-go-template"
+    "prettier-plugin-svelte"
   ],
   "overrides": [
     {
       "files": [
-        "*.html"
+        "*.svelte"
       ],
       "options": {
-        "parser": "go-template"
+        "parser": "svelte"
       }
     }
   ]

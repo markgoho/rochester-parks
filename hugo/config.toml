@@ -1,5 +1,0 @@
-baseURL = "https://rochesterparks.org/"
-languageCode = "en-us"
-title = "Rochester Parks"
-publishDir = "../public"
-enableRobotsTXT = true
