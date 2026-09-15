@@ -35,7 +35,8 @@ second hostname. The docs give the `rewrites` block with `function.functionId` a
 "Firebase Hosting is subject to a 60-second request timeout" regardless of the
 function timeout. Cloud Run containers are supported the same way.
 Source: https://firebase.google.com/docs/hosting/functions (checked 2026-09-15).
-Candidates 1 to 4 get this. Candidates 5 and 6 do not.
+Candidates 1 to 4 get this. Candidate 5 does not; candidate 6 inherits it from
+whichever host runs the service.
 
 **A public read API removes the build-time secret.** `Approved` Comments are public
 by definition, so the build-time read can be an unauthenticated GET. The catch is
@@ -149,10 +150,13 @@ charges."
 - **The min-instance floor.** If cold starts are killed with `min-instances=1`,
   idle billing applies at `$0.0000025` per vCPU-second and per GiB-second. For one
   always-warm 1 vCPU / 512 MiB instance over a 730-hour month (2,628,000 seconds):
-  gross `$6.57` CPU plus `$3.29` memory = **about $9.86 per month**; net of the
-  free vCPU-seconds and GiB-seconds, about **$8.51 per month** (computed). That is
-  the same order as the Cloud SQL floor. Map note 12 names Cloud SQL as "the one
-  real recurring cost in play"; a warm minimum instance is a second one.
+  gross `$6.57` CPU plus `$3.29` memory = **about $9.86 per month** (computed). The
+  page states that "The free tier is applied as a spending based discount using
+  Tier 1 pricing" and that the free tier is "based on us-central1 active pricing",
+  so the discount is worth 180,000 x `$0.000024` plus 360,000 x `$0.0000025` =
+  `$5.22` per month (computed), leaving about **$4.64 per month** net — roughly
+  half the Cloud SQL floor. Map note 12 names Cloud SQL as "the one real recurring
+  cost in play"; a warm minimum instance is a second one.
 - **Scales to zero.** Yes, at `min-instances=0`, which is the default.
 - **Cold start on a form POST.** Same as candidate 1; Cloud Run is the same
   substrate.
