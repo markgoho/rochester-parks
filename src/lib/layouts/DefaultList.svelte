@@ -5,6 +5,7 @@
 </script>
 
 <div class="content-wrapper list-container">
+  {@html page.html}
   <ul>
     {#each page.children as child (child.url)}
       <li>

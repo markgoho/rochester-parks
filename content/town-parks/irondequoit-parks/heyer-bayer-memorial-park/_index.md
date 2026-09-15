@@ -2,15 +2,29 @@
 title: 'Heyer-Bayer Memorial Park'
 description: 'An Irondequoit Town Park called Heyer-Bayer Memorial Park'
 type: 'park'
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Open Field
+  - Playground
+  - Swingset
 ---
+
+![Heyer-Bayer Memorial park playground](forweb-IMG_20120622_132325.jpg)
+
+## Heyer-Bayer Memorial Park playground
 
 Irondequoit has provided its residents with a decent playground here at Heyer-Bayer Memorial park. There are two play structures: one quite large and the other quite small. This is a common sight among the parks in Rochester. The larger structure is pretty nice with one caveat: bring a towel! The rain from earlier in the morning had pooled at the bottom of the slide and my daughter’s bum got completely soaked. Apparently, the sun did not have enough time to cause the water to evaporate.
 
 In addition to the play structures, the park offers a few rockers and a swing set. The swing set has (you guessed it!) two toddler and two big-kid swings. At the time of this writing, one of the toddler swings was broken and not on the chains. It is worth noting that along the road-side of the playground a chain-link fence does provide a modicum of safety.
 
+![Heyer-Bayer Memorial Park baseball diamond](forweb-IMG_20120622_133032.jpg)
+
 ## Baseball Field and Diamond
 
 The park is essentially a baseball field and the playground area, with the field comprising about 75% of the park. It would appear from the condition of the field and diamond that this area is used pretty regularly during the regular baseball season. The field itself is quite large and could be used for pretty much any field-based sport when a baseball game isn’t taking place.
+
+![Lock affixed to the port-a-potty at Heyer-Bayer memorial park](forweb-IMG_20120622_133127.jpg)
 
 ## Public Restrooms not available
 

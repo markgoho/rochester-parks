@@ -2,6 +2,10 @@
 title: 'Abraham Lincoln Park'
 description: 'A monroe county park called Abraham Lincoln Park'
 type: 'park'
+amenities:
+  - 'Playground'
+  - 'Shelter'
+  - 'Trails'
 ---
 
 Abraham Lincoln Park is located on the east shore of Irondequoit Bay. It covers 183 acres consisting of mostly trees. At the entrance to the park on Empire Blvd., there is a playground consisting of two parts. One is a typical playground-type structure with slides and ladders. The other is an amazing “natural” playground! Very large tree trunks are strategically places to create an amazing climbing area for kids. Stumps are also placed on the ground for an obstacle course feel. Also in this entrance area are two covered shelters and picnic tables.
@@ -9,3 +13,15 @@ Abraham Lincoln Park is located on the east shore of Irondequoit Bay. It covers 
 ## Park Guidelines
 
 From April to October, park is open 7:00am to 11:00pm. From November to March, Monday through Thursday, park is open 7:00am to 4:00pm. Friday through Sunday the park stays open from 7:00am to 11:00pm. Pets are allowed while on a leash. Carry-in carry-out is the rule of thumb for garbage.
+
+## Trails
+
+There are 3.5 miles of trails in this park ranging in length from one third of a mile to nearly a mile and a half. The attached map does provide an indication for starting and ending points and the general path of the trail. Work will be done by Rochester Parks to make sure these trails make it to Google Maps.
+
+## Maps
+
+[Trails and Natural Playground](trails/trail-map.pdf)
+
+[Natural Playground artist rendering and information](trails/playground-concept.pdf)
+
+<iframe src="https://maps.google.com/?ie=UTF8&amp;t=m&amp;ll=43.184527,-77.512836&amp;spn=0.043809,0.072956&amp;z=14&amp;output=embed" width="100%" height="250" loading="lazy" allowfullscreen></iframe>

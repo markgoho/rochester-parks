@@ -4,6 +4,8 @@ description: "A monroe county park called Devil's Cove Park"
 type: 'park'
 ---
 
+![Devil's Cove Park Inlet](Devils-cove-inlet.jpg)
+
 Monroe County’s newest park, Devil’s Cove Park is perhaps the most elusive of all the Monroe County Parks. It is located on the east shoreline of Irondequoit Bay and situated (appropriately) in Devil’s Cove. The park is only accessible by boat (unless you happen to live on a bordering property) and is obviously not visited by many people.
 
 We had to take a canoe out to the park and launched from Irondequoit Bay West park from the public boat launch. It was approximately 2.5 miles and 40 minutes of hard paddling to get up to the Cove.
@@ -16,4 +18,8 @@ When we got to the short of Devil’s Cove we realized that that shallow water i
 
 Devil’s Cove park is completely undeveloped. Besides the cool factor of being able to say you’ve been there, there is essentially no reason to visit. But hey, it’s a County Park and could totally turn into something amazing and possibly exclusive in the future.
 
-<!-- <iframe src="https://www.google.com/maps/d/embed?mid=1pJj2gArv1RkDveWl1JC5PrF99Bg&ehbc=2E312F" width="100%" height="480"></iframe> -->
+<iframe src="https://www.google.com/maps/d/embed?mid=1pJj2gArv1RkDveWl1JC5PrF99Bg&ehbc=2E312F" width="100%" height="480" loading="lazy" allowfullscreen></iframe>
+
+![Devil's Cove Monroe County Park](Devils-Cove-featured-image.jpg)
+
+![Devil's Cove Posted sign](Devils-Thumbnail.jpg)

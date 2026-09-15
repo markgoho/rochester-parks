@@ -2,13 +2,30 @@
 title: 'Goodwin Park'
 description: 'A Greece Town Park called Goodwin Park'
 type: 'park'
+amenities:
+  - Barbecue
+  - Open Field
+  - Picnic Table
+  - Playground
+  - Rockers
+  - Swingset
 ---
+
+<iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.29122801571042|-77.67482836683178|290.44|-16.33|0|BTUZvOtcJvwAAAQvOxlGbA|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
+
+![Goodwin Park playground](forweb-IMG_20120613_174704.jpg)
+
+*Full-size playground including slides and climbers*
 
 Goodwin Park is one of the smallest parks in all of Greece. At just under 2 acres, this park sits runs along a small canal that links Lake Ontario to Long Pond. I can imagine this park might actually see some use from time to time, but when I went there were only a few men there fishing.
 
 ## Facilities at Goodwin Park
 
 There were a number of picnic tables and barbecues and benches along a path that overlooked the canal. A large playground sits in the middle of the park with some nice features and there is a good stretch of grass that exists beyond the playground and runs to the northwest border of Goodwin Park. A port-a-john is present at this park near the parking lot. The inside was not inspected during this visit.
+
+![Goodwin Park geese](forweb-IMG_20120613_175101.jpg)
+
+*The geese are taking over at Goodwin Park*
 
 ## Goose Poop
 

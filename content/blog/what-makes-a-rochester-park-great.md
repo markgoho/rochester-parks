@@ -24,3 +24,5 @@ Some characteristics of a park have a great deal of weight when ranking. Does th
 ## Here’s where you help
 
 What do you look for when you visit a Rochester park? Here are a few things I look at. If you have any suggestions for new dimensions, please suggest them below in the comments section. Together we can help share the best information about the parks in Rochester!
+
+<iframe src="https://docs.google.com/spreadsheet/ccc?key=0Ap_bzZljtNgndDVNMnNSZlVfb3N4ajlyeHZSVlVyN0E" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

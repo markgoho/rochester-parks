@@ -34,10 +34,9 @@ const files = import.meta.glob('/content/**/*.md', {
   eager: true,
 }) as Record<string, string>;
 
-// Goldmark defaults: heading ids, typographer, raw HTML omitted.
-const markdown = new Marked(gfmHeadingId(), markedSmartypants(), {
-  renderer: { html: () => '' },
-});
+// Heading ids and typographer, like Hugo. Raw HTML passes through, so pages
+// can embed maps and virtual tours.
+const markdown = new Marked(gfmHeadingId(), markedSmartypants());
 
 function urlFor(file: string): string {
   const path = file.replace(/^\/content/, '');
@@ -61,17 +60,18 @@ function buildNodes(): Map<string, Node> {
     const { data, content } = matter(raw);
     const frontMatter = data as FrontMatter;
     const url = urlFor(file);
+    const isHome = url === '/';
     add({
       url,
-      title: frontMatter.title ?? '',
-      kind: file.endsWith('/_index.md') ? 'section' : 'page',
+      title: frontMatter.title ?? (isHome ? SITE_TITLE : ''),
+      kind: isHome ? 'home' : file.endsWith('/_index.md') ? 'section' : 'page',
       frontMatter,
       html: markdown.parse(content) as string,
     });
 
     // Hugo names an auto section after its folder, in plural form.
     const top = url.split('/')[1];
-    if (!nodes.has(`/${top}/`) && !files[`/content/${top}/_index.md`]) {
+    if (top && !nodes.has(`/${top}/`) && !files[`/content/${top}/_index.md`]) {
       add({ url: `/${top}/`, title: `${titleCase(top)}s`, kind: 'section' });
     }
   }
