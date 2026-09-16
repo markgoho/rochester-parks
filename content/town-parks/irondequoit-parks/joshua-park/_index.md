@@ -18,7 +18,6 @@ sameAs:
   - 'https://www.irondequoit.gov/Facilities/Facility/Details/Joshua-Park-9'
   - 'https://maps.google.com/?cid=15975211993853895906'
 ---
-<iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.20730004667224|-77.60468079609922|-152.87844692839744|-11.376987700564568|0|Xcsq2gJEHiEAAAQn7y0Cwg|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 ![Joshua memorial placard](Joshua-placard1.jpg)
 
@@ -45,7 +44,5 @@ The big attraction to Joshua park has to be the two beautiful soccer fields. Whe
 ## Places to park when visiting Joshua Park
 
 ![overhead view of joshua park in irondequoit showing available parking](Parking-at-Joshua-Park.jpg)
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2908.1267793789293!2d-77.6054548532502!3d43.20683014659702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b66181d26bff%3A0xddb35aab0938a4e2!2sJoshua+Park!5e0!3m2!1sen!2sus!4v1467378040272" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 ![Joshua park sign](Joshua-Thumbnail.jpg)

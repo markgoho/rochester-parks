@@ -35,5 +35,3 @@ There are 3.5 miles of trails in this park ranging in length from one third of a
 [Trails and Natural Playground](trails/trail-map.pdf)
 
 [Natural Playground artist rendering and information](trails/playground-concept.pdf)
-
-<iframe src="https://maps.google.com/?ie=UTF8&amp;t=m&amp;ll=43.184527,-77.512836&amp;spn=0.043809,0.072956&amp;z=14&amp;output=embed" width="100%" height="250" loading="lazy" allowfullscreen></iframe>

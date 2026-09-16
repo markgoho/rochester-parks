@@ -25,8 +25,6 @@ When we got to the short of Devil’s Cove we realized that that shallow water i
 
 Devil’s Cove park is completely undeveloped. Besides the cool factor of being able to say you’ve been there, there is essentially no reason to visit. But hey, it’s a County Park and could totally turn into something amazing and possibly exclusive in the future.
 
-<iframe src="https://www.google.com/maps/d/embed?mid=1pJj2gArv1RkDveWl1JC5PrF99Bg&ehbc=2E312F" width="100%" height="480" loading="lazy" allowfullscreen></iframe>
-
 ![Devil's Cove Monroe County Park](Devils-Cove-featured-image.jpg)
 
 ![Devil's Cove Posted sign](Devils-Thumbnail.jpg)

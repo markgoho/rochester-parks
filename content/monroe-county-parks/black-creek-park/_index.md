@@ -16,8 +16,6 @@ sameAs:
   - 'https://maps.google.com/?cid=11834441221212537482'
 ---
 
-<iframe src="https://maps.google.com/?ie=UTF8&amp;t=m&amp;ll=43.074781,-77.806892&amp;spn=0.043887,0.072956&amp;z=13&amp;output=embed" width="100%" height="325" loading="lazy" allowfullscreen></iframe>
-
 [View Larger Map](http://maps.google.com/?ie=UTF8&t=m&ll=43.074781,-77.806892&spn=0.043887,0.072956&z=13&source=embed)
 
 One of Rochester’s largest parks at 1500 acres, Black Creek Park is located in the town of Chili.

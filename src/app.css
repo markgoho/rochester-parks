@@ -128,11 +128,6 @@ img {
   height: auto;
 }
 
-iframe {
-  max-width: 100%;
-  border: 0;
-}
-
 /* Typography */
 
 h1,
@@ -490,13 +485,6 @@ p {
   width: 100%;
   margin: 1.5rem 0 0.5rem;
   border: 1px solid var(--rule);
-}
-
-.prose iframe {
-  display: block;
-  width: 100%;
-  margin: 1.5rem 0;
-  border: 1px solid var(--ink);
 }
 
 /* Captions in the source are a lone emphasised line under an image. */

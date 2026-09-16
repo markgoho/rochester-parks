@@ -26,7 +26,6 @@ geo:
   latitude: 43.2999874
   longitude: -77.7175972
 ---
-<iframe src="https://maps.google.com/maps?layer=c&amp;panoid=OlkyB5YresAAAAQWjLBM3w&amp;ie=UTF8&amp;source=embed&amp;output=svembed&amp;cbp=13%2C111.2636%2C%2C0%2C8" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 Braddock Bay Park is a massive park. Greece has other large parks (Frisbee Hill Park, Greece Canal Park) but Braddock Bay Park is the most replete with areas to eat and play.
 
