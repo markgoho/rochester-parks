@@ -29,7 +29,8 @@
 
   /* Map */
   --land: hsl(107 13% 79%);
-  --land-active: var(--orange);
+  /* The hover fill must carry white label text, so it is the darker orange. */
+  --land-active: var(--orange-ink);
 
   --display: 'Archivo Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --sans: 'Public Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;

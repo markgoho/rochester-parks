@@ -64,13 +64,24 @@
     pointer-events: none;
   }
 
+  /* The village outline carries the whole shape at rest, because its fill sits
+     very close to the land. It needs an ink dark enough to read against both. */
   .municipality:not(.linked) .boundary {
     fill: var(--paper-sunk);
-    stroke: var(--rule-strong);
+    stroke: var(--ink-muted);
   }
 
+  /* A village label lands on the town beneath it, so it crosses two very
+     different backgrounds: the land at rest, the active fill on hover. A paper
+     halo gives the ink a constant background on both. Weight, not color,
+     keeps the village quieter than the town. */
   .municipality:not(.linked) .boundary-text {
-    fill: var(--ink-faint);
+    fill: var(--ink-soft);
+    font-weight: 400;
+    paint-order: stroke fill;
+    stroke: var(--paper);
+    stroke-width: 2px;
+    stroke-linejoin: round;
   }
 
   a:hover .boundary,
