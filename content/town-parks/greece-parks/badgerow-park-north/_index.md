@@ -50,6 +50,4 @@ There are two athletic fields in this park. One is a baseball diamond with an ou
 
 On a future visit, Rochester Parks will walk the trails and give an overview of their quality and anything of particular import. The included picture gives just a hint of what the trail map looks like and will be fully updated when we walk the trails.
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.6604188875344!2d-77.64488057019031!3d43.25853830555337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x44ae87997c5ed5a3!2sBadgerow+Park+North!5e0!3m2!1sen!2sus!4v1433008819500" width="100%" height="300" loading="lazy" allowfullscreen></iframe>
-
 ![BadgerowN-Thumb](BadgerowN-Thumb.jpg)

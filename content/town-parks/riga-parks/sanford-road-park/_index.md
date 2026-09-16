@@ -27,7 +27,6 @@ amenities:
 sameAs:
   - 'https://maps.google.com/?cid=2468126472323708768'
 ---
-<iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.07967128631228|-77.88613829447752|1.3520640487123776|-10.442508883686756|0|MymBT7N_lU0AAAQfCNAyAw|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 There are only two parks in Riga NY, a town of approximately 6,000 people. Sanford Road Park is the smaller of the two–just 44 acres. This park seems to serve as an athletic hub for the town. The park is located on Churchville Riga Road and Sanford Road South, just south of the village of Churchville NY.
 
@@ -54,8 +53,6 @@ If you’re a volleyball fan, you might enjoy a view from the referee platform. 
 Maher lodge looks to be pretty nice inside. We haven’t had a chance to go inside, but head to the Town of Riga info page on Maher Lodge for more information.
 
 Here are all the photos we took at the Park.
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2914.123985717585!2d-77.88678000000002!3d43.080888649999956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d155cdeac160bf%3A0x22408bf32b97b760!2sSanford+Road+South+Park+Facility!5e0!3m2!1sen!2sus!4v1405888935853" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 ![Sanford Road Park play structure](Sanford-Road-Park-featured-image.jpg)
 

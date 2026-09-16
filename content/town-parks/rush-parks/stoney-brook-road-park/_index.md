@@ -21,7 +21,6 @@ amenities:
 sameAs:
   - 'https://maps.google.com/?cid=3097712190193503565'
 ---
-<iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=42.98117652311839|-77.65461686067363|-32.17809335374717|-11.374230708649518|0|j10UWy_7ymgAAAQvO_C5hw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 Similar to the other park in Rush NY, Stoney Brook Road Park has a unique purpose in the town. Although it’s unclear precisely when the park was officially started, in 1978 the Town of Rush received a Land and Water Conservation Grant of $15,000 to develop the park. After five years, it was completed in 1983.
 
@@ -40,7 +39,5 @@ There are also a few picnic benches set up on the road side of the pond. For a l
 The play area is in sore need of upgrades and repairs. The large swing set near the shelter has spaces for six swings, but only five exist. The other, smaller, two-swing set needs repairs to both seats. Lastly there is a climbing structure of sorts in the wooded area that would appear to be original to the late 1970s park construction.
 
 The open field has on either end what looks to be a goal post, perhaps a football upright or a make-shift soccer goal. There is also a spot for a baseball diamond although no bases or pitching mound exists. One has to wonder when the last game might have been played here.
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2918.822412970671!2d-77.65535554510727!3d42.98201439313981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2afd48d318e18d4d!2sStoney+Brook+Road+Park!5e0!3m2!1sen!2sus!4v1408385940537" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 ![Stoney Brook Road Park bench and pond](Stoney-Brook-Road-Park-featured-image.jpg)

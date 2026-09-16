@@ -31,7 +31,6 @@ sameAs:
   - 'https://perinton.org/departments/randp/parks-department/parks/kreag-road-park/'
   - 'https://maps.google.com/?cid=6557984480278291635'
 ---
-<iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.06427986545538|-77.47074556602206|154.86|-17.819999999999993|0|lY0mMvsUZHMAAAQvO_HHYw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 ![Kleag Road Park sign](Perinton-Kleag-Road-Park-1-of-27-e1408643935576.jpg)
 
@@ -56,5 +55,3 @@ Since the Town has a few signs up it’s worth noting, at the back edge of the p
 This kind of layout is similar to Henpeck Park in Greece NY and Great Embankment Park in Pittsford NY. While neither of those parks have any kind of warning signs like Kreag Road Park, it’s likely because neither of those parks attract many young children.
 
 It makes sense that Perinton would put up these signs. They even have a water flotation device at the edge of the Canal.
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2914.939771733545!2d-77.46922562900336!3d43.06373425501967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5b02a4239d8324b3!2sKreag+Road+Park!5e0!3m2!1sen!2sus!4v1408645122991" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
