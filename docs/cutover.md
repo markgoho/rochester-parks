@@ -20,20 +20,13 @@ Target: **the bare apex, no `www` anywhere.** WordPress currently 301s the apex 
 - [x] Seven old URLs with no match here now 301 in `firebase.json`.
 - [x] Gates Town Park added. It was the one old URL with no equivalent page.
 - [x] Pirsch Analytics in `src/app.html`. Ignores localhost, so dev and preview never report.
+- [x] `robots.txt` opened to crawlers, ahead of cutover. See step 1.
 
-## Step 1 — robots.txt. Do not skip this.
+## Step 1 — robots.txt. Done, ahead of cutover.
 
-`static/robots.txt` currently reads:
+`static/robots.txt` used to read `Disallow: /`, which blocked every crawler. That was right while `rochester-parks.web.app` was the only public copy, because it stopped Google indexing a duplicate of the live site. It would have de-indexed everything the moment DNS moved.
 
-```
-User-agent: *
-
-Disallow: /
-```
-
-That is correct **today**, because it stops Google indexing `rochester-parks.web.app` as a duplicate of the live site. It becomes a catastrophe the moment DNS moves: it de-indexes the entire site.
-
-Replace it at cutover, not before:
+It now reads:
 
 ```
 User-agent: *
@@ -44,7 +37,9 @@ Sitemap: https://rochesterparks.org/sitemap.xml
 
 Note the sitemap path differs from WordPress. Yours is `/sitemap.xml`; Yoast served `/sitemap_index.xml`.
 
-Firebase Hosting cannot serve a different `robots.txt` per hostname on one site, so there is no way to have both at once. It is a swap, and it has to be timed.
+**Opened early, deliberately.** Firebase Hosting cannot serve a different `robots.txt` per hostname, so this could not be both at once, and a timed swap was the step most likely to be missed on launch day. The cost is a window in which Google may crawl `rochester-parks.web.app`. Every page carries a canonical tag pointing at `https://rochesterparks.org`, so Google should consolidate to the apex rather than index the `web.app` copy separately.
+
+**If cutover slips by more than a week or two**, check Search Console for `web.app` URLs appearing in the index, and put `Disallow: /` back until you are closer to launch.
 
 ## Step 2 — verify on a preview channel
 
@@ -79,9 +74,11 @@ Then, at cutover:
 2. Point `www` at Firebase too, so the redirect in step 3 can fire. A `www` that simply stops resolving turns 200 indexed URLs into dead ends rather than redirects.
 3. Leave MX and any other records alone.
 
-## Step 5 — merge the robots swap
+## Step 5 — no deploy needed at cutover
 
-The `robots.txt` change from step 1 deploys on push to `main`. Time it with the DNS change. Deploy takes about 2m30s.
+`main` is already in its launch-ready state: robots open, redirects in place, Gates Town Park present. Nothing has to ship in step with the DNS change, which removes the tightest bit of timing from the whole cutover.
+
+If you do push something on launch day, allow about 2m30s for the deploy before testing the new domain.
 
 ## Step 6 — after cutover
 
@@ -110,4 +107,4 @@ The exception worth checking: if Search Console shows any category or tag page w
 
 Put the old Cloudflare A records back and re-enable the orange cloud. With a 5-minute TTL, this is quick. The WordPress site stays up throughout, so rollback costs nothing but the DNS propagation.
 
-Do not roll back by reverting `robots.txt` alone. That leaves DNS pointing at a site telling Google to go away.
+Rollback is DNS only. `robots.txt` is open on both the old and the new site now, so it needs no part in a rollback.
