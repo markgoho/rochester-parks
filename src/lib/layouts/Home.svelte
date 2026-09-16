@@ -207,7 +207,7 @@
   }
 
   .stats .mono {
-    font-size: var(--text-stat);
+    font-size: var(--text-stat-sm);
     line-height: var(--leading-none);
   }
 

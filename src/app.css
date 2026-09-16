@@ -53,6 +53,7 @@
   --text-lg: 1.0625rem;
   --text-xl: 1.1875rem;
   --text-2xl: 1.25rem;
+  --text-stat-sm: 2.25rem;
   --text-stat: 2.5rem;
   --text-h2: clamp(1.4rem, 1.2rem + 1vw, 1.875rem);
   --text-h1: clamp(2rem, 1.4rem + 3vw, 3.25rem);
@@ -73,6 +74,7 @@
   --tracking-wider: 0.16em;
 
   --underline-offset: 0.25em;
+  --underline-offset-prose: 0.18em;
 
   /* Space. Each step is named for its size in pixels at the default root. */
   --space-4: 0.25rem;
@@ -94,6 +96,7 @@
   /* Lines */
   --line-hair: 1px;
   --line-heavy: 2px;
+  --line-quote: 3px;
   --line-accent: 4px;
   --focus-offset: 2px;
 
@@ -228,7 +231,7 @@ a:focus-visible,
 button:focus-visible,
 summary:focus-visible {
   outline: var(--line-heavy) solid var(--orange);
-  outline-offset: var(--line-heavy);
+  outline-offset: var(--focus-offset);
 }
 
 img {
@@ -585,7 +588,7 @@ p {
 .prose a {
   color: var(--orange-ink);
   text-decoration: underline;
-  text-underline-offset: var(--underline-offset);
+  text-underline-offset: var(--underline-offset-prose);
 }
 
 .prose img {
@@ -608,7 +611,7 @@ p {
 .prose blockquote {
   margin: var(--space-20) 0;
   padding-left: var(--space-16);
-  border-left: var(--line-accent) solid var(--orange);
+  border-left: var(--line-quote) solid var(--orange);
 }
 
 .prose ul,
