@@ -3,17 +3,21 @@
   import { page } from '$app/state';
   import Header from '$lib/components/Header.svelte';
   import JsonLd from '$lib/components/JsonLd.svelte';
-  import { absUrl } from '$lib/site';
+  import { SITE_TITLE, absUrl } from '$lib/site';
 
   let { children } = $props();
 
   const canonical = $derived(absUrl(page.data.url ?? '/'));
+  const title = $derived(
+    page.data.url === '/' ? SITE_TITLE : `${page.data.title} · ${SITE_TITLE}`
+  );
 </script>
 
 <svelte:head>
-  <title>{page.data.title}</title>
+  <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="description" content={page.data.description} />
+  <meta name="theme-color" content="#14281d" />
   <meta property="og:title" content={page.data.title} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonical} />
@@ -22,15 +26,21 @@
   <meta name="view-transition" content="same-origin" />
 </svelte:head>
 
-<header class="header">
+<a class="visually-hidden" href="#main">Skip to content</a>
+
+<header class="site-header">
   <Header />
 </header>
 
-<main class="main">
+<main class="main" id="main">
   {@render children()}
 </main>
 
-<footer class="footer"></footer>
+<footer class="site-footer">
+  <p class="eyebrow" style="margin: 0">
+    {SITE_TITLE} · every park in Monroe County, New York
+  </p>
+</footer>
 
 {#each page.data.jsonLd ?? [] as data, i (i)}
   <JsonLd {data} />

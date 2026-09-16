@@ -1,0 +1,399 @@
+<script lang="ts">
+  import type { ParkIndexEntry } from '$lib/types';
+
+  let { data } = $props();
+
+  let selected = $state<string[]>([]);
+  let scope = $state('all');
+
+  const toggle = (name: string) => {
+    selected = selected.includes(name)
+      ? selected.filter((item) => item !== name)
+      : [...selected, name];
+  };
+
+  const scoped = $derived(
+    scope === 'all'
+      ? data.parks
+      : data.parks.filter((park) => park.sectionUrl === scope)
+  );
+  const inventoried = $derived(
+    scoped.filter((park) => park.amenities.length > 0)
+  );
+  const unrecorded = $derived(
+    scoped.filter((park) => park.amenities.length === 0)
+  );
+
+  const has = (park: ParkIndexEntry, name: string) =>
+    park.amenities.includes(name);
+  const matched = $derived(
+    inventoried.filter((park) => selected.every((name) => has(park, name)))
+  );
+  const fellShort = $derived(
+    inventoried
+      .filter((park) => !selected.every((name) => has(park, name)))
+      .map((park) => ({
+        park,
+        missing: selected.filter((name) => !has(park, name)),
+      }))
+  );
+
+  const scopeName = $derived(
+    scope === 'all'
+      ? 'Monroe County'
+      : (data.sections.find((section) => section.url === scope)?.title ?? '')
+  );
+  const coverage = $derived(
+    scoped.length ? Math.round((inventoried.length / scoped.length) * 100) : 0
+  );
+  const phrase = $derived(
+    selected.length
+      ? new Intl.ListFormat('en', {
+          style: 'long',
+          type: 'conjunction',
+        }).format(selected.map((name) => name.toLowerCase()))
+      : 'an amenity list'
+  );
+</script>
+
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow rule-in">Find a park</p>
+    <h1>What has to be there?</h1>
+    <p class="lede measure">
+      Pick the things you cannot do without. We will show you where somebody has
+      confirmed them, which parks fall short and exactly why, and which ones
+      nobody has looked at yet.
+    </p>
+  </header>
+
+  <section class="panel filters">
+    <div class="panel__head">
+      <span class="eyebrow">
+        Must have{selected.length ? ` · ${selected.length} selected` : ''}
+      </span>
+      {#if selected.length}
+        <button
+          class="clear eyebrow"
+          type="button"
+          onclick={() => (selected = [])}
+        >
+          Clear
+        </button>
+      {/if}
+    </div>
+
+    <div class="panel__body">
+      <ul class="tags">
+        {#each data.amenities as amenity (amenity.name)}
+          <li>
+            <button
+              type="button"
+              class="tag"
+              class:tag--on={selected.includes(amenity.name)}
+              aria-pressed={selected.includes(amenity.name)}
+              onclick={() => toggle(amenity.name)}
+            >
+              {amenity.name} <span class="count">{amenity.count}</span>
+            </button>
+          </li>
+        {/each}
+      </ul>
+
+      <p class="scope">
+        <label class="eyebrow" for="scope">Within</label>
+        <select id="scope" bind:value={scope}>
+          <option value="all"
+            >Anywhere in Monroe County ({data.parks.length})</option
+          >
+          {#each data.sections as section (section.url)}
+            <option value={section.url}
+              >{section.title} ({section.count})</option
+            >
+          {/each}
+        </select>
+      </p>
+    </div>
+  </section>
+
+  <div class="summary">
+    <p class="count-out">
+      <span class="mono">{matched.length}</span>
+      <span>
+        {matched.length === 1 ? 'park' : 'parks'} in {scopeName}
+        {selected.length ? 'have' : 'has'}
+        {phrase}
+      </span>
+    </p>
+
+    <div class="panel coverage">
+      <div class="panel__body">
+        <p class="coverage__head">
+          <span class="eyebrow">How much of {scopeName} this can see</span>
+          <span class="mono">{inventoried.length} / {scoped.length}</span>
+        </p>
+        <p class="meter" aria-hidden="true">
+          <span class="meter__fill" style="width: {coverage}%"></span>
+          <span style="width: {100 - coverage}%"></span>
+        </p>
+        <p class="coverage__note">
+          {unrecorded.length} of these parks have no amenity list. They are not missing
+          a shelter — nobody has written down whether they have one.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="results" aria-live="polite">
+    <h2 class="group">
+      {matched.length}
+      {matched.length === 1 ? 'park matches' : 'parks match'}
+    </h2>
+    {#if matched.length}
+      <ul class="rows">
+        {#each matched as park (park.url)}
+          <li class="row">
+            <a class="row__name" href={park.url}>{park.title}</a>
+            <span class="eyebrow row__section">{park.section}</span>
+            <span class="tags row__tags">
+              {#each park.amenities as amenity (amenity)}
+                <span class="tag" class:tag--on={selected.includes(amenity)}
+                  >{amenity}</span
+                >
+              {/each}
+            </span>
+          </li>
+        {/each}
+      </ul>
+    {:else}
+      <p class="none">
+        Nothing recorded in {scopeName} has all of that. Try removing one.
+      </p>
+    {/if}
+
+    {#if selected.length && fellShort.length}
+      <h2 class="group group--quiet">{fellShort.length} fall short</h2>
+      <p class="eyebrow group__note">We know what is there — and what is not</p>
+      <ul class="rows">
+        {#each fellShort as { park, missing } (park.url)}
+          <li class="row row--quiet">
+            <a class="row__name" href={park.url}>{park.title}</a>
+            <span class="eyebrow row__section">{park.section}</span>
+            <span class="tags row__tags">
+              {#each missing as name (name)}
+                <span class="tag tag--off">no {name.toLowerCase()}</span>
+              {/each}
+            </span>
+          </li>
+        {/each}
+      </ul>
+    {/if}
+
+    {#if unrecorded.length}
+      <section class="panel unreachable">
+        <div class="panel__head">
+          <span class="eyebrow"
+            >{unrecorded.length} the filter cannot reach</span
+          >
+          <span class="eyebrow eyebrow--accent">No amenity list recorded</span>
+        </div>
+        <div class="panel__body">
+          <ul class="unreachable__list">
+            {#each unrecorded as park (park.url)}
+              <li><a href={park.url}>{park.title}</a></li>
+            {/each}
+          </ul>
+          <p class="coverage__note">
+            Listing them is the point. A park absent from a result reads as a
+            park that failed the test, and none of these did.
+          </p>
+        </div>
+      </section>
+    {/if}
+  </section>
+</div>
+
+<style>
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.5rem 0 1.75rem;
+  }
+
+  .lede {
+    margin: 0;
+    font-size: 1.0625rem;
+    color: var(--ink-soft);
+  }
+
+  .filters .tags {
+    gap: 0.45rem;
+  }
+
+  .tag {
+    cursor: pointer;
+    min-height: 2.75rem;
+    font: inherit;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .clear {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--orange-ink);
+    cursor: pointer;
+    font-family: var(--mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .scope {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  select {
+    min-height: 2.75rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--rule-strong);
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.9375rem;
+  }
+
+  .summary {
+    display: grid;
+    gap: 1rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .count-out {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--orange);
+    color: var(--paper);
+    font-size: 1.0625rem;
+    font-weight: 700;
+  }
+
+  .count-out .mono {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .coverage__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .coverage__head .mono {
+    font-size: 0.8125rem;
+  }
+
+  .coverage__note {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+  }
+
+  .group {
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .group--quiet {
+    color: var(--ink-muted);
+    border-bottom-width: 1px;
+    border-bottom-color: var(--rule);
+  }
+
+  .group__note {
+    margin: -0.25rem 0 0.75rem;
+  }
+
+  .rows {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .row {
+    display: grid;
+    gap: 0.4rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--ink);
+    background: var(--card);
+    margin-bottom: 0.6rem;
+  }
+
+  .row--quiet {
+    border: 0;
+    border-bottom: 1px solid var(--rule-soft);
+    background: none;
+    margin-bottom: 0;
+    padding-inline: 0;
+  }
+
+  .row__name {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .none {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .unreachable {
+    margin-top: 2rem;
+    background: var(--paper-sunk);
+  }
+
+  .unreachable__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 0 1.5rem;
+    margin: 0 0 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .unreachable__list a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--ink-soft);
+  }
+
+  @media (min-width: 60rem) {
+    .summary {
+      grid-template-columns: minmax(0, 1fr) 30rem;
+      align-items: stretch;
+    }
+
+    .row {
+      grid-template-columns: minmax(0, 16rem) 8rem minmax(0, 1fr);
+      align-items: center;
+      gap: 1.25rem;
+    }
+  }
+</style>
