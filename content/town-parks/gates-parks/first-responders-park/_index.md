@@ -27,7 +27,7 @@ geo:
 ---
 <iframe src="https://maps.google.com/maps?layer=c&amp;panoid=GZtxPaiJpl4AAAQXMr4AqA&amp;ie=UTF8&amp;source=embed&amp;output=svembed&amp;cbp=13%2C57.30072837465724%2C%2C0%2C12.812214034144802" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
-The largest park in Gates, First Responders Park is set pretty far back from Lyell Road on a road that isn’t even paved. This adds a bit to its charm, so don’t go begging the Town of Gates to pave this over any time soon. After a short, bumpy ride you’l find the trees clear and a great expanse of a park opens up in front and to the right of your vehicle.
+The largest park in Gates, First Responders Park (formerly Gates Town Park) is set pretty far back from Lyell Road on a road that isn’t even paved. This adds a bit to its charm, so don’t go begging the Town of Gates to pave this over any time soon. After a short, bumpy ride you’l find the trees clear and a great expanse of a park opens up in front and to the right of your vehicle.
 
 ![Gates Town Park playground](PhotomatixResults01-20-of-22-e1405173554119.jpg)
 
