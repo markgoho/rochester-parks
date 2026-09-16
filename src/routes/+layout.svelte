@@ -21,7 +21,8 @@
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="description" content={page.data.description} />
-  <meta name="theme-color" content="#14281d" />
+  <!-- --ink as hex. A meta tag cannot read a CSS token. -->
+  <meta name="theme-color" content="#14291e" />
   <meta property="og:title" content={page.data.title} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonical} />

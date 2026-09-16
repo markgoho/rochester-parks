@@ -89,7 +89,7 @@
   .outline {
     fill: var(--land);
     stroke: var(--rule-strong);
-    stroke-width: 1.2px;
+    stroke-width: var(--stroke-base);
     stroke-linejoin: round;
   }
 
@@ -97,7 +97,7 @@
   .village {
     fill: var(--paper-sunk);
     stroke: var(--rule-strong);
-    stroke-width: 1.2px;
+    stroke-width: var(--stroke-base);
     stroke-linejoin: round;
   }
 
@@ -105,6 +105,6 @@
   .park {
     fill: var(--orange);
     stroke: var(--ink);
-    stroke-width: 1.2px;
+    stroke-width: var(--stroke-base);
   }
 </style>

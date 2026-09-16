@@ -244,15 +244,15 @@
   .head {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 2px solid var(--ink);
+    gap: var(--space-14);
+    padding-bottom: var(--space-20);
+    border-bottom: var(--line-heavy) solid var(--ink);
   }
 
   .head__text {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: var(--space-14);
     min-width: 0;
   }
 
@@ -268,14 +268,14 @@
   .counts {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
+    gap: var(--space-8) var(--space-24);
     margin: 0;
     align-items: center;
   }
 
   .counts b {
     color: var(--ink);
-    font-size: 0.9375rem;
+    font-size: var(--text-sm);
   }
 
   .table {
@@ -293,9 +293,9 @@
       '. tags'
       '. acres'
       '. words';
-    gap: 0.35rem 0.9rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--rule-soft);
+    gap: var(--space-6) var(--space-14);
+    padding: var(--space-12) 0;
+    border-bottom: var(--line-hair) solid var(--rule-soft);
   }
 
   /* Below the table width the grid has no columns to head, so the row keeps
@@ -304,8 +304,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.9rem 0 0.5rem;
+    gap: var(--space-10);
+    padding: var(--space-14) 0 var(--space-8);
     border-bottom: none;
   }
 
@@ -328,14 +328,14 @@
 
   .row--head a {
     text-decoration: underline;
-    text-underline-offset: 0.25em;
+    text-underline-offset: var(--underline-offset);
     text-decoration-style: dotted;
   }
 
   .row--head [aria-current='page'] {
     color: var(--ink);
     text-decoration: underline;
-    text-underline-offset: 0.25em;
+    text-underline-offset: var(--underline-offset);
   }
 
   /* With one ordering there is nothing to sort, so the narrow layout, which
@@ -350,14 +350,14 @@
 
   .num {
     grid-area: num;
-    font-size: 0.75rem;
+    font-size: var(--text-2xs);
     color: var(--ink-faint);
   }
 
   .name {
     grid-area: name;
-    font-size: 1.0625rem;
-    font-weight: 700;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
   }
 
   .status {
@@ -370,65 +370,65 @@
     grid-area: tags;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem;
+    gap: var(--space-4);
   }
 
   .acres {
     grid-area: acres;
-    font-size: 0.75rem;
+    font-size: var(--text-2xs);
     color: var(--ink-muted);
   }
 
   .words {
     grid-area: words;
-    font-size: 0.75rem;
+    font-size: var(--text-2xs);
     color: var(--ink-muted);
   }
 
   .none {
-    font-size: 0.75rem;
+    font-size: var(--text-2xs);
     color: var(--ink-faint);
   }
 
   .more {
-    margin: 2.5rem 0 0.75rem;
+    margin: var(--space-40) 0 var(--space-12);
   }
 
   .map-hint {
-    margin: 0.5rem 0 0;
+    margin: var(--space-8) 0 0;
     text-align: center;
   }
 
   .orders {
     display: flex;
-    gap: 1.25rem;
-    padding-top: 0.9rem;
+    gap: var(--space-20);
+    padding-top: var(--space-14);
   }
 
   .orders a {
     text-decoration: underline;
-    text-underline-offset: 0.25em;
+    text-underline-offset: var(--underline-offset);
     text-decoration-style: dotted;
   }
 
   .orders [aria-current='page'] {
     color: var(--ink);
     text-decoration: underline;
-    text-underline-offset: 0.25em;
+    text-underline-offset: var(--underline-offset);
   }
 
   .group {
-    scroll-margin-top: 1rem;
+    scroll-margin-top: var(--space-16);
   }
 
   .group__head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
-    margin: 2rem 0 0;
-    padding: 0 0 0.4rem;
-    border-bottom: 1px solid var(--ink);
+    gap: var(--space-16);
+    margin: var(--space-32) 0 0;
+    padding: 0 0 var(--space-6);
+    border-bottom: var(--line-hair) solid var(--ink);
   }
 
   /* The group the map sent the reader to. */
@@ -440,15 +440,15 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    border-top: 1px solid var(--rule);
+    border-top: var(--line-hair) solid var(--rule);
   }
 
   .other a {
     display: flex;
     align-items: center;
-    min-height: 2.75rem;
-    border-bottom: 1px solid var(--rule-soft);
-    font-weight: 700;
+    min-height: var(--tap-target);
+    border-bottom: var(--line-hair) solid var(--rule-soft);
+    font-weight: var(--weight-bold);
   }
 
   @media (min-width: 60rem) {
@@ -457,7 +457,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 13rem;
       align-items: start;
-      gap: 2.5rem;
+      gap: var(--space-40);
     }
 
     .locator {
@@ -479,8 +479,8 @@
         6rem 6rem;
       grid-template-areas: 'num name status tags acres words';
       align-items: center;
-      gap: 1.1rem;
-      padding: 0.5rem 0.875rem;
+      gap: var(--space-16);
+      padding: var(--space-8) var(--space-14);
     }
 
     .row:nth-child(even) {
@@ -490,8 +490,8 @@
     .row--head {
       display: grid;
       min-height: 2.25rem;
-      padding: 0.4rem 0.875rem;
-      border-bottom: 1px solid var(--ink);
+      padding: var(--space-6) var(--space-14);
+      border-bottom: var(--line-hair) solid var(--ink);
       background: none;
     }
 

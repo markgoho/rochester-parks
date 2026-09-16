@@ -71,7 +71,7 @@
   .boundary {
     fill: var(--land);
     stroke: var(--rule-strong);
-    stroke-width: 0.8px;
+    stroke-width: var(--stroke-thin);
     stroke-linejoin: round;
   }
 
@@ -79,13 +79,13 @@
   .boundary.on {
     fill: var(--land-active);
     stroke: var(--ink);
-    stroke-width: 1.4px;
+    stroke-width: var(--stroke-bold);
   }
 
   /* The park this page is about, in the one accent the site allows. */
   .park {
     fill: var(--orange);
     stroke: var(--ink);
-    stroke-width: 1.2px;
+    stroke-width: var(--stroke-base);
   }
 </style>

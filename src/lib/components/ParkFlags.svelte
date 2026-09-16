@@ -109,11 +109,11 @@
   }
 
   .tip {
-    padding: 0.35rem 0.6rem;
-    border: 1px solid var(--ink);
+    padding: var(--space-6) var(--space-10);
+    border: var(--line-hair) solid var(--ink);
     background: var(--ink);
     color: var(--paper);
-    letter-spacing: 0.1em;
+    letter-spacing: var(--tracking-wide);
     white-space: nowrap;
   }
 
@@ -122,7 +122,7 @@
      its icon gets to drop that centring. */
   @supports (position-area: block-end center) {
     .tip {
-      margin: 0.35rem 0;
+      margin: var(--space-6) 0;
       position-area: block-end center;
       position-try-fallbacks: flip-block;
     }

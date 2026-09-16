@@ -144,34 +144,34 @@
 <style>
   .hero {
     display: grid;
-    gap: 2rem;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    gap: var(--space-32);
+    padding-top: var(--space-40);
+    padding-bottom: var(--space-40);
   }
 
   .hero__text {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: var(--space-20);
   }
 
   .lede {
     margin: 0;
-    font-size: 1.0625rem;
+    font-size: var(--text-lg);
     color: var(--ink-soft);
   }
 
   /* A town on the county's north edge grows past the top of the map, so the
      line above it stands back far enough to stay clear. */
   .hero__map .eyebrow {
-    margin: 0 0 1.75rem;
+    margin: 0 0 var(--space-28);
   }
 
   .ledger {
     margin: 0;
     padding: 0;
     list-style: none;
-    border-top: 1px solid var(--rule);
+    border-top: var(--line-hair) solid var(--rule);
     max-width: 28rem;
   }
 
@@ -179,36 +179,36 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
-    min-height: 3rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--rule);
-    font-size: 1.0625rem;
-    font-weight: 700;
+    gap: var(--space-16);
+    min-height: var(--control-height);
+    padding: var(--space-8) 0;
+    border-bottom: var(--line-hair) solid var(--rule);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
   }
 
   .stats {
     background: var(--paper-sunk);
-    border-block: 2px solid var(--ink);
+    border-block: var(--line-heavy) solid var(--ink);
   }
 
   .stats__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: 1.25rem;
-    padding-block: 1.5rem;
+    gap: var(--space-20);
+    padding-block: var(--space-24);
   }
 
   .stats p {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: var(--space-6);
     margin: 0;
   }
 
   .stats .mono {
-    font-size: 2.25rem;
-    line-height: 1;
+    font-size: var(--text-stat);
+    line-height: var(--leading-none);
   }
 
   .stats .accent {
@@ -218,53 +218,53 @@
   .finder,
   .towns {
     display: grid;
-    gap: 1.75rem;
-    padding-top: 2.75rem;
+    gap: var(--space-28);
+    padding-top: var(--space-44);
   }
 
   .finder h2,
   .towns h2 {
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--space-12);
   }
 
   .caveat {
-    margin: 1rem 0 0;
-    font-size: 0.9375rem;
+    margin: var(--space-16) 0 0;
+    font-size: var(--text-sm);
     color: var(--ink-soft);
   }
 
   .towns__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-    gap: 0 1.75rem;
+    gap: 0 var(--space-28);
     margin: 0;
     padding: 0;
     list-style: none;
-    border-top: 2px solid var(--ink);
+    border-top: var(--line-heavy) solid var(--ink);
   }
 
   .towns__grid a {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 0.75rem;
-    min-height: 2.75rem;
-    padding: 0.35rem 0;
-    border-bottom: 1px solid var(--rule-soft);
-    font-size: 0.9375rem;
+    gap: var(--space-12);
+    min-height: var(--tap-target);
+    padding: var(--space-6) 0;
+    border-bottom: var(--line-hair) solid var(--rule-soft);
+    font-size: var(--text-sm);
   }
 
   .towns__grid .mono {
     color: var(--ink-muted);
-    font-size: 0.8125rem;
+    font-size: var(--text-xs);
   }
 
   @media (min-width: 60rem) {
     .hero {
       grid-template-columns: minmax(0, 1fr) 34rem;
       align-items: center;
-      gap: 3.5rem;
-      padding-top: 3.5rem;
+      gap: var(--space-56);
+      padding-top: var(--space-56);
     }
 
     .finder {
