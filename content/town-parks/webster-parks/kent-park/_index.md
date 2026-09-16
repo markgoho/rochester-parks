@@ -1,6 +1,6 @@
 ---
-title: 'Kent Park'
-description: 'A Webster Town Park called Kent Park'
+title: 'Irving Kent Memorial Park'
+description: 'A Webster Town Park called Irving Kent Memorial Park'
 type: 'park'
 geo:
   latitude: 43.24467636660821

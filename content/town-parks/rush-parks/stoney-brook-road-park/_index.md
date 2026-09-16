@@ -1,6 +1,6 @@
 ---
-title: 'Stoney Brook Road Park'
-description: 'A park in Rush, NY called Stoney Brook Road Park'
+title: 'Stonybrook Road Park'
+description: 'A park in Rush, NY called Stonybrook Road Park'
 type: 'park'
 geo:
   latitude: 42.98201439313981

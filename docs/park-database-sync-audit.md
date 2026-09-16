@@ -2,7 +2,10 @@
 
 Every park page under `content/town-parks/` was checked against the Google Sheets park database (152 rows, 25 municipalities). Village rows — Brockport, Fairport, Honeoye Falls, Scottsville, Spencerport — were folded into their town.
 
-**No page was renamed, moved or deleted.** A rename changes the URL, and `CONTEXT.md` records the park name as the join key for the WordPress comment archive, so every mismatch below is reported for you to settle rather than applied.
+**Park names now follow the database.** Fifteen pages had a name the database spells differently; each one took the database spelling. Folder slugs are untouched, so no URL changed and no redirect is needed. No page was moved or deleted.
+
+
+One thing is NOT settled and needs you: `docs/cutover.md` says Gates Town Park was added on purpose, to cover the one old WordPress URL with no equivalent page. The Gates agent, not knowing that, read it as a duplicate of First Responders Park and suggested merging the two. Do not merge it — but the two pages do describe one physical park, so it is worth deciding what Gates Town Park should say.
 
 
 ## Done centrally, not per town
@@ -19,7 +22,7 @@ Towns reported: 20 of 20
 
 - Pages created: 25
 - Pages updated: 113
-- Name conflicts to settle: 15
+- Names changed to the database spelling: 15
 - Pages not in the database: 7
 - Database rows judged not a park: 5
 
@@ -54,25 +57,30 @@ Towns reported: 20 of 20
 | webster | State Road Nature Preserve | `content/town-parks/webster-parks/state-road-nature-preserve/_index.md` |
 | webster | Whiting Road Nature Preserve | `content/town-parks/webster-parks/whiting-road-nature-preserve/_index.md` |
 
-## Name conflicts — your call, nothing was renamed
+## Names taken from the database
 
-| Town | Page says | Database says | Path |
+The database is the source of truth for a park name, so each page below now carries the database spelling in its `title` and `description`. The old name is kept here because `CONTEXT.md` records the park name as the join key for the WordPress comment archive — the archive keys on the OLD column, so an import needs this mapping.
+
+Folder slugs, and therefore URLs, are unchanged. Nothing 404s and no redirect is needed.
+
+
+| Town | Was | Now (database) | URL, unchanged |
 | --- | --- | --- | --- |
-| gates | First Responders Park | Gates First Responder Park | `content/town-parks/gates-parks/first-responders-park/_index.md` |
-| greece | Beverly Pappas Memorial Park | Pappas Park | `content/town-parks/greece-parks/beverly-pappas-memorial-park/_index.md` |
-| greece | Veterans Memorial Park | Veteran's Memorial Park | `content/town-parks/greece-parks/veterans-memorial-park/_index.md` |
-| henrietta | Kenwick park | Kenwick Park | `content/town-parks/henrietta-parks/kenwick-park/_index.md` |
-| ogden | Memorial Park | Veteran's Memorial Park | `content/town-parks/ogden-parks/ogden-memorial-park/_index.md` |
-| penfield | LaSalles Landing Park | LaSalle's Landing Park | `content/town-parks/penfield-parks/lasalles-landing-park/_index.md` |
-| penfield | Veteran’s Memorial Park | Veterans Memorial Park | `content/town-parks/penfield-parks/veterans-memorial-park/_index.md` |
-| perinton | Ayrualt Boat Launch | Ayrault Boat Launch | `content/town-parks/perinton-parks/ayrualt-boat-launch/_index.md` |
-| perinton | Garnsey Road Arboretum | Garnsey Arboretum | `content/town-parks/perinton-parks/garnsey-arboretum/_index.md` |
-| rush | Stoney Brook Road Park | Stonybrook Road Park | `content/town-parks/rush-parks/stoney-brook-road-park/_index.md` |
-| rush | Veterans Memorial Park | Veteran's Memorial Park | `content/town-parks/rush-parks/veterans-memorial-park/_index.md` |
-| sweden | Corbet Park | Corbett Park | `content/town-parks/sweden-parks/corbet-park/_index.md` |
-| webster | Kent Park | Irving Kent Memorial Park | `content/town-parks/webster-parks/kent-park/_index.md` |
-| webster | Webster First Responders Park | First Responders Park | `content/town-parks/webster-parks/webster-first-responders-park/_index.md` |
-| wheatland | Canawagus Park | Canawaugus Park | `content/town-parks/wheatland-parks/canawagus-park/_index.md` |
+| gates | First Responders Park | **Gates First Responder Park** | `/town-parks/gates-parks/first-responders-park/` |
+| greece | Beverly Pappas Memorial Park | **Pappas Park** | `/town-parks/greece-parks/beverly-pappas-memorial-park/` |
+| greece | Veterans Memorial Park | **Veteran's Memorial Park** | `/town-parks/greece-parks/veterans-memorial-park/` |
+| henrietta | Kenwick park | **Kenwick Park** | `/town-parks/henrietta-parks/kenwick-park/` |
+| ogden | Memorial Park | **Veteran's Memorial Park** | `/town-parks/ogden-parks/ogden-memorial-park/` |
+| penfield | LaSalles Landing Park | **LaSalle's Landing Park** | `/town-parks/penfield-parks/lasalles-landing-park/` |
+| penfield | Veteran’s Memorial Park | **Veterans Memorial Park** | `/town-parks/penfield-parks/veterans-memorial-park/` |
+| perinton | Ayrualt Boat Launch | **Ayrault Boat Launch** | `/town-parks/perinton-parks/ayrualt-boat-launch/` |
+| perinton | Garnsey Road Arboretum | **Garnsey Arboretum** | `/town-parks/perinton-parks/garnsey-arboretum/` |
+| rush | Stoney Brook Road Park | **Stonybrook Road Park** | `/town-parks/rush-parks/stoney-brook-road-park/` |
+| rush | Veterans Memorial Park | **Veteran's Memorial Park** | `/town-parks/rush-parks/veterans-memorial-park/` |
+| sweden | Corbet Park | **Corbett Park** | `/town-parks/sweden-parks/corbet-park/` |
+| webster | Kent Park | **Irving Kent Memorial Park** | `/town-parks/webster-parks/kent-park/` |
+| webster | Webster First Responders Park | **First Responders Park** | `/town-parks/webster-parks/webster-first-responders-park/` |
+| wheatland | Canawagus Park | **Canawaugus Park** | `/town-parks/wheatland-parks/canawagus-park/` |
 
 ## Pages with no database row — nothing was removed
 
@@ -103,7 +111,7 @@ Towns reported: 20 of 20
 - **Rotary Park (Mendon)** — `acres` reads `n/a`, so no acreage was written.
 - **Remembrance Park (Brockport)** — `acres` reads `0.00`, treated as a placeholder rather than a measurement.
 - **Herman Road Forever Wild Forest (Webster)** — the park name spells Herman, the address spells Hermann.
-- **Belmanor Park** — the page sits under Brighton, the database says Henrietta. Nothing was moved; a move would change the URL.
+- **Belmanor Park** — the page sits under Brighton, the database says Henrietta. Nothing was moved, because unlike a name, a move does change the URL.
 - **Persimmon Park (Brighton)** — the page's own address and the database address disagree. The page's was kept.
 
 ## Other notes

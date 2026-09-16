@@ -1,6 +1,6 @@
 ---
-title: 'Canawagus Park'
-description: 'A Wheatland Town Park called Canawagus Park'
+title: 'Canawaugus Park'
+description: 'A Wheatland Town Park called Canawaugus Park'
 type: 'park'
 acres: 3.04
 sameAs:

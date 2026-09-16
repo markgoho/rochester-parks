@@ -1,6 +1,6 @@
 ---
-title: 'Garnsey Road Arboretum'
-description: 'A Perinton Town Park called Garnsey Road Arboretum'
+title: 'Garnsey Arboretum'
+description: 'A Perinton Town Park called Garnsey Arboretum'
 type: 'park'
 geo:
   latitude: 43.05901349876798

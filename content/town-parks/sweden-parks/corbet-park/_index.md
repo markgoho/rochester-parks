@@ -1,6 +1,6 @@
 ---
-title: 'Corbet Park'
-description: 'A Sweden Town Park called Corbet Park'
+title: 'Corbett Park'
+description: 'A Sweden Town Park called Corbett Park'
 type: 'park'
 geo:
   latitude: 43.217102288639914

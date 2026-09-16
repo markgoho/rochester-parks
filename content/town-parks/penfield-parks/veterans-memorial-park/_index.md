@@ -1,6 +1,6 @@
 ---
-title: 'Veteran’s Memorial Park'
-description: 'A Penfield Town Park called Veteran’s Memorial Park'
+title: 'Veterans Memorial Park'
+description: 'A Penfield Town Park called Veterans Memorial Park'
 type: 'park'
 geo:
   latitude: 43.16234908277461

@@ -1,6 +1,6 @@
 ---
-title: 'Beverly Pappas Memorial Park'
-description: 'A Greece Town Park called Beverly Pappas Memorial Park'
+title: 'Pappas Park'
+description: 'A Greece Town Park called Pappas Park'
 type: 'park'
 address:
   streetAddress: '67 Haviland Park'
