@@ -2,6 +2,12 @@
 title: 'Tryon Park West'
 description: 'A Rochester City Park called Tryon Park West'
 type: 'park'
+acres: 14
+address:
+  streetAddress: 'Tryon Park at Loudisa Dr'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Baseball Diamond
   - Basketball Court

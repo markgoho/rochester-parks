@@ -2,6 +2,12 @@
 title: 'Lunsford Circle Park'
 description: 'A Rochester City Park called Lunsford Circle Park'
 type: 'park'
+acres: 0.5
+address:
+  streetAddress: '441 Glasgow St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 sameAs:
   - 'https://www.cityofrochester.gov/locations/lunsford-circle-park'
 geo:

@@ -2,6 +2,7 @@
 title: 'Sebastian Park'
 description: 'A Rochester City Park called Sebastian Park'
 type: 'park'
+acres: 8
 address:
   streetAddress: '20 Planet Street'
   addressLocality: 'Rochester'

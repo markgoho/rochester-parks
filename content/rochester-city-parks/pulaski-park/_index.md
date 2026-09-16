@@ -2,6 +2,11 @@
 title: 'Pulaski Park'
 description: 'A Rochester City Park called Pulaski Park'
 type: 'park'
+address:
+  streetAddress: '1200 North St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 sameAs:
   - 'https://www.cityofrochester.gov/locations/pulaski-park'
 geo:

@@ -2,6 +2,12 @@
 title: 'Aberdeen Square Park'
 description: 'A Rochester City Park called Aberdeen Square Park'
 type: 'park'
+acres: 1.5
+address:
+  streetAddress: '330 Post Ave'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 sameAs:
   - 'https://www.cityofrochester.gov/locations/aberdeen-square-park'
 geo:

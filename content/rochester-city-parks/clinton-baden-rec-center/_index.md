@@ -14,6 +14,9 @@ amenities:
   - Playground
   - Recreation Center
   - Water
+geo:
+  latitude: 43.165794
+  longitude: -77.6112798
 ---
 
 A page for this park is still being written.

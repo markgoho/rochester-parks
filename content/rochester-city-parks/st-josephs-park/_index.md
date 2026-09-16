@@ -2,6 +2,12 @@
 title: "St. Joseph's Park"
 description: "A Rochester City Park called St. Joseph's Park"
 type: 'park'
+acres: 1.8
+address:
+  streetAddress: 'Pleasant St behind St Joseph'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 geo:
   latitude: 43.1594449443536
   longitude: -77.60704971638812

@@ -2,6 +2,7 @@
 title: 'Grape & Wilder'
 description: 'A Rochester City Park called Grape & Wilder'
 type: 'park'
+acres: 0.3
 amenities:
   - Basketball Court
 geo:

@@ -2,6 +2,7 @@
 title: 'First St Playground'
 description: 'A Rochester City Park called First St Playground'
 type: 'park'
+acres: 2.2
 address:
   streetAddress: '140 First Street'
   addressLocality: 'Rochester'

@@ -49,5 +49,5 @@ A section gets a `by-size` page only when two or more of its Parks have a figure
 - Address, hours and the official site show on the Park page only.
 - The Park List drops the "Sorted A-Z - nothing is ranked here" copy. The two orderings are reached from the column headings themselves: the Park heading links to the A to Z page, the Size heading links to the `by-size` page, and the heading of the current order is marked `aria-current="page"` instead of linked. A heading is a link, not a button, so this stays a second page and not a control. The page still states its own order.
 - The `by-size` page carries a canonical link to the A to Z page, because the two hold the same Parks.
-- Rochester city Parks have no acreage at all (0 of 77). That section gets no `by-size` page until the figures arrive.
+- Rochester city Parks had no acreage at all (0 of 77). That section got no `by-size` page until the figures arrived. They came from the City of Rochester's `Parks_Open_Space_Points` layer on 2026-09-16, and the section now has one.
 - The A-Z page and the `by-size` page hold the same rows in a new order. This is the best case for a cross-document view transition. See issue #35.

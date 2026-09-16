@@ -2,6 +2,12 @@
 title: 'Troup Street Park'
 description: 'A Rochester City Park called Troup Street Park'
 type: 'park'
+acres: 4.1
+address:
+  streetAddress: 'Troup St and Van Auker St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Basketball Court
   - Playground

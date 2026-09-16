@@ -2,6 +2,7 @@
 title: 'Norton Village Playground'
 description: 'A Rochester City Park called Norton Village Playground'
 type: 'park'
+acres: 11.3
 address:
   streetAddress: '300 Waring Road'
   addressLocality: 'Rochester'

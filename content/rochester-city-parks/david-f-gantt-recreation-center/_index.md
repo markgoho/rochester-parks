@@ -15,6 +15,9 @@ amenities:
   - Recreation Center
   - Tennis Court
   - Water
+geo:
+  latitude: 43.170394
+  longitude: -77.5961181
 ---
 
 A page for this park is still being written.

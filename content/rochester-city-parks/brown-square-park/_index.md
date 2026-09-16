@@ -2,6 +2,7 @@
 title: 'Brown Square Park'
 description: 'A Rochester City Park called Brown Square Park'
 type: 'park'
+acres: 4.5
 address:
   streetAddress: '251 Verona St.'
   addressLocality: 'Rochester'

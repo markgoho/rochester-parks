@@ -2,6 +2,7 @@
 title: 'West High Field'
 description: 'A Rochester City Park called West High Field'
 type: 'park'
+acres: 7
 amenities:
   - Baseball Diamond
   - Basketball Court

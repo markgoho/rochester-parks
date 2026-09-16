@@ -2,6 +2,12 @@
 title: 'Goodwin Park'
 description: 'A Rochester City Park called Goodwin Park'
 type: 'park'
+acres: 0.9
+address:
+  streetAddress: 'End of Sibley Pl'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Playground
 geo:
