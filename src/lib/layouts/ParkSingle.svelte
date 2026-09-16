@@ -1,16 +1,20 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
+  import CityLocator from '$lib/components/CityLocator.svelte';
   import TownLocator from '$lib/components/TownLocator.svelte';
   import TownShape from '$lib/components/TownShape.svelte';
   import { formatAcres } from '$lib/format';
   import {
+    isCitySection,
     isCountySection,
     municipality,
     placeAt,
     townAt,
     townKey,
+    villagesIn,
   } from '$lib/municipalities';
+  import { neighborhoodAt } from '$lib/neighborhoods';
   import type { Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
@@ -19,26 +23,41 @@
   const county = $derived(
     park !== undefined && isCountySection(park.section.url)
   );
+  const city = $derived(park !== undefined && isCitySection(park.section.url));
   /**
    * The town to draw. The coordinates decide it, so a park filed under one
    * section but standing in another is shown where it really is; the section
    * is only the fallback. A county park has no town section to fall back on,
-   * and several stand in the city, so the city counts as a place for it.
+   * and several stand in the city, so the city counts as a place for it. A
+   * city park is drawn on its neighborhood instead.
    */
   const town = $derived(
-    park?.geo
+    park?.geo && !city
       ? county
         ? placeAt(park.geo.latitude, park.geo.longitude)
         : (townAt(park.geo.latitude, park.geo.longitude) ??
           townKey(park.section.url))
       : undefined
   );
-  const townName = $derived(town ? municipality(town)?.label.text : undefined);
+  const neighborhood = $derived(
+    park?.geo && city
+      ? neighborhoodAt(park.geo.latitude, park.geo.longitude)
+      : undefined
+  );
+  const shape = $derived(
+    neighborhood ?? (town ? municipality(town) : undefined)
+  );
+  const villages = $derived(town ? villagesIn(town) : []);
   /**
    * A county park whose point falls outside every outline still gets the
-   * county map rather than no map at all.
+   * county map rather than no map at all, and a city park outside every
+   * neighborhood gets the city map.
    */
-  const where = $derived(townName ?? (county ? 'Monroe County' : undefined));
+  const where = $derived(
+    neighborhood?.name ??
+      (town ? municipality(town)?.label.text : undefined) ??
+      (county ? 'Monroe County' : city ? 'Rochester' : undefined)
+  );
   const status = $derived(park?.status);
   /** The address on one line, with any part the front matter left out dropped. */
   const address = $derived(
@@ -78,11 +97,17 @@
         </p>
       {/if}
     </div>
-    {#if park?.geo && (county || town)}
+    {#if park?.geo && where}
       <figure class="where">
-        {#if town}
+        {#if shape}
           <TownShape
-            {town}
+            {shape}
+            {villages}
+            label="{page.title} in {where}"
+            markers={[{ title: page.title, ...park.geo }]}
+          />
+        {:else if city}
+          <CityLocator
             label="{page.title} in {where}"
             markers={[{ title: page.title, ...park.geo }]}
           />

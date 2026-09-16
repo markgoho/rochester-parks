@@ -1,21 +1,28 @@
 <script lang="ts">
   import {
-    municipality,
     outlineBox,
     project,
-    villagesIn,
     type Marker,
+    type Outline,
   } from '$lib/municipalities';
 
+  /**
+   * One shape drawn on its own: a town with the villages inside it, or a
+   * city neighborhood, which has none.
+   */
   let {
-    town,
+    shape,
+    villages = [],
     markers = [],
     label,
-  }: { town: string; markers?: Marker[]; label?: string } = $props();
+  }: {
+    shape: Outline;
+    villages?: Outline[];
+    markers?: Marker[];
+    label?: string;
+  } = $props();
 
-  const shape = $derived(municipality(town));
-  const box = $derived(shape ? outlineBox(shape) : undefined);
-  const villages = $derived(villagesIn(town));
+  const box = $derived(outlineBox(shape));
   /** Brockport crosses the Sweden–Clarkson line, so villages are clipped. */
   const uid = $props.id();
   const clip = `town-clip-${uid}`;
@@ -34,44 +41,42 @@
   );
 </script>
 
-{#if shape && box}
-  <svg
-    class="town-shape"
-    viewBox="{box.x} {box.y} {box.width} {box.height}"
-    xmlns="http://www.w3.org/2000/svg"
-    role="img"
-    aria-label={label ?? shape.name}
-  >
-    {#if villages.length}
-      <defs>
-        <clipPath id={clip}>
-          {#each shape.paths as d (d)}
-            <path {d} />
-          {/each}
-        </clipPath>
-      </defs>
-    {/if}
-    {#each shape.paths as d (d)}
-      <path class="outline" vector-effect="non-scaling-stroke" {d} />
-    {/each}
-    {#each villages as village (village.key)}
-      <g clip-path="url(#{clip})">
-        {#each village.paths as d (d)}
-          <path class="village" vector-effect="non-scaling-stroke" {d} />
+<svg
+  class="town-shape"
+  viewBox="{box.x} {box.y} {box.width} {box.height}"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={label ?? shape.name}
+>
+  {#if villages.length}
+    <defs>
+      <clipPath id={clip}>
+        {#each shape.paths as d (d)}
+          <path {d} />
         {/each}
-      </g>
-    {/each}
-    {#each dots as dot (dot.title)}
-      <circle
-        class="park"
-        cx={dot.x}
-        cy={dot.y}
-        r={Math.max(box.width, box.height) * DOT}
-        vector-effect="non-scaling-stroke"
-      />
-    {/each}
-  </svg>
-{/if}
+      </clipPath>
+    </defs>
+  {/if}
+  {#each shape.paths as d (d)}
+    <path class="outline" vector-effect="non-scaling-stroke" {d} />
+  {/each}
+  {#each villages as village (village.key)}
+    <g clip-path="url(#{clip})">
+      {#each village.paths as d (d)}
+        <path class="village" vector-effect="non-scaling-stroke" {d} />
+      {/each}
+    </g>
+  {/each}
+  {#each dots as dot (dot.title)}
+    <circle
+      class="park"
+      cx={dot.x}
+      cy={dot.y}
+      r={Math.max(box.width, box.height) * DOT}
+      vector-effect="non-scaling-stroke"
+    />
+  {/each}
+</svg>
 
 <style>
   .town-shape {
