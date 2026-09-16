@@ -33,6 +33,11 @@
         "type": 301
       },
       {
+        "source": "/town-parks/gates-parks/gates-town-park",
+        "destination": "/town-parks/gates-parks/first-responders-park/",
+        "type": 301
+      },
+      {
         "source": "/town-parks/greece-parks/pappas-park",
         "destination": "/town-parks/greece-parks/beverly-pappas-memorial-park/",
         "type": 301
