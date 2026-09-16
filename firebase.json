@@ -15,6 +15,43 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/about-rochester-parks",
+        "destination": "/about/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/lehigh-valley-linear-park",
+        "destination": "/monroe-county-parks/lehigh-valley-trail-linear-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/gates-parks/gates-memorial-park",
+        "destination": "/town-parks/gates-parks/memorial-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/greece-parks/pappas-park",
+        "destination": "/town-parks/greece-parks/beverly-pappas-memorial-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/penfield-parks/veterans-memorial-park-2",
+        "destination": "/town-parks/penfield-parks/veterans-memorial-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/rush-parks/rush-veterans-memorial-park",
+        "destination": "/town-parks/rush-parks/veterans-memorial-park/",
+        "type": 301
+      },
+      {
+        "source": "/uncategorized/belmanor-park",
+        "destination": "/town-parks/brighton-parks/belmanor-park/",
+        "type": 301
+      }
     ]
   },
   "emulators": {
