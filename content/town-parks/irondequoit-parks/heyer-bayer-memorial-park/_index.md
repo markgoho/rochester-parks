@@ -2,12 +2,18 @@
 title: 'Heyer-Bayer Memorial Park'
 description: 'An Irondequoit Town Park called Heyer-Bayer Memorial Park'
 type: 'park'
+address:
+  streetAddress: 'Rudman Road'
+  addressCountry: 'US'
+acres: 2.72
 amenities:
   - Baseball Diamond
   - Bathroom
   - Open Field
   - Playground
   - Swingset
+sameAs:
+  - 'https://maps.google.com/?cid=9757336164699319517'
 ---
 
 ![Heyer-Bayer Memorial park playground](forweb-IMG_20120622_132325.jpg)

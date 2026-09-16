@@ -2,11 +2,19 @@
 title: 'Great Embankment Park'
 description: 'A Pittsford Town Park called Great Embankment Park'
 type: 'park'
+address:
+  streetAddress: 'Marsh Road'
+  addressLocality: 'Pittsford'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 36.46
 amenities:
   - Baseball Diamond
   - Bathroom
   - Open Field
   - Soccer Field
+sameAs:
+  - 'https://maps.google.com/?cid=10695804615969109309'
 ---
 
 ![Great Embankment canal-side sitting area](Embankment-canalsde-sitting-area.jpg)

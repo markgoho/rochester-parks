@@ -2,6 +2,15 @@
 title: 'Sanford Road Park'
 description: 'A list of Riga Town Parks'
 type: 'park'
+geo:
+  latitude: 43.080888649999956
+  longitude: -77.88678000000002
+address:
+  streetAddress: '836 Sanford Road South'
+  addressLocality: 'Riga'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 43.52
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'
@@ -15,6 +24,8 @@ amenities:
   - 'Soccer Field'
   - 'Swingset'
   - 'Volleyball'
+sameAs:
+  - 'https://maps.google.com/?cid=2468126472323708768'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.07967128631228|-77.88613829447752|1.3520640487123776|-10.442508883686756|0|MymBT7N_lU0AAAQfCNAyAw|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>

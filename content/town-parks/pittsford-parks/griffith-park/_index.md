@@ -2,9 +2,17 @@
 title: 'Griffith Park'
 description: 'A Pittsford Town Park called Griffith Park'
 type: 'park'
+address:
+  streetAddress: '366 Marsh Road'
+  addressLocality: 'Pittsford'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 7.83
 amenities:
   - Open Field
   - Trails
+sameAs:
+  - 'https://maps.google.com/?cid=3128813155734078655'
 ---
 
 ![Griffith Park open field](Griffith-field.jpg)

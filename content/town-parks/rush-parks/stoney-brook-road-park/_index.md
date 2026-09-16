@@ -2,6 +2,15 @@
 title: 'Stoney Brook Road Park'
 description: 'A park in Rush, NY called Stoney Brook Road Park'
 type: 'park'
+geo:
+  latitude: 42.98201439313981
+  longitude: -77.65535554510727
+address:
+  streetAddress: '151 Stoney Brook Road'
+  addressLocality: 'Rush'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 17.70
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'
@@ -9,6 +18,8 @@ amenities:
   - 'Picnic Table'
   - 'Shelter'
   - 'Swingset'
+sameAs:
+  - 'https://maps.google.com/?cid=3097712190193503565'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=42.98117652311839|-77.65461686067363|-32.17809335374717|-11.374230708649518|0|j10UWy_7ymgAAAQvO_C5hw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

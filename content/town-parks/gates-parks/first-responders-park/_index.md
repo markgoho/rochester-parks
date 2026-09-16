@@ -2,6 +2,12 @@
 title: 'First Responders Park'
 description: 'A Gates Town Park called First Responders Park'
 type: 'park'
+address:
+  streetAddress: '4310 Lyell Road'
+  addressLocality: 'Gates'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 68.80
 amenities:
   - Barbecue
   - Baseball Diamond
@@ -11,6 +17,9 @@ amenities:
   - Playground
   - Swingset
   - Trails
+  - Water
+sameAs:
+  - 'https://maps.google.com/?cid=17319349409697981805'
 ---
 
 <iframe src="https://maps.google.com/maps?layer=c&amp;panoid=GZtxPaiJpl4AAAQXMr4AqA&amp;ie=UTF8&amp;source=embed&amp;output=svembed&amp;cbp=13%2C57.30072837465724%2C%2C0%2C12.812214034144802" width="100%" height="400" loading="lazy" allowfullscreen></iframe>

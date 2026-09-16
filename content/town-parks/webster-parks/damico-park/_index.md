@@ -2,6 +2,15 @@
 title: 'D''Amico Park'
 description: 'A Webster Town Park called D''Amico Park'
 type: 'park'
+geo:
+  latitude: 43.23527288747403
+  longitude: -77.42468721982242
+address:
+  streetAddress: '605 Phillips Road'
+  addressLocality: 'Webster'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 9.65
 amenities:
   - Baseball Diamond
 ---

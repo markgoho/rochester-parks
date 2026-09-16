@@ -2,8 +2,14 @@
 title: 'Veterans Memorial Park'
 description: 'A park in Rush, NY called Veterans Memorial Park'
 type: 'park'
+geo:
+  latitude: 42.99251697780317
+  longitude: -77.6447256122957
+acres: 2.30
 amenities:
   - 'Gazebo'
+sameAs:
+  - 'https://maps.google.com/?cid=16197973874823530674'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=42.99237469403891|-77.64492319774797|46.57652388267274|-5.683224270836466|0|6V4ZWZR2C_kAAAQvO0rIhQ|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

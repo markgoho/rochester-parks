@@ -2,6 +2,12 @@
 title: 'Sawyer Park'
 description: 'A Greece Town Park called Sawyer Park'
 type: 'park'
+address:
+  streetAddress: '732 Long Pond Road'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 9.98
 amenities:
   - Barbecue
   - Bathroom
@@ -12,6 +18,8 @@ amenities:
   - Shelter
   - Swingset
   - Trails
+sameAs:
+  - 'https://maps.google.com/?cid=7684724087611814896'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.24904721106973|-77.69295968130297|31.782910600410425|-19.438946963646888|0|GJ5ysPCCIjkAAAQvOxhdoQ|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>

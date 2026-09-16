@@ -2,6 +2,21 @@
 title: 'Veterans Memorial Park'
 description: 'A Greece Town Park called Veterans Memorial Park'
 type: 'park'
+address:
+  streetAddress: '4614 Dewey Avenue'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 32.50
+amenities:
+  - Barbecue
+  - Baseball Diamond
+  - Basketball Court
+  - Bathroom
+  - Football Uprights
+  - Open Field
+sameAs:
+  - 'https://maps.google.com/?cid=4949042133813089699'
 ---
 
 The entire park is about 66 acres, one of the larger parks in Greece. Here we’ll be reviewing Badgerow Park North and after a future visit, the Badgerow Park Nature Trails. It is interesting that, while there is a single boundary that encompasses the two parks, there are two very different and distinct parks.

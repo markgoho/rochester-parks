@@ -2,6 +2,15 @@
 title: 'Kreag Road Park'
 description: 'A Perinton Town Park called Kreag Road Park'
 type: 'park'
+geo:
+  latitude: 43.06373425501967
+  longitude: -77.46922562900336
+address:
+  streetAddress: '555 Kreag Road'
+  addressLocality: 'Fairport'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 9.02
 amenities:
   - Barbecue
   - Baseball Diamond
@@ -16,6 +25,10 @@ amenities:
   - Swingset
   - Tennis Court
   - Volleyball
+  - Canal
+  - Water
+sameAs:
+  - 'https://maps.google.com/?cid=6557984480278291635'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.06427986545538|-77.47074556602206|154.86|-17.819999999999993|0|lY0mMvsUZHMAAAQvO_HHYw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

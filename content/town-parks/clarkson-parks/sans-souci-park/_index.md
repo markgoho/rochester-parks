@@ -2,6 +2,17 @@
 title: 'Sans Souci Park'
 description: 'A Clarkson Town Park called Sans Souci Park'
 type: 'park'
+geo:
+  latitude: 43.22200408812097
+  longitude: -77.99766994868247
+address:
+  streetAddress: '4159 Monroe Orleans County Line Rd'
+  addressLocality: 'Brockport'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 6.26
+sameAs:
+  - 'https://maps.google.com/?cid=16955868504132125487'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.22175710865196|-77.99666207390601|151.08|-11.790000000000006|0|DjkqG1D5RdoAAAQvO_b-gQ|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

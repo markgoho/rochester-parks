@@ -2,6 +2,12 @@
 title: 'Goodwin Park'
 description: 'A Greece Town Park called Goodwin Park'
 type: 'park'
+address:
+  streetAddress: '15 Long Pond Road'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 8.80
 amenities:
   - Barbecue
   - Open Field
@@ -9,6 +15,8 @@ amenities:
   - Playground
   - Rockers
   - Swingset
+sameAs:
+  - 'https://maps.google.com/?cid=11391893499565287255'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.29122801571042|-77.67482836683178|290.44|-16.33|0|BTUZvOtcJvwAAAQvOxlGbA|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

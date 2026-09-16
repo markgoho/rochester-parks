@@ -2,12 +2,20 @@
 title: 'Beverly Pappas Memorial Park'
 description: 'A Greece Town Park called Beverly Pappas Memorial Park'
 type: 'park'
+address:
+  streetAddress: '67 Haviland Park'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 4.05
 amenities:
   - Handicap Swing
   - Open Field
   - Playground
   - Rockers
   - Swingset
+sameAs:
+  - 'https://maps.google.com/?cid=460685327091338150'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.22198970872159|-77.63446924323722|79.44404971022293|-6.961246832263914|0|utUqh0jPo4gAAAQvOxif2w|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

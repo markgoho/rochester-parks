@@ -2,6 +2,12 @@
 title: 'Spezio Park'
 description: 'An Irondequoit Town Park called Spezio Park'
 type: 'park'
+geo:
+  latitude: 43.252624364875196
+  longitude: -77.60053230193782
+acres: 0.63
+sameAs:
+  - 'https://maps.google.com/?cid=7507785954983743143'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.25273145778468|-77.59944508014217|97.62262070438696|-6.84775886892877|0|u6E33ch8BTAAAAQvPBdiQQ|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

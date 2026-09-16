@@ -2,6 +2,12 @@
 title: 'Grandview Park'
 description: 'A Greece Town Park called Grandview Park'
 type: 'park'
+address:
+  streetAddress: '225 Beechwood Park'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 7.70
 amenities:
   - Barbecue
   - Baseball Diamond
@@ -17,6 +23,8 @@ amenities:
   - Swingset
   - Tennis Court
   - Volleyball
+sameAs:
+  - 'https://maps.google.com/?cid=16118708245255645285'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.29577606369548|-77.69045009508113|138.68230191565857|-15.853191068397845|0|ZkTUNia7mfIAAAQvOy7WyA|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

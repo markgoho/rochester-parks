@@ -2,6 +2,17 @@
 title: 'Legion Eyer Park'
 description: 'A East Rochester Town Park called Legion Eyer Park'
 type: 'park'
+geo:
+  latitude: 43.10964569542544
+  longitude: -77.47740508425497
+address:
+  streetAddress: '100 Eyer Park'
+  addressLocality: 'East Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 20.59
+sameAs:
+  - 'https://maps.google.com/?cid=16177856665259352664'
 ---
 
 ![Legion Eyer Park](Legion-Eyer-Park-for-website.jpg)

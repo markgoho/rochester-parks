@@ -2,6 +2,9 @@
 title: 'Badgerow Park North'
 description: 'A Greece Town Park called Badgerow Park North'
 type: 'park'
+geo:
+  latitude: 43.25853830555337
+  longitude: -77.64488057019031
 amenities:
   - Barbecue
   - Baseball Diamond

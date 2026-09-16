@@ -2,6 +2,17 @@
 title: 'Panorama Valley Park'
 description: 'A Penfield Town Park called Panorama Valley Park'
 type: 'park'
+geo:
+  latitude: 43.13288697914257
+  longitude: -77.50123858451907
+address:
+  streetAddress: '1201 Penfield Road'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 1.80
+sameAs:
+  - 'https://maps.google.com/?cid=18382767646029911702'
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.1329241193716|-77.49875727810087|282.67911525262826|-3.466344416760009|0.4029739639365706|F:-AoidjzxKNLI/V56ZBCk1O2I/AAAAAAAAJNQ/kSZaouUpkNcG83Tc9GLQmYZvBVXSuatbgCLIB|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
