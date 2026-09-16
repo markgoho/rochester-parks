@@ -2,6 +2,7 @@
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
   import TownShape from '$lib/components/TownShape.svelte';
+  import { formatAcres } from '$lib/format';
   import { municipality, townAt, townKey } from '$lib/municipalities';
   import type { Page } from '$lib/types';
 
@@ -21,6 +22,26 @@
   );
   const townName = $derived(town ? municipality(town)?.label.text : undefined);
   const status = $derived(park?.status);
+  /** The address on one line, with any part the front matter left out dropped. */
+  const address = $derived(
+    park?.address
+      ? [
+          park.address.streetAddress,
+          park.address.addressLocality,
+          [park.address.addressRegion, park.address.postalCode]
+            .filter(Boolean)
+            .join(' '),
+        ]
+          .filter(Boolean)
+          .join(', ')
+      : undefined
+  );
+  /** The panel is worth drawing only once one of its three rows has content. */
+  const hasBasics = $derived(
+    Boolean(address) ||
+      park?.acres !== undefined ||
+      (park?.links.length ?? 0) > 0
+  );
   const recorded = $derived(
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
       .length
@@ -65,6 +86,38 @@
         </p>
       </div>
     </div>
+  {/if}
+
+  {#if park && hasBasics}
+    <section class="panel basics">
+      <div class="panel__head">
+        <span class="eyebrow">The basics</span>
+      </div>
+      <dl class="panel__body facts">
+        {#if address}
+          <div class="fact">
+            <dt class="eyebrow">Address</dt>
+            <dd>{address}</dd>
+          </div>
+        {/if}
+        {#if park.acres !== undefined}
+          <div class="fact">
+            <dt class="eyebrow">Size</dt>
+            <dd class="mono">{formatAcres(park.acres)} acres</dd>
+          </div>
+        {/if}
+        {#if park.links.length}
+          <div class="fact">
+            <dt class="eyebrow">Elsewhere</dt>
+            <dd class="links">
+              {#each park.links as item (item.url)}
+                <a href={item.url} rel="noopener">{item.label}</a>
+              {/each}
+            </dd>
+          </div>
+        {/if}
+      </dl>
+    </section>
   {/if}
 
   {#if park && park.amenities.length}
@@ -164,8 +217,40 @@
   }
 
   .empty,
+  .basics,
   .amenities {
     margin-bottom: 1.5rem;
+  }
+
+  .facts {
+    display: grid;
+    gap: 0.9rem;
+    margin: 0;
+  }
+
+  .fact dt {
+    margin-bottom: 0.2rem;
+  }
+
+  .fact dd {
+    margin: 0;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+  }
+
+  .links a {
+    font-weight: 700;
+  }
+
+  @media (min-width: 40rem) {
+    .facts {
+      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      gap: 1.25rem;
+    }
   }
 
   .empty p {

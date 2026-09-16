@@ -9,7 +9,9 @@ import type {
   Page,
   PageLink,
   ParkIndex,
+  ParkAddress,
   ParkIndexEntry,
+  ParkLink,
   ParkMeta,
   SiteSummary,
 } from '$lib/types';
@@ -237,6 +239,43 @@ function sectionLabel(title: string): string {
   return title.replace(/\s+Parks$/i, '');
 }
 
+/**
+ * `sameAs` is one flat list of URLs, but the pages are not alike: a Google
+ * Maps pin and a town parks department page want different words. The host
+ * is the only thing that tells them apart.
+ */
+function linkLabel(url: string): string {
+  return new URL(url).hostname.endsWith('google.com')
+    ? 'On Google Maps'
+    : 'Official page';
+}
+
+/** One link per kind. A park with two Google pins says Google Maps once. */
+function parkLinks(sameAs: string[]): ParkLink[] {
+  const seen = new Set<string>();
+  const links: ParkLink[] = [];
+  for (const url of sameAs) {
+    let label;
+    try {
+      label = linkLabel(url);
+    } catch {
+      continue; // Not a URL the browser could follow, so not a link.
+    }
+    if (seen.has(label)) continue;
+    seen.add(label);
+    links.push({ url, label });
+  }
+  return links;
+}
+
+/** Drops the country, which is the same for every park on the site. */
+function parkAddress(node: Node): ParkAddress | undefined {
+  const { streetAddress, addressLocality, addressRegion, postalCode } =
+    node.frontMatter.address ?? {};
+  if (!streetAddress && !addressLocality) return undefined;
+  return { streetAddress, addressLocality, addressRegion, postalCode };
+}
+
 function parkMetaOf(node: Node): ParkMeta {
   const amenities = [
     ...new Set((node.frontMatter.amenities ?? []).map(normaliseAmenity)),
@@ -252,6 +291,8 @@ function parkMetaOf(node: Node): ParkMeta {
         ? { latitude, longitude }
         : undefined,
     acres: node.frontMatter.acres,
+    address: parkAddress(node),
+    links: parkLinks(node.frontMatter.sameAs ?? []),
     status: {
       written: node.wordCount >= WRITTEN_WORD_FLOOR,
       inventoried: amenities.length > 0,

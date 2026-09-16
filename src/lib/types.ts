@@ -23,6 +23,23 @@ export interface ParkStatus {
   photographed: boolean;
 }
 
+/** A postal address, as far as the front matter records one. */
+export interface ParkAddress {
+  streetAddress?: string;
+  addressLocality?: string;
+  addressRegion?: string;
+  postalCode?: string;
+}
+
+/**
+ * An off-site page about a park. The front matter keeps these as a bare list
+ * of URLs, so the label says what each one is.
+ */
+export interface ParkLink {
+  url: string;
+  label: string;
+}
+
 /** Park facts a list or detail page can show without re-reading the markdown. */
 export interface ParkMeta {
   /** Normalised amenity names, sorted. */
@@ -35,6 +52,10 @@ export interface ParkMeta {
   geo?: { latitude: number; longitude: number };
   /** Park size in acres, when the front matter says. An authored fact. */
   acres?: number;
+  /** Where the park is, in words. */
+  address?: ParkAddress;
+  /** Off-site pages about the park, labelled. Empty when there are none. */
+  links: ParkLink[];
   /** The section a park belongs to, e.g. "Greece" or "Monroe County". */
   section: PageLink;
 }
