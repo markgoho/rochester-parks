@@ -305,7 +305,12 @@
     pointer-events: none;
   }
 
-  /* Villages with no section of their own sit quiet and unclickable. */
+  /* Villages with no section of their own sit quiet, and let clicks pass
+     through to the town beneath them. */
+  .municipality:not(.linked) {
+    pointer-events: none;
+  }
+
   .municipality:not(.linked) .boundary {
     fill: var(--paper-sunk);
     stroke: var(--rule-strong);
