@@ -24,7 +24,7 @@ Towns reported: 20 of 20
 
 - Town park pages created: 25
 - Town park pages updated: 113
-- Names changed to the database spelling: 15
+- Park names corrected: 14 (12 from the database, 2 from an official site)
 - Pages not in the database: 7
 - Database rows judged not a park: 5
 
@@ -59,30 +59,30 @@ Towns reported: 20 of 20
 | webster | State Road Nature Preserve | `content/town-parks/webster-parks/state-road-nature-preserve/_index.md` |
 | webster | Whiting Road Nature Preserve | `content/town-parks/webster-parks/whiting-road-nature-preserve/_index.md` |
 
-## Names taken from the database
+## Names taken from the official sites, then the database
 
-The database is the source of truth for a park name, so each page below now carries the database spelling in its `title` and `description`. The old name is kept here because `CONTEXT.md` records the park name as the join key for the WordPress comment archive — the archive keys on the OLD column, so an import needs this mapping.
+The official town, county and city site is the authority for a park name; the database comes second. Each page below now carries that name in its `title` and `description`. The old name is kept in `docs/park-name-changes.json` because `CONTEXT.md` records the park name as the join key for the WordPress comment archive, and the archive keys on the OLD name.
 
 Folder slugs, and therefore URLs, are unchanged. Nothing 404s and no redirect is needed.
 
+Three names the database got wrong were caught this way and are NOT changed to what the sheet says: Gates calls its park **First Responders Park**, not "Gates First Responder Park"; Perinton calls its **Garnsey Road Arboretum**, not "Garnsey Arboretum"; and Greece spells it **Papas**, not "Pappas".
 
-| Town | Was | Now (database) | URL, unchanged |
+| Was | Now | Source | URL, unchanged |
 | --- | --- | --- | --- |
-| gates | First Responders Park | **Gates First Responder Park** | `/town-parks/gates-parks/first-responders-park/` |
-| greece | Beverly Pappas Memorial Park | **Pappas Park** | `/town-parks/greece-parks/beverly-pappas-memorial-park/` |
-| greece | Veterans Memorial Park | **Veteran's Memorial Park** | `/town-parks/greece-parks/veterans-memorial-park/` |
-| henrietta | Kenwick park | **Kenwick Park** | `/town-parks/henrietta-parks/kenwick-park/` |
-| ogden | Memorial Park | **Veteran's Memorial Park** | `/town-parks/ogden-parks/ogden-memorial-park/` |
-| penfield | LaSalles Landing Park | **LaSalle's Landing Park** | `/town-parks/penfield-parks/lasalles-landing-park/` |
-| penfield | Veteran’s Memorial Park | **Veterans Memorial Park** | `/town-parks/penfield-parks/veterans-memorial-park/` |
-| perinton | Ayrualt Boat Launch | **Ayrault Boat Launch** | `/town-parks/perinton-parks/ayrualt-boat-launch/` |
-| perinton | Garnsey Road Arboretum | **Garnsey Arboretum** | `/town-parks/perinton-parks/garnsey-arboretum/` |
-| rush | Stoney Brook Road Park | **Stonybrook Road Park** | `/town-parks/rush-parks/stoney-brook-road-park/` |
-| rush | Veterans Memorial Park | **Veteran's Memorial Park** | `/town-parks/rush-parks/veterans-memorial-park/` |
-| sweden | Corbet Park | **Corbett Park** | `/town-parks/sweden-parks/corbet-park/` |
-| webster | Kent Park | **Irving Kent Memorial Park** | `/town-parks/webster-parks/kent-park/` |
-| webster | Webster First Responders Park | **First Responders Park** | `/town-parks/webster-parks/webster-first-responders-park/` |
-| wheatland | Canawagus Park | **Canawaugus Park** | `/town-parks/wheatland-parks/canawagus-park/` |
+| Irondequoit Bay Park | **Irondequoit Bay Park West** | official Monroe County page | `/monroe-county-parks/irondequoit-bay-park-west/` |
+| Beverly Pappas Memorial Park | **Beverly Papas Park** | official Town of Greece page | `/town-parks/greece-parks/beverly-pappas-memorial-park/` |
+| Veterans Memorial Park | **Veteran's Memorial Park** | park database | `/town-parks/greece-parks/veterans-memorial-park/` |
+| Kenwick park | **Kenwick Park** | park database | `/town-parks/henrietta-parks/kenwick-park/` |
+| Memorial Park | **Veteran's Memorial Park** | park database | `/town-parks/ogden-parks/ogden-memorial-park/` |
+| LaSalles Landing Park | **LaSalle's Landing Park** | park database | `/town-parks/penfield-parks/lasalles-landing-park/` |
+| Veteran’s Memorial Park | **Veterans Memorial Park** | park database | `/town-parks/penfield-parks/veterans-memorial-park/` |
+| Ayrualt Boat Launch | **Ayrault Boat Launch** | park database | `/town-parks/perinton-parks/ayrualt-boat-launch/` |
+| Stoney Brook Road Park | **Stonybrook Road Park** | park database | `/town-parks/rush-parks/stoney-brook-road-park/` |
+| Veterans Memorial Park | **Veteran's Memorial Park** | park database | `/town-parks/rush-parks/veterans-memorial-park/` |
+| Corbet Park | **Corbett Park** | park database | `/town-parks/sweden-parks/corbet-park/` |
+| Kent Park | **Irving Kent Memorial Park** | park database | `/town-parks/webster-parks/kent-park/` |
+| Webster First Responders Park | **First Responders Park** | park database | `/town-parks/webster-parks/webster-first-responders-park/` |
+| Canawagus Park | **Canawaugus Park** | park database | `/town-parks/wheatland-parks/canawagus-park/` |
 
 ## Pages with no database row — nothing was removed
 
@@ -405,7 +405,7 @@ These titles now appear twice. Each is a genuinely different park and the sectio
 
 ## What this does to the home page
 
-The site went from about 200 park pages to 276. Most of the new ones are listings with no write-up and no photograph, so the written and photographed percentages on the home page will drop sharply. That is the true picture, not a regression. `CONTEXT.md` still says "About 199 exist", which is now stale.
+The site went from 153 park pages to 254, counted the way the home page counts them. Most of the new ones are listings with no write-up and no photograph, so the written and photographed percentages on the home page will drop sharply. That is the true picture, not a regression. `CONTEXT.md` still says "About 199 exist", which is now stale.
 
 ## Updated town pages
 

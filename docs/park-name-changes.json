@@ -1,107 +1,89 @@
-[
-  {
-    "town": "gates",
-    "old": "First Responders Park",
-    "new": "Gates First Responder Park",
-    "path": "content/town-parks/gates-parks/first-responders-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "greece",
-    "old": "Beverly Pappas Memorial Park",
-    "new": "Pappas Park",
-    "path": "content/town-parks/greece-parks/beverly-pappas-memorial-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "greece",
-    "old": "Veterans Memorial Park",
-    "new": "Veteran's Memorial Park",
-    "path": "content/town-parks/greece-parks/veterans-memorial-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "henrietta",
-    "old": "Kenwick park",
-    "new": "Kenwick Park",
-    "path": "content/town-parks/henrietta-parks/kenwick-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "ogden",
-    "old": "Memorial Park",
-    "new": "Veteran's Memorial Park",
-    "path": "content/town-parks/ogden-parks/ogden-memorial-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "penfield",
-    "old": "LaSalles Landing Park",
-    "new": "LaSalle's Landing Park",
-    "path": "content/town-parks/penfield-parks/lasalles-landing-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "penfield",
-    "old": "Veteran\u2019s Memorial Park",
-    "new": "Veterans Memorial Park",
-    "path": "content/town-parks/penfield-parks/veterans-memorial-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "perinton",
-    "old": "Ayrualt Boat Launch",
-    "new": "Ayrault Boat Launch",
-    "path": "content/town-parks/perinton-parks/ayrualt-boat-launch/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "perinton",
-    "old": "Garnsey Road Arboretum",
-    "new": "Garnsey Arboretum",
-    "path": "content/town-parks/perinton-parks/garnsey-arboretum/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "rush",
-    "old": "Stoney Brook Road Park",
-    "new": "Stonybrook Road Park",
-    "path": "content/town-parks/rush-parks/stoney-brook-road-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "rush",
-    "old": "Veterans Memorial Park",
-    "new": "Veteran's Memorial Park",
-    "path": "content/town-parks/rush-parks/veterans-memorial-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "sweden",
-    "old": "Corbet Park",
-    "new": "Corbett Park",
-    "path": "content/town-parks/sweden-parks/corbet-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "webster",
-    "old": "Kent Park",
-    "new": "Irving Kent Memorial Park",
-    "path": "content/town-parks/webster-parks/kent-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "webster",
-    "old": "Webster First Responders Park",
-    "new": "First Responders Park",
-    "path": "content/town-parks/webster-parks/webster-first-responders-park/_index.md",
-    "description_updated": true
-  },
-  {
-    "town": "wheatland",
-    "old": "Canawagus Park",
-    "new": "Canawaugus Park",
-    "path": "content/town-parks/wheatland-parks/canawagus-park/_index.md",
-    "description_updated": true
-  }
-]
+{
+  "note": "Park names changed in this sync. The WordPress comment archive keys on the OLD name, so an import must join on \"old\".",
+  "changes": [
+    {
+      "path": "content/monroe-county-parks/irondequoit-bay-park-west/index.md",
+      "old": "Irondequoit Bay Park",
+      "new": "Irondequoit Bay Park West",
+      "source": "official Monroe County page"
+    },
+    {
+      "path": "content/town-parks/greece-parks/beverly-pappas-memorial-park/_index.md",
+      "old": "Beverly Pappas Memorial Park",
+      "new": "Beverly Papas Park",
+      "source": "official Town of Greece page"
+    },
+    {
+      "path": "content/town-parks/greece-parks/veterans-memorial-park/_index.md",
+      "old": "Veterans Memorial Park",
+      "new": "Veteran's Memorial Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/henrietta-parks/kenwick-park/_index.md",
+      "old": "Kenwick park",
+      "new": "Kenwick Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/ogden-parks/ogden-memorial-park/_index.md",
+      "old": "Memorial Park",
+      "new": "Veteran's Memorial Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/penfield-parks/lasalles-landing-park/_index.md",
+      "old": "LaSalles Landing Park",
+      "new": "LaSalle's Landing Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/penfield-parks/veterans-memorial-park/_index.md",
+      "old": "Veteran\u2019s Memorial Park",
+      "new": "Veterans Memorial Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/perinton-parks/ayrualt-boat-launch/_index.md",
+      "old": "Ayrualt Boat Launch",
+      "new": "Ayrault Boat Launch",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/rush-parks/stoney-brook-road-park/_index.md",
+      "old": "Stoney Brook Road Park",
+      "new": "Stonybrook Road Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/rush-parks/veterans-memorial-park/_index.md",
+      "old": "Veterans Memorial Park",
+      "new": "Veteran's Memorial Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/sweden-parks/corbet-park/_index.md",
+      "old": "Corbet Park",
+      "new": "Corbett Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/webster-parks/kent-park/_index.md",
+      "old": "Kent Park",
+      "new": "Irving Kent Memorial Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/webster-parks/webster-first-responders-park/_index.md",
+      "old": "Webster First Responders Park",
+      "new": "First Responders Park",
+      "source": "park database"
+    },
+    {
+      "path": "content/town-parks/wheatland-parks/canawagus-park/_index.md",
+      "old": "Canawagus Park",
+      "new": "Canawaugus Park",
+      "source": "park database"
+    }
+  ]
+}
