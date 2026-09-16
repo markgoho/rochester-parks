@@ -1,6 +1,7 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
+  import StatusIcon from '$lib/components/StatusIcon.svelte';
   import TownLocator from '$lib/components/TownLocator.svelte';
   import { townKey } from '$lib/municipalities';
   import type { Page } from '$lib/types';
@@ -49,9 +50,15 @@
 
   <p class="eyebrow key">
     <span>Key</span>
-    <span><b class="flag flag--on">W</b> written up</span>
-    <span><b class="flag flag--on">P</b> photographed</span>
-    <span><b class="flag flag--on">A</b> amenities recorded</span>
+    <span
+      ><b class="flag flag--on"><StatusIcon kind="written" /></b> written up</span
+    >
+    <span
+      ><b class="flag flag--on"><StatusIcon kind="photographed" /></b> photographed</span
+    >
+    <span
+      ><b class="flag flag--on"><StatusIcon kind="inventoried" /></b> amenities recorded</span
+    >
     <span class="key__sort">Sorted A–Z · nothing is ranked here</span>
   </p>
 
