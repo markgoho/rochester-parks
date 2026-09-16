@@ -18,6 +18,13 @@ export interface Municipality {
   paths: string[];
 }
 
+/** One place to mark on a map, wherever that map is drawn. */
+export interface Marker {
+  title: string;
+  latitude: number;
+  longitude: number;
+}
+
 /** The county map's own coordinate space. Every path uses it. */
 export const COUNTY_VIEW_BOX = '0 0 673 633';
 
@@ -405,6 +412,16 @@ export function townKey(url: string): string | undefined {
   const match = /^\/town-parks\/(.+)-parks\/$/.exec(url);
   const key = match?.[1];
   return key !== undefined && byKey.has(key) ? key : undefined;
+}
+
+/**
+ * True for the county park section. A county park belongs to the whole
+ * county, not to one town, so this section is drawn on the county map
+ * instead of a town outline. Callers pass the section url, the way they do
+ * for `townKey`, so the by-size ordering counts as the section too.
+ */
+export function isCountySection(url: string): boolean {
+  return url === '/monroe-county-parks/';
 }
 
 /**

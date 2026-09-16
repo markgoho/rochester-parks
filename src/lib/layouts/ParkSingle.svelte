@@ -1,9 +1,15 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
+  import TownLocator from '$lib/components/TownLocator.svelte';
   import TownShape from '$lib/components/TownShape.svelte';
   import { formatAcres } from '$lib/format';
-  import { municipality, townAt, townKey } from '$lib/municipalities';
+  import {
+    isCountySection,
+    municipality,
+    townAt,
+    townKey,
+  } from '$lib/municipalities';
   import type { Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
@@ -21,6 +27,15 @@
       : undefined
   );
   const townName = $derived(town ? municipality(town)?.label.text : undefined);
+  /**
+   * A county park answers to the county, and several stand in the city, which
+   * is no town at all. So it is shown on the whole county map, with the town
+   * that holds it picked out when the coordinates name one.
+   */
+  const county = $derived(
+    park !== undefined && isCountySection(park.section.url)
+  );
+  const where = $derived(townName ?? (county ? 'Monroe County' : undefined));
   const status = $derived(park?.status);
   /** The address on one line, with any part the front matter left out dropped. */
   const address = $derived(
@@ -60,14 +75,22 @@
         </p>
       {/if}
     </div>
-    {#if town && park?.geo}
+    {#if park?.geo && (county || town)}
       <figure class="where">
-        <TownShape
-          {town}
-          label="{page.title} in {townName}"
-          markers={[{ title: page.title, ...park.geo }]}
-        />
-        <figcaption class="eyebrow">In {townName}</figcaption>
+        {#if county}
+          <TownLocator
+            {town}
+            label="{page.title} in {where}"
+            markers={[{ title: page.title, ...park.geo }]}
+          />
+        {:else}
+          <TownShape
+            town={town!}
+            label="{page.title} in {where}"
+            markers={[{ title: page.title, ...park.geo }]}
+          />
+        {/if}
+        <figcaption class="eyebrow">In {where}</figcaption>
       </figure>
     {/if}
   </header>
