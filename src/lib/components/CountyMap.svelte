@@ -4,11 +4,46 @@
     MUNICIPALITIES,
     type Municipality,
   } from '$lib/municipalities';
+
+  /**
+   * The map is drawn twice.
+   *
+   * SVG paints in document order and has no z-index, so a town picked out in
+   * place would go behind each town later in the list. The resting layer draws
+   * the whole county and takes no clicks. The raised layer holds the links,
+   * comes last, and so can lift one town clear of all of them.
+   */
+  const towns = MUNICIPALITIES.filter((m) => m.href !== undefined);
+
+  /** A town and the villages inside it move as one piece. */
+  const villagesIn = (key: string) =>
+    MUNICIPALITIES.filter((m) => m.within === key);
+
+  /**
+   * A picked town is drawn larger and a little offset, so its resting copy
+   * would show from under it: the old name pokes out beside the new one.
+   * These rules take the resting copy away while the raised one is up. They
+   * name each town, so they cannot be written by hand in a scoped block.
+   */
+  const swap = MUNICIPALITIES.filter((m) => m.href)
+    .map(
+      (m) =>
+        `.county-map:has([data-pick="${m.key}"]:is(:hover,:focus-visible))` +
+        ` [data-rest="${m.key}"]{visibility:hidden}`
+    )
+    .join('');
 </script>
 
-{#snippet shape(m: Municipality)}
-  <g class="{m.key} municipality" class:linked={m.href !== undefined}>
-    <title>{m.name}</title>
+<svelte:head>
+  {@html `<style>${swap}</style>`}
+</svelte:head>
+
+{#snippet shape(m: Municipality, rest?: string)}
+  <g
+    class="municipality"
+    class:village={m.within !== undefined || !m.href}
+    data-rest={rest}
+  >
     {#each m.paths as d (d)}
       <path class="boundary" {d} />
     {/each}
@@ -24,13 +59,23 @@
   viewBox={COUNTY_VIEW_BOX}
   xmlns="http://www.w3.org/2000/svg"
 >
-  {#each MUNICIPALITIES as m (m.key)}
-    {#if m.href}
-      <a href={m.href}>{@render shape(m)}</a>
-    {:else}
-      {@render shape(m)}
-    {/if}
-  {/each}
+  <g class="resting" aria-hidden="true">
+    {#each MUNICIPALITIES as m (m.key)}
+      {@render shape(m, m.within ?? (m.href ? m.key : undefined))}
+    {/each}
+  </g>
+
+  <g class="raised">
+    {#each towns as town (town.key)}
+      <a class="pick" href={town.href} data-pick={town.key}>
+        <title>{town.name}</title>
+        {@render shape(town)}
+        {#each villagesIn(town.key) as village (village.key)}
+          {@render shape(village)}
+        {/each}
+      </a>
+    {/each}
+  </g>
 </svg>
 
 <style>
@@ -40,12 +85,16 @@
     height: auto;
   }
 
+  /* The county at rest. It is a picture, not a control. */
+  .resting {
+    pointer-events: none;
+  }
+
   .boundary {
     fill: var(--land);
     stroke: var(--ink);
     stroke-width: 0.9px;
     stroke-linejoin: round;
-    transition: fill 160ms ease-out;
   }
 
   .boundary-text {
@@ -56,25 +105,11 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     pointer-events: none;
-    /* The name grows about its own middle, not about the corner of the map. */
-    transform-box: fill-box;
-    transform-origin: center;
-    /* The identity scale is set at rest, so hover changes the size and
-       nothing else. Without it the element gains a stacking context only
-       while hovered. */
-    scale: 1;
-    transition: scale 160ms ease-out;
-  }
-
-  /* Villages with no section of their own sit quiet, and let clicks pass
-     through to the town beneath them. */
-  .municipality:not(.linked) {
-    pointer-events: none;
   }
 
   /* The village outline carries the whole shape at rest, because its fill sits
      very close to the land. It needs an ink dark enough to read against both. */
-  .municipality:not(.linked) .boundary {
+  .village .boundary {
     fill: var(--paper-sunk);
     stroke: var(--ink-muted);
   }
@@ -83,7 +118,7 @@
      different backgrounds: the land at rest, the active fill on hover. A paper
      halo gives the ink a constant background on both. Weight, not color,
      keeps the village quieter than the town. */
-  .municipality:not(.linked) .boundary-text {
+  .village .boundary-text {
     fill: var(--ink-soft);
     font-weight: 400;
     paint-order: stroke fill;
@@ -92,10 +127,35 @@
     stroke-linejoin: round;
   }
 
-  a:hover .boundary,
-  a:focus-visible .boundary {
+  /*
+   * Each town is a hit area over the resting map, invisible until it is
+   * picked. Nothing here is a second copy for a reader: the resting layer is
+   * hidden from assistive software, and these carry the names and the links.
+   */
+  .pick {
+    opacity: 0;
+    /* The whole town lifts about its own middle, villages and names with it. */
+    transform-box: fill-box;
+    transform-origin: center;
+    scale: 1;
+    /* Only the lift is animated. The copy itself appears at the moment the
+       resting one goes, at the same size, so the swap cannot be seen. */
+    transition: scale 160ms ease-out;
+  }
+
+  .pick:hover,
+  .pick:focus-visible {
+    opacity: 1;
+  }
+
+  .pick:focus-visible {
+    outline: none;
+  }
+
+  .pick:hover .boundary,
+  .pick:focus-visible .boundary {
     fill: var(--land-active);
-    stroke-width: 2.4px;
+    stroke-width: 1.6px;
   }
 
   /*
@@ -103,8 +163,8 @@
    * cannot count on the active fill behind it. A halo in the active colour
    * gives the name the same background wherever it falls.
    */
-  a:hover .boundary-text,
-  a:focus-visible .boundary-text {
+  .pick:hover .boundary-text,
+  .pick:focus-visible .boundary-text {
     fill: var(--paper);
     paint-order: stroke fill;
     stroke: var(--land-active);
@@ -112,33 +172,32 @@
     stroke-linejoin: round;
   }
 
-  /*
-   * The name is the part that is too small to read, and it is the only part
-   * that can grow. SVG paints in document order and has no z-index, so a town
-   * scaled past its border would go behind each town that comes after it in
-   * the list. The name sits inside its town and takes no clicks, so it can
-   * grow over nothing.
-   *
-   * Only where a real pointer can hover. A touch reader gets the colour.
-   */
+  /* A village keeps its own colours while it rides up with its town. */
+  .pick:hover .village .boundary,
+  .pick:focus-visible .village .boundary {
+    fill: var(--paper-sunk);
+    stroke: var(--ink);
+  }
+
+  .pick:hover .village .boundary-text,
+  .pick:focus-visible .village .boundary-text {
+    fill: var(--ink);
+    stroke: var(--paper);
+    stroke-width: 2px;
+  }
+
+  /* The lift itself, only where a real pointer can hover. A touch reader gets
+     the colour, and no part of the map moves under their finger. */
   @media (hover: hover) and (pointer: fine) {
-    a:hover .boundary-text,
-    a:focus-visible .boundary-text {
-      scale: 1.6;
+    .pick:hover,
+    .pick:focus-visible {
+      scale: 1.18;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .boundary-text {
+    .pick {
       transition: none;
     }
-  }
-
-  a:focus-visible {
-    outline: none;
-  }
-
-  a:focus-visible .boundary {
-    stroke-width: 2.4px;
   }
 </style>
