@@ -161,8 +161,10 @@
     color: var(--ink-soft);
   }
 
+  /* A town on the county's north edge grows past the top of the map, so the
+     line above it stands back far enough to stay clear. */
   .hero__map .eyebrow {
-    margin: 0 0 0.5rem;
+    margin: 0 0 1.75rem;
   }
 
   .ledger {

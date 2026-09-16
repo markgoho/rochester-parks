@@ -9,6 +9,11 @@ export interface Municipality {
   name: string;
   /** The section the municipality links to, when it has one. */
   href?: string;
+  /**
+   * The key of the town a village stands in. The county map picks a town out
+   * as one piece, so a village inside it moves with it.
+   */
+  within?: string;
   /** The name printed on the county map, and where it sits. */
   label: { x: number; y: number; text: string };
   /**
@@ -204,6 +209,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'brockport',
+    within: 'sweden',
     name: 'Village of Brockport',
     label: { x: 20, y: 255, text: 'Brockport' },
     paths: [
@@ -212,6 +218,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'spencerport',
+    within: 'ogden',
     name: 'Village of Spencerport',
     label: { x: 160, y: 289, text: 'Spencerport' },
     paths: [
@@ -220,6 +227,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'hilton',
+    within: 'parma',
     name: 'Village of Hilton',
     label: { x: 208, y: 87, text: 'Hilton' },
     paths: [
@@ -228,6 +236,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'scottsville',
+    within: 'wheatland',
     name: 'Village of Scottsville',
     label: { x: 171, y: 515, text: 'Scottsville' },
     paths: [
@@ -236,6 +245,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'honeoye-falls',
+    within: 'mendon',
     name: 'Village of Honeoye Falls',
     label: { x: 460, y: 620, text: 'Honeoye Falls' },
     paths: [
@@ -253,6 +263,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'fairport',
+    within: 'perinton',
     name: 'Village of Fairport',
     label: { x: 580, y: 426, text: 'Fairport' },
     paths: [
@@ -261,6 +272,7 @@ export const MUNICIPALITIES: Municipality[] = [
   },
   {
     key: 'churchville',
+    within: 'riga',
     name: 'Village of Churchville',
     label: { x: 90, y: 420, text: 'Churchville' },
     paths: [
