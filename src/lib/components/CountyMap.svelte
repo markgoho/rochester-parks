@@ -56,6 +56,14 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     pointer-events: none;
+    /* The name grows about its own middle, not about the corner of the map. */
+    transform-box: fill-box;
+    transform-origin: center;
+    /* The identity scale is set at rest, so hover changes the size and
+       nothing else. Without it the element gains a stacking context only
+       while hovered. */
+    scale: 1;
+    transition: scale 160ms ease-out;
   }
 
   /* Villages with no section of their own sit quiet, and let clicks pass
@@ -87,11 +95,43 @@
   a:hover .boundary,
   a:focus-visible .boundary {
     fill: var(--land-active);
+    stroke-width: 2.4px;
   }
 
+  /*
+   * A small town carries its name outside its own border, so the paper ink
+   * cannot count on the active fill behind it. A halo in the active colour
+   * gives the name the same background wherever it falls.
+   */
   a:hover .boundary-text,
   a:focus-visible .boundary-text {
     fill: var(--paper);
+    paint-order: stroke fill;
+    stroke: var(--land-active);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  /*
+   * The name is the part that is too small to read, and it is the only part
+   * that can grow. SVG paints in document order and has no z-index, so a town
+   * scaled past its border would go behind each town that comes after it in
+   * the list. The name sits inside its town and takes no clicks, so it can
+   * grow over nothing.
+   *
+   * Only where a real pointer can hover. A touch reader gets the colour.
+   */
+  @media (hover: hover) and (pointer: fine) {
+    a:hover .boundary-text,
+    a:focus-visible .boundary-text {
+      scale: 1.6;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .boundary-text {
+      transition: none;
+    }
   }
 
   a:focus-visible {

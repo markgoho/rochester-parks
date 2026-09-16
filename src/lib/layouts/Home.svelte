@@ -263,4 +263,13 @@
       align-items: start;
     }
   }
+
+  /* The map holds 28 town names at 8 units in a 673-unit viewBox, so how well
+     it reads is decided by how wide it is drawn. Past this width the text
+     column has more room than it can use, and the map takes the rest. */
+  @media (min-width: 80rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) 44rem;
+    }
+  }
 </style>
