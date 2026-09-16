@@ -1,6 +1,6 @@
 ---
-title: 'Gates First Responder Park'
-description: 'A Gates Town Park called Gates First Responder Park'
+title: 'First Responders Park'
+description: 'A Gates Town Park called First Responders Park'
 type: 'park'
 address:
   streetAddress: '4310 Lyell Road'
@@ -19,6 +19,7 @@ amenities:
   - Trails
   - Water
 sameAs:
+  - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14702'
   - 'https://maps.google.com/?cid=17319349409697981805'
 ---
 

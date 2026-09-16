@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 63.70
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/center-park-west/'
   - 'https://maps.google.com/?cid=6859297046720228498'
 ---
 

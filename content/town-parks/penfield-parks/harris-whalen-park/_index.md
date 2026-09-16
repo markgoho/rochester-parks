@@ -7,6 +7,7 @@ geo:
   longitude: -77.44790543626692
 acres: 46.38
 sameAs:
+  - 'https://www.penfield.org/detail_T12_R13.php'
   - 'https://maps.google.com/?cid=2565256942226022790'
 ---
 

@@ -10,6 +10,7 @@ address:
   addressCountry: 'US'
 acres: 72.68
 sameAs:
+  - 'https://www.henrietta.org/community/park/breese-park'
   - 'https://maps.google.com/?cid=7310924020670771240'
 ---
 

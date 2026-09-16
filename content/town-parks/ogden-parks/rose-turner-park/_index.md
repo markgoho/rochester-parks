@@ -16,6 +16,7 @@ amenities:
   - Canal
   - Water
 sameAs:
+  - 'https://plus.google.com/114489298665257793690/about'
   - 'https://maps.google.com/?cid=14847078672567354565'
 ---
 

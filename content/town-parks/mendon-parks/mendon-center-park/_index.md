@@ -9,6 +9,7 @@ address:
   addressCountry: 'US'
 acres: 1.81
 sameAs:
+  - 'https://townofmendon.org/wp-content/uploads/2020/10/Mendon_Center_Park.pdf'
   - 'https://maps.google.com/?cid=7149681940509327301'
 ---
 

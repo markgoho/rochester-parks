@@ -10,6 +10,7 @@ address:
   addressCountry: 'US'
 acres: 10.39
 sameAs:
+  - 'https://www.henrietta.org/community/park/kenwick-park'
   - 'https://maps.google.com/?cid=13320233509443649689'
 ---
 

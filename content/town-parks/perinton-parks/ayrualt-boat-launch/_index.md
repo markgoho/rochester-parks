@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 0.70
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/ayrault-boat-launch/'
   - 'https://maps.google.com/?cid=3066354622211228454'
 ---
 

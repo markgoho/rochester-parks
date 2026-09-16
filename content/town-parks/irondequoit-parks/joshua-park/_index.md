@@ -15,6 +15,7 @@ amenities:
   - Playground
   - Soccer Field
 sameAs:
+  - 'https://www.irondequoit.gov/Facilities/Facility/Details/Joshua-Park-9'
   - 'https://maps.google.com/?cid=15975211993853895906'
 ---
 

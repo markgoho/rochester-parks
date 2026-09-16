@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 31.40
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/badgerow-park-south/'
   - 'https://maps.google.com/?cid=5127912719985404874'
 ---
 

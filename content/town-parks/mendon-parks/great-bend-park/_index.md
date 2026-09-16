@@ -7,6 +7,7 @@ address:
   addressCountry: 'US'
 acres: 88.52
 sameAs:
+  - 'https://townofmendon.org/wp-content/uploads/2020/10/Great_Bend_Park.pdf'
   - 'https://maps.google.com/?cid=17626960393818965935'
 ---
 

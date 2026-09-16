@@ -19,6 +19,7 @@ amenities:
   - Playground
   - Swingset
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/columbus-park/'
   - 'https://maps.google.com/?cid=10693934842796147498'
 ---
 

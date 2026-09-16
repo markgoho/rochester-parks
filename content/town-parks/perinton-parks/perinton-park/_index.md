@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 12.32
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/perinton-park/'
   - 'https://maps.google.com/?cid=9194795050573807191'
 ---
 

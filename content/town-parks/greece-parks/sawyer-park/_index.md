@@ -19,6 +19,7 @@ amenities:
   - Swingset
   - Trails
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/sawyer-park/'
   - 'https://maps.google.com/?cid=7684724087611814896'
 ---
 

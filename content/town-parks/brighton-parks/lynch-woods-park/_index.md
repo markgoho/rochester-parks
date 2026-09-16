@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 76.56
 sameAs:
+  - 'http://ny-brighton3.civicplus.com/457/Lynch-Woods-Park'
   - 'https://maps.google.com/?cid=3914637152211155063'
 ---
 

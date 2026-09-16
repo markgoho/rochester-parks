@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 0.54
 sameAs:
+  - 'http://www.eastrochester.org/Community-Resources/Parks/Northside-Park'
   - 'https://maps.google.com/?cid=3760783777344823520'
 ---
 

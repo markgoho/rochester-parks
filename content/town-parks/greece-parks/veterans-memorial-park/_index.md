@@ -16,6 +16,7 @@ amenities:
   - Football Uprights
   - Open Field
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/veterans-memorial-park/'
   - 'https://maps.google.com/?cid=4949042133813089699'
 ---
 

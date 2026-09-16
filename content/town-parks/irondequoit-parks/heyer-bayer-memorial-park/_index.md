@@ -13,6 +13,7 @@ amenities:
   - Playground
   - Swingset
 sameAs:
+  - 'https://www.irondequoit.gov/Facilities/Facility/Details/HeyerBayer-Memorial-Park-10'
   - 'https://maps.google.com/?cid=9757336164699319517'
 ---
 

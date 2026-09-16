@@ -24,6 +24,7 @@ amenities:
   - Tennis Court
   - Volleyball
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/grandview-park/'
   - 'https://maps.google.com/?cid=16118708245255645285'
 ---
 

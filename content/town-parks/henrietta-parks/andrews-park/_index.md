@@ -10,6 +10,7 @@ address:
   addressCountry: 'US'
 acres: 30.10
 sameAs:
+  - 'https://www.henrietta.org/community/park/andrews-park-0'
   - 'https://maps.google.com/?cid=3525367573173641122'
 ---
 

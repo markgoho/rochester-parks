@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 102.63
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/basil-marella-park/'
   - 'https://maps.google.com/?cid=5473514302461517658'
 ---
 

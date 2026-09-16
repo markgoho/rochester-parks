@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 11.38
 sameAs:
+  - 'http://www.eastrochester.org/Community-Resources/Parks/Edmund-Lyon-Park'
   - 'https://maps.google.com/?cid=15809498623671458000'
 ---
 

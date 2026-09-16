@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 2.85
 sameAs:
+  - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14703'
   - 'https://maps.google.com/?cid=17740540470686380631'
 ---
 

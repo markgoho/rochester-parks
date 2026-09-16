@@ -20,5 +20,6 @@ amenities:
   - Tennis Court
   - Water
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/carter-park/'
   - 'https://maps.google.com/?cid=4325214643698891547'
 ---

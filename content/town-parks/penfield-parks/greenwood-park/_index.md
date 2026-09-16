@@ -9,5 +9,6 @@ address:
   addressCountry: 'US'
 acres: 20.81
 sameAs:
+  - 'https://www.penfield.org/detail_T12_R49.php'
   - 'https://maps.google.com/?cid=14088417371717003607'
 ---

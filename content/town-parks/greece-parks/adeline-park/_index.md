@@ -21,6 +21,7 @@ amenities:
   - Swingset
   - Tennis Court
 sameAs:
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/adeline-park/'
   - 'https://maps.google.com/?cid=9843409648588080189'
 ---
 

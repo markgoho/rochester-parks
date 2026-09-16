@@ -1,6 +1,6 @@
 ---
-title: 'Garnsey Arboretum'
-description: 'A Perinton Town Park called Garnsey Arboretum'
+title: 'Garnsey Road Arboretum'
+description: 'A Perinton Town Park called Garnsey Road Arboretum'
 type: 'park'
 geo:
   latitude: 43.05901349876798
@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 26.67
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/garnsey-road-arboretum/'
   - 'https://maps.google.com/?cid=7870572578059541188'
 ---
 

@@ -10,6 +10,7 @@ address:
   addressCountry: 'US'
 acres: 7.29
 sameAs:
+  - 'https://www.irondequoit.gov/Facilities/Facility/Details/McAvoy-Park-8'
   - 'https://maps.google.com/?cid=9209065688898466528'
 ---
 

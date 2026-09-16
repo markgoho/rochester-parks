@@ -7,6 +7,7 @@ geo:
   longitude: -77.60053230193782
 acres: 0.63
 sameAs:
+  - 'https://www.irondequoit.gov/Facilities/Facility/Details/Spezio-Park-11'
   - 'https://maps.google.com/?cid=7507785954983743143'
 ---
 

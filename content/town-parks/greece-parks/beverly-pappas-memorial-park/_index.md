@@ -1,6 +1,6 @@
 ---
-title: 'Pappas Park'
-description: 'A Greece Town Park called Pappas Park'
+title: 'Beverly Papas Park'
+description: 'A Greece Town Park called Beverly Papas Park'
 type: 'park'
 address:
   streetAddress: '67 Haviland Park'
@@ -15,6 +15,7 @@ amenities:
   - Rockers
   - Swingset
 sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/beverly-papas-park/'
   - 'https://maps.google.com/?cid=460685327091338150'
 ---
 

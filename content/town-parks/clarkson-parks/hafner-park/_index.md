@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 39.25
 sameAs:
+  - 'http://swedenclarksonrec.recdesk.com/recdeskportal/SwedenClarksonRec/FacilityDetail/tabid/1830/default.aspx?FacilityID=42'
   - 'https://maps.google.com/?cid=13959137538529443439'
 ---
 

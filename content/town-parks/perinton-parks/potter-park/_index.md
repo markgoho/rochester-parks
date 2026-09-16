@@ -12,6 +12,7 @@ address:
   addressCountry: 'US'
 acres: 9.58
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/potter-park/'
   - 'https://maps.google.com/?cid=7337125732581669157'
 ---
 

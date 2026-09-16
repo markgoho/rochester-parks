@@ -11,6 +11,7 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/center-park-east/'
   - 'https://maps.google.com/?cid=14643518406208349684'
 ---
 

@@ -7,6 +7,7 @@ geo:
   longitude: -77.47919221982507
 acres: 39.16
 sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/spring-lake-park/'
   - 'https://maps.google.com/?cid=6231890042062967958'
 ---
 

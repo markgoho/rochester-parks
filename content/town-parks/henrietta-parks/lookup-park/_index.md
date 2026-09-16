@@ -10,6 +10,7 @@ address:
   addressCountry: 'US'
 acres: 19.49
 sameAs:
+  - 'https://www.henrietta.org/community/park/lookup-park'
   - 'https://maps.google.com/?cid=7341272590432222810'
 ---
 
