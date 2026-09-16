@@ -7,7 +7,11 @@
 
   let { children } = $props();
 
-  const canonical = $derived(absUrl(page.data.url ?? '/'));
+  // A second ordering of a section holds the same parks as the section, so
+  // it points at the section rather than competing with it.
+  const canonical = $derived(
+    absUrl(page.data.canonical ?? page.data.url ?? '/')
+  );
   const title = $derived(
     page.data.url === '/' ? SITE_TITLE : `${page.data.title} · ${SITE_TITLE}`
   );

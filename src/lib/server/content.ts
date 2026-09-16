@@ -251,6 +251,7 @@ function parkMetaOf(node: Node): ParkMeta {
       latitude !== undefined && longitude !== undefined
         ? { latitude, longitude }
         : undefined,
+    acres: node.frontMatter.acres,
     status: {
       written: node.wordCount >= WRITTEN_WORD_FLOOR,
       inventoried: amenities.length > 0,
@@ -401,11 +402,79 @@ function parkJsonLd(node: Node, meta: ParkMeta): object {
   }) as object;
 }
 
+/**
+ * The path segment that holds the largest-first view of a park section. No
+ * content folder uses this name, so it can never shadow a real page.
+ */
+const BY_SIZE = 'by-size/';
+
+/**
+ * A section earns a largest-first page once two of its parks are measured.
+ * One figure is not an order, and a page of em dashes helps nobody.
+ */
+function measuredIn(url: string): number {
+  return childrenOf(url).filter((child) => child.park?.acres !== undefined)
+    .length;
+}
+
+/** Largest first. Parks with no figure keep their A-Z order, at the end. */
+function bySize(a: ChildLink, b: ChildLink): number {
+  const left = a.park?.acres;
+  const right = b.park?.acres;
+  if (left === undefined && right === undefined) return 0;
+  if (left === undefined) return 1;
+  if (right === undefined) return -1;
+  return right - left || a.title.localeCompare(b.title, 'en');
+}
+
+/**
+ * The same section, in a second order, as its own static page. A control
+ * would need a client runtime on every page; a second page needs none.
+ */
+function bySizePage(sectionUrl: string): Page | undefined {
+  const node = nodes.get(sectionUrl);
+  if (!node || !isParkSection(sectionUrl) || measuredIn(sectionUrl) < 2) {
+    return undefined;
+  }
+  const base = getPage(sectionUrl);
+  if (!base) return undefined;
+  const self = {
+    title: `${node.title} by size`,
+    url: `${sectionUrl}${BY_SIZE}`,
+  };
+  const trail = [...base.ancestors, link(node), self];
+  return {
+    ...base,
+    ...self,
+    description: `Every park in ${sectionLabel(node.title)}, largest first.`,
+    canonical: sectionUrl,
+    order: 'size',
+    children: [...base.children].sort(bySize),
+    ancestors: [...base.ancestors, link(node)],
+    jsonLd: [breadcrumbJsonLd(trail)],
+  };
+}
+
 export function getAllUrls(): string[] {
-  return [...nodes.keys()];
+  const sections = [...nodes.keys()].filter(
+    (url) => isParkSection(url) && measuredIn(url) >= 2
+  );
+  return [...nodes.keys(), ...sections.map((url) => `${url}${BY_SIZE}`)];
+}
+
+/**
+ * What the sitemap lists. A second ordering of a section holds no park the
+ * section does not, and it already names the section as its canonical, so
+ * offering it here would ask for a page we tell crawlers not to prefer.
+ */
+export function getIndexableUrls(): string[] {
+  return getAllUrls().filter((url) => !url.endsWith(`/${BY_SIZE}`));
 }
 
 export function getPage(url: string): Page | undefined {
+  if (url.endsWith(`/${BY_SIZE}`)) {
+    return bySizePage(url.slice(0, -BY_SIZE.length));
+  }
   const node = nodes.get(url);
   if (!node) return undefined;
 
@@ -465,6 +534,7 @@ export function getParkIndex(): ParkIndex {
         amenities: meta.amenities,
         written: meta.status.written,
         photographed: meta.status.photographed,
+        acres: meta.acres,
       };
     })
     .sort((a, b) => a.title.localeCompare(b.title, 'en'));

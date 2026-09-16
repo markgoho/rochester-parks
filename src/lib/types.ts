@@ -33,6 +33,8 @@ export interface ParkMeta {
   status: ParkStatus;
   /** Where the park is, when the front matter says. Used to plot it on a map. */
   geo?: { latitude: number; longitude: number };
+  /** Park size in acres, when the front matter says. An authored fact. */
+  acres?: number;
   /** The section a park belongs to, e.g. "Greece" or "Monroe County". */
   section: PageLink;
 }
@@ -46,6 +48,16 @@ export interface ChildLink extends PageLink {
 export interface Page extends PageLink {
   description: string;
   layout: Layout;
+  /**
+   * How `children` is ordered. Absent means by title, the default everywhere.
+   * `'size'` marks the prerendered largest-first view of a park section.
+   */
+  order?: 'size';
+  /**
+   * The page this one duplicates, when it is a second ordering of a section.
+   * Search engines are told to prefer that page over this one.
+   */
+  canonical?: string;
   html: string;
   /** Child pages and sections, sorted by title. */
   children: ChildLink[];
@@ -67,6 +79,7 @@ export interface ParkIndexEntry extends PageLink {
   amenities: string[];
   written: boolean;
   photographed: boolean;
+  acres?: number;
 }
 
 /** Totals for the home page, so it never has to state a number by hand. */

@@ -3,6 +3,7 @@
   import ParkFlags from '$lib/components/ParkFlags.svelte';
   import StatusIcon from '$lib/components/StatusIcon.svelte';
   import TownLocator from '$lib/components/TownLocator.svelte';
+  import { formatAcres } from '$lib/format';
   import { townKey } from '$lib/municipalities';
   import type { Page } from '$lib/types';
 
@@ -24,7 +25,24 @@
   const photographed = $derived(
     parks.filter((p) => p.park!.status.photographed).length
   );
+  const measured = $derived(
+    parks.filter((p) => p.park!.acres !== undefined).length
+  );
   const SHOWN = 4;
+
+  /**
+   * The two orderings of this section. Each is its own static page, so the
+   * reader can sort with JavaScript off and can link to what they see.
+   */
+  const bySize = $derived(page.order === 'size');
+  const azUrl = $derived(
+    bySize ? page.url.replace(/by-size\/$/, '') : page.url
+  );
+  const sizeUrl = $derived(`${azUrl}by-size/`);
+  /** "Greece Parks by size" names the page; the list is just Greece. */
+  const place = $derived(
+    page.title.replace(/ by size$/, '').replace(/\s+Parks$/i, '')
+  );
 </script>
 
 <div class="wrap">
@@ -41,6 +59,7 @@
         <span><b class="mono">{written}</b> written up</span>
         <span><b class="mono">{photographed}</b> photographed</span>
         <span><b class="mono">{inventoried}</b> with amenity data</span>
+        <span><b class="mono">{measured}</b> measured</span>
       </p>
     </div>
     {#if town}
@@ -59,13 +78,31 @@
     <span
       ><b class="flag flag--on"><StatusIcon kind="inventoried" /></b> amenities recorded</span
     >
-    <span class="key__sort">Sorted A–Z · nothing is ranked here</span>
+    {#if measured >= 2}
+      <span class="key__sort">
+        <span>Order</span>
+        {#if bySize}
+          <a href={azUrl}>A–Z</a>
+          <b aria-current="page">Largest first</b>
+        {:else}
+          <b aria-current="page">A–Z</b>
+          <a href={sizeUrl}>Largest first</a>
+        {/if}
+      </span>
+    {:else}
+      <span class="key__sort">Sorted A–Z · nothing is ranked here</span>
+    {/if}
   </p>
 
-  <ol class="table">
+  <!-- The number is a position in the list, and on the by-size page that
+       position is the rank, so the order is named for a screen reader too. -->
+  <ol
+    class="table"
+    aria-label="Parks in {place}, {bySize ? 'largest first' : 'A to Z'}"
+  >
     <li class="row row--head eyebrow" aria-hidden="true">
       <span></span><span>Park</span><span>Status</span><span>What is there</span
-      ><span class="end">Write-up</span>
+      ><span class="end">Size</span><span class="end">Write-up</span>
     </li>
     {#each parks as child, i (child.url)}
       {@const park = child.park!}
@@ -86,6 +123,9 @@
           {:else if park.amenities.length === 0}
             <span class="mono none">not recorded yet</span>
           {/if}
+        </span>
+        <span class="mono end acres">
+          {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
         </span>
         <span class="mono end words">
           {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
@@ -156,6 +196,13 @@
 
   .key__sort {
     margin-left: auto;
+    gap: 0.6rem;
+  }
+
+  .key__sort b {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
   }
 
   .table {
@@ -171,6 +218,7 @@
       'num name'
       '. status'
       '. tags'
+      '. acres'
       '. words';
     gap: 0.35rem 0.9rem;
     padding: 0.75rem 0;
@@ -204,6 +252,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
+  }
+
+  .acres {
+    grid-area: acres;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
   }
 
   .words {
@@ -250,8 +304,10 @@
     }
 
     .row {
-      grid-template-columns: 2.5rem minmax(0, 15rem) 5.5rem minmax(0, 1fr) 7rem;
-      grid-template-areas: 'num name status tags words';
+      grid-template-columns:
+        2.5rem minmax(0, 13rem) 5.5rem minmax(0, 1fr)
+        6rem 6rem;
+      grid-template-areas: 'num name status tags acres words';
       align-items: center;
       gap: 1.1rem;
       padding: 0.5rem 0.875rem;
