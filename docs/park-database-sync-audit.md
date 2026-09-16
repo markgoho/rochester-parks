@@ -1,6 +1,8 @@
 # Park database sync — audit
 
-Every park page under `content/town-parks/` was checked against the Google Sheets park database (152 rows, 25 municipalities). Village rows — Brockport, Fairport, Honeoye Falls, Scottsville, Spencerport — were folded into their town.
+Every park page was checked against the Google Sheets park database. The sheet has three tabs — Town Parks (152 rows), County Parks (23) and City Parks (127) — and a CSV export only returns the first, so the county and city lists were read out of the HTML export instead. Village rows — Brockport, Fairport, Honeoye Falls, Scottsville, Spencerport — were folded into their town.
+
+The official town, county and city websites outrank the sheet for a park name. Those links live as hyperlinks on the Name cell, which a CSV export drops. All 131 were checked before use: 119 are reachable and were written, 12 are dead and were left out.
 
 **Park names now follow the database.** Fifteen pages had a name the database spells differently; each one took the database spelling. Folder slugs are untouched, so no URL changed and no redirect is needed. No page was moved or deleted.
 
@@ -20,8 +22,8 @@ One thing is NOT settled and needs you: `docs/cutover.md` says Gates Town Park w
 
 Towns reported: 20 of 20
 
-- Pages created: 25
-- Pages updated: 113
+- Town park pages created: 25
+- Town park pages updated: 113
 - Names changed to the database spelling: 15
 - Pages not in the database: 7
 - Database rows judged not a park: 5
@@ -178,7 +180,234 @@ Folder slugs, and therefore URLs, are unchanged. Nothing 404s and no redirect is
 - **wheatland** — Johnson Park and Canawagus Park had no database amenities to merge (empty amenities list in the database); their existing page amenities were left unchanged.
 - **wheatland** — No database row had an address, so no address field was added to any page.
 
-## Updated pages
+## Monroe County and state parks
+
+All 23 county rows matched a page. Each took its acreage, address and official `monroecounty.gov` link. Irondequoit Bay Park was corrected to **Irondequoit Bay Park West**, which is what the county calls it.
+
+Two county rows live elsewhere on this site and stayed there: **Lock 32 Canal Park** is filed under Pittsford, and **Hamlin Beach State Park** under state parks. Both took the metadata.
+
+`content/state-parks/_index.md` and the Hamlin Beach page were both **empty files**, which is why that section never rendered a park. Both are written now, Hamlin Beach with the canonical `parks.ny.gov` URL that the sheet's old `nysparks.com` link redirects to.
+
+Three county pages are not in the sheet and were left alone: Seneca Park Zoo, Lehigh Valley Trail Linear Park, Devil's Cove Park.
+
+## Rochester city parks
+
+The city tab lists 127 rows. It is a facilities list, not a park list, so each row was judged before any page was written: **75 became park pages**, **49 were rejected**, and 28 were renamed. Before this, the site had two city park pages.
+
+The city tab carries no acreage and no coordinates, so no city page has `acres` or `geo`. Its amenity columns are well filled, unlike the town tab, and map onto the site vocabulary like this: `PLAY APPAR` to Playground, `BASEBALL LIGHTED` and `BASEBALL UNLIT` both to Baseball Diamond, `REC CNTR` to Recreation Center, `PLAY APPAR` and the rest as named. Football Field, Handball Court, Ice Rink, Arena, Gazebo and Recreation Center are new amenity names and will appear as new filters in the finder.
+
+
+### Rows rejected as not a park
+
+| Row | Why |
+| --- | --- |
+| Allen Street | sheet notes confirm this is just a sliver of green space, no facilities |
+| Arnold Park Mall | sheet notes confirm this is the middle of a street, not a park |
+| Barrington Park | 'Barrington Park' is itself a street name (a townhouse drive off Barrington Street, e.g. 9/19/24 Barrington Park); the real nearby pocket park is named 'Barrington Street Park' at Park Ave & Barrington St, a different name. The row gives no location_text, amenities, or official link to confirm the two are the same site, so this was rejected rather than guessed. Same evidence profile as the Central Pk rejection below. |
+| Bishop's Backyard | no evidence of a real park at this site; named in the Broad-and-X corner pattern used elsewhere in this sheet for street corners (Broad & Allen, Broad & Chestnut, Broad & Main), and web research found no park by this name in Rochester |
+| Bloss and Saratoga | street intersection, not a park |
+| Boulevard Parkway | W. Boulevard Parkway is a residential street name, not a park |
+| Broad & Allen | street intersection, not a park |
+| Broad & Chestnut | street intersection, not a park |
+| Broad & Main | street intersection, not a park |
+| Burke Terrace Mall | named in the same street-mall pattern as Arnold Park Mall and Carthage Dr Mall; no evidence found of a distinct park space |
+| Carthage Dr Mall | named in the street-mall pattern; no evidence found of a distinct park space, only a residential street |
+| Central Pk | 'Central Park' is a real Rochester street name (confirmed street addresses on it); the location text 'between Goodman & Union' describes a street segment, not a park |
+| Charles Carroll Park | this is the pre-2022 name of the site now called Austin Steward Plaza, already created under that name; duplicate row |
+| Clinton Av Triangle | appears to be a traffic triangle, not a park; no evidence found of amenities or public recognition as a park |
+| Crittenden Blvd Mall | street mall/median on Crittenden Blvd (Mt. Hope to Lattimore), no facilities |
+| East and Chestnut | street intersection (East Avenue/Chestnut Street), no facilities |
+| Evergreen Park | street median along St. Paul (bet. Evergreen & Scrantom), no facilities, matches mall/median pattern |
+| Exchange Blvd | street median along Exchange Blvd (bet. Plymouth and Ford), no facilities, matches mall/median pattern |
+| Glendale Mall | street median (Glendale Park bet. Oriole & Malvern), no facilities |
+| Goodman / Linden | street intersection (Goodman and Linden), no facilities |
+| Hazelwood Terrace Mall | street median (Hazelwood bet. Merchants & Culver), no facilities |
+| Highland Pkway Mall | street median (Highland Parkway and Greenview Pk.), no facilities |
+| Hillside Ave Mall | street median (Winton and Hillside), no facilities |
+| Huntington Park Mall | street median (Huntington near Harris), no facilities |
+| KNICKERBOCKER STREET MALL | street mall/median (Knickerbocker/Summit Grove), no amenities |
+| LAFAYETTE PARK MALL | median at the Lafayette and South Union intersection, no amenities |
+| LAKE & RIDGE | street intersection (Lake Ave. and Ridge Road W.), no amenities |
+| LAKEVIEW MALL | median strip within Lakeview Park, between Pierpont & Lake, no amenities |
+| LIBERTY POLE | civic monument/plaza in the Main St & Franklin St intersection, no amenities; matches the street-intersection reject pattern |
+| LYNCHFORD PARK A & B | Lynchford Park is a residential street name near Danforth Community Center (addresses like '16 Lynchford Park A' exist, and the city's own lead-paint listing treats it as a street), not a park |
+| NUNDA BLVD MALL | median between Winton & Cobbs Hill Drive, no amenities |
+| NYE PARK MALL | median within Nye Park, midway between Strong & Norton, no amenities |
+| OLDE ROCHESTERVILLE O.S. | the North Water St. site was redeveloped into the private Water Street Commons development; the 'open space' is now a restaurant courtyard, not a public park |
+| OXFORD ST MALL | median between Wellesley & Park, no amenities |
+| PLEASANT ST/ST. JOSEPH'S | sliver of land behind the existing St. Joseph's Park, no amenities |
+| PONT DE RENNES | a pedestrian bridge over the Genesee Gorge, not a park with facilities |
+| PORTSMOUTH TERR. MALL | median between University & East, no amenities |
+| Raines Park Mall | named street mall/median, not a park |
+| Ralph Avery Mall | named street mall/median, not a park |
+| River Harbor | location text only ('Bet. River & Lake Ave. s. of beach'), no amenities, no official page, no independent evidence of a distinct public park at this name; reads as an unremarkable strip of city land |
+| Rockingham / Mulberry | row name is a street intersection (Rockingham St & Mulberry St), no 'Park'/'Square' designation, no amenities |
+| Rundel Park Mall | named street mall/median, not a park |
+| Seneca Parkway Mall | named street mall/median, not a park |
+| Sibley Place Mall | named street mall/median, not a park |
+| Sumner Park Mall | named street mall/median, not a park |
+| War Memorial Open Space | the outdoor memorial plaza/grounds at the War Memorial arena (Broad & Exchange), not a standalone park; no amenities, no official page, no evidence it is treated as a separate park site |
+| Werner Park Mall | named street mall/median, not a park |
+| Winton / Highland | row name is a street intersection (Winton Rd & Highland Ave), no 'Park'/'Square' designation, no amenities |
+| Winton / Merchants | row name and location are a street intersection (Winton Rd & Merchants Rd); the single 'Gazebo' amenity is a decorated corner, not the playground/ball-field carve-out the spec allows for a building-with-facilities exception |
+
+### Names changed
+
+| Sheet says | Page says | Why |
+| --- | --- | --- |
+| ABERDEEN SQUARE | Aberdeen Square Park | official cityofrochester.gov page gives this full name |
+| AVE. D REC. CENTER | Avenue D Rec. Center | sheet abbreviation Ave. expanded to Avenue per naming rule |
+| BRONSON AVE. PLAYGROUND | Bronson Avenue Playground | sheet abbreviation Ave. expanded to Avenue per naming rule |
+| BROWNCROFT ROSE GARDEN | Browncroft Rose Garden Park | official cityofrochester.gov page gives this full name |
+| CAMPBELL ST REC CNTR | Campbell St Rec Center | sheet abbreviation Cntr expanded to Center per naming rule; St kept as street abbreviation |
+| COBBS HILL | Cobb's Hill Park and Washington Grove | official cityofrochester.gov page gives this full name |
+| CONKEY CORNER PARK | Conkey Corner Park & El Camino Trail | official cityofrochester.gov page gives this full name |
+| DANFORTH COMM.  CENTER | Danforth Community Center | expanded abbreviation (Comm. to Community) |
+| DAVID F. GANTT REC. CENTER | David F. Gantt Recreation Center | expanded abbreviation (Rec. to Recreation) |
+| FLINT ST REC. CENTER | Flint St Recreation Center | expanded abbreviation (Rec. to Recreation), St kept as street abbreviation |
+| FOURTH & PECK PARK | Fourth Street and Peck Street Park | official cityofrochester.gov page |
+| GARDINER AVE. | Gardiner Avenue | expanded abbreviation (Ave. to Avenue) |
+| GENESEE GATEWAY | Genesee Gateway Park | official cityofrochester.gov page |
+| GRAND AVE PARK | Grand Avenue Park | expanded abbreviation (Ave to Avenue) |
+| HUMBOLDT REC CTR | Humboldt Recreation Center | expanded abbreviation (Rec Ctr to Recreation Center) |
+| J. R. WILSON | JR Wilson Park | official page heading |
+| JAS. MADISON SCHOOL | James Madison School | expanded abbreviation Jas. -> James |
+| JEFFERSON TERR PARK | Jefferson Terrace Park | expanded abbreviation Terr -> Terrace |
+| JONES SQUARE | Jones Square Park | official page heading |
+| LOWER MAPLEWOOD | Maplewood Park and Rose Garden | official page (250 Maplewood Ave) names the whole site; Lower Maplewood is a section, not a separate park |
+| LUNSFORD CIRCLE | Lunsford Circle Park | official page heading |
+| MAPLEWOOD ROSE GARDEN | Maplewood Park and Rose Garden | same official page as Lower/Middle Maplewood; merged rather than duplicated |
+| MARTIN LUTHER KING JR. PARK | Dr. Martin Luther King Jr. Park & Ice Rink | official page heading |
+| MIDDLE MAPLEWOOD | Maplewood Park and Rose Garden | official page names it as a section of Maplewood Park; no separate official link of its own |
+| SOUTH AVE REC. CNTR. | South Avenue Recreation Center | expanded sheet abbreviation (Ave/Rec/Cntr), no official page to check |
+| SUSAN B. ANTHONY SQUARE | Susan B. Anthony Square Park | official city page title |
+| TROUP ST PARK | Troup Street Park | official city page title |
+| WASHINGTON SQUARE | Washington Square Park | official city page title |
+
+### City pages created
+
+| Park | Amenities | Address | Official link |
+| --- | --- | --- | --- |
+| Aberdeen Square Park | 0 | no | yes |
+| Adam's Street Rec Center | 7 | yes | no |
+| Anderson Park | 0 | no | no |
+| Aqueduct Park | 0 | no | no |
+| Austin Steward Plaza | 0 | no | yes |
+| Avenue D Rec. Center | 7 | yes | no |
+| Baden Park | 6 | no | no |
+| Brewster Harding Park | 2 | no | no |
+| Bronson Avenue Playground | 2 | no | no |
+| Brown Square Park | 0 | yes | yes |
+| Browncroft Rose Garden Park | 0 | no | yes |
+| Campbell St Rec Center | 5 | yes | no |
+| Carter St. Rec Center | 6 | yes | no |
+| Charlotte Village Green | 2 | no | no |
+| Clinton / Baden Rec Center | 6 | yes | no |
+| Cobb's Hill Park and Washington Grove | 7 | no | yes |
+| Conkey Corner Park & El Camino Trail | 0 | no | yes |
+| Cornerstone Park | 0 | no | no |
+| Danforth Community Center | 2 | yes | no |
+| David F. Gantt Recreation Center | 7 | yes | no |
+| Don Samuel Torres Park | 4 | yes | no |
+| Dr. Martin Luther King Jr. Park & Ice Rink | 0 | no | yes |
+| Eastmoreland Park | 1 | no | no |
+| Edgerton Park | 6 | no | no |
+| Emerson and Glide | 2 | no | no |
+| Exchange Playground | 1 | no | no |
+| Farmington Park | 3 | no | yes |
+| Field St Park | 3 | no | no |
+| First St Playground | 4 | yes | no |
+| Flint St Recreation Center | 6 | no | no |
+| Fourth Street and Peck Street Park | 3 | no | yes |
+| Gardiner Avenue | 4 | yes | no |
+| Genesee Crossroads Park | 0 | no | no |
+| Genesee Gateway Park | 1 | no | yes |
+| Genesee Valley West | 7 | no | no |
+| Goodwin Park | 1 | no | no |
+| Grand Avenue Park | 2 | yes | no |
+| Grape & Wilder | 1 | no | no |
+| High Falls Terrace | 0 | no | no |
+| Humboldt Recreation Center | 8 | yes | no |
+| J. P. Riley | 3 | yes | no |
+| JR Wilson Park | 4 | yes | yes |
+| James Madison School | 5 | no | no |
+| Jefferson Terrace Park | 3 | no | no |
+| Jones Square Park | 0 | no | yes |
+| La Grange Park | 5 | yes | no |
+| Lomb Memorial Park | 0 | no | no |
+| Lower Falls Park | 0 | no | no |
+| Lunsford Circle Park | 0 | no | yes |
+| Manhattan Square | 4 | yes | no |
+| Maplewood Park and Rose Garden | 3 | no | yes |
+| Marie Daley Park | 2 | yes | no |
+| Meigs / Linden | 1 | no | no |
+| Morrison Park | 0 | no | no |
+| Norton Village Playground | 5 | yes | no |
+| Orchard Playground | 2 | no | no |
+| Otto Henderberg | 1 | no | no |
+| Pulaski Park | 0 | no | yes |
+| Quamina Park | 0 | no | no |
+| Ryan Community Center | 7 | yes | no |
+| Schiller Park | 0 | no | no |
+| Sebastian Park | 5 | yes | yes |
+| South Avenue Recreation Center | 4 | yes | no |
+| St John's Park | 0 | no | no |
+| Susan B. Anthony Square Park | 0 | no | yes |
+| Tacoma Playground | 3 | yes | no |
+| Troup Street Park | 3 | no | yes |
+| Tryon Park West | 4 | no | yes |
+| Turning Point Park | 0 | no | yes |
+| University Avenue Playground | 2 | no | no |
+| Verona Playground | 3 | no | no |
+| Wadsworth Square | 0 | no | no |
+| Washington Playground | 2 | yes | no |
+| Washington Square Park | 0 | no | yes |
+| West High Field | 4 | no | no |
+
+### City notes
+
+- Barrington Street Park: not in this slice under that name and not created (see Barrington Park in not_a_park), but web research found it is a real small park with benches at Park Ave & Barrington St. If a future slice or pass confirms the sheet's 'Barrington Park' row refers to this site, it can be created then.
+- Aqueduct Park: the sheet's official field is null, so no sameAs was added, but cityofrochester.gov does have a live page at /locations/aqueduct-park confirming this is a genuine small downtown riverside park. The owner may want to add that link in a later metadata pass.
+- Austin Steward Plaza: created as a park page though the official page describes it as a plaza/promenade with green space, seating, and Genesee Riverway Trail access rather than a traditional park.
+- Five Rec Center rows created as parks (Adam's Street, Avenue D, Campbell St, Carter St., Clinton / Baden): each has Playground plus ball fields (baseball/football/soccer/tennis) alongside the recreation building, so treated as a genuine park with a building in it per the spec's rec-center rule.
+- Baden Park (Upper Falls Blvd) and Clinton / Baden Rec Center (485 North Clinton Ave.) may be the same site or adjoining parcels of one park — the streets meet and the amenity lists overlap heavily (Baseball Diamond, Basketball Court, Football Field, Playground). Kept as two separate pages since the rows list distinct amenities and neither record says they are the same facility; the owner may want to check whether these should be merged.
+- EMERSON AND GLIDE: spec names this as an intersection example; created anyway because the row carries two facilities (Baseball Diamond, Playground) and third-party listings (recplanet, foursquare) confirm a real 'Emerson and Glide Playground'.
+- Rec-center rows (Danforth Comm. Center, David F. Gantt Rec. Center, Flint St Rec. Center, Humboldt Rec Ctr, Gardiner Ave.) created as parks, not rejected as buildings, because each row also lists ball fields/court/playground alongside the center. Danforth is the thinnest case: only Baseball Diamond plus Recreation Center.
+- GRAPE & WILDER: row name says 'Grape & Wilder' but location_text says 'Maple and Wilder' (only one Basketball Court amenity, no web record found). Created per the facility rule, but the street name conflict should be checked against the source sheet.
+- GENESEE CROSSROADS PARK and HIGH FALLS TERRACE: sheet lists zero amenities for both, but external sources confirm both are real, maintained City/State parks (Genesee Crossroads Park is undergoing an $8M riverside revitalization; High Falls Terrace is a 3.6-acre pocket park). Created despite empty amenities list; amenities block omitted from the page since the list is empty.
+- GARDINER AVE.: street address on the row is '61 Grover Street', not Gardiner Avenue — a mismatch in the source sheet worth checking.
+- HIGH FALLS TERRACE: public sources call this 'High Falls Terrace Park', but the record has no official cityofrochester.gov link to confirm, so the prepared title was kept unchanged.
+- La Grange Park has a Recreation Center amenity but also ball diamond/basketball/playground/tennis, so it was treated as a genuine park with a building in it, not a rejected recreation center.
+- James Madison School was created because of its five facility types (courts, fields, playground), but its name reads as a school and the record has no official link to confirm the current park name.
+- Morrison Park: outside research (city rededication press release) gives the official name as 'James Morrison Park', but the record has no official link to fetch, so the sheet name was kept per spec.
+- Otto Henderberg: outside research shows an official city page at cityofrochester.gov/locations/otto-henderberg-park (name 'Otto Henderberg Park'), but that link is not in the record, so no sameAs was added and the sheet name was kept.
+- Liberty Pole and Pont de Rennes both have official cityofrochester.gov pages (liberty-pole-plaza, pont-de-rennes-bridge) but were still rejected as non-parks (plaza/monument and bridge, respectively) since the row itself carries no facilities and doesn't read as a park to a visitor.
+- Lower Falls Park (Hastings St., east bank of the Genesee) is a separate site from the 'Lower Falls Overlook' section described on the Maplewood Park and Rose Garden official page (west bank, off Driving Park Ave). Owner should confirm these are not meant to be the same place.
+- Maplewood Park and Rose Garden was built from three sheet rows (LOWER MAPLEWOOD, MAPLEWOOD ROSE GARDEN, MIDDLE MAPLEWOOD) that all describe sections of one official park at 250 Maplewood Avenue; amenities were merged (Gazebo, Playground, Tennis Court) rather than creating three thin duplicate pages.
+- St. Joseph's Park already exists at content/rochester-city-parks/st-josephs-park/_index.md. Its record in this slice has empty amenities, no streetAddress, and no official link, so there was no missing metadata to add; the existing page was left untouched.
+- Quamina Park: kept as a park because the sheet itself names it 'Park' (not a street-corner or mall pattern) and the prepared notes field did not flag it as a sliver, unlike River Harbor which had neither a 'Park'/'Square' name nor amenities. However the prepared streetAddress field ('25 Quamina Dr. reaching to Joseph') is the raw location_text, not a clean mailing address, per the spec's own rule that a description must never be written as streetAddress. Omitted the address block rather than inventing a trimmed address not in the record. Owner should verify this is a real park and not a thin strip of land; 25 Quamina Dr. also appears in real-estate listings as a residential address.
+- St John's Park: no official link and no amenities, same thin profile as the rejected rows, but kept on independent evidence: a historical account of the Charlotte neighborhood states Lake Avenue was once called 'Charlotte Boulevard' south of St. John's Park, placing a real, named place of that name at Lake Avenue near the river, matching the record's location text.
+- Ryan Community Center and South Avenue Recreation Center were kept as parks (not rejected as buildings) because both rows list playground and ball-field amenities alongside the recreation-center facility, per the spec's carve-out for buildings that also have park facilities.
+
+## Judgement calls worth a second look
+
+The four city slices did not draw the line in exactly the same place. These are the rows where that shows:
+
+- **Meigs / Linden** was kept as a park because the sheet gives it a playground, but **Winton / Merchants** was rejected as an intersection although the sheet gives it a gazebo. One of those two decisions is probably wrong.
+- **James Madison School**, **West High Field** and **Ryan Community Center** are school and community sites with public fields. They read oddly as "A Rochester City Park called James Madison School".
+- **Otto Henderberg** and **Meigs / Linden** have incomplete names. The City of Rochester site sits behind Cloudflare and returned 403 to every request, so neither could be confirmed. They are written as the sheet spells them rather than guessed at.
+- **Barrington Park** was rejected, but a real Barrington Street Park was found nearby and may be the same place.
+- **Charles Carroll Park** was rejected as the pre-2022 name of **Austin Steward Plaza**, which the sheet lists separately.
+
+## Same name, different park
+
+These titles now appear twice. Each is a genuinely different park and the section name separates them on the page, but they will look like duplicates in a flat list: First Responders Park (Gates and Webster), Goodwin Park (city and Greece), Memorial Park (Chili and Gates), Veteran's Memorial Park (Greece, Ogden and Rush), Veterans Memorial Park (Penfield and Henrietta).
+
+## What this does to the home page
+
+The site went from about 200 park pages to 276. Most of the new ones are listings with no write-up and no photograph, so the written and photographed percentages on the home page will drop sharply. That is the true picture, not a regression. `CONTEXT.md` still says "About 199 exist", which is now stale.
+
+## Updated town pages
 
 | Town | Park | Fields added |
 | --- | --- | --- |
