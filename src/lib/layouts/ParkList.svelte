@@ -1,9 +1,10 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
+  import CityLocator from '$lib/components/CityLocator.svelte';
   import TownLocator from '$lib/components/TownLocator.svelte';
   import { formatAcres } from '$lib/format';
-  import { isCountySection, townKey } from '$lib/municipalities';
+  import { isCitySection, isCountySection, townKey } from '$lib/municipalities';
   import type { Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
@@ -20,6 +21,8 @@
   const town = $derived(townKey(section.url));
   /** The county section has no town of its own: it takes the whole map. */
   const county = $derived(isCountySection(section.url));
+  /** The city section is drawn with its neighborhoods. */
+  const city = $derived(isCitySection(section.url));
 
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
@@ -68,7 +71,9 @@
         <span><b class="mono">{measured}</b> measured</span>
       </p>
     </div>
-    {#if town || county}
+    {#if city}
+      <div class="locator"><CityLocator /></div>
+    {:else if town || county}
       <div class="locator"><TownLocator {town} /></div>
     {/if}
   </div>

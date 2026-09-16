@@ -2,11 +2,17 @@
  * Every municipality outline the county map draws, in one place, so that a
  * single town can be drawn on its own page without repeating its path data.
  */
-export interface Municipality {
-  /** The map's class name for the municipality, e.g. "east-rochester". */
+/** A named shape the site can draw on its own: a municipality or a neighborhood. */
+export interface Outline {
+  /** The shape's class name, e.g. "east-rochester". */
   key: string;
   /** The accessible name, e.g. "Town of Gates". */
   name: string;
+  /** One or more SVG path `d` strings, in the county map's coordinate space. */
+  paths: string[];
+}
+
+export interface Municipality extends Outline {
   /** The section the municipality links to, when it has one. */
   href?: string;
   /**
@@ -16,11 +22,6 @@ export interface Municipality {
   within?: string;
   /** The name printed on the county map, and where it sits. */
   label: { x: number; y: number; text: string };
-  /**
-   * One or more SVG path `d` strings, in the county map's coordinate space.
-   * Pittsford and Webster take two paths each.
-   */
-  paths: string[];
 }
 
 /** One place to mark on a map, wherever that map is drawn. */
@@ -326,8 +327,8 @@ export function villagesIn(key: string): Municipality[] {
 /** The points of one subpath. Villages sit on top of towns, never as holes. */
 type Ring = [number, number][];
 
-/** Splits a municipality's paths into rings, one per subpath. */
-function ringsOf(m: Municipality): Ring[] {
+/** Splits an outline's paths into rings, one per subpath. */
+function ringsOf(m: Outline): Ring[] {
   const rings: Ring[] = [];
   for (const d of m.paths) {
     const tokens = d.match(/[A-Za-z]|-?\d*\.?\d+(?:e[-+]?\d+)?/g) ?? [];
@@ -382,7 +383,7 @@ function ringsOf(m: Municipality): Ring[] {
   return rings;
 }
 
-const ringsByKey = new Map<string, Ring[]>();
+const ringsByShape = new Map<Outline, Ring[]>();
 
 /** Crossing count, one ring at a time, so rings read as a union. */
 function inRing(ring: Ring, px: number, py: number): boolean {
@@ -397,6 +398,17 @@ function inRing(ring: Ring, px: number, py: number): boolean {
   return inside;
 }
 
+/** True when a place falls inside the outline. */
+export function contains(
+  shape: Outline,
+  latitude: number,
+  longitude: number
+): boolean {
+  if (!ringsByShape.has(shape)) ringsByShape.set(shape, ringsOf(shape));
+  const { x, y } = project(latitude, longitude);
+  return ringsByShape.get(shape)!.some((ring) => inRing(ring, x, y));
+}
+
 /**
  * The town a place falls in, whatever section its page sits under. A park
  * belongs on the map of the town that actually holds it, and the two can
@@ -406,13 +418,10 @@ export function townAt(
   latitude: number,
   longitude: number
 ): string | undefined {
-  const { x, y } = project(latitude, longitude);
-  for (const m of MUNICIPALITIES) {
-    if (!m.href?.startsWith('/town-parks/')) continue;
-    if (!ringsByKey.has(m.key)) ringsByKey.set(m.key, ringsOf(m));
-    if (ringsByKey.get(m.key)!.some((ring) => inRing(ring, x, y))) return m.key;
-  }
-  return undefined;
+  return MUNICIPALITIES.find(
+    (m) =>
+      m.href?.startsWith('/town-parks/') && contains(m, latitude, longitude)
+  )?.key;
 }
 
 /**
@@ -426,11 +435,8 @@ export function placeAt(
 ): string | undefined {
   const town = townAt(latitude, longitude);
   if (town) return town;
-  const { x, y } = project(latitude, longitude);
-  const city = byKey.get('rochester')!;
-  if (!ringsByKey.has(city.key)) ringsByKey.set(city.key, ringsOf(city));
-  return ringsByKey.get(city.key)!.some((ring) => inRing(ring, x, y))
-    ? city.key
+  return contains(byKey.get('rochester')!, latitude, longitude)
+    ? 'rochester'
     : undefined;
 }
 
@@ -456,6 +462,14 @@ export function isCountySection(url: string): boolean {
 }
 
 /**
+ * True for the city park section. The city is drawn with its neighborhoods,
+ * the way the county is drawn with its towns.
+ */
+export function isCitySection(url: string): boolean {
+  return url === '/rochester-city-parks/';
+}
+
+/**
  * Where a latitude and longitude fall in the map's coordinate space.
  *
  * The outlines were traced from a Web Mercator map, so over one county the
@@ -478,7 +492,7 @@ export function project(
 
 /** The smallest box that holds the outline, padded a little for the stroke. */
 export function outlineBox(
-  m: Municipality,
+  m: Outline,
   pad = 4
 ): { x: number; y: number; width: number; height: number } {
   let minX = Infinity;
@@ -549,7 +563,7 @@ export function outlineBox(
 }
 
 /** The same box, written the way the `viewBox` attribute wants it. */
-export function outlineViewBox(m: Municipality, pad = 4): string {
+export function outlineViewBox(m: Outline, pad = 4): string {
   const box = outlineBox(m, pad);
   return `${box.x} ${box.y} ${box.width} ${box.height}`;
 }

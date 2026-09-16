@@ -14,6 +14,10 @@ _Avoid_: Location, site, venue
 The page describing one Park. About 199 exist, sourced from markdown under `content/`.
 _Avoid_: Park post, park entry
 
+**Neighborhood**:
+One of the areas the City of Rochester divides itself into, as the city's own boundary layer draws them. A Neighborhood is to the city what a town is to the county: the city Park List draws the whole city with its Neighborhoods, and a city Park page draws only the Neighborhood that holds the Park. A Neighborhood has no page of its own.
+_Avoid_: District, quadrant, ward
+
 **Blog post**:
 An article that is not about one specific Park.
 _Avoid_: Article, news item
