@@ -2,6 +2,7 @@
 title: 'Gardiner Avenue'
 description: 'A Rochester City Park called Gardiner Avenue'
 type: 'park'
+acres: 2.9
 address:
   streetAddress: '61 Grover Street'
   addressLocality: 'Rochester'

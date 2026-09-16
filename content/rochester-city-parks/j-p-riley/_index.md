@@ -2,6 +2,7 @@
 title: 'J. P. Riley'
 description: 'A Rochester City Park called J. P. Riley'
 type: 'park'
+acres: 1.5
 address:
   streetAddress: '130 Santee Street'
   addressLocality: 'Rochester'

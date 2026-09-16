@@ -2,6 +2,12 @@
 title: 'Otto Henderberg'
 description: 'A Rochester City Park called Otto Henderberg'
 type: 'park'
+acres: 0.5
+address:
+  streetAddress: 'Avon Place'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Gazebo
 geo:

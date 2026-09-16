@@ -2,6 +2,12 @@
 title: 'Baden Park'
 description: 'A Rochester City Park called Baden Park'
 type: 'park'
+acres: 9.1
+address:
+  streetAddress: '485 N Clinton Avenue'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Baseball Diamond
   - Basketball Court

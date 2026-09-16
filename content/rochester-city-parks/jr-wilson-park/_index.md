@@ -2,6 +2,7 @@
 title: 'JR Wilson Park'
 description: 'A Rochester City Park called JR Wilson Park'
 type: 'park'
+acres: 2.7
 address:
   streetAddress: '160 Burrows'
   addressLocality: 'Rochester'

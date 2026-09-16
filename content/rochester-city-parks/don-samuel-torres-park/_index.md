@@ -2,6 +2,7 @@
 title: 'Don Samuel Torres Park'
 description: 'A Rochester City Park called Don Samuel Torres Park'
 type: 'park'
+acres: 2.5
 address:
   streetAddress: '70 Oakman Street'
   addressLocality: 'Rochester'

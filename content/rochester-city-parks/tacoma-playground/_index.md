@@ -2,6 +2,7 @@
 title: 'Tacoma Playground'
 description: 'A Rochester City Park called Tacoma Playground'
 type: 'park'
+acres: 1.2
 address:
   streetAddress: '30 Tacoma Street'
   addressLocality: 'Rochester'

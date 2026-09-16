@@ -2,6 +2,7 @@
 title: 'La Grange Park'
 description: 'A Rochester City Park called La Grange Park'
 type: 'park'
+acres: 17
 address:
   streetAddress: '409 LaGrange Avenue'
   addressLocality: 'Rochester'

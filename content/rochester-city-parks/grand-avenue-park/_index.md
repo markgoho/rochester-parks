@@ -2,6 +2,7 @@
 title: 'Grand Avenue Park'
 description: 'A Rochester City Park called Grand Avenue Park'
 type: 'park'
+acres: 2.1
 address:
   streetAddress: '250 Grand Avenue at Chamberlain'
   addressLocality: 'Rochester'

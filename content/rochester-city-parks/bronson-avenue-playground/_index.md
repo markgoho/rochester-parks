@@ -2,6 +2,11 @@
 title: 'Bronson Avenue Playground'
 description: 'A Rochester City Park called Bronson Avenue Playground'
 type: 'park'
+address:
+  streetAddress: 'Bronson Ave and Olean St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Basketball Court
   - Playground

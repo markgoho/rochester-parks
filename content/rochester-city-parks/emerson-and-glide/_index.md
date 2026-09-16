@@ -2,6 +2,12 @@
 title: 'Emerson and Glide'
 description: 'A Rochester City Park called Emerson and Glide'
 type: 'park'
+acres: 7.3
+address:
+  streetAddress: 'Emerson St and Glide St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Baseball Diamond
   - Playground

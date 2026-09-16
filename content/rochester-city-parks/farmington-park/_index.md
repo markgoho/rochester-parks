@@ -2,6 +2,12 @@
 title: 'Farmington Park'
 description: 'A Rochester City Park called Farmington Park'
 type: 'park'
+acres: 3.6
+address:
+  streetAddress: '600 Merchants Rd'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Baseball Diamond
   - Basketball Court

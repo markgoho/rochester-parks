@@ -2,6 +2,12 @@
 title: 'Genesee Gateway Park'
 description: 'A Rochester City Park called Genesee Gateway Park'
 type: 'park'
+acres: 12
+address:
+  streetAddress: 'Mount Hope Ave at Gregory St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Basketball Court
 sameAs:

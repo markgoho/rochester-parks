@@ -15,6 +15,9 @@ amenities:
   - Soccer Field
   - Tennis Court
   - Water
+geo:
+  latitude: 43.1478482
+  longitude: -77.6167304
 ---
 
 A page for this park is still being written.

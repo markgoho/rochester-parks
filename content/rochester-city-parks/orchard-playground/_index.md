@@ -2,6 +2,12 @@
 title: 'Orchard Playground'
 description: 'A Rochester City Park called Orchard Playground'
 type: 'park'
+acres: 3.7
+address:
+  streetAddress: 'Saxton St and Campbell St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Basketball Court
   - Tennis Court

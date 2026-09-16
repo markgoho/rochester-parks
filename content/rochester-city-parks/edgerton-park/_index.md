@@ -2,6 +2,12 @@
 title: 'Edgerton Park'
 description: 'A Rochester City Park called Edgerton Park'
 type: 'park'
+acres: 30.9
+address:
+  streetAddress: '41 Backus St.'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Baseball Diamond
   - Basketball Court

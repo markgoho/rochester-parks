@@ -2,6 +2,7 @@
 title: 'Manhattan Square'
 description: 'A Rochester City Park called Manhattan Square'
 type: 'park'
+acres: 4.4
 address:
   streetAddress: '1 Manhattan Square'
   addressLocality: 'Rochester'

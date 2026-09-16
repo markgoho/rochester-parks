@@ -92,6 +92,8 @@
    * JavaScript off, and can link to what they see.
    */
   const bySize = $derived(page.order === 'size');
+  /** The default order, by title, which every other order links back to. */
+  const az = $derived(page.order === undefined);
   const azUrl = $derived(section.url);
   const sizeUrl = $derived(`${section.url}by-size/`);
   /** A size order needs two figures to compare. See ADR-0001. */
@@ -157,11 +159,14 @@
   {#if city}
     <!-- Each grouping is its own prerendered page, so these are links. -->
     <nav class="orders eyebrow" aria-label="Order">
+      {#if az}
+        <span aria-current="page">A to Z</span>
+      {:else}
+        <a href={azUrl}>A to Z</a>
+      {/if}
       {#if byNeighborhood}
-        <a href={section.url}>A to Z</a>
         <span aria-current="page">By neighborhood</span>
       {:else}
-        <span aria-current="page">A to Z</span>
         <a href={neighborhoodUrl}>By neighborhood</a>
       {/if}
     </nav>
@@ -174,7 +179,7 @@
       <span class="sort-label">Sort</span>
     {/if}
     <span class="num" aria-hidden="true"></span>
-    {#if sortable && bySize}
+    {#if !az}
       <a class="name" href={azUrl}>Park</a>
     {:else}
       <span class="name" aria-current={sortable ? 'page' : undefined}>Park</span
@@ -185,7 +190,7 @@
     {#if sortable && !bySize}
       <a class="end acres" href={sizeUrl}>Size</a>
     {:else}
-      <span class="end acres" aria-current={sortable ? 'page' : undefined}
+      <span class="end acres" aria-current={bySize ? 'page' : undefined}
         >Size</span
       >
     {/if}

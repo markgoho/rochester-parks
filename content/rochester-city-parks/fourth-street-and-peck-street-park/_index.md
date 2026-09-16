@@ -2,6 +2,12 @@
 title: 'Fourth Street and Peck Street Park'
 description: 'A Rochester City Park called Fourth Street and Peck Street Park'
 type: 'park'
+acres: 1.5
+address:
+  streetAddress: 'Fourth St and Peck St'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
 amenities:
   - Basketball Court
   - Playground
