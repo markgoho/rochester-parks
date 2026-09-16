@@ -38,6 +38,8 @@ interface Node extends PageLink {
   /** Body words, excluding embeds and image syntax. */
   wordCount: number;
   photoCount: number;
+  /** The src of the first body image, as written. */
+  photo?: string;
 }
 
 /** Below this, a park page is a listing rather than a write-up. */
@@ -72,11 +74,37 @@ function photoCount(markdown: string): number {
   return markdown.match(/!\[[^\]]*\]\([^)]*\)/g)?.length ?? 0;
 }
 
+/** The src of the first image in the body, as written in the markdown. */
+function firstPhotoSrc(markdown: string): string | undefined {
+  const match = markdown.match(/!\[[^\]]*\]\(\s*<?([^)\s>]+)>?/);
+  return match?.[1];
+}
+
 const files = import.meta.glob('/content/**/*.md', {
   query: '?raw',
   import: 'default',
   eager: true,
 }) as Record<string, string>;
+
+// Every image the site actually ships. A park page can name a picture that
+// was never carried over, and a structured-data image that 404s is worse
+// than none, so a src is only used once it is found here.
+const assets = new Set(
+  Object.keys(
+    import.meta.glob('/static/**/*.{jpg,jpeg,JPG,JPEG,png,PNG,gif,webp,avif}')
+  ).map((file) => file.replace(/^\/static/, ''))
+);
+
+/**
+ * A body image is written either site-absolute or bare, and a bare src is
+ * relative to the park's own URL, the way a Hugo page resource is. Returns
+ * an absolute URL, and only when the file exists.
+ */
+function resolveImage(src: string, pageUrl: string): string | undefined {
+  if (/^https?:\/\//.test(src)) return src;
+  const path = src.startsWith('/') ? src : `${pageUrl}${src}`;
+  return assets.has(decodeURI(path)) ? absUrl(path) : undefined;
+}
 
 // Heading ids and typographer, like Hugo. Raw HTML passes through, so pages
 // can embed maps and virtual tours.
@@ -131,6 +159,7 @@ function buildNodes(): Map<string, Node> {
       html: markdown.parse(content) as string,
       wordCount: bodyWords(content),
       photoCount: photoCount(content),
+      photo: firstPhotoSrc(content),
     });
 
     // Hugo names an auto section after its folder, in plural form.
@@ -274,48 +303,85 @@ function breadcrumbJsonLd(trail: PageLink[]): object {
   };
 }
 
-function parkJsonLd(node: Node): object {
+/**
+ * Drops empty values, at any depth. Most parks record little more than a
+ * name, and a field with `""` or `null` in it claims to say something it
+ * does not, so nothing empty is published.
+ */
+function compact(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    const items = value.map(compact).filter((item) => item !== undefined);
+    return items.length ? items : undefined;
+  }
+  if (value && typeof value === 'object') {
+    const entries = Object.entries(value as Record<string, unknown>)
+      .map(([key, item]) => [key, compact(item)] as const)
+      .filter(([, item]) => item !== undefined);
+    // A node of nothing but its own @type says nothing.
+    if (!entries.some(([key]) => key !== '@type')) return undefined;
+    return Object.fromEntries(entries);
+  }
+  if (value === null || value === '') return undefined;
+  return value;
+}
+
+/**
+ * One Park node per park page, built from the park's own front matter and
+ * body. Only the four always-true facts — the name, the URL, that it is a
+ * park, and that it is free and open to the public — are stated for every
+ * park; everything else appears only where the content records it.
+ */
+function parkJsonLd(node: Node, meta: ParkMeta): object {
   const fm = node.frontMatter;
-  const address = fm.address ?? {};
-  const hours = fm.openingHours?.[0] ?? {};
-  return {
+  const image = node.photo && resolveImage(node.photo, node.url);
+  const fallback = fm.image && resolveImage(fm.image, node.url);
+  return compact({
     '@context': 'https://schema.org',
     '@type': 'Park',
+    '@id': absUrl(node.url),
+    url: absUrl(node.url),
     name: node.title,
-    description: fm.description ?? '',
+    description: fm.description,
+    isAccessibleForFree: true,
+    publicAccess: true,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: address.streetAddress ?? '',
-      addressLocality: address.addressLocality ?? '',
-      addressRegion: address.addressRegion ?? '',
-      postalCode: address.postalCode ?? '',
-      addressCountry: address.addressCountry ?? '',
+      streetAddress: fm.address?.streetAddress,
+      addressLocality: fm.address?.addressLocality,
+      addressRegion: fm.address?.addressRegion,
+      postalCode: fm.address?.postalCode,
+      addressCountry: fm.address?.addressCountry,
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: fm.geo?.latitude ?? null,
-      longitude: fm.geo?.longitude ?? null,
+      latitude: fm.geo?.latitude,
+      longitude: fm.geo?.longitude,
     },
-    url: absUrl(node.url),
-    image: absUrl(fm.image ?? ''),
-    sameAs: fm.sameAs ?? [],
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: (hours.dayOfWeek ?? []).map(
-          (day) => `https://schema.org/${day}`
-        ),
-        opens: hours.opens ?? '',
-        closes: hours.closes ?? '',
-      },
-    ],
-    telephone: fm.telephone ?? '',
-    amenityFeature: (fm.amenities ?? []).map((name) => ({
+    image: image ?? fallback,
+    telephone: fm.telephone,
+    sameAs: fm.sameAs,
+    openingHoursSpecification: (fm.openingHours ?? []).map((hours) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: (hours.dayOfWeek ?? []).map(
+        (day) => `https://schema.org/${day}`
+      ),
+      opens: hours.opens,
+      closes: hours.closes,
+    })),
+    // The page's own amenity names, so the markup and the panel agree.
+    amenityFeature: meta.amenities.map((name) => ({
       '@type': 'LocationFeatureSpecification',
       name,
       value: true,
     })),
-  };
+    containedInPlace: meta.section.title
+      ? {
+          '@type': 'Place',
+          name: meta.section.title,
+          url: absUrl(meta.section.url),
+        }
+      : undefined,
+  }) as object;
 }
 
 export function getAllUrls(): string[] {
@@ -330,9 +396,9 @@ export function getPage(url: string): Page | undefined {
   const ancestors = ancestorsOf(url);
   const trail = [...ancestors, link(node)];
   const jsonLd =
-    layout === 'park-list'
-      ? [parkJsonLd(node), breadcrumbJsonLd(trail)]
-      : layout === 'park-single'
+    layout === 'park-single'
+      ? [parkJsonLd(node, parkMetaOf(node)), breadcrumbJsonLd(trail)]
+      : layout === 'park-list'
         ? [breadcrumbJsonLd(trail)]
         : [];
 
