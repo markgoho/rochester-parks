@@ -5,6 +5,14 @@ type: 'park'
 geo:
   latitude: 43.09232499663623
   longitude: -77.54764531982566
+acres: 14.36
+address:
+  streetAddress: '2759 Clover Street'
+  addressLocality: 'Pittsford'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+sameAs:
+  - 'https://maps.google.com/?cid=1388205969212693325'
 ---
 
 ## Lock 32 State Park
