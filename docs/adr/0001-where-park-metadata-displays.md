@@ -47,7 +47,7 @@ A section gets a `by-size` page only when two or more of its Parks have a figure
 
 - Acres becomes `acres?: number` on `ParkMeta` and on `ParkIndexEntry`. It shows as a Park List column. The finder carries the figure, so a size filter can be added later. The Park page facts panel is a follow-up, and is not built yet.
 - Address, hours and the official site show on the Park page only.
-- The Park List copy changes from "Sorted A-Z - nothing is ranked here" to two links: "A-Z" and "Largest first". The page still states its own order.
+- The Park List drops the "Sorted A-Z - nothing is ranked here" copy. The two orderings are reached from the column headings themselves: the Park heading links to the A to Z page, the Size heading links to the `by-size` page, and the heading of the current order is marked `aria-current="page"` instead of linked. A heading is a link, not a button, so this stays a second page and not a control. The page still states its own order.
 - The `by-size` page carries a canonical link to the A to Z page, because the two hold the same Parks.
 - Rochester city Parks have no acreage at all (0 of 77). That section gets no `by-size` page until the figures arrive.
 - The A-Z page and the `by-size` page hold the same rows in a new order. This is the best case for a cross-document view transition. See issue #35.
