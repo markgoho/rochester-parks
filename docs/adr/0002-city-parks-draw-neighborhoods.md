@@ -26,6 +26,7 @@ Both line up with the traced city outline to within about one map unit after `pr
 
 ## Consequences
 
+- Some association areas overlap: Lilac sits inside the University of Rochester, Park Meigs crosses Park Central. The outlines are stored largest first. The map draws the smaller area on top, and a Park in both takes the smaller, more specific name.
 - The city's layer has no polygon for the airport land in the southwest. A point there falls back to the whole city map.
 - The Google map's Neighborhood descriptions and Park markers are not carried over.
 - A city Park page shows a map only once it has `geo`. Most city Parks have none yet.

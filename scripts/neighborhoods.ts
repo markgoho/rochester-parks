@@ -121,9 +121,28 @@ for (const { properties, geometry } of features) {
   byName.set(name, shape);
 }
 
-const outlines = [...byName.values()].sort((a, b) =>
-  a.name.localeCompare(b.name)
-);
+/** Shoelace area of every ring, read back from the written paths. */
+function areaOf(shape: Outline): number {
+  return shape.paths.reduce((total, d) => {
+    const points = [...d.matchAll(/(-?[\d.]+) (-?[\d.]+)/g)].map(([, x, y]) => [
+      Number(x),
+      Number(y),
+    ]);
+    let sum = 0;
+    points.forEach(([x1, y1], i) => {
+      const [x2, y2] = points[(i + 1) % points.length];
+      sum += x1 * y2 - x2 * y1;
+    });
+    return total + Math.abs(sum) / 2;
+  }, 0);
+}
+
+/**
+ * Some associations sit inside or across others: Lilac inside the University
+ * of Rochester, Park Meigs across Park Central. Largest first, so a map draws
+ * the smaller area on top and a lookup from the end finds it first.
+ */
+const outlines = [...byName.values()].sort((a, b) => areaOf(b) - areaOf(a));
 
 writeFileSync(
   'src/lib/neighborhood-outlines.ts',

@@ -54,6 +54,7 @@
     display: block;
     width: 100%;
     height: auto;
+    overflow: visible;
   }
 
   .boundary {
