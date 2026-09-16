@@ -7,6 +7,9 @@ amenities:
   - Basketball Court
   - Football Field
   - Playground
+geo:
+  latitude: 43.1430704
+  longitude: -77.6381868
 ---
 
 A page for this park is still being written.

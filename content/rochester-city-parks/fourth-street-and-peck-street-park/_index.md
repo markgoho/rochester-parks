@@ -8,6 +8,9 @@ amenities:
   - Water
 sameAs:
   - 'https://www.cityofrochester.gov/locations/fourth-street-and-peck-street-park'
+geo:
+  latitude: 43.165956
+  longitude: -77.5839711
 ---
 
 A page for this park is still being written.

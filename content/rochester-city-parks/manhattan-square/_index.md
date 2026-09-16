@@ -12,6 +12,9 @@ amenities:
   - Lodge
   - Playground
   - Water
+geo:
+  latitude: 43.1538814
+  longitude: -77.60187
 ---
 
 A page for this park is still being written.

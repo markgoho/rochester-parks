@@ -7,6 +7,9 @@ amenities:
   - Playground
   - Sandbox
   - Swingset
+geo:
+  latitude: 43.1372911
+  longitude: -77.6000873
 ---
 
 ![panoramic view of ellwanger and barry park](PANO_20120530_143431-forweb.jpg)
