@@ -4,10 +4,12 @@
   let { status, label = true }: { status: ParkStatus; label?: boolean } =
     $props();
 
+  // W, P, A on purpose. The written-amenities-photographed order spells an
+  // acronym nobody wants on a park page.
   const flags = $derived([
     { letter: 'W', on: status.written, name: 'written up' },
-    { letter: 'A', on: status.inventoried, name: 'amenities recorded' },
     { letter: 'P', on: status.photographed, name: 'photographed' },
+    { letter: 'A', on: status.inventoried, name: 'amenities recorded' },
   ]);
 
   const summary = $derived(

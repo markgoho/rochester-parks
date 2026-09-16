@@ -32,16 +32,16 @@
     <p class="eyebrow counts">
       <span><b class="mono">{parks.length}</b> parks</span>
       <span><b class="mono">{written}</b> written up</span>
-      <span><b class="mono">{inventoried}</b> with amenity data</span>
       <span><b class="mono">{photographed}</b> photographed</span>
+      <span><b class="mono">{inventoried}</b> with amenity data</span>
     </p>
   </div>
 
   <p class="eyebrow key">
     <span>Key</span>
     <span><b class="flag flag--on">W</b> written up</span>
-    <span><b class="flag flag--on">A</b> amenities recorded</span>
     <span><b class="flag flag--on">P</b> photographed</span>
+    <span><b class="flag flag--on">A</b> amenities recorded</span>
     <span class="key__sort">Sorted A–Z · nothing is ranked here</span>
   </p>
 
