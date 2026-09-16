@@ -9,6 +9,9 @@ address:
   addressCountry: 'US'
 sameAs:
   - 'https://www.cityofrochester.gov/locations/brown-square-park'
+geo:
+  latitude: 43.1606696
+  longitude: -77.623473
 ---
 
 A page for this park is still being written.

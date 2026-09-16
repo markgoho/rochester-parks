@@ -9,6 +9,9 @@ amenities:
   - Tennis Court
 sameAs:
   - 'https://www.cityofrochester.gov/locations/tryon-park-west'
+geo:
+  latitude: 43.1642584
+  longitude: -77.5400876
 ---
 
 A page for this park is still being written.

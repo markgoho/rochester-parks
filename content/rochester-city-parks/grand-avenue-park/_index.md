@@ -10,6 +10,9 @@ address:
 amenities:
   - Baseball Diamond
   - Playground
+geo:
+  latitude: 43.1649348
+  longitude: -77.5741571
 ---
 
 A page for this park is still being written.

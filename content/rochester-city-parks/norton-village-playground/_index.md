@@ -13,6 +13,9 @@ amenities:
   - Lodge
   - Playground
   - Tennis Court
+geo:
+  latitude: 43.1855095
+  longitude: -77.565166
 ---
 
 A page for this park is still being written.

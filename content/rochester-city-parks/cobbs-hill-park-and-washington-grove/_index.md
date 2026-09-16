@@ -12,6 +12,9 @@ amenities:
   - Tennis Court
 sameAs:
   - 'https://www.cityofrochester.gov/locations/cobbs-hill-park-and-washington-grove'
+geo:
+  latitude: 43.1403995
+  longitude: -77.5715916
 ---
 
 A page for this park is still being written.

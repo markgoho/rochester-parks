@@ -14,6 +14,9 @@ amenities:
   - Playground
 sameAs:
   - 'https://www.cityofrochester.gov/locations/jr-wilson-park'
+geo:
+  latitude: 43.1676992
+  longitude: -77.6475273
 ---
 
 A page for this park is still being written.

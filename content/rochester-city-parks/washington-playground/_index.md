@@ -10,6 +10,9 @@ address:
 amenities:
   - Basketball Court
   - Playground
+geo:
+  latitude: 43.1739608
+  longitude: -77.6038465
 ---
 
 A page for this park is still being written.

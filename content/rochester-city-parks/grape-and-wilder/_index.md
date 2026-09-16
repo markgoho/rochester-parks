@@ -4,6 +4,9 @@ description: 'A Rochester City Park called Grape & Wilder'
 type: 'park'
 amenities:
   - Basketball Court
+geo:
+  latitude: 43.1559896
+  longitude: -77.6288795
 ---
 
 A page for this park is still being written.
