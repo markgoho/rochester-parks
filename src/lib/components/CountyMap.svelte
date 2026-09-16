@@ -42,7 +42,7 @@
         `${on} [data-rest="${m.key}"]{opacity:0}` +
         `${on} [data-pick="${m.key}"]{opacity:1}` +
         `@media (hover:hover) and (pointer:fine){` +
-        `${on} [data-pick="${m.key}"]{scale:1.18}}`
+        `${on} [data-pick="${m.key}"]{scale:1.3}}`
       );
     })
     .join('');
@@ -102,6 +102,10 @@
     display: block;
     width: 100%;
     height: auto;
+    /* A town on the county's own edge grows past the edge of the map. The
+       browser clips an outer svg to its viewport, which cut those towns in
+       half; the room to grow into is the gap beside the map. */
+    overflow: visible;
   }
 
   .boundary {
@@ -189,16 +193,12 @@
     stroke-linejoin: round;
   }
 
-  /* A village keeps its own colours while it rides up with its town. */
+  /* A village keeps its own outline while it rides up with its town. Its
+     name does not: on the active fill it takes the same paper ink and halo
+     as the town, and stays quieter by weight alone. */
   .pick .village .boundary {
     fill: var(--paper-sunk);
     stroke: var(--ink);
-  }
-
-  .pick .village .boundary-text {
-    fill: var(--ink);
-    stroke: var(--paper);
-    stroke-width: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
