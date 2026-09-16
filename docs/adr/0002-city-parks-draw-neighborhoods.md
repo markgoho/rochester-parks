@@ -24,6 +24,17 @@ Both line up with the traced city outline to within about one map unit after `pr
 - A city Park page draws only the Neighborhood that holds the Park (`TownShape`, which now takes any `Outline`). A Park outside every Neighborhood gets the whole city.
 - The boundaries come from the city's layer, not the Google map. `scripts/neighborhoods.ts` fetches it, simplifies it to 0.05 map units, and writes `src/lib/neighborhood-outlines.ts`. Names are cleaned in that script: the layer prints association names in capitals.
 
+### Parks by Neighborhood
+
+A Neighborhood gets no page of its own. Most hold one park or none: of 48, 17 hold none and 17 hold one. A page each would be thin.
+
+Instead, the city section has a second prerendered page, `/rochester-city-parks/by-neighborhood/`, the same rows grouped under one heading per Neighborhood. This is the ADR-0001 pattern: a second order is a second page, not a control. Its canonical is the A to Z page, and the sitemap leaves it out.
+
+- On the city Park List map, a Neighborhood with parks links to its group (`by-neighborhood/#corn-hill`). A Neighborhood with none is drawn paler and is not a link.
+- On a city Park page, the "In Corn Hill" caption links to the same group.
+- The two city list pages link to each other from an order line above the table.
+- A park with no `geo` goes in a last group, "Not placed yet".
+
 ## Consequences
 
 - Some association areas overlap: Lilac sits inside the University of Rochester, Park Meigs crosses Park Central. The outlines are stored largest first. The map draws the smaller area on top, and a Park in both takes the smaller, more specific name.

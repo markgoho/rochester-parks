@@ -2,6 +2,7 @@ import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedSmartypants } from 'marked-smartypants';
+import { isCitySection } from '$lib/municipalities';
 import { SITE_TITLE, absUrl } from '$lib/site';
 import type {
   ChildLink,
@@ -496,11 +497,44 @@ function bySizePage(sectionUrl: string): Page | undefined {
   };
 }
 
+/**
+ * The path segment that holds the city section grouped by Neighborhood. Only
+ * the city has Neighborhoods, so only the city has this page.
+ */
+const BY_NEIGHBORHOOD = 'by-neighborhood/';
+
+/** The city section, grouped by Neighborhood, as its own static page. */
+function byNeighborhoodPage(sectionUrl: string): Page | undefined {
+  const node = nodes.get(sectionUrl);
+  if (!node || !isCitySection(sectionUrl)) return undefined;
+  const base = getPage(sectionUrl);
+  if (!base) return undefined;
+  const self = {
+    title: `${node.title} by neighborhood`,
+    url: `${sectionUrl}${BY_NEIGHBORHOOD}`,
+  };
+  const trail = [...base.ancestors, link(node), self];
+  return {
+    ...base,
+    ...self,
+    description: `Every park in ${sectionLabel(node.title)}, grouped by neighborhood.`,
+    canonical: sectionUrl,
+    order: 'neighborhood',
+    ancestors: [...base.ancestors, link(node)],
+    jsonLd: [breadcrumbJsonLd(trail)],
+  };
+}
+
 export function getAllUrls(): string[] {
   const sections = [...nodes.keys()].filter(
     (url) => isParkSection(url) && measuredIn(url) >= 2
   );
-  return [...nodes.keys(), ...sections.map((url) => `${url}${BY_SIZE}`)];
+  const cities = [...nodes.keys()].filter(isCitySection);
+  return [
+    ...nodes.keys(),
+    ...sections.map((url) => `${url}${BY_SIZE}`),
+    ...cities.map((url) => `${url}${BY_NEIGHBORHOOD}`),
+  ];
 }
 
 /**
@@ -509,12 +543,18 @@ export function getAllUrls(): string[] {
  * offering it here would ask for a page we tell crawlers not to prefer.
  */
 export function getIndexableUrls(): string[] {
-  return getAllUrls().filter((url) => !url.endsWith(`/${BY_SIZE}`));
+  return getAllUrls().filter(
+    (url) =>
+      !url.endsWith(`/${BY_SIZE}`) && !url.endsWith(`/${BY_NEIGHBORHOOD}`)
+  );
 }
 
 export function getPage(url: string): Page | undefined {
   if (url.endsWith(`/${BY_SIZE}`)) {
     return bySizePage(url.slice(0, -BY_SIZE.length));
+  }
+  if (url.endsWith(`/${BY_NEIGHBORHOOD}`)) {
+    return byNeighborhoodPage(url.slice(0, -BY_NEIGHBORHOOD.length));
   }
   const node = nodes.get(url);
   if (!node) return undefined;

@@ -14,7 +14,7 @@
     townKey,
     villagesIn,
   } from '$lib/municipalities';
-  import { neighborhoodAt } from '$lib/neighborhoods';
+  import { neighborhoodAt, neighborhoodUrl } from '$lib/neighborhoods';
   import type { Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
@@ -117,7 +117,11 @@
             markers={[{ title: page.title, ...park.geo }]}
           />
         {/if}
-        <figcaption class="eyebrow">In {where}</figcaption>
+        <figcaption class="eyebrow">
+          In {#if neighborhood}<a href={neighborhoodUrl(neighborhood.key)}
+              >{where}</a
+            >{:else}{where}{/if}
+        </figcaption>
       </figure>
     {/if}
   </header>

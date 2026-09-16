@@ -72,8 +72,10 @@ export interface Page extends PageLink {
   /**
    * How `children` is ordered. Absent means by title, the default everywhere.
    * `'size'` marks the prerendered largest-first view of a park section.
+   * `'neighborhood'` marks the city section's view grouped by Neighborhood.
+   * Its `children` stay in title order; the layout groups them.
    */
-  order?: 'size';
+  order?: 'size' | 'neighborhood';
   /**
    * On a park list, the section the parks belong to, named the short way.
    * A second ordering is still the same section, so the layout reads the
