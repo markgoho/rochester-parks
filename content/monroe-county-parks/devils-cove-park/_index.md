@@ -2,10 +2,13 @@
 title: "Devil's Cove Park"
 description: "A monroe county park called Devil's Cove Park"
 type: 'park'
+geo:
+  latitude: 43.209306
+  longitude: -77.5236027
 acres: 5.09
 sameAs:
   - 'https://monroecounty.gov/parks-devilscove'
-  - 'https://maps.google.com/?cid=1364886583409859710'
+  - 'https://maps.google.com/?cid=4780379995607672227'
 ---
 
 ![Devil's Cove Park Inlet](Devils-cove-inlet.jpg)
