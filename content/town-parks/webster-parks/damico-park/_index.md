@@ -2,6 +2,9 @@
 title: 'D''Amico Park'
 description: 'A Webster Town Park called D''Amico Park'
 type: 'park'
+geo:
+  latitude: 43.2355653
+  longitude: -77.422516
 amenities:
   - Baseball Diamond
 ---

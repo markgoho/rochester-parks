@@ -2,6 +2,9 @@
 title: 'Adeline Park'
 description: 'A Greece Town Park called Adeline Park'
 type: 'park'
+geo:
+  latitude: 43.2445697
+  longitude: -77.6325439
 amenities:
   - Barbecue
   - Basketball Court

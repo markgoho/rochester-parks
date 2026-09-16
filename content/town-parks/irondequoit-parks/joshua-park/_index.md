@@ -2,6 +2,9 @@
 title: 'Joshua Park'
 description: 'An Irondequoit Town Park called Joshua Park'
 type: 'park'
+geo:
+  latitude: 43.20730004667224
+  longitude: -77.60468079609922
 amenities:
   - Bocce
   - Horseshoe

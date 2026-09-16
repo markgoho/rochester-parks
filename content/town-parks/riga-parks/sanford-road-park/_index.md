@@ -2,6 +2,9 @@
 title: 'Sanford Road Park'
 description: 'A list of Riga Town Parks'
 type: 'park'
+geo:
+  latitude: 43.07967128631228
+  longitude: -77.88613829447752
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'

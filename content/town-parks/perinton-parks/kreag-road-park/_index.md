@@ -2,6 +2,9 @@
 title: 'Kreag Road Park'
 description: 'A Perinton Town Park called Kreag Road Park'
 type: 'park'
+geo:
+  latitude: 43.06427986545538
+  longitude: -77.47074556602206
 amenities:
   - Barbecue
   - Baseball Diamond

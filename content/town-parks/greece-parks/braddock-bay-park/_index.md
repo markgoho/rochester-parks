@@ -2,6 +2,9 @@
 title: 'Braddock Bay Park'
 description: 'A Greece Town Park called Braddock Bay Park'
 type: 'park'
+geo:
+  latitude: 43.2999874
+  longitude: -77.7175972
 amenities:
   - Barbecue
   - Bathroom

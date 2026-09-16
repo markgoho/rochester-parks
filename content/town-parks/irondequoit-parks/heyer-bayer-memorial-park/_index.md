@@ -2,6 +2,9 @@
 title: 'Heyer-Bayer Memorial Park'
 description: 'An Irondequoit Town Park called Heyer-Bayer Memorial Park'
 type: 'park'
+geo:
+  latitude: 43.2147746
+  longitude: -77.5486847
 amenities:
   - Baseball Diamond
   - Bathroom

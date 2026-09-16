@@ -2,6 +2,9 @@
 title: 'Goodwin Park'
 description: 'A Greece Town Park called Goodwin Park'
 type: 'park'
+geo:
+  latitude: 43.29122801571042
+  longitude: -77.67482836683178
 amenities:
   - Barbecue
   - Open Field

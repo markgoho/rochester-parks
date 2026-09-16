@@ -2,6 +2,9 @@
 title: 'First Responders Park'
 description: 'A Gates Town Park called First Responders Park'
 type: 'park'
+geo:
+  latitude: 43.1696835
+  longitude: -77.7442942
 amenities:
   - Barbecue
   - Baseball Diamond

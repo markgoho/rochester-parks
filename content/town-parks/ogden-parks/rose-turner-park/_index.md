@@ -2,6 +2,9 @@
 title: 'Rose Turner Park'
 description: 'An Ogden Town Park called Rose Turner Park'
 type: 'park'
+geo:
+  latitude: 43.19406704997022
+  longitude: -77.78303494350712
 amenities:
   - Trails
 ---

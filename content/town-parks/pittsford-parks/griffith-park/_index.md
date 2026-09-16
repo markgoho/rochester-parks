@@ -2,6 +2,9 @@
 title: 'Griffith Park'
 description: 'A Pittsford Town Park called Griffith Park'
 type: 'park'
+geo:
+  latitude: 43.0889348
+  longitude: -77.4870469
 amenities:
   - Open Field
   - Trails

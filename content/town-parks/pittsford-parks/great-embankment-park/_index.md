@@ -2,6 +2,9 @@
 title: 'Great Embankment Park'
 description: 'A Pittsford Town Park called Great Embankment Park'
 type: 'park'
+geo:
+  latitude: 43.0730057
+  longitude: -77.4905523
 amenities:
   - Baseball Diamond
   - Bathroom

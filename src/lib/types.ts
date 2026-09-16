@@ -31,6 +31,8 @@ export interface ParkMeta {
   wordCount: number;
   photoCount: number;
   status: ParkStatus;
+  /** Where the park is, when the front matter says. Used to plot it on a map. */
+  geo?: { latitude: number; longitude: number };
   /** The section a park belongs to, e.g. "Greece" or "Monroe County". */
   section: PageLink;
 }

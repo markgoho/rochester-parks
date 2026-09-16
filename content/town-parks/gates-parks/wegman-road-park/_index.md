@@ -2,6 +2,9 @@
 title: 'Wegman Road Park'
 description: 'A Gates Town Park called Wegman Road Park'
 type: 'park'
+geo:
+  latitude: 43.16112496868358
+  longitude: -77.7104636073164
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.16112496868358|-77.7104636073164|232.61|-6.459999999999994|0|g3_B8FCzawoAAAQvPBErXA|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

@@ -240,10 +240,15 @@ function parkMetaOf(node: Node): ParkMeta {
     ...new Set((node.frontMatter.amenities ?? []).map(normaliseAmenity)),
   ].sort((a, b) => a.localeCompare(b, 'en'));
   const parent = parentOf(node.url);
+  const { latitude, longitude } = node.frontMatter.geo ?? {};
   return {
     amenities,
     wordCount: node.wordCount,
     photoCount: node.photoCount,
+    geo:
+      latitude !== undefined && longitude !== undefined
+        ? { latitude, longitude }
+        : undefined,
     status: {
       written: node.wordCount >= WRITTEN_WORD_FLOOR,
       inventoried: amenities.length > 0,

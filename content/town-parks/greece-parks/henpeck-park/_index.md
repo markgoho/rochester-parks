@@ -2,6 +2,9 @@
 title: 'Henpeck Park'
 description: 'A Greece Town Park called Henpeck Park'
 type: 'park'
+geo:
+  latitude: 43.1882823
+  longitude: -77.7307275
 amenities:
   - Barbecue
   - Bathroom

@@ -2,6 +2,9 @@
 title: 'Columbus Park'
 description: 'A Greece Town Park called Columbus Park'
 type: 'park'
+geo:
+  latitude: 43.2133021
+  longitude: -77.653128
 amenities:
   - Barbecue
   - Bathroom

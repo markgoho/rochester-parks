@@ -2,6 +2,9 @@
 title: 'Veterans Memorial Park'
 description: 'A Greece Town Park called Veterans Memorial Park'
 type: 'park'
+geo:
+  latitude: 43.2598549
+  longitude: -77.6450759
 ---
 
 The entire park is about 66 acres, one of the larger parks in Greece. Here we’ll be reviewing Badgerow Park North and after a future visit, the Badgerow Park Nature Trails. It is interesting that, while there is a single boundary that encompasses the two parks, there are two very different and distinct parks.

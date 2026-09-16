@@ -2,6 +2,9 @@
 title: 'Sawyer Park'
 description: 'A Greece Town Park called Sawyer Park'
 type: 'park'
+geo:
+  latitude: 43.2486313
+  longitude: -77.6943387
 amenities:
   - Barbecue
   - Bathroom

@@ -2,6 +2,9 @@
 title: 'Veterans Memorial Park'
 description: 'A park in Rush, NY called Veterans Memorial Park'
 type: 'park'
+geo:
+  latitude: 42.99237469403891
+  longitude: -77.64492319774797
 amenities:
   - 'Gazebo'
 ---

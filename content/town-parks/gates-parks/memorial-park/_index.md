@@ -2,6 +2,9 @@
 title: 'Memorial Park'
 description: 'A Gates Town Park called Memorial Park'
 type: 'park'
+geo:
+  latitude: 43.17105640582264
+  longitude: -77.69463621695934
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.17105640582264|-77.69463621695934|-61.41191851716084|-6.191920185737054|0|2CABRG9mVKQAAAQvPA7SVw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>

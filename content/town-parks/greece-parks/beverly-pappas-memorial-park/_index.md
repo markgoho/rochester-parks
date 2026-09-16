@@ -2,6 +2,9 @@
 title: 'Beverly Pappas Memorial Park'
 description: 'A Greece Town Park called Beverly Pappas Memorial Park'
 type: 'park'
+geo:
+  latitude: 43.221904
+  longitude: -77.6349786
 amenities:
   - Handicap Swing
   - Open Field

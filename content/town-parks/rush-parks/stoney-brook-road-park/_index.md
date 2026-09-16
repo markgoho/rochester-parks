@@ -2,6 +2,9 @@
 title: 'Stoney Brook Road Park'
 description: 'A park in Rush, NY called Stoney Brook Road Park'
 type: 'park'
+geo:
+  latitude: 42.98117652311839
+  longitude: -77.65461686067363
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'

@@ -2,6 +2,9 @@
 title: 'Grandview Park'
 description: 'A Greece Town Park called Grandview Park'
 type: 'park'
+geo:
+  latitude: 43.2958739
+  longitude: -77.6905067
 amenities:
   - Barbecue
   - Baseball Diamond

@@ -2,6 +2,9 @@
 title: 'Legion Eyer Park'
 description: 'A East Rochester Town Park called Legion Eyer Park'
 type: 'park'
+geo:
+  latitude: 43.110199
+  longitude: -77.4749021
 ---
 
 ![Legion Eyer Park](Legion-Eyer-Park-for-website.jpg)

@@ -2,6 +2,9 @@
 title: 'Webster First Responders Park'
 description: 'A Webster Town Park called Webster First Responders Park'
 type: 'park'
+geo:
+  latitude: 43.2281133
+  longitude: -77.4217786
 amenities:
   - Basketball Court
   - Playground

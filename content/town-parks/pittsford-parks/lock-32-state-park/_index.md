@@ -2,6 +2,9 @@
 title: 'Lock 32 State Canal Park'
 description: 'A Pittsford Town Park called Lock 32 State Canal Park'
 type: 'park'
+geo:
+  latitude: 43.0923175
+  longitude: -77.5462945
 ---
 
 ## Lock 32 State Park
