@@ -537,6 +537,9 @@ export function getPage(url: string): Page | undefined {
     children: childrenOf(url),
     ancestors,
     jsonLd,
+    ...(layout === 'park-list'
+      ? { section: { title: sectionLabel(node.title), url: node.url } }
+      : {}),
     ...(isPark(node)
       ? { park: parkMetaOf(node), neighbours: neighboursOf(node) }
       : {}),

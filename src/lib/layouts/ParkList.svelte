@@ -9,8 +9,16 @@
 
   let { page }: { page: Page } = $props();
 
+  /**
+   * The section these parks belong to. On a second ordering that is not this
+   * page, so nothing here is read off the page's own URL.
+   */
+  const section = $derived(
+    page.section ?? { title: page.title, url: page.url }
+  );
+
   /** Set on a town section the county map draws, and on nothing else. */
-  const town = $derived(townKey(page.url));
+  const town = $derived(townKey(section.url));
 
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
@@ -35,14 +43,8 @@
    * reader can sort with JavaScript off and can link to what they see.
    */
   const bySize = $derived(page.order === 'size');
-  const azUrl = $derived(
-    bySize ? page.url.replace(/by-size\/$/, '') : page.url
-  );
-  const sizeUrl = $derived(`${azUrl}by-size/`);
-  /** "Greece Parks by size" names the page; the list is just Greece. */
-  const place = $derived(
-    page.title.replace(/ by size$/, '').replace(/\s+Parks$/i, '')
-  );
+  const azUrl = $derived(section.url);
+  const sizeUrl = $derived(`${section.url}by-size/`);
 </script>
 
 <div class="wrap">
@@ -98,7 +100,7 @@
        position is the rank, so the order is named for a screen reader too. -->
   <ol
     class="table"
-    aria-label="Parks in {place}, {bySize ? 'largest first' : 'A to Z'}"
+    aria-label="Parks in {section.title}, {bySize ? 'largest first' : 'A to Z'}"
   >
     <li class="row row--head eyebrow" aria-hidden="true">
       <span></span><span>Park</span><span>Status</span><span>What is there</span

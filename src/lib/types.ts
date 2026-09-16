@@ -75,6 +75,13 @@ export interface Page extends PageLink {
    */
   order?: 'size';
   /**
+   * On a park list, the section the parks belong to, named the short way.
+   * A second ordering is still the same section, so the layout reads the
+   * town, the place name and the link to the other ordering from here
+   * rather than from its own URL.
+   */
+  section?: PageLink;
+  /**
    * The page this one duplicates, when it is a second ordering of a section.
    * Search engines are told to prefer that page over this one.
    */
