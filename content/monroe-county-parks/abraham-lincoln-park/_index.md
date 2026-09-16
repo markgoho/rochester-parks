@@ -2,6 +2,9 @@
 title: 'Abraham Lincoln Park'
 description: 'A monroe county park called Abraham Lincoln Park'
 type: 'park'
+geo:
+  latitude: 43.184527
+  longitude: -77.512836
 amenities:
   - 'Playground'
   - 'Shelter'

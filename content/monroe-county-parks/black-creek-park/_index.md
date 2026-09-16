@@ -2,6 +2,9 @@
 title: 'Black Creek Park'
 description: 'A monroe county park called Black Creek Park'
 type: 'park'
+geo:
+  latitude: 43.074781
+  longitude: -77.806892
 acres: 1503.53
 address:
   streetAddress: '3883 Union Street'
