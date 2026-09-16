@@ -9,6 +9,7 @@
     { href: '/monroe-county-parks/', label: 'County' },
     { href: '/town-parks/', label: 'Towns' },
     { href: '/rochester-city-parks/', label: 'City' },
+    { href: '/state-parks/', label: 'State' },
     { href: '/about/', label: 'About' },
   ];
 
