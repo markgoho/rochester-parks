@@ -9,7 +9,9 @@
   <ol>
     {#each ancestors as ancestor (ancestor.url)}
       <li>
-        <a href={ancestor.url}>{ancestor.url === '/' ? 'Home' : ancestor.title}</a>
+        <a href={ancestor.url}
+          >{ancestor.url === '/' ? 'Home' : ancestor.title}</a
+        >
         <span aria-hidden="true">»</span>
       </li>
     {/each}

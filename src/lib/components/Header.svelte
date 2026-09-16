@@ -1,10 +1,36 @@
-<nav class="nav">
-  <ul class="nav-list">
-    <li class="nav-item"><a href="/">Home</a></li>
-    <li class="nav-item"><a href="/about/">About</a></li>
-    <li class="nav-item"><a href="/blog/">Blog</a></li>
-    <li class="nav-item"><a href="/monroe-county-parks/">County Parks</a></li>
-    <li class="nav-item"><a href="/town-parks/">Town Parks</a></li>
-    <li class="nav-item"><a href="/rochester-city-parks/">City Parks</a></li>
+<script lang="ts">
+  import { page } from '$app/state';
+  import Mark from './Mark.svelte';
+  import { SITE_TITLE } from '$lib/site';
+
+  const links = [
+    { href: '/', label: 'Map' },
+    { href: '/find/', label: 'Find' },
+    { href: '/monroe-county-parks/', label: 'County' },
+    { href: '/town-parks/', label: 'Towns' },
+    { href: '/rochester-city-parks/', label: 'City' },
+    { href: '/about/', label: 'About' },
+  ];
+
+  const current = $derived(page.url?.pathname ?? '/');
+</script>
+
+<a class="wordmark" href="/">
+  <Mark size={22} />
+  <span>{SITE_TITLE}</span>
+</a>
+
+<nav aria-label="Main">
+  <ul class="nav">
+    {#each links as link (link.href)}
+      <li>
+        <a
+          href={link.href}
+          aria-current={current === link.href ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      </li>
+    {/each}
   </ul>
 </nav>

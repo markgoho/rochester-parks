@@ -10,14 +10,80 @@ export interface PageLink {
   url: string;
 }
 
+/**
+ * What the site can honestly say about a park, derived from its own content.
+ * Nothing here is authored by hand; all three flags follow from the markdown.
+ */
+export interface ParkStatus {
+  /** A write-up of WRITTEN_WORD_FLOOR words or more. */
+  written: boolean;
+  /** An `amenities` list in the front matter. */
+  inventoried: boolean;
+  /** At least one image in the body. */
+  photographed: boolean;
+}
+
+/** Park facts a list or detail page can show without re-reading the markdown. */
+export interface ParkMeta {
+  /** Normalised amenity names, sorted. */
+  amenities: string[];
+  /** Body words, excluding embeds and image syntax. */
+  wordCount: number;
+  photoCount: number;
+  status: ParkStatus;
+  /** The section a park belongs to, e.g. "Greece" or "Monroe County". */
+  section: PageLink;
+}
+
+/** A child of a section. Parks carry their metadata so lists can show it. */
+export interface ChildLink extends PageLink {
+  park?: ParkMeta;
+}
+
 /** A rendered content page, as returned by the catch-all route's load. */
 export interface Page extends PageLink {
   description: string;
   layout: Layout;
   html: string;
   /** Child pages and sections, sorted by title. */
-  children: PageLink[];
+  children: ChildLink[];
   /** Home first, then each ancestor section. */
   ancestors: PageLink[];
   jsonLd: object[];
+  /** Present on park pages only. */
+  park?: ParkMeta;
+  /** Present on the home page only. */
+  summary?: SiteSummary;
+  /** The parks either side of this one in its section, by title. */
+  neighbours?: { previous?: PageLink; next?: PageLink };
+}
+
+/** One row of the prerendered index the finder filters in the browser. */
+export interface ParkIndexEntry extends PageLink {
+  section: string;
+  sectionUrl: string;
+  amenities: string[];
+  written: boolean;
+  photographed: boolean;
+}
+
+/** Totals for the home page, so it never has to state a number by hand. */
+export interface SiteSummary {
+  parks: number;
+  written: number;
+  inventoried: number;
+  photographed: number;
+  amenities: { name: string; count: number }[];
+  sections: { title: string; url: string; count: number }[];
+}
+
+/** What the finder needs, built once and served as static JSON. */
+export interface ParkIndex {
+  parks: ParkIndexEntry[];
+  /** Every amenity in use, with how many parks record it, most common first. */
+  amenities: { name: string; count: number }[];
+  /** Every section with at least one park, most parks first. */
+  sections: { title: string; url: string; count: number }[];
+  /** Parks with no amenity list at all — the ones no filter can reach. */
+  unreachable: number;
 }
