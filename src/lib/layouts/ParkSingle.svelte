@@ -228,14 +228,14 @@
   .head {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    padding-bottom: 1.25rem;
+    gap: var(--space-12);
+    padding-bottom: var(--space-20);
   }
 
   .head__text {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--space-12);
     min-width: 0;
   }
 
@@ -245,7 +245,7 @@
   }
 
   .where figcaption {
-    margin-top: 0.4rem;
+    margin-top: var(--space-6);
     text-align: center;
   }
 
@@ -255,7 +255,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr) 9rem;
       align-items: start;
-      gap: 2.5rem;
+      gap: var(--space-40);
     }
 
     .where {
@@ -266,24 +266,24 @@
   .status {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: var(--space-10);
     margin: 0;
   }
 
   .empty,
   .basics,
   .amenities {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-24);
   }
 
   .facts {
     display: grid;
-    gap: 0.9rem;
+    gap: var(--space-14);
     margin: 0;
   }
 
   .fact dt {
-    margin-bottom: 0.2rem;
+    margin-bottom: var(--space-4);
   }
 
   .fact dd {
@@ -293,17 +293,17 @@
   .links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 1.25rem;
+    gap: var(--space-6) var(--space-20);
   }
 
   .links a {
-    font-weight: 700;
+    font-weight: var(--weight-bold);
   }
 
   @media (min-width: 40rem) {
     .facts {
       grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-      gap: 1.25rem;
+      gap: var(--space-20);
     }
   }
 
@@ -314,18 +314,18 @@
   }
 
   .amenities .tags {
-    gap: 0.35rem;
+    gap: var(--space-6);
   }
 
   .sub {
-    margin-top: 2.5rem;
+    margin-top: var(--space-40);
   }
 
   .sub ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0.5rem 0 0;
+    gap: var(--space-8);
+    margin: var(--space-8) 0 0;
     padding: 0;
     list-style: none;
   }
@@ -333,33 +333,33 @@
   .sub a {
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
-    padding: 0 1rem;
-    border: 1px solid var(--rule-strong);
+    min-height: var(--tap-target);
+    padding: 0 var(--space-16);
+    border: var(--line-hair) solid var(--rule-strong);
     background: var(--card);
-    font-weight: 700;
+    font-weight: var(--weight-bold);
   }
 
   .paging {
     display: grid;
-    gap: 1px;
-    margin-top: 2.5rem;
+    gap: var(--line-hair);
+    margin-top: var(--space-40);
     background: var(--rule);
-    border-block: 1px solid var(--rule);
+    border-block: var(--line-hair) solid var(--rule);
   }
 
   .paging__link {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.25rem;
+    gap: var(--space-4);
     min-height: 4.75rem;
-    padding: 0.9rem 1rem;
+    padding: var(--space-14) var(--space-16);
     background: var(--paper);
   }
 
   .paging__title {
-    font-weight: 700;
+    font-weight: var(--weight-bold);
   }
 
   @media (min-width: 40rem) {

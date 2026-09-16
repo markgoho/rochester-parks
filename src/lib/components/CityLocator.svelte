@@ -86,7 +86,7 @@
   .boundary {
     fill: var(--land);
     stroke: var(--rule-strong);
-    stroke-width: 0.8px;
+    stroke-width: var(--stroke-thin);
     stroke-linejoin: round;
   }
 
@@ -97,7 +97,7 @@
   a:is(:hover, :focus-visible) .boundary {
     fill: var(--land-active);
     stroke: var(--ink);
-    stroke-width: 1.4px;
+    stroke-width: var(--stroke-bold);
   }
 
   a:focus-visible {
@@ -113,6 +113,6 @@
   .park {
     fill: var(--orange);
     stroke: var(--ink);
-    stroke-width: 1.2px;
+    stroke-width: var(--stroke-base);
   }
 </style>

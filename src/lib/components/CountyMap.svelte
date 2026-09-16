@@ -42,7 +42,7 @@
         `${on} [data-rest="${m.key}"]{opacity:0}` +
         `${on} [data-pick="${m.key}"]{opacity:1}` +
         `@media (hover:hover) and (pointer:fine){` +
-        `${on} [data-pick="${m.key}"]{scale:1.3}}`
+        `${on} [data-pick="${m.key}"]{scale:var(--lift-scale)}}`
       );
     })
     .join('');
@@ -111,16 +111,16 @@
   .boundary {
     fill: var(--land);
     stroke: var(--ink);
-    stroke-width: 0.9px;
+    stroke-width: var(--stroke-thin);
     stroke-linejoin: round;
   }
 
   .boundary-text {
     fill: var(--ink);
     font-family: var(--mono);
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    font-size: var(--text-map);
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-snug);
     text-transform: uppercase;
     pointer-events: none;
   }
@@ -138,10 +138,10 @@
      not colour, keeps the village quieter than the town. */
   .village .boundary-text {
     fill: var(--ink-soft);
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     paint-order: stroke fill;
     stroke: var(--paper);
-    stroke-width: 2px;
+    stroke-width: var(--stroke-halo);
     stroke-linejoin: round;
   }
 
@@ -172,12 +172,12 @@
     scale: 1;
     /* Only the growth is animated. The copy itself appears at the moment the
        resting one goes, at the same size, so the swap cannot be seen. */
-    transition: scale 160ms ease-out;
+    transition: scale var(--duration-quick) var(--ease-out);
   }
 
   .pick .boundary {
     fill: var(--land-active);
-    stroke-width: 1.6px;
+    stroke-width: var(--stroke-bold);
   }
 
   /*
@@ -189,7 +189,7 @@
     fill: var(--paper);
     paint-order: stroke fill;
     stroke: var(--land-active);
-    stroke-width: 3px;
+    stroke-width: var(--stroke-halo-wide);
     stroke-linejoin: round;
   }
 

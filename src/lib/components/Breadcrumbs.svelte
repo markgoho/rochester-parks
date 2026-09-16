@@ -25,7 +25,7 @@
   .breadcrumbs ol {
     display: flex;
     list-style: none;
-    gap: 0.5rem;
+    gap: var(--space-8);
     padding: 0;
     margin: 0;
   }

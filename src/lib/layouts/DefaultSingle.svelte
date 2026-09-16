@@ -8,7 +8,7 @@
 <div class="wrap">
   <Breadcrumbs ancestors={page.ancestors} current={page} />
   <h1>{page.title}</h1>
-  <article class="prose" style="margin-top: 1.25rem">
+  <article class="prose" style="margin-top: var(--space-20)">
     {@html page.html}
   </article>
 </div>
