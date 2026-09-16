@@ -4,14 +4,8 @@
     outlineBox,
     project,
     villagesIn,
+    type Marker,
   } from '$lib/municipalities';
-
-  /** One place to mark on the outline. */
-  interface Marker {
-    title: string;
-    latitude: number;
-    longitude: number;
-  }
 
   let {
     town,
