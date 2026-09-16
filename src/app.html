@@ -4,6 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     %sveltekit.head%
+    <!-- Pirsch Analytics. pa.js ignores localhost, so `vite dev` and
+         `vite preview` never report. Add data-dev to test locally. -->
+    <script
+      defer
+      src="https://api.pirsch.io/pa.js"
+      id="pianjs"
+      data-code="kLyUOeKr2Ys9iEFwPWv7KvLHLq4Iy0fy"
+    ></script>
   </head>
   <body>
     <div style="display: contents">%sveltekit.body%</div>
