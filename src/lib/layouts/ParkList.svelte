@@ -1,7 +1,6 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
-  import StatusIcon from '$lib/components/StatusIcon.svelte';
   import TownLocator from '$lib/components/TownLocator.svelte';
   import { formatAcres } from '$lib/format';
   import { townKey } from '$lib/municipalities';
@@ -40,11 +39,14 @@
 
   /**
    * The two orderings of this section. Each is its own static page, so the
-   * reader can sort with JavaScript off and can link to what they see.
+   * column heading that sorts is a plain link: the reader can sort with
+   * JavaScript off, and can link to what they see.
    */
   const bySize = $derived(page.order === 'size');
   const azUrl = $derived(section.url);
   const sizeUrl = $derived(`${section.url}by-size/`);
+  /** A size order needs two figures to compare. See ADR-0001. */
+  const sortable = $derived(measured >= 2);
 </script>
 
 <div class="wrap">
@@ -69,32 +71,30 @@
     {/if}
   </div>
 
-  <p class="eyebrow key">
-    <span>Key</span>
-    <span
-      ><b class="flag flag--on"><StatusIcon kind="written" /></b> written up</span
-    >
-    <span
-      ><b class="flag flag--on"><StatusIcon kind="photographed" /></b> photographed</span
-    >
-    <span
-      ><b class="flag flag--on"><StatusIcon kind="inventoried" /></b> amenities recorded</span
-    >
-    {#if measured >= 2}
-      <span class="key__sort">
-        <span>Order</span>
-        {#if bySize}
-          <a href={azUrl}>A–Z</a>
-          <b aria-current="page">Largest first</b>
-        {:else}
-          <b aria-current="page">A–Z</b>
-          <a href={sizeUrl}>Largest first</a>
-        {/if}
-      </span>
-    {:else}
-      <span class="key__sort">Sorted A–Z · nothing is ranked here</span>
+  <!-- The heading that orders the table is the control: each ordering is its
+       own prerendered page, so it is a link, not a button. See ADR-0001. -->
+  <div class="row row--head eyebrow" class:row--head--plain={!sortable}>
+    {#if sortable}
+      <span class="sort-label">Sort</span>
     {/if}
-  </p>
+    <span class="num" aria-hidden="true"></span>
+    {#if sortable && bySize}
+      <a class="name" href={azUrl}>Park</a>
+    {:else}
+      <span class="name" aria-current={sortable ? 'page' : undefined}>Park</span
+      >
+    {/if}
+    <span class="status" aria-hidden="true">Status</span>
+    <span class="tags" aria-hidden="true">What is there</span>
+    {#if sortable && !bySize}
+      <a class="end acres" href={sizeUrl}>Size</a>
+    {:else}
+      <span class="end acres" aria-current={sortable ? 'page' : undefined}
+        >Size</span
+      >
+    {/if}
+    <span class="end words" aria-hidden="true">Write-up</span>
+  </div>
 
   <!-- The number is a position in the list, and on the by-size page that
        position is the rank, so the order is named for a screen reader too. -->
@@ -102,10 +102,6 @@
     class="table"
     aria-label="Parks in {section.title}, {bySize ? 'largest first' : 'A to Z'}"
   >
-    <li class="row row--head eyebrow" aria-hidden="true">
-      <span></span><span>Park</span><span>Status</span><span>What is there</span
-      ><span class="end">Size</span><span class="end">Write-up</span>
-    </li>
     {#each parks as child, i (child.url)}
       {@const park = child.park!}
       <li class="row">
@@ -172,8 +168,7 @@
     margin-bottom: 0;
   }
 
-  .counts,
-  .key {
+  .counts {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem 1.5rem;
@@ -184,27 +179,6 @@
   .counts b {
     color: var(--ink);
     font-size: 0.9375rem;
-  }
-
-  .key {
-    padding: 0.9rem 0 0.5rem;
-  }
-
-  .key span {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .key__sort {
-    margin-left: auto;
-    gap: 0.6rem;
-  }
-
-  .key__sort b {
-    color: var(--ink);
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
   }
 
   .table {
@@ -227,8 +201,54 @@
     border-bottom: 1px solid var(--rule-soft);
   }
 
+  /* Below the table width the grid has no columns to head, so the row keeps
+     only the two headings that sort, and says what they do. */
   .row--head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 0 0.5rem;
+    border-bottom: none;
+  }
+
+  .row--head .num,
+  .row--head .status,
+  .row--head .tags,
+  .row--head .words {
     display: none;
+  }
+
+  /* The headings carry the row's classes for their grid areas, not for the
+     type the rows set. */
+  .row--head .name,
+  .row--head .acres,
+  .row--head .words {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+
+  .row--head a {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-style: dotted;
+  }
+
+  .row--head [aria-current='page'] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  /* With one ordering there is nothing to sort, so the narrow layout, which
+     shows the headings for their links alone, shows no heading row at all. */
+  .row--head--plain {
+    display: none;
+  }
+
+  .sort-label {
+    color: var(--ink-faint);
   }
 
   .num {
@@ -322,9 +342,24 @@
     .row--head {
       display: grid;
       min-height: 2.25rem;
-      padding-block: 0.4rem;
+      padding: 0.4rem 0.875rem;
       border-bottom: 1px solid var(--ink);
       background: none;
+    }
+
+    .row--head .num,
+    .row--head .status,
+    .row--head .tags,
+    .row--head .words {
+      display: block;
+    }
+
+    .row--head--plain {
+      display: grid;
+    }
+
+    .sort-label {
+      display: none;
     }
 
     .end {
