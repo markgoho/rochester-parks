@@ -23,8 +23,10 @@ amenities:
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/adeline-park/'
   - 'https://maps.google.com/?cid=9843409648588080189'
+geo:
+  latitude: 43.2445697
+  longitude: -77.6325439
 ---
-
 Greece only has a few parks that offer as much as Adeline Park. This could be due to the fact that many of the parks in Greece are in somewhat-isolated areas or in semi-commercial areas. Adeline Park sits smack in the middle of a huge residential area. When I visited this park on a cool Tuesday evening in August, it was packed! I was very happy to see a diverse crowd at the park, particularly in respect to ages. There were of course, the little kids accompanied by parents (or grandparents) and a good number of young kids playing basketball or chatting at the picnic tables.
 
 ![Adeline playground](Adeline-playground.jpg)

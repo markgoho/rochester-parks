@@ -18,8 +18,10 @@ amenities:
 sameAs:
   - 'https://greeceny.gov/departments/parks-recreation/parks/goodwin-park/'
   - 'https://maps.google.com/?cid=11391893499565287255'
+geo:
+  latitude: 43.29122801571042
+  longitude: -77.67482836683178
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.29122801571042|-77.67482836683178|290.44|-16.33|0|BTUZvOtcJvwAAAQvOxlGbA|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 ![Goodwin Park playground](forweb-IMG_20120613_174704.jpg)

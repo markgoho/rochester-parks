@@ -3,8 +3,8 @@ title: 'Badgerow Park North'
 description: 'A Greece Town Park called Badgerow Park North'
 type: 'park'
 geo:
-  latitude: 43.25853830555337
-  longitude: -77.64488057019031
+  latitude: 43.2555295
+  longitude: -77.6412645
 amenities:
   - Barbecue
   - Baseball Diamond
@@ -20,7 +20,6 @@ amenities:
   - Tennis Court
   - Trails
 ---
-
 George W. Badgerow held the office of Town Supervisor in Greece from 1965 to 1969. As the town of Greece is wont to do, they named a park after him. The entire park is about 66 acres, one of the larger parks in Greece. Here we’ll be reviewing Badgerow Park North and after a future visit, the Badgerow Park Nature Trails. It is interesting that, while there is a single boundary that encompasses the two parks, there are two very different and distinct parks.
 
 ![Badgerow North Playground](BadgerowN-Playground.jpg)

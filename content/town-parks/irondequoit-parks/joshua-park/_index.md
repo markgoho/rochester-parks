@@ -3,8 +3,8 @@ title: 'Joshua Park'
 description: 'An Irondequoit Town Park called Joshua Park'
 type: 'park'
 geo:
-  latitude: 43.20683014659702
-  longitude: -77.6054548532502
+  latitude: 43.20730004667224
+  longitude: -77.60468079609922
 address:
   streetAddress: 'Titus Ave'
   addressCountry: 'US'
@@ -18,7 +18,6 @@ sameAs:
   - 'https://www.irondequoit.gov/Facilities/Facility/Details/Joshua-Park-9'
   - 'https://maps.google.com/?cid=15975211993853895906'
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.20730004667224|-77.60468079609922|-152.87844692839744|-11.376987700564568|0|Xcsq2gJEHiEAAAQn7y0Cwg|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 ![Joshua memorial placard](Joshua-placard1.jpg)

@@ -1,9 +1,15 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
+  import StatusIcon from '$lib/components/StatusIcon.svelte';
+  import TownLocator from '$lib/components/TownLocator.svelte';
+  import { townKey } from '$lib/municipalities';
   import type { Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
+
+  /** Set on a town section the county map draws, and on nothing else. */
+  const town = $derived(townKey(page.url));
 
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
@@ -25,23 +31,34 @@
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <div class="head">
-    <h1>{page.title}</h1>
-    {#if page.html}
-      <div class="prose intro">{@html page.html}</div>
+    <div class="head__text">
+      <h1>{page.title}</h1>
+      {#if page.html}
+        <div class="prose intro">{@html page.html}</div>
+      {/if}
+      <p class="eyebrow counts">
+        <span><b class="mono">{parks.length}</b> parks</span>
+        <span><b class="mono">{written}</b> written up</span>
+        <span><b class="mono">{photographed}</b> photographed</span>
+        <span><b class="mono">{inventoried}</b> with amenity data</span>
+      </p>
+    </div>
+    {#if town}
+      <div class="locator"><TownLocator {town} /></div>
     {/if}
-    <p class="eyebrow counts">
-      <span><b class="mono">{parks.length}</b> parks</span>
-      <span><b class="mono">{written}</b> written up</span>
-      <span><b class="mono">{photographed}</b> photographed</span>
-      <span><b class="mono">{inventoried}</b> with amenity data</span>
-    </p>
   </div>
 
   <p class="eyebrow key">
     <span>Key</span>
-    <span><b class="flag flag--on">W</b> written up</span>
-    <span><b class="flag flag--on">P</b> photographed</span>
-    <span><b class="flag flag--on">A</b> amenities recorded</span>
+    <span
+      ><b class="flag flag--on"><StatusIcon kind="written" /></b> written up</span
+    >
+    <span
+      ><b class="flag flag--on"><StatusIcon kind="photographed" /></b> photographed</span
+    >
+    <span
+      ><b class="flag flag--on"><StatusIcon kind="inventoried" /></b> amenities recorded</span
+    >
     <span class="key__sort">Sorted A–Z · nothing is ranked here</span>
   </p>
 
@@ -95,6 +112,18 @@
     gap: 0.9rem;
     padding-bottom: 1.25rem;
     border-bottom: 2px solid var(--ink);
+  }
+
+  .head__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    min-width: 0;
+  }
+
+  .locator {
+    width: 13rem;
+    max-width: 100%;
   }
 
   .intro :global(p:last-child) {
@@ -208,6 +237,18 @@
   }
 
   @media (min-width: 60rem) {
+    /* The county map sits beside the heading, not above the table. */
+    .head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 13rem;
+      align-items: start;
+      gap: 2.5rem;
+    }
+
+    .locator {
+      justify-self: end;
+    }
+
     .row {
       grid-template-columns: 2.5rem minmax(0, 15rem) 5.5rem minmax(0, 1fr) 7rem;
       grid-template-areas: 'num name status tags words';

@@ -17,8 +17,10 @@ amenities:
 sameAs:
   - 'https://greeceny.gov/departments/parks-recreation/parks/beverly-papas-park/'
   - 'https://maps.google.com/?cid=460685327091338150'
+geo:
+  latitude: 43.221904
+  longitude: -77.6349786
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.22198970872159|-77.63446924323722|79.44404971022293|-6.961246832263914|0|utUqh0jPo4gAAAQvOxif2w|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 ![Pappas Park open field](Pappas-field.jpg)

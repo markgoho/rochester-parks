@@ -17,4 +17,7 @@ amenities:
   - Swingset
 sameAs:
   - 'https://maps.google.com/?cid=14811755070246432504'
+geo:
+  latitude: 43.2849083
+  longitude: -77.7268501
 ---

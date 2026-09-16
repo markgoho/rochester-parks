@@ -15,8 +15,10 @@ amenities:
 sameAs:
   - 'https://greeceny.gov/departments/parks-recreation/parks/henpeck-park/'
   - 'https://maps.google.com/?cid=11790042144012760400'
+geo:
+  latitude: 43.1882823
+  longitude: -77.7307275
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.18838820671287|-77.73126582508826|-70.46231342121692|-7.156780061935175|0|HdfkCtqdZ2oAAAQvOxmjwQ|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 ## History runs deep at Henpeck Park

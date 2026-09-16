@@ -10,4 +10,7 @@ address:
 acres: 17.41
 sameAs:
   - 'https://maps.google.com/?cid=14406097468513793958'
+geo:
+  latitude: 43.224861
+  longitude: -77.6534344
 ---

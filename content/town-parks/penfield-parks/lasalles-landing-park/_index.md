@@ -11,4 +11,7 @@ acres: 2.11
 sameAs:
   - 'https://www.penfield.org/detail_T12_R53.php'
   - 'https://maps.google.com/?cid=394768909577799794'
+geo:
+  latitude: 43.1762819
+  longitude: -77.5260268
 ---

@@ -49,7 +49,12 @@
       },
       {
         "source": "/uncategorized/belmanor-park",
-        "destination": "/town-parks/brighton-parks/belmanor-park/",
+        "destination": "/town-parks/henrietta-parks/belmanor-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/belmanor-park",
+        "destination": "/town-parks/henrietta-parks/belmanor-park/",
         "type": 301
       }
     ]

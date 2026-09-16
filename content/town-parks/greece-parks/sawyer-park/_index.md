@@ -21,8 +21,10 @@ amenities:
 sameAs:
   - 'https://greeceny.gov/departments/parks-recreation/parks/sawyer-park/'
   - 'https://maps.google.com/?cid=7684724087611814896'
+geo:
+  latitude: 43.2486313
+  longitude: -77.6943387
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.24904721106973|-77.69295968130297|31.782910600410425|-19.438946963646888|0|GJ5ysPCCIjkAAAQvOxhdoQ|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 Sawyer park is definitely one of those parks that you need to visit. There are a handful of things that make the park unique, least of which is not the 9-hole disc golf course cleverly tucked between the trees and along the creek. From the panorama above you can see the larger attractions to Sawyer Park. This park boasts two playgrounds, a swingset with two big-kid and two toddler swings, a pavillion (available to rent from the Town of Greece), real bathrooms, a creek, multiple barbecue/eating areas, nature trails and a 9-hole disc golf course!

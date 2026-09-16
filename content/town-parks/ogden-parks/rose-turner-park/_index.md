@@ -3,8 +3,8 @@ title: 'Rose Turner Park'
 description: 'An Ogden Town Park called Rose Turner Park'
 type: 'park'
 geo:
-  latitude: 43.19256529850355
-  longitude: -77.78243248836046
+  latitude: 43.19406704997022
+  longitude: -77.78303494350712
 address:
   streetAddress: '3505 Big Ridge Rd'
   addressLocality: 'Spencerport'
@@ -19,7 +19,6 @@ sameAs:
   - 'https://plus.google.com/114489298665257793690/about'
   - 'https://maps.google.com/?cid=14847078672567354565'
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.19406704997022|-77.78303494350712|-35.60548577533207|-17.161417578136266|0|VJ41DQikWW0AAAQvO05Xvw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 There are many different parks that exist in Rochester NY. Rose Turner Park may well be one of the more unique locations among them.
