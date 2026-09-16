@@ -5,7 +5,8 @@
   import TownLocator from '$lib/components/TownLocator.svelte';
   import { formatAcres } from '$lib/format';
   import { isCitySection, isCountySection, townKey } from '$lib/municipalities';
-  import type { Page } from '$lib/types';
+  import { neighborhoodAt } from '$lib/neighborhoods';
+  import type { ChildLink, Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
 
@@ -27,6 +28,49 @@
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
   );
+  /**
+   * The city's parks, one group per Neighborhood that holds any, by name. A
+   * park with no coordinates cannot be placed, so it waits in a last group.
+   */
+  const groups = $derived.by(() => {
+    if (!city) return [];
+    const byKey = new Map<
+      string,
+      { key: string; name: string; parks: ChildLink[] }
+    >();
+    const unplaced: ChildLink[] = [];
+    for (const child of parks) {
+      const geo = child.park!.geo;
+      const n = geo ? neighborhoodAt(geo.latitude, geo.longitude) : undefined;
+      if (!n) {
+        unplaced.push(child);
+        continue;
+      }
+      const group = byKey.get(n.key) ?? { key: n.key, name: n.name, parks: [] };
+      group.parks.push(child);
+      byKey.set(n.key, group);
+    }
+    const placed = [...byKey.values()].sort((a, b) =>
+      a.name.localeCompare(b.name, 'en', { numeric: true })
+    );
+    return unplaced.length
+      ? [
+          ...placed,
+          { key: 'not-placed', name: 'Not placed yet', parks: unplaced },
+        ]
+      : placed;
+  });
+  /** How many parks each Neighborhood holds, for the map's links. */
+  const counts = $derived(
+    new Map(
+      groups
+        .filter((g) => g.key !== 'not-placed')
+        .map((g) => [g.key, g.parks.length])
+    )
+  );
+  const byNeighborhood = $derived(page.order === 'neighborhood');
+  const neighborhoodUrl = $derived(`${section.url}by-neighborhood/`);
+
   const other = $derived(
     page.children.filter((child) => child.park === undefined)
   );
@@ -72,11 +116,56 @@
       </p>
     </div>
     {#if city}
-      <div class="locator"><CityLocator /></div>
+      <div class="locator locator--city">
+        <CityLocator {counts} />
+        <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
+      </div>
     {:else if town || county}
       <div class="locator"><TownLocator {town} /></div>
     {/if}
   </div>
+
+  {#snippet parkRow(child: ChildLink, i: number)}
+    {@const park = child.park!}
+    <li class="row">
+      <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
+      <a class="name" href={child.url}>{child.title}</a>
+      <span class="status"
+        ><ParkFlags status={park.status} label={false} /></span
+      >
+      <span class="tags">
+        {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
+          <span class="tag">{amenity}</span>
+        {/each}
+        {#if park.amenities.length > SHOWN}
+          <span class="tag tag--off">+{park.amenities.length - SHOWN} more</span
+          >
+        {:else if park.amenities.length === 0}
+          <span class="mono none">not recorded yet</span>
+        {/if}
+      </span>
+      <span class="mono end acres">
+        {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
+      </span>
+      <span class="mono end words">
+        {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
+          note{:else}—{/if}
+      </span>
+    </li>
+  {/snippet}
+
+  {#if city}
+    <!-- Each grouping is its own prerendered page, so these are links. -->
+    <nav class="orders eyebrow" aria-label="Order">
+      {#if byNeighborhood}
+        <a href={section.url}>A to Z</a>
+        <span aria-current="page">By neighborhood</span>
+      {:else}
+        <span aria-current="page">A to Z</span>
+        <a href={neighborhoodUrl}>By neighborhood</a>
+      {/if}
+    </nav>
+  {/if}
 
   <!-- The heading that orders the table is the control: each ordering is its
        own prerendered page, so it is a link, not a button. See ADR-0001. -->
@@ -103,42 +192,38 @@
     <span class="end words" aria-hidden="true">Write-up</span>
   </div>
 
-  <!-- The number is a position in the list, and on the by-size page that
-       position is the rank, so the order is named for a screen reader too. -->
-  <ol
-    class="table"
-    aria-label="Parks in {section.title}, {bySize ? 'largest first' : 'A to Z'}"
-  >
-    {#each parks as child, i (child.url)}
-      {@const park = child.park!}
-      <li class="row">
-        <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
-        <a class="name" href={child.url}>{child.title}</a>
-        <span class="status"
-          ><ParkFlags status={park.status} label={false} /></span
-        >
-        <span class="tags">
-          {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
-            <span class="tag">{amenity}</span>
+  {#if byNeighborhood}
+    {#each groups as group (group.key)}
+      <section class="group" id={group.key}>
+        <h2 class="group__head">
+          {group.name}
+          <span class="mono eyebrow"
+            >{group.parks.length === 1
+              ? '1 park'
+              : `${group.parks.length} parks`}</span
+          >
+        </h2>
+        <ol class="table" aria-label="Parks in {group.name}, A to Z">
+          {#each group.parks as child, i (child.url)}
+            {@render parkRow(child, i)}
           {/each}
-          {#if park.amenities.length > SHOWN}
-            <span class="tag tag--off"
-              >+{park.amenities.length - SHOWN} more</span
-            >
-          {:else if park.amenities.length === 0}
-            <span class="mono none">not recorded yet</span>
-          {/if}
-        </span>
-        <span class="mono end acres">
-          {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
-        </span>
-        <span class="mono end words">
-          {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
-            note{:else}—{/if}
-        </span>
-      </li>
+        </ol>
+      </section>
     {/each}
-  </ol>
+  {:else}
+    <!-- The number is a position in the list, and on the by-size page that
+         position is the rank, so the order is named for a screen reader too. -->
+    <ol
+      class="table"
+      aria-label="Parks in {section.title}, {bySize
+        ? 'largest first'
+        : 'A to Z'}"
+    >
+      {#each parks as child, i (child.url)}
+        {@render parkRow(child, i)}
+      {/each}
+    </ol>
+  {/if}
 
   {#if other.length}
     <h2 class="more">More about this section</h2>
@@ -304,6 +389,48 @@
     margin: 2.5rem 0 0.75rem;
   }
 
+  .map-hint {
+    margin: 0.5rem 0 0;
+    text-align: center;
+  }
+
+  .orders {
+    display: flex;
+    gap: 1.25rem;
+    padding-top: 0.9rem;
+  }
+
+  .orders a {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    text-decoration-style: dotted;
+  }
+
+  .orders [aria-current='page'] {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .group {
+    scroll-margin-top: 1rem;
+  }
+
+  .group__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2rem 0 0;
+    padding: 0 0 0.4rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  /* The group the map sent the reader to. */
+  .group:target .group__head {
+    color: var(--orange);
+  }
+
   .other {
     margin: 0;
     padding: 0;
@@ -330,6 +457,15 @@
 
     .locator {
       justify-self: end;
+    }
+
+    /* Forty-eight neighborhoods need more room than one town to be picked. */
+    .head:has(.locator--city) {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+
+    .locator--city {
+      width: 20rem;
     }
 
     .row {

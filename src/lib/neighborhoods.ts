@@ -25,3 +25,8 @@ export const CITY_BOX = outlineBox({
   name: 'City of Rochester',
   paths: NEIGHBORHOODS.flatMap((n) => n.paths),
 });
+
+/** Where a Neighborhood's parks are listed: its group on the city page. */
+export function neighborhoodUrl(key: string): string {
+  return `/rochester-city-parks/by-neighborhood/#${key}`;
+}
