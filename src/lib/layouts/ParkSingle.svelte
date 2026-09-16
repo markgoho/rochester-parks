@@ -1,11 +1,25 @@
 <script lang="ts">
   import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
   import ParkFlags from '$lib/components/ParkFlags.svelte';
+  import TownShape from '$lib/components/TownShape.svelte';
+  import { municipality, townAt, townKey } from '$lib/municipalities';
   import type { Page } from '$lib/types';
 
   let { page }: { page: Page } = $props();
 
   const park = $derived(page.park);
+  /**
+   * The town to draw. The coordinates decide it, so a park filed under one
+   * section but standing in another is shown where it really is; the section
+   * is only the fallback.
+   */
+  const town = $derived(
+    park?.geo
+      ? (townAt(park.geo.latitude, park.geo.longitude) ??
+          townKey(park.section.url))
+      : undefined
+  );
+  const townName = $derived(town ? municipality(town)?.label.text : undefined);
   const status = $derived(park?.status);
   const recorded = $derived(
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
@@ -17,11 +31,23 @@
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <header class="head">
-    <h1>{page.title}</h1>
-    {#if park}
-      <p class="status">
-        <ParkFlags status={park.status} />
-      </p>
+    <div class="head__text">
+      <h1>{page.title}</h1>
+      {#if park}
+        <p class="status">
+          <ParkFlags status={park.status} />
+        </p>
+      {/if}
+    </div>
+    {#if town && park?.geo}
+      <figure class="where">
+        <TownShape
+          {town}
+          label="{page.title} in {townName}"
+          markers={[{ title: page.title, ...park.geo }]}
+        />
+        <figcaption class="eyebrow">In {townName}</figcaption>
+      </figure>
     {/if}
   </header>
 
@@ -97,6 +123,37 @@
     flex-direction: column;
     gap: 0.75rem;
     padding-bottom: 1.25rem;
+  }
+
+  .head__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .where {
+    width: 9rem;
+    margin: 0;
+  }
+
+  .where figcaption {
+    margin-top: 0.4rem;
+    text-align: center;
+  }
+
+  @media (min-width: 60rem) {
+    /* The outline sits beside the title, the park marked on it. */
+    .head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 9rem;
+      align-items: start;
+      gap: 2.5rem;
+    }
+
+    .where {
+      justify-self: end;
+    }
   }
 
   .status {
