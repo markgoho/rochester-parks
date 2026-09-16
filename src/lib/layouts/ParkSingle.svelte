@@ -7,6 +7,7 @@
   import {
     isCountySection,
     municipality,
+    placeAt,
     townAt,
     townKey,
   } from '$lib/municipalities';
@@ -15,26 +16,28 @@
   let { page }: { page: Page } = $props();
 
   const park = $derived(page.park);
+  const county = $derived(
+    park !== undefined && isCountySection(park.section.url)
+  );
   /**
    * The town to draw. The coordinates decide it, so a park filed under one
    * section but standing in another is shown where it really is; the section
-   * is only the fallback.
+   * is only the fallback. A county park has no town section to fall back on,
+   * and several stand in the city, so the city counts as a place for it.
    */
   const town = $derived(
     park?.geo
-      ? (townAt(park.geo.latitude, park.geo.longitude) ??
+      ? county
+        ? placeAt(park.geo.latitude, park.geo.longitude)
+        : (townAt(park.geo.latitude, park.geo.longitude) ??
           townKey(park.section.url))
       : undefined
   );
   const townName = $derived(town ? municipality(town)?.label.text : undefined);
   /**
-   * A county park answers to the county, and several stand in the city, which
-   * is no town at all. So it is shown on the whole county map, with the town
-   * that holds it picked out when the coordinates name one.
+   * A county park whose point falls outside every outline still gets the
+   * county map rather than no map at all.
    */
-  const county = $derived(
-    park !== undefined && isCountySection(park.section.url)
-  );
   const where = $derived(townName ?? (county ? 'Monroe County' : undefined));
   const status = $derived(park?.status);
   /** The address on one line, with any part the front matter left out dropped. */
@@ -77,15 +80,14 @@
     </div>
     {#if park?.geo && (county || town)}
       <figure class="where">
-        {#if county}
-          <TownLocator
+        {#if town}
+          <TownShape
             {town}
             label="{page.title} in {where}"
             markers={[{ title: page.title, ...park.geo }]}
           />
         {:else}
-          <TownShape
-            town={town!}
+          <TownLocator
             label="{page.title} in {where}"
             markers={[{ title: page.title, ...park.geo }]}
           />

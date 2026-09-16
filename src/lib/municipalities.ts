@@ -416,6 +416,25 @@ export function townAt(
 }
 
 /**
+ * The town or city a place falls in. A county park can stand in the City of
+ * Rochester, which `townAt` does not name, so this looks at the city too.
+ * Villages are left out: a park in one is drawn on the town around it.
+ */
+export function placeAt(
+  latitude: number,
+  longitude: number
+): string | undefined {
+  const town = townAt(latitude, longitude);
+  if (town) return town;
+  const { x, y } = project(latitude, longitude);
+  const city = byKey.get('rochester')!;
+  if (!ringsByKey.has(city.key)) ringsByKey.set(city.key, ringsOf(city));
+  return ringsByKey.get(city.key)!.some((ring) => inRing(ring, x, y))
+    ? city.key
+    : undefined;
+}
+
+/**
  * The map key for a town section url, e.g. "/town-parks/gates-parks/" gives
  * "gates". Returns undefined for any other url, and for a town the map does
  * not draw.
