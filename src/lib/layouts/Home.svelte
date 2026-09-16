@@ -45,6 +45,13 @@
           ></a
         >
       </li>
+      <li>
+        <a href="/state-parks/"
+          ><span>New York State parks</span><span class="mono"
+            >{countOf('/state-parks/')}</span
+          ></a
+        >
+      </li>
     </ul>
   </div>
 
@@ -63,7 +70,7 @@
     </p>
     <p>
       <span class="mono">{towns.length}</span><span class="eyebrow"
-        >Towns, plus city and county</span
+        >Towns, plus city, county and state</span
       >
     </p>
     <p>
