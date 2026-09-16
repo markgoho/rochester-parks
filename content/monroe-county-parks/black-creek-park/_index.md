@@ -2,6 +2,15 @@
 title: 'Black Creek Park'
 description: 'A monroe county park called Black Creek Park'
 type: 'park'
+acres: 1503.53
+address:
+  streetAddress: '3883 Union Street'
+  addressLocality: 'Chili'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+sameAs:
+  - 'https://www.monroecounty.gov/parks-blackcreek'
+  - 'https://maps.google.com/?cid=11834441221212537482'
 ---
 
 <iframe src="https://maps.google.com/?ie=UTF8&amp;t=m&amp;ll=43.074781,-77.806892&amp;spn=0.043887,0.072956&amp;z=13&amp;output=embed" width="100%" height="325" loading="lazy" allowfullscreen></iframe>

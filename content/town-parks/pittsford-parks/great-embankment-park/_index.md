@@ -2,16 +2,23 @@
 title: 'Great Embankment Park'
 description: 'A Pittsford Town Park called Great Embankment Park'
 type: 'park'
-geo:
-  latitude: 43.0730057
-  longitude: -77.4905523
+address:
+  streetAddress: 'Marsh Road'
+  addressLocality: 'Pittsford'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 36.46
 amenities:
   - Baseball Diamond
   - Bathroom
   - Open Field
   - Soccer Field
+sameAs:
+  - 'https://maps.google.com/?cid=10695804615969109309'
+geo:
+  latitude: 43.0730057
+  longitude: -77.4905523
 ---
-
 ![Great Embankment canal-side sitting area](Embankment-canalsde-sitting-area.jpg)
 
 Of all the canal parks, Great Embankment Park does not fail to impress. The park is one of Pittsford’s most beautiful parks, mostly because of the three athletic fields and the attention given to them. While Rochester Parks visited this park, a maintenance crew was hard at work mowing the baseball fields and lining the soccer field.

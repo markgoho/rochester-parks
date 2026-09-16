@@ -29,6 +29,8 @@ interface FrontMatter {
   openingHours?: { dayOfWeek?: string[]; opens?: string; closes?: string }[];
   telephone?: string;
   amenities?: string[];
+  /** Park size in acres, from the park database. */
+  acres?: number;
 }
 
 interface Node extends PageLink {
@@ -373,6 +375,16 @@ function parkJsonLd(node: Node, meta: ParkMeta): object {
       opens: hours.opens,
       closes: hours.closes,
     })),
+    // schema.org Park has no size property, so acreage rides along as a
+    // named value rather than being dropped.
+    additionalProperty: fm.acres
+      ? {
+          '@type': 'PropertyValue',
+          name: 'Area',
+          value: fm.acres,
+          unitText: 'acre',
+        }
+      : undefined,
     // The page's own amenity names, so the markup and the panel agree.
     amenityFeature: meta.amenities.map((name) => ({
       '@type': 'LocationFeatureSpecification',

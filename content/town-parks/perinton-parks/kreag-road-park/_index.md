@@ -5,6 +5,12 @@ type: 'park'
 geo:
   latitude: 43.06427986545538
   longitude: -77.47074556602206
+address:
+  streetAddress: '555 Kreag Road'
+  addressLocality: 'Fairport'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 9.02
 amenities:
   - Barbecue
   - Baseball Diamond
@@ -19,8 +25,12 @@ amenities:
   - Swingset
   - Tennis Court
   - Volleyball
+  - Canal
+  - Water
+sameAs:
+  - 'https://perinton.org/departments/randp/parks-department/parks/kreag-road-park/'
+  - 'https://maps.google.com/?cid=6557984480278291635'
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.06427986545538|-77.47074556602206|154.86|-17.819999999999993|0|lY0mMvsUZHMAAAQvO_HHYw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 ![Kleag Road Park sign](Perinton-Kleag-Road-Park-1-of-27-e1408643935576.jpg)

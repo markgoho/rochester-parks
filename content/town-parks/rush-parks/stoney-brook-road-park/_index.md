@@ -1,10 +1,16 @@
 ---
-title: 'Stoney Brook Road Park'
-description: 'A park in Rush, NY called Stoney Brook Road Park'
+title: 'Stonybrook Road Park'
+description: 'A park in Rush, NY called Stonybrook Road Park'
 type: 'park'
 geo:
   latitude: 42.98117652311839
   longitude: -77.65461686067363
+address:
+  streetAddress: '151 Stoney Brook Road'
+  addressLocality: 'Rush'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 17.70
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'
@@ -12,8 +18,9 @@ amenities:
   - 'Picnic Table'
   - 'Shelter'
   - 'Swingset'
+sameAs:
+  - 'https://maps.google.com/?cid=3097712190193503565'
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=42.98117652311839|-77.65461686067363|-32.17809335374717|-11.374230708649518|0|j10UWy_7ymgAAAQvO_C5hw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 Similar to the other park in Rush NY, Stoney Brook Road Park has a unique purpose in the town. Although it’s unclear precisely when the park was officially started, in 1978 the Town of Rush received a Land and Water Conservation Grant of $15,000 to develop the park. After five years, it was completed in 1983.

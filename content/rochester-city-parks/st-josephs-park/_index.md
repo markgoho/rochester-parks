@@ -2,6 +2,9 @@
 title: "St. Joseph's Park"
 description: "A Rochester City Park called St. Joseph's Park"
 type: 'park'
+geo:
+  latitude: 43.1594449443536
+  longitude: -77.60704971638812
 ---
 
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.15944969852059|-77.60653977169488|41.30948182936651|-11.02894541341152|0.020887366473823832|VMlCqRgTyO0AAAQvPCJ0qg|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>

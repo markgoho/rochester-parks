@@ -20,7 +20,6 @@ amenities:
   - Tennis Court
   - Trails
 ---
-
 George W. Badgerow held the office of Town Supervisor in Greece from 1965 to 1969. As the town of Greece is wont to do, they named a park after him. The entire park is about 66 acres, one of the larger parks in Greece. Here we’ll be reviewing Badgerow Park North and after a future visit, the Badgerow Park Nature Trails. It is interesting that, while there is a single boundary that encompasses the two parks, there are two very different and distinct parks.
 
 ![Badgerow North Playground](BadgerowN-Playground.jpg)

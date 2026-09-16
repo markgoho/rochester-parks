@@ -5,6 +5,12 @@ type: 'park'
 geo:
   latitude: 43.07967128631228
   longitude: -77.88613829447752
+address:
+  streetAddress: '836 Sanford Road South'
+  addressLocality: 'Riga'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 43.52
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'
@@ -18,8 +24,9 @@ amenities:
   - 'Soccer Field'
   - 'Swingset'
   - 'Volleyball'
+sameAs:
+  - 'https://maps.google.com/?cid=2468126472323708768'
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.07967128631228|-77.88613829447752|1.3520640487123776|-10.442508883686756|0|MymBT7N_lU0AAAQfCNAyAw|false|GOOGLE" width="100%" height="400" loading="lazy" allowfullscreen></iframe>
 
 There are only two parks in Riga NY, a town of approximately 6,000 people. Sanford Road Park is the smaller of the two–just 44 acres. This park seems to serve as an athletic hub for the town. The park is located on Churchville Riga Road and Sanford Road South, just south of the village of Churchville NY.

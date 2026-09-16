@@ -2,9 +2,12 @@
 title: 'Grandview Park'
 description: 'A Greece Town Park called Grandview Park'
 type: 'park'
-geo:
-  latitude: 43.2958739
-  longitude: -77.6905067
+address:
+  streetAddress: '225 Beechwood Park'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 7.70
 amenities:
   - Barbecue
   - Baseball Diamond
@@ -20,8 +23,13 @@ amenities:
   - Swingset
   - Tennis Court
   - Volleyball
+sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/grandview-park/'
+  - 'https://maps.google.com/?cid=16118708245255645285'
+geo:
+  latitude: 43.2958739
+  longitude: -77.6905067
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.29577606369548|-77.69045009508113|138.68230191565857|-15.853191068397845|0|ZkTUNia7mfIAAAQvOy7WyA|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 Grandview Park is the place to go if you live in North Greece. Of the three parks I visited on this evening, Grandview was (by far) the most attractive and the hardest to tear my kids away. Set between Long Pond and Cranberry Pond, Grandview Park is just off of Lowden Point Road, just this side of Lake Ontario.

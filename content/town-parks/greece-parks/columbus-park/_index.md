@@ -5,6 +5,12 @@ type: 'park'
 geo:
   latitude: 43.2133021
   longitude: -77.653128
+address:
+  streetAddress: '461 Bonesteel Street'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+acres: 9.69
 amenities:
   - Barbecue
   - Bathroom
@@ -12,8 +18,10 @@ amenities:
   - Picnic Table
   - Playground
   - Swingset
+sameAs:
+  - 'https://greeceny.gov/departments/parks-recreation/parks/columbus-park/'
+  - 'https://maps.google.com/?cid=10693934842796147498'
 ---
-
 <iframe src="https://walkinto.in/tour/x1cnvFWCf-lkgqnvt-CGb?scene=43.21289578675583|-77.65224855644897|-32.37620212322038|-13.03397210991728|0|QaZPNce2r4MAAAQvOxmjuw|false|GOOGLE" width="100%" height="600" loading="lazy" allowfullscreen></iframe>
 
 ## Columbus Park needs some work

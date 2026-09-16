@@ -2,17 +2,23 @@
 title: 'Heyer-Bayer Memorial Park'
 description: 'An Irondequoit Town Park called Heyer-Bayer Memorial Park'
 type: 'park'
-geo:
-  latitude: 43.2147746
-  longitude: -77.5486847
+address:
+  streetAddress: 'Rudman Road'
+  addressCountry: 'US'
+acres: 2.72
 amenities:
   - Baseball Diamond
   - Bathroom
   - Open Field
   - Playground
   - Swingset
+sameAs:
+  - 'https://www.irondequoit.gov/Facilities/Facility/Details/HeyerBayer-Memorial-Park-10'
+  - 'https://maps.google.com/?cid=9757336164699319517'
+geo:
+  latitude: 43.2147746
+  longitude: -77.5486847
 ---
-
 ![Heyer-Bayer Memorial park playground](forweb-IMG_20120622_132325.jpg)
 
 ## Heyer-Bayer Memorial Park playground

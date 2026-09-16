@@ -6,6 +6,15 @@ amenities:
   - 'Playground'
   - 'Shelter'
   - 'Trails'
+acres: 194.32
+address:
+  streetAddress: '420 Smith Road'
+  addressLocality: 'Webster'
+  addressRegion: 'NY'
+  addressCountry: 'US'
+sameAs:
+  - 'https://www.monroecounty.gov/parks-bayeast'
+  - 'https://maps.google.com/?cid=18133650073656435438'
 ---
 
 Abraham Lincoln Park is located on the east shore of Irondequoit Bay. It covers 183 acres consisting of mostly trees. At the entrance to the park on Empire Blvd., there is a playground consisting of two parts. One is a typical playground-type structure with slides and ladders. The other is an amazing “natural” playground! Very large tree trunks are strategically places to create an amazing climbing area for kids. Stumps are also placed on the ground for an obstacle course feel. Also in this entrance area are two covered shelters and picnic tables.
