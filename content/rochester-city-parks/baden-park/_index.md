@@ -4,7 +4,7 @@ description: 'A Rochester City Park called Baden Park'
 type: 'park'
 acres: 9.1
 address:
-  streetAddress: '485 N Clinton Avenue'
+  streetAddress: 'Upper Falls Boulevard'
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'

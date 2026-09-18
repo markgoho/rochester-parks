@@ -1,6 +1,6 @@
 ---
-title: 'Otto Henderberg'
-description: 'A Rochester City Park called Otto Henderberg'
+title: 'Otto Henderberg Square Park'
+description: 'A Rochester City Park called Otto Henderberg Square Park'
 type: 'park'
 acres: 0.5
 address:

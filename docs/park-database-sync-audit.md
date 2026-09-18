@@ -253,6 +253,20 @@ The city tab carries no acreage and no coordinates, so no city page has `acres` 
 | Winton / Highland | row name is a street intersection (Winton Rd & Highland Ave), no 'Park'/'Square' designation, no amenities |
 | Winton / Merchants | row name and location are a street intersection (Winton Rd & Merchants Rd); the single 'Gazebo' amenity is a decorated corner, not the playground/ball-field carve-out the spec allows for a building-with-facilities exception |
 
+### Settled in #38
+
+ADR-0005 now defines what counts as a Park. The city's park GIS layer (`Hosted/Parks_Open_Space_Points`) settled these rows on 2026-09-18:
+
+| Row | Result | Evidence |
+| --- | --- | --- |
+| Meigs / Linden | page removed, merged into Ellwanger and Barry Park | the layer's MEIGS/LINDEN PARK row is named Ellwanger & Barry Park, with the same 0.9 acres and coordinates |
+| James Madison School | page removed | school grounds, and in no city park layer |
+| West High Field | renamed West High Park | the layer names it West High Park, owned by the City of Rochester |
+| Otto Henderberg | renamed Otto Henderberg Square Park | the layer and OpenStreetMap both give this name |
+| Barrington Park | Barrington Street Park page added | the layer lists Barrington Street Park as a city pocket park at Park Ave and Barrington St |
+| Winton / Merchants | rejection stands | the layer types it as a Street Mall |
+| Baden Park | address changed to Upper Falls Boulevard | the page had 485 N Clinton Ave, which is the R-Center about 800 m away; Baden Park and the R-Center are two sites with their own fields |
+
 ### Names changed
 
 | Sheet says | Page says | Why |

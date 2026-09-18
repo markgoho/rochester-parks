@@ -1,6 +1,6 @@
 ---
-title: 'West High Field'
-description: 'A Rochester City Park called West High Field'
+title: 'West High Park'
+description: 'A Rochester City Park called West High Park'
 type: 'park'
 acres: 7
 amenities:
