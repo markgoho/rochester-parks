@@ -6,6 +6,14 @@
   } from '#lib/municipalities.js';
 
   /**
+   * Where a town's link can be picked from. By default only the map's own
+   * links pick a town. A wider box around the map and a list of town names
+   * lets each name in the list pick its town as well, because both links
+   * carry the same href.
+   */
+  let { scope = '.county-map' }: { scope?: string } = $props();
+
+  /**
    * The map is drawn twice.
    *
    * SVG paints in document order and has no z-index, so a town picked out in
@@ -35,17 +43,19 @@
    * These rules name each town, so they cannot be written by hand in a scoped
    * block. Without `:has()` a reader simply never sees a town lift.
    */
-  const lift = towns
-    .map((m) => {
-      const on = `.county-map:has([data-rest="${m.key}"]:is(:hover,:focus-visible))`;
-      return (
-        `${on} [data-rest="${m.key}"]{opacity:0}` +
-        `${on} [data-pick="${m.key}"]{opacity:1}` +
-        `@media (hover:hover) and (pointer:fine){` +
-        `${on} [data-pick="${m.key}"]{scale:var(--lift-scale)}}`
-      );
-    })
-    .join('');
+  const lift = $derived(
+    towns
+      .map((m) => {
+        const on = `${scope}:has(a[href="${m.href}"]:is(:hover,:focus-visible))`;
+        return (
+          `${on} [data-rest="${m.key}"]{opacity:0}` +
+          `${on} [data-pick="${m.key}"]{opacity:1}` +
+          `@media (hover:hover) and (pointer:fine){` +
+          `${on} [data-pick="${m.key}"]{scale:var(--lift-scale)}}`
+        );
+      })
+      .join('')
+  );
 </script>
 
 <svelte:head>
