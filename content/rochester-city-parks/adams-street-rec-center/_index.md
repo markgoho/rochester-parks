@@ -9,7 +9,6 @@ address:
   addressCountry: 'US'
 amenities:
   - Baseball Diamond
-  - Fitness Room
   - Football Field
   - Game Room
   - Gym

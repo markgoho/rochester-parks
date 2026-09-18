@@ -12,7 +12,6 @@ amenities:
   - Baseball Diamond
   - Basketball Court
   - Computer Lab
-  - Fitness Room
   - Football Field
   - Game Room
   - Gym

@@ -9,7 +9,7 @@ acres: 155.05
 amenities:
   - Baseball Diamond
   - Bathroom
-  - Concessions
+  - Concession Stand
   - Disc Golf
   - Dog Park
   - Fishing

@@ -14,7 +14,6 @@ acres: 11.38
 amenities:
   - Baseball Diamond
   - Basketball Court
-  - Fountain
   - Gazebo
   - Memorial
   - Open Field

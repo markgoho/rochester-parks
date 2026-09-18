@@ -40,8 +40,9 @@ export function mergeAmenities(existing: string[], added: string[]): string[] {
   const have = new Set(existing.map(normaliseAmenity));
   const merged = [...existing];
   for (const name of added) {
-    if (have.has(normaliseAmenity(name))) continue;
-    have.add(normaliseAmenity(name));
+    const key = normaliseAmenity(name);
+    if (have.has(key)) continue;
+    have.add(key);
     merged.push(name);
   }
   return merged.sort((a, b) => a.localeCompare(b, 'en'));
@@ -64,7 +65,7 @@ export function withAmenities(source: string, names: string[]): string {
   while (start !== -1 && stop < end && lines[stop].startsWith('  - ')) stop++;
   const quoted =
     start !== -1 &&
-    lines.slice(start + 1, stop).some((l) => l.startsWith("  - '"));
+    lines.slice(start + 1, stop).some((line) => line.startsWith("  - '"));
   const block = [
     'amenities:',
     ...names.map((name) => (quoted ? `  - '${name}'` : `  - ${name}`)),

@@ -14,7 +14,7 @@ amenities:
   - Beach
   - Boat Launch
   - Camping
-  - Concessions
+  - Concession Stand
   - Cross-Country Skiing
   - Fishing
   - Playground

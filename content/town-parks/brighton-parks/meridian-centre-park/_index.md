@@ -16,7 +16,7 @@ amenities:
   - Baseball Diamond
   - Bathroom
   - Canal
-  - Concessions
+  - Concession Stand
   - Dock
   - Fishing
   - Open Field

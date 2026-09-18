@@ -10,7 +10,6 @@ address:
   addressCountry: 'US'
 amenities:
   - Bench
-  - Fountain
 sameAs:
   - 'https://www.cityofrochester.gov/locations/jones-square-park'
 geo:

@@ -16,15 +16,15 @@ import {
   type AmenityMap,
 } from '../src/lib/amenities';
 
-interface Row {
+/** One Park from the crawl, with the amenities its own official page lists. */
+interface CrawlRow {
   file: string;
-  kind: string;
   amenities: string[];
 }
 
 const { rows } = JSON.parse(
   readFileSync('docs/research/amenities-2026-09-18.json', 'utf8')
-) as { rows: Row[] };
+) as { rows: CrawlRow[] };
 const { map } = JSON.parse(
   readFileSync('docs/research/amenity-map.json', 'utf8')
 ) as { map: AmenityMap };
@@ -33,7 +33,6 @@ const updates: { file: string; source: string }[] = [];
 const unmapped = new Set<string>();
 
 for (const row of rows) {
-  if (row.kind !== 'own-page') continue;
   const mapped = mapAmenities(row.amenities, map);
   mapped.unmapped.forEach((entry) => unmapped.add(entry));
   if (!mapped.names.length) continue;

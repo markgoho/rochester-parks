@@ -12,7 +12,7 @@ acres: 7.29
 amenities:
   - Baseball Diamond
   - Bathroom
-  - Concessions
+  - Concession Stand
   - Football Field
   - Open Field
   - Playground

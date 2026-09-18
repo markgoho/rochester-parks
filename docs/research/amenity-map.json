@@ -1,5 +1,5 @@
 {
-  "note": "Maps each amenity string from the official pages (trimmed, lowercased) to the canonical amenity names it gives. An empty list means the string is not an amenity: a link, parking, a program, a building feature or a view. Built for #69 from amenities-2026-09-18.json.",
+  "note": "Maps each amenity string from the official pages (trimmed, lowercased) to the canonical amenity names it gives. An empty list means the string is not an amenity: a link, parking, a program, a building feature, a view or a landmark. Built for #69 from amenities-2026-09-18.json.",
   "map": {
     "1 cricket pitch": [
       "Cricket Pitch"
@@ -148,7 +148,7 @@
     ],
     "a concession/restroom facility": [
       "Bathroom",
-      "Concessions"
+      "Concession Stand"
     ],
     "a deck viewing area": [
       "Overlook"
@@ -441,7 +441,7 @@
       "Computer Lab"
     ],
     "concession stand": [
-      "Concessions"
+      "Concession Stand"
     ],
     "connection to canalway trail": [
       "Trails",
@@ -534,7 +534,7 @@
       "Fitness Course"
     ],
     "fitness room": [
-      "Fitness Room"
+      "Gym"
     ],
     "fitness track": [
       "Trails"
@@ -547,7 +547,7 @@
       "Open Field"
     ],
     "food service": [
-      "Concessions"
+      "Concession Stand"
     ],
     "football field": [
       "Football Field"
@@ -606,7 +606,7 @@
       "Golf Course"
     ],
     "golf driving range": [
-      "Golf Course"
+      "Driving Range"
     ],
     "gravel parking lot off scribner road": [],
     "gravelle lodge (seasonal)": [
@@ -682,9 +682,7 @@
     "historic 1905 dentzel carousel (ada-accessible)": [
       "Carousel"
     ],
-    "historic fountain": [
-      "Fountain"
-    ],
+    "historic fountain": [],
     "historic stardust ballroom (rentable)": [],
     "horseback riding": [
       "Bridle Trail"
@@ -847,7 +845,7 @@
     ],
     "one concession/restroom facility": [
       "Bathroom",
-      "Concessions"
+      "Concession Stand"
     ],
     "one lodge - carmen clark lodge (up to 100 people)": [
       "Lodge"
@@ -1106,9 +1104,7 @@
     "roger robach community center (event venue)": [
       "Lodge"
     ],
-    "rotary fountain": [
-      "Fountain"
-    ],
+    "rotary fountain": [],
     "rowing club facility": [],
     "rugby field": [
       "Rugby Field"
@@ -1195,7 +1191,7 @@
       "Meeting Room"
     ],
     "snack bar / vending machines": [
-      "Concessions"
+      "Concession Stand"
     ],
     "snowmobile trails": [
       "Snowmobile Trail"
@@ -1512,7 +1508,7 @@
       "Lodge"
     ],
     "weight room": [
-      "Fitness Room"
+      "Gym"
     ],
     "wetland boardwalks": [
       "Trails"

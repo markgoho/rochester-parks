@@ -15,7 +15,7 @@ amenities:
   - Baseball Diamond
   - Basketball Court
   - Bathroom
-  - Concessions
+  - Concession Stand
   - Lodge
   - Open Field
   - Playground

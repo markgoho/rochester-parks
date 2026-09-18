@@ -13,7 +13,7 @@ amenities:
   - Camping
   - Disc Golf
   - Dog Park
-  - Golf Course
+  - Driving Range
 sameAs:
   - 'https://www.henriettany.gov/community/park/lookup-park'
   - 'https://maps.google.com/?cid=7341272590432222810'
