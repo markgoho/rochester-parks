@@ -15,7 +15,7 @@ A named place inside a Park that keeps its own hours or takes its own bookings: 
 _Avoid_: Venue, building, amenity
 
 **Park page**:
-The page describing one Park. About 199 exist, sourced from markdown under `content/`.
+The page describing one Park, sourced from markdown under `content/`.
 _Avoid_: Park post, park entry
 
 **Neighborhood**:
