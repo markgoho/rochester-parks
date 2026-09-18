@@ -34,10 +34,8 @@
       </ul>
 
       {#if mapped}
-        <div class="section-map">
-          <!-- A town name in the list picks its town on the map. -->
-          <CountyMap scope=".section-body" />
-        </div>
+        <!-- A town name in the list picks its town on the map. -->
+        <CountyMap scope=".section-body" />
       {/if}
     </div>
   {/if}
@@ -71,23 +69,11 @@
     font-weight: var(--weight-bold);
   }
 
-  /* A town on the county's north edge grows past the top of the map, so the
-     map stands back far enough to keep it clear of the list. */
-  .section-map {
-    padding-top: var(--space-28);
-  }
-
   @media (min-width: 60rem) {
     .mapped {
       grid-template-columns: minmax(0, 1fr) 34rem;
       align-items: start;
       gap: var(--space-56);
-    }
-
-    /* The map stays in view while the list scrolls past it. */
-    .section-map {
-      position: sticky;
-      top: var(--space-28);
     }
   }
 
