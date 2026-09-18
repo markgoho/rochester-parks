@@ -8,6 +8,9 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 168
+geo:
+  latitude: 43.2474445
+  longitude: -77.4844796
 ---
 
 A page for this park is still being written.

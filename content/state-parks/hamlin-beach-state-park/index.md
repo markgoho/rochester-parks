@@ -22,6 +22,9 @@ amenities:
   - Snowmobile Trail
   - Snowshoeing
   - Trails
+geo:
+  latitude: 43.3621185
+  longitude: -77.9547826
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/hamlin-beach-state-park'
   - 'https://maps.google.com/?cid=10538041579045853947'
