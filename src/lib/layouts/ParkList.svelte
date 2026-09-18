@@ -104,158 +104,150 @@
   const sortable = $derived(measured >= 2);
 </script>
 
-<div class="wrap">
-  <Breadcrumbs ancestors={page.ancestors} current={page} />
+<Breadcrumbs ancestors={page.ancestors} current={page} />
 
-  <div class="head">
-    <div class="head__text">
-      <h1>{page.title}</h1>
-      {#if page.html}
-        <div class="prose intro">{@html page.html}</div>
-      {/if}
-      <p class="eyebrow counts">
-        <span><b class="mono">{parks.length}</b> parks</span>
-        <span><b class="mono">{written}</b> written up</span>
-        <span><b class="mono">{photographed}</b> photographed</span>
-        <span><b class="mono">{inventoried}</b> with amenity data</span>
-        <span><b class="mono">{measured}</b> measured</span>
-      </p>
-    </div>
-    {#if city}
-      <div class="locator locator--city">
-        <CityLocator {counts} />
-        <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
-      </div>
-    {:else if town || county}
-      <div class="locator"><TownLocator {town} /></div>
+<div class="head">
+  <div class="head__text">
+    <h1>{page.title}</h1>
+    {#if page.html}
+      <div class="prose intro">{@html page.html}</div>
     {/if}
+    <p class="eyebrow counts">
+      <span><b class="mono">{parks.length}</b> parks</span>
+      <span><b class="mono">{written}</b> written up</span>
+      <span><b class="mono">{photographed}</b> photographed</span>
+      <span><b class="mono">{inventoried}</b> with amenity data</span>
+      <span><b class="mono">{measured}</b> measured</span>
+    </p>
   </div>
-
-  {#snippet parkRow(child: ChildLink, i: number)}
-    {@const park = child.park!}
-    <!-- Every ordering of a section names a park's row the same way, so a
-         browser with view transitions moves each row to its new place. The
-         park's name has a name of its own, which the Park page's heading
-         shares, so the name moves from the list into the heading. -->
-    <li
-      class="row"
-      style:view-transition-name={parkTransitionName(child.url, 'row')}
-    >
-      <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
-      <a class="name" href={child.url}
-        ><span
-          class="name__text"
-          style:view-transition-name={parkTransitionName(child.url, 'name')}
-          >{child.title}</span
-        ></a
-      >
-      <span class="status"
-        ><ParkFlags status={park.status} label={false} /></span
-      >
-      <span class="tags">
-        {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
-          <span class="tag">{amenity}</span>
-        {/each}
-        {#if park.amenities.length > SHOWN}
-          <span class="tag tag--off">+{park.amenities.length - SHOWN} more</span
-          >
-        {:else if park.amenities.length === 0}
-          <span class="mono none">not recorded yet</span>
-        {/if}
-      </span>
-      <span class="mono end acres">
-        {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
-      </span>
-      <span class="mono end words">
-        {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
-          note{:else}—{/if}
-      </span>
-    </li>
-  {/snippet}
-
   {#if city}
-    <!-- Each grouping is its own prerendered page, so these are links. -->
-    <nav class="orders eyebrow" aria-label="Order">
-      {#if az}
-        <span aria-current="page">A to Z</span>
-      {:else}
-        <a href={azUrl}>A to Z</a>
-      {/if}
-      {#if byNeighborhood}
-        <span aria-current="page">By neighborhood</span>
-      {:else}
-        <a href={neighborhoodUrl}>By neighborhood</a>
-      {/if}
-    </nav>
-  {/if}
-
-  <!-- The heading that orders the table is the control: each ordering is its
-       own prerendered page, so it is a link, not a button. See ADR-0001. -->
-  <div class="row row--head eyebrow" class:row--head--plain={!sortable}>
-    {#if sortable}
-      <span class="sort-label">Sort</span>
-    {/if}
-    <span class="num" aria-hidden="true"></span>
-    {#if !az}
-      <a class="name" href={azUrl}>Park</a>
-    {:else}
-      <span class="name" aria-current={sortable ? 'page' : undefined}>Park</span
-      >
-    {/if}
-    <span class="status" aria-hidden="true">Status</span>
-    <span class="tags" aria-hidden="true">What is there</span>
-    {#if sortable && !bySize}
-      <a class="end acres" href={sizeUrl}>Size</a>
-    {:else}
-      <span class="end acres" aria-current={bySize ? 'page' : undefined}
-        >Size</span
-      >
-    {/if}
-    <span class="end words" aria-hidden="true">Write-up</span>
-  </div>
-
-  {#if byNeighborhood}
-    {#each groups as group (group.key)}
-      <section class="group" id={group.key}>
-        <h2 class="group__head">
-          {group.name}
-          <span class="mono eyebrow"
-            >{group.parks.length === 1
-              ? '1 park'
-              : `${group.parks.length} parks`}</span
-          >
-        </h2>
-        <ol class="table" aria-label="Parks in {group.name}, A to Z">
-          {#each group.parks as child, i (child.url)}
-            {@render parkRow(child, i)}
-          {/each}
-        </ol>
-      </section>
-    {/each}
-  {:else}
-    <!-- The number is a position in the list, and on the by-size page that
-         position is the rank, so the order is named for a screen reader too. -->
-    <ol
-      class="table"
-      aria-label="Parks in {section.title}, {bySize
-        ? 'largest first'
-        : 'A to Z'}"
-    >
-      {#each parks as child, i (child.url)}
-        {@render parkRow(child, i)}
-      {/each}
-    </ol>
-  {/if}
-
-  {#if other.length}
-    <h2 class="more">More about this section</h2>
-    <ul class="other">
-      {#each other as child (child.url)}
-        <li><a href={child.url}>{child.title}</a></li>
-      {/each}
-    </ul>
+    <div class="locator locator--city">
+      <CityLocator {counts} />
+      <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
+    </div>
+  {:else if town || county}
+    <div class="locator"><TownLocator {town} /></div>
   {/if}
 </div>
+
+{#snippet parkRow(child: ChildLink, i: number)}
+  {@const park = child.park!}
+  <!-- Every ordering of a section names a park's row the same way, so a
+       browser with view transitions moves each row to its new place. The
+       park's name has a name of its own, which the Park page's heading
+       shares, so the name moves from the list into the heading. -->
+  <li
+    class="row"
+    style:view-transition-name={parkTransitionName(child.url, 'row')}
+  >
+    <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
+    <a class="name" href={child.url}
+      ><span
+        class="name__text"
+        style:view-transition-name={parkTransitionName(child.url, 'name')}
+        >{child.title}</span
+      ></a
+    >
+    <span class="status"><ParkFlags status={park.status} label={false} /></span>
+    <span class="tags">
+      {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
+        <span class="tag">{amenity}</span>
+      {/each}
+      {#if park.amenities.length > SHOWN}
+        <span class="tag tag--off">+{park.amenities.length - SHOWN} more</span>
+      {:else if park.amenities.length === 0}
+        <span class="mono none">not recorded yet</span>
+      {/if}
+    </span>
+    <span class="mono end acres">
+      {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
+    </span>
+    <span class="mono end words">
+      {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
+        note{:else}—{/if}
+    </span>
+  </li>
+{/snippet}
+
+{#if city}
+  <!-- Each grouping is its own prerendered page, so these are links. -->
+  <nav class="orders eyebrow" aria-label="Order">
+    {#if az}
+      <span aria-current="page">A to Z</span>
+    {:else}
+      <a href={azUrl}>A to Z</a>
+    {/if}
+    {#if byNeighborhood}
+      <span aria-current="page">By neighborhood</span>
+    {:else}
+      <a href={neighborhoodUrl}>By neighborhood</a>
+    {/if}
+  </nav>
+{/if}
+
+<!-- The heading that orders the table is the control: each ordering is its
+     own prerendered page, so it is a link, not a button. See ADR-0001. -->
+<div class="row row--head eyebrow" class:row--head--plain={!sortable}>
+  {#if sortable}
+    <span class="sort-label">Sort</span>
+  {/if}
+  <span class="num" aria-hidden="true"></span>
+  {#if !az}
+    <a class="name" href={azUrl}>Park</a>
+  {:else}
+    <span class="name" aria-current={sortable ? 'page' : undefined}>Park</span>
+  {/if}
+  <span class="status" aria-hidden="true">Status</span>
+  <span class="tags" aria-hidden="true">What is there</span>
+  {#if sortable && !bySize}
+    <a class="end acres" href={sizeUrl}>Size</a>
+  {:else}
+    <span class="end acres" aria-current={bySize ? 'page' : undefined}
+      >Size</span
+    >
+  {/if}
+  <span class="end words" aria-hidden="true">Write-up</span>
+</div>
+
+{#if byNeighborhood}
+  {#each groups as group (group.key)}
+    <section class="group" id={group.key}>
+      <h2 class="group__head">
+        {group.name}
+        <span class="mono eyebrow"
+          >{group.parks.length === 1
+            ? '1 park'
+            : `${group.parks.length} parks`}</span
+        >
+      </h2>
+      <ol class="table" aria-label="Parks in {group.name}, A to Z">
+        {#each group.parks as child, i (child.url)}
+          {@render parkRow(child, i)}
+        {/each}
+      </ol>
+    </section>
+  {/each}
+{:else}
+  <!-- The number is a position in the list, and on the by-size page that
+       position is the rank, so the order is named for a screen reader too. -->
+  <ol
+    class="table"
+    aria-label="Parks in {section.title}, {bySize ? 'largest first' : 'A to Z'}"
+  >
+    {#each parks as child, i (child.url)}
+      {@render parkRow(child, i)}
+    {/each}
+  </ol>
+{/if}
+
+{#if other.length}
+  <h2 class="more">More about this section</h2>
+  <ul class="other">
+    {#each other as child (child.url)}
+      <li><a href={child.url}>{child.title}</a></li>
+    {/each}
+  </ul>
+{/if}
 
 <style>
   .head {

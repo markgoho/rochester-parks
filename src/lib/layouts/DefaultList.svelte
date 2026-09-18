@@ -14,7 +14,7 @@
   );
 </script>
 
-<div class="wrap">
+<div class="list">
   <Breadcrumbs ancestors={page.ancestors} current={page} />
   <h1>{page.title}</h1>
   {#if page.html}
@@ -69,14 +69,16 @@
     font-weight: var(--weight-bold);
   }
 
+  /* The container is the page column. .section-body cannot be its own
+     container, because a container cannot query itself. */
+  .list {
+    container-type: inline-size;
+  }
+
   /* The map goes beside the list only when both fit: one column of names
      (15rem), the gap (3.5rem), and a map still wide enough to read its town
      names (30rem). Below that the map could only go under a list that already
      names every town, so it adds scrolling and nothing else. */
-  .wrap {
-    container-type: inline-size;
-  }
-
   .section-body :global(.county-map) {
     display: none;
   }
