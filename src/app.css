@@ -41,8 +41,11 @@
   --land-active: var(--orange-ink);
 
   /* Type */
-  --display: 'Archivo Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --sans: 'Public Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /* Each web font is followed by a local fallback tuned to its metrics, so
+     the swap does not move text. See the fallback faces below. */
+  --display: 'Archivo Black', 'Archivo Black Fallback',
+    'Archivo Black Arial Fallback', sans-serif;
+  --sans: 'Public Sans', 'Public Sans Fallback', sans-serif;
   --mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   --text-3xs: 0.6875rem;
@@ -155,9 +158,9 @@
 @font-face {
   font-family: 'Archivo Black';
   font-style: normal;
-  font-weight: var(--weight-regular);
+  font-weight: 400;
   font-display: swap;
-  src: url('/fonts/ArchivoBlack-400.woff2') format('woff2');
+  src: url('./lib/fonts/ArchivoBlack-400.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -168,7 +171,7 @@
   font-style: normal;
   font-weight: 300 700;
   font-display: swap;
-  src: url('/fonts/PublicSans-300_700.woff2') format('woff2');
+  src: url('./lib/fonts/PublicSans-300_700.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -177,9 +180,9 @@
 @font-face {
   font-family: 'Space Mono';
   font-style: normal;
-  font-weight: var(--weight-regular);
+  font-weight: 400;
   font-display: swap;
-  src: url('/fonts/SpaceMono-400.woff2') format('woff2');
+  src: url('./lib/fonts/SpaceMono-400.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -188,12 +191,46 @@
 @font-face {
   font-family: 'Space Mono';
   font-style: normal;
-  font-weight: var(--weight-bold);
+  font-weight: 700;
   font-display: swap;
-  src: url('/fonts/SpaceMono-700.woff2') format('woff2');
+  src: url('./lib/fonts/SpaceMono-700.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Fallback faces. @font-face descriptors cannot read tokens, so the values
+   are literal. The overrides make a local font take the same width and line
+   box as the web font while it loads. Values come from the font files'
+   metrics: advance widths of uppercase text for the display font (it is
+   always uppercase), mixed-case text at weight 400 for the body font. */
+
+@font-face {
+  font-family: 'Archivo Black Fallback';
+  src: local('Arial Black'), local('ArialMT-Black');
+  size-adjust: 100%;
+  ascent-override: 87.81%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+
+/* For systems with Arial but without Arial Black. */
+@font-face {
+  font-family: 'Archivo Black Arial Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  size-adjust: 113.03%;
+  ascent-override: 77.68%;
+  descent-override: 18.58%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Public Sans Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 103.93%;
+  ascent-override: 91.41%;
+  descent-override: 21.65%;
+  line-gap-override: 0%;
 }
 
 *,
