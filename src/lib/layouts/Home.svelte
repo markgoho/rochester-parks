@@ -19,7 +19,7 @@
   const topAmenities = $derived((summary?.amenities ?? []).slice(0, 5));
 </script>
 
-<div class="wrap hero">
+<div class="hero">
   <div class="hero__text">
     <p class="eyebrow rule-in">Monroe County, New York</p>
     <h1>Every park,<br />town by town.</h1>
@@ -61,8 +61,8 @@
   </div>
 </div>
 
-<section class="stats">
-  <div class="wrap stats__grid">
+<section class="stats full-bleed">
+  <div class="stats__grid">
     <p>
       <span class="mono">{summary?.parks ?? 0}</span><span class="eyebrow"
         >Parks catalogued</span
@@ -86,7 +86,7 @@
   </div>
 </section>
 
-<section class="wrap finder">
+<section class="finder">
   <div>
     <h2>Or start from what you need.</h2>
     <p class="measure">
@@ -122,7 +122,7 @@
   </div>
 </section>
 
-<section class="wrap towns">
+<section class="towns">
   <h2>The towns</h2>
   <ul class="towns__grid">
     {#each towns as town (town.url)}
@@ -136,9 +136,7 @@
 </section>
 
 {#if page.html}
-  <section class="wrap">
-    <div class="prose">{@html page.html}</div>
-  </section>
+  <div class="prose">{@html page.html}</div>
 {/if}
 
 <style>
