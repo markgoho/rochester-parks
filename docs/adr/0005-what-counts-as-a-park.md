@@ -19,13 +19,13 @@ These are not Parks:
 
 When an R-Center has its own outdoor grounds, the grounds are the Park. The page is named for the grounds, and the R-Center is a Facility on that page, as Edgerton Park already does.
 
-For a city row, the city's own park GIS layer (`Hosted/Parks_Open_Space_Points`) is the first check. A row the layer types as "Street Mall" is not a Park. A row the layer names as a park, owned by the City of Rochester, is a Park unless it is school land.
+For a city row, the city's own park GIS layer (`Hosted/Parks_Open_Space_Points`) is the first check. A row the layer types as "Street Mall" is not a Park. A row the layer names as a park is a Park when its owner is the City of Rochester. A row owned by the City of Rochester School District is school land.
 
 ## Consequences
 
 - `meigs-linden` was the city's "MEIGS/LINDEN PARK" row, which the city also names Ellwanger & Barry Park. It was a second page for `ellwanger-and-barry-park` and is removed.
 - `james-madison-school` is removed. It is school grounds and is in no city park layer.
-- `west-high-field` stays. The city owns it and names it West High Park in its park layer.
+- `west-high-field` stays, renamed West High Park. It is not school land: the layer gives its owner as the City of Rochester. The layer's school ballfields (School #12, Charlotte Middle School) give their owner as the City of Rochester School District, so the owner field is the test.
 - Winton / Merchants stays rejected. The city layer types it as a Street Mall.
 - Barrington Street Park gets a page. The city layer lists it as a pocket park.
 - The R-Centers and community centers that are still Park pages are handled in #75 under this rule.

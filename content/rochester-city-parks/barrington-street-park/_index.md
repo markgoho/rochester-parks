@@ -8,6 +8,8 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bench
 geo:
   latitude: 43.14927
   longitude: -77.58162

@@ -261,7 +261,7 @@ ADR-0005 now defines what counts as a Park. The city's park GIS layer (`Hosted/P
 | --- | --- | --- |
 | Meigs / Linden | page removed, merged into Ellwanger and Barry Park | the layer's MEIGS/LINDEN PARK row is named Ellwanger & Barry Park, with the same 0.9 acres and coordinates |
 | James Madison School | page removed | school grounds, and in no city park layer |
-| West High Field | renamed West High Park | the layer names it West High Park, owned by the City of Rochester |
+| West High Field | renamed West High Park | the layer names it West High Park, owned by the City of Rochester, not the school district |
 | Otto Henderberg | renamed Otto Henderberg Square Park | the layer and OpenStreetMap both give this name |
 | Barrington Park | Barrington Street Park page added | the layer lists Barrington Street Park as a city pocket park at Park Ave and Barrington St |
 | Winton / Merchants | rejection stands | the layer types it as a Street Mall |
