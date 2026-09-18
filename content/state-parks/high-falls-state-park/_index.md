@@ -6,6 +6,9 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+geo:
+  latitude: 43.161314
+  longitude: -77.6134002
 sameAs:
   - 'https://www.governor.ny.gov/news/governor-hochul-announces-release-framework-plan-future-high-falls-state-park-downtown'
 ---

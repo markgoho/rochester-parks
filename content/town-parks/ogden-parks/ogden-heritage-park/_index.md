@@ -13,6 +13,9 @@ amenities:
   - Canal
   - Dock
   - Trails
+geo:
+  latitude: 43.1898395
+  longitude: -77.7854144
 sameAs:
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14708'
 ---
