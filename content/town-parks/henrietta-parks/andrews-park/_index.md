@@ -8,7 +8,7 @@ geo:
 address:
   streetAddress: 'Wildbriar Road'
   addressCountry: 'US'
-acres: 30.10
+acres: 30
 sameAs:
   - 'https://www.henriettany.gov/community/park/andrews-park-0'
   - 'https://maps.google.com/?cid=3525367573173641122'

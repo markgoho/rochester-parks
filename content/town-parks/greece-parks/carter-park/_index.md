@@ -7,7 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 11.40
+acres: 12
 amenities:
   - Barbecue
   - Baseball Diamond

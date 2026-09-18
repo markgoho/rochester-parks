@@ -32,7 +32,7 @@ interface FrontMatter {
   openingHours?: { dayOfWeek?: string[]; opens?: string; closes?: string }[];
   telephone?: string;
   amenities?: string[];
-  /** Park size in acres, from the park database. */
+  /** Park size in acres. ADR-0003 ranks the sources. */
   acres?: number;
 }
 

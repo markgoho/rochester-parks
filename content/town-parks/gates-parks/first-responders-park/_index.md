@@ -7,7 +7,7 @@ address:
   addressLocality: 'Gates'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 68.80
+acres: 68
 amenities:
   - Barbecue
   - Baseball Diamond

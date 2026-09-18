@@ -7,7 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 36.00
+acres: 36
 ---
 
 A page for this park is still being written.

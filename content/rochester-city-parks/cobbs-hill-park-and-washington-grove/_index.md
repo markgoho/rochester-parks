@@ -2,7 +2,7 @@
 title: "Cobb's Hill Park and Washington Grove"
 description: "A Rochester City Park called Cobb's Hill Park and Washington Grove"
 type: 'park'
-acres: 160
+acres: 109
 address:
   streetAddress: 'Culver Rd and Norris Dr'
   addressLocality: 'Rochester'

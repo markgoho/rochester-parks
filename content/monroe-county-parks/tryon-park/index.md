@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.16659099177715
   longitude: -77.5390514842538
-acres: 71.06
+acres: 82
 address:
   streetAddress: '998 Winton Road North'
   addressLocality: 'Rochester'

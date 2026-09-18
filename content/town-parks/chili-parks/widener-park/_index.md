@@ -10,7 +10,7 @@ address:
   addressLocality: 'Churchville'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 28.10
+acres: 28
 sameAs:
   - 'https://maps.google.com/?cid=16752422339001703920'
 ---

@@ -10,7 +10,7 @@ address:
   addressLocality: 'Spencerport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 16.30
+acres: 16.3
 amenities:
   - Trails
   - Canal

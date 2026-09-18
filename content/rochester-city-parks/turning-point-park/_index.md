@@ -2,7 +2,7 @@
 title: 'Turning Point Park'
 description: 'A Rochester City Park called Turning Point Park'
 type: 'park'
-acres: 112
+acres: 275
 address:
   streetAddress: '260 Boxart St'
   addressLocality: 'Rochester'

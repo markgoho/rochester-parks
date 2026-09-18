@@ -10,7 +10,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 31.40
+acres: 33.1
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/badgerow-park-south/'
   - 'https://maps.google.com/?cid=5127912719985404874'

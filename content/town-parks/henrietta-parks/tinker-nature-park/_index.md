@@ -8,7 +8,7 @@ geo:
 address:
   streetAddress: '1585 Calkins Road'
   addressCountry: 'US'
-acres: 66.18
+acres: 68
 sameAs:
   - 'https://www.henriettany.gov/community/park/tinker-nature-park-trail'
   - 'https://maps.google.com/?cid=7164683614928872072'

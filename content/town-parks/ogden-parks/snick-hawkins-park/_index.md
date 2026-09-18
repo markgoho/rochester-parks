@@ -5,6 +5,7 @@ type: 'park'
 geo:
   latitude: 43.193263390169164
   longitude: -77.80200871982332
+acres: 0.28
 sameAs:
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14709'
 ---

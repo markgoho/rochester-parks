@@ -5,7 +5,7 @@ type: 'park'
 geo:
   latitude: 43.25611958603375
   longitude: -77.45505098425168
-acres: 547.56
+acres: 550
 address:
   streetAddress: '1100 Lake Road'
   addressLocality: 'Webster'

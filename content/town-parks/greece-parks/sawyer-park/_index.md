@@ -7,7 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 9.98
+acres: 16.7
 amenities:
   - Barbecue
   - Bathroom

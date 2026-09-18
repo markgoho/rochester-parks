@@ -10,7 +10,7 @@ address:
   addressLocality: 'Gates'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 18.25
+acres: 16.5
 sameAs:
   - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14698'
   - 'https://maps.google.com/?cid=10785397571196152662'

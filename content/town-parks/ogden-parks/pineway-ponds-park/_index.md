@@ -10,7 +10,7 @@ address:
   addressLocality: 'Spencerport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 77.61
+acres: 76.6
 sameAs:
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14712'
   - 'https://maps.google.com/?cid=2856768458763345135'

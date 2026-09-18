@@ -7,6 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+acres: 7
 sameAs:
   - 'https://www.cityofrochester.gov/locations/pulaski-park'
 geo:

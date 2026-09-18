@@ -11,7 +11,7 @@ address:
   addressRegion: 'NY'
   postalCode: '14620'
   addressCountry: 'US'
-acres: 11.17
+acres: 10
 amenities:
   - Playground
   - Picnic Area

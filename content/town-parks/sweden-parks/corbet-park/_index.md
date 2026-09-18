@@ -10,7 +10,7 @@ address:
   addressLocality: 'Brockport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 9.35
+acres: 9.7
 sameAs:
   - 'https://maps.google.com/?cid=13701123708078165591'
 ---

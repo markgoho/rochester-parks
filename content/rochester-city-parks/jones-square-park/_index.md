@@ -2,7 +2,7 @@
 title: 'Jones Square Park'
 description: 'A Rochester City Park called Jones Square Park'
 type: 'park'
-acres: 6.7
+acres: 6
 address:
   streetAddress: '170 Saratoga Ave'
   addressLocality: 'Rochester'

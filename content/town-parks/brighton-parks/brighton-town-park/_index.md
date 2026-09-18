@@ -10,7 +10,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 44.35
+acres: 28
 amenities:
   - Lodge
   - Playground

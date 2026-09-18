@@ -7,7 +7,7 @@ address:
   addressLocality: 'Pittsford'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 36.46
+acres: 12
 amenities:
   - Baseball Diamond
   - Bathroom

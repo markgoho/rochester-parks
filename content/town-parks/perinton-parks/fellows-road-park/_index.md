@@ -10,7 +10,7 @@ address:
   addressLocality: 'Fairport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 33.57
+acres: 33.5
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/fellows-road-park/'
   - 'https://maps.google.com/?cid=1894491776644173436'

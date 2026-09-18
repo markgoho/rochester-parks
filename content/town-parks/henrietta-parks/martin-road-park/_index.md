@@ -8,7 +8,7 @@ geo:
 address:
   streetAddress: '1344 Martin Road'
   addressCountry: 'US'
-acres: 39.34
+acres: 80
 sameAs:
   - 'https://www.henriettany.gov/community/park/martin-road-park'
   - 'https://maps.google.com/?cid=16541012094866707235'

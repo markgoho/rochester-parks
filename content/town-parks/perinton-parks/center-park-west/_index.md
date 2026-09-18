@@ -10,7 +10,7 @@ address:
   addressLocality: 'Fairport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 63.70
+acres: 49
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/center-park-west/'
   - 'https://maps.google.com/?cid=6859297046720228498'

@@ -10,7 +10,7 @@ address:
   addressLocality: 'Rush'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 17.70
+acres: 24
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'

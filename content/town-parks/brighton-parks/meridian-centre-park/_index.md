@@ -10,7 +10,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 56.91
+acres: 24
 sameAs:
   - 'https://www.brightonny.gov/264/Meridian-Centre-Park'
   - 'https://maps.google.com/?cid=17150999376327278430'

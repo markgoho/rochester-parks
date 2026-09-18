@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.14625019308076
   longitude: -77.51748738425432
-acres: 375.89
+acres: 447
 address:
   streetAddress: '1879 Blossom Road'
   addressLocality: 'Rochester'
