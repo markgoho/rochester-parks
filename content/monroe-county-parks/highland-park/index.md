@@ -9,6 +9,14 @@ acres: 150
 address:
   streetAddress: 'Highland Drive'
   addressCountry: 'US'
+amenities:
+  - Amphitheater
+  - Garden
+  - Geocaching
+  - Ice Rink
+  - Lodge
+  - Open Field
+  - Playground
 sameAs:
   - 'https://www.monroecounty.gov/parks-highland'
   - 'https://maps.google.com/?cid=6220234093938880586'

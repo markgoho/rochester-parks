@@ -11,6 +11,21 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 43.6
+amenities:
+  - Barbecue
+  - Basketball Court
+  - Bathroom
+  - Cross-Country Skiing
+  - Dock
+  - Fishing
+  - Lodge
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Tennis Court
+  - Trails
+  - Volleyball
+  - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/perinton-park/'
   - 'https://maps.google.com/?cid=9194795050573807191'

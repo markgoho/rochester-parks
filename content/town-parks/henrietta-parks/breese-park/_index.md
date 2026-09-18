@@ -9,6 +9,10 @@ address:
   streetAddress: '108 Westcombe Park'
   addressCountry: 'US'
 acres: 72.68
+amenities:
+  - Bathroom
+  - Picnic Table
+  - Trails
 sameAs:
   - 'https://www.henriettany.gov/community/park/breese-park'
   - 'https://maps.google.com/?cid=7310924020670771240'

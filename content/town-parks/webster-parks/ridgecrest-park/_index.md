@@ -11,6 +11,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 32.95
+amenities:
+  - Basketball Court
+  - Box Lacrosse Rink
+  - Open Field
+  - Picnic Table
+  - Playground
+  - Skate Park
+  - Spray Park
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Ridgecrest-Park-28'
 hoursCheckedOn: '2026-09-18'

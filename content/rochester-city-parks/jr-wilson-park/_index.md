@@ -12,6 +12,7 @@ amenities:
   - Baseball Diamond
   - Basketball Court
   - Football Field
+  - Open Field
   - Playground
 sameAs:
   - 'https://www.cityofrochester.gov/locations/jr-wilson-park'

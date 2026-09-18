@@ -11,6 +11,12 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 2
+amenities:
+  - Bathroom
+  - Climbing Wall
+  - Playground
+  - Shelter
+  - Swingset
 sameAs:
   - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14703'
   - 'https://maps.google.com/?cid=17740540470686380631'

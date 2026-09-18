@@ -11,6 +11,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 11.38
+amenities:
+  - Baseball Diamond
+  - Basketball Court
+  - Fountain
+  - Gazebo
+  - Memorial
+  - Open Field
+  - Playground
 sameAs:
   - 'https://eastrochesterny.gov/Community-Resources/Parks/Edmund-Lyon-Park'
   - 'https://maps.google.com/?cid=15809498623671458000'

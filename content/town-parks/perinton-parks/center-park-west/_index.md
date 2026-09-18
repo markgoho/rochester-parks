@@ -11,6 +11,17 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 49
+amenities:
+  - Amphitheater
+  - Barbecue
+  - Bathroom
+  - Cross-Country Skiing
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Trails
+  - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/center-park-west/'
   - 'https://maps.google.com/?cid=6859297046720228498'

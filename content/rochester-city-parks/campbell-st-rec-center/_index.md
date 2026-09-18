@@ -10,9 +10,13 @@ address:
 amenities:
   - Baseball Diamond
   - Basketball Court
+  - Computer Lab
   - Football Field
+  - Game Room
+  - Gym
   - Playground
   - Recreation Center
+  - Spray Park
 geo:
   latitude: 43.1582317
   longitude: -77.6425758

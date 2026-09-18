@@ -10,6 +10,10 @@ address:
 amenities:
   - Baseball Diamond
   - Basketball Court
+  - Computer Lab
+  - Fitness Room
+  - Game Room
+  - Gym
   - Playground
   - Recreation Center
 geo:

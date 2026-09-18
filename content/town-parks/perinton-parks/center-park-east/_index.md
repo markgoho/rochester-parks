@@ -11,6 +11,12 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 45
+amenities:
+  - Bathroom
+  - Cross-Country Skiing
+  - Soccer Field
+  - Trails
+  - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/center-park-east/'
   - 'https://maps.google.com/?cid=14643518406208349684'

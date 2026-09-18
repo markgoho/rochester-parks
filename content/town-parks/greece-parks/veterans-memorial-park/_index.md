@@ -15,6 +15,10 @@ amenities:
   - Bathroom
   - Football Uprights
   - Open Field
+  - Playground
+  - Shelter
+  - Tennis Court
+  - Trails
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/veterans-memorial-park/'
   - 'https://maps.google.com/?cid=4949042133813089699'

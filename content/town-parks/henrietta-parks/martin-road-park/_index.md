@@ -9,6 +9,14 @@ address:
   streetAddress: '1344 Martin Road'
   addressCountry: 'US'
 acres: 80
+amenities:
+  - Bathroom
+  - Fishing
+  - Pickleball Court
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Tennis Court
 sameAs:
   - 'https://www.henriettany.gov/community/park/martin-road-park'
   - 'https://maps.google.com/?cid=16541012094866707235'

@@ -7,6 +7,10 @@ address:
   addressRegion: 'NY'
   postalCode: '14622'
   addressCountry: 'US'
+amenities:
+  - Bathroom
+  - Boat Launch
+  - Fishing
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park'
 hoursCheckedOn: '2026-09-18'

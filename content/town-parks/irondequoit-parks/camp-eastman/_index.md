@@ -2,6 +2,12 @@
 title: 'Camp Eastman'
 description: 'An Irondequoit Town Park called Camp Eastman'
 type: 'park'
+amenities:
+  - Camping
+  - Open Field
+  - Playground
+  - Spray Park
+  - Trails
 sameAs:
   - 'https://www.irondequoit.gov/Facilities/Facility/Details/Camp-Eastman-1'
 geo:

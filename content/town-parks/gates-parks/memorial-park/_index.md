@@ -11,6 +11,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 30
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Bocce
+  - Football Field
+  - Playground
+  - Shelter
+  - Soccer Field
 sameAs:
   - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14699'
   - 'https://maps.google.com/?cid=10374689392587300648'

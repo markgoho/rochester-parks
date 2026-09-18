@@ -6,6 +6,18 @@ geo:
   latitude: 43.1347851
   longitude: -77.4450807
 acres: 45
+amenities:
+  - Barbecue
+  - Baseball Diamond
+  - Basketball Court
+  - Bathroom
+  - Bocce
+  - Cross-Country Skiing
+  - Lodge
+  - Playground
+  - Shelter
+  - Tennis Court
+  - Trails
 sameAs:
   - 'https://www.penfieldny.gov/detail_T12_R13.php'
   - 'https://maps.google.com/?cid=2565256942226022790'

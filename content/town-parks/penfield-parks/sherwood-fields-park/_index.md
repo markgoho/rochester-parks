@@ -8,6 +8,8 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 75.96
+amenities:
+  - Trails
 sameAs:
   - 'https://www.penfieldny.gov/detail_T12_R57.php'
   - 'https://maps.google.com/?cid=8666603313349929511'

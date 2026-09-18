@@ -8,6 +8,9 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bench
+  - Memorial
 sameAs:
   - 'https://www.cityofrochester.gov/locations/washington-square-park'
 geo:

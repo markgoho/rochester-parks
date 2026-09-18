@@ -11,6 +11,18 @@ address:
   addressLocality: 'Chili'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bathroom
+  - Boat Launch
+  - Fishing
+  - Lodge
+  - Pickleball Court
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Sledding Hill
+  - Soccer Field
+  - Trails
 sameAs:
   - 'https://www.monroecounty.gov/parks-blackcreek'
   - 'https://maps.google.com/?cid=11834441221212537482'

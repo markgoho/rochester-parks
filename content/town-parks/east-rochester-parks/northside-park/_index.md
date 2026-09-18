@@ -11,6 +11,11 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 0.54
+amenities:
+  - Basketball Court
+  - Open Field
+  - Playground
+  - Shelter
 sameAs:
   - 'https://eastrochesterny.gov/Community-Resources/Parks/Northside-Park'
   - 'https://maps.google.com/?cid=3760783777344823520'

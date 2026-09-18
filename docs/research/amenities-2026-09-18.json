@@ -1,0 +1,1985 @@
+{
+  "crawledOn": "2026-09-18",
+  "note": "Amenities as printed on the official pages, from the crawl in #66. Only kind own-page: the page is about this Park only. amenity-map.json maps each string to canonical amenity names.",
+  "rows": [
+    {
+      "file": "content/town-parks/brighton-parks/brighton-town-park/_index.md",
+      "title": "Brighton Town Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.brightonny.gov/260/Brighton-Town-Park",
+      "amenities": [
+        "One lodge - Carmen Clark Lodge (up to 100 people)",
+        "Two pavilions (the smaller one holds up to 30 people, the larger one holds up to 50 people)",
+        "A playground",
+        "A softball field",
+        "A nature path through a wooded area located next to a 12-acre pond",
+        "A blacktop walkway to the NYS Erie Canal Path"
+      ]
+    },
+    {
+      "file": "content/town-parks/brighton-parks/buckland-park/_index.md",
+      "title": "Buckland Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.brightonny.gov/261/Buckland-Park",
+      "amenities": [
+        "One Major League Baseball field",
+        "Two junior baseball fields",
+        "Five multi-use fields",
+        "Three playgrounds",
+        "One concession/restroom facility",
+        "A lodge facility (up to 90 people)",
+        "Two tennis courts",
+        "Two basketball courts",
+        "A perimeter park trail",
+        "A pavilion (accommodates 40 people, with electric hook-up and lights)",
+        "Tennis Court Availability (linked)"
+      ]
+    },
+    {
+      "file": "content/town-parks/brighton-parks/corbetts-glen-nature-park/_index.md",
+      "title": "Corbett’s Glen Nature Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.brightonny.gov/262/Corbetts-Glen-Nature-Park",
+      "amenities": [
+        "2 miles of 8 ft. wide trails",
+        "A boardwalk area",
+        "A deck viewing area",
+        "A seating area that overlooks Postcard Falls"
+      ]
+    },
+    {
+      "file": "content/town-parks/brighton-parks/meridian-centre-park/_index.md",
+      "title": "Meridian Centre Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.brightonny.gov/264/Meridian-Centre-Park",
+      "amenities": [
+        "Three multiuse fields",
+        "Two little league fields",
+        "One youth softball field",
+        "A playground area",
+        "Two tennis courts",
+        "A concession/restroom facility",
+        "An amphitheatre",
+        "A boat dock",
+        "A fishing dock",
+        "A perimeter trail that has access to the NYS Erie Canal path",
+        "Tennis Court Availability (linked)"
+      ]
+    },
+    {
+      "file": "content/town-parks/brighton-parks/sandra-l-frankel-nature-park/_index.md",
+      "title": "Sandra L. Frankel Nature Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.brightonny.gov/827/Sandra-L-Frankel-Nature-Park",
+      "amenities": [
+        "The Brickyard Trail (0.8-mile multiuse, shared-use trail)"
+      ]
+    },
+    {
+      "file": "content/town-parks/east-rochester-parks/concrest-park/_index.md",
+      "title": "Concrest Park",
+      "kind": "own-page",
+      "sourceUrl": "https://eastrochesterny.gov/Community-Resources/Parks/Concrest-Park",
+      "amenities": [
+        "basketball court",
+        "new pavilion",
+        "playground equipment for smaller children"
+      ]
+    },
+    {
+      "file": "content/town-parks/east-rochester-parks/edmund-lyon-park/_index.md",
+      "title": "Edmund Lyon Park",
+      "kind": "own-page",
+      "sourceUrl": "https://eastrochesterny.gov/Community-Resources/Parks/Edmund-Lyon-Park",
+      "amenities": [
+        "Station of Heroes",
+        "Gazebo",
+        "Rotary Fountain",
+        "ball field",
+        "basketball court",
+        "playground equipment",
+        "open green space"
+      ]
+    },
+    {
+      "file": "content/town-parks/east-rochester-parks/legion-eyer-park/_index.md",
+      "title": "Legion Eyer Park",
+      "kind": "own-page",
+      "sourceUrl": "https://eastrochesterny.gov/Community-Resources/Parks/Legion-Eyer-Park",
+      "amenities": [
+        "Neil Marvel Pavilion",
+        "Quinzi Lodge",
+        "playground equipment",
+        "basketball courts",
+        "baseball fields",
+        "soccer fields"
+      ]
+    },
+    {
+      "file": "content/town-parks/east-rochester-parks/northside-park/_index.md",
+      "title": "Northside Park",
+      "kind": "own-page",
+      "sourceUrl": "https://eastrochesterny.gov/Community-Resources/Parks/Northside-Park",
+      "amenities": [
+        "playground equipment",
+        "pavilion",
+        "basketball court",
+        "open space"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/adams-street-rec-center/_index.md",
+      "title": "Adam's Street Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/adams-street-r-center",
+      "amenities": [
+        "Playground",
+        "Outdoor Tennis Courts",
+        "Indoor Pool",
+        "Gym",
+        "Game Room",
+        "Weight Room",
+        "Community Meeting Space"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/aqueduct-park/_index.md",
+      "title": "Aqueduct Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/aqueduct-park",
+      "amenities": [
+        "Picnic benches and tables"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/avenue-d-rec-center/_index.md",
+      "title": "Avenue D Rec. Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/avenue-d-r-center",
+      "amenities": [
+        "Outdoor Pool",
+        "Playground",
+        "Outdoor Courts",
+        "Community Room",
+        "Gym",
+        "Game Room",
+        "Computer Lab"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/campbell-st-rec-center/_index.md",
+      "title": "Campbell St Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/hope-r-center",
+      "amenities": [
+        "Summer lunch program",
+        "Kids Cafe dinner program (school year)",
+        "Playground",
+        "Outdoor basketball courts",
+        "Spray park",
+        "Gymnasium",
+        "Game room",
+        "Computer lab"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/carter-st-rec-center/_index.md",
+      "title": "Carter St. Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/carter-street-r-center",
+      "amenities": [
+        "Indoor and outdoor basketball courts",
+        "Gymnasium",
+        "Game room",
+        "Tennis courts",
+        "Ball fields and football/soccer field",
+        "Playground and spray park",
+        "Kitchen and meeting room"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/clinton-baden-rec-center/_index.md",
+      "title": "Clinton / Baden Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/trenton-and-pamela-jackson-r-center",
+      "amenities": [
+        "Boxing gym",
+        "Pool",
+        "Kids' cafe meals",
+        "Game room",
+        "Gymnasium",
+        "Meeting room",
+        "Computer lab",
+        "Outdoor basketball courts",
+        "Playground",
+        "Baseball/softball field"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/cobbs-hill-park-and-washington-grove/_index.md",
+      "title": "Cobb's Hill Park and Washington Grove",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/cobbs-hill-park-and-washington-grove",
+      "amenities": [
+        "Cobb's Hill Reservoir",
+        "Lake Riley",
+        "Baseball/softball/soccer fields",
+        "Basketball and tennis courts",
+        "Playground (ages 5-12) and teen fitness court",
+        "Hiking trails in Washington Grove",
+        "Two lodges (Lake Riley Lodge & Tay House Lodge)"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/conkey-corner-park-el-camino-trail/_index.md",
+      "title": "Conkey Corner Park & El Camino Trail",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/conkey-corner-park-el-camino-trail",
+      "amenities": [
+        "Playground",
+        "Benches",
+        "Perennial gardens"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/david-f-gantt-recreation-center/_index.md",
+      "title": "David F. Gantt Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/david-f-gantt-r-center",
+      "amenities": [
+        "Professional-grade kitchen",
+        "Music recording studio",
+        "Performance stage",
+        "Computer lab",
+        "Spray park",
+        "Playground",
+        "Tennis court",
+        "Regulation outdoor basketball court",
+        "Teen lounge",
+        "Game room",
+        "Gym",
+        "Meeting room",
+        "Fitness room"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/dr-martin-luther-king-jr-park-and-ice-rink/_index.md",
+      "title": "Dr. Martin Luther King Jr. Park & Ice Rink",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/dr-martin-luther-king-jr-park-ice-rink",
+      "amenities": [
+        "Ice skating",
+        "Skate rental",
+        "Skate sharpening",
+        "Group reservations available"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/edgerton-park/_index.md",
+      "title": "Edgerton Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/edgerton-r-center",
+      "amenities": [
+        "Historic Stardust Ballroom (rentable)",
+        "Game Room",
+        "Kitchen",
+        "Computer Lab",
+        "Meeting Room",
+        "Spray Park",
+        "Outdoor Basketball Courts",
+        "Football/Soccer Field",
+        "Playground",
+        "Baseball/Softball Field"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/farmington-park/_index.md",
+      "title": "Farmington Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/farmington-park",
+      "amenities": [
+        "One public tennis court",
+        "Two pickleball courts",
+        "Half-court basketball court",
+        "Ball fields"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/flint-st-recreation-center/_index.md",
+      "title": "Flint St Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/willie-walker-lightfoot-r-center",
+      "amenities": [
+        "Kids Cafe Dinner program",
+        "Outdoor pool",
+        "Baseball/softball fields",
+        "Outdoor basketball courts",
+        "Game room",
+        "Fitness room",
+        "Gym",
+        "Playground",
+        "Computer lab",
+        "Small meeting room"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/fourth-street-and-peck-street-park/_index.md",
+      "title": "Fourth Street and Peck Street Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/fourth-street-and-peck-street-park",
+      "amenities": [
+        "Greenspace",
+        "Half-court basketball court",
+        "Updated playground",
+        "Water spray feature (seasonal, summer only)"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/gardiner-avenue/_index.md",
+      "title": "Gardiner Avenue",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/roxie-ann-sinkler-r-center",
+      "amenities": [
+        "Playground",
+        "Basketball Court",
+        "Spray Park",
+        "Baseball Diamond",
+        "Athletic Fields"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/genesee-gateway-park/_index.md",
+      "title": "Genesee Gateway Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/genesee-gateway-park",
+      "amenities": [
+        "Unique playground",
+        "Full-court basketball court",
+        "Picnic areas",
+        "Car-top boat launch (canoes, kayaks, etc.)"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/jones-square-park/_index.md",
+      "title": "Jones Square Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/jones-square-park",
+      "amenities": [
+        "Historic fountain",
+        "benches",
+        "shade trees"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/jr-wilson-park/_index.md",
+      "title": "JR Wilson Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/jr-wilson-park",
+      "amenities": [
+        "Large greenspace for football or soccer",
+        "full-court basketball court",
+        "modern playground"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/lunsford-circle-park/_index.md",
+      "title": "Lunsford Circle Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/lunsford-circle-park",
+      "amenities": [
+        "Manicured gardens",
+        "gazebo (performance stage)"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/maplewood-park-and-rose-garden/_index.md",
+      "title": "Maplewood Park and Rose Garden",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/maplewood-park-and-rose-garden",
+      "amenities": [
+        "Nationally accredited Rose Garden (250+ cultivars)",
+        "Genesee Riverway Trail (National Recreation Trail)",
+        "Lower Falls Overlook Park with sculpture",
+        "Tennis courts and pickleball courts",
+        "Picnic areas and playgrounds",
+        "Wedding ceremony locations"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/sebastian-park/_index.md",
+      "title": "Sebastian Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/sebastian-park",
+      "amenities": [
+        "Modern playground",
+        "picnic pavilion",
+        "baseball fields",
+        "basketball court(s)"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/susan-b-anthony-square-park/_index.md",
+      "title": "Susan B. Anthony Square Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/susan-b-anthony-square-park",
+      "amenities": [
+        "Sculpture (\"Let's Have Tea\")",
+        "seating area"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/troup-street-park/_index.md",
+      "title": "Troup Street Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/troup-street-park",
+      "amenities": [
+        "Open ball field",
+        "updated soccer field",
+        "regulation-sized basketball court",
+        "two play structures",
+        "benches",
+        "swings",
+        "spray feature",
+        "bike racks",
+        "exercise trail"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/tryon-park-west/_index.md",
+      "title": "Tryon Park West",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/tryon-park-west",
+      "amenities": [
+        "Athletic fields for Little League and softball",
+        "basketball courts",
+        "tennis courts",
+        "play apparatus"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/turning-point-park/_index.md",
+      "title": "Turning Point Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/turning-point-park",
+      "amenities": [
+        "Hiking and biking trails",
+        "boardwalk (3,572 ft bridge over Genesee River)",
+        "nature watching",
+        "river views",
+        "connection to Genesee Riverway Trail"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/washington-square-park/_index.md",
+      "title": "Washington Square Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/washington-square-park",
+      "amenities": [
+        "Benches",
+        "monument to Abraham Lincoln"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/manhattan-square/_index.md",
+      "title": "Manhattan Square",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/dr-martin-luther-king-jr-park-ice-rink",
+      "amenities": [
+        "Outdoor ice rink",
+        "skate rentals",
+        "skate sharpening",
+        "open skate sessions",
+        "adult skate sessions"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/humboldt-recreation-center/_index.md",
+      "title": "Humboldt Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/humboldt-r-center",
+      "amenities": [
+        "OCFS-certified school-age childcare program",
+        "spray park",
+        "playground",
+        "outdoor courts",
+        "benches"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/ryan-community-center/_index.md",
+      "title": "Ryan Community Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/thomas-p-ryan-r-center",
+      "amenities": [
+        "Gymnasium with scoreboard and ceiling fans",
+        "game room (consoles, pool table, arcade games)",
+        "teen lounge",
+        "computer lab",
+        "sensory-friendly space",
+        "community meeting room",
+        "outdoor basketball and tennis courts",
+        "playground",
+        "spray park"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/south-avenue-recreation-center/_index.md",
+      "title": "South Avenue Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/frederick-douglass-r-center",
+      "amenities": [
+        "Playground",
+        "outdoor basketball court",
+        "gymnasium",
+        "game room",
+        "fitness room",
+        "computer lab"
+      ]
+    },
+    {
+      "file": "content/rochester-city-parks/lower-falls-park/_index.md",
+      "title": "Lower Falls Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/lower-falls-park",
+      "amenities": [
+        "Genesee Riverway Trail access",
+        "guided nature walks (seasonal)",
+        "Seth Green Fishing Access"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/abraham-lincoln-park/_index.md",
+      "title": "Abraham Lincoln Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-bayeast",
+      "amenities": [
+        "Waterfront Lodge (available for rent)",
+        "Public-use shelters",
+        "Picnic tables",
+        "Playground",
+        "Nature play area",
+        "Fishing access",
+        "Hiking/running trails",
+        "Geocaching (~17 caches)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/beikirch-park/index.md",
+      "title": "Beikirch Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-beikirch",
+      "amenities": [
+        "Lilac Arches",
+        "Greater Rochester Vietnam Veterans' Memorial",
+        "War on Terror Memorial",
+        "AIDS Memorial",
+        "Victims' Rights Memorial",
+        "Workers' Rights Memorial",
+        "9/11 First Responders' Memorial"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/black-creek-park/_index.md",
+      "title": "Black Creek Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-blackcreek",
+      "amenities": [
+        "Pickleball courts",
+        "Hiking/running trails",
+        "Playground",
+        "Soccer field (rentable)",
+        "Two enclosed lodges (99 capacity each, heated, kitchen, fireplace)",
+        "One open-air shelter with picnic tables",
+        "Fishing access",
+        "Kayaking/canoeing",
+        "Seasonal bathrooms (May 1-Oct 31)",
+        "Sledding hill"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/churchville-park/index.md",
+      "title": "Churchville Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-churchville",
+      "amenities": [
+        "Soccer fields (4)",
+        "Tennis/pickleball courts (4)",
+        "Playgrounds",
+        "Golf course (27 holes)",
+        "Natural ice skating rink",
+        "Disc golf course",
+        "Five lodges and five shelters (rentable)",
+        "Non-motorized boat launch",
+        "Fishing areas",
+        "Restrooms (4 locations)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/devils-cove-park/_index.md",
+      "title": "Devil's Cove Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-devilscove",
+      "amenities": [
+        "Birdwatching",
+        "Fishing",
+        "Geocaching (~1 cache)",
+        "Hiking/Running",
+        "Kayaking/Canoeing"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/durand-eastman-park/index.md",
+      "title": "Durand Eastman Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-durandeastman",
+      "amenities": [
+        "8 shelters and 1 enclosed lodge (rentable)",
+        "Playground",
+        "Golf course",
+        "3 seasonal restrooms (May 1-Oct 15)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/ellison-park/index.md",
+      "title": "Ellison Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-ellison",
+      "amenities": [
+        "5 softball diamonds",
+        "1 multi-use athletic field",
+        "Playground",
+        "Off-leash dog park (registration required)",
+        "Tennis courts (4, lined for pickleball)",
+        "2 designated sledding hills",
+        "Non-motorized boat launch",
+        "4 restrooms (some seasonal)",
+        "4 enclosed lodges and 6 open-air shelters"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/genesee-valley-park/index.md",
+      "title": "Genesee Valley Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-geneseevalley",
+      "amenities": [
+        "7 softball fields",
+        "3 multi-use/soccer fields",
+        "1 cricket pitch",
+        "2 eighteen-hole golf courses",
+        "7 open-air shelters (rentable)",
+        "2 seasonal restrooms",
+        "Playgrounds",
+        "Rowing club facility"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/greece-canal-park/index.md",
+      "title": "Greece Canal Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-greececanal",
+      "amenities": [
+        "Hiking trails",
+        "Off-leash dog park (registration required)",
+        "Playgrounds (2)",
+        "Tennis/pickleball courts (3)",
+        "Softball diamond",
+        "Soccer field",
+        "Youth group camping (reservation only)",
+        "Kayaking/canoeing",
+        "Fishing",
+        "Geocaching (~17 caches)",
+        "Two seasonal restrooms (handicap accessible)",
+        "Three lodges and one shelter (rentable)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/highland-park/index.md",
+      "title": "Highland Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-highland",
+      "amenities": [
+        "Lamberton Conservatory (daily 10am-4pm, $2-$4 admission)",
+        "Lily Pond ice skating rink",
+        "Highland Park Bowl (amphitheater)",
+        "Warner Castle and Sunken Garden",
+        "Lilac Arches",
+        "Playgrounds",
+        "Athletic fields (rentable)",
+        "Olmsted Lodge (rentable)",
+        "Geocaching (~5 caches)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/irondequoit-bay-marine-park/index.md",
+      "title": "Irondequoit Bay Marine Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park",
+      "amenities": [
+        "Boat launches",
+        "Fishing access",
+        "Public restroom (seasonal)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/irondequoit-bay-park-west/index.md",
+      "title": "Irondequoit Bay Park West",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-baywest",
+      "amenities": [
+        "Car-top boat launch (small, undeveloped)",
+        "Hiking/running trails",
+        "Fishing access",
+        "Cross-country skiing (non-groomed)",
+        "Kayaking/canoeing",
+        "Off-road cycling",
+        "Snowshoeing",
+        "Geocaching (~5 caches)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/lehigh-valley-trail-linear-park/index.md",
+      "title": "Lehigh Valley Trail Linear Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-lehighvalley",
+      "amenities": [
+        "Biking",
+        "Cross-country skiing (non-groomed)",
+        "Hiking/Running",
+        "Horseback Riding",
+        "Geo-caching"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/mendon-ponds-park/index.md",
+      "title": "Mendon Ponds Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-mendonponds",
+      "amenities": [
+        "6 lodges and 7 shelters (rentable)",
+        "Sharon's Sensory Garden",
+        "Wild Wings, Inc. (bird of prey facility)",
+        "Youth camping area",
+        "Car-top boat launch (non-motorized, seasonal May 1-Oct 31)",
+        "Playground",
+        "Pickleball courts",
+        "Rugby field",
+        "Multi-use athletic field"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/northampton-park/index.md",
+      "title": "Northampton Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-northampton",
+      "amenities": [
+        "Two rental lodges (Ski Lodge 80 cap., Knollwood Lodge 50 cap.)",
+        "Alpine Adventure Zone Natural Playground",
+        "Downhill ski slope with rope tow",
+        "Model airplane flying field",
+        "Soccer fields (2, rentable)",
+        "Hiking/running trails",
+        "Cross-country ski trails",
+        "Bridle trails",
+        "Playground",
+        "Picnic tables",
+        "Restrooms",
+        "Scout/youth camping area",
+        "Fishing access",
+        "Geocaching (~28 caches)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/oatka-creek-park/index.md",
+      "title": "Oatka Creek Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-oatka",
+      "amenities": [
+        "Lodge (50 capacity, picnic tables, wood stove, oven, refrigerator, bathrooms, water)",
+        "2 soccer fields (rentable)"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/ontario-beach-park/index.md",
+      "title": "Ontario Beach Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-ontariobeach",
+      "amenities": [
+        "Historic 1905 Dentzel Carousel (ADA-accessible)",
+        "Swimming area (seasonal, June 26-Sept 7, 2026, 11am-7pm)",
+        "Spray park (seasonal, June 26-Sept 8, 2026, 10am-7pm)",
+        "Synthetic ice rink (seasonal, Nov-mid-March)",
+        "5 open-air shelters (picnic tables, grills, electricity, water)",
+        "Roger Robach Community Center (event venue)",
+        "6 pickleball courts (May-Oct)",
+        "Playground",
+        "6 beach volleyball courts",
+        "Baseball fields",
+        "Fishing areas",
+        "Restrooms"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/powder-mills-park/index.md",
+      "title": "Powder Mills Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-powdermill",
+      "amenities": [
+        "Six lodges and four shelters (rentable)",
+        "Three restrooms (Rand, Powderhorn, Oak Tree Lodges)",
+        "Playground",
+        "Riedman Foundation Fish Hatchery"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/seneca-park/index.md",
+      "title": "Seneca Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-seneca",
+      "amenities": [
+        "Three picnic shelters",
+        "Wegman Lodge",
+        "Playgrounds",
+        "Hiking trails",
+        "Open fields",
+        "Pond with paved walking path"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/tryon-park/index.md",
+      "title": "Tryon Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-tryon",
+      "amenities": [
+        "Hiking trails",
+        "Natural scenic areas"
+      ]
+    },
+    {
+      "file": "content/monroe-county-parks/webster-park/_index.md",
+      "title": "Webster Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-webster",
+      "amenities": [
+        "Fishing pier",
+        "Tennis/pickleball courts",
+        "5 enclosed lodges (46-100 capacity)",
+        "6 open-air shelters",
+        "Public campground (tents, small trailers, large RVs)",
+        "Scout/youth camping area",
+        "Dog park",
+        "Playground",
+        "Restrooms"
+      ]
+    },
+    {
+      "file": "content/state-parks/genesee-valley-greenway-state-park/_index.md",
+      "title": "Genesee Valley Greenway State Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/genesee-valley-greenway-state-park",
+      "amenities": [
+        "Biking",
+        "Equestrian trails",
+        "Fishing",
+        "Hiking trails",
+        "Snowmobile trails",
+        "Snowshoeing",
+        "Cross-country skiing",
+        "Tours"
+      ]
+    },
+    {
+      "file": "content/state-parks/hamlin-beach-state-park/index.md",
+      "title": "Hamlin Beach State Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/hamlin-beach-state-park",
+      "amenities": [
+        "Beach swimming",
+        "264 campsites",
+        "Hiking/biking trails",
+        "Boat launches",
+        "Fishing",
+        "Playground",
+        "5 pavilions",
+        "Shelters",
+        "Grills",
+        "Food service",
+        "Showers",
+        "Snowmobile trails",
+        "Cross-country skiing/snowshoeing"
+      ]
+    },
+    {
+      "file": "content/state-parks/irondequoit-bay-state-marine-park/_index.md",
+      "title": "Irondequoit Bay State Marine Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park",
+      "amenities": [
+        "Boat launches",
+        "Fishing access",
+        "Public restroom (seasonal)"
+      ]
+    },
+    {
+      "file": "content/town-parks/gates-parks/first-responders-park/_index.md",
+      "title": "First Responders Park",
+      "kind": "own-page",
+      "sourceUrl": "https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14702",
+      "amenities": [
+        "20' x 60' open pavilion",
+        "4 soccer fields",
+        "restroom facilities",
+        "baseball field",
+        "2 play structures",
+        "swing set",
+        "climbers",
+        "tire swing",
+        "accessible fishing pier",
+        "9 hole Woodlands disc golf course"
+      ]
+    },
+    {
+      "file": "content/town-parks/gates-parks/lions-park/_index.md",
+      "title": "Lions Park",
+      "kind": "own-page",
+      "sourceUrl": "https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14697",
+      "amenities": [
+        "enclosed shelter with covered patio",
+        "kitchen with stove, microwave, refrigerator and freezer",
+        "3 lighted tennis courts",
+        "lighted basketball court",
+        "sand volleyball",
+        "soccer/football field",
+        "playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/gates-parks/memorial-park/_index.md",
+      "title": "Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14699",
+      "amenities": [
+        "3 ball diamonds",
+        "2 football/soccer fields",
+        "natural pond",
+        "playground",
+        "bocce court",
+        "outdoor restrooms",
+        "enclosed shelter with covered patio",
+        "small kitchen with stove, microwave, refrigerator and freezer",
+        "ADA restroom facilities inside",
+        "open pavilion available for rental"
+      ]
+    },
+    {
+      "file": "content/town-parks/gates-parks/wegman-road-park/_index.md",
+      "title": "Wegman Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14703",
+      "amenities": [
+        "20' x 40' open pavilion (rentable)",
+        "2 play structures",
+        "climbing wall",
+        "swing set",
+        "accessible restroom"
+      ]
+    },
+    {
+      "file": "content/town-parks/gates-parks/westgate-park/_index.md",
+      "title": "Westgate Park",
+      "kind": "own-page",
+      "sourceUrl": "https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14698",
+      "amenities": [
+        "enclosed shelter with covered patio",
+        "kitchen with stove, refrigerator and freezer",
+        "lighted tennis court",
+        "2 pickleball courts",
+        "4 basketball courts",
+        "2 baseball fields",
+        "2 playgrounds",
+        "nature trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/riga-parks/sanford-road-park/_index.md",
+      "title": "Sanford Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.townofriga.com/town-clerk/maher-lodge/",
+      "amenities": [
+        "kitchen with stovetop, refrigerator/freezer and microwave (no oven)",
+        "gas fireplace and heating",
+        "air conditioning",
+        "18 eight-foot tables, 1 six-foot table, 116 chairs",
+        "outdoor pavilion area"
+      ]
+    },
+    {
+      "file": "content/town-parks/wheatland-parks/freeman-park/_index.md",
+      "title": "Freeman Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.townofwheatland.org/points-of-interest",
+      "amenities": [
+        "pavilion (reservable by Town residents)",
+        "playground equipment",
+        "baseball/softball field",
+        "green space"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/adeline-park/_index.md",
+      "title": "Adeline Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/adeline-park/",
+      "amenities": [
+        "Basketball courts (lighted)",
+        "Lodge for rental.",
+        "Picnic areas",
+        "Playground",
+        "Restrooms (The restrooms are currently closed for the 2020 season. There is a portable toilet located on site)",
+        "Soccer fields",
+        "Tennis courts (lighted)"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/badgerow-park-south/_index.md",
+      "title": "Badgerow Park South",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/badgerow-park-south/",
+      "amenities": [
+        "Tennis Courts",
+        "Playground",
+        "Open-air shelter (available for rent)",
+        "Soccer/Football Field",
+        "Baseball Fields",
+        "Trails (Trail Map)"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/basil-marella-park/_index.md",
+      "title": "Basil Marella Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/basil-marella-park/",
+      "amenities": [
+        "Tennis Courts",
+        "Playground",
+        "Open-air shelter (available for rent)",
+        "Trails",
+        "Disc Golf Course",
+        "Soccer/Football Fields",
+        "Inclusive Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/beverly-pappas-memorial-park/_index.md",
+      "title": "Beverly Papas Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/beverly-papas-park/",
+      "amenities": [
+        "Playground",
+        "Open Space"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/braddock-bay-park/_index.md",
+      "title": "Braddock Bay Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/braddock-bay-park/",
+      "amenities": [
+        "Playground",
+        "Boardwalk to the bay",
+        "Open-air Shelters (available for rent)",
+        "2 Lodges (available for rent)",
+        "Hiking Trails",
+        "Observation platform",
+        "Handicapped-accessible canoe/kayak launch (located near Braddock Bay Marina property)",
+        "Restrooms Open May-October"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/carter-park/_index.md",
+      "title": "Carter Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/carter-park/",
+      "amenities": [
+        "Playground-NEW In 2026!",
+        "Baseball Fields",
+        "Open-air shelter (available for rent)",
+        "Tennis Courts",
+        "Basketball Courts"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/columbus-park/_index.md",
+      "title": "Columbus Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/columbus-park/",
+      "amenities": [
+        "Playground (New as of May 2020!)",
+        "Open Space"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/frisbee-hill-park/_index.md",
+      "title": "Frisbee Hill Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/frisbee-hill-park/",
+      "amenities": [
+        "Playground",
+        "Open Space"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/goodwin-park/_index.md",
+      "title": "Goodwin Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/goodwin-park/",
+      "amenities": [
+        "Playground",
+        "Picnic Tables"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/grandview-park/_index.md",
+      "title": "Grandview Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/grandview-park/",
+      "amenities": [
+        "Playground",
+        "Baseball Field",
+        "Soccer/Football Field",
+        "Tennis Courts",
+        "Restrooms (open May-October)"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/henpeck-park/_index.md",
+      "title": "Henpeck Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/henpeck-park/",
+      "amenities": [
+        "Connection to Canalway Trail",
+        "Grills",
+        "Picnic Tables",
+        "Fishing access",
+        "Car top boat launch"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/sawyer-park/_index.md",
+      "title": "Sawyer Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/sawyer-park/",
+      "amenities": [
+        "Playground",
+        "Open-air shelter (available for rent)",
+        "Disc Golf Course",
+        "Trails",
+        "Restrooms Open May-October"
+      ]
+    },
+    {
+      "file": "content/town-parks/greece-parks/veterans-memorial-park/_index.md",
+      "title": "Veteran's Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/veterans-memorial-park/",
+      "amenities": [
+        "Tennis Courts",
+        "Basketball Courts",
+        "Baseball Field",
+        "Playground",
+        "Open-air shelter (available for rent)",
+        "Trails (Trail Map)",
+        "Restrooms Open May-October"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/andrews-park/_index.md",
+      "title": "Andrews Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/andrews-park-0",
+      "amenities": [
+        "No Parking",
+        "Picnic Area",
+        "Walking Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/belmanor-park/_index.md",
+      "title": "Belmanor Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/belmanor-park",
+      "amenities": [
+        "Greenspace",
+        "No Parking"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/breese-park/_index.md",
+      "title": "Breese Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/breese-park",
+      "amenities": [
+        "Parking Areas",
+        "Picnic Tables",
+        "Public Restrooms",
+        "Walking Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/hoskins-park/_index.md",
+      "title": "Hoskins Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/hoskins-park",
+      "amenities": [
+        "Picnic Area",
+        "Walking Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/kenwick-park/_index.md",
+      "title": "Kenwick Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/kenwick-park",
+      "amenities": [
+        "Parking Areas",
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/lookup-park/_index.md",
+      "title": "Lookup Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/lookup-park",
+      "amenities": [
+        "Cabin Rentals",
+        "Dog Park",
+        "Disc Golf Course: short",
+        "Golf Driving Range"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/martin-road-park/_index.md",
+      "title": "Martin Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/martin-road-park",
+      "amenities": [
+        "Catch and Release Fishing Pond (NO SWIMMING)",
+        "Open Air Shelters/Pavilions",
+        "Parking Areas",
+        "Playground",
+        "Public Restrooms",
+        "Soccer Field",
+        "Tennis Courts/Pickleball Courts"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/tinker-nature-park/_index.md",
+      "title": "Tinker Nature Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/tinker-nature-park-trail",
+      "amenities": [
+        "Amphitheater",
+        "Hansen Nature Center",
+        "Hiking Trails",
+        "Open Air Shelters/Pavilions",
+        "Parking Areas",
+        "Playground",
+        "Tinker Museum",
+        "Volleyball Grass Courts (must provide your own net)",
+        "Wetland Boardwalks"
+      ]
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/henrietta-veterans-memorial-park/_index.md",
+      "title": "Veterans Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/veterans-memorial-park",
+      "amenities": [
+        "3/4 Mile Fitness Course",
+        "Amphitheater",
+        "Baseball Diamond",
+        "Basketball Court",
+        "Bocce Courts",
+        "Cabin Rentals",
+        "Open Air Shelters/Pavilions",
+        "Parking Areas",
+        "Picnic Area",
+        "Picnic Tables",
+        "Playground",
+        "Public Restrooms",
+        "Soccer Field",
+        "Softball Field",
+        "Tennis Courts/Pickleball Courts",
+        "Volleyball Grass Courts (must provide your own net)"
+      ]
+    },
+    {
+      "file": "content/town-parks/parma-parks/parma-park/_index.md",
+      "title": "Parma Park",
+      "kind": "own-page",
+      "sourceUrl": "https://hiltonny.myrec.com/info/facilities/details.aspx?FacilityID=14737",
+      "amenities": [
+        "Allardice Pavilion",
+        "Baseball Field 1",
+        "Baseball Field 2",
+        "Baseball Field 3",
+        "Baseball Field 4",
+        "Baseball Field 5",
+        "Baseball Field 6",
+        "Baseball Field 7",
+        "Baseball Field 8",
+        "Basketball Court 1",
+        "Basketball Court 2",
+        "Burritt Pavilion",
+        "Disc Golf Course",
+        "Football Field",
+        "Gaga Pit",
+        "Hess Pavilion",
+        "Lions Pavilion",
+        "Multi-Purpose Field 1",
+        "Multi-Purpose Field 2",
+        "Playgrounds",
+        "Soccer Field 1",
+        "Soccer Field 2",
+        "Soccer Field 3",
+        "Soccer Field 4",
+        "Soccer Field 5",
+        "Soccer Field 6",
+        "Soccer Field 7",
+        "Soccer Field 8",
+        "Tennis Court 1",
+        "Tennis Court 2",
+        "Tennis Court 3",
+        "Tennis Court 4",
+        "Trails",
+        "Volleyball Courts"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/bateau-play-area/_index.md",
+      "title": "Bateau Play Area",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Bateau-Terrace-13",
+      "amenities": [
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/bristol-tot-lot/_index.md",
+      "title": "Bristol Tot Lot",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Bristol-Tot-Lot-Home-Depot-Play-Area-15",
+      "amenities": [
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/camp-eastman/_index.md",
+      "title": "Camp Eastman",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Camp-Eastman-1",
+      "amenities": [
+        "Cabins",
+        "Athletic Fields",
+        "Splash Pad",
+        "Playground",
+        "Walking Trails"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/heyer-bayer-memorial-park/_index.md",
+      "title": "Heyer-Bayer Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/HeyerBayer-Memorial-Park-10",
+      "amenities": [
+        "Baseball Fields",
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/joshua-park/_index.md",
+      "title": "Joshua Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Joshua-Park-9",
+      "amenities": [
+        "Athletic Field",
+        "Playground",
+        "Basketball Court",
+        "Walking Track"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/mcavoy-park/_index.md",
+      "title": "McAvoy Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/McAvoy-Park-8",
+      "amenities": [
+        "Two softball fields",
+        "One multi-purpose rectangular field (football, soccer, field hockey, lacrosse)",
+        "One medium-size field",
+        "Sportex synthetic playing surfaces (all fields lighted)",
+        "Playground equipment",
+        "Snack bar / vending machines",
+        "Restroom facilities"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/pardee-tot-lot/_index.md",
+      "title": "Pardee Tot Lot",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Pardee-Road-16",
+      "amenities": [
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/sadies-place/_index.md",
+      "title": "Sadie's Place",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Sadies-Place-17",
+      "amenities": [
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/spezio-park/_index.md",
+      "title": "Spezio Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Spezio-Park-11",
+      "amenities": [
+        "Tennis",
+        "Pickleball Court",
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/vinton-play-area/_index.md",
+      "title": "Vinton Play Area",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Vinton-Road-12",
+      "amenities": [
+        "Playground"
+      ]
+    },
+    {
+      "file": "content/town-parks/ogden-parks/ogden-heritage-park/_index.md",
+      "title": "Ogden Heritage Park",
+      "kind": "own-page",
+      "sourceUrl": "https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14708",
+      "amenities": [
+        "Small dock to access canal",
+        "Seating - benches",
+        "Access to Canal Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/ogden-parks/pineway-ponds-park/_index.md",
+      "title": "Pineway Ponds Park",
+      "kind": "own-page",
+      "sourceUrl": "https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14712",
+      "amenities": [
+        "Boetcher Lodge",
+        "Owens Lodge",
+        "Canal Days Lodge (seasonal)",
+        "Gravelle Lodge (seasonal)",
+        "Three baseball fields",
+        "Three soccer/lacrosse fields",
+        "Football field",
+        "Splash Pad (Memorial Day-Labor Day, 10am-8pm)",
+        "Fishing (catch & release)",
+        "7 playfields",
+        "3 hard surface courts",
+        "1 playground",
+        "250 parking spots"
+      ]
+    },
+    {
+      "file": "content/town-parks/ogden-parks/rose-turner-park/_index.md",
+      "title": "Rose Turner Park",
+      "kind": "own-page",
+      "sourceUrl": "https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14711",
+      "amenities": [
+        "Natural walking trail connecting to the Erie Canal",
+        "Seating - benches and picnic tables"
+      ]
+    },
+    {
+      "file": "content/town-parks/ogden-parks/snick-hawkins-park/_index.md",
+      "title": "Snick Hawkins Park",
+      "kind": "own-page",
+      "sourceUrl": "https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14709",
+      "amenities": [
+        "Seating",
+        "Access to Canal Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/sweden-parks/sweden-town-park/_index.md",
+      "title": "Sweden Town Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.townofswedenny.gov/departments/parks-department-1582227806",
+      "amenities": [
+        "six multipurpose soccer/lacrosse/football fields (one lighted)",
+        "seven youth baseball fields",
+        "Nietopski Field (regulation baseball field)",
+        "concession stand",
+        "Town Lodge",
+        "restrooms",
+        "skate park",
+        "18-hole disc golf course",
+        "hiking trails",
+        "dog park",
+        "three playgrounds",
+        "three picnic pavilions",
+        "pond for fishing",
+        "Splash Pad"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/channing-philbrick-park/_index.md",
+      "title": "Channing Philbrick Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R46.php",
+      "amenities": [
+        "An open pavilion",
+        "Charcoal grills and picnic tables",
+        "Accessible fishing",
+        "A kiosk",
+        "Seasonal public restrooms"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/greenwood-park/_index.md",
+      "title": "Greenwood Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R49.php",
+      "amenities": [
+        "ball diamond",
+        "basketball courts",
+        "tennis/pickleball courts",
+        "playground equipment",
+        "multi-use fields",
+        "gravel parking lot off Scribner Road"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/harris-whalen-park/_index.md",
+      "title": "Harris Whalen Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R13.php",
+      "amenities": [
+        "playground",
+        "basketball courts",
+        "lighted tennis courts (5/1-10/30)",
+        "bocce courts",
+        "softball diamonds",
+        "nature trail",
+        "charcoal grills",
+        "cross country skiing",
+        "public restrooms",
+        "open pavilion",
+        "enclosed lodge available for rental"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/lasalles-landing-park/_index.md",
+      "title": "LaSalle's Landing Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R53.php",
+      "amenities": [
+        "Fishing access",
+        "small canoe/kayak launch"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/panorama-valley-park/_index.md",
+      "title": "Panorama Valley Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R54.php",
+      "amenities": [
+        "Picnic pavilion",
+        "access to Irondequoit Creek",
+        "canoe/kayak launch"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/rothfuss-park/_index.md",
+      "title": "Rothfuss Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R55.php",
+      "amenities": [
+        "Four full-sized rectangular athletic fields",
+        "boxed athletic field with turf",
+        "JACK'S Place (Dinosaur Themed Playground)",
+        "inclusive playground with wheelchair-accessible rubber surfacing",
+        "QR Fit Trail",
+        "perimeter trail",
+        "picnic pavilions (not to be reserved; first-come, first-served)",
+        "seasonal public restrooms",
+        "hiking trails"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/sherwood-fields-park/_index.md",
+      "title": "Sherwood Fields Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R57.php",
+      "amenities": [
+        "Primary and secondary loop trails",
+        "crushed stone trails made from repurposed materials",
+        "Don Cranston Bridge crossing Commission Ditch",
+        "accessible primary trails"
+      ]
+    },
+    {
+      "file": "content/town-parks/penfield-parks/veterans-memorial-park/_index.md",
+      "title": "Veterans Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.penfieldny.gov/detail_T12_R60.php",
+      "amenities": [
+        "Little league fields",
+        "softball/baseball diamonds",
+        "basketball courts",
+        "lighted tennis courts (5/1-10/30)",
+        "multi-use athletic fields",
+        "nature trail",
+        "tot fitness trail",
+        "playground",
+        "paved pathways",
+        "Veterans Memorial",
+        "accessible play equipment",
+        "open shelter, Dolomite Lodge",
+        "Penfield Amphitheater and Kiwanis Stage",
+        "restrooms",
+        "arboretum",
+        "picnic facilities"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/ayrualt-boat-launch/_index.md",
+      "title": "Ayrault Boat Launch",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/ayrault-boat-launch/",
+      "amenities": [
+        "Boat ramp",
+        "Docks",
+        "Parking designed for boat trailers"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/center-park-east/_index.md",
+      "title": "Center Park East",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/center-park-east/",
+      "amenities": [
+        "Cross Country Course",
+        "Cross Country Skiing",
+        "Hiking Trails",
+        "Restrooms",
+        "Soccer Fields",
+        "Water Fountains"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/center-park-west/_index.md",
+      "title": "Center Park West",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/center-park-west/",
+      "amenities": [
+        "4 soccer fields",
+        "2 playgrounds (ages 2-5 and 5-12)",
+        "Hiking trails",
+        "Cross country running course",
+        "Cross country skiing areas",
+        "Grills",
+        "Picnic tables",
+        "Restrooms",
+        "Water fountains",
+        "Shelters (available for rent)",
+        "Perinton Center Park Amphitheater"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/egypt-park/_index.md",
+      "title": "Egypt Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/egypt-park/",
+      "amenities": [
+        "Biking",
+        "Cross country skiing",
+        "Grills",
+        "Hiking trails",
+        "Multi-use field",
+        "Picnic tables",
+        "Playgrounds (ages 2-5 and 5-12)",
+        "Restrooms",
+        "Shelters",
+        "Water fountains"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/fellows-road-park/_index.md",
+      "title": "Fellows Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/fellows-road-park/",
+      "amenities": [
+        "Bang Board",
+        "Basketball",
+        "Buildings",
+        "Cross Country Skiing",
+        "Fireplace",
+        "Fitness Track",
+        "Grills",
+        "Heat",
+        "Picnic Tables",
+        "Pickleball (6 courts)",
+        "Playgrounds (Ages 2-5 and 5-12)",
+        "Restrooms",
+        "Shelters",
+        "Soccer",
+        "Softball",
+        "Tennis (2 courts)",
+        "Volleyball",
+        "Water Fountains"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/garnsey-arboretum/_index.md",
+      "title": "Garnsey Road Arboretum",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/garnsey-road-arboretum/",
+      "amenities": [
+        "Arboretum",
+        "Hiking trails",
+        "Multi-use field"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/kreag-road-park/_index.md",
+      "title": "Kreag Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/kreag-road-park/",
+      "amenities": [
+        "Basketball court",
+        "Docks (Erie Canal access)",
+        "Field lighting",
+        "Fishing access",
+        "Grills",
+        "Hiking trails",
+        "Picnic tables",
+        "Playgrounds (ages 2-5 and 5-12)",
+        "Restrooms",
+        "Shelters",
+        "Softball fields (2)",
+        "Tennis courts (2)",
+        "Water fountains"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/perinton-park/_index.md",
+      "title": "Perinton Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/perinton-park/",
+      "amenities": [
+        "Basketball",
+        "Biking",
+        "Building rental",
+        "Cross country skiing",
+        "Docks",
+        "Fishing",
+        "Grills",
+        "Heating",
+        "Hiking/trails",
+        "Picnic tables",
+        "Playgrounds (ages 2-5 and 5-12)",
+        "Restrooms",
+        "Shelters",
+        "Tennis",
+        "Volleyball",
+        "Water fountains"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/potter-park/_index.md",
+      "title": "Potter Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/potter-park/",
+      "amenities": [
+        "Water fountains",
+        "Air conditioning",
+        "Baseball fields",
+        "Basketball courts",
+        "Pickleball courts",
+        "Tennis courts",
+        "Soccer fields",
+        "Playground (ages 5-12)",
+        "Picnic tables",
+        "Restrooms",
+        "Heat",
+        "Lion's Den building",
+        "Community Garden"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/spring-lake-park/_index.md",
+      "title": "Spring Lake Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/spring-lake-park/",
+      "amenities": [
+        "Multi-use field",
+        "Playground (Ages 5-12)",
+        "Hiking/trails",
+        "Fishing",
+        "Picnic tables",
+        "Grills",
+        "Water fountains",
+        "Restrooms",
+        "Softball facilities"
+      ]
+    },
+    {
+      "file": "content/town-parks/perinton-parks/vincent-g-kennelley-park/_index.md",
+      "title": "Vincent G. Kennelley Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.fairportny.com/community/parks___recreation/index.php",
+      "amenities": [
+        "Gazebo"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/charles-e-sexton-memorial-park/_index.md",
+      "title": "Charles E. Sexton Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/North-Ponds-Park-26",
+      "amenities": [
+        "Pavilions",
+        "picnic area",
+        "trail",
+        "fitness course",
+        "disc golf",
+        "fishing"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/damico-park/_index.md",
+      "title": "D'Amico Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/DAmico-Park-22",
+      "amenities": [
+        "Baseball Fields"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/empire-park/_index.md",
+      "title": "Empire Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23",
+      "amenities": [
+        "baseball fields",
+        "trails",
+        "restrooms"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/finn-park/_index.md",
+      "title": "Finn Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Finn-Park-24",
+      "amenities": [
+        "Lodge Available for Rent",
+        "Playground",
+        "Walking/Bike Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/webster-first-responders-park/_index.md",
+      "title": "First Responders Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/First-Responders-Spray-ParkPlayground-40",
+      "amenities": [
+        "Basketball Courts",
+        "Grill",
+        "Pavilion (first come first serve)",
+        "Pickleball Courts",
+        "Picnic Tables",
+        "Playground",
+        "Restrooms (Seasonal)",
+        "Spray Park",
+        "Tennis Courts",
+        "Walking/Bike Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/kent-park/_index.md",
+      "title": "Irving Kent Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Kent-Park-25",
+      "amenities": [
+        "Arboretum",
+        "Pavilion (first come first serve)",
+        "Picnic Tables",
+        "Playground",
+        "Restrooms (Seasonal)",
+        "Soccer Fields",
+        "Softball Fields",
+        "Walking/Bike Trail"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/north-ponds-park/_index.md",
+      "title": "North Ponds Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/North-Ponds-Park-26",
+      "amenities": [
+        "Pavilions",
+        "picnic area",
+        "trail",
+        "fitness course",
+        "disc golf",
+        "fishing"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/ridge-park/_index.md",
+      "title": "Ridge Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/27",
+      "amenities": [
+        "Miracle Field",
+        "handicapped accessible playground",
+        "softball fields",
+        "pavilion",
+        "picnic area",
+        "trails",
+        "restrooms"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/ridgecrest-park/_index.md",
+      "title": "Ridgecrest Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Ridgecrest-Park-28",
+      "amenities": [
+        "Playground",
+        "skate park",
+        "basketball court",
+        "box lacrosse rink",
+        "spray park",
+        "open play field",
+        "picnic area"
+      ]
+    },
+    {
+      "file": "content/town-parks/webster-parks/sandbar-park/_index.md",
+      "title": "Sandbar Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Sandbar-Park-29",
+      "amenities": [
+        "playground",
+        "fishing",
+        "canoe/kayak launch",
+        "seasonal restrooms",
+        "waterfront picnic space"
+      ]
+    }
+  ]
+}

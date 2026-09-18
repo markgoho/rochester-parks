@@ -10,10 +10,13 @@ address:
   addressCountry: 'US'
 acres: 5.62
 amenities:
+  - Basketball Court
   - Bocce
   - Horseshoe
+  - Open Field
   - Playground
   - Soccer Field
+  - Trails
 sameAs:
   - 'https://www.irondequoit.gov/Facilities/Facility/Details/Joshua-Park-9'
   - 'https://maps.google.com/?cid=15975211993853895906'

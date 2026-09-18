@@ -9,6 +9,11 @@ address:
   streetAddress: '3850 East Henrietta Rd.'
   addressCountry: 'US'
 acres: 19.49
+amenities:
+  - Camping
+  - Disc Golf
+  - Dog Park
+  - Golf Course
 sameAs:
   - 'https://www.henriettany.gov/community/park/lookup-park'
   - 'https://maps.google.com/?cid=7341272590432222810'

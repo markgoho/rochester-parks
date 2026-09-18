@@ -9,6 +9,14 @@ address:
   streetAddress: '1585 Calkins Road'
   addressCountry: 'US'
 acres: 68
+amenities:
+  - Amphitheater
+  - Museum
+  - Nature Center
+  - Playground
+  - Shelter
+  - Trails
+  - Volleyball
 sameAs:
   - 'https://www.henriettany.gov/community/park/tinker-nature-park-trail'
   - 'https://maps.google.com/?cid=7164683614928872072'

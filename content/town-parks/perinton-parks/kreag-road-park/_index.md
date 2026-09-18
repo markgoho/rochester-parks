@@ -16,6 +16,9 @@ amenities:
   - Baseball Diamond
   - Basketball Court
   - Bathroom
+  - Canal
+  - Dock
+  - Fishing
   - Open Field
   - Picnic Table
   - Playground
@@ -24,8 +27,8 @@ amenities:
   - Shuffleboard Court
   - Swingset
   - Tennis Court
+  - Trails
   - Volleyball
-  - Canal
   - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/kreag-road-park/'

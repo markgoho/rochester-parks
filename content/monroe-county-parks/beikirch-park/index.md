@@ -5,6 +5,9 @@ type: 'county-parks'
 geo:
   latitude: 43.12822
   longitude: -77.60992
+amenities:
+  - Garden
+  - Memorial
 sameAs:
   - 'https://www.monroecounty.gov/parks-beikirch'
 ---

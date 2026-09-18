@@ -9,6 +9,19 @@ address:
   addressRegion: 'NY'
   postalCode: '14464'
   addressCountry: 'US'
+amenities:
+  - Barbecue
+  - Beach
+  - Boat Launch
+  - Camping
+  - Concessions
+  - Cross-Country Skiing
+  - Fishing
+  - Playground
+  - Shelter
+  - Snowmobile Trail
+  - Snowshoeing
+  - Trails
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/hamlin-beach-state-park'
   - 'https://maps.google.com/?cid=10538041579045853947'

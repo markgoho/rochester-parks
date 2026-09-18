@@ -7,6 +7,10 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bench
+  - Garden
+  - Playground
 sameAs:
   - 'https://www.cityofrochester.gov/locations/conkey-corner-park-el-camino-trail'
 geo:

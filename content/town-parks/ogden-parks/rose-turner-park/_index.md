@@ -12,8 +12,10 @@ address:
   addressCountry: 'US'
 acres: 16.3
 amenities:
-  - Trails
+  - Bench
   - Canal
+  - Picnic Table
+  - Trails
   - Water
 sameAs:
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14711'

@@ -1,0 +1,1533 @@
+{
+  "note": "Maps each amenity string from the official pages (trimmed, lowercased) to the canonical amenity names it gives. An empty list means the string is not an amenity: a link, parking, a program, a building feature or a view. Built for #69 from amenities-2026-09-18.json.",
+  "map": {
+    "1 cricket pitch": [
+      "Cricket Pitch"
+    ],
+    "1 multi-use athletic field": [
+      "Open Field"
+    ],
+    "1 playground": [
+      "Playground"
+    ],
+    "18 eight-foot tables, 1 six-foot table, 116 chairs": [],
+    "18-hole disc golf course": [
+      "Disc Golf"
+    ],
+    "2 baseball fields": [
+      "Baseball Diamond"
+    ],
+    "2 designated sledding hills": [
+      "Sledding Hill"
+    ],
+    "2 eighteen-hole golf courses": [
+      "Golf Course"
+    ],
+    "2 football/soccer fields": [
+      "Football Field",
+      "Soccer Field"
+    ],
+    "2 lodges (available for rent)": [
+      "Lodge"
+    ],
+    "2 miles of 8 ft. wide trails": [
+      "Trails"
+    ],
+    "2 pickleball courts": [
+      "Pickleball Court"
+    ],
+    "2 play structures": [
+      "Playground"
+    ],
+    "2 playgrounds": [
+      "Playground"
+    ],
+    "2 playgrounds (ages 2-5 and 5-12)": [
+      "Playground"
+    ],
+    "2 seasonal restrooms": [
+      "Bathroom"
+    ],
+    "2 soccer fields (rentable)": [
+      "Soccer Field"
+    ],
+    "20' x 40' open pavilion (rentable)": [
+      "Shelter"
+    ],
+    "20' x 60' open pavilion": [
+      "Shelter"
+    ],
+    "250 parking spots": [],
+    "264 campsites": [
+      "Camping"
+    ],
+    "3 ball diamonds": [
+      "Baseball Diamond"
+    ],
+    "3 hard surface courts": [],
+    "3 lighted tennis courts": [
+      "Tennis Court"
+    ],
+    "3 multi-use/soccer fields": [
+      "Soccer Field"
+    ],
+    "3 seasonal restrooms (may 1-oct 15)": [
+      "Bathroom"
+    ],
+    "3/4 mile fitness course": [
+      "Fitness Course"
+    ],
+    "4 basketball courts": [
+      "Basketball Court"
+    ],
+    "4 enclosed lodges and 6 open-air shelters": [
+      "Lodge",
+      "Shelter"
+    ],
+    "4 restrooms (some seasonal)": [
+      "Bathroom"
+    ],
+    "4 soccer fields": [
+      "Soccer Field"
+    ],
+    "5 enclosed lodges (46-100 capacity)": [
+      "Lodge"
+    ],
+    "5 open-air shelters (picnic tables, grills, electricity, water)": [
+      "Barbecue",
+      "Picnic Table",
+      "Shelter"
+    ],
+    "5 pavilions": [
+      "Shelter"
+    ],
+    "5 softball diamonds": [
+      "Baseball Diamond"
+    ],
+    "6 beach volleyball courts": [
+      "Volleyball"
+    ],
+    "6 lodges and 7 shelters (rentable)": [
+      "Lodge",
+      "Shelter"
+    ],
+    "6 open-air shelters": [
+      "Shelter"
+    ],
+    "6 pickleball courts (may-oct)": [
+      "Pickleball Court"
+    ],
+    "7 open-air shelters (rentable)": [
+      "Shelter"
+    ],
+    "7 playfields": [
+      "Open Field"
+    ],
+    "7 softball fields": [
+      "Baseball Diamond"
+    ],
+    "8 shelters and 1 enclosed lodge (rentable)": [
+      "Lodge",
+      "Shelter"
+    ],
+    "9 hole woodlands disc golf course": [
+      "Disc Golf"
+    ],
+    "9/11 first responders' memorial": [
+      "Memorial"
+    ],
+    "a blacktop walkway to the nys erie canal path": [
+      "Trails",
+      "Canal"
+    ],
+    "a boardwalk area": [
+      "Trails"
+    ],
+    "a boat dock": [
+      "Dock"
+    ],
+    "a concession/restroom facility": [
+      "Bathroom",
+      "Concessions"
+    ],
+    "a deck viewing area": [
+      "Overlook"
+    ],
+    "a fishing dock": [
+      "Fishing",
+      "Dock"
+    ],
+    "a kiosk": [],
+    "a lodge facility (up to 90 people)": [
+      "Lodge"
+    ],
+    "a nature path through a wooded area located next to a 12-acre pond": [
+      "Trails"
+    ],
+    "a pavilion (accommodates 40 people, with electric hook-up and lights)": [
+      "Shelter"
+    ],
+    "a perimeter park trail": [
+      "Trails"
+    ],
+    "a perimeter trail that has access to the nys erie canal path": [
+      "Trails",
+      "Canal"
+    ],
+    "a playground": [
+      "Playground"
+    ],
+    "a playground area": [
+      "Playground"
+    ],
+    "a seating area that overlooks postcard falls": [
+      "Overlook"
+    ],
+    "a softball field": [
+      "Baseball Diamond"
+    ],
+    "access to canal trail": [
+      "Trails",
+      "Canal"
+    ],
+    "access to irondequoit creek": [],
+    "accessible fishing": [
+      "Fishing"
+    ],
+    "accessible fishing pier": [
+      "Fishing"
+    ],
+    "accessible play equipment": [
+      "Playground"
+    ],
+    "accessible primary trails": [
+      "Trails"
+    ],
+    "accessible restroom": [
+      "Bathroom"
+    ],
+    "ada restroom facilities inside": [
+      "Bathroom"
+    ],
+    "adult skate sessions": [
+      "Ice Rink"
+    ],
+    "aids memorial": [
+      "Memorial"
+    ],
+    "air conditioning": [],
+    "allardice pavilion": [
+      "Shelter"
+    ],
+    "alpine adventure zone natural playground": [
+      "Playground"
+    ],
+    "amphitheater": [
+      "Amphitheater"
+    ],
+    "an amphitheatre": [
+      "Amphitheater"
+    ],
+    "an open pavilion": [
+      "Shelter"
+    ],
+    "arboretum": [
+      "Garden"
+    ],
+    "athletic field": [
+      "Open Field"
+    ],
+    "athletic fields": [
+      "Open Field"
+    ],
+    "athletic fields (rentable)": [
+      "Open Field"
+    ],
+    "athletic fields for little league and softball": [
+      "Baseball Diamond"
+    ],
+    "ball diamond": [
+      "Baseball Diamond"
+    ],
+    "ball field": [
+      "Baseball Diamond"
+    ],
+    "ball fields": [
+      "Baseball Diamond"
+    ],
+    "ball fields and football/soccer field": [
+      "Baseball Diamond",
+      "Football Field",
+      "Soccer Field"
+    ],
+    "bang board": [
+      "Playground"
+    ],
+    "baseball diamond": [
+      "Baseball Diamond"
+    ],
+    "baseball field": [
+      "Baseball Diamond"
+    ],
+    "baseball field 1": [
+      "Baseball Diamond"
+    ],
+    "baseball field 2": [
+      "Baseball Diamond"
+    ],
+    "baseball field 3": [
+      "Baseball Diamond"
+    ],
+    "baseball field 4": [
+      "Baseball Diamond"
+    ],
+    "baseball field 5": [
+      "Baseball Diamond"
+    ],
+    "baseball field 6": [
+      "Baseball Diamond"
+    ],
+    "baseball field 7": [
+      "Baseball Diamond"
+    ],
+    "baseball field 8": [
+      "Baseball Diamond"
+    ],
+    "baseball fields": [
+      "Baseball Diamond"
+    ],
+    "baseball/softball field": [
+      "Baseball Diamond"
+    ],
+    "baseball/softball fields": [
+      "Baseball Diamond"
+    ],
+    "baseball/softball/soccer fields": [
+      "Baseball Diamond",
+      "Soccer Field"
+    ],
+    "basketball": [
+      "Basketball Court"
+    ],
+    "basketball and tennis courts": [
+      "Tennis Court",
+      "Basketball Court"
+    ],
+    "basketball court": [
+      "Basketball Court"
+    ],
+    "basketball court 1": [
+      "Basketball Court"
+    ],
+    "basketball court 2": [
+      "Basketball Court"
+    ],
+    "basketball court(s)": [
+      "Basketball Court"
+    ],
+    "basketball courts": [
+      "Basketball Court"
+    ],
+    "basketball courts (lighted)": [
+      "Basketball Court"
+    ],
+    "beach swimming": [
+      "Beach"
+    ],
+    "benches": [
+      "Bench"
+    ],
+    "bike racks": [],
+    "biking": [
+      "Trails"
+    ],
+    "birdwatching": [],
+    "boardwalk (3,572 ft bridge over genesee river)": [
+      "Trails"
+    ],
+    "boardwalk to the bay": [
+      "Trails"
+    ],
+    "boat launches": [
+      "Boat Launch"
+    ],
+    "boat ramp": [
+      "Boat Launch"
+    ],
+    "bocce court": [
+      "Bocce"
+    ],
+    "bocce courts": [
+      "Bocce"
+    ],
+    "boetcher lodge": [
+      "Lodge"
+    ],
+    "box lacrosse rink": [
+      "Box Lacrosse Rink"
+    ],
+    "boxed athletic field with turf": [
+      "Open Field"
+    ],
+    "boxing gym": [
+      "Gym"
+    ],
+    "bridle trails": [
+      "Bridle Trail"
+    ],
+    "building rental": [
+      "Lodge"
+    ],
+    "buildings": [
+      "Lodge"
+    ],
+    "burritt pavilion": [
+      "Shelter"
+    ],
+    "cabin rentals": [
+      "Camping"
+    ],
+    "cabins": [
+      "Camping"
+    ],
+    "canal days lodge (seasonal)": [
+      "Lodge"
+    ],
+    "canoe/kayak launch": [
+      "Boat Launch"
+    ],
+    "car top boat launch": [
+      "Boat Launch"
+    ],
+    "car-top boat launch (canoes, kayaks, etc.)": [
+      "Boat Launch"
+    ],
+    "car-top boat launch (non-motorized, seasonal may 1-oct 31)": [
+      "Boat Launch"
+    ],
+    "car-top boat launch (small, undeveloped)": [
+      "Boat Launch"
+    ],
+    "catch and release fishing pond (no swimming)": [
+      "Fishing"
+    ],
+    "charcoal grills": [
+      "Barbecue"
+    ],
+    "charcoal grills and picnic tables": [
+      "Barbecue",
+      "Picnic Table"
+    ],
+    "climbers": [
+      "Playground"
+    ],
+    "climbing wall": [
+      "Climbing Wall"
+    ],
+    "cobb's hill reservoir": [],
+    "community garden": [
+      "Community Garden"
+    ],
+    "community meeting room": [
+      "Meeting Room"
+    ],
+    "community meeting space": [
+      "Meeting Room"
+    ],
+    "community room": [
+      "Meeting Room"
+    ],
+    "computer lab": [
+      "Computer Lab"
+    ],
+    "concession stand": [
+      "Concessions"
+    ],
+    "connection to canalway trail": [
+      "Trails",
+      "Canal"
+    ],
+    "connection to genesee riverway trail": [
+      "Trails"
+    ],
+    "cross country course": [
+      "Trails"
+    ],
+    "cross country running course": [
+      "Trails"
+    ],
+    "cross country skiing": [
+      "Cross-Country Skiing"
+    ],
+    "cross country skiing areas": [
+      "Cross-Country Skiing"
+    ],
+    "cross-country ski trails": [
+      "Cross-Country Skiing"
+    ],
+    "cross-country skiing": [
+      "Cross-Country Skiing"
+    ],
+    "cross-country skiing (non-groomed)": [
+      "Cross-Country Skiing"
+    ],
+    "cross-country skiing/snowshoeing": [
+      "Cross-Country Skiing",
+      "Snowshoeing"
+    ],
+    "crushed stone trails made from repurposed materials": [
+      "Trails"
+    ],
+    "disc golf": [
+      "Disc Golf"
+    ],
+    "disc golf course": [
+      "Disc Golf"
+    ],
+    "disc golf course: short": [
+      "Disc Golf"
+    ],
+    "docks": [
+      "Dock"
+    ],
+    "docks (erie canal access)": [
+      "Canal",
+      "Dock"
+    ],
+    "dog park": [
+      "Dog Park"
+    ],
+    "don cranston bridge crossing commission ditch": [],
+    "downhill ski slope with rope tow": [
+      "Ski Slope"
+    ],
+    "enclosed lodge available for rental": [
+      "Lodge"
+    ],
+    "enclosed shelter with covered patio": [
+      "Shelter"
+    ],
+    "equestrian trails": [
+      "Bridle Trail"
+    ],
+    "exercise trail": [
+      "Fitness Course"
+    ],
+    "field lighting": [],
+    "fireplace": [],
+    "fishing": [
+      "Fishing"
+    ],
+    "fishing (catch & release)": [
+      "Fishing"
+    ],
+    "fishing access": [
+      "Fishing"
+    ],
+    "fishing areas": [
+      "Fishing"
+    ],
+    "fishing pier": [
+      "Fishing"
+    ],
+    "fitness course": [
+      "Fitness Course"
+    ],
+    "fitness room": [
+      "Fitness Room"
+    ],
+    "fitness track": [
+      "Trails"
+    ],
+    "five lodges and five shelters (rentable)": [
+      "Lodge",
+      "Shelter"
+    ],
+    "five multi-use fields": [
+      "Open Field"
+    ],
+    "food service": [
+      "Concessions"
+    ],
+    "football field": [
+      "Football Field"
+    ],
+    "football/soccer field": [
+      "Football Field",
+      "Soccer Field"
+    ],
+    "four full-sized rectangular athletic fields": [
+      "Open Field"
+    ],
+    "full-court basketball court": [
+      "Basketball Court"
+    ],
+    "gaga pit": [
+      "Playground"
+    ],
+    "game room": [
+      "Game Room"
+    ],
+    "game room (consoles, pool table, arcade games)": [
+      "Game Room"
+    ],
+    "gas fireplace and heating": [],
+    "gazebo": [
+      "Gazebo"
+    ],
+    "gazebo (performance stage)": [
+      "Gazebo"
+    ],
+    "genesee riverway trail (national recreation trail)": [
+      "Trails"
+    ],
+    "genesee riverway trail access": [
+      "Trails"
+    ],
+    "geo-caching": [
+      "Geocaching"
+    ],
+    "geocaching (~1 cache)": [
+      "Geocaching"
+    ],
+    "geocaching (~17 caches)": [
+      "Geocaching"
+    ],
+    "geocaching (~28 caches)": [
+      "Geocaching"
+    ],
+    "geocaching (~5 caches)": [
+      "Geocaching"
+    ],
+    "golf course": [
+      "Golf Course"
+    ],
+    "golf course (27 holes)": [
+      "Golf Course"
+    ],
+    "golf driving range": [
+      "Golf Course"
+    ],
+    "gravel parking lot off scribner road": [],
+    "gravelle lodge (seasonal)": [
+      "Lodge"
+    ],
+    "greater rochester vietnam veterans' memorial": [
+      "Memorial"
+    ],
+    "green space": [
+      "Open Field"
+    ],
+    "greenspace": [
+      "Open Field"
+    ],
+    "grill": [
+      "Barbecue"
+    ],
+    "grills": [
+      "Barbecue"
+    ],
+    "group reservations available": [],
+    "guided nature walks (seasonal)": [],
+    "gym": [
+      "Gym"
+    ],
+    "gymnasium": [
+      "Gym"
+    ],
+    "gymnasium with scoreboard and ceiling fans": [
+      "Gym"
+    ],
+    "half-court basketball court": [
+      "Basketball Court"
+    ],
+    "handicapped accessible playground": [
+      "Playground"
+    ],
+    "handicapped-accessible canoe/kayak launch (located near braddock bay marina property)": [
+      "Boat Launch"
+    ],
+    "hansen nature center": [
+      "Nature Center"
+    ],
+    "heat": [],
+    "heating": [],
+    "hess pavilion": [
+      "Shelter"
+    ],
+    "highland park bowl (amphitheater)": [
+      "Amphitheater"
+    ],
+    "hiking and biking trails": [
+      "Trails"
+    ],
+    "hiking trails": [
+      "Trails"
+    ],
+    "hiking trails in washington grove": [
+      "Trails"
+    ],
+    "hiking/biking trails": [
+      "Trails"
+    ],
+    "hiking/running": [
+      "Trails"
+    ],
+    "hiking/running trails": [
+      "Trails"
+    ],
+    "hiking/trails": [
+      "Trails"
+    ],
+    "historic 1905 dentzel carousel (ada-accessible)": [
+      "Carousel"
+    ],
+    "historic fountain": [
+      "Fountain"
+    ],
+    "historic stardust ballroom (rentable)": [],
+    "horseback riding": [
+      "Bridle Trail"
+    ],
+    "ice skating": [
+      "Ice Rink"
+    ],
+    "inclusive playground": [
+      "Playground"
+    ],
+    "inclusive playground with wheelchair-accessible rubber surfacing": [
+      "Playground"
+    ],
+    "indoor and outdoor basketball courts": [
+      "Basketball Court"
+    ],
+    "indoor pool": [
+      "Pool"
+    ],
+    "jack's place (dinosaur themed playground)": [
+      "Playground"
+    ],
+    "kayaking/canoeing": [
+      "Boat Launch"
+    ],
+    "kids cafe dinner program": [],
+    "kids cafe dinner program (school year)": [],
+    "kids' cafe meals": [],
+    "kitchen": [],
+    "kitchen and meeting room": [
+      "Meeting Room"
+    ],
+    "kitchen with stove, microwave, refrigerator and freezer": [],
+    "kitchen with stove, refrigerator and freezer": [],
+    "kitchen with stovetop, refrigerator/freezer and microwave (no oven)": [],
+    "lake riley": [],
+    "lamberton conservatory (daily 10am-4pm, $2-$4 admission)": [
+      "Garden"
+    ],
+    "large greenspace for football or soccer": [
+      "Open Field"
+    ],
+    "lighted basketball court": [
+      "Basketball Court"
+    ],
+    "lighted tennis court": [
+      "Tennis Court"
+    ],
+    "lighted tennis courts (5/1-10/30)": [
+      "Tennis Court"
+    ],
+    "lilac arches": [
+      "Garden"
+    ],
+    "lily pond ice skating rink": [
+      "Ice Rink"
+    ],
+    "lion's den building": [
+      "Lodge"
+    ],
+    "lions pavilion": [
+      "Shelter"
+    ],
+    "little league fields": [
+      "Baseball Diamond"
+    ],
+    "lodge (50 capacity, picnic tables, wood stove, oven, refrigerator, bathrooms, water)": [
+      "Lodge"
+    ],
+    "lodge available for rent": [
+      "Lodge"
+    ],
+    "lodge for rental.": [
+      "Lodge"
+    ],
+    "lower falls overlook park with sculpture": [
+      "Overlook"
+    ],
+    "manicured gardens": [
+      "Garden"
+    ],
+    "meeting room": [
+      "Meeting Room"
+    ],
+    "miracle field": [
+      "Baseball Diamond"
+    ],
+    "model airplane flying field": [
+      "Model Airplane Field"
+    ],
+    "modern playground": [
+      "Playground"
+    ],
+    "monument to abraham lincoln": [
+      "Memorial"
+    ],
+    "multi-purpose field 1": [
+      "Open Field"
+    ],
+    "multi-purpose field 2": [
+      "Open Field"
+    ],
+    "multi-use athletic field": [
+      "Open Field"
+    ],
+    "multi-use athletic fields": [
+      "Open Field"
+    ],
+    "multi-use field": [
+      "Open Field"
+    ],
+    "multi-use fields": [
+      "Open Field"
+    ],
+    "music recording studio": [],
+    "nationally accredited rose garden (250+ cultivars)": [
+      "Garden"
+    ],
+    "natural ice skating rink": [
+      "Ice Rink"
+    ],
+    "natural pond": [],
+    "natural scenic areas": [],
+    "natural walking trail connecting to the erie canal": [
+      "Trails",
+      "Canal"
+    ],
+    "nature play area": [
+      "Playground"
+    ],
+    "nature trail": [
+      "Trails"
+    ],
+    "nature watching": [],
+    "neil marvel pavilion": [
+      "Shelter"
+    ],
+    "new pavilion": [
+      "Shelter"
+    ],
+    "nietopski field (regulation baseball field)": [
+      "Baseball Diamond"
+    ],
+    "no parking": [],
+    "non-motorized boat launch": [
+      "Boat Launch"
+    ],
+    "observation platform": [
+      "Overlook"
+    ],
+    "ocfs-certified school-age childcare program": [],
+    "off-leash dog park (registration required)": [
+      "Dog Park"
+    ],
+    "off-road cycling": [
+      "Trails"
+    ],
+    "olmsted lodge (rentable)": [
+      "Lodge"
+    ],
+    "one concession/restroom facility": [
+      "Bathroom",
+      "Concessions"
+    ],
+    "one lodge - carmen clark lodge (up to 100 people)": [
+      "Lodge"
+    ],
+    "one major league baseball field": [
+      "Baseball Diamond"
+    ],
+    "one medium-size field": [
+      "Open Field"
+    ],
+    "one multi-purpose rectangular field (football, soccer, field hockey, lacrosse)": [
+      "Football Field",
+      "Soccer Field"
+    ],
+    "one open-air shelter with picnic tables": [
+      "Picnic Table",
+      "Shelter"
+    ],
+    "one public tennis court": [
+      "Tennis Court"
+    ],
+    "one youth softball field": [
+      "Baseball Diamond"
+    ],
+    "open air shelters/pavilions": [
+      "Shelter"
+    ],
+    "open ball field": [
+      "Open Field"
+    ],
+    "open fields": [
+      "Open Field"
+    ],
+    "open green space": [
+      "Open Field"
+    ],
+    "open pavilion": [
+      "Shelter"
+    ],
+    "open pavilion available for rental": [
+      "Shelter"
+    ],
+    "open play field": [
+      "Open Field"
+    ],
+    "open shelter, dolomite lodge": [
+      "Lodge",
+      "Shelter"
+    ],
+    "open skate sessions": [
+      "Ice Rink"
+    ],
+    "open space": [
+      "Open Field"
+    ],
+    "open-air shelter (available for rent)": [
+      "Shelter"
+    ],
+    "open-air shelters (available for rent)": [
+      "Shelter"
+    ],
+    "outdoor basketball and tennis courts": [
+      "Tennis Court",
+      "Basketball Court"
+    ],
+    "outdoor basketball court": [
+      "Basketball Court"
+    ],
+    "outdoor basketball courts": [
+      "Basketball Court"
+    ],
+    "outdoor courts": [],
+    "outdoor ice rink": [
+      "Ice Rink"
+    ],
+    "outdoor pavilion area": [
+      "Shelter"
+    ],
+    "outdoor pool": [
+      "Pool"
+    ],
+    "outdoor restrooms": [
+      "Bathroom"
+    ],
+    "outdoor tennis courts": [
+      "Tennis Court"
+    ],
+    "owens lodge": [
+      "Lodge"
+    ],
+    "parking areas": [],
+    "parking designed for boat trailers": [],
+    "paved pathways": [
+      "Trails"
+    ],
+    "pavilion": [
+      "Shelter"
+    ],
+    "pavilion (first come first serve)": [
+      "Shelter"
+    ],
+    "pavilion (reservable by town residents)": [
+      "Shelter"
+    ],
+    "pavilions": [
+      "Shelter"
+    ],
+    "penfield amphitheater and kiwanis stage": [
+      "Amphitheater"
+    ],
+    "perennial gardens": [
+      "Garden"
+    ],
+    "performance stage": [
+      "Amphitheater"
+    ],
+    "perimeter trail": [
+      "Trails"
+    ],
+    "perinton center park amphitheater": [
+      "Amphitheater"
+    ],
+    "pickleball (6 courts)": [
+      "Pickleball Court"
+    ],
+    "pickleball court": [
+      "Pickleball Court"
+    ],
+    "pickleball courts": [
+      "Pickleball Court"
+    ],
+    "picnic area": [
+      "Picnic Table"
+    ],
+    "picnic areas": [
+      "Picnic Table"
+    ],
+    "picnic areas and playgrounds": [
+      "Playground",
+      "Picnic Table"
+    ],
+    "picnic benches and tables": [
+      "Picnic Table",
+      "Bench"
+    ],
+    "picnic facilities": [
+      "Picnic Table"
+    ],
+    "picnic pavilion": [
+      "Shelter"
+    ],
+    "picnic pavilions (not to be reserved; first-come, first-served)": [
+      "Shelter"
+    ],
+    "picnic tables": [
+      "Picnic Table"
+    ],
+    "play apparatus": [
+      "Playground"
+    ],
+    "playground": [
+      "Playground"
+    ],
+    "playground (ages 5-12)": [
+      "Playground"
+    ],
+    "playground (ages 5-12) and teen fitness court": [
+      "Playground",
+      "Fitness Course"
+    ],
+    "playground (new as of may 2020!)": [
+      "Playground"
+    ],
+    "playground and spray park": [
+      "Playground",
+      "Spray Park"
+    ],
+    "playground equipment": [
+      "Playground"
+    ],
+    "playground equipment for smaller children": [
+      "Playground"
+    ],
+    "playground-new in 2026!": [
+      "Playground"
+    ],
+    "playgrounds": [
+      "Playground"
+    ],
+    "playgrounds (2)": [
+      "Playground"
+    ],
+    "playgrounds (ages 2-5 and 5-12)": [
+      "Playground"
+    ],
+    "pond for fishing": [
+      "Fishing"
+    ],
+    "pond with paved walking path": [
+      "Trails"
+    ],
+    "pool": [
+      "Pool"
+    ],
+    "primary and secondary loop trails": [
+      "Trails"
+    ],
+    "professional-grade kitchen": [],
+    "public campground (tents, small trailers, large rvs)": [
+      "Camping"
+    ],
+    "public restroom (seasonal)": [
+      "Bathroom"
+    ],
+    "public restrooms": [
+      "Bathroom"
+    ],
+    "public-use shelters": [
+      "Shelter"
+    ],
+    "qr fit trail": [
+      "Fitness Course"
+    ],
+    "quinzi lodge": [
+      "Lodge"
+    ],
+    "regulation outdoor basketball court": [
+      "Basketball Court"
+    ],
+    "regulation-sized basketball court": [
+      "Basketball Court"
+    ],
+    "restroom facilities": [
+      "Bathroom"
+    ],
+    "restrooms": [
+      "Bathroom"
+    ],
+    "restrooms (4 locations)": [
+      "Bathroom"
+    ],
+    "restrooms (open may-october)": [
+      "Bathroom"
+    ],
+    "restrooms (seasonal)": [
+      "Bathroom"
+    ],
+    "restrooms (the restrooms are currently closed for the 2020 season. there is a portable toilet located on site)": [
+      "Bathroom"
+    ],
+    "restrooms open may-october": [
+      "Bathroom"
+    ],
+    "riedman foundation fish hatchery": [],
+    "river views": [],
+    "roger robach community center (event venue)": [
+      "Lodge"
+    ],
+    "rotary fountain": [
+      "Fountain"
+    ],
+    "rowing club facility": [],
+    "rugby field": [
+      "Rugby Field"
+    ],
+    "sand volleyball": [
+      "Volleyball"
+    ],
+    "scout/youth camping area": [
+      "Camping"
+    ],
+    "sculpture (\"let's have tea\")": [],
+    "seasonal bathrooms (may 1-oct 31)": [
+      "Bathroom"
+    ],
+    "seasonal public restrooms": [
+      "Bathroom"
+    ],
+    "seasonal restrooms": [
+      "Bathroom"
+    ],
+    "seating": [
+      "Bench"
+    ],
+    "seating - benches": [
+      "Bench"
+    ],
+    "seating - benches and picnic tables": [
+      "Picnic Table",
+      "Bench"
+    ],
+    "seating area": [
+      "Bench"
+    ],
+    "sensory-friendly space": [],
+    "seth green fishing access": [
+      "Fishing"
+    ],
+    "seven youth baseball fields": [
+      "Baseball Diamond"
+    ],
+    "shade trees": [],
+    "sharon's sensory garden": [
+      "Garden"
+    ],
+    "shelters": [
+      "Shelter"
+    ],
+    "shelters (available for rent)": [
+      "Shelter"
+    ],
+    "showers": [],
+    "six lodges and four shelters (rentable)": [
+      "Lodge",
+      "Shelter"
+    ],
+    "six multipurpose soccer/lacrosse/football fields (one lighted)": [
+      "Football Field",
+      "Soccer Field"
+    ],
+    "skate park": [
+      "Skate Park"
+    ],
+    "skate rental": [
+      "Ice Rink"
+    ],
+    "skate rentals": [
+      "Ice Rink"
+    ],
+    "skate sharpening": [
+      "Ice Rink"
+    ],
+    "sledding hill": [
+      "Sledding Hill"
+    ],
+    "small canoe/kayak launch": [
+      "Boat Launch"
+    ],
+    "small dock to access canal": [
+      "Canal",
+      "Dock"
+    ],
+    "small kitchen with stove, microwave, refrigerator and freezer": [],
+    "small meeting room": [
+      "Meeting Room"
+    ],
+    "snack bar / vending machines": [
+      "Concessions"
+    ],
+    "snowmobile trails": [
+      "Snowmobile Trail"
+    ],
+    "snowshoeing": [
+      "Snowshoeing"
+    ],
+    "soccer": [
+      "Soccer Field"
+    ],
+    "soccer field": [
+      "Soccer Field"
+    ],
+    "soccer field (rentable)": [
+      "Soccer Field"
+    ],
+    "soccer field 1": [
+      "Soccer Field"
+    ],
+    "soccer field 2": [
+      "Soccer Field"
+    ],
+    "soccer field 3": [
+      "Soccer Field"
+    ],
+    "soccer field 4": [
+      "Soccer Field"
+    ],
+    "soccer field 5": [
+      "Soccer Field"
+    ],
+    "soccer field 6": [
+      "Soccer Field"
+    ],
+    "soccer field 7": [
+      "Soccer Field"
+    ],
+    "soccer field 8": [
+      "Soccer Field"
+    ],
+    "soccer fields": [
+      "Soccer Field"
+    ],
+    "soccer fields (2, rentable)": [
+      "Soccer Field"
+    ],
+    "soccer fields (4)": [
+      "Soccer Field"
+    ],
+    "soccer/football field": [
+      "Football Field",
+      "Soccer Field"
+    ],
+    "soccer/football fields": [
+      "Football Field",
+      "Soccer Field"
+    ],
+    "softball": [
+      "Baseball Diamond"
+    ],
+    "softball diamond": [
+      "Baseball Diamond"
+    ],
+    "softball diamonds": [
+      "Baseball Diamond"
+    ],
+    "softball facilities": [
+      "Baseball Diamond"
+    ],
+    "softball field": [
+      "Baseball Diamond"
+    ],
+    "softball fields": [
+      "Baseball Diamond"
+    ],
+    "softball fields (2)": [
+      "Baseball Diamond"
+    ],
+    "softball/baseball diamonds": [
+      "Baseball Diamond"
+    ],
+    "splash pad": [
+      "Spray Park"
+    ],
+    "splash pad (memorial day-labor day, 10am-8pm)": [
+      "Spray Park"
+    ],
+    "sportex synthetic playing surfaces (all fields lighted)": [],
+    "spray feature": [
+      "Spray Park"
+    ],
+    "spray park": [
+      "Spray Park"
+    ],
+    "spray park (seasonal, june 26-sept 8, 2026, 10am-7pm)": [
+      "Spray Park"
+    ],
+    "station of heroes": [
+      "Memorial"
+    ],
+    "summer lunch program": [],
+    "swimming area (seasonal, june 26-sept 7, 2026, 11am-7pm)": [
+      "Beach"
+    ],
+    "swing set": [
+      "Swingset"
+    ],
+    "swings": [
+      "Swingset"
+    ],
+    "synthetic ice rink (seasonal, nov-mid-march)": [
+      "Ice Rink"
+    ],
+    "teen lounge": [
+      "Game Room"
+    ],
+    "tennis": [
+      "Tennis Court"
+    ],
+    "tennis (2 courts)": [
+      "Tennis Court"
+    ],
+    "tennis court": [
+      "Tennis Court"
+    ],
+    "tennis court 1": [
+      "Tennis Court"
+    ],
+    "tennis court 2": [
+      "Tennis Court"
+    ],
+    "tennis court 3": [
+      "Tennis Court"
+    ],
+    "tennis court 4": [
+      "Tennis Court"
+    ],
+    "tennis court availability (linked)": [],
+    "tennis courts": [
+      "Tennis Court"
+    ],
+    "tennis courts (2)": [
+      "Tennis Court"
+    ],
+    "tennis courts (4, lined for pickleball)": [
+      "Tennis Court",
+      "Pickleball Court"
+    ],
+    "tennis courts (lighted)": [
+      "Tennis Court"
+    ],
+    "tennis courts and pickleball courts": [
+      "Tennis Court",
+      "Pickleball Court"
+    ],
+    "tennis courts/pickleball courts": [
+      "Tennis Court",
+      "Pickleball Court"
+    ],
+    "tennis/pickleball courts": [
+      "Tennis Court",
+      "Pickleball Court"
+    ],
+    "tennis/pickleball courts (3)": [
+      "Tennis Court",
+      "Pickleball Court"
+    ],
+    "tennis/pickleball courts (4)": [
+      "Tennis Court",
+      "Pickleball Court"
+    ],
+    "the brickyard trail (0.8-mile multiuse, shared-use trail)": [
+      "Trails"
+    ],
+    "three baseball fields": [
+      "Baseball Diamond"
+    ],
+    "three lodges and one shelter (rentable)": [
+      "Lodge",
+      "Shelter"
+    ],
+    "three multiuse fields": [
+      "Open Field"
+    ],
+    "three picnic pavilions": [
+      "Shelter"
+    ],
+    "three picnic shelters": [
+      "Shelter"
+    ],
+    "three playgrounds": [
+      "Playground"
+    ],
+    "three restrooms (rand, powderhorn, oak tree lodges)": [
+      "Bathroom"
+    ],
+    "three soccer/lacrosse fields": [
+      "Soccer Field"
+    ],
+    "tinker museum": [
+      "Museum"
+    ],
+    "tire swing": [
+      "Swingset"
+    ],
+    "tot fitness trail": [
+      "Fitness Course"
+    ],
+    "tours": [],
+    "town lodge": [
+      "Lodge"
+    ],
+    "trail": [
+      "Trails"
+    ],
+    "trails": [
+      "Trails"
+    ],
+    "trails (trail map)": [
+      "Trails"
+    ],
+    "two basketball courts": [
+      "Basketball Court"
+    ],
+    "two enclosed lodges (99 capacity each, heated, kitchen, fireplace)": [
+      "Lodge"
+    ],
+    "two junior baseball fields": [
+      "Baseball Diamond"
+    ],
+    "two little league fields": [
+      "Baseball Diamond"
+    ],
+    "two lodges (lake riley lodge & tay house lodge)": [
+      "Lodge"
+    ],
+    "two pavilions (the smaller one holds up to 30 people, the larger one holds up to 50 people)": [
+      "Shelter"
+    ],
+    "two pickleball courts": [
+      "Pickleball Court"
+    ],
+    "two play structures": [
+      "Playground"
+    ],
+    "two rental lodges (ski lodge 80 cap., knollwood lodge 50 cap.)": [
+      "Lodge"
+    ],
+    "two seasonal restrooms (handicap accessible)": [
+      "Bathroom"
+    ],
+    "two softball fields": [
+      "Baseball Diamond"
+    ],
+    "two tennis courts": [
+      "Tennis Court"
+    ],
+    "unique playground": [
+      "Playground"
+    ],
+    "updated playground": [
+      "Playground"
+    ],
+    "updated soccer field": [
+      "Soccer Field"
+    ],
+    "veterans memorial": [
+      "Memorial"
+    ],
+    "victims' rights memorial": [
+      "Memorial"
+    ],
+    "volleyball": [
+      "Volleyball"
+    ],
+    "volleyball courts": [
+      "Volleyball"
+    ],
+    "volleyball grass courts (must provide your own net)": [
+      "Volleyball"
+    ],
+    "walking track": [
+      "Trails"
+    ],
+    "walking trail": [
+      "Trails"
+    ],
+    "walking trails": [
+      "Trails"
+    ],
+    "walking/bike trail": [
+      "Trails"
+    ],
+    "war on terror memorial": [
+      "Memorial"
+    ],
+    "warner castle and sunken garden": [
+      "Garden"
+    ],
+    "water fountains": [
+      "Water"
+    ],
+    "water spray feature (seasonal, summer only)": [
+      "Spray Park"
+    ],
+    "waterfront lodge (available for rent)": [
+      "Lodge"
+    ],
+    "waterfront picnic space": [
+      "Picnic Table"
+    ],
+    "wedding ceremony locations": [],
+    "wegman lodge": [
+      "Lodge"
+    ],
+    "weight room": [
+      "Fitness Room"
+    ],
+    "wetland boardwalks": [
+      "Trails"
+    ],
+    "wild wings, inc. (bird of prey facility)": [
+      "Nature Center"
+    ],
+    "workers' rights memorial": [
+      "Memorial"
+    ],
+    "youth camping area": [
+      "Camping"
+    ],
+    "youth group camping (reservation only)": [
+      "Camping"
+    ]
+  }
+}

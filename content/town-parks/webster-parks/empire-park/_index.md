@@ -11,6 +11,10 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 62.15
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23'
 hoursCheckedOn: '2026-09-18'

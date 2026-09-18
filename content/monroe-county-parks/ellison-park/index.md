@@ -11,6 +11,18 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Boat Launch
+  - Dog Park
+  - Lodge
+  - Open Field
+  - Pickleball Court
+  - Playground
+  - Shelter
+  - Sledding Hill
+  - Tennis Court
 sameAs:
   - 'https://www.monroecounty.gov/parks-ellison'
   - 'https://maps.google.com/?cid=2662160433031078601'

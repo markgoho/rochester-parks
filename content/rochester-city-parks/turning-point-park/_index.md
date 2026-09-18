@@ -8,6 +8,8 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Trails
 sameAs:
   - 'https://www.cityofrochester.gov/locations/turning-point-park'
 geo:

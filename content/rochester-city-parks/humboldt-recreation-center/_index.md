@@ -10,10 +10,12 @@ address:
 amenities:
   - Baseball Diamond
   - Basketball Court
+  - Bench
   - Football Field
   - Playground
   - Recreation Center
   - Soccer Field
+  - Spray Park
   - Tennis Court
   - Water
 geo:

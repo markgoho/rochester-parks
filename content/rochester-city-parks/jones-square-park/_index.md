@@ -8,6 +8,9 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bench
+  - Fountain
 sameAs:
   - 'https://www.cityofrochester.gov/locations/jones-square-park'
 geo:

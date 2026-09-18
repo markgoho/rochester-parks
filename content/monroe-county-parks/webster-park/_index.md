@@ -11,6 +11,16 @@ address:
   addressLocality: 'Webster'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bathroom
+  - Camping
+  - Dog Park
+  - Fishing
+  - Lodge
+  - Pickleball Court
+  - Playground
+  - Shelter
+  - Tennis Court
 sameAs:
   - 'https://www.monroecounty.gov/parks-webster'
   - 'https://maps.google.com/?cid=7273466628949401979'

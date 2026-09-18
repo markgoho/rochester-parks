@@ -11,6 +11,13 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 70
+amenities:
+  - Bathroom
+  - Fitness Course
+  - Open Field
+  - Playground
+  - Shelter
+  - Trails
 sameAs:
   - 'https://www.penfieldny.gov/detail_T12_R55.php'
   - 'https://maps.google.com/?cid=7736098615182146068'

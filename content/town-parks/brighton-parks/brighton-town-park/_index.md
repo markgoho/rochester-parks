@@ -12,6 +12,8 @@ address:
   addressCountry: 'US'
 acres: 28
 amenities:
+  - Baseball Diamond
+  - Canal
   - Lodge
   - Playground
   - Shelter

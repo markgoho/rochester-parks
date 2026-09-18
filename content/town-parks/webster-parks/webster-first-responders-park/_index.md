@@ -12,11 +12,16 @@ address:
   addressCountry: 'US'
 acres: 74.8
 amenities:
+  - Barbecue
   - Basketball Court
+  - Bathroom
+  - Pickleball Court
+  - Picnic Table
   - Playground
   - Shelter
   - Spray Park
   - Tennis Court
+  - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/First-Responders-Spray-ParkPlayground-40'
   - 'https://maps.google.com/?cid=430704539646243787'

@@ -11,6 +11,13 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 40.8
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/27'
   - 'https://maps.google.com/?cid=12853023137593485428'

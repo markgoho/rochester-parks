@@ -10,7 +10,13 @@ address:
   addressCountry: 'US'
 amenities:
   - Basketball Court
+  - Bench
+  - Fitness Course
+  - Open Field
   - Playground
+  - Soccer Field
+  - Spray Park
+  - Swingset
   - Water
 sameAs:
   - 'https://www.cityofrochester.gov/locations/troup-street-park'
