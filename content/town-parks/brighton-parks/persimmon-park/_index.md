@@ -13,17 +13,15 @@ address:
   addressCountry: 'US'
 acres: 10
 amenities:
-  - Playground
-  - Picnic Area
-  - Restrooms
+  - Bench
+hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-    opens: '06:00'
+    opens: '07:00'
     closes: '22:00'
-image: '/images/persimmon-park.jpg'
 sameAs:
   - 'https://www.brightonny.gov/265/Persimmon-Park'
   - 'https://maps.google.com/?cid=2625866311533325953'
 ---
 
-What a beautiful park Persimmon Park is.
+A wooded parcel with a half-acre open lawn to walk through, and a sitting area near the main entrance on South Clinton Avenue.
