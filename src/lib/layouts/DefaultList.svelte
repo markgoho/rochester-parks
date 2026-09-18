@@ -69,17 +69,27 @@
     font-weight: var(--weight-bold);
   }
 
-  @media (min-width: 60rem) {
+  /* The map goes beside the list only when both fit: one column of names
+     (15rem), the gap (3.5rem), and a map still wide enough to read its town
+     names (30rem). Below that the map could only go under a list that already
+     names every town, so it adds scrolling and nothing else. */
+  .wrap {
+    container-type: inline-size;
+  }
+
+  .section-body :global(.county-map) {
+    display: none;
+  }
+
+  @container (width >= 48.5rem) {
     .mapped {
-      grid-template-columns: minmax(0, 1fr) 34rem;
+      grid-template-columns: minmax(15rem, 1fr) minmax(30rem, 44rem);
       align-items: start;
       gap: var(--space-56);
     }
-  }
 
-  @media (min-width: 80rem) {
-    .mapped {
-      grid-template-columns: minmax(0, 1fr) 44rem;
+    .section-body :global(.county-map) {
+      display: block;
     }
   }
 </style>
