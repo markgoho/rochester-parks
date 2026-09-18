@@ -34,7 +34,7 @@ There is a large tennis and basketball court. An older couple was playing tennis
 
 ## Eating Area
 
-The shelter at Badgerow Park North is pretty nice. There are six 12-foot picnic tables and a double barbecue that are [available to reserve](https://greeceny.gov/oldsite/reservations/parklistinternal2.aspx?Park=Badgerow%20Park%20North). . Based on twelve-per-table seating, the capacity for this shelter is 72. The shelter itself is 35′ in diameter.
+The shelter at Badgerow Park North is pretty nice. There are six 12-foot picnic tables and a double barbecue that are [available to reserve](https://greeceny.gov/oldsite/reservations/parklistinternal2.aspx?Park=Badgerow%20Park%20North). Based on twelve-per-table seating, the capacity for this shelter is 72. The shelter itself is 35′ in diameter.
 
 There was another barbecue off to the side of the shelter, presumably for another eating area, but there was no picnic table there. I’m curious to know where the table went. Sadly, this diminishes the overall quality of the Badgerow North eating area as there is only one legitimate area to cook and eat.
 
