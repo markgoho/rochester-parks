@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.18656191032798
   longitude: -77.53665999456828
-acres: 111.94
+acres: 147
 address:
   streetAddress: 'South Glen Road'
   addressLocality: 'Irondequoit'

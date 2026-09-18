@@ -10,7 +10,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 102.63
+acres: 101.7
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/basil-marella-park/'
   - 'https://maps.google.com/?cid=5473514302461517658'

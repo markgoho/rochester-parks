@@ -10,7 +10,7 @@ address:
   addressLocality: 'Fairport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 12.32
+acres: 43.6
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/perinton-park/'
   - 'https://maps.google.com/?cid=9194795050573807191'

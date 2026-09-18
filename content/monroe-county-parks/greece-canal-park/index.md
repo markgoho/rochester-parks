@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.19935528967629
   longitude: -77.74596618425306
-acres: 663.39
+acres: 577
 address:
   streetAddress: '343 Elmgrove Road'
   addressLocality: 'Rochester'

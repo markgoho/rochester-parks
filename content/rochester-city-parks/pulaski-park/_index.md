@@ -12,6 +12,7 @@ sameAs:
 geo:
   latitude: 43.1806978
   longitude: -77.593283
+acres: 7
 ---
 
 A page for this park is still being written.

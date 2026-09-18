@@ -9,7 +9,7 @@ amenities:
   - 'Playground'
   - 'Shelter'
   - 'Trails'
-acres: 194.32
+acres: 182
 address:
   streetAddress: '420 Smith Road'
   addressLocality: 'Webster'

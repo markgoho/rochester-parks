@@ -7,7 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 31.49
+acres: 11.6
 sameAs:
   - 'https://maps.google.com/?cid=4034390521211141149'
 geo:

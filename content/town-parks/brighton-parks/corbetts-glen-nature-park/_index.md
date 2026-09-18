@@ -10,7 +10,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 55.21
+acres: 52
 sameAs:
   - 'https://www.brightonny.gov/262/Corbetts-Glen-Nature-Park'
   - 'https://maps.google.com/?cid=9811834871623772226'

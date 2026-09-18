@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.120744494714565
   longitude: -77.63802038425486
-acres: 718.3
+acres: 800
 address:
   streetAddress: '1000 East River Road'
   addressLocality: 'Rochester'

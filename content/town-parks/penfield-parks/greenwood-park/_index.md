@@ -7,7 +7,7 @@ address:
   addressLocality: 'Penfield'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 20.81
+acres: 21
 sameAs:
   - 'https://www.penfieldny.gov/detail_T12_R49.php'
   - 'https://maps.google.com/?cid=14088417371717003607'

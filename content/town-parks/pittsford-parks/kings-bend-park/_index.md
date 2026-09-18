@@ -10,5 +10,5 @@ address:
   addressLocality: 'Pittsford'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 19.59
+acres: 19
 ---

@@ -5,7 +5,7 @@ type: 'park'
 address:
   streetAddress: '595 Calkins Road'
   addressCountry: 'US'
-acres: 86.41
+acres: 90
 sameAs:
   - 'https://www.henriettany.gov/community/park/veterans-memorial-park'
   - 'https://maps.google.com/?cid=5269678991067189828'

@@ -7,7 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 4.05
+acres: 5
 amenities:
   - Handicap Swing
   - Open Field

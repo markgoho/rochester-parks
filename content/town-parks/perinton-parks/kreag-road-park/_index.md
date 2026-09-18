@@ -10,7 +10,7 @@ address:
   addressLocality: 'Fairport'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 9.02
+acres: 9
 amenities:
   - Barbecue
   - Baseball Diamond

@@ -13,4 +13,5 @@ address:
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/center-park-east/'
   - 'https://maps.google.com/?cid=14643518406208349684'
+acres: 45
 ---

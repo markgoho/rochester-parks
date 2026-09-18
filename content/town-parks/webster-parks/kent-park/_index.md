@@ -10,7 +10,7 @@ address:
   addressLocality: 'Webster'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 84.4
+acres: 84.5
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Kent-Park-25'
 ---

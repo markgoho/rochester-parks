@@ -7,7 +7,7 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 8.80
+acres: 2
 amenities:
   - Barbecue
   - Open Field

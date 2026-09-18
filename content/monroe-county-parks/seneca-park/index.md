@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.20859728908339
   longitude: -77.62608998425281
-acres: 302.59
+acres: 297
 sameAs:
   - 'https://www.monroecounty.gov/parks-seneca'
   - 'https://maps.google.com/?cid=9168798188261743810'

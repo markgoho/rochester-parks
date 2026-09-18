@@ -7,7 +7,7 @@ address:
   addressLocality: 'Pittsford'
   addressRegion: 'NY'
   addressCountry: 'US'
-acres: 10.28
+acres: 9.6
 sameAs:
   - 'https://maps.google.com/?cid=4734259664950572972'
 geo:

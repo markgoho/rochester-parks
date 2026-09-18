@@ -5,7 +5,7 @@ type: 'county-parks'
 geo:
   latitude: 43.13506124862759
   longitude: -77.61406943440173
-acres: 158.43
+acres: 150
 address:
   streetAddress: 'Highland Drive'
   addressCountry: 'US'

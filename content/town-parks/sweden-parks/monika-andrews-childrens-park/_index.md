@@ -5,5 +5,5 @@ type: 'park'
 geo:
   latitude: 43.2138234
   longitude: -77.9428049
-acres: 0.89
+acres: 0.9
 ---
