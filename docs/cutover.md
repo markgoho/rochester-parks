@@ -18,7 +18,7 @@ Target: **the bare apex, no `www` anywhere.** WordPress currently 301s the apex 
 ## Already done
 
 - [x] Seven old URLs with no match here now 301 in `firebase.json`.
-- [x] Gates Town Park added. It was the one old URL with no equivalent page.
+- [x] Gates Town Park, the one old URL with no equivalent page, now 301s to First Responders Park. They are one park under its old and new names.
 - [x] Pirsch Analytics in `src/app.html`. Ignores localhost, so dev and preview never report.
 - [x] `robots.txt` opened to crawlers, ahead of cutover. See step 1.
 
@@ -76,7 +76,7 @@ Then, at cutover:
 
 ## Step 5 — no deploy needed at cutover
 
-`main` is already in its launch-ready state: robots open, redirects in place, Gates Town Park present. Nothing has to ship in step with the DNS change, which removes the tightest bit of timing from the whole cutover.
+`main` is already in its launch-ready state: robots open, redirects in place, Gates Town Park included. Nothing has to ship in step with the DNS change, which removes the tightest bit of timing from the whole cutover.
 
 If you do push something on launch day, allow about 2m30s for the deploy before testing the new domain.
 
