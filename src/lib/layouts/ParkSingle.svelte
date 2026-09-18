@@ -94,6 +94,13 @@
     official ? new URL(official.url).hostname.replace(/^www\./, '') : ''
   );
   const uid = $props.id();
+  /** The panel is worth drawing only once one of its rows has content. */
+  const hasBasics = $derived(
+    hasHours ||
+      Boolean(address) ||
+      park?.acres !== undefined ||
+      (park?.links.length ?? 0) > 0
+  );
   const recorded = $derived(
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
       .length
@@ -166,13 +173,15 @@
     </div>
   {/snippet}
 
-  {#if park}
+  {#if park && hasBasics}
     <section class="panel basics">
       <div class="panel__head">
         <span class="eyebrow">The basics</span>
       </div>
       <dl class="panel__body facts">
-        <div class="fact fact--wide">
+        <!-- Hours take the full width only when there are hours to show. An
+             em dash sits in line with the other facts. -->
+        <div class="fact" class:fact--wide={hasHours}>
           <dt class="eyebrow">
             Hours
             {#if hours?.checkedOn}
