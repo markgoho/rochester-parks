@@ -8,6 +8,8 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Ice Rink
 sameAs:
   - 'https://www.cityofrochester.gov/locations/dr-martin-luther-king-jr-park-ice-rink'
 geo:

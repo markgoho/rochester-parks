@@ -11,6 +11,13 @@ address:
   addressLocality: 'Irondequoit'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Boat Launch
+  - Cross-Country Skiing
+  - Fishing
+  - Geocaching
+  - Snowshoeing
+  - Trails
 sameAs:
   - 'https://www.monroecounty.gov/parks-baywest'
   - 'https://maps.google.com/?cid=4096215112403773387'

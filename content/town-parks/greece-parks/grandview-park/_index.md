@@ -13,6 +13,7 @@ amenities:
   - Baseball Diamond
   - Basketball Court
   - Bathroom
+  - Football Field
   - Football Uprights
   - Foursquare
   - Hopscotch
@@ -20,6 +21,7 @@ amenities:
   - Picnic Table
   - Playground
   - Rockers
+  - Soccer Field
   - Swingset
   - Tennis Court
   - Volleyball

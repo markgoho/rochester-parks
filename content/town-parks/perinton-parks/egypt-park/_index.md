@@ -11,6 +11,16 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 15.31
+amenities:
+  - Barbecue
+  - Bathroom
+  - Cross-Country Skiing
+  - Open Field
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Trails
+  - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/egypt-park/'
   - 'https://maps.google.com/?cid=10397005240882255173'

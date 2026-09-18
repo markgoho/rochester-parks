@@ -11,6 +11,15 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 84.5
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Garden
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Kent-Park-25'
 hoursCheckedOn: '2026-09-18'

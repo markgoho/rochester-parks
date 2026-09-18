@@ -10,6 +10,9 @@ address:
   addressCountry: 'US'
 amenities:
   - Basketball Court
+  - Boat Launch
+  - Picnic Table
+  - Playground
 sameAs:
   - 'https://www.cityofrochester.gov/locations/genesee-gateway-park'
 geo:

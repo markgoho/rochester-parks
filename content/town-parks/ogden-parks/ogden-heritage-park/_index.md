@@ -8,6 +8,11 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 3.4
+amenities:
+  - Bench
+  - Canal
+  - Dock
+  - Trails
 sameAs:
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14708'
 ---

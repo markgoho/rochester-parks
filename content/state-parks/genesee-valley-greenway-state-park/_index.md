@@ -6,6 +6,13 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Bridle Trail
+  - Cross-Country Skiing
+  - Fishing
+  - Snowmobile Trail
+  - Snowshoeing
+  - Trails
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/genesee-valley-greenway-state-park'
 hoursCheckedOn: '2026-09-18'

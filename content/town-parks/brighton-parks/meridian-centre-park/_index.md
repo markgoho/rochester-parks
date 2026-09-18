@@ -11,6 +11,18 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 24
+amenities:
+  - Amphitheater
+  - Baseball Diamond
+  - Bathroom
+  - Canal
+  - Concession Stand
+  - Dock
+  - Fishing
+  - Open Field
+  - Playground
+  - Tennis Court
+  - Trails
 sameAs:
   - 'https://www.brightonny.gov/264/Meridian-Centre-Park'
   - 'https://maps.google.com/?cid=17150999376327278430'

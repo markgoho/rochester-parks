@@ -8,6 +8,8 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 72
+amenities:
+  - Trails
 sameAs:
   - 'https://www.brightonny.gov/827/Sandra-L-Frankel-Nature-Park'
   - 'https://maps.google.com/?cid=16666819598118592883'

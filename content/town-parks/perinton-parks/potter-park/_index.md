@@ -11,6 +11,18 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 9.58
+amenities:
+  - Baseball Diamond
+  - Basketball Court
+  - Bathroom
+  - Community Garden
+  - Lodge
+  - Pickleball Court
+  - Picnic Table
+  - Playground
+  - Soccer Field
+  - Tennis Court
+  - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/potter-park/'
   - 'https://maps.google.com/?cid=7337125732581669157'

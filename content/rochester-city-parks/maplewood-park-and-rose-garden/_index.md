@@ -9,9 +9,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 amenities:
+  - Garden
   - Gazebo
+  - Overlook
+  - Pickleball Court
+  - Picnic Table
   - Playground
   - Tennis Court
+  - Trails
 sameAs:
   - 'https://www.cityofrochester.gov/locations/maplewood-park-and-rose-garden'
 geo:

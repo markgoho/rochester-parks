@@ -6,6 +6,21 @@ geo:
   latitude: 43.2578985859195
   longitude: -77.60933458425167
 acres: 39
+amenities:
+  - Barbecue
+  - Baseball Diamond
+  - Bathroom
+  - Beach
+  - Carousel
+  - Fishing
+  - Ice Rink
+  - Lodge
+  - Pickleball Court
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Spray Park
+  - Volleyball
 sameAs:
   - 'https://www.monroecounty.gov/parks-ontariobeach'
   - 'https://maps.google.com/?cid=4019684531312445314'

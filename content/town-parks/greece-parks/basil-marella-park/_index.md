@@ -11,6 +11,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 101.7
+amenities:
+  - Disc Golf
+  - Football Field
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Tennis Court
+  - Trails
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/basil-marella-park/'
   - 'https://maps.google.com/?cid=5473514302461517658'

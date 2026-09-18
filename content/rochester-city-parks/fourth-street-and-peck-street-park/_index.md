@@ -10,7 +10,9 @@ address:
   addressCountry: 'US'
 amenities:
   - Basketball Court
+  - Open Field
   - Playground
+  - Spray Park
   - Water
 sameAs:
   - 'https://www.cityofrochester.gov/locations/fourth-street-and-peck-street-park'

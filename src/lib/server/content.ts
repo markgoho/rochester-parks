@@ -10,6 +10,7 @@ import {
   hoursView,
   isTime,
 } from '#lib/hours.js';
+import { normaliseAmenity } from '#lib/amenities.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import type {
@@ -64,18 +65,6 @@ interface Node extends PageLink {
 
 /** Below this, a park page is a listing rather than a write-up. */
 export const WRITTEN_WORD_FLOOR = 150;
-
-// The source spells a few amenities two ways. Filtering only works if one
-// thing has one name, so the variants collapse here rather than in the UI.
-const AMENITY_ALIASES: Record<string, string> = {
-  restrooms: 'Bathroom',
-  'picnic area': 'Picnic Table',
-};
-
-function normaliseAmenity(name: string): string {
-  const trimmed = name.trim();
-  return AMENITY_ALIASES[trimmed.toLowerCase()] ?? trimmed;
-}
 
 /**
  * Words a reader would actually read: map embeds, virtual tours and image

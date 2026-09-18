@@ -9,9 +9,15 @@ address:
   addressCountry: 'US'
 amenities:
   - Baseball Diamond
+  - Basketball Court
   - Football Field
+  - Game Room
+  - Gym
+  - Meeting Room
   - Playground
   - Recreation Center
+  - Soccer Field
+  - Spray Park
   - Tennis Court
   - Water
 geo:

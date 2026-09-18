@@ -13,6 +13,7 @@ amenities:
   - Basketball Court
   - Football Field
   - Playground
+  - Shelter
   - Tennis Court
 sameAs:
   - 'https://www.cityofrochester.gov/locations/sebastian-park'

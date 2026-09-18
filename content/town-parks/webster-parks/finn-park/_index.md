@@ -11,6 +11,10 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 50
+amenities:
+  - Lodge
+  - Playground
+  - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Finn-Park-24'
 hoursCheckedOn: '2026-09-18'

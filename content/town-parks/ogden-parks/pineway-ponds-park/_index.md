@@ -11,6 +11,15 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 76.6
+amenities:
+  - Baseball Diamond
+  - Fishing
+  - Football Field
+  - Lodge
+  - Open Field
+  - Playground
+  - Soccer Field
+  - Spray Park
 sameAs:
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14712'
   - 'https://maps.google.com/?cid=2856768458763345135'

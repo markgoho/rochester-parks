@@ -8,6 +8,9 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Garden
+  - Gazebo
 sameAs:
   - 'https://www.cityofrochester.gov/locations/lunsford-circle-park'
 geo:

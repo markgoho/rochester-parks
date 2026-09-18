@@ -6,6 +6,11 @@ geo:
   latitude: 43.209306
   longitude: -77.5236027
 acres: 18
+amenities:
+  - Boat Launch
+  - Fishing
+  - Geocaching
+  - Trails
 sameAs:
   - 'https://www.monroecounty.gov/parks-devilscove'
   - 'https://maps.google.com/?cid=4780379995607672227'

@@ -9,6 +9,9 @@ address:
   streetAddress: 'Wildbriar Road'
   addressCountry: 'US'
 acres: 30
+amenities:
+  - Picnic Table
+  - Trails
 sameAs:
   - 'https://www.henriettany.gov/community/park/andrews-park-0'
   - 'https://maps.google.com/?cid=3525367573173641122'

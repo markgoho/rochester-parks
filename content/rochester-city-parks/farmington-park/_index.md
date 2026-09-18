@@ -11,6 +11,7 @@ address:
 amenities:
   - Baseball Diamond
   - Basketball Court
+  - Pickleball Court
   - Tennis Court
 sameAs:
   - 'https://www.cityofrochester.gov/locations/farmington-park'

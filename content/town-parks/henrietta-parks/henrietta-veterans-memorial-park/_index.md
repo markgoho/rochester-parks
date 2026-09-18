@@ -6,6 +6,21 @@ address:
   streetAddress: '595 Calkins Road'
   addressCountry: 'US'
 acres: 90
+amenities:
+  - Amphitheater
+  - Baseball Diamond
+  - Basketball Court
+  - Bathroom
+  - Bocce
+  - Camping
+  - Fitness Course
+  - Pickleball Court
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Tennis Court
+  - Volleyball
 sameAs:
   - 'https://www.henriettany.gov/community/park/veterans-memorial-park'
   - 'https://maps.google.com/?cid=5269678991067189828'

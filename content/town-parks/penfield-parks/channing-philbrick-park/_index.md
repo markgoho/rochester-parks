@@ -11,6 +11,12 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 19
+amenities:
+  - Barbecue
+  - Bathroom
+  - Fishing
+  - Picnic Table
+  - Shelter
 sameAs:
   - 'https://www.penfieldny.gov/detail_T12_R46.php'
   - 'https://maps.google.com/?cid=9290289542295256391'

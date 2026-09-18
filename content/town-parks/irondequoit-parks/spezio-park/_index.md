@@ -6,6 +6,10 @@ geo:
   latitude: 43.25273145778468
   longitude: -77.59944508014217
 acres: 0.63
+amenities:
+  - Pickleball Court
+  - Playground
+  - Tennis Court
 sameAs:
   - 'https://www.irondequoit.gov/Facilities/Facility/Details/Spezio-Park-11'
   - 'https://maps.google.com/?cid=7507785954983743143'

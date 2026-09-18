@@ -11,8 +11,11 @@ acres: 375
 amenities:
   - Barbecue
   - Bathroom
+  - Boat Launch
   - Handicap Swing
+  - Lodge
   - Open Field
+  - Overlook
   - Picnic Table
   - Playground
   - Rockers

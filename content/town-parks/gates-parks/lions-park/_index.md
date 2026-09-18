@@ -8,6 +8,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 14
+amenities:
+  - Basketball Court
+  - Football Field
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Tennis Court
+  - Volleyball
 sameAs:
   - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14697'
   - 'https://maps.google.com/?cid=8581022272474893369'

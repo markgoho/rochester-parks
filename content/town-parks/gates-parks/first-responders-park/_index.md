@@ -13,8 +13,11 @@ amenities:
   - Baseball Diamond
   - Bathroom
   - Disc Golf
+  - Fishing
   - Open Field
   - Playground
+  - Shelter
+  - Soccer Field
   - Swingset
   - Trails
   - Water

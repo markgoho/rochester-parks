@@ -11,6 +11,13 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 20.59
+amenities:
+  - Baseball Diamond
+  - Basketball Court
+  - Lodge
+  - Playground
+  - Shelter
+  - Soccer Field
 sameAs:
   - 'https://eastrochesterny.gov/Community-Resources/Parks/Legion-Eyer-Park'
   - 'https://maps.google.com/?cid=16177856665259352664'

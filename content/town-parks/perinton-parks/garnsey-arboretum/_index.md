@@ -11,6 +11,10 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 26.67
+amenities:
+  - Garden
+  - Open Field
+  - Trails
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/garnsey-road-arboretum/'
   - 'https://maps.google.com/?cid=7870572578059541188'

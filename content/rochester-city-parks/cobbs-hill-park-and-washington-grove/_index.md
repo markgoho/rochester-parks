@@ -11,11 +11,13 @@ address:
 amenities:
   - Baseball Diamond
   - Basketball Court
+  - Fitness Course
   - Football Field
   - Lodge
   - Playground
   - Soccer Field
   - Tennis Court
+  - Trails
 sameAs:
   - 'https://www.cityofrochester.gov/locations/cobbs-hill-park-and-washington-grove'
 geo:

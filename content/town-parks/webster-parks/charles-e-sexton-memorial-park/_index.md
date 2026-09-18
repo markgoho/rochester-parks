@@ -8,6 +8,13 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 46.34
+amenities:
+  - Disc Golf
+  - Fishing
+  - Fitness Course
+  - Picnic Table
+  - Shelter
+  - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/North-Ponds-Park-26'
 ---

@@ -11,6 +11,22 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 33.5
+amenities:
+  - Barbecue
+  - Baseball Diamond
+  - Basketball Court
+  - Bathroom
+  - Cross-Country Skiing
+  - Lodge
+  - Pickleball Court
+  - Picnic Table
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Tennis Court
+  - Trails
+  - Volleyball
+  - Water
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/fellows-road-park/'
   - 'https://maps.google.com/?cid=1894491776644173436'

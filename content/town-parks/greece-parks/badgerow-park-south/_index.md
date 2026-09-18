@@ -11,6 +11,14 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 33.1
+amenities:
+  - Baseball Diamond
+  - Football Field
+  - Playground
+  - Shelter
+  - Soccer Field
+  - Tennis Court
+  - Trails
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/badgerow-park-south/'
   - 'https://maps.google.com/?cid=5127912719985404874'

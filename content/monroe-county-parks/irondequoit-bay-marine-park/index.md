@@ -9,6 +9,10 @@ acres: 20.45
 address:
   streetAddress: 'Culver Road'
   addressCountry: 'US'
+amenities:
+  - Bathroom
+  - Boat Launch
+  - Fishing
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park'
   - 'https://maps.google.com/?cid=14357575615238379798'

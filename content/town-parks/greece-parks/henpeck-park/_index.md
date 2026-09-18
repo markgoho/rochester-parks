@@ -11,7 +11,11 @@ acres: 4
 amenities:
   - Barbecue
   - Bathroom
+  - Boat Launch
+  - Canal
+  - Fishing
   - Picnic Table
+  - Trails
 sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/henpeck-park/'
   - 'https://maps.google.com/?cid=11790042144012760400'

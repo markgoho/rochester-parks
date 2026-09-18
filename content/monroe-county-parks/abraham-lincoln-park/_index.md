@@ -6,6 +6,10 @@ geo:
   latitude: 43.184527
   longitude: -77.512836
 amenities:
+  - 'Fishing'
+  - 'Geocaching'
+  - 'Lodge'
+  - 'Picnic Table'
   - 'Playground'
   - 'Shelter'
   - 'Trails'

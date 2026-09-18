@@ -11,6 +11,14 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Cricket Pitch
+  - Golf Course
+  - Playground
+  - Shelter
+  - Soccer Field
 sameAs:
   - 'https://www.monroecounty.gov/parks-geneseevalley'
   - 'https://maps.google.com/?cid=736657545823812746'

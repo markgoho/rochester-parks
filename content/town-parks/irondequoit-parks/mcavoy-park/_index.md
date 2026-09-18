@@ -9,6 +9,14 @@ address:
   streetAddress: 'Empire Blvd'
   addressCountry: 'US'
 acres: 7.29
+amenities:
+  - Baseball Diamond
+  - Bathroom
+  - Concession Stand
+  - Football Field
+  - Open Field
+  - Playground
+  - Soccer Field
 sameAs:
   - 'https://www.irondequoit.gov/Facilities/Facility/Details/McAvoy-Park-8'
   - 'https://maps.google.com/?cid=9209065688898466528'

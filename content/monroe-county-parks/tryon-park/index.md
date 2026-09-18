@@ -11,6 +11,8 @@ address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
+amenities:
+  - Trails
 sameAs:
   - 'https://www.monroecounty.gov/parks-tryon'
   - 'https://maps.google.com/?cid=6327269595173692951'
