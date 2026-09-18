@@ -116,7 +116,7 @@
   );
 </script>
 
-<article class="wrap">
+<article>
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <header class="head">

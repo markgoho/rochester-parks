@@ -122,6 +122,13 @@
   --gutter: var(--space-20);
   --measure: 68ch;
   --page-max: 90rem;
+  /* The space each side of the page column: the gutter, or more once the
+     page is wider than --page-max. A percentage here resolves where the token
+     is used, against the width of the page. */
+  --page-inset: max(
+    var(--gutter),
+    (100% - var(--page-max)) / 2 + var(--gutter)
+  );
   --header-height: 3.5rem;
 
   /* Motion */
@@ -241,6 +248,9 @@
 
 html {
   font-size: 100%;
+  /* A short page has no scrollbar and a long one does. Keep the space for it
+     on both, so the page column does not move between them. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -371,7 +381,7 @@ p {
   justify-content: space-between;
   gap: var(--space-24);
   min-height: var(--header-height);
-  padding: 0 var(--gutter);
+  padding: 0 var(--page-inset);
   background: var(--ink);
   color: var(--paper);
   /* The header is the same on every page, so it stays in place while the page
@@ -426,18 +436,37 @@ p {
 }
 
 .main {
-  display: block;
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--page-inset)
+    [content-start] minmax(0, 1fr)
+    [content-end] var(--page-inset)
+    [full-end];
 }
 
-.wrap {
-  max-width: var(--page-max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
+/* Each part of a page goes in the page column. min-width: 0 lets it shrink
+   to the column the way a block does, not grow to its content. */
+.main > * {
+  grid-column: content;
+  min-width: 0;
+}
+
+/* A band whose background runs the full width, with its content still in the
+   page column. */
+.full-bleed {
+  display: grid;
+  grid-column: full;
+  grid-template-columns: subgrid;
+}
+
+.full-bleed > * {
+  grid-column: content;
+  min-width: 0;
 }
 
 .site-footer {
   margin-top: var(--space-48);
-  padding: var(--space-20) var(--gutter);
+  padding: var(--space-20) var(--page-inset);
   background: var(--paper-sunk);
   border-top: var(--line-hair) solid var(--rule);
 }
@@ -613,6 +642,16 @@ p {
 .prose {
   max-width: var(--measure);
   color: var(--ink-soft);
+}
+
+/* Prose sits in the page grid, where margins do not collapse. The space
+   around it comes from its own margin, not from its first and last child. */
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
 }
 
 .prose > h2 {
