@@ -1,5 +1,5 @@
-import { getIndexableUrls } from '$lib/server/content';
-import { absUrl } from '$lib/site';
+import { getIndexableUrls } from '#lib/server/content.js';
+import { absUrl } from '#lib/site.js';
 
 export const prerender = true;
 

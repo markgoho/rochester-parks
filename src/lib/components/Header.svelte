@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import Mark from './Mark.svelte';
-  import { SITE_TITLE } from '$lib/site';
+  import { SITE_TITLE } from '#lib/site.js';
 
   const links = [
     { href: '/', label: 'Map' },

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PageLink } from '$lib/types';
+  import type { PageLink } from '#lib/types.js';
 
   let { ancestors, current }: { ancestors: PageLink[]; current: PageLink } =
     $props();

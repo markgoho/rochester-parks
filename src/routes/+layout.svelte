@@ -1,9 +1,9 @@
 <script lang="ts">
   import '../app.css';
   import { page } from '$app/state';
-  import Header from '$lib/components/Header.svelte';
-  import JsonLd from '$lib/components/JsonLd.svelte';
-  import { SITE_TITLE, absUrl } from '$lib/site';
+  import Header from '#lib/components/Header.svelte';
+  import JsonLd from '#lib/components/JsonLd.svelte';
+  import { SITE_TITLE, absUrl } from '#lib/site.js';
 
   let { children } = $props();
 

@@ -1,5 +1,5 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
-import type { Page } from '$lib/types';
+import type { Page } from '#lib/types.js';
 
 declare global {
   namespace App {

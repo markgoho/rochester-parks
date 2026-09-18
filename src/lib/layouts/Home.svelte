@@ -1,6 +1,6 @@
 <script lang="ts">
-  import CountyMap from '$lib/components/CountyMap.svelte';
-  import type { Page } from '$lib/types';
+  import CountyMap from '#lib/components/CountyMap.svelte';
+  import type { Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
 

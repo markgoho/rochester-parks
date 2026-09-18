@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { getAllUrls, getPage } from '$lib/server/content';
+import { getAllUrls, getPage } from '#lib/server/content.js';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 const trimSlashes = (path: string) => path.replace(/^\/+|\/+$/g, '');

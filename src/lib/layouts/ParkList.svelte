@@ -1,12 +1,16 @@
 <script lang="ts">
-  import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
-  import ParkFlags from '$lib/components/ParkFlags.svelte';
-  import CityLocator from '$lib/components/CityLocator.svelte';
-  import TownLocator from '$lib/components/TownLocator.svelte';
-  import { formatAcres } from '$lib/format';
-  import { isCitySection, isCountySection, townKey } from '$lib/municipalities';
-  import { neighborhoodAt } from '$lib/neighborhoods';
-  import type { ChildLink, Page } from '$lib/types';
+  import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
+  import ParkFlags from '#lib/components/ParkFlags.svelte';
+  import CityLocator from '#lib/components/CityLocator.svelte';
+  import TownLocator from '#lib/components/TownLocator.svelte';
+  import { formatAcres } from '#lib/format.js';
+  import {
+    isCitySection,
+    isCountySection,
+    townKey,
+  } from '#lib/municipalities.js';
+  import { neighborhoodAt } from '#lib/neighborhoods.js';
+  import type { ChildLink, Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
 

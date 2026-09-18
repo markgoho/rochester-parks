@@ -1,6 +1,10 @@
 <script lang="ts">
-  import { project, type Marker } from '$lib/municipalities';
-  import { CITY_BOX, NEIGHBORHOODS, neighborhoodUrl } from '$lib/neighborhoods';
+  import { project, type Marker } from '#lib/municipalities.js';
+  import {
+    CITY_BOX,
+    NEIGHBORHOODS,
+    neighborhoodUrl,
+  } from '#lib/neighborhoods.js';
 
   /**
    * The city drawn with its neighborhoods, the way `TownLocator` draws the

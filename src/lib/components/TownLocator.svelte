@@ -5,7 +5,7 @@
     municipality,
     project,
     type Marker,
-  } from '$lib/municipalities';
+  } from '#lib/municipalities.js';
 
   /**
    * The map key of the town to pick out, as `townKey` gives it. Left out on a

@@ -1,8 +1,8 @@
 <script lang="ts">
   import StatusIcon, {
     type StatusKind,
-  } from '$lib/components/StatusIcon.svelte';
-  import type { ParkStatus } from '$lib/types';
+  } from '#lib/components/StatusIcon.svelte';
+  import type { ParkStatus } from '#lib/types.js';
 
   let { status, label = true }: { status: ParkStatus; label?: boolean } =
     $props();

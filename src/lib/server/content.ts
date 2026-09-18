@@ -2,8 +2,8 @@ import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedSmartypants } from 'marked-smartypants';
-import { isCitySection } from '$lib/municipalities';
-import { SITE_TITLE, absUrl } from '$lib/site';
+import { isCitySection } from '#lib/municipalities.js';
+import { SITE_TITLE, absUrl } from '#lib/site.js';
 import type {
   ChildLink,
   Layout,
@@ -15,7 +15,7 @@ import type {
   ParkLink,
   ParkMeta,
   SiteSummary,
-} from '$lib/types';
+} from '#lib/types.js';
 
 // Loads content/**/*.md with Hugo's page model: `_index.md` is a section,
 // `index.md` and `foo.md` are pages, and top-level folders without an
