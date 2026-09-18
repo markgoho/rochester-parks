@@ -3,7 +3,7 @@
   import ParkFlags from '#lib/components/ParkFlags.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
-  import { formatAcres } from '#lib/format.js';
+  import { formatAcres, viewTransitionName } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -133,7 +133,9 @@
 
   {#snippet parkRow(child: ChildLink, i: number)}
     {@const park = child.park!}
-    <li class="row">
+    <!-- Every ordering of a section names a park's row the same way, so a
+         browser with view transitions moves each row to its new place. -->
+    <li class="row" style:view-transition-name={viewTransitionName(child.url)}>
       <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
       <a class="name" href={child.url}>{child.title}</a>
       <span class="status"

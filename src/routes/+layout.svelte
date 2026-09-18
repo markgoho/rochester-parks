@@ -46,7 +46,6 @@
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={absUrl('/')} />
   <meta property="og:description" content={page.data.description} />
-  <meta name="view-transition" content="same-origin" />
 </svelte:head>
 
 <a class="visually-hidden" href="#main">Skip to content</a>

@@ -681,3 +681,26 @@ p {
     scroll-behavior: smooth;
   }
 }
+
+/* Page to page. Every link is a full document load, so this is the
+   cross-document transition: a browser that supports it animates, and any
+   other browser does a plain navigation. */
+@view-transition {
+  navigation: auto;
+}
+
+/* The header is the same on every page, so it holds still while the page
+   under it changes. */
+.site-header {
+  view-transition-name: site-header;
+}
+
+/* Reduced motion keeps the transition but removes its animation, so the new
+   page shows at once. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
+  }
+}
