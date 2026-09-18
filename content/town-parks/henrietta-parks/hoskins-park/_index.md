@@ -10,6 +10,6 @@ address:
   addressCountry: 'US'
 acres: 3.14
 sameAs:
-  - 'https://www.henrietta.org/community/park/hoskins-park'
+  - 'https://www.henriettany.gov/community/park/hoskins-park'
   - 'https://maps.google.com/?cid=9745904524872660801'
 ---

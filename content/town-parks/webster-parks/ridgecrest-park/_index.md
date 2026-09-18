@@ -11,4 +11,6 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 32.95
+sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/Ridgecrest-Park-28'
 ---

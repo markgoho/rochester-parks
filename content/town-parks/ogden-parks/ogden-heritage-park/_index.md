@@ -8,6 +8,8 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 3.40
+sameAs:
+  - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14708'
 ---
 
 A page for this park is still being written.

@@ -12,5 +12,6 @@ address:
   addressCountry: 'US'
 acres: 30.86
 sameAs:
+  - 'https://hiltonny.gov/html/jennejahnlodge.html'
   - 'https://maps.google.com/?cid=11334167155109124474'
 ---

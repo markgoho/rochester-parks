@@ -10,6 +10,6 @@ address:
   addressCountry: 'US'
 acres: 39.34
 sameAs:
-  - 'https://www.henrietta.org/community/park/martin-road-park'
+  - 'https://www.henriettany.gov/community/park/martin-road-park'
   - 'https://maps.google.com/?cid=16541012094866707235'
 ---

@@ -16,6 +16,8 @@ amenities:
 geo:
   latitude: 43.147682
   longitude: -77.6522279
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/roxie-ann-sinkler-r-center'
 ---
 
 A page for this park is still being written.

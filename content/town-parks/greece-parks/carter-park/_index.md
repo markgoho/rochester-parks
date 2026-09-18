@@ -20,7 +20,7 @@ amenities:
   - Tennis Court
   - Water
 sameAs:
-  - 'https://greeceny.gov/departments/parks-recreation/parks/carter-park/'
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/carter-park/'
   - 'https://maps.google.com/?cid=4325214643698891547'
 geo:
   latitude: 43.2088704

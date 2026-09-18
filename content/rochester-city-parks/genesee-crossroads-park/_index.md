@@ -10,6 +10,8 @@ address:
 geo:
   latitude: 43.1580225
   longitude: -77.6122625
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/genesee-crossroads-park'
 ---
 
 A page for this park is still being written.

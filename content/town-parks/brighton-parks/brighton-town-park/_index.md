@@ -18,6 +18,6 @@ amenities:
   - Trails
   - Water
 sameAs:
-  - 'https://www.townofbrighton.org/260/Brighton-Town-Park'
+  - 'https://www.brightonny.gov/260/Brighton-Town-Park'
   - 'https://maps.google.com/?cid=11445426099005429312'
 ---

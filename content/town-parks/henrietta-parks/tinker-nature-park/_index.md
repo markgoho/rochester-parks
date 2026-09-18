@@ -10,6 +10,6 @@ address:
   addressCountry: 'US'
 acres: 66.18
 sameAs:
-  - 'https://www.henrietta.org/community/park/tinker-nature-park-trail'
+  - 'https://www.henriettany.gov/community/park/tinker-nature-park-trail'
   - 'https://maps.google.com/?cid=7164683614928872072'
 ---

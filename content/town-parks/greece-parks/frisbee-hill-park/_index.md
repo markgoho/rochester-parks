@@ -16,6 +16,7 @@ amenities:
   - Playground
   - Swingset
 sameAs:
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/frisbee-hill-park/'
   - 'https://maps.google.com/?cid=14811755070246432504'
 geo:
   latitude: 43.2849083

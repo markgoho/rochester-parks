@@ -17,6 +17,8 @@ amenities:
 geo:
   latitude: 43.1396525
   longitude: -77.627163
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/willie-walker-lightfoot-r-center'
 ---
 
 A page for this park is still being written.

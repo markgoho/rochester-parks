@@ -24,7 +24,7 @@ amenities:
   - Tennis Court
   - Volleyball
 sameAs:
-  - 'https://greeceny.gov/departments/parks-recreation/parks/grandview-park/'
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/grandview-park/'
   - 'https://maps.google.com/?cid=16118708245255645285'
 geo:
   latitude: 43.2958739

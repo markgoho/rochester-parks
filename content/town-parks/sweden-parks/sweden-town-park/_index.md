@@ -7,5 +7,5 @@ geo:
   longitude: -77.9748669
 acres: 155.05
 sameAs:
-  - 'http://swedenclarksonrec.recdesk.com//recdeskportal/SwedenClarksonRec/FacilityDetail/tabid/1830/default.aspx?FacilityID=26'
+  - 'https://www.townofswedenny.gov/departments/parks-department-1582227806'
 ---

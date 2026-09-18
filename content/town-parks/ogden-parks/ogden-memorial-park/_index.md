@@ -7,5 +7,6 @@ geo:
   longitude: -77.8043732
 acres: 0.82
 sameAs:
+  - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14710'
   - 'https://maps.google.com/?cid=14619331664547173453'
 ---

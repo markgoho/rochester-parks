@@ -5,4 +5,6 @@ type: 'county-parks'
 geo:
   latitude: 43.20738388916131
   longitude: -77.62537168425285
+sameAs:
+  - 'https://senecaparkzoo.org/'
 ---

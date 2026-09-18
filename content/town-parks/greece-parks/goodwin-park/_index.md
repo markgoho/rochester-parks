@@ -16,7 +16,7 @@ amenities:
   - Rockers
   - Swingset
 sameAs:
-  - 'https://greeceny.gov/departments/parks-recreation/parks/goodwin-park/'
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/goodwin-park/'
   - 'https://maps.google.com/?cid=11391893499565287255'
 geo:
   latitude: 43.29122801571042

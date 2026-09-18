@@ -17,6 +17,8 @@ amenities:
 geo:
   latitude: 43.165794
   longitude: -77.6112798
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/trenton-and-pamela-jackson-r-center'
 ---
 
 A page for this park is still being written.

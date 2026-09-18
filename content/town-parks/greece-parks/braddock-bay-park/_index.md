@@ -20,7 +20,7 @@ amenities:
   - Swingset
   - Trails
 sameAs:
-  - 'https://greeceny.gov/departments/parks-recreation/parks/braddock-bay-park/'
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/braddock-bay-park/'
   - 'https://maps.google.com/?cid=6707657148329877059'
 geo:
   latitude: 43.2999874

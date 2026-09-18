@@ -16,6 +16,8 @@ amenities:
 geo:
   latitude: 43.1582317
   longitude: -77.6425758
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/hope-r-center'
 ---
 
 A page for this park is still being written.
