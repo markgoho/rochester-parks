@@ -13,4 +13,9 @@ sameAs:
 geo:
   latitude: 43.0586352
   longitude: -77.5309336
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    closes: 'dusk'
+    season: { from: 'April 1', through: 'October 31' }
 ---

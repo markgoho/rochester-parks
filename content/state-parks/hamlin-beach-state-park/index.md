@@ -12,6 +12,19 @@ address:
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/hamlin-beach-state-park'
   - 'https://maps.google.com/?cid=10538041579045853947'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
+facilities:
+  - name: 'Swimming beach'
+    type: Beach
+    openingHours:
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        opens: '11:00'
+        closes: '18:45'
+        season: { from: 'June 20', through: 'Labor Day' }
 ---
 
 A page for this park is still being written.

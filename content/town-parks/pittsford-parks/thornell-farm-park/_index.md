@@ -13,4 +13,8 @@ address:
 acres: 27
 sameAs:
   - 'https://maps.google.com/?cid=15936254816094193551'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    closes: '22:00'
 ---

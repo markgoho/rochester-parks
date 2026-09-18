@@ -9,6 +9,11 @@ acres: 18
 sameAs:
   - 'https://www.monroecounty.gov/parks-devilscove'
   - 'https://maps.google.com/?cid=4780379995607672227'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: '22:00'
 ---
 
 ![Devil's Cove Park Inlet](Devils-cove-inlet.jpg)

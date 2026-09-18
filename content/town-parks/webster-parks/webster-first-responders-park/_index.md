@@ -20,4 +20,17 @@ amenities:
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/First-Responders-Spray-ParkPlayground-40'
   - 'https://maps.google.com/?cid=430704539646243787'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
+facilities:
+  - name: 'Spray park'
+    type: Playground
+    openingHours:
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        opens: 'dawn'
+        closes: 'dusk'
+        season: { from: 'Memorial Day', through: 'Labor Day' }
 ---

@@ -14,4 +14,9 @@ address:
 sameAs:
   - 'https://www.monroecounty.gov/parks-churchville'
   - 'https://maps.google.com/?cid=13143577359379199563'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: '22:00'
 ---

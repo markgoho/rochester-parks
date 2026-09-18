@@ -13,4 +13,15 @@ address:
 acres: 32.95
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Ridgecrest-Park-28'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
+facilities:
+  - name: 'Spray park'
+    type: Playground
+    openingHours:
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        season: { from: 'Memorial Day', through: 'Labor Day' }
 ---

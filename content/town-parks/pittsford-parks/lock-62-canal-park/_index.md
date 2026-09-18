@@ -8,4 +8,8 @@ geo:
 acres: 15
 sameAs:
   - 'https://maps.google.com/?cid=13652197790582142388'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    closes: 'dusk'
 ---

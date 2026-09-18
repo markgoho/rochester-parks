@@ -14,4 +14,9 @@ acres: 1.57
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Sandbar-Park-29'
   - 'https://maps.google.com/?cid=4605622829878013402'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

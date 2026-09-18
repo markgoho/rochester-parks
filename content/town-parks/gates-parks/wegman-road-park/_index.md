@@ -14,4 +14,9 @@ acres: 2
 sameAs:
   - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14703'
   - 'https://maps.google.com/?cid=17740540470686380631'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

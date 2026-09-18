@@ -1,6 +1,7 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
   import ParkFlags from '#lib/components/ParkFlags.svelte';
+  import Tip from '#lib/components/Tip.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
@@ -15,6 +16,7 @@
     villagesIn,
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
+  import type { HoursView } from '#lib/hours.js';
   import type { Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
@@ -73,12 +75,26 @@
           .join(', ')
       : undefined
   );
-  /** The panel is worth drawing only once one of its three rows has content. */
-  const hasBasics = $derived(
-    Boolean(address) ||
-      park?.acres !== undefined ||
-      (park?.links.length ?? 0) > 0
+  const hours = $derived(page.hours);
+  const hasHours = $derived(
+    hours !== undefined &&
+      (hours.grounds !== undefined || hours.facilities.length > 0)
   );
+  /**
+   * The official page is where the facts come from (ADR-0004), so it is
+   * cited on its own. The other links stay under "Elsewhere".
+   */
+  const official = $derived(
+    park?.links.find((item) => item.label === 'Official page')
+  );
+  const elsewhere = $derived(
+    park?.links.filter((item) => item !== official) ?? []
+  );
+  /** The site the facts come from, as a reader would name it. */
+  const officialHost = $derived(
+    official ? new URL(official.url).hostname.replace(/^www\./, '') : ''
+  );
+  const uid = $props.id();
   const recorded = $derived(
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
       .length
@@ -142,12 +158,54 @@
     </div>
   {/if}
 
-  {#if park && hasBasics}
+  {#snippet place(view: HoursView, name?: string)}
+    <div class="hours__place">
+      {#if name}<p class="hours__name">{name}</p>{/if}
+      {#each view.lines as line (line)}<p>{line}</p>{/each}
+      {#if view.note}<p class="hours__note">{view.note}</p>{/if}
+      {#if view.closedOn}<p class="hours__note">{view.closedOn}</p>{/if}
+    </div>
+  {/snippet}
+
+  {#if park}
     <section class="panel basics">
       <div class="panel__head">
         <span class="eyebrow">The basics</span>
       </div>
       <dl class="panel__body facts">
+        <div class="fact fact--wide">
+          <dt class="eyebrow">
+            Hours
+            {#if hours?.checkedOn}
+              <button
+                type="button"
+                class="checked"
+                style="anchor-name: --tip-{uid}-checked"
+                aria-label="Hours checked {hours.checkedOn}"
+                interestfor="tip-{uid}-checked"
+                popovertarget="tip-{uid}-checked">i</button
+              >
+              <Tip id="tip-{uid}-checked" anchor="--tip-{uid}-checked"
+                >Hours checked {hours.checkedOn}</Tip
+              >
+            {/if}
+          </dt>
+          <dd class="hours">
+            {#if hours && hasHours}
+              {#if hours.grounds}
+                {@render place(
+                  hours.grounds,
+                  hours.facilities.length ? 'Grounds' : undefined
+                )}
+              {/if}
+              {#each hours.facilities as facility (facility.name)}
+                {@render place(facility, facility.name)}
+              {/each}
+            {:else}
+              —
+            {/if}
+          </dd>
+        </div>
         {#if address}
           <div class="fact">
             <dt class="eyebrow">Address</dt>
@@ -160,11 +218,21 @@
             <dd class="mono">{formatAcres(park.acres)} acres</dd>
           </div>
         {/if}
-        {#if park.links.length}
+        {#if official}
+          <div class="fact">
+            <dt class="eyebrow">Source</dt>
+            <dd class="links">
+              <a href={official.url} rel="noopener"
+                ><cite>{officialHost}</cite></a
+              >
+            </dd>
+          </div>
+        {/if}
+        {#if elsewhere.length}
           <div class="fact">
             <dt class="eyebrow">Elsewhere</dt>
             <dd class="links">
-              {#each park.links as item (item.url)}
+              {#each elsewhere as item (item.url)}
                 <a href={item.url} rel="noopener">{item.label}</a>
               {/each}
             </dd>
@@ -290,6 +358,51 @@
     margin: 0;
   }
 
+  .hours {
+    display: grid;
+    gap: var(--space-10);
+  }
+
+  .hours p {
+    margin: 0;
+  }
+
+  .hours__name {
+    font-weight: var(--weight-bold);
+  }
+
+  .hours__note {
+    color: var(--ink-soft);
+  }
+
+  /* The "hours checked" trigger: a small circled i beside the label. */
+  .checked {
+    display: inline-grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: var(--space-4);
+    padding: 0;
+    border: var(--line-hair) solid var(--rule-strong);
+    border-radius: 50%;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-transform: none;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  .checked:hover,
+  .checked:focus-visible {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  cite {
+    font-style: normal;
+  }
+
   .links {
     display: flex;
     flex-wrap: wrap;
@@ -304,6 +417,10 @@
     .facts {
       grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
       gap: var(--space-20);
+    }
+
+    .fact--wide {
+      grid-column: 1 / -1;
     }
   }
 

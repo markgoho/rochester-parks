@@ -15,4 +15,9 @@ amenities:
   - Baseball Diamond
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/DAmico-Park-22'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

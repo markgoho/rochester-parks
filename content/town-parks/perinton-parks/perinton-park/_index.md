@@ -14,4 +14,9 @@ acres: 43.6
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/perinton-park/'
   - 'https://maps.google.com/?cid=9194795050573807191'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '08:00'
+    closes: '22:00'
 ---
