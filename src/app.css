@@ -374,6 +374,9 @@ p {
   padding: 0 var(--gutter);
   background: var(--ink);
   color: var(--paper);
+  /* The header is the same on every page, so a page change moves it as one
+     piece instead of fading it out and in. */
+  view-transition-name: site-header;
 }
 
 .site-header a {
@@ -679,5 +682,22 @@ p {
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* Page to page. Every link is a full document load, so this is the
+   cross-document transition: a browser that supports it animates, and any
+   other browser does a plain navigation. */
+@view-transition {
+  navigation: auto;
+}
+
+/* Reduced motion keeps the transition but removes its animation, so the new
+   page shows at once. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
   }
 }
