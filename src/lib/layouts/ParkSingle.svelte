@@ -5,7 +5,11 @@
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
-  import { formatAcres, parkTransitionName } from '#lib/format.js';
+  import {
+    formatAcres,
+    formatCoordinates,
+    parkTransitionName,
+  } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -116,11 +120,13 @@
   );
 </script>
 
-<article>
+<!-- The article is the container the layout queries. A container cannot query
+     itself, so the grid is the element inside it. -->
+<article class="park">
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
-  <header class="head">
-    <div class="head__text">
+  <div class="layout">
+    <header class="head">
       <!-- The name shares its view-transition-name with the park's row in a
            Park List, so it moves between the list and this heading. -->
       <h1>
@@ -130,169 +136,192 @@
           >{page.title}</span
         >
       </h1>
-      {#if park}
-        <p class="status">
-          <ParkFlags status={park.status} />
-        </p>
+    </header>
+
+    {#snippet hoursOf(view: HoursView, name?: string)}
+      <div class="hours__place">
+        {#if name}<p class="hours__name">{name}</p>{/if}
+        {#each view.lines as line (line)}<p>{line}</p>{/each}
+        {#if view.note}<p class="hours__note">{view.note}</p>{/if}
+        {#if view.closedOn}<p class="hours__note">{view.closedOn}</p>{/if}
+      </div>
+    {/snippet}
+
+    {#if park}
+      <!-- The facts about the park. Beside the write-up when there is room for
+           both, above it when there is not. -->
+      <aside class="rail" aria-label="About {page.title}">
+        <section class="panel basics">
+          <div class="panel__head">
+            <span class="eyebrow">The basics</span>
+            <ParkFlags status={park.status} />
+          </div>
+          <div class="panel__body">
+            <!-- Where the park is: the outline beside the facts it stands for. -->
+            {#if (park.geo && where) || address}
+              <div class="place" class:place--map={park.geo && where}>
+                {#if park.geo && where}
+                  <div class="map">
+                    {#if shape}
+                      <TownShape
+                        {shape}
+                        {villages}
+                        label="{page.title} in {where}"
+                        markers={[{ title: page.title, ...park.geo }]}
+                      />
+                    {:else if city}
+                      <CityLocator
+                        label="{page.title} in {where}"
+                        markers={[{ title: page.title, ...park.geo }]}
+                      />
+                    {:else}
+                      <TownLocator
+                        label="{page.title} in {where}"
+                        markers={[{ title: page.title, ...park.geo }]}
+                      />
+                    {/if}
+                  </div>
+                {/if}
+                <dl class="facts">
+                  {#if where}
+                    <div class="fact">
+                      <dt class="eyebrow">Where</dt>
+                      <dd>
+                        {#if neighborhood}<a
+                            href={neighborhoodUrl(neighborhood.key)}>{where}</a
+                          >{:else}{where}{/if}
+                      </dd>
+                    </div>
+                  {/if}
+                  {#if address}
+                    <div class="fact">
+                      <dt class="eyebrow">Address</dt>
+                      <dd>{address}</dd>
+                    </div>
+                  {/if}
+                  {#if park.geo}
+                    <div class="fact">
+                      <dt class="eyebrow">Coordinates</dt>
+                      <dd class="mono">{formatCoordinates(park.geo)}</dd>
+                    </div>
+                  {/if}
+                </dl>
+              </div>
+            {/if}
+
+            <dl class="facts facts--grid">
+              <!-- Hours take the full width only when they are long. One line
+                   of hours, or an em dash, sits in line with the other facts. -->
+              <div class="fact" class:fact--wide={longHours}>
+                <dt class="eyebrow">
+                  Hours
+                  {#if hours?.checkedOn}
+                    <button
+                      type="button"
+                      class="checked"
+                      style="anchor-name: --tip-{uid}-checked"
+                      aria-label="Hours checked {hours.checkedOn}"
+                      interestfor="tip-{uid}-checked"
+                      popovertarget="tip-{uid}-checked">i</button
+                    >
+                    <Tip id="tip-{uid}-checked" anchor="--tip-{uid}-checked"
+                      >Hours checked {hours.checkedOn}</Tip
+                    >
+                  {/if}
+                </dt>
+                <dd class="hours">
+                  {#if hours && hasHours}
+                    {#if hours.grounds}
+                      {@render hoursOf(
+                        hours.grounds,
+                        hours.facilities.length ? 'Grounds' : undefined
+                      )}
+                    {/if}
+                    {#each hours.facilities as facility (facility.name)}
+                      {@render hoursOf(facility, facility.name)}
+                    {/each}
+                  {:else}
+                    —
+                  {/if}
+                </dd>
+              </div>
+              {#if park.acres !== undefined}
+                <div class="fact">
+                  <dt class="eyebrow">Size</dt>
+                  <dd class="mono">{formatAcres(park.acres)} acres</dd>
+                </div>
+              {/if}
+              {#if official}
+                <div class="fact">
+                  <dt class="eyebrow">Source</dt>
+                  <dd class="links">
+                    <a href={official.url} rel="noopener"
+                      ><cite>{officialHost}</cite></a
+                    >
+                  </dd>
+                </div>
+              {/if}
+              {#if elsewhere.length}
+                <div class="fact">
+                  <dt class="eyebrow">Elsewhere</dt>
+                  <dd class="links">
+                    {#each elsewhere as item (item.url)}
+                      <a href={item.url} rel="noopener">{item.label}</a>
+                    {/each}
+                  </dd>
+                </div>
+              {/if}
+            </dl>
+          </div>
+        </section>
+
+        {#if park.amenities.length}
+          <section class="panel amenities">
+            <div class="panel__head">
+              <span class="eyebrow">What is there</span>
+              <span class="eyebrow mono">{park.amenities.length} recorded</span>
+            </div>
+            <ul class="panel__body tags">
+              {#each park.amenities as amenity (amenity)}
+                <li><span class="tag">{amenity}</span></li>
+              {/each}
+            </ul>
+          </section>
+        {/if}
+      </aside>
+    {/if}
+
+    <div class="body">
+      {#if park && recorded === 0}
+        <div class="panel empty">
+          <div class="panel__head">
+            <span class="eyebrow">What we know</span>
+            <span class="eyebrow eyebrow--accent mono">0 of 3</span>
+          </div>
+          <div class="panel__body">
+            <p>
+              Nobody has walked {page.title} and written it up, and there is no list
+              of what is there. What this page can tell you honestly is where it
+              is and who looks after it. The rest is waiting on a visit.
+            </p>
+          </div>
+        </div>
+      {/if}
+
+      <div class="prose">{@html page.html}</div>
+
+      {#if page.children.length}
+        <nav class="sub" aria-label="More about this park">
+          <p class="eyebrow">More about {page.title}</p>
+          <ul>
+            {#each page.children as child (child.url)}
+              <li><a href={child.url}>{child.title}</a></li>
+            {/each}
+          </ul>
+        </nav>
       {/if}
     </div>
-    {#if park?.geo && where}
-      <figure class="where">
-        {#if shape}
-          <TownShape
-            {shape}
-            {villages}
-            label="{page.title} in {where}"
-            markers={[{ title: page.title, ...park.geo }]}
-          />
-        {:else if city}
-          <CityLocator
-            label="{page.title} in {where}"
-            markers={[{ title: page.title, ...park.geo }]}
-          />
-        {:else}
-          <TownLocator
-            label="{page.title} in {where}"
-            markers={[{ title: page.title, ...park.geo }]}
-          />
-        {/if}
-        <figcaption class="eyebrow">
-          In {#if neighborhood}<a href={neighborhoodUrl(neighborhood.key)}
-              >{where}</a
-            >{:else}{where}{/if}
-        </figcaption>
-      </figure>
-    {/if}
-  </header>
-
-  {#if park && recorded === 0}
-    <div class="panel empty">
-      <div class="panel__head">
-        <span class="eyebrow">What we know</span>
-        <span class="eyebrow eyebrow--accent mono">0 of 3</span>
-      </div>
-      <div class="panel__body">
-        <p>
-          Nobody has walked {page.title} and written it up, and there is no list
-          of what is there. What this page can tell you honestly is where it is and
-          who looks after it. The rest is waiting on a visit.
-        </p>
-      </div>
-    </div>
-  {/if}
-
-  {#snippet hoursOf(view: HoursView, name?: string)}
-    <div class="hours__place">
-      {#if name}<p class="hours__name">{name}</p>{/if}
-      {#each view.lines as line (line)}<p>{line}</p>{/each}
-      {#if view.note}<p class="hours__note">{view.note}</p>{/if}
-      {#if view.closedOn}<p class="hours__note">{view.closedOn}</p>{/if}
-    </div>
-  {/snippet}
-
-  {#if park && hasBasics}
-    <section class="panel basics">
-      <div class="panel__head">
-        <span class="eyebrow">The basics</span>
-      </div>
-      <dl class="panel__body facts">
-        <!-- Hours take the full width only when they are long. One line of
-             hours, or an em dash, sits in line with the other facts. -->
-        <div class="fact" class:fact--wide={longHours}>
-          <dt class="eyebrow">
-            Hours
-            {#if hours?.checkedOn}
-              <button
-                type="button"
-                class="checked"
-                style="anchor-name: --tip-{uid}-checked"
-                aria-label="Hours checked {hours.checkedOn}"
-                interestfor="tip-{uid}-checked"
-                popovertarget="tip-{uid}-checked">i</button
-              >
-              <Tip id="tip-{uid}-checked" anchor="--tip-{uid}-checked"
-                >Hours checked {hours.checkedOn}</Tip
-              >
-            {/if}
-          </dt>
-          <dd class="hours">
-            {#if hours && hasHours}
-              {#if hours.grounds}
-                {@render hoursOf(
-                  hours.grounds,
-                  hours.facilities.length ? 'Grounds' : undefined
-                )}
-              {/if}
-              {#each hours.facilities as facility (facility.name)}
-                {@render hoursOf(facility, facility.name)}
-              {/each}
-            {:else}
-              —
-            {/if}
-          </dd>
-        </div>
-        {#if address}
-          <div class="fact">
-            <dt class="eyebrow">Address</dt>
-            <dd>{address}</dd>
-          </div>
-        {/if}
-        {#if park.acres !== undefined}
-          <div class="fact">
-            <dt class="eyebrow">Size</dt>
-            <dd class="mono">{formatAcres(park.acres)} acres</dd>
-          </div>
-        {/if}
-        {#if official}
-          <div class="fact">
-            <dt class="eyebrow">Source</dt>
-            <dd class="links">
-              <a href={official.url} rel="noopener"
-                ><cite>{officialHost}</cite></a
-              >
-            </dd>
-          </div>
-        {/if}
-        {#if elsewhere.length}
-          <div class="fact">
-            <dt class="eyebrow">Elsewhere</dt>
-            <dd class="links">
-              {#each elsewhere as item (item.url)}
-                <a href={item.url} rel="noopener">{item.label}</a>
-              {/each}
-            </dd>
-          </div>
-        {/if}
-      </dl>
-    </section>
-  {/if}
-
-  {#if park && park.amenities.length}
-    <section class="panel amenities">
-      <div class="panel__head">
-        <span class="eyebrow">What is there</span>
-        <span class="eyebrow mono">{park.amenities.length} recorded</span>
-      </div>
-      <ul class="panel__body tags">
-        {#each park.amenities as amenity (amenity)}
-          <li><span class="tag">{amenity}</span></li>
-        {/each}
-      </ul>
-    </section>
-  {/if}
-
-  <div class="prose">{@html page.html}</div>
-
-  {#if page.children.length}
-    <nav class="sub" aria-label="More about this park">
-      <p class="eyebrow">More about {page.title}</p>
-      <ul>
-        {#each page.children as child (child.url)}
-          <li><a href={child.url}>{child.title}</a></li>
-        {/each}
-      </ul>
-    </nav>
-  {/if}
+  </div>
 
   {#if page.neighbours?.previous || page.neighbours?.next}
     <nav class="paging" aria-label="Other parks in {park?.section.title}">
@@ -325,61 +354,88 @@
     view-transition-class: park-name;
   }
 
-  .head {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
-    padding-bottom: var(--space-20);
+  /* The article is the container the layout below queries. */
+  .park {
+    container: park / inline-size;
   }
 
-  .head__text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-12);
+  /* Narrow: the name, the facts, then the write-up, in one column. */
+  .layout {
+    display: grid;
+    gap: var(--space-24);
+  }
+
+  .head,
+  .body {
     min-width: 0;
   }
 
-  .where {
-    width: 9rem;
-    margin: 0;
+  /* Above the write-up, the panels share a row when two fit. */
+  .rail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    align-items: start;
+    /* Beside the write-up the rail is as tall as it. The panels stay at the
+       top and do not share out that height. */
+    align-content: start;
+    gap: var(--space-20);
   }
 
-  .where figcaption {
-    margin-top: var(--space-6);
-    text-align: center;
-  }
-
-  @media (min-width: 60rem) {
-    /* The outline sits beside the title, the park marked on it. */
-    .head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 9rem;
-      align-items: start;
-      gap: var(--space-40);
+  /* Wide: the facts move to a rail beside the write-up. That takes a line of
+     prose at --measure (68ch of Public Sans, 41.6rem), the gap, and the
+     smallest rail: 41.6 + 3.5 + 22.5 = 67.6rem. Below that, a rail beside the
+     text would squeeze both, so the facts stay above it. */
+  @container park (inline-size >= 68rem) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) clamp(22.5rem, 28%, 37.5rem);
+      grid-template-rows: auto 1fr;
+      column-gap: var(--space-56);
     }
 
-    .where {
-      justify-self: end;
+    .head,
+    .body {
+      grid-column: 1;
+    }
+
+    .rail {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 
-  .status {
-    display: flex;
-    align-items: center;
-    gap: var(--space-10);
-    margin: 0;
-  }
-
-  .empty,
-  .basics,
-  .amenities {
+  .empty {
     margin-bottom: var(--space-24);
+  }
+
+  /* Where the park is: its outline beside the facts that place it. */
+  .place--map {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-20);
+  }
+
+  /* A rule between where the park is and the rest of the facts. */
+  .place + .facts {
+    margin-top: var(--space-16);
+    padding-top: var(--space-16);
+    border-top: var(--line-hair) solid var(--rule);
   }
 
   .facts {
     display: grid;
     gap: var(--space-14);
     margin: 0;
+  }
+
+  .facts--grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+    gap: var(--space-20);
+  }
+
+  .fact--wide {
+    grid-column: 1 / -1;
   }
 
   .fact dt {
@@ -443,17 +499,6 @@
 
   .links a {
     font-weight: var(--weight-bold);
-  }
-
-  @media (min-width: 40rem) {
-    .facts {
-      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-      gap: var(--space-20);
-    }
-
-    .fact--wide {
-      grid-column: 1 / -1;
-    }
   }
 
   .empty p {
