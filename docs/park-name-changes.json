@@ -1,5 +1,5 @@
 {
-  "note": "Park names changed in this sync. The WordPress comment archive keys on the OLD name, so an import must join on \"old\".",
+  "note": "Park names changed in this sync, or when one Park page was merged into another. The WordPress comment archive keys on the OLD name, so an import must join on \"old\".",
   "changes": [
     {
       "path": "content/state-parks/irondequoit-bay-state-marine-park/_index.md",
