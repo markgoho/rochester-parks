@@ -3,7 +3,7 @@
   import ParkFlags from '#lib/components/ParkFlags.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
-  import { formatAcres, parkRowTransitionName } from '#lib/format.js';
+  import { formatAcres, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -134,13 +134,21 @@
   {#snippet parkRow(child: ChildLink, i: number)}
     {@const park = child.park!}
     <!-- Every ordering of a section names a park's row the same way, so a
-         browser with view transitions moves each row to its new place. -->
+         browser with view transitions moves each row to its new place. The
+         park's name has a name of its own, which the Park page's heading
+         shares, so the name moves from the list into the heading. -->
     <li
       class="row"
-      style:view-transition-name={parkRowTransitionName(child.url)}
+      style:view-transition-name={parkTransitionName(child.url, 'row')}
     >
       <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
-      <a class="name" href={child.url}>{child.title}</a>
+      <a class="name" href={child.url}
+        ><span
+          class="name__text"
+          style:view-transition-name={parkTransitionName(child.url, 'name')}
+          >{child.title}</span
+        ></a
+      >
       <span class="status"
         ><ParkFlags status={park.status} label={false} /></span
       >
@@ -367,6 +375,13 @@
     grid-area: name;
     font-size: var(--text-lg);
     font-weight: var(--weight-bold);
+  }
+
+  /* A named element must be one box, so a name that wraps cannot be an inline
+     span. */
+  .name__text {
+    display: inline-block;
+    view-transition-class: park-name;
   }
 
   .status {

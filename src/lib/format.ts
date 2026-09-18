@@ -11,15 +11,17 @@ export function formatAcres(acres: number): string {
 }
 
 /**
- * The `view-transition-name` of a park's row. The name must be unique in the
- * document and the same on every page that shows the row, so it comes from
- * the park's whole path, not from its position or its last segment. The
- * prefix keeps it a valid ident when a slug starts with a digit.
+ * The `view-transition-name` of one part of a park: its row in a Park List, or
+ * its name, which is the same on the list and on the Park page. The name must
+ * be unique in the document and the same on every page that shows the part,
+ * so it comes from the park's whole path, not from its position or its last
+ * segment. The part goes first, which keeps the name a valid ident when a slug
+ * starts with a digit.
  */
-export function parkRowTransitionName(path: string): string {
+export function parkTransitionName(path: string, part: 'row' | 'name'): string {
   const ident = path
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
-  return `park-${ident}`;
+  return `${part}-${ident}`;
 }

@@ -5,7 +5,7 @@
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
-  import { formatAcres } from '#lib/format.js';
+  import { formatAcres, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -121,7 +121,15 @@
 
   <header class="head">
     <div class="head__text">
-      <h1>{page.title}</h1>
+      <!-- The name shares its view-transition-name with the park's row in a
+           Park List, so it moves between the list and this heading. -->
+      <h1>
+        <span
+          class="title"
+          style:view-transition-name={parkTransitionName(page.url, 'name')}
+          >{page.title}</span
+        >
+      </h1>
       {#if park}
         <p class="status">
           <ParkFlags status={park.status} />
@@ -310,6 +318,13 @@
 </article>
 
 <style>
+  /* A named element must be one box, so a name that wraps cannot be an inline
+     span. */
+  .title {
+    display: inline-block;
+    view-transition-class: park-name;
+  }
+
   .head {
     display: flex;
     flex-direction: column;
