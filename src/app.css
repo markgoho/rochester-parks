@@ -207,7 +207,7 @@
 
 @font-face {
   font-family: 'Archivo Black Fallback';
-  src: local('Arial Black'), local('ArialMT-Black');
+  src: local('Arial Black'), local('Arial-Black');
   size-adjust: 100%;
   ascent-override: 87.81%;
   descent-override: 21%;
