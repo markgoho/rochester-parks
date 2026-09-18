@@ -25,3 +25,15 @@ export function parkTransitionName(path: string, part: 'row' | 'name'): string {
     .replace(/^-+|-+$/g, '');
   return `${part}-${ident}`;
 }
+
+/**
+ * A park's point as a reader copies it into a map. Four places is about eleven
+ * metres, finer than a park. The sign stays a hyphen-minus, because a map app
+ * does not read the typographic minus sign.
+ */
+export function formatCoordinates(geo: {
+  latitude: number;
+  longitude: number;
+}): string {
+  return `${geo.latitude.toFixed(4)}, ${geo.longitude.toFixed(4)}`;
+}

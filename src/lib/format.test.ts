@@ -1,6 +1,6 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { parkTransitionName } from './format.js';
+import { formatCoordinates, parkTransitionName } from './format.js';
 
 describe('parkTransitionName', () => {
   test('names a part of a park by its whole path', () => {
@@ -36,6 +36,20 @@ describe('parkTransitionName', () => {
   test('turns any character an ident cannot hold into a hyphen', () => {
     expect(parkTransitionName('/state-parks/Park_Name.2/', 'row')).toBe(
       'row-state-parks-park-name-2'
+    );
+  });
+});
+
+describe('formatCoordinates', () => {
+  test('rounds to four places, about eleven metres', () => {
+    expect(
+      formatCoordinates({ latitude: 43.2555295, longitude: -77.6412645 })
+    ).toBe('43.2555, -77.6413');
+  });
+
+  test('keeps trailing zeros so the figures line up', () => {
+    expect(formatCoordinates({ latitude: 43.1, longitude: -77.6 })).toBe(
+      '43.1000, -77.6000'
     );
   });
 });
