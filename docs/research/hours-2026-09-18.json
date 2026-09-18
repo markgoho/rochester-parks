@@ -1,0 +1,419 @@
+{
+  "crawledOn": "2026-09-18",
+  "note": "Hours as printed on the official pages, from the crawl in #66. kind own-page: the page is about this Park only. kind shared-page: one page covers several Parks.",
+  "rows": [
+    {
+      "file": "content/monroe-county-parks/black-creek-park/_index.md",
+      "title": "Black Creek Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-blackcreek",
+      "hours": "Daily 7:00 a.m. to 10:00 p.m."
+    },
+    {
+      "file": "content/monroe-county-parks/churchville-park/index.md",
+      "title": "Churchville Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-churchville",
+      "hours": "Daily 7:00 a.m. to 10:00 p.m."
+    },
+    {
+      "file": "content/monroe-county-parks/devils-cove-park/_index.md",
+      "title": "Devil's Cove Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-devilscove",
+      "hours": "Daily, 7:00 a.m. to 10:00 p.m."
+    },
+    {
+      "file": "content/monroe-county-parks/ellison-park/index.md",
+      "title": "Ellison Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-ellison",
+      "hours": "Daily 7:00 a.m. to 10:00 p.m."
+    },
+    {
+      "file": "content/monroe-county-parks/irondequoit-bay-marine-park/index.md",
+      "title": "Irondequoit Bay Marine Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park",
+      "hours": "Daily 4am-10pm; public restroom seasonal April 21-October 15"
+    },
+    {
+      "file": "content/monroe-county-parks/ontario-beach-park/index.md",
+      "title": "Ontario Beach Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-ontariobeach",
+      "hours": "Daily, 7:00 a.m. to 10:00 p.m."
+    },
+    {
+      "file": "content/monroe-county-parks/seneca-park-zoo/index.md",
+      "title": "Seneca Park Zoo",
+      "kind": "own-page",
+      "sourceUrl": "https://senecaparkzoo.org/",
+      "hours": "10 a.m.-5 p.m. daily (open 362 days a year); members open at 9:30 a.m.; closed Thanksgiving, Christmas and New Year's Day."
+    },
+    {
+      "file": "content/monroe-county-parks/seneca-park/index.md",
+      "title": "Seneca Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-seneca",
+      "hours": "Daily 7:00 a.m. to 10:00 p.m. (summer)"
+    },
+    {
+      "file": "content/monroe-county-parks/webster-park/_index.md",
+      "title": "Webster Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.monroecounty.gov/parks-webster",
+      "hours": "Daily, 7:00 a.m. to 10:00 p.m."
+    },
+    {
+      "file": "content/rochester-city-parks/adams-street-rec-center/_index.md",
+      "title": "Adam's Street Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/adams-street-r-center",
+      "hours": "Effective June 29, 2026: Monday-Thursday 8:30 a.m.-7:30 p.m., Friday 8:30 a.m.-6 p.m., Saturday 9:30 a.m.-4:30 p.m."
+    },
+    {
+      "file": "content/rochester-city-parks/avenue-d-rec-center/_index.md",
+      "title": "Avenue D Rec. Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/avenue-d-r-center",
+      "hours": "Monday, Wednesday, Friday: 8:30 a.m.-5:30 p.m.; Tuesday, Thursday: 8:30 a.m.-7:30 p.m.; Closed Saturday"
+    },
+    {
+      "file": "content/rochester-city-parks/campbell-st-rec-center/_index.md",
+      "title": "Campbell St Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/hope-r-center",
+      "hours": "Monday, Thursday, Friday: 8:30 a.m.-5:30 p.m.; Tuesday, Wednesday: 8:30 a.m.-7:30 p.m.; Closed Saturday"
+    },
+    {
+      "file": "content/rochester-city-parks/carter-st-rec-center/_index.md",
+      "title": "Carter St. Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/carter-street-r-center",
+      "hours": "Mon.-Thurs., 8:30 a.m.-7:30 p.m.; Fri., 8:30 a.m.-6 p.m.; Closed Saturdays"
+    },
+    {
+      "file": "content/rochester-city-parks/clinton-baden-rec-center/_index.md",
+      "title": "Clinton / Baden Rec Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/trenton-and-pamela-jackson-r-center",
+      "hours": "Mon.-Thurs., 8:30 a.m.-8 p.m.; Fri., 8:30 a.m.-5:30 p.m.; Sat., 9:30 a.m.-4:30 p.m. Fitness room: Sept.-June M-F 10am-8:45pm/Sat 10am-4:15pm, July-Aug M-F 10am-7:15pm/Sat 10am-4:15pm"
+    },
+    {
+      "file": "content/rochester-city-parks/david-f-gantt-recreation-center/_index.md",
+      "title": "David F. Gantt Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/david-f-gantt-r-center",
+      "hours": "Monday, Wednesday: 8:30 a.m.-7:30 p.m.; Tuesday, Thursday, Friday: 8:30 a.m.-5:30 p.m.; Saturday: 9:30 a.m.-4:30 p.m."
+    },
+    {
+      "file": "content/rochester-city-parks/edgerton-park/_index.md",
+      "title": "Edgerton Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/edgerton-r-center",
+      "hours": "Mon., Thurs., Fri.: 8:30 a.m.-5:30 p.m.; Tues., Wed.: 8:30 a.m.-7:30 p.m.; Closed Saturdays"
+    },
+    {
+      "file": "content/rochester-city-parks/flint-st-recreation-center/_index.md",
+      "title": "Flint St Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/willie-walker-lightfoot-r-center",
+      "hours": "Sept.-June: M-F 3pm-8:45pm, Sat 10am-4:15pm. July-Aug: M-F 9am-7:15pm, Sat 10am-4:15pm."
+    },
+    {
+      "file": "content/rochester-city-parks/gardiner-avenue/_index.md",
+      "title": "Gardiner Avenue",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/roxie-ann-sinkler-r-center",
+      "hours": "After School: Mon.-Fri., 2-5 p.m.; Evening: Mon.-Fri., 5-9 p.m.; Full Day: Mon.-Fri., 7:30 a.m.-5 p.m."
+    },
+    {
+      "file": "content/rochester-city-parks/humboldt-recreation-center/_index.md",
+      "title": "Humboldt Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/humboldt-r-center",
+      "hours": "Monday-Friday 2-6 p.m.; closed weekends."
+    },
+    {
+      "file": "content/rochester-city-parks/manhattan-square/_index.md",
+      "title": "Manhattan Square",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/dr-martin-luther-king-jr-park-ice-rink",
+      "hours": "Reopens Monday Nov 23, 2026 (weather permitting); daily sessions 12:00 p.m.-8:50 p.m. across multiple time slots Mon-Sun; closed Thanksgiving, Christmas, New Year's Day."
+    },
+    {
+      "file": "content/rochester-city-parks/ryan-community-center/_index.md",
+      "title": "Ryan Community Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/thomas-p-ryan-r-center",
+      "hours": "Mon-Thurs 8:30 a.m.-7:30 p.m.; Fri 8:30 a.m.-6:00 p.m.; Sat 9:30 a.m.-4:30 p.m."
+    },
+    {
+      "file": "content/rochester-city-parks/south-avenue-recreation-center/_index.md",
+      "title": "South Avenue Recreation Center",
+      "kind": "own-page",
+      "sourceUrl": "https://www.cityofrochester.gov/locations/frederick-douglass-r-center",
+      "hours": "Mon & Wed 8:30 a.m.-5:30 p.m.; Tues, Thurs, Fri 8:30 a.m.-7:30 p.m.; closed Saturday."
+    },
+    {
+      "file": "content/state-parks/genesee-valley-greenway-state-park/_index.md",
+      "title": "Genesee Valley Greenway State Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/genesee-valley-greenway-state-park",
+      "hours": "6:00 am - 10:00 pm, daily"
+    },
+    {
+      "file": "content/state-parks/hamlin-beach-state-park/index.md",
+      "title": "Hamlin Beach State Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/hamlin-beach-state-park",
+      "hours": "Dawn to dusk daily; vehicle fees collected 9am-5pm (seasonal); swimming beach 11am-6:45pm (June 20-Labor Day, tentative)."
+    },
+    {
+      "file": "content/state-parks/irondequoit-bay-state-marine-park/_index.md",
+      "title": "Irondequoit Bay State Marine Park",
+      "kind": "own-page",
+      "sourceUrl": "https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park",
+      "hours": "Daily 4am-10pm; public restroom seasonal April 21-October 15"
+    },
+    {
+      "file": "content/town-parks/chili-parks/union-station-park/_index.md",
+      "title": "Union Station Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.chiliny.gov/347/Parks",
+      "hours": "Sprayground open daily Memorial Day weekend through Labor Day weekend, 9:00 AM-8:00 PM; free."
+    },
+    {
+      "file": "content/town-parks/gates-parks/wegman-road-park/_index.md",
+      "title": "Wegman Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14703",
+      "hours": "Dawn to dusk"
+    },
+    {
+      "file": "content/town-parks/hamlin-parks/hamlin-recreation-area/_index.md",
+      "title": "Hamlin Recreation Area",
+      "kind": "shared-page",
+      "sourceUrl": "https://hamlinny.org/places-of-interest/",
+      "hours": "Recreation Department office hours: Monday 8:00 AM-6:00 PM; Tuesday-Thursday 8:00 AM-4:00 PM; Friday 8:00 AM-2:00 PM."
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/andrews-park/_index.md",
+      "title": "Andrews Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/andrews-park-0",
+      "hours": "7am until sunset. Seven days per week."
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/breese-park/_index.md",
+      "title": "Breese Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/breese-park",
+      "hours": "7am until sunset. Seven days per week."
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/henrietta-veterans-memorial-park/_index.md",
+      "title": "Veterans Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/veterans-memorial-park",
+      "hours": "7:00 AM until 10:00 PM 7 Days a Week"
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/hoskins-park/_index.md",
+      "title": "Hoskins Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/hoskins-park",
+      "hours": "7am until sunset. Seven days per week."
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/kenwick-park/_index.md",
+      "title": "Kenwick Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/kenwick-park",
+      "hours": "7:00 AM until Sunset 7 Days a Week"
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/martin-road-park/_index.md",
+      "title": "Martin Road Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/martin-road-park",
+      "hours": "7:00 AM until Sunset 7 Days a Week"
+    },
+    {
+      "file": "content/town-parks/henrietta-parks/tinker-nature-park/_index.md",
+      "title": "Tinker Nature Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.henriettany.gov/community/park/tinker-nature-park-trail",
+      "hours": "Trails Hours of Operation: 7:00 AM until Sunset 7 Days a Week. The park's own page says it is open daily 7:00 am until dusk."
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/camp-eastman/_index.md",
+      "title": "Camp Eastman",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Camp-Eastman-1",
+      "hours": "Daily Rental Time: 10 am to 9:45 pm (buildings must be occupied by noon)"
+    },
+    {
+      "file": "content/town-parks/irondequoit-parks/mcavoy-park/_index.md",
+      "title": "McAvoy Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/McAvoy-Park-8",
+      "hours": "Typically open Mid-March through November, 8 am to 11 pm (opening date may vary due to turf upgrades)"
+    },
+    {
+      "file": "content/town-parks/ogden-parks/pineway-ponds-park/_index.md",
+      "title": "Pineway Ponds Park",
+      "kind": "own-page",
+      "sourceUrl": "https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14712",
+      "hours": "Sunday-Monday, Sunrise-Sunset (some amenities have seasonal hours)"
+    },
+    {
+      "file": "content/town-parks/parma-parks/village-park/_index.md",
+      "title": "Village Park",
+      "kind": "own-page",
+      "sourceUrl": "https://hiltonny.gov/html/jennejahnlodge.html",
+      "hours": "The park opens at 9am and closes at 10pm."
+    },
+    {
+      "file": "content/town-parks/perinton-parks/ayrualt-boat-launch/_index.md",
+      "title": "Ayrault Boat Launch",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/ayrault-boat-launch/",
+      "hours": "8am-10pm, 7 days a week during canal season"
+    },
+    {
+      "file": "content/town-parks/perinton-parks/perinton-park/_index.md",
+      "title": "Perinton Park",
+      "kind": "own-page",
+      "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/perinton-park/",
+      "hours": "8 a.m. to 10 p.m. daily (per the Perinton Skatepark page, which follows the same hours as Perinton Park)"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/carpenter-park-port-pittsford/_index.md",
+      "title": "Carpenter Park at the Port of Pittsford",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/farm-view-park/_index.md",
+      "title": "Farm View Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk; seasonal closure November 1 - March 31"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/great-embankment-park/_index.md",
+      "title": "Great Embankment Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/habecker-fields/_index.md",
+      "title": "Habecker Fields",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/hopkins-park/_index.md",
+      "title": "Hopkins Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk; seasonal closure November 1 - March 31"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/isaac-gordon-nature-park/_index.md",
+      "title": "Isaac Gordon Nature Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/kings-bend-park/_index.md",
+      "title": "King’s Bend Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk, rental available until 10:00pm"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/lock-62-canal-park/_index.md",
+      "title": "Lock 62 Canal Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at dusk"
+    },
+    {
+      "file": "content/town-parks/pittsford-parks/thornell-farm-park/_index.md",
+      "title": "Thornell Farm Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://www.townofpittsfordny.gov/parks-and-trails",
+      "hours": "Park closes at 10:00pm"
+    },
+    {
+      "file": "content/town-parks/sweden-parks/harvester-park/_index.md",
+      "title": "Harvester Park",
+      "kind": "shared-page",
+      "sourceUrl": "https://brockportny.gov/village-parks/",
+      "hours": "Welcome Center open 7 days a week, 10:00 a.m.-8:00 p.m. during the regular boating season"
+    },
+    {
+      "file": "content/town-parks/sweden-parks/sweden-town-park/_index.md",
+      "title": "Sweden Town Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.townofswedenny.gov/departments/parks-department-1582227806",
+      "hours": "Open dawn to dusk year-round"
+    },
+    {
+      "file": "content/town-parks/webster-parks/damico-park/_index.md",
+      "title": "D'Amico Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/DAmico-Park-22",
+      "hours": "Dawn to Dusk"
+    },
+    {
+      "file": "content/town-parks/webster-parks/empire-park/_index.md",
+      "title": "Empire Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23",
+      "hours": "Dawn to Dusk"
+    },
+    {
+      "file": "content/town-parks/webster-parks/finn-park/_index.md",
+      "title": "Finn Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Finn-Park-24",
+      "hours": "Dawn to Dusk"
+    },
+    {
+      "file": "content/town-parks/webster-parks/kent-park/_index.md",
+      "title": "Irving Kent Memorial Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Kent-Park-25",
+      "hours": "Dawn to Dusk"
+    },
+    {
+      "file": "content/town-parks/webster-parks/ridgecrest-park/_index.md",
+      "title": "Ridgecrest Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Ridgecrest-Park-28",
+      "hours": "Dawn until Dusk (spray park: Memorial Day - Labor Day)"
+    },
+    {
+      "file": "content/town-parks/webster-parks/sandbar-park/_index.md",
+      "title": "Sandbar Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Sandbar-Park-29",
+      "hours": "Dawn to Dusk"
+    },
+    {
+      "file": "content/town-parks/webster-parks/webster-first-responders-park/_index.md",
+      "title": "First Responders Park",
+      "kind": "own-page",
+      "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/First-Responders-Spray-ParkPlayground-40",
+      "hours": "Spray Park: Memorial Day - Labor Day, Dawn until Dusk. Playground: all year, Dawn until Dusk."
+    }
+  ]
+}
