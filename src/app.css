@@ -374,6 +374,9 @@ p {
   padding: 0 var(--gutter);
   background: var(--ink);
   color: var(--paper);
+  /* The header is the same on every page, so a page change moves it as one
+     piece instead of fading it out and in. */
+  view-transition-name: site-header;
 }
 
 .site-header a {
@@ -687,12 +690,6 @@ p {
    other browser does a plain navigation. */
 @view-transition {
   navigation: auto;
-}
-
-/* The header is the same on every page, so it holds still while the page
-   under it changes. */
-.site-header {
-  view-transition-name: site-header;
 }
 
 /* Reduced motion keeps the transition but removes its animation, so the new

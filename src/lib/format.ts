@@ -16,10 +16,10 @@ export function formatAcres(acres: number): string {
  * the park's whole path, not from its position or its last segment. The
  * prefix keeps it a valid ident when a slug starts with a digit.
  */
-export function viewTransitionName(url: string): string {
-  const path = url
+export function parkRowTransitionName(path: string): string {
+  const ident = path
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
-  return `park-${path}`;
+  return `park-${ident}`;
 }
