@@ -1,6 +1,6 @@
 # Rochester Parks
 
-A public guide to every park in and around Rochester, NY. Readers are the general Rochester public, not developers.
+A public guide to every park in and around Rochester, NY. Readers are the general Rochester public, not developers. The site replaces the official town, county and city pages, so a reader never needs to visit them.
 
 ## Language
 
@@ -9,6 +9,10 @@ A public guide to every park in and around Rochester, NY. Readers are the genera
 **Park**:
 A single public green space the site covers, in the city, a town, the county, or the state system.
 _Avoid_: Location, site, venue
+
+**Facility**:
+A named place inside a Park that keeps its own hours or takes its own bookings: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A playground that keeps the same hours as the grounds is an amenity, not a Facility.
+_Avoid_: Venue, building, amenity
 
 **Park page**:
 The page describing one Park. About 199 exist, sourced from markdown under `content/`.
