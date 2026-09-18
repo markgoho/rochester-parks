@@ -7,11 +7,11 @@ A public guide to every park in and around Rochester, NY. Readers are the genera
 ### Content
 
 **Park**:
-A single public green space the site covers, in the city, a town, the county, or the state system.
+A single standalone public green space the site covers, in the city, a town, the county, or the state system: outdoor land a government owns that the public can go to and use. A street median, a traffic triangle, a street corner, school grounds and a building are not Parks (ADR-0005).
 _Avoid_: Location, site, venue
 
 **Facility**:
-A named place inside a Park that keeps its own hours or takes its own bookings: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A playground that keeps the same hours as the grounds is an amenity, not a Facility.
+A named place inside a Park that keeps its own hours or takes its own bookings: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A playground that keeps the same hours as the grounds is an amenity, not a Facility. A Facility always belongs to the Park that holds it. An R-Center with no grounds of its own is not a Park.
 _Avoid_: Venue, building, amenity
 
 **Park page**:

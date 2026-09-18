@@ -90,6 +90,24 @@
       "old": "Canawagus Park",
       "new": "Canawaugus Park",
       "source": "park database"
+    },
+    {
+      "path": "content/rochester-city-parks/otto-henderberg/_index.md",
+      "old": "Otto Henderberg",
+      "new": "Otto Henderberg Square Park",
+      "source": "City of Rochester park GIS layer"
+    },
+    {
+      "path": "content/rochester-city-parks/west-high-field/_index.md",
+      "old": "West High Field",
+      "new": "West High Park",
+      "source": "City of Rochester park GIS layer"
+    },
+    {
+      "path": "content/rochester-city-parks/ellwanger-and-barry-park/_index.md",
+      "old": "Meigs / Linden",
+      "new": "Ellwanger and Barry Park",
+      "source": "merged: City of Rochester park GIS layer names the MEIGS/LINDEN PARK row Ellwanger & Barry Park"
     }
   ]
 }
