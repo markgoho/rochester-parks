@@ -108,6 +108,12 @@
       "old": "Meigs / Linden",
       "new": "Ellwanger and Barry Park",
       "source": "merged: City of Rochester park GIS layer names the MEIGS/LINDEN PARK row Ellwanger & Barry Park"
+    },
+    {
+      "path": "content/town-parks/gates-parks/first-responders-park/_index.md",
+      "old": "Gates Town Park",
+      "new": "First Responders Park",
+      "source": "merged: park database has one row, First Responders Park, and both pages describe that park (#61)"
     }
   ]
 }
