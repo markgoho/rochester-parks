@@ -13,7 +13,7 @@ amenities:
   - Baseball Diamond
   - Basketball Court
   - Bathroom
-  - Football Uprights
+  - Football Field
   - Open Field
   - Playground
   - Shelter

@@ -14,7 +14,6 @@ amenities:
   - Basketball Court
   - Bathroom
   - Football Field
-  - Football Uprights
   - Foursquare
   - Hopscotch
   - Open Field

@@ -14,7 +14,7 @@ acres: 24
 amenities:
   - 'Barbecue'
   - 'Baseball Diamond'
-  - 'Football Uprights'
+  - 'Football Field'
   - 'Picnic Table'
   - 'Shelter'
   - 'Swingset'
