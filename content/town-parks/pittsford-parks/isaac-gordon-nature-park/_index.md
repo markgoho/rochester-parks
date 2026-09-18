@@ -12,5 +12,10 @@ address:
   addressCountry: 'US'
 acres: 118.5
 sameAs:
+  - 'https://www.townofpittsfordny.gov/parks-and-trails'
   - 'https://maps.google.com/?cid=4064517128120222033'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    closes: 'dusk'
 ---

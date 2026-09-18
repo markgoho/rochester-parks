@@ -12,5 +12,15 @@ address:
   addressCountry: 'US'
 acres: 63.11
 sameAs:
+  - 'https://www.chiliny.gov/347/Parks'
   - 'https://maps.google.com/?cid=17003703222777477410'
+hoursCheckedOn: '2026-09-18'
+facilities:
+  - name: 'Sprayground'
+    type: Playground
+    openingHours:
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        opens: '09:00'
+        closes: '20:00'
+        season: { from: 'Memorial Day', through: 'Labor Day' }
 ---

@@ -13,4 +13,9 @@ address:
 acres: 50
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Finn-Park-24'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

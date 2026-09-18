@@ -14,6 +14,11 @@ address:
 sameAs:
   - 'https://www.monroecounty.gov/parks-blackcreek'
   - 'https://maps.google.com/?cid=11834441221212537482'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: '22:00'
 ---
 
 [View Larger Map](http://maps.google.com/?ie=UTF8&t=m&ll=43.074781,-77.806892&spn=0.043887,0.072956&z=13&source=embed)

@@ -12,6 +12,11 @@ address:
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/hamlin-beach-state-park'
   - 'https://maps.google.com/?cid=10538041579045853947'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---
 
 A page for this park is still being written.

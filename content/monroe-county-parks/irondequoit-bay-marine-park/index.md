@@ -12,4 +12,9 @@ address:
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park'
   - 'https://maps.google.com/?cid=14357575615238379798'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '04:00'
+    closes: '22:00'
 ---

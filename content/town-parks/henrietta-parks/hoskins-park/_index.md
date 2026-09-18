@@ -12,4 +12,9 @@ acres: 3.14
 sameAs:
   - 'https://www.henriettany.gov/community/park/hoskins-park'
   - 'https://maps.google.com/?cid=9745904524872660801'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: 'sunset'
 ---

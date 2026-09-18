@@ -2,6 +2,7 @@
   import StatusIcon, {
     type StatusKind,
   } from '#lib/components/StatusIcon.svelte';
+  import Tip from '#lib/components/Tip.svelte';
   import type { ParkStatus } from '#lib/types.js';
 
   let { status, label = true }: { status: ParkStatus; label?: boolean } =
@@ -56,12 +57,8 @@
   </span>
   <span class="eyebrow">{summary}</span>
 {:else}
-  <!-- On the list the words have no room, so each icon carries its own name.
-       `interestfor` reveals it on hover, focus and long press; `popovertarget`
-       is the click and tap path every current browser already has. Both are
-       declarative, so the tooltip works with no client JavaScript.
-       The popover is an auto popover, not a hint: a browser that does not know
-       `hint` falls back to a manual popover, which never light-dismisses. -->
+  <!-- On the list the words have no room, so each icon carries its own name
+       in a tooltip. -->
   <span class="flags">
     {#each flags as flag (flag.kind)}
       <button
@@ -74,11 +71,8 @@
         popovertarget="tip-{uid}-{flag.kind}"
         ><StatusIcon kind={flag.kind} /></button
       >
-      <span
-        popover
-        id="tip-{uid}-{flag.kind}"
-        class="tip eyebrow"
-        style="position-anchor: --tip-{uid}-{flag.kind}">{say(flag)}</span
+      <Tip id="tip-{uid}-{flag.kind}" anchor="--tip-{uid}-{flag.kind}"
+        >{say(flag)}</Tip
       >
     {/each}
   </span>
@@ -106,25 +100,5 @@
   button.flag--on:hover,
   button.flag--on:focus-visible {
     color: var(--paper);
-  }
-
-  .tip {
-    padding: var(--space-6) var(--space-10);
-    border: var(--line-hair) solid var(--ink);
-    background: var(--ink);
-    color: var(--paper);
-    letter-spacing: var(--tracking-wide);
-    white-space: nowrap;
-  }
-
-  /* Anchor positioning is not everywhere yet, and the browser centres a
-     popover with `margin: auto`. Only a browser that can tie the tooltip to
-     its icon gets to drop that centring. */
-  @supports (position-area: block-end center) {
-    .tip {
-      margin: var(--space-6) 0;
-      position-area: block-end center;
-      position-try-fallbacks: flip-block;
-    }
   }
 </style>

@@ -12,4 +12,9 @@ acres: 80
 sameAs:
   - 'https://www.henriettany.gov/community/park/martin-road-park'
   - 'https://maps.google.com/?cid=16541012094866707235'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: 'sunset'
 ---

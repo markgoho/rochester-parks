@@ -13,4 +13,9 @@ address:
 acres: 84.5
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Kent-Park-25'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

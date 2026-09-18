@@ -14,10 +14,15 @@ amenities:
   - Open Field
   - Soccer Field
 sameAs:
+  - 'https://www.townofpittsfordny.gov/parks-and-trails'
   - 'https://maps.google.com/?cid=10695804615969109309'
 geo:
   latitude: 43.0730057
   longitude: -77.4905523
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    closes: 'dusk'
 ---
 ![Great Embankment canal-side sitting area](Embankment-canalsde-sitting-area.jpg)
 

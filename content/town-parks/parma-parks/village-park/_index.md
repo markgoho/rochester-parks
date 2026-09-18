@@ -14,4 +14,9 @@ acres: 30.86
 sameAs:
   - 'https://hiltonny.gov/html/jennejahnlodge.html'
   - 'https://maps.google.com/?cid=11334167155109124474'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '09:00'
+    closes: '22:00'
 ---

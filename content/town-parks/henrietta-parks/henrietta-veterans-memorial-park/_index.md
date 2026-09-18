@@ -12,4 +12,9 @@ sameAs:
 geo:
   latitude: 43.0661678
   longitude: -77.6219108
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: '22:00'
 ---

@@ -13,4 +13,9 @@ address:
 acres: 62.15
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

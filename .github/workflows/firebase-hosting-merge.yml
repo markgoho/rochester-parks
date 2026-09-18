@@ -6,6 +6,10 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - main
+  # Hours with a season or a date window resolve against the build date, so
+  # the site rebuilds each day from the same content (ADR-0004).
+  schedule:
+    - cron: '0 9 * * *'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest

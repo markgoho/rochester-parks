@@ -8,4 +8,9 @@ geo:
 acres: 155.05
 sameAs:
   - 'https://www.townofswedenny.gov/departments/parks-department-1582227806'
+hoursCheckedOn: '2026-09-18'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: 'dawn'
+    closes: 'dusk'
 ---

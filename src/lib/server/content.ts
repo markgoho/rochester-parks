@@ -2,17 +2,29 @@ import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedSmartypants } from 'marked-smartypants';
+import {
+  buildDate,
+  facilitiesJsonLd,
+  formatDate,
+  hoursJsonLd,
+  hoursView,
+  isTime,
+} from '#lib/hours.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import type {
   ChildLink,
+  Facility,
+  Holiday,
   Layout,
+  OpeningHours,
   Page,
   PageLink,
   ParkIndex,
   ParkAddress,
   ParkIndexEntry,
   ParkLink,
+  ParkHours,
   ParkMeta,
   SiteSummary,
 } from '#lib/types.js';
@@ -29,7 +41,10 @@ interface FrontMatter {
   geo?: { latitude?: number; longitude?: number };
   image?: string;
   sameAs?: string[];
-  openingHours?: { dayOfWeek?: string[]; opens?: string; closes?: string }[];
+  openingHours?: OpeningHours[];
+  closedOn?: Holiday[];
+  facilities?: Facility[];
+  hoursCheckedOn?: string;
   telephone?: string;
   amenities?: string[];
   /** Park size in acres. ADR-0003 ranks the sources. */
@@ -277,6 +292,37 @@ function parkAddress(node: Node): ParkAddress | undefined {
   return { streetAddress, addressLocality, addressRegion, postalCode };
 }
 
+/**
+ * The day the build runs. Every dated fact resolves against it, so the site
+ * shows what is true today, and the daily rebuild keeps it true.
+ */
+const TODAY = buildDate();
+
+/** YAML reads an unquoted date as a Date. The site keeps ISO strings. */
+function isoDate(value: unknown): string | undefined {
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  return typeof value === 'string' ? value : undefined;
+}
+
+/**
+ * Checks each time as it is read, so a typo such as 'Dusk' or '7:00' fails
+ * the build rather than printing wrong hours.
+ */
+function openingHoursOf(entries: OpeningHours[] = []): OpeningHours[] {
+  return entries.map((entry) => {
+    for (const time of [entry.opens, entry.closes]) {
+      if (time !== undefined && !isTime(time)) {
+        throw new Error(`Not 'HH:MM' or a sun word: "${time}"`);
+      }
+    }
+    return {
+      ...entry,
+      validFrom: isoDate(entry.validFrom),
+      validThrough: isoDate(entry.validThrough),
+    };
+  });
+}
+
 function parkMetaOf(node: Node): ParkMeta {
   const amenities = [
     ...new Set((node.frontMatter.amenities ?? []).map(normaliseAmenity)),
@@ -294,6 +340,15 @@ function parkMetaOf(node: Node): ParkMeta {
     acres: node.frontMatter.acres,
     address: parkAddress(node),
     links: parkLinks(node.frontMatter.sameAs ?? []),
+    openingHours: node.frontMatter.openingHours
+      ? openingHoursOf(node.frontMatter.openingHours)
+      : undefined,
+    closedOn: node.frontMatter.closedOn,
+    facilities: node.frontMatter.facilities?.map((facility) => ({
+      ...facility,
+      openingHours: openingHoursOf(facility.openingHours),
+    })),
+    hoursCheckedOn: isoDate(node.frontMatter.hoursCheckedOn),
     status: {
       written: node.wordCount >= WRITTEN_WORD_FLOOR,
       inventoried: amenities.length > 0,
@@ -303,6 +358,22 @@ function parkMetaOf(node: Node): ParkMeta {
       title: parent ? sectionLabel(parent.title) : '',
       url: parent?.url ?? '/',
     },
+  };
+}
+
+/** The hours the facts panel shows, resolved against the build date. */
+function parkHours(meta: ParkMeta): ParkHours {
+  return {
+    grounds: hoursView(meta.openingHours ?? [], meta.closedOn ?? [], TODAY),
+    facilities: (meta.facilities ?? []).flatMap((facility) => {
+      const view = hoursView(
+        facility.openingHours,
+        facility.closedOn ?? [],
+        TODAY
+      );
+      return view ? [{ name: facility.name, ...view }] : [];
+    }),
+    checkedOn: meta.hoursCheckedOn && formatDate(meta.hoursCheckedOn),
   };
 }
 
@@ -410,14 +481,8 @@ function parkJsonLd(node: Node, meta: ParkMeta): object {
     image: image ?? fallback,
     telephone: fm.telephone,
     sameAs: fm.sameAs,
-    openingHoursSpecification: (fm.openingHours ?? []).map((hours) => ({
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: (hours.dayOfWeek ?? []).map(
-        (day) => `https://schema.org/${day}`
-      ),
-      opens: hours.opens,
-      closes: hours.closes,
-    })),
+    ...hoursJsonLd(meta.openingHours ?? [], meta.closedOn ?? [], TODAY),
+    containsPlace: facilitiesJsonLd(meta.facilities ?? [], TODAY),
     // schema.org Park has no size property, so acreage rides along as a
     // named value rather than being dropped.
     additionalProperty: fm.acres
@@ -560,11 +625,12 @@ export function getPage(url: string): Page | undefined {
   if (!node) return undefined;
 
   const layout = layoutOf(node);
+  const park = isPark(node) ? parkMetaOf(node) : undefined;
   const ancestors = ancestorsOf(url);
   const trail = [...ancestors, link(node)];
   const jsonLd =
-    layout === 'park-single'
-      ? [parkJsonLd(node, parkMetaOf(node)), breadcrumbJsonLd(trail)]
+    park && layout === 'park-single'
+      ? [parkJsonLd(node, park), breadcrumbJsonLd(trail)]
       : layout === 'park-list'
         ? [breadcrumbJsonLd(trail)]
         : [];
@@ -580,8 +646,8 @@ export function getPage(url: string): Page | undefined {
     ...(layout === 'park-list'
       ? { section: { title: sectionLabel(node.title), url: node.url } }
       : {}),
-    ...(isPark(node)
-      ? { park: parkMetaOf(node), neighbours: neighboursOf(node) }
+    ...(park
+      ? { park, hours: parkHours(park), neighbours: neighboursOf(node) }
       : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
   };
