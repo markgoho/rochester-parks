@@ -39,6 +39,11 @@
         "type": 301
       },
       {
+        "source": "/monroe-county-parks/irondequoit-bay-marine-park",
+        "destination": "/state-parks/irondequoit-bay-state-marine-park/",
+        "type": 301
+      },
+      {
         "source": "/town-parks/gates-parks/gates-memorial-park",
         "destination": "/town-parks/gates-parks/memorial-park/",
         "type": 301

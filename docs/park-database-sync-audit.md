@@ -190,6 +190,8 @@ Two county rows live elsewhere on this site and stayed there: **Lock 32 Canal Pa
 
 Three county pages are not in the sheet and were left alone: Seneca Park Zoo, Lehigh Valley Trail Linear Park, Devil's Cove Park.
 
+Irondequoit Bay Marine Park had a county page and a state page, both linked to the same `parks.ny.gov` page. It is a New York State park. Resolved 2026-09-18 (#70): the county page was removed, its location, acreage, street and Google Maps link moved to Irondequoit Bay State Marine Park, and its URL redirects there.
+
 ## Rochester city parks
 
 The city tab lists 127 rows. It is a facilities list, not a park list, so each row was judged before any page was written: **75 became park pages**, **49 were rejected**, and 28 were renamed. Before this, the site had two city park pages.

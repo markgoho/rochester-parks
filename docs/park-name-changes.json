@@ -2,6 +2,12 @@
   "note": "Park names changed in this sync. The WordPress comment archive keys on the OLD name, so an import must join on \"old\".",
   "changes": [
     {
+      "path": "content/state-parks/irondequoit-bay-state-marine-park/_index.md",
+      "old": "Irondequoit Bay Marine Park",
+      "new": "Irondequoit Bay State Marine Park",
+      "source": "official New York State Parks page"
+    },
+    {
       "path": "content/monroe-county-parks/irondequoit-bay-park-west/index.md",
       "old": "Irondequoit Bay Park",
       "new": "Irondequoit Bay Park West",
