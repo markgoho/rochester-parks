@@ -4,11 +4,13 @@ description: 'An Irondequoit Town Park called Heyer-Bayer Memorial Park'
 type: 'park'
 address:
   streetAddress: 'Rudman Road'
+  addressLocality: 'Rochester'
+  addressRegion: 'NY'
+  postalCode: '14617'
   addressCountry: 'US'
 acres: 2.72
 amenities:
   - Baseball Diamond
-  - Bathroom
   - Open Field
   - Playground
   - Swingset
