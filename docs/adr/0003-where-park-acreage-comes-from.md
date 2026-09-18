@@ -13,10 +13,10 @@ The `by-size` pages (ADR-0001) sort on this field, so the source changes the ord
 
 ## Decision
 
-**For acres, the official town, county or city page has priority.** The order of sources is:
+**For acres, the official page of the Park has priority, for every kind of Park.** The order of sources is:
 
-1. The official page of the Park, when it gives a number.
-2. The park database, for a town or county Park.
+1. The official page of the Park (town, county, city or New York State), when it gives a number.
+2. The park database, for a town, county or state Park.
 3. The city GIS layer, for a city Park.
 
 A lower source fills the field only when no higher source gives a figure. The figure is written as the official page gives it, with no added precision.
@@ -27,4 +27,5 @@ The park database sync already uses this rule for a Park name: the official page
 
 - All 89 Parks with an official figure now use it. 72 figures changed, 6 Parks got a figure for the first time, and 11 figures were already the same.
 - Some official figures are rounded, or give only the developed part of a Park. Braddock Bay Park drops from 1753.11 to 375 acres, and it moves down its `by-size` page. We accept this. The official figure is the one the Park's owner publishes.
+- The parks.ny.gov pages for Hamlin Beach State Park and Irondequoit Bay State Marine Park give no size (checked 2026-09-18). Both Parks keep the park database figure until an official figure appears.
 - The front matter does not record the source of a figure. Before a future sync from the park database writes `acres`, it must read the official page of that Park. If the official page gives a figure, the sync keeps it.
