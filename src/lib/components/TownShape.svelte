@@ -4,7 +4,7 @@
     project,
     type Marker,
     type Outline,
-  } from '$lib/municipalities';
+  } from '#lib/municipalities.js';
 
   /**
    * One shape drawn on its own: a town with the villages inside it, or a

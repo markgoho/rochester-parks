@@ -3,7 +3,7 @@
     COUNTY_VIEW_BOX,
     MUNICIPALITIES,
     type Municipality,
-  } from '$lib/municipalities';
+  } from '#lib/municipalities.js';
 
   /**
    * The map is drawn twice.

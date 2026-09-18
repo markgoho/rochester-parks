@@ -1,4 +1,4 @@
-import { getParkIndex } from '$lib/server/content';
+import { getParkIndex } from '#lib/server/content.js';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;

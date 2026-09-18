@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ParkIndexEntry } from '$lib/types';
+  import type { ParkIndexEntry } from '#lib/types.js';
 
   let { data } = $props();
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
-  import ParkFlags from '$lib/components/ParkFlags.svelte';
-  import CityLocator from '$lib/components/CityLocator.svelte';
-  import TownLocator from '$lib/components/TownLocator.svelte';
-  import TownShape from '$lib/components/TownShape.svelte';
-  import { formatAcres } from '$lib/format';
+  import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
+  import ParkFlags from '#lib/components/ParkFlags.svelte';
+  import CityLocator from '#lib/components/CityLocator.svelte';
+  import TownLocator from '#lib/components/TownLocator.svelte';
+  import TownShape from '#lib/components/TownShape.svelte';
+  import { formatAcres } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -13,9 +13,9 @@
     townAt,
     townKey,
     villagesIn,
-  } from '$lib/municipalities';
-  import { neighborhoodAt, neighborhoodUrl } from '$lib/neighborhoods';
-  import type { Page } from '$lib/types';
+  } from '#lib/municipalities.js';
+  import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
+  import type { Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
 
