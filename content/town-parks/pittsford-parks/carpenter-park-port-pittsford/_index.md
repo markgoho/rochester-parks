@@ -9,6 +9,7 @@ address:
   addressCountry: 'US'
 acres: 2
 sameAs:
+  - 'https://www.townofpittsfordny.gov/parks-and-trails'
   - 'https://maps.google.com/?cid=11562283856268848788'
 geo:
   latitude: 43.092742

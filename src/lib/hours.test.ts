@@ -148,6 +148,17 @@ describe('nextChange', () => {
     });
   });
 
+  test('a month-and-day season opens on its first day', () => {
+    const spring = {
+      ...rink,
+      season: { from: 'April 1', through: 'October 31' },
+    };
+    expect(nextChange([spring], '2026-11-15')).toEqual({
+      date: '2027-04-01',
+      entries: [spring],
+    });
+  });
+
   test('a season across the new year ends in March', () => {
     expect(nextChange([rink], '2027-01-10')).toEqual({
       date: '2027-03-02',

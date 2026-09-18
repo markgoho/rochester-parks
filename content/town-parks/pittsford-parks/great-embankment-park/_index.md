@@ -14,6 +14,7 @@ amenities:
   - Open Field
   - Soccer Field
 sameAs:
+  - 'https://www.townofpittsfordny.gov/parks-and-trails'
   - 'https://maps.google.com/?cid=10695804615969109309'
 geo:
   latitude: 43.0730057

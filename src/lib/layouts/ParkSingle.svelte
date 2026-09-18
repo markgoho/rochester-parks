@@ -16,8 +16,7 @@
     villagesIn,
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
-  import type { HoursView } from '#lib/hours.js';
-  import type { Page } from '#lib/types.js';
+  import type { HoursView, Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
 
@@ -158,7 +157,7 @@
     </div>
   {/if}
 
-  {#snippet place(view: HoursView, name?: string)}
+  {#snippet hoursOf(view: HoursView, name?: string)}
     <div class="hours__place">
       {#if name}<p class="hours__name">{name}</p>{/if}
       {#each view.lines as line (line)}<p>{line}</p>{/each}
@@ -193,13 +192,13 @@
           <dd class="hours">
             {#if hours && hasHours}
               {#if hours.grounds}
-                {@render place(
+                {@render hoursOf(
                   hours.grounds,
                   hours.facilities.length ? 'Grounds' : undefined
                 )}
               {/if}
               {#each hours.facilities as facility (facility.name)}
-                {@render place(facility, facility.name)}
+                {@render hoursOf(facility, facility.name)}
               {/each}
             {:else}
               —

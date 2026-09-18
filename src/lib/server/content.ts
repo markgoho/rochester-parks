@@ -8,6 +8,7 @@ import {
   formatDate,
   hoursJsonLd,
   hoursView,
+  isTime,
 } from '#lib/hours.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
@@ -310,11 +311,7 @@ function isoDate(value: unknown): string | undefined {
 function openingHoursOf(entries: OpeningHours[] = []): OpeningHours[] {
   return entries.map((entry) => {
     for (const time of [entry.opens, entry.closes]) {
-      if (
-        time !== undefined &&
-        !/^\d{2}:\d{2}$/.test(time) &&
-        !['dawn', 'sunrise', 'sunset', 'dusk'].includes(time)
-      ) {
+      if (time !== undefined && !isTime(time)) {
         throw new Error(`Not 'HH:MM' or a sun word: "${time}"`);
       }
     }
@@ -628,11 +625,12 @@ export function getPage(url: string): Page | undefined {
   if (!node) return undefined;
 
   const layout = layoutOf(node);
+  const park = isPark(node) ? parkMetaOf(node) : undefined;
   const ancestors = ancestorsOf(url);
   const trail = [...ancestors, link(node)];
   const jsonLd =
-    layout === 'park-single'
-      ? [parkJsonLd(node, parkMetaOf(node)), breadcrumbJsonLd(trail)]
+    park && layout === 'park-single'
+      ? [parkJsonLd(node, park), breadcrumbJsonLd(trail)]
       : layout === 'park-list'
         ? [breadcrumbJsonLd(trail)]
         : [];
@@ -648,12 +646,8 @@ export function getPage(url: string): Page | undefined {
     ...(layout === 'park-list'
       ? { section: { title: sectionLabel(node.title), url: node.url } }
       : {}),
-    ...(isPark(node)
-      ? {
-          park: parkMetaOf(node),
-          hours: parkHours(parkMetaOf(node)),
-          neighbours: neighboursOf(node),
-        }
+    ...(park
+      ? { park, hours: parkHours(park), neighbours: neighboursOf(node) }
       : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
   };

@@ -2,8 +2,10 @@ import type {
   DayOfWeek,
   Facility,
   Holiday,
+  HoursView,
   OpeningHours,
   SeasonEnd,
+  SunWord,
 } from './types.js';
 
 // Opening hours, resolved against a date. Every function takes the date as
@@ -191,10 +193,20 @@ export function formatDate(date: string, { year = true } = {}): string {
   return year ? `${short}, ${y}` : short;
 }
 
-const SUN_WORDS = new Set(['dawn', 'sunrise', 'sunset', 'dusk']);
+const SUN_WORDS: ReadonlySet<string> = new Set<SunWord>([
+  'dawn',
+  'sunrise',
+  'sunset',
+  'dusk',
+]);
 
 function isClock(time: string | undefined): time is string {
   return time !== undefined && /^\d{2}:\d{2}$/.test(time);
+}
+
+/** 'HH:MM' or a sun word: the two things an opening or closing time can be. */
+export function isTime(time: string): boolean {
+  return isClock(time) || SUN_WORDS.has(time);
 }
 
 /** "7 a.m.", "8:30 p.m.", "noon", or the sun word as written. */
@@ -244,7 +256,7 @@ function formatDays(days: DayOfWeek[]): string {
 }
 
 /** One entry in lower case, for the middle of a sentence. */
-function describe(entry: OpeningHours): string {
+function phrase(entry: OpeningHours): string {
   const days = formatDays(entry.dayOfWeek);
   const range = formatRange(entry);
   return days === 'daily' ? `${range} daily` : `${days} ${range}`;
@@ -256,23 +268,13 @@ function capitalise(text: string): string {
 
 /** One line per entry, in the house style. */
 export function formatHours(entries: OpeningHours[]): string[] {
-  return entries.map((entry) => capitalise(describe(entry)));
+  return entries.map((entry) => capitalise(phrase(entry)));
 }
 
 /** "a, b and c". */
 function listOf(items: string[]): string {
   if (items.length < 2) return items.join('');
   return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
-}
-
-/** What the facts panel shows for one set of hours. */
-export interface HoursView {
-  /** The hours in effect today, one line each. */
-  lines: string[];
-  /** The next change, when one is coming. */
-  note?: string;
-  /** The holidays it closes. */
-  closedOn?: string;
 }
 
 /**
@@ -305,26 +307,30 @@ export function hoursView(
   today: string
 ): HoursView | undefined {
   if (!entries.length && !closedOn.length) return undefined;
-  const now = inEffect(entries, today);
+  const current = inEffect(entries, today);
   const change = nextChange(entries, today);
   const seasonal = entries.some((entry) => entry.season);
   const closed = seasonal ? 'Closed for the season' : 'Closed';
   let note: string | undefined;
-  if (change && !now.length) {
+  if (change && !current.length) {
     const when = dateLabel(change.date, entries, today, 'from');
     const times = change.entries.filter((entry) => entry.opens || entry.closes);
     note = times.length
-      ? `Opens ${when}, ${times.map(describe).join('; ')}`
+      ? `Opens ${when}, ${times.map(phrase).join('; ')}`
       : `Opens ${when}`;
   } else if (change && !change.entries.length) {
     const last = addDays(change.date, -1);
     note = `${closed} after ${dateLabel(last, entries, today, 'through')}`;
   } else if (change) {
     const when = dateLabel(change.date, entries, today, 'from');
-    note = `From ${when}: ${change.entries.map(describe).join('; ')}`;
+    note = `From ${when}: ${change.entries.map(phrase).join('; ')}`;
   }
   return {
-    lines: now.length ? formatHours(now) : entries.length ? [closed] : [],
+    lines: current.length
+      ? formatHours(current)
+      : entries.length
+        ? [closed]
+        : [],
     note,
     closedOn: closedOn.length ? `Closed ${listOf(closedOn)}` : undefined,
   };

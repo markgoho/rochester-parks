@@ -1,5 +1,3 @@
-import type { HoursView } from './hours.js';
-
 export type Layout =
   | 'home'
   | 'default-list'
@@ -52,7 +50,7 @@ export type DayOfWeek =
   | 'Sunday';
 
 /**
- * A time the sun sets, not the clock. Each is its own time: sunset comes
+ * A time set by the sun, not the clock. Each is its own time: sunset comes
  * before dusk and dawn before sunrise, so the word the official page uses is
  * kept.
  */
@@ -143,6 +141,16 @@ export interface ParkMeta {
   hoursCheckedOn?: string;
   /** The section a park belongs to, e.g. "Greece" or "Monroe County". */
   section: PageLink;
+}
+
+/** What the facts panel shows for one set of hours. */
+export interface HoursView {
+  /** The hours in effect today, one line each. */
+  lines: string[];
+  /** The next change, when one is coming. */
+  note?: string;
+  /** The holidays it closes. */
+  closedOn?: string;
 }
 
 /** A Park's hours as the facts panel shows them. */
