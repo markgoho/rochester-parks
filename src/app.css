@@ -374,8 +374,8 @@ p {
   padding: 0 var(--gutter);
   background: var(--ink);
   color: var(--paper);
-  /* The header is the same on every page, so a page change moves it as one
-     piece instead of fading it out and in. */
+  /* The header is the same on every page, so it stays in place while the page
+     changes. See ::view-transition-group(site-header). */
   view-transition-name: site-header;
 }
 
@@ -690,6 +690,23 @@ p {
    other browser does a plain navigation. */
 @view-transition {
   navigation: auto;
+}
+
+/* The header is not sticky. After a scroll the old header is far above the
+   screen, and a move would slide the new one in from there. */
+::view-transition-group(site-header) {
+  animation: none;
+}
+
+/* A park's name moves between its row in a Park List and the heading of its
+   Park page. The two differ in size and in line breaks, so the default, which
+   stretches the old image to the new box, distorts the text. Each image keeps
+   its own size and fades while the box moves. */
+::view-transition-old(*.park-name),
+::view-transition-new(*.park-name) {
+  width: auto;
+  height: auto;
+  object-fit: none;
 }
 
 /* Reduced motion keeps the transition but removes its animation, so the new
