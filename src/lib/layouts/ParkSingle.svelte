@@ -79,6 +79,15 @@
     hours !== undefined &&
       (hours.grounds !== undefined || hours.facilities.length > 0)
   );
+  /** One line of grounds hours fits a column; anything more needs the width. */
+  const longHours = $derived(
+    hours !== undefined &&
+      (hours.facilities.length > 0 ||
+        (hours.grounds !== undefined &&
+          (hours.grounds.lines.length > 1 ||
+            hours.grounds.note !== undefined ||
+            hours.grounds.closedOn !== undefined)))
+  );
   /**
    * The official page is where the facts come from (ADR-0004), so it is
    * cited on its own. The other links stay under "Elsewhere".
@@ -179,9 +188,9 @@
         <span class="eyebrow">The basics</span>
       </div>
       <dl class="panel__body facts">
-        <!-- Hours take the full width only when there are hours to show. An
-             em dash sits in line with the other facts. -->
-        <div class="fact" class:fact--wide={hasHours}>
+        <!-- Hours take the full width only when they are long. One line of
+             hours, or an em dash, sits in line with the other facts. -->
+        <div class="fact" class:fact--wide={longHours}>
           <dt class="eyebrow">
             Hours
             {#if hours?.checkedOn}
