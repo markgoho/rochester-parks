@@ -12,5 +12,6 @@ address:
   addressCountry: 'US'
 acres: 1.57
 sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/Sandbar-Park-29'
   - 'https://maps.google.com/?cid=4605622829878013402'
 ---

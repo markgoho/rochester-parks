@@ -12,6 +12,6 @@ address:
   addressCountry: 'US'
 acres: 26.67
 sameAs:
-  - 'https://perinton.org/departments/randp/parks-department/parks/garnsey-road-arboretum/'
+  - 'https://perinton.gov/departments/randp/parks-department/parks/garnsey-road-arboretum/'
   - 'https://maps.google.com/?cid=7870572578059541188'
 ---

@@ -28,7 +28,7 @@ amenities:
   - Canal
   - Water
 sameAs:
-  - 'https://perinton.org/departments/randp/parks-department/parks/kreag-road-park/'
+  - 'https://perinton.gov/departments/randp/parks-department/parks/kreag-road-park/'
   - 'https://maps.google.com/?cid=6557984480278291635'
 ---
 

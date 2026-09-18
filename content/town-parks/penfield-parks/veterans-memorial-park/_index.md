@@ -12,6 +12,6 @@ address:
   addressCountry: 'US'
 acres: 85.55
 sameAs:
-  - 'https://www.penfield.org/detail_T12_R60.php'
+  - 'https://www.penfieldny.gov/detail_T12_R60.php'
   - 'https://maps.google.com/?cid=7462293085849980165'
 ---

@@ -17,6 +17,8 @@ amenities:
 geo:
   latitude: 43.1888626
   longitude: -77.6534872
+sameAs:
+  - 'https://www.cityofrochester.gov/parkplanning/'
 ---
 
 A page for this park is still being written.

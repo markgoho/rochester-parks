@@ -8,6 +8,8 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 46.34
+sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/North-Ponds-Park-26'
 ---
 
 A page for this park is still being written.

@@ -9,7 +9,7 @@ address:
   addressCountry: 'US'
 acres: 73.08
 sameAs:
-  - 'https://www.townofbrighton.org/827/Sandra-L-Frankel-Nature-Park'
+  - 'https://www.brightonny.gov/827/Sandra-L-Frankel-Nature-Park'
   - 'https://maps.google.com/?cid=16666819598118592883'
 ---
 

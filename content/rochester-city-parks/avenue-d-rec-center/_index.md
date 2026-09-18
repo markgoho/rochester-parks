@@ -18,6 +18,8 @@ amenities:
 geo:
   latitude: 43.1812481
   longitude: -77.6187437
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/avenue-d-r-center'
 ---
 
 A page for this park is still being written.

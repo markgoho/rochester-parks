@@ -12,6 +12,6 @@ address:
   addressCountry: 'US'
 acres: 15.31
 sameAs:
-  - 'https://perinton.org/departments/randp/parks-department/parks/egypt-park/'
+  - 'https://perinton.gov/departments/randp/parks-department/parks/egypt-park/'
   - 'https://maps.google.com/?cid=10397005240882255173'
 ---

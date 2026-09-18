@@ -18,6 +18,8 @@ amenities:
 geo:
   latitude: 43.170394
   longitude: -77.5961181
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/david-f-gantt-r-center'
 ---
 
 A page for this park is still being written.

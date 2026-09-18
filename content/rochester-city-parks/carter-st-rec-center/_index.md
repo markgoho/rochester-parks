@@ -17,6 +17,8 @@ amenities:
 geo:
   latitude: 43.1863421
   longitude: -77.5909841
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/carter-street-r-center'
 ---
 
 A page for this park is still being written.

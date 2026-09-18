@@ -15,6 +15,8 @@ amenities:
 geo:
   latitude: 43.1358379
   longitude: -77.6087895
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/frederick-douglass-r-center'
 ---
 
 A page for this park is still being written.

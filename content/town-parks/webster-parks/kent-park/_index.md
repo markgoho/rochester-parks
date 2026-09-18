@@ -12,5 +12,5 @@ address:
   addressCountry: 'US'
 acres: 84.4
 sameAs:
-  - 'https://www.websterarboretum.org/'
+  - 'https://www.websterny.gov/Facilities/Facility/Details/Kent-Park-25'
 ---

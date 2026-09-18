@@ -11,6 +11,8 @@ address:
 geo:
   latitude: 43.1765115
   longitude: -77.6286596
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/lower-falls-park'
 ---
 
 A page for this park is still being written.

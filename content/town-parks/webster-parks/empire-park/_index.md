@@ -11,4 +11,6 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 62.15
+sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23'
 ---

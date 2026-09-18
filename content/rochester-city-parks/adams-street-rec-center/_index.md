@@ -18,6 +18,8 @@ amenities:
 geo:
   latitude: 43.1478482
   longitude: -77.6167304
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/adams-street-r-center'
 ---
 
 A page for this park is still being written.

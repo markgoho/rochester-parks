@@ -25,6 +25,7 @@ amenities:
   - 'Swingset'
   - 'Volleyball'
 sameAs:
+  - 'https://www.townofriga.com/town-clerk/maher-lodge/'
   - 'https://maps.google.com/?cid=2468126472323708768'
 ---
 

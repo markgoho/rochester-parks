@@ -13,4 +13,6 @@ address:
 acres: 9.65
 amenities:
   - Baseball Diamond
+sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/DAmico-Park-22'
 ---

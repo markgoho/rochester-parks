@@ -13,7 +13,7 @@ amenities:
   - Bathroom
   - Picnic Table
 sameAs:
-  - 'https://greeceny.gov/departments/parks-recreation/parks/henpeck-park/'
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/henpeck-park/'
   - 'https://maps.google.com/?cid=11790042144012760400'
 geo:
   latitude: 43.1882823

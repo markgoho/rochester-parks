@@ -11,4 +11,6 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 acres: 50
+sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/Finn-Park-24'
 ---

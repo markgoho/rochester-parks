@@ -10,6 +10,6 @@ address:
   streetAddress: 'Culver Road'
   addressCountry: 'US'
 sameAs:
-  - 'https://parks.ny.gov/parks/irondequoitbay/details.aspx'
+  - 'https://parks.ny.gov/visit/state-parks/irondequoit-bay-state-marine-park'
   - 'https://maps.google.com/?cid=14357575615238379798'
 ---

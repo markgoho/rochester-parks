@@ -18,6 +18,8 @@ amenities:
 geo:
   latitude: 43.1696311
   longitude: -77.5713244
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/thomas-p-ryan-r-center'
 ---
 
 A page for this park is still being written.

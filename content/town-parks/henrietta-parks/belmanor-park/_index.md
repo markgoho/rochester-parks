@@ -6,5 +6,5 @@ geo:
   latitude: 43.09054699664794
   longitude: -77.57899628425554
 sameAs:
-  - 'https://www.henrietta.org/community/park/belmanor-park'
+  - 'https://www.henriettany.gov/community/park/belmanor-park'
 ---

@@ -9,7 +9,7 @@ address:
   addressCountry: 'US'
 acres: 0.06
 sameAs:
-  - 'https://www.penfield.org/detail_T12_R56.php'
+  - 'https://www.penfieldny.gov/detail_T12_R56.php'
   - 'https://maps.google.com/?cid=14738798302766324040'
 geo:
   latitude: 43.1302645

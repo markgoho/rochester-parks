@@ -18,5 +18,6 @@ amenities:
   - Spray Park
   - Tennis Court
 sameAs:
+  - 'https://www.websterny.gov/Facilities/Facility/Details/First-Responders-Spray-ParkPlayground-40'
   - 'https://maps.google.com/?cid=430704539646243787'
 ---

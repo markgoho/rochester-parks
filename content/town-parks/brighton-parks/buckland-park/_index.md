@@ -14,5 +14,6 @@ acres: 93.28
 amenities:
   - Baseball Diamond
 sameAs:
+  - 'https://www.brightonny.gov/261/Buckland-Park'
   - 'https://maps.google.com/?cid=6114343675923835446'
 ---

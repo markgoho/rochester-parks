@@ -7,7 +7,7 @@ geo:
   longitude: -77.5236027
 acres: 5.09
 sameAs:
-  - 'https://monroecounty.gov/parks-devilscove'
+  - 'https://www.monroecounty.gov/parks-devilscove'
   - 'https://maps.google.com/?cid=4780379995607672227'
 ---
 

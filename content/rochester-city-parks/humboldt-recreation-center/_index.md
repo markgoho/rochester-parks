@@ -19,6 +19,8 @@ amenities:
 geo:
   latitude: 43.1560378
   longitude: -77.5555682
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/humboldt-r-center'
 ---
 
 A page for this park is still being written.

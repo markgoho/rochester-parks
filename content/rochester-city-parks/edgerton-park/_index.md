@@ -18,6 +18,8 @@ amenities:
 geo:
   latitude: 43.1715576
   longitude: -77.6328311
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/edgerton-r-center'
 ---
 
 A page for this park is still being written.

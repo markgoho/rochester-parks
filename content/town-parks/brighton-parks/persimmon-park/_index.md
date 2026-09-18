@@ -22,7 +22,7 @@ openingHours:
     closes: '22:00'
 image: '/images/persimmon-park.jpg'
 sameAs:
-  - 'https://www.townofbrighton.org/265/Persimmon-Park'
+  - 'https://www.brightonny.gov/265/Persimmon-Park'
   - 'https://maps.google.com/?cid=2625866311533325953'
 ---
 

@@ -15,7 +15,7 @@ amenities:
   - Rockers
   - Swingset
 sameAs:
-  - 'https://greeceny.gov/departments/parks-recreation/parks/beverly-papas-park/'
+  - 'https://greeceny.gov/departments/parksandrecreation/parks/beverly-papas-park/'
   - 'https://maps.google.com/?cid=460685327091338150'
 geo:
   latitude: 43.221904

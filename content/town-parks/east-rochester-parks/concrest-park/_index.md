@@ -12,6 +12,6 @@ address:
   addressCountry: 'US'
 acres: 1.22
 sameAs:
-  - 'http://www.eastrochester.org/Community-Resources/Parks/Concrest-Park'
+  - 'https://eastrochesterny.gov/Community-Resources/Parks/Concrest-Park'
   - 'https://maps.google.com/?cid=8717121539632512678'
 ---
