@@ -5,8 +5,7 @@
   import Tip from '#lib/components/Tip.svelte';
   import type { ParkStatus } from '#lib/types.js';
 
-  let { status, label = true }: { status: ParkStatus; label?: boolean } =
-    $props();
+  let { status }: { status: ParkStatus } = $props();
 
   // Written, photographed, amenities. The order matches the counts line on the
   // park list. Each flag names both of its states, because "not" does not fit
@@ -34,53 +33,35 @@
     },
   ]);
 
-  const summary = $derived(
-    flags
-      .filter((flag) => flag.on)
-      .map((flag) => flag.name)
-      .join(', ') || 'nothing recorded yet'
-  );
-
-  /** One id per row, so each icon can name its own tooltip. */
+  /** One id per use, so each icon can name its own tooltip. */
   const uid = $props.id();
   const say = (flag: { on: boolean; name: string; off: string }) =>
     flag.on ? flag.name : flag.off;
 </script>
 
-{#if label}
-  <span class="flags" role="img" aria-label="Status: {summary}">
-    {#each flags as flag (flag.kind)}
-      <span class="flag" class:flag--on={flag.on}
-        ><StatusIcon kind={flag.kind} /></span
-      >
-    {/each}
-  </span>
-  <span class="eyebrow">{summary}</span>
-{:else}
-  <!-- On the list the words have no room, so each icon carries its own name
-       in a tooltip. -->
-  <span class="flags">
-    {#each flags as flag (flag.kind)}
-      <button
-        type="button"
-        class="flag"
-        class:flag--on={flag.on}
-        style="anchor-name: --tip-{uid}-{flag.kind}"
-        aria-label={say(flag)}
-        interestfor="tip-{uid}-{flag.kind}"
-        popovertarget="tip-{uid}-{flag.kind}"
-        ><StatusIcon kind={flag.kind} /></button
-      >
-      <Tip id="tip-{uid}-{flag.kind}" anchor="--tip-{uid}-{flag.kind}"
-        >{say(flag)}</Tip
-      >
-    {/each}
-  </span>
-{/if}
+<!-- Each icon carries its own name in a tooltip, on the list and on the park
+     page alike. -->
+<span class="flags">
+  {#each flags as flag (flag.kind)}
+    <button
+      type="button"
+      class="flag"
+      class:flag--on={flag.on}
+      style="anchor-name: --tip-{uid}-{flag.kind}"
+      aria-label={say(flag)}
+      interestfor="tip-{uid}-{flag.kind}"
+      popovertarget="tip-{uid}-{flag.kind}"
+      ><StatusIcon kind={flag.kind} /></button
+    >
+    <Tip id="tip-{uid}-{flag.kind}" anchor="--tip-{uid}-{flag.kind}"
+      >{say(flag)}</Tip
+    >
+  {/each}
+</span>
 
 <style>
-  /* The icon is a button now. The shared `.flag` look stays in app.css, so
-     only the button defaults come off here. `flag--on` keeps its own fill. */
+  /* The icon is a button. The shared `.flag` look stays in app.css, so only
+     the button defaults come off here. `flag--on` keeps its own fill. */
   button.flag {
     font: inherit;
     padding: 0;

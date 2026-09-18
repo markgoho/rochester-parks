@@ -150,7 +150,7 @@
         ></a
       >
       <span class="status"
-        ><ParkFlags status={park.status} label={false} /></span
+        ><ParkFlags status={park.status} /></span
       >
       <span class="tags">
         {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
