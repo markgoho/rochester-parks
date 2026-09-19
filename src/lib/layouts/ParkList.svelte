@@ -450,6 +450,9 @@
   .name__text {
     display: inline-block;
     view-transition-class: park-name;
+    /* Orange while its dot on the town map is picked. Unset, the name takes
+       the link's own colour. */
+    color: var(--park-picked);
   }
 
   .status {
