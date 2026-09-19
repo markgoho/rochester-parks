@@ -65,6 +65,9 @@
   --step-5: clamp(2.4883rem, 2.2401rem + 1.1034vi, 4.0054rem);
   /* Map labels are in map units, and the map scales with its box. */
   --text-map: 8px;
+  /* The mean width of a capital of the display face, in em, for the widest
+     word in any heading (WEGMAN, at 0.85em). */
+  --display-letter: 0.86;
 
   --weight-regular: 400;
   --weight-bold: 700;
@@ -307,8 +310,16 @@ h3 {
   text-wrap: balance;
 }
 
+/* The longest word of a heading must fit its line, because a capitalised word
+   is never hyphenated. A page sets --longest-word to its letters, and each
+   letter takes about --display-letter. 100cqi is the page column, the
+   container each page puts its heading in. A heading without the count takes
+   its step. */
 h1 {
-  font-size: var(--step-5);
+  font-size: min(
+    var(--step-5),
+    100cqi / (var(--longest-word, 1) * var(--display-letter))
+  );
 }
 
 h2 {
@@ -663,12 +674,12 @@ p {
 
 .prose > h2 {
   margin: var(--space-32) 0 var(--space-12);
-  font-size: var(--step-1);
+  font-size: var(--step-2);
 }
 
 .prose > h3 {
   margin: var(--space-24) 0 var(--space-8);
-  font-size: var(--step-0);
+  font-size: var(--step-1);
 }
 
 .prose a {

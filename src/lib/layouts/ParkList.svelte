@@ -6,7 +6,7 @@
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
   import MapDefs from '#lib/components/MapDefs.svelte';
-  import { formatAcres, parkTransitionName } from '#lib/format.js';
+  import { formatAcres, longestWord, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -184,7 +184,7 @@
   <div class="layout" class:layout--town={townShape}>
     <div class="head">
       <div class="head__text">
-        <h1>{page.title}</h1>
+        <h1 style:--longest-word={longestWord(page.title)}>{page.title}</h1>
         {#if page.html}
           <div class="prose intro">{@html page.html}</div>
         {/if}

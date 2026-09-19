@@ -1,6 +1,7 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
   import CountyMap from '#lib/components/CountyMap.svelte';
+  import { longestWord } from '#lib/format.js';
   import { MUNICIPALITIES } from '#lib/municipalities.js';
   import type { Page } from '#lib/types.js';
 
@@ -16,7 +17,7 @@
 
 <div class="list">
   <Breadcrumbs ancestors={page.ancestors} current={page} />
-  <h1>{page.title}</h1>
+  <h1 style:--longest-word={longestWord(page.title)}>{page.title}</h1>
   {#if page.html}
     <div class="prose" style="margin-top: var(--space-20)">
       {@html page.html}

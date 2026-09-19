@@ -8,6 +8,7 @@
   import {
     formatAcres,
     formatCoordinates,
+    longestWord,
     parkTransitionName,
   } from '#lib/format.js';
   import {
@@ -129,7 +130,7 @@
     <header class="head">
       <!-- The name shares its view-transition-name with the park's row in a
            Park List, so it moves between the list and this heading. -->
-      <h1>
+      <h1 style:--longest-word={longestWord(page.title)}>
         <span
           class="title"
           style:view-transition-name={parkTransitionName(page.url, 'name')}

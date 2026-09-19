@@ -18,14 +18,16 @@ describe('the type scale', () => {
     }
   });
 
-  test('gives every font-size a step, or leaves it to the parent', () => {
-    // Map text is in map units, and the map scales with its box.
-    const allowed =
-      /^(var\(--step--?\d\)|var\(--text-map\)|inherit|100%)$/;
+  test('gives every font size a step, or leaves it to the parent', () => {
+    // A step can be capped, as a heading is to fit its longest word. Map text
+    // is in map units, and the map scales with its box.
+    const step = /^(min\(\s*)?var\(--step-(-[12]|[0-5])\)/;
+    const other = /^(var\(--text-map\)|inherit|100%)$/;
     const fixed: string[] = [];
     for (const [path, text] of files) {
-      for (const [, value] of text.matchAll(/font-size:\s*([^;]+);/g)) {
-        if (!allowed.test(value.trim())) fixed.push(`${path}: ${value}`);
+      for (const [, value] of text.matchAll(/font(?:-size)?:\s*([^;]+);/g)) {
+        const v = value.trim();
+        if (!step.test(v) && !other.test(v)) fixed.push(`${path}: ${v}`);
       }
     }
     expect(fixed).toEqual([]);

@@ -256,7 +256,10 @@
     border-top: var(--line-hair) solid var(--rule-soft);
   }
 
+  /* The longest place name is wider than a phone, so the box stays in the
+     column and the name is cut short. */
   select {
+    max-width: 100%;
     min-height: var(--tap-target);
     padding: 0 var(--space-12);
     border: var(--line-hair) solid var(--rule-strong);
