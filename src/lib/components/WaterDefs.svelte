@@ -1,7 +1,7 @@
 <script module lang="ts">
   /** The ids a `TownShape` with `sharedWater` points its `<use>` at. */
-  export const RIVER_ID = 'genesee-river';
-  export const CANAL_ID = 'erie-canal';
+  export const RIVER_ID = 'water-genesee-river';
+  export const CANAL_ID = 'water-erie-canal';
 </script>
 
 <script lang="ts">

@@ -162,7 +162,7 @@
      the element inside it. -->
 <div class="list">
   <!-- Each card that shows its place draws the water from here, so the river
-       is in the page once, not once for each card. See #137. -->
+       is in the page once, not once for each card. -->
   {#if cards}
     <WaterDefs />
   {/if}
