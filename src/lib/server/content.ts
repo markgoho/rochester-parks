@@ -117,21 +117,26 @@ function resolveImage(src: string, pageUrl: string): string | undefined {
 
 /**
  * PROTOTYPE (park cards): the picture a card shows for a park. A WordPress
- * featured image or thumbnail in the park's folder comes first, then the
- * first body image, then any image in the folder. A site-relative path.
+ * featured image in the park's folder comes first, then the first body
+ * image, then any other image in the folder. A WordPress thumbnail is only
+ * 144px wide, so it comes last. A site-relative path.
  */
 function cardPhoto(node: Node): string | undefined {
-  const inFolder = [...assets].filter((a) => a.startsWith(node.url));
-  const featured = inFolder.find((a) => /featured|thumb/i.test(a));
+  const inFolder = [...assets]
+    .filter((a) => a.startsWith(node.url))
+    .sort((a, b) => Number(/\.png$/i.test(a)) - Number(/\.png$/i.test(b)));
+  const thumb = (a: string) => /thumb/i.test(a);
+  const featured = inFolder.find((a) => /featured/i.test(a));
   if (featured) return encodeURI(featured);
-  if (node.photo) {
+  if (node.photo && !thumb(node.photo)) {
     if (/^https?:\/\//.test(node.photo)) return node.photo;
     const path = node.photo.startsWith('/')
       ? node.photo
       : `${node.url}${node.photo}`;
     if (assets.has(decodeURI(path))) return path;
   }
-  return inFolder[0] && encodeURI(inFolder[0]);
+  const any = inFolder.find((a) => !thumb(a)) ?? inFolder[0];
+  return any && encodeURI(any);
 }
 
 // Heading ids and typographer, like Hugo. Raw HTML passes through, so pages

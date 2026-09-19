@@ -103,7 +103,8 @@
   <span class="mono facts">
     {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}not
       measured{/if}
-    {#if park.amenities.length}· {park.amenities.length} amenities{/if}
+    {#if park.amenities.length}· {park.amenities.length}
+      {park.amenities.length === 1 ? 'amenity' : 'amenities'}{/if}
   </span>
 {/snippet}
 
@@ -445,6 +446,13 @@
     background: var(--paper);
     font-size: var(--text-2xs);
     color: var(--ink-muted);
+  }
+
+  /* Orange while its dot on the town map is picked, as in the table. */
+  .card-a__name,
+  .card-b__name span,
+  .tile__name {
+    color: var(--park-picked);
   }
 
   .card-a__name {
