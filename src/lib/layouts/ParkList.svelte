@@ -3,11 +3,15 @@
   import ParkFlags from '#lib/components/ParkFlags.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
+  import TownShape from '#lib/components/TownShape.svelte';
   import { formatAcres, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
+    municipality,
     townKey,
+    villagesIn,
+    type Marker,
   } from '#lib/municipalities.js';
   import { neighborhoodAt } from '#lib/neighborhoods.js';
   import type { ChildLink, Page } from '#lib/types.js';
@@ -22,8 +26,9 @@
     page.section ?? { title: page.title, url: page.url }
   );
 
-  /** Set on a town section the county map draws, and on nothing else. */
+  /** Set on a town section, and on nothing else. */
   const town = $derived(townKey(section.url));
+  const townShape = $derived(town ? municipality(town) : undefined);
   /** The county section has no town of its own: it takes the whole map. */
   const county = $derived(isCountySection(section.url));
   /** The city section is drawn with its neighborhoods. */
@@ -75,6 +80,15 @@
   const byNeighborhood = $derived(page.order === 'neighborhood');
   const neighborhoodUrl = $derived(`${section.url}by-neighborhood/`);
 
+  /** A dot for each park with a place, keyed on its URL like its row. */
+  const markers: Marker[] = $derived(
+    parks.flatMap((child) => {
+      const geo = child.park!.geo;
+      return geo ? [{ title: child.title, key: child.url, ...geo }] : [];
+    })
+  );
+  const placed = $derived(new Set(markers.map((m) => m.key)));
+
   const other = $derived(
     page.children.filter((child) => child.park === undefined)
   );
@@ -106,150 +120,212 @@
 
 <Breadcrumbs ancestors={page.ancestors} current={page} />
 
-<div class="head">
-  <div class="head__text">
-    <h1>{page.title}</h1>
-    {#if page.html}
-      <div class="prose intro">{@html page.html}</div>
-    {/if}
-    <p class="eyebrow counts">
-      <span><b class="mono">{parks.length}</b> parks</span>
-      <span><b class="mono">{written}</b> written up</span>
-      <span><b class="mono">{photographed}</b> photographed</span>
-      <span><b class="mono">{inventoried}</b> with amenity data</span>
-      <span><b class="mono">{measured}</b> measured</span>
-    </p>
-  </div>
-  {#if city}
-    <div class="locator locator--city">
-      <CityLocator {counts} />
-      <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
+<!-- The list is the container the town layout queries, and the box a row
+     picks its dot inside. A container cannot query itself, so the grid is
+     the element inside it. -->
+<div class="list">
+  <div class="layout" class:layout--town={townShape}>
+    <div class="head">
+      <div class="head__text">
+        <h1>{page.title}</h1>
+        {#if page.html}
+          <div class="prose intro">{@html page.html}</div>
+        {/if}
+        <p class="eyebrow counts">
+          <span><b class="mono">{parks.length}</b> parks</span>
+          <span><b class="mono">{written}</b> written up</span>
+          <span><b class="mono">{photographed}</b> photographed</span>
+          <span><b class="mono">{inventoried}</b> with amenity data</span>
+          <span><b class="mono">{measured}</b> measured</span>
+        </p>
+      </div>
+      {#if city}
+        <div class="locator locator--city">
+          <CityLocator {counts} />
+          <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
+        </div>
+      {:else if county}
+        <div class="locator"><TownLocator /></div>
+      {/if}
     </div>
-  {:else if town || county}
-    <div class="locator"><TownLocator {town} /></div>
-  {/if}
-</div>
 
-{#snippet parkRow(child: ChildLink, i: number)}
-  {@const park = child.park!}
-  <!-- Every ordering of a section names a park's row the same way, so a
+    {#if townShape && town}
+      <!-- The town with a dot for each park. The dot of the row under the
+       pointer or the focus grows. -->
+      <div class="town-map">
+        <TownShape
+          shape={townShape}
+          villages={villagesIn(town)}
+          {markers}
+          square
+          scope=".list"
+          label="The parks of {section.title}"
+        />
+      </div>
+    {/if}
+
+    {#snippet parkRow(child: ChildLink, i: number)}
+      {@const park = child.park!}
+      <!-- Every ordering of a section names a park's row the same way, so a
        browser with view transitions moves each row to its new place. The
        park's name has a name of its own, which the Park page's heading
        shares, so the name moves from the list into the heading. -->
-  <li
-    class="row"
-    style:view-transition-name={parkTransitionName(child.url, 'row')}
-  >
-    <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
-    <a class="name" href={child.url}
-      ><span
-        class="name__text"
-        style:view-transition-name={parkTransitionName(child.url, 'name')}
-        >{child.title}</span
-      ></a
-    >
-    <span class="status"><ParkFlags status={park.status} /></span>
-    <span class="tags">
-      {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
-        <span class="tag">{amenity}</span>
-      {/each}
-      {#if park.amenities.length > SHOWN}
-        <span class="tag tag--off">+{park.amenities.length - SHOWN} more</span>
-      {:else if park.amenities.length === 0}
-        <span class="mono none">not recorded yet</span>
+      <li
+        class="row"
+        data-park={placed.has(child.url) ? child.url : undefined}
+        style:view-transition-name={parkTransitionName(child.url, 'row')}
+      >
+        <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
+        <a class="name" href={child.url}
+          ><span
+            class="name__text"
+            style:view-transition-name={parkTransitionName(child.url, 'name')}
+            >{child.title}</span
+          ></a
+        >
+        <span class="status"><ParkFlags status={park.status} /></span>
+        <span class="tags">
+          {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
+            <span class="tag">{amenity}</span>
+          {/each}
+          {#if park.amenities.length > SHOWN}
+            <span class="tag tag--off"
+              >+{park.amenities.length - SHOWN} more</span
+            >
+          {:else if park.amenities.length === 0}
+            <span class="mono none">not recorded yet</span>
+          {/if}
+        </span>
+        <span class="mono end acres">
+          {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
+        </span>
+        <span class="mono end words">
+          {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
+            note{:else}—{/if}
+        </span>
+      </li>
+    {/snippet}
+
+    <div class="body">
+      {#if city}
+        <!-- Each grouping is its own prerendered page, so these are links. -->
+        <nav class="orders eyebrow" aria-label="Order">
+          {#if az}
+            <span aria-current="page">A to Z</span>
+          {:else}
+            <a href={azUrl}>A to Z</a>
+          {/if}
+          {#if byNeighborhood}
+            <span aria-current="page">By neighborhood</span>
+          {:else}
+            <a href={neighborhoodUrl}>By neighborhood</a>
+          {/if}
+        </nav>
       {/if}
-    </span>
-    <span class="mono end acres">
-      {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
-    </span>
-    <span class="mono end words">
-      {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
-        note{:else}—{/if}
-    </span>
-  </li>
-{/snippet}
 
-{#if city}
-  <!-- Each grouping is its own prerendered page, so these are links. -->
-  <nav class="orders eyebrow" aria-label="Order">
-    {#if az}
-      <span aria-current="page">A to Z</span>
-    {:else}
-      <a href={azUrl}>A to Z</a>
-    {/if}
-    {#if byNeighborhood}
-      <span aria-current="page">By neighborhood</span>
-    {:else}
-      <a href={neighborhoodUrl}>By neighborhood</a>
-    {/if}
-  </nav>
-{/if}
-
-<!-- The heading that orders the table is the control: each ordering is its
+      <!-- The heading that orders the table is the control: each ordering is its
      own prerendered page, so it is a link, not a button. See ADR-0001. -->
-<div class="row row--head eyebrow" class:row--head--plain={!sortable}>
-  {#if sortable}
-    <span class="sort-label">Sort</span>
-  {/if}
-  <span class="num" aria-hidden="true"></span>
-  {#if !az}
-    <a class="name" href={azUrl}>Park</a>
-  {:else}
-    <span class="name" aria-current={sortable ? 'page' : undefined}>Park</span>
-  {/if}
-  <span class="status" aria-hidden="true">Status</span>
-  <span class="tags" aria-hidden="true">What is there</span>
-  {#if sortable && !bySize}
-    <a class="end acres" href={sizeUrl}>Size</a>
-  {:else}
-    <span class="end acres" aria-current={bySize ? 'page' : undefined}
-      >Size</span
-    >
-  {/if}
-  <span class="end words" aria-hidden="true">Write-up</span>
+      <div class="row row--head eyebrow" class:row--head--plain={!sortable}>
+        {#if sortable}
+          <span class="sort-label">Sort</span>
+        {/if}
+        <span class="num" aria-hidden="true"></span>
+        {#if !az}
+          <a class="name" href={azUrl}>Park</a>
+        {:else}
+          <span class="name" aria-current={sortable ? 'page' : undefined}
+            >Park</span
+          >
+        {/if}
+        <span class="status" aria-hidden="true">Status</span>
+        <span class="tags" aria-hidden="true">What is there</span>
+        {#if sortable && !bySize}
+          <a class="end acres" href={sizeUrl}>Size</a>
+        {:else}
+          <span class="end acres" aria-current={bySize ? 'page' : undefined}
+            >Size</span
+          >
+        {/if}
+        <span class="end words" aria-hidden="true">Write-up</span>
+      </div>
+
+      {#if byNeighborhood}
+        {#each groups as group (group.key)}
+          <section class="group" id={group.key}>
+            <h2 class="group__head">
+              {group.name}
+              <span class="mono eyebrow"
+                >{group.parks.length === 1
+                  ? '1 park'
+                  : `${group.parks.length} parks`}</span
+              >
+            </h2>
+            <ol class="table" aria-label="Parks in {group.name}, A to Z">
+              {#each group.parks as child, i (child.url)}
+                {@render parkRow(child, i)}
+              {/each}
+            </ol>
+          </section>
+        {/each}
+      {:else}
+        <!-- The number is a position in the list, and on the by-size page that
+       position is the rank, so the order is named for a screen reader too. -->
+        <ol
+          class="table"
+          aria-label="Parks in {section.title}, {bySize
+            ? 'largest first'
+            : 'A to Z'}"
+        >
+          {#each parks as child, i (child.url)}
+            {@render parkRow(child, i)}
+          {/each}
+        </ol>
+      {/if}
+
+      {#if other.length}
+        <h2 class="more">More about this section</h2>
+        <ul class="other">
+          {#each other as child (child.url)}
+            <li><a href={child.url}>{child.title}</a></li>
+          {/each}
+        </ul>
+      {/if}
+    </div>
+  </div>
 </div>
 
-{#if byNeighborhood}
-  {#each groups as group (group.key)}
-    <section class="group" id={group.key}>
-      <h2 class="group__head">
-        {group.name}
-        <span class="mono eyebrow"
-          >{group.parks.length === 1
-            ? '1 park'
-            : `${group.parks.length} parks`}</span
-        >
-      </h2>
-      <ol class="table" aria-label="Parks in {group.name}, A to Z">
-        {#each group.parks as child, i (child.url)}
-          {@render parkRow(child, i)}
-        {/each}
-      </ol>
-    </section>
-  {/each}
-{:else}
-  <!-- The number is a position in the list, and on the by-size page that
-       position is the rank, so the order is named for a screen reader too. -->
-  <ol
-    class="table"
-    aria-label="Parks in {section.title}, {bySize ? 'largest first' : 'A to Z'}"
-  >
-    {#each parks as child, i (child.url)}
-      {@render parkRow(child, i)}
-    {/each}
-  </ol>
-{/if}
-
-{#if other.length}
-  <h2 class="more">More about this section</h2>
-  <ul class="other">
-    {#each other as child (child.url)}
-      <li><a href={child.url}>{child.title}</a></li>
-    {/each}
-  </ul>
-{/if}
-
 <style>
+  /* The list is the container the town layout below queries. */
+  .list {
+    container: list / inline-size;
+  }
+
+  .town-map {
+    max-inline-size: 24rem;
+    padding-top: var(--space-20);
+  }
+
+  /* Wide: the town map beside the list, on screen while the list scrolls,
+     so the dot a row picks is always in sight. */
+  @container list (inline-size >= 68rem) {
+    .layout--town {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(20rem, 28%, 28rem);
+      grid-template-rows: auto 1fr;
+      column-gap: var(--space-40);
+    }
+
+    .layout--town .town-map {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: start;
+      max-inline-size: none;
+      padding-top: 0;
+      position: sticky;
+      top: var(--space-24);
+    }
+  }
+
   .head {
     display: flex;
     flex-direction: column;
@@ -469,7 +545,7 @@
 
   @media (min-width: 60rem) {
     /* The county map sits beside the heading, not above the table. */
-    .head {
+    .head:has(.locator) {
       display: grid;
       grid-template-columns: minmax(0, 1fr) 13rem;
       align-items: start;

@@ -29,6 +29,8 @@ export interface Marker {
   title: string;
   latitude: number;
   longitude: number;
+  /** Names the dot, so a page can pick one out of many. The park's URL. */
+  key?: string;
 }
 
 /** The county map's own coordinate space. Every path uses it. */
@@ -559,6 +561,26 @@ export function outlineBox(
     y: round(minY - pad),
     width: round(maxX - minX + pad * 2),
     height: round(maxY - minY + pad * 2),
+  };
+}
+
+/**
+ * The same box grown on its shorter side to a square, with the outline in
+ * the middle. Every town then fills a frame of one shape, however long or
+ * wide the town is.
+ */
+export function squareBox(box: {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}): { x: number; y: number; width: number; height: number } {
+  const side = Math.max(box.width, box.height);
+  return {
+    x: box.x - (side - box.width) / 2,
+    y: box.y - (side - box.height) / 2,
+    width: side,
+    height: side,
   };
 }
 
