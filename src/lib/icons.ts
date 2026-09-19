@@ -1,7 +1,6 @@
-// Phosphor Icons, bold weight, MIT licensed. Paths are inlined rather than
-// pulled from a package: the site ships five icons, and Mark.svelte already
-// sets the precedent for inline SVG. The last two name the views of a park
-// list, not a status.
+// Phosphor Icons, bold weight, MIT licensed. Paths are copied here rather
+// than pulled from a package: the site ships five icons. The last two name the
+// views of a park list, not a status.
 // https://phosphoricons.com/
 export const ICON_PATHS = {
   written:
@@ -21,9 +20,9 @@ export type StatusKind = Exclude<IconKind, 'rows' | 'cards'>;
 /**
  * Every icon as a `<symbol>` in one file, `/icons.svg`, which the site serves
  * beside its pages. A page points at an icon there with `<use>` instead of
- * holding its path: a park list has three icons in each row, and it held 237
- * copies of the same six paths. The browser fetches the file once and keeps
- * it for every page.
+ * holding its path: a park list has three icons in each row, so it held the
+ * same few paths hundreds of times. The browser fetches the file once, and
+ * each page after that can take it from the cache.
  */
 export function iconSprite(): string {
   const symbols = Object.entries(ICON_PATHS)

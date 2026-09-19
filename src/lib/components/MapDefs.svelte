@@ -20,27 +20,31 @@
 
 <!-- What the maps of a page with many maps share, once for the whole page:
      each place's outline and the clip cut to it, and the river and the canal.
-     On the city cards, 76 maps drew 34 Neighborhoods, each outline twice, and
-     the river 42 times. Render this once on a page, never once per list: the
-     ids must be unique.
+     Many cards draw the same Neighborhood or town, and before this each map
+     held its outline twice and the whole river. Render this once on a page,
+     never once per list: the ids must be unique.
 
      The box is zero in size, not hidden, so no browser drops what it holds.
      `vector-effect` does not inherit, so it goes on the paths themselves. A
-     clip path can hold only shapes, so each place has a clip of its own
-     beside the group a map draws. -->
+     clip path can hold only shapes, or a `<use>` of one path, not of a group,
+     so the clip points at each path of the outline in turn. -->
 <svg class="map-defs" width="0" height="0" aria-hidden="true">
   <defs>
     {#each shapes as shape (shape.key)}
-      <clipPath id={clipId(shape.key)}>
-        {#each shape.paths as d (d)}
-          <path {d} />
-        {/each}
-      </clipPath>
       <g id={shapeId(shape.key)}>
-        {#each shape.paths as d (d)}
-          <path vector-effect="non-scaling-stroke" {d} />
+        {#each shape.paths as d, i (d)}
+          <path
+            id="{shapeId(shape.key)}-{i}"
+            vector-effect="non-scaling-stroke"
+            {d}
+          />
         {/each}
       </g>
+      <clipPath id={clipId(shape.key)}>
+        {#each shape.paths as d, i (d)}
+          <use href="#{shapeId(shape.key)}-{i}" />
+        {/each}
+      </clipPath>
     {/each}
     {#if river}
       <path

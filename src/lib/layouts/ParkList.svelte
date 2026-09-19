@@ -154,12 +154,16 @@
     return shape && key ? { shape, villages: villagesIn(key) } : undefined;
   }
 
-  /** Each place a card with no photo draws, once. See `MapDefs`. */
+  /** What a card's picture shows in place of a photo, if it has none. */
+  const cardPlace = (child: ChildLink) =>
+    child.park!.photo ? undefined : placeOf(child);
+
+  /** Each place a card draws, once. See `MapDefs`. */
   const cardPlaces = $derived.by(() => {
     if (!cards) return [];
     const byKey = new Map<string, Outline>();
     for (const child of parks) {
-      const place = child.park!.photo ? undefined : placeOf(child);
+      const place = cardPlace(child);
       if (place) byKey.set(place.shape.key, place.shape);
     }
     return [...byKey.values()];
@@ -174,7 +178,7 @@
 <div class="list">
   <!-- Each card that shows its place draws its map from here, so each place
        and the river are in the page once, not once for each card. -->
-  {#if cards && cardPlaces.length}
+  {#if cardPlaces.length}
     <MapDefs shapes={cardPlaces} />
   {/if}
   <div class="layout" class:layout--town={townShape}>
@@ -270,7 +274,7 @@
      a park moves between the table and the cards. -->
     {#snippet parkCard(child: ChildLink, i: number)}
       {@const park = child.park!}
-      {@const place = park.photo ? undefined : placeOf(child)}
+      {@const place = cardPlace(child)}
       <li
         class="card"
         data-park={placed.has(child.url) ? child.url : undefined}

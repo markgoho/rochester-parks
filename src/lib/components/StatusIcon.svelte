@@ -1,7 +1,3 @@
-<script module lang="ts">
-  export type { IconKind, StatusKind } from '#lib/icons.js';
-</script>
-
 <script lang="ts">
   import { iconHref, type IconKind } from '#lib/icons.js';
 
