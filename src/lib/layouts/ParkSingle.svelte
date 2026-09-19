@@ -375,9 +375,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
     align-items: start;
-    /* Beside the write-up the rail is as tall as it. The panels stay at the
-       top and do not share out that height. */
-    align-content: start;
     gap: var(--space-20);
   }
 
@@ -401,6 +398,14 @@
       grid-column: 2;
       grid-row: 1 / span 2;
       grid-template-columns: minmax(0, 1fr);
+      /* The rail stays on screen while the write-up scrolls. It does not
+         fill its grid area, so it has room to move. A rail taller than the
+         screen scrolls by itself, so its last panel is never out of reach. */
+      align-self: start;
+      position: sticky;
+      top: var(--space-24);
+      max-block-size: calc(100dvh - 2 * var(--space-24));
+      overflow-y: auto;
     }
   }
 
