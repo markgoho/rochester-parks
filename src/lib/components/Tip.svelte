@@ -34,11 +34,12 @@
 
   /* Anchor positioning is not everywhere yet, and the browser centres a
      popover with `margin: auto`. Only a browser that can tie the tooltip to
-     its trigger gets to drop that centring. */
-  @supports (position-area: block-end center) {
+     its trigger gets to drop that centring. The tooltip sits above its
+     trigger, because the pointer covers the space below it. */
+  @supports (position-area: block-start center) {
     .tip {
       margin: var(--space-6) 0;
-      position-area: block-end center;
+      position-area: block-start center;
       position-try-fallbacks: flip-block;
     }
   }
