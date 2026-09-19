@@ -17,7 +17,7 @@ amenities:
   - Playground
   - Shelter
   - Trails
-telephone: '585-533-2340'
+telephone: '(585) 533-2340'
 sameAs:
   - 'https://www.townofrush.com/community/parks-trails.html'
 ---

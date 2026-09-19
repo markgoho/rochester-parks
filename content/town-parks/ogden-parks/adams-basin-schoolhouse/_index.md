@@ -16,7 +16,7 @@ amenities:
   - Basketball Court
   - Bench
   - Playground
-telephone: '585-617-6174'
+telephone: '(585) 617-6174'
 sameAs:
   - 'https://ogdenny.gov/wp-content/uploads/2024/09/2024-Parks-Master-Plan2.pdf'
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14707'

@@ -19,4 +19,4 @@ sameAs:
   - 'https://www.villageofwebsterny.gov/parks.html'
 ---
 
-Wilmorite Recreation Area is a Village of Webster park off Iroquois Street. It has playground equipment and a baseball field. Call (585) 265-3770 for information.
+Wilmorite Recreation Area is a park in the Village of Webster off Iroquois Street. It has playground equipment and a baseball field. Call (585) 265-3770 for information.

@@ -21,4 +21,4 @@ sameAs:
   - 'https://www.villageofwebsterny.gov/parks.html'
 ---
 
-Schantz Park is a Village of Webster park between Hawley Drive and State Road. It has a basketball court, tennis courts, baseball fields and playground equipment. Call (585) 265-3770 for information.
+Schantz Park is a park in the Village of Webster between Hawley Drive and State Road. It has a basketball court, tennis courts, baseball fields and playground equipment. Call (585) 265-3770 for information.

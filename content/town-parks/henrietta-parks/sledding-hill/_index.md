@@ -17,4 +17,4 @@ sameAs:
   - 'https://www.henriettany.gov/community/park/sledding-hill'
 ---
 
-The Sledding Hill is a Town of Henrietta park on Erie Station Road, across from Windelin Drive. The town lists it with its other parks, but its page gives only the location. It does not list hours, parking, size or other amenities, or a season. Erie Station Road is County Road 71. The hill is about a mile southwest of Lookup Park. It is a separate site and is not part of Lookup Park or any other town park.
+The Sledding Hill is a Town of Henrietta park on Erie Station Road, across from Windelin Drive. The town lists it with its other parks, but its page gives only the location. It does not list hours, parking, size or other amenities, or a season. It is a separate place, not part of Lookup Park or any other town park.

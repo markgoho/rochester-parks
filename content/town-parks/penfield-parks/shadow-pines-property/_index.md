@@ -3,8 +3,8 @@ title: 'Shadow Pines Property'
 description: 'A park in Penfield'
 type: 'park'
 geo:
-  latitude: 43.1573
-  longitude: -77.4833
+  latitude: 43.1539966
+  longitude: -77.4807528
 address:
   streetAddress: '1960 Clark Road'
   addressLocality: 'Penfield'

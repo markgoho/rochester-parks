@@ -19,4 +19,4 @@ sameAs:
   - 'https://www.villageofwebsterny.gov/parks.html'
 ---
 
-Harmony Park is a Village of Webster park at the corner of Phillips Road and Foster Drive. It has the Village Band Shell and wide open space for outdoor activities. To reserve the band shell, call the village at (585) 265-3770.
+Harmony Park is a park in the Village of Webster at the corner of Phillips Road and Foster Drive. It has the Village Band Shell and wide open space for outdoor activities. To reserve the band shell, call the village at (585) 265-3770.
