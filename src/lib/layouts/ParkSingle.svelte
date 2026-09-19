@@ -556,7 +556,7 @@
   /* The divider belongs to the second link, so it shows only when two links
      exist. */
   .paging__link + .paging__link {
-    border-top: var(--line-hair) solid var(--rule);
+    border-block-start: var(--line-hair) solid var(--rule);
   }
 
   .paging__title {
@@ -569,8 +569,8 @@
     }
 
     .paging__link + .paging__link {
-      border-top: 0;
-      border-left: var(--line-hair) solid var(--rule);
+      border-block-start: 0;
+      border-inline-start: var(--line-hair) solid var(--rule);
     }
 
     .paging__link--end {
