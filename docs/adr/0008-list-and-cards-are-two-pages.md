@@ -38,4 +38,4 @@ We rejected two alternatives:
 - `ParkMeta` gets `photo?: string`. The photo for a card is a WordPress featured image first, then the first body image. A WordPress thumbnail is only 144px wide, so it comes last.
 - `Page` gets `view?: 'cards'`.
 - A card takes the same view transition names as its table row. A Park moves between the table and the cards, and between two orders.
-- Each card inlines its own map. On the city card page, the river path repeats in each card that it runs through: 127 KB of the 576 KB page.
+- Each card inlines its own map. The river and the canal are in a card page once, and each card draws them with `<use>`: before, the river repeated in each card that it runs through, 127 KB of the 576 KB city page. The city card page is now 447 KB (#137).

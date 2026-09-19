@@ -8,6 +8,7 @@
     type Outline,
   } from '#lib/municipalities.js';
   import { ERIE_CANAL, GENESEE_RIVER } from '#lib/waterways.js';
+  import { CANAL_ID, RIVER_ID } from './WaterDefs.svelte';
 
   /**
    * One shape drawn on its own: a town with the villages inside it, or a
@@ -20,6 +21,7 @@
     label,
     square = false,
     scope,
+    sharedWater = false,
   }: {
     shape: Outline;
     villages?: Outline[];
@@ -33,6 +35,11 @@
      * dot while the pointer or the focus is on it.
      */
     scope?: string;
+    /**
+     * Draw the river and the canal from the one copy a `WaterDefs` holds on
+     * the page, not from a copy of their own. For a page with many maps.
+     */
+    sharedWater?: boolean;
   } = $props();
 
   const box = $derived(
@@ -124,7 +131,9 @@
       {/each}
     </g>
   {/each}
-  {#if river}
+  {#if river && sharedWater}
+    <use class="water river" clip-path="url(#{clip})" href="#{RIVER_ID}" />
+  {:else if river}
     <path
       class="water river"
       clip-path="url(#{clip})"
@@ -132,7 +141,9 @@
       d={GENESEE_RIVER}
     />
   {/if}
-  {#if canal}
+  {#if canal && sharedWater}
+    <use class="water canal" clip-path="url(#{clip})" href="#{CANAL_ID}" />
+  {:else if canal}
     <path
       class="water canal"
       clip-path="url(#{clip})"
@@ -191,7 +202,8 @@
   }
 
   /* The Genesee River and the Erie Canal, beneath the dots. They are a
-     picture only, so they never take the pointer from a link. */
+     picture only, so they never take the pointer from a link. A `<use>`
+     passes each of these on to the path it draws. */
   .water {
     fill: none;
     stroke: var(--water);

@@ -5,6 +5,7 @@
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
+  import WaterDefs from '#lib/components/WaterDefs.svelte';
   import { formatAcres, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
@@ -160,6 +161,11 @@
      picks its dot inside. A container cannot query itself, so the grid is
      the element inside it. -->
 <div class="list">
+  <!-- Each card that shows its place draws the water from here, so the river
+       is in the page once, not once for each card. See #137. -->
+  {#if cards}
+    <WaterDefs />
+  {/if}
   <div class="layout" class:layout--town={townShape}>
     <div class="head">
       <div class="head__text">
@@ -272,6 +278,7 @@
                   villages={place.villages}
                   markers={[{ title: child.title, ...park.geo! }]}
                   square
+                  sharedWater
                   label="Where {child.title} is in {place.shape.name}"
                 />
               </span>
