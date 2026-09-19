@@ -5,6 +5,7 @@
     type Marker,
     type Outline,
   } from '#lib/municipalities.js';
+  import { ERIE_CANAL } from '#lib/erie-canal.js';
 
   /**
    * One shape drawn on its own: a town with the villages inside it, or a
@@ -23,7 +24,10 @@
   } = $props();
 
   const box = $derived(outlineBox(shape));
-  /** Brockport crosses the Sweden–Clarkson line, so villages are clipped. */
+  /**
+   * Brockport crosses the Sweden–Clarkson line, so villages are clipped. The
+   * canal is clipped too, or it would run on past the town's border.
+   */
   const uid = $props.id();
   const clip = `town-clip-${uid}`;
 
@@ -48,15 +52,13 @@
   role="img"
   aria-label={label ?? shape.name}
 >
-  {#if villages.length}
-    <defs>
-      <clipPath id={clip}>
-        {#each shape.paths as d (d)}
-          <path {d} />
-        {/each}
-      </clipPath>
-    </defs>
-  {/if}
+  <defs>
+    <clipPath id={clip}>
+      {#each shape.paths as d (d)}
+        <path {d} />
+      {/each}
+    </clipPath>
+  </defs>
   {#each shape.paths as d (d)}
     <path class="outline" vector-effect="non-scaling-stroke" {d} />
   {/each}
@@ -67,6 +69,12 @@
       {/each}
     </g>
   {/each}
+  <path
+    class="canal"
+    clip-path="url(#{clip})"
+    vector-effect="non-scaling-stroke"
+    d={ERIE_CANAL}
+  />
   {#each dots as dot (dot.title)}
     <circle
       class="park"
@@ -99,6 +107,17 @@
     stroke: var(--rule-strong);
     stroke-width: var(--stroke-base);
     stroke-linejoin: round;
+  }
+
+  /* The Erie Canal, beneath the dots. It is a picture only, so it never
+     takes the pointer from a link. */
+  .canal {
+    fill: none;
+    stroke: var(--water);
+    stroke-width: var(--stroke-water);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
   }
 
   /* The park this page is about, in the one accent the site allows. */

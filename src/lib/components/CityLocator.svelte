@@ -1,5 +1,6 @@
 <script lang="ts">
   import { project, type Marker } from '#lib/municipalities.js';
+  import { ERIE_CANAL } from '#lib/erie-canal.js';
   import {
     CITY_BOX,
     NEIGHBORHOODS,
@@ -34,6 +35,10 @@
     }))
   );
 
+  /** The canal is clipped to the city, or it would run on past the border. */
+  const uid = $props.id();
+  const clip = `city-clip-${uid}`;
+
   const plural = (n: number) => (n === 1 ? '1 park' : `${n} parks`);
 </script>
 
@@ -46,6 +51,13 @@
   role={counts ? undefined : 'img'}
   aria-label={label}
 >
+  <defs>
+    <clipPath id={clip}>
+      {#each NEIGHBORHOODS as n (n.key)}
+        <path d={n.paths.join(' ')} />
+      {/each}
+    </clipPath>
+  </defs>
   {#each NEIGHBORHOODS as n (n.key)}
     {@const count = counts?.get(n.key) ?? 0}
     {#if count > 0}
@@ -68,6 +80,12 @@
       </path>
     {/if}
   {/each}
+  <path
+    class="canal"
+    clip-path="url(#{clip})"
+    vector-effect="non-scaling-stroke"
+    d={ERIE_CANAL}
+  />
   {#each dots as dot (dot.title)}
     <circle
       class="park"
@@ -111,6 +129,17 @@
   /* No park is listed here, so there is nothing to link to. */
   .boundary.empty {
     fill: var(--paper-sunk);
+  }
+
+  /* The Erie Canal, beneath the dots. It is a picture only, so it never
+     takes the pointer from a link. */
+  .canal {
+    fill: none;
+    stroke: var(--water);
+    stroke-width: var(--stroke-water);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
   }
 
   /* The park this page is about, in the one accent the site allows. */
