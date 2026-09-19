@@ -16,6 +16,7 @@ amenities:
   - Trails
 sameAs:
   - 'https://perinton.gov/wp-content/uploads/Park-Plan-2019-1-compressed.pdf'
+  - 'https://perinton.gov/departments/randp/parks-department/crescent-trail/'
 ---
 
 Mason Valley is a 39.3-acre natural area off Broadmoor Trail in the southeast part of Perinton. It opened in 1994, and new homes now surround it. It has a constructed wetland, and White Brook is nearby. You can get in from the neighborhood, or on the Crescent Trail, which goes through it. Hikers on the Crescent Trail and people who live nearby use it most. There are no buildings or other facilities.

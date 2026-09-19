@@ -31,4 +31,4 @@ sameAs:
 
 **Perinton Amphitheater** is behind the Perinton Community Center in Center Park West. It hosts the free Center Stage Summer Concert Series, ticketed concerts and festivals. Bring lawn chairs or a picnic blanket. See the [Perinton Amphitheater page](https://perinton.gov/departments/randp/parks-department/parks/perinton-amphitheater/) on the town site.
 
-**Perinton Community and Aquatics Center** is at 1350 Turk Hill Road, the same address as the park. It is the only indoor recreation building in the town, and it joins Center Park East and Center Park West. It has a six-lane, 25-yard pool and an indoor water park, a gymnasium, a fitness center with a track loop, a 55+ Senior Center and meeting rooms. Most of the town's recreation programs are held there. The building also holds the town offices, and a small playground is beside it.
+**Perinton Community and Aquatics Center** is at 1350 Turk Hill Road, the same address as the park. It is the only indoor recreation building in the town. It has a pool, an indoor water park, a gymnasium and a fitness center. Most of the town's recreation programs are held there.
