@@ -5,6 +5,7 @@
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
+  import MapDefs from '#lib/components/MapDefs.svelte';
   import { formatAcres, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
@@ -152,6 +153,21 @@
     const shape = key ? municipality(key) : undefined;
     return shape && key ? { shape, villages: villagesIn(key) } : undefined;
   }
+
+  /** What a card's picture shows in place of a photo, if it has none. */
+  const cardPlace = (child: ChildLink) =>
+    child.park!.photo ? undefined : placeOf(child);
+
+  /** Each place a card draws, once. See `MapDefs`. */
+  const cardPlaces = $derived.by(() => {
+    if (!cards) return [];
+    const byKey = new Map<string, Outline>();
+    for (const child of parks) {
+      const place = cardPlace(child);
+      if (place) byKey.set(place.shape.key, place.shape);
+    }
+    return [...byKey.values()];
+  });
 </script>
 
 <Breadcrumbs ancestors={page.ancestors} current={page} />
@@ -160,6 +176,11 @@
      picks its dot inside. A container cannot query itself, so the grid is
      the element inside it. -->
 <div class="list">
+  <!-- Each card that shows its place draws its map from here, so each place
+       and the river are in the page once, not once for each card. -->
+  {#if cardPlaces.length}
+    <MapDefs shapes={cardPlaces} />
+  {/if}
   <div class="layout" class:layout--town={townShape}>
     <div class="head">
       <div class="head__text">
@@ -253,7 +274,7 @@
      a park moves between the table and the cards. -->
     {#snippet parkCard(child: ChildLink, i: number)}
       {@const park = child.park!}
-      {@const place = park.photo ? undefined : placeOf(child)}
+      {@const place = cardPlace(child)}
       <li
         class="card"
         data-park={placed.has(child.url) ? child.url : undefined}
@@ -272,6 +293,7 @@
                   villages={place.villages}
                   markers={[{ title: child.title, ...park.geo! }]}
                   square
+                  shared
                   label="Where {child.title} is in {place.shape.name}"
                 />
               </span>

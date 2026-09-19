@@ -1,7 +1,6 @@
 <script lang="ts">
-  import StatusIcon, {
-    type StatusKind,
-  } from '#lib/components/StatusIcon.svelte';
+  import StatusIcon from '#lib/components/StatusIcon.svelte';
+  import type { StatusKind } from '#lib/icons.js';
   import Tip from '#lib/components/Tip.svelte';
   import type { ParkStatus } from '#lib/types.js';
 
