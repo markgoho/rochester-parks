@@ -722,8 +722,12 @@
     background: var(--paper-sunk);
   }
 
+  /* One track that takes the whole box, not the map's own height. A row
+     sized by the map would make the map's `block-size: 100%` point back at
+     itself, so the map would fill the width and run past the bottom. */
   .card__place {
     display: grid;
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
     place-items: center;
     block-size: 100%;
     padding: var(--space-12);
