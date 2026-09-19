@@ -101,7 +101,8 @@
 {#snippet facts(child: ChildLink)}
   {@const park = child.park!}
   <span class="mono facts">
-    {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}not measured{/if}
+    {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}not
+      measured{/if}
     {#if park.amenities.length}· {park.amenities.length} amenities{/if}
   </span>
 {/snippet}
@@ -643,7 +644,9 @@
     border-radius: 999px;
     background: #111;
     box-shadow: 0 6px 24px rgb(0 0 0 / 0.35);
-    font: 600 0.8125rem/1 system-ui, sans-serif;
+    font:
+      600 0.8125rem/1 system-ui,
+      sans-serif;
     white-space: nowrap;
   }
 
