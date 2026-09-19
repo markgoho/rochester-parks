@@ -433,7 +433,7 @@ p {
   align-items: center;
   min-height: var(--tap-target);
   font-family: var(--mono);
-  font-size: var(--text-3xs);
+  font-size: var(--text-2xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
