@@ -1,6 +1,7 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
   import ParkFlags from '#lib/components/ParkFlags.svelte';
+  import ViewSwitch from '#lib/components/ViewSwitch.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
@@ -166,13 +167,18 @@
         {#if page.html}
           <div class="prose intro">{@html page.html}</div>
         {/if}
-        <p class="eyebrow counts">
-          <span><b class="mono">{parks.length}</b> parks</span>
-          <span><b class="mono">{written}</b> written up</span>
-          <span><b class="mono">{photographed}</b> photographed</span>
-          <span><b class="mono">{inventoried}</b> with amenity data</span>
-          <span><b class="mono">{measured}</b> measured</span>
-        </p>
+        <!-- The view is a property of the whole section, so its switch sits
+         with the section's counts, in the same place on both views. -->
+        <div class="counts-line">
+          <p class="eyebrow counts">
+            <span><b class="mono">{parks.length}</b> parks</span>
+            <span><b class="mono">{written}</b> written up</span>
+            <span><b class="mono">{photographed}</b> photographed</span>
+            <span><b class="mono">{inventoried}</b> with amenity data</span>
+            <span><b class="mono">{measured}</b> measured</span>
+          </p>
+          <ViewSwitch {cards} {tableUrl} {cardsUrl} />
+        </div>
       </div>
       {#if city}
         <div class="locator locator--city">
@@ -315,11 +321,11 @@
     {/snippet}
 
     <div class="body">
-      <!-- Each ordering and each view is its own prerendered page, so these
-       are links. The table's own headings sort it, so the order links here
-       are for the cards, and for the city's grouping. -->
-      <div class="toolbar eyebrow" class:toolbar--cards={cards}>
-        {#if city || (cards && sortable)}
+      <!-- Each ordering is its own prerendered page, so these are links. The
+       table's own headings sort it, so the order links here are for the
+       cards, and for the city's grouping. -->
+      {#if city || (cards && sortable)}
+        <div class="toolbar eyebrow" class:toolbar--cards={cards}>
           <nav class="toolbar__group" aria-label="Order">
             {#if cards}<span class="toolbar__label">Sort</span>{/if}
             {#if az}
@@ -342,18 +348,8 @@
               {/if}
             {/if}
           </nav>
-        {/if}
-        <nav class="toolbar__group toolbar__views" aria-label="View">
-          <span class="toolbar__label">Show as</span>
-          {#if cards}
-            <a href={tableUrl}>List</a>
-            <span aria-current="page">Cards</span>
-          {:else}
-            <span aria-current="page">List</span>
-            <a href={cardsUrl}>Cards</a>
-          {/if}
-        </nav>
-      </div>
+        </div>
+      {/if}
 
       <!-- The heading that orders the table is the control: each ordering is its
      own prerendered page, so it is a link, not a button. See ADR-0001. -->
@@ -472,6 +468,18 @@
 
   .intro :global(p:last-child) {
     margin-bottom: 0;
+  }
+
+  /* The counts wrap as they need; the switch stays at the end of the line,
+     and on the last line when the counts wrap. */
+  .counts-line {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-8) var(--space-24);
+  }
+
+  .counts-line :global(.views) {
+    margin-inline-start: auto;
   }
 
   .counts {
@@ -636,12 +644,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-8) var(--space-20);
-  }
-
-  /* The view switch sits at the end of the line, even alone on it. */
-  .toolbar__views {
-    margin-inline-start: auto;
-    gap: var(--space-14);
   }
 
   .toolbar__label {
