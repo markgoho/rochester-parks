@@ -9,9 +9,11 @@
     isCitySection,
     isCountySection,
     municipality,
+    placeAt,
     townKey,
     villagesIn,
     type Marker,
+    type Outline,
   } from '#lib/municipalities.js';
   import { neighborhoodAt } from '#lib/neighborhoods.js';
   import type { ChildLink, Page } from '#lib/types.js';
@@ -78,7 +80,15 @@
     )
   );
   const byNeighborhood = $derived(page.order === 'neighborhood');
-  const neighborhoodUrl = $derived(`${section.url}by-neighborhood/`);
+
+  /**
+   * The table or the cards. Each is its own static page, one level below the
+   * ordering, so every link to another ordering stays in the same view. See
+   * ADR-0008.
+   */
+  const cards = $derived(page.view === 'cards');
+  const view = $derived(cards ? 'cards/' : '');
+  const neighborhoodUrl = $derived(`${section.url}by-neighborhood/${view}`);
 
   /** A dot for each park with a place, keyed on its URL like its row. */
   const markers: Marker[] = $derived(
@@ -112,10 +122,35 @@
   const bySize = $derived(page.order === 'size');
   /** The default order, by title, which every other order links back to. */
   const az = $derived(page.order === undefined);
-  const azUrl = $derived(section.url);
-  const sizeUrl = $derived(`${section.url}by-size/`);
+  const azUrl = $derived(`${section.url}${view}`);
+  const sizeUrl = $derived(`${section.url}by-size/${view}`);
+  /** This ordering, as a table and as cards. */
+  const orderUrl = $derived(
+    `${section.url}${bySize ? 'by-size/' : byNeighborhood ? 'by-neighborhood/' : ''}`
+  );
+  const tableUrl = $derived(orderUrl);
+  const cardsUrl = $derived(`${orderUrl}cards/`);
   /** A size order needs two figures to compare. See ADR-0001. */
   const sortable = $derived(measured >= 2);
+
+  /**
+   * What a card with no photo shows instead: the town or the Neighborhood
+   * that holds the park, with the park's one dot. A county park is drawn on
+   * the town it stands in.
+   */
+  function placeOf(
+    child: ChildLink
+  ): { shape: Outline; villages: Outline[] } | undefined {
+    const geo = child.park!.geo;
+    if (!geo) return undefined;
+    if (city) {
+      const n = neighborhoodAt(geo.latitude, geo.longitude);
+      return n && { shape: n, villages: [] };
+    }
+    const key = placeAt(geo.latitude, geo.longitude);
+    const shape = key ? municipality(key) : undefined;
+    return shape && key ? { shape, villages: villagesIn(key) } : undefined;
+  }
 </script>
 
 <Breadcrumbs ancestors={page.ancestors} current={page} />
@@ -206,48 +241,147 @@
       </li>
     {/snippet}
 
+    <!-- A park as a card. Its picture is its photo, in the site's two colours
+     until the card is under the pointer or the focus. A park with no photo
+     shows where it is instead. The card takes the row's transition names, so
+     a park moves between the table and the cards. -->
+    {#snippet parkCard(child: ChildLink, i: number)}
+      {@const park = child.park!}
+      {@const place = park.photo ? undefined : placeOf(child)}
+      <li
+        class="card"
+        data-park={placed.has(child.url) ? child.url : undefined}
+        style:view-transition-name={parkTransitionName(child.url, 'row')}
+      >
+        <a class="card__link" href={child.url}>
+          <span class="card__media">
+            {#if park.photo}
+              <span class="duotone"
+                ><img src={park.photo} alt="" loading="lazy" /></span
+              >
+            {:else if place}
+              <span class="card__place">
+                <TownShape
+                  shape={place.shape}
+                  villages={place.villages}
+                  markers={[{ title: child.title, ...park.geo! }]}
+                  square
+                  label="Where {child.title} is in {place.shape.name}"
+                />
+              </span>
+            {:else}
+              <span class="card__none eyebrow">Not placed yet</span>
+            {/if}
+            <span class="mono card__num">{String(i + 1).padStart(2, '0')}</span>
+          </span>
+          <span
+            class="name__text card__name"
+            style:view-transition-name={parkTransitionName(child.url, 'name')}
+            >{child.title}</span
+          >
+        </a>
+        <span class="mono card__facts">
+          {[
+            park.acres !== undefined
+              ? `${formatAcres(park.acres)} acres`
+              : 'not measured',
+            park.amenities.length === 1
+              ? '1 amenity'
+              : park.amenities.length
+                ? `${park.amenities.length} amenities`
+                : '',
+          ]
+            .filter(Boolean)
+            .join(' · ')}
+        </span>
+        <ParkFlags status={park.status} />
+      </li>
+    {/snippet}
+
+    {#snippet parkList(items: ChildLink[], label: string)}
+      {#if cards}
+        <ol class="cards" aria-label={label}>
+          {#each items as child, i (child.url)}
+            {@render parkCard(child, i)}
+          {/each}
+        </ol>
+      {:else}
+        <ol class="table" aria-label={label}>
+          {#each items as child, i (child.url)}
+            {@render parkRow(child, i)}
+          {/each}
+        </ol>
+      {/if}
+    {/snippet}
+
     <div class="body">
-      {#if city}
-        <!-- Each grouping is its own prerendered page, so these are links. -->
-        <nav class="orders eyebrow" aria-label="Order">
-          {#if az}
-            <span aria-current="page">A to Z</span>
+      <!-- Each ordering and each view is its own prerendered page, so these
+       are links. The table's own headings sort it, so the order links here
+       are for the cards, and for the city's grouping. -->
+      <div class="toolbar eyebrow" class:toolbar--cards={cards}>
+        {#if city || (cards && sortable)}
+          <nav class="toolbar__group" aria-label="Order">
+            {#if cards}<span class="toolbar__label">Sort</span>{/if}
+            {#if az}
+              <span aria-current="page">A to Z</span>
+            {:else}
+              <a href={azUrl}>A to Z</a>
+            {/if}
+            {#if cards && sortable}
+              {#if bySize}
+                <span aria-current="page">Size</span>
+              {:else}
+                <a href={sizeUrl}>Size</a>
+              {/if}
+            {/if}
+            {#if city}
+              {#if byNeighborhood}
+                <span aria-current="page">By neighborhood</span>
+              {:else}
+                <a href={neighborhoodUrl}>By neighborhood</a>
+              {/if}
+            {/if}
+          </nav>
+        {/if}
+        <nav class="toolbar__group toolbar__views" aria-label="View">
+          <span class="toolbar__label">Show as</span>
+          {#if cards}
+            <a href={tableUrl}>List</a>
+            <span aria-current="page">Cards</span>
           {:else}
-            <a href={azUrl}>A to Z</a>
-          {/if}
-          {#if byNeighborhood}
-            <span aria-current="page">By neighborhood</span>
-          {:else}
-            <a href={neighborhoodUrl}>By neighborhood</a>
+            <span aria-current="page">List</span>
+            <a href={cardsUrl}>Cards</a>
           {/if}
         </nav>
-      {/if}
+      </div>
 
       <!-- The heading that orders the table is the control: each ordering is its
      own prerendered page, so it is a link, not a button. See ADR-0001. -->
-      <div class="row row--head eyebrow" class:row--head--plain={!sortable}>
-        {#if sortable}
-          <span class="sort-label">Sort</span>
-        {/if}
-        <span class="num" aria-hidden="true"></span>
-        {#if !az}
-          <a class="name" href={azUrl}>Park</a>
-        {:else}
-          <span class="name" aria-current={sortable ? 'page' : undefined}
-            >Park</span
-          >
-        {/if}
-        <span class="status" aria-hidden="true">Status</span>
-        <span class="tags" aria-hidden="true">What is there</span>
-        {#if sortable && !bySize}
-          <a class="end acres" href={sizeUrl}>Size</a>
-        {:else}
-          <span class="end acres" aria-current={bySize ? 'page' : undefined}
-            >Size</span
-          >
-        {/if}
-        <span class="end words" aria-hidden="true">Write-up</span>
-      </div>
+      {#if !cards}
+        <div class="row row--head eyebrow" class:row--head--plain={!sortable}>
+          {#if sortable}
+            <span class="sort-label">Sort</span>
+          {/if}
+          <span class="num" aria-hidden="true"></span>
+          {#if !az}
+            <a class="name" href={azUrl}>Park</a>
+          {:else}
+            <span class="name" aria-current={sortable ? 'page' : undefined}
+              >Park</span
+            >
+          {/if}
+          <span class="status" aria-hidden="true">Status</span>
+          <span class="tags" aria-hidden="true">What is there</span>
+          {#if sortable && !bySize}
+            <a class="end acres" href={sizeUrl}>Size</a>
+          {:else}
+            <span class="end acres" aria-current={bySize ? 'page' : undefined}
+              >Size</span
+            >
+          {/if}
+          <span class="end words" aria-hidden="true">Write-up</span>
+        </div>
+      {/if}
 
       {#if byNeighborhood}
         {#each groups as group (group.key)}
@@ -260,26 +394,16 @@
                   : `${group.parks.length} parks`}</span
               >
             </h2>
-            <ol class="table" aria-label="Parks in {group.name}, A to Z">
-              {#each group.parks as child, i (child.url)}
-                {@render parkRow(child, i)}
-              {/each}
-            </ol>
+            {@render parkList(group.parks, `Parks in ${group.name}, A to Z`)}
           </section>
         {/each}
       {:else}
         <!-- The number is a position in the list, and on the by-size page that
        position is the rank, so the order is named for a screen reader too. -->
-        <ol
-          class="table"
-          aria-label="Parks in {section.title}, {bySize
-            ? 'largest first'
-            : 'A to Z'}"
-        >
-          {#each parks as child, i (child.url)}
-            {@render parkRow(child, i)}
-          {/each}
-        </ol>
+        {@render parkList(
+          parks,
+          `Parks in ${section.title}, ${bySize ? 'largest first' : 'A to Z'}`
+        )}
       {/if}
 
       {#if other.length}
@@ -494,22 +618,187 @@
     text-align: center;
   }
 
-  .orders {
+  .toolbar {
     display: flex;
-    gap: var(--space-20);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-10) var(--space-24);
     padding-top: var(--space-14);
   }
 
-  .orders a {
+  .toolbar--cards {
+    padding-bottom: var(--space-8);
+    margin-bottom: var(--space-20);
+    border-bottom: var(--line-hair) solid var(--ink);
+  }
+
+  .toolbar__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8) var(--space-20);
+  }
+
+  /* The view switch sits at the end of the line, even alone on it. */
+  .toolbar__views {
+    margin-inline-start: auto;
+    gap: var(--space-14);
+  }
+
+  .toolbar__label {
+    color: var(--ink-faint);
+  }
+
+  .toolbar a {
     text-decoration: underline;
     text-underline-offset: var(--underline-offset);
     text-decoration-style: dotted;
   }
 
-  .orders [aria-current='page'] {
+  .toolbar [aria-current='page'] {
     color: var(--ink);
     text-decoration: underline;
     text-underline-offset: var(--underline-offset);
+  }
+
+  /* As many columns as fit, each at least 15rem, so the grid breaks where
+     the cards do. */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-24) var(--space-20);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .group .cards {
+    padding-top: var(--space-16);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .card__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: var(--line-hair) solid var(--rule);
+    background: var(--paper-sunk);
+  }
+
+  .card__place {
+    display: grid;
+    place-items: center;
+    block-size: 100%;
+    padding: var(--space-12);
+  }
+
+  .card__place :global(.town-shape) {
+    block-size: 100%;
+    inline-size: auto;
+  }
+
+  .card__none {
+    display: grid;
+    place-items: center;
+    block-size: 100%;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--paper-sunk) 0 6px,
+      var(--rule-soft) 6px 7px
+    );
+  }
+
+  .card__num {
+    position: absolute;
+    inset-block-start: var(--space-8);
+    inset-inline-start: var(--space-8);
+    padding: 0.1em 0.4em;
+    background: var(--paper);
+    font-size: var(--text-2xs);
+    color: var(--ink-muted);
+  }
+
+  .card__name {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-bold);
+  }
+
+  .card__link:is(:hover, :focus-visible) .card__name {
+    color: var(--orange-ink);
+  }
+
+  .card__facts {
+    font-size: var(--text-2xs);
+    color: var(--ink-muted);
+  }
+
+  /* Duotone: the photo in grey, multiplied onto paper, then lightened with
+     the ink, so black becomes ink and white stays paper. */
+  .duotone {
+    position: relative;
+    display: block;
+    block-size: 100%;
+    background: var(--paper);
+  }
+
+  .duotone img {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.1);
+    mix-blend-mode: multiply;
+    transition:
+      filter var(--duration-quick) var(--ease-out),
+      scale 400ms var(--ease-out);
+  }
+
+  .duotone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    mix-blend-mode: lighten;
+    transition: opacity var(--duration-quick) var(--ease-out);
+  }
+
+  .card:focus-within .duotone img {
+    filter: none;
+    scale: 1.03;
+  }
+
+  .card:focus-within .duotone::after {
+    opacity: 0;
+  }
+
+  @media (hover: hover) {
+    .card:hover .duotone img {
+      filter: none;
+      scale: 1.03;
+    }
+
+    .card:hover .duotone::after {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .duotone img,
+    .duotone::after {
+      transition: none;
+      scale: none;
+    }
   }
 
   .group {

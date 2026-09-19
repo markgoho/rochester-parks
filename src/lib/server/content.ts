@@ -115,6 +115,32 @@ function resolveImage(src: string, pageUrl: string): string | undefined {
   return assets.has(decodeURI(path)) ? absUrl(path) : undefined;
 }
 
+/**
+ * The photo a park card shows. A WordPress featured image in the park's
+ * folder comes first, then the first body image, then any other image in the
+ * folder. A WordPress thumbnail is only 144px wide, so it comes last. Returns
+ * a site-relative path, and only for a file that ships.
+ */
+function cardPhoto(node: Node): string | undefined {
+  // Where a folder holds a JPEG and a PNG of the same picture, the PNG is
+  // the small copy.
+  const inFolder = [...assets]
+    .filter((a) => a.startsWith(node.url))
+    .sort((a, b) => Number(/\.png$/i.test(a)) - Number(/\.png$/i.test(b)));
+  const thumb = (src: string) => /thumb/i.test(src);
+  const featured = inFolder.find((a) => /featured/i.test(a));
+  if (featured) return encodeURI(featured);
+  if (node.photo && !thumb(node.photo)) {
+    if (/^https?:\/\//.test(node.photo)) return node.photo;
+    const path = node.photo.startsWith('/')
+      ? node.photo
+      : `${node.url}${node.photo}`;
+    if (assets.has(decodeURI(path))) return path;
+  }
+  const any = inFolder.find((a) => !thumb(a)) ?? inFolder[0];
+  return any && encodeURI(any);
+}
+
 // Heading ids and typographer, like Hugo. Raw HTML passes through, so pages
 // can embed maps and virtual tours.
 const markdown = new Marked(gfmHeadingId(), markedSmartypants());
@@ -322,6 +348,7 @@ function parkMetaOf(node: Node): ParkMeta {
     amenities,
     wordCount: node.wordCount,
     photoCount: node.photoCount,
+    photo: cardPhoto(node),
     geo:
       latitude !== undefined && longitude !== undefined
         ? { latitude, longitude }
@@ -579,15 +606,37 @@ function byNeighborhoodPage(sectionUrl: string): Page | undefined {
   };
 }
 
+/**
+ * The path segment that holds the card view of a park list. It goes below
+ * the ordering, so every ordering has its own card page. See ADR-0008.
+ */
+const CARDS = 'cards/';
+
+/** An ordering of a park section, shown as cards, as its own static page. */
+function cardsPage(listUrl: string): Page | undefined {
+  const base = getPage(listUrl);
+  if (!base || base.layout !== 'park-list') return undefined;
+  return {
+    ...base,
+    url: `${listUrl}${CARDS}`,
+    canonical: base.canonical ?? listUrl,
+    view: 'cards',
+  };
+}
+
 export function getAllUrls(): string[] {
-  const sections = [...nodes.keys()].filter(
-    (url) => isParkSection(url) && measuredIn(url) >= 2
-  );
+  const parkSections = [...nodes.keys()].filter(isParkSection);
+  const sections = parkSections.filter((url) => measuredIn(url) >= 2);
   const cities = [...nodes.keys()].filter(isCitySection);
-  return [
-    ...nodes.keys(),
+  const lists = [
+    ...parkSections,
     ...sections.map((url) => `${url}${BY_SIZE}`),
     ...cities.map((url) => `${url}${BY_NEIGHBORHOOD}`),
+  ];
+  return [
+    ...nodes.keys(),
+    ...lists.filter((url) => !nodes.has(url)),
+    ...lists.map((url) => `${url}${CARDS}`),
   ];
 }
 
@@ -599,11 +648,16 @@ export function getAllUrls(): string[] {
 export function getIndexableUrls(): string[] {
   return getAllUrls().filter(
     (url) =>
-      !url.endsWith(`/${BY_SIZE}`) && !url.endsWith(`/${BY_NEIGHBORHOOD}`)
+      !url.endsWith(`/${BY_SIZE}`) &&
+      !url.endsWith(`/${BY_NEIGHBORHOOD}`) &&
+      !url.endsWith(`/${CARDS}`)
   );
 }
 
 export function getPage(url: string): Page | undefined {
+  if (url.endsWith(`/${CARDS}`)) {
+    return cardsPage(url.slice(0, -CARDS.length));
+  }
   if (url.endsWith(`/${BY_SIZE}`)) {
     return bySizePage(url.slice(0, -BY_SIZE.length));
   }

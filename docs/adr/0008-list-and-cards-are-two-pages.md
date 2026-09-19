@@ -1,0 +1,41 @@
+# ADR-0008: The table and the cards are two pages
+
+- **Status**: Accepted
+- **Date**: 2026-09-18
+
+## Context
+
+A Park List shows its Parks as a table. Readers also want to see them as cards, with a photo. A reader must be able to change between the two views, and each view must keep the sort orders of ADR-0001.
+
+Only 25 of the 280 Parks on a Park List have a photo: 2 of 78 in the city, 1 of 22 in the county. Thus most cards have no photo, and the card for a Park with no photo sets the look of the page.
+
+A prototype tried three card designs on the `prototype/park-cards` branch. The owner chose "photo or place".
+
+## Decision
+
+**A card view is a second page below each ordering.**
+
+| Table | Cards |
+|---|---|
+| `/town-parks/greece-parks/` | `/town-parks/greece-parks/cards/` |
+| `/town-parks/greece-parks/by-size/` | `/town-parks/greece-parks/by-size/cards/` |
+| `/rochester-city-parks/by-neighborhood/` | `/rochester-city-parks/by-neighborhood/cards/` |
+
+A "Show as: List · Cards" link pair above the table changes the view. Each order link on a card page goes to the card page of that order, so the view stays when the reader sorts.
+
+A card page carries a canonical link to the A to Z table, and the sitemap does not list it.
+
+**A card shows a photo, or where the Park is.** A photo shows in ink and paper, and changes to full colour under the pointer or the focus. A Park with no photo shows the town or Neighborhood that holds it, with one dot for the Park. A county Park shows the town it stands in.
+
+We rejected two alternatives:
+
+- A CSS toggle with the URL hash (`#cards`) and `:target`. It needs no script, but each page must then hold both views. The prototype held its three views this way, and the city page grew to 1.2 MB. A hash also does not stay when the reader follows a sort link, unless each link adds it again.
+- A toggle with client JS. ADR-0001 rejected this for the sort orders, for the same reasons.
+
+## Consequences
+
+- Each park section gets one more page for each ordering: 46 more pages.
+- `ParkMeta` gets `photo?: string`. The photo for a card is a WordPress featured image first, then the first body image. A WordPress thumbnail is only 144px wide, so it comes last.
+- `Page` gets `view?: 'cards'`.
+- A card takes the same view transition names as its table row. A Park moves between the table and the cards, and between two orders.
+- Each card inlines its own map. On the city card page, the river path repeats in each card that it runs through: 127 KB of the 576 KB page.
