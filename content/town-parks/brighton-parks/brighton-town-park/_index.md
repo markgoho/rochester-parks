@@ -19,6 +19,11 @@ amenities:
   - Shelter
   - Trails
   - Water
+hoursCheckedOn: '2026-09-19'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: '22:00'
 sameAs:
   - 'https://www.brightonny.gov/260/Brighton-Town-Park'
   - 'https://maps.google.com/?cid=11445426099005429312'

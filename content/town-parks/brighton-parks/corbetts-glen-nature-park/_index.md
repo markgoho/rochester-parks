@@ -14,6 +14,11 @@ acres: 52
 amenities:
   - Overlook
   - Trails
+hoursCheckedOn: '2026-09-19'
+openingHours:
+  - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    opens: '07:00'
+    closes: '22:00'
 sameAs:
   - 'https://www.brightonny.gov/262/Corbetts-Glen-Nature-Park'
   - 'https://maps.google.com/?cid=9811834871623772226'
