@@ -755,6 +755,24 @@ p {
   object-fit: none;
 }
 
+/* A park's row in the table and its card share one name, so the park moves
+   between the two views. A row is wide and short and a card is narrow and
+   tall, and the default scales each image to the width of the box, so a card
+   image grew far past its row and covered the others. The box now clips, and
+   each image keeps its own size from the top left corner: the card opens out
+   of its row, and the row closes into its card. */
+::view-transition-group(*.park-row) {
+  overflow: clip;
+}
+
+::view-transition-old(*.park-row),
+::view-transition-new(*.park-row) {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  object-position: left top;
+}
+
 /* Reduced motion keeps the transition but removes its animation, so the new
    page shows at once. */
 @media (prefers-reduced-motion: reduce) {
