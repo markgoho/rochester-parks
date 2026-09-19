@@ -1,6 +1,6 @@
 # ADR-0005: What counts as a Park
 
-- **Status**: Accepted
+- **Status**: Accepted, amended by ADR-0006
 - **Date**: 2026-09-18
 
 ## Context
