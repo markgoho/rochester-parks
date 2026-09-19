@@ -122,6 +122,8 @@ export interface ParkMeta {
   /** Body words, excluding embeds and image syntax. */
   wordCount: number;
   photoCount: number;
+  /** The photo a park card shows, site-relative. Absent when there is none. */
+  photo?: string;
   status: ParkStatus;
   /** Where the park is, when the front matter says. Used to plot it on a map. */
   geo?: { latitude: number; longitude: number };
@@ -178,6 +180,11 @@ export interface Page extends PageLink {
    * Its `children` stay in title order; the layout groups them.
    */
   order?: 'size' | 'neighborhood';
+  /**
+   * How a park list shows its parks. Absent means the table. `'cards'` marks
+   * the prerendered card view of an ordering, one level below it.
+   */
+  view?: 'cards';
   /**
    * On a park list, the section the parks belong to, named the short way.
    * A second ordering is still the same section, so the layout reads the
