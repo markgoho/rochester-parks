@@ -21,7 +21,7 @@ A prototype tried three card designs on the `prototype/park-cards` branch. The o
 | `/town-parks/greece-parks/by-size/` | `/town-parks/greece-parks/by-size/cards/` |
 | `/rochester-city-parks/by-neighborhood/` | `/rochester-city-parks/by-neighborhood/cards/` |
 
-A "Show as: List · Cards" link pair above the table changes the view. Each order link on a card page goes to the card page of that order, so the view stays when the reader sorts.
+Two icon links at the end of the section's counts line change the view: rows for the table, a grid of squares for the cards. The view is a property of the whole section, so the switch sits with the section's counts, in the same place on both views, and adds no line above the table. Each icon has a tooltip. Each order link on a card page goes to the card page of that order, so the view stays when the reader sorts.
 
 A card page carries a canonical link to the A to Z table, and the sitemap does not list it.
 
