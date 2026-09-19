@@ -33,3 +33,7 @@ This small park is an absolute treasure in the southeast quadrant of Rochester. 
 ![Far side of field at Ellwanger and Barry park](IMG_20120530_155038-forweb.jpg)
 
 ![Ellwanger and Barry sign](EllBarry-thumbnail.jpg)
+
+## History
+
+Ellwanger and Barry Park has a [very long history](https://web.archive.org/web/20200927222641/https://ellwangerbarry.org/connections/connections-part-1/) in the city of Rochester. In 1877 it was a school built on land donated by George Ellwanger and Patrick Barry. Years later in 1934, perhaps after school children had outgrown the building, it was torn down and a new building was built. In the original school’s place, a park and playground were created. It has remained a park and playground since that time!
