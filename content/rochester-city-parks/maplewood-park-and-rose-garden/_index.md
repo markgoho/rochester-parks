@@ -4,13 +4,15 @@ description: 'A Rochester City Park called Maplewood Park and Rose Garden'
 type: 'park'
 acres: 110
 address:
-  streetAddress: 'Maplewood Dr and Seneca Pkwy'
+  streetAddress: '250 Maplewood Avenue'
   addressLocality: 'Rochester'
   addressRegion: 'NY'
+  postalCode: '14613'
   addressCountry: 'US'
 amenities:
   - Garden
   - Gazebo
+  - Open Field
   - Overlook
   - Pickleball Court
   - Picnic Table
