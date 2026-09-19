@@ -115,6 +115,25 @@ function resolveImage(src: string, pageUrl: string): string | undefined {
   return assets.has(decodeURI(path)) ? absUrl(path) : undefined;
 }
 
+/**
+ * PROTOTYPE (park cards): the picture a card shows for a park. A WordPress
+ * featured image or thumbnail in the park's folder comes first, then the
+ * first body image, then any image in the folder. A site-relative path.
+ */
+function cardPhoto(node: Node): string | undefined {
+  const inFolder = [...assets].filter((a) => a.startsWith(node.url));
+  const featured = inFolder.find((a) => /featured|thumb/i.test(a));
+  if (featured) return encodeURI(featured);
+  if (node.photo) {
+    if (/^https?:\/\//.test(node.photo)) return node.photo;
+    const path = node.photo.startsWith('/')
+      ? node.photo
+      : `${node.url}${node.photo}`;
+    if (assets.has(decodeURI(path))) return path;
+  }
+  return inFolder[0] && encodeURI(inFolder[0]);
+}
+
 // Heading ids and typographer, like Hugo. Raw HTML passes through, so pages
 // can embed maps and virtual tours.
 const markdown = new Marked(gfmHeadingId(), markedSmartypants());
@@ -322,6 +341,7 @@ function parkMetaOf(node: Node): ParkMeta {
     amenities,
     wordCount: node.wordCount,
     photoCount: node.photoCount,
+    photo: cardPhoto(node),
     geo:
       latitude !== undefined && longitude !== undefined
         ? { latitude, longitude }

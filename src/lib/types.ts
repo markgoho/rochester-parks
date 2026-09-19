@@ -122,6 +122,8 @@ export interface ParkMeta {
   /** Body words, excluding embeds and image syntax. */
   wordCount: number;
   photoCount: number;
+  /** PROTOTYPE (park cards): the picture a card shows, site-relative. */
+  photo?: string;
   status: ParkStatus;
   /** Where the park is, when the front matter says. Used to plot it on a map. */
   geo?: { latitude: number; longitude: number };

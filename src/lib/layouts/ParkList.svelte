@@ -1,6 +1,7 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
   import ParkFlags from '#lib/components/ParkFlags.svelte';
+  import ParkCardsPrototype from '#lib/components/ParkCardsPrototype.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
@@ -207,6 +208,15 @@
     {/snippet}
 
     <div class="body">
+      <ParkCardsPrototype
+        {parks}
+        {city}
+        {bySize}
+        {sortable}
+        {azUrl}
+        {sizeUrl}
+        {placed}
+      />
       {#if city}
         <!-- Each grouping is its own prerendered page, so these are links. -->
         <nav class="orders eyebrow" aria-label="Order">
@@ -295,6 +305,12 @@
 </div>
 
 <style>
+  /* PROTOTYPE (park cards): a card view hides the table. */
+  .body:has(:global(.target:target))
+    > :is(.orders, .row--head, .table, .group) {
+    display: none;
+  }
+
   /* The list is the container the town layout below queries. */
   .list {
     container: list / inline-size;
