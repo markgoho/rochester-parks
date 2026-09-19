@@ -29,6 +29,16 @@
     ],
     "redirects": [
       {
+        "source": "/rochester-city-parks/manhattan-square",
+        "destination": "/rochester-city-parks/dr-martin-luther-king-jr-park-and-ice-rink/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/webster-parks/north-ponds-park",
+        "destination": "/town-parks/webster-parks/charles-e-sexton-memorial-park/",
+        "type": 301
+      },
+      {
         "source": "/monroe-county-parks/webster-park/events",
         "destination": "/monroe-county-parks/webster-park/",
         "type": 301

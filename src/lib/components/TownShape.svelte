@@ -63,6 +63,10 @@
    * so the dot shows even where others crowd it. SVG has no z-index, so a
    * dot cannot simply come to the front.
    *
+   * It works the other way too: a dot under the pointer picks itself, and
+   * sets `--park-picked` on its entry in the list, which the list uses to
+   * colour the park's name.
+   *
    * These rules name each park, so they cannot be written by hand in a
    * scoped block. Without `:has()` a reader simply never sees a dot picked.
    */
@@ -71,11 +75,15 @@
     const keyed = markers.filter((m) => m.key !== undefined);
     if (!keyed.length) return '';
     const on = (key: string) =>
-      `${scope}:has([data-park="${key}"]:is(:hover,:focus-within))`;
+      `${scope}:has([data-park="${key}"]:is(:hover,:focus-within),[data-dot="${key}"]:hover)`;
     return (
-      `${scope}:has([data-park]:is(:hover,:focus-within)) [data-dot]{opacity:.3}` +
+      `${scope}:has([data-park]:is(:hover,:focus-within),[data-dot]:hover) [data-dot]{opacity:.3}` +
       keyed
-        .map((m) => `${on(m.key!)} [data-dot="${m.key}"]{opacity:1;scale:2}`)
+        .map(
+          (m) =>
+            `${on(m.key!)} [data-dot="${m.key}"]{opacity:1;scale:2}` +
+            `${on(m.key!)} [data-park="${m.key}"]{--park-picked:var(--orange)}`
+        )
         .join('')
     );
   });
@@ -124,14 +132,29 @@
     d={ERIE_CANAL}
   />
   {#each dots as dot (dot.key ?? dot.title)}
-    <circle
-      class="park"
-      data-dot={dot.key}
-      cx={dot.x}
-      cy={dot.y}
-      r={Math.max(box.width, box.height) * DOT}
-      vector-effect="non-scaling-stroke"
-    />
+    {#if scope && dot.key}
+      <!-- A way to the park for the pointer. The map stays a picture to a
+           screen reader and out of the tab order: the list carries the same
+           links, and the keyboard reaches them there. -->
+      <a href={dot.key} tabindex="-1" aria-label={dot.title}>
+        <circle
+          class="park"
+          data-dot={dot.key}
+          cx={dot.x}
+          cy={dot.y}
+          r={Math.max(box.width, box.height) * DOT}
+          vector-effect="non-scaling-stroke"
+        />
+      </a>
+    {:else}
+      <circle
+        class="park"
+        cx={dot.x}
+        cy={dot.y}
+        r={Math.max(box.width, box.height) * DOT}
+        vector-effect="non-scaling-stroke"
+      />
+    {/if}
   {/each}
 </svg>
 
