@@ -2,8 +2,10 @@
   import {
     COUNTY_VIEW_BOX,
     MUNICIPALITIES,
+    outlineBox,
     type Municipality,
   } from '#lib/municipalities.js';
+  import { canalIn } from '#lib/canal.js';
 
   /**
    * Where a town's link can be picked from. By default only the map's own
@@ -30,6 +32,18 @@
    * pointer and drop, pick, drop. An unmoving hit area cannot.
    */
   const towns = MUNICIPALITIES.filter((m) => m.href !== undefined);
+
+  /**
+   * Each town and village carries its own stretch of the canal, cut to its
+   * border. The canal then hides with a resting town and grows with a raised
+   * one, and never floats over the gap a lifted town leaves. Each stretch is
+   * cut to the shape's own box first. See `canalIn`.
+   */
+  const uid = $props.id();
+  const clipOf = (key: string) => `canal-${uid}-${key}`;
+  const canalOf = new Map(
+    MUNICIPALITIES.map((m) => [m.key, canalIn(outlineBox(m, 0))])
+  );
 
   /** A town and the villages inside it move as one piece. */
   const villagesIn = (key: string) =>
@@ -67,6 +81,13 @@
     {#each m.paths as d (d)}
       <path class="boundary" {d} />
     {/each}
+    {#if canalOf.get(m.key)}
+      <path
+        class="canal"
+        clip-path="url(#{clipOf(m.key)})"
+        d={canalOf.get(m.key)}
+      />
+    {/if}
     <text class="boundary-text" x={m.label.x} y={m.label.y}>{m.label.text}</text
     >
   </g>
@@ -79,6 +100,16 @@
   viewBox={COUNTY_VIEW_BOX}
   xmlns="http://www.w3.org/2000/svg"
 >
+  <defs>
+    {#each MUNICIPALITIES as m (m.key)}
+      <clipPath id={clipOf(m.key)}>
+        {#each m.paths as d (d)}
+          <path {d} />
+        {/each}
+      </clipPath>
+    {/each}
+  </defs>
+
   <g class="resting">
     {#each MUNICIPALITIES as m (m.key)}
       {@const rest = m.within ?? (m.href ? m.key : undefined)}
@@ -158,6 +189,17 @@
   /* A village has no section of its own, so it lets the pointer through to
      the town it stands in. */
   .village {
+    pointer-events: none;
+  }
+
+  /* The Erie Canal. It is a picture only, so it never takes the pointer
+     from a town's link. */
+  .canal {
+    fill: none;
+    stroke: var(--water);
+    stroke-width: var(--stroke-water);
+    stroke-linecap: round;
+    stroke-linejoin: round;
     pointer-events: none;
   }
 
