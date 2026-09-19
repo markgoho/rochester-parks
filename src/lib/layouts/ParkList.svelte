@@ -502,6 +502,7 @@
   }
 
   .row {
+    view-transition-class: park-row;
     display: grid;
     grid-template-columns: 2rem minmax(0, 1fr);
     grid-template-areas:
@@ -678,6 +679,7 @@
   }
 
   .card {
+    view-transition-class: park-row;
     display: flex;
     flex-direction: column;
     gap: var(--space-6);

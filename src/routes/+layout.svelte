@@ -14,6 +14,15 @@
   const canonical = $derived(
     absUrl(page.data.canonical ?? page.data.url ?? '/')
   );
+  /**
+   * A park page shares its photo. Every other page shares no image: the tag
+   * must name an image file, and the site has no general one yet.
+   */
+  const image = $derived.by(() => {
+    const photo: string | undefined = page.data.park?.photo;
+    if (!photo) return undefined;
+    return /^https?:\/\//.test(photo) ? photo : absUrl(photo);
+  });
   const title = $derived(
     page.data.url === '/' ? SITE_TITLE : `${page.data.title} · ${SITE_TITLE}`
   );
@@ -44,7 +53,9 @@
   <meta property="og:title" content={page.data.title} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonical} />
-  <meta property="og:image" content={absUrl('/')} />
+  {#if image}
+    <meta property="og:image" content={image} />
+  {/if}
   <meta property="og:description" content={page.data.description} />
 </svelte:head>
 
