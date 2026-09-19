@@ -330,8 +330,6 @@
           <span class="eyebrow">Previous in {park?.section.title}</span>
           <span class="paging__title">{page.neighbours.previous.title}</span>
         </a>
-      {:else}
-        <span></span>
       {/if}
       {#if page.neighbours.next}
         <a
@@ -541,9 +539,8 @@
 
   .paging {
     display: grid;
-    gap: var(--line-hair);
     margin-top: var(--space-40);
-    background: var(--rule);
+    background: var(--paper);
     border-block: var(--line-hair) solid var(--rule);
   }
 
@@ -554,7 +551,12 @@
     gap: var(--space-4);
     min-height: 4.75rem;
     padding: var(--space-14) var(--space-16);
-    background: var(--paper);
+  }
+
+  /* The divider belongs to the second link, so it shows only when two links
+     exist. */
+  .paging__link + .paging__link {
+    border-block-start: var(--line-hair) solid var(--rule);
   }
 
   .paging__title {
@@ -566,7 +568,13 @@
       grid-template-columns: 1fr 1fr;
     }
 
+    .paging__link + .paging__link {
+      border-block-start: 0;
+      border-inline-start: var(--line-hair) solid var(--rule);
+    }
+
     .paging__link--end {
+      grid-column: 2;
       text-align: right;
     }
   }
