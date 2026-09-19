@@ -5,7 +5,7 @@
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
-  import WaterDefs from '#lib/components/WaterDefs.svelte';
+  import MapDefs from '#lib/components/MapDefs.svelte';
   import { formatAcres, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
@@ -153,6 +153,17 @@
     const shape = key ? municipality(key) : undefined;
     return shape && key ? { shape, villages: villagesIn(key) } : undefined;
   }
+
+  /** Each place a card with no photo draws, once. See `MapDefs`. */
+  const cardPlaces = $derived.by(() => {
+    if (!cards) return [];
+    const byKey = new Map<string, Outline>();
+    for (const child of parks) {
+      const place = child.park!.photo ? undefined : placeOf(child);
+      if (place) byKey.set(place.shape.key, place.shape);
+    }
+    return [...byKey.values()];
+  });
 </script>
 
 <Breadcrumbs ancestors={page.ancestors} current={page} />
@@ -161,10 +172,10 @@
      picks its dot inside. A container cannot query itself, so the grid is
      the element inside it. -->
 <div class="list">
-  <!-- Each card that shows its place draws the water from here, so the river
-       is in the page once, not once for each card. -->
-  {#if cards}
-    <WaterDefs />
+  <!-- Each card that shows its place draws its map from here, so each place
+       and the river are in the page once, not once for each card. -->
+  {#if cards && cardPlaces.length}
+    <MapDefs shapes={cardPlaces} />
   {/if}
   <div class="layout" class:layout--town={townShape}>
     <div class="head">
@@ -278,7 +289,7 @@
                   villages={place.villages}
                   markers={[{ title: child.title, ...park.geo! }]}
                   square
-                  sharedWater
+                  shared
                   label="Where {child.title} is in {place.shape.name}"
                 />
               </span>

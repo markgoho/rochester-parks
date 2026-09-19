@@ -8,7 +8,7 @@
     type Outline,
   } from '#lib/municipalities.js';
   import { ERIE_CANAL, GENESEE_RIVER } from '#lib/waterways.js';
-  import { CANAL_ID, RIVER_ID } from './WaterDefs.svelte';
+  import { CANAL_ID, RIVER_ID, clipId, shapeId } from './MapDefs.svelte';
 
   /**
    * One shape drawn on its own: a town with the villages inside it, or a
@@ -21,7 +21,7 @@
     label,
     square = false,
     scope,
-    sharedWater = false,
+    shared = false,
   }: {
     shape: Outline;
     villages?: Outline[];
@@ -36,10 +36,11 @@
      */
     scope?: string;
     /**
-     * Draw the river and the canal from the one copy a `WaterDefs` holds on
-     * the page, not from a copy of their own. For a page with many maps.
+     * Draw the outline, its clip, the river and the canal from the one copy a
+     * `MapDefs` holds on the page, not from a copy of their own. For a page
+     * with many maps. The `MapDefs` must hold this shape.
      */
-    sharedWater?: boolean;
+    shared?: boolean;
   } = $props();
 
   const box = $derived(
@@ -50,7 +51,7 @@
    * river and canal are clipped too, or they would run on past the border.
    */
   const uid = $props.id();
-  const clip = `town-clip-${uid}`;
+  const clip = $derived(shared ? clipId(shape.key) : `town-clip-${uid}`);
 
   /** Only the water that runs through the shape. See `runsThrough`. */
   const river = $derived(runsThrough(shape, GENESEE_RIVER));
@@ -114,16 +115,20 @@
   role="img"
   aria-label={label ?? shape.name}
 >
-  <defs>
-    <clipPath id={clip}>
-      {#each shape.paths as d (d)}
-        <path {d} />
-      {/each}
-    </clipPath>
-  </defs>
-  {#each shape.paths as d (d)}
-    <path class="outline" vector-effect="non-scaling-stroke" {d} />
-  {/each}
+  {#if shared}
+    <use class="outline" href="#{shapeId(shape.key)}" />
+  {:else}
+    <defs>
+      <clipPath id={clip}>
+        {#each shape.paths as d (d)}
+          <path {d} />
+        {/each}
+      </clipPath>
+    </defs>
+    {#each shape.paths as d (d)}
+      <path class="outline" vector-effect="non-scaling-stroke" {d} />
+    {/each}
+  {/if}
   {#each villages as village (village.key)}
     <g clip-path="url(#{clip})">
       {#each village.paths as d (d)}
@@ -131,7 +136,7 @@
       {/each}
     </g>
   {/each}
-  {#if river && sharedWater}
+  {#if river && shared}
     <use class="water river" clip-path="url(#{clip})" href="#{RIVER_ID}" />
   {:else if river}
     <path
@@ -141,7 +146,7 @@
       d={GENESEE_RIVER}
     />
   {/if}
-  {#if canal && sharedWater}
+  {#if canal && shared}
     <use class="water canal" clip-path="url(#{clip})" href="#{CANAL_ID}" />
   {:else if canal}
     <path
