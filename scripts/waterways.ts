@@ -25,7 +25,7 @@ const WATERWAYS = [
 ];
 
 /**
- * How far, in map units, a simplified edge may stray from the canal. A town
+ * How far, in map units, a simplified edge may stray from the water. A town
  * drawn on its own is about 150 units wide, so this is well under a pixel.
  */
 const TOLERANCE = 0.2;
@@ -85,7 +85,8 @@ async function line(waterway: string, name: string): Promise<Point[]> {
    * OpenStreetMap cuts a waterway into many ways at locks and bridges, each
    * drawn in whichever direction its mapper chose. Start at the loose end
    * furthest to the south-west, the canal's west end and the river's source
-   * end, and join each next way at the node it shares with the line so far.
+   * end. The map's y grows downward, so that end has the least x − y. Join
+   * each next way at the node it shares with the line so far.
    */
   const ways = elements
     .filter((w) => w.nodes[0] !== w.nodes[w.nodes.length - 1])
@@ -134,7 +135,7 @@ for (const { constant, doc, waterway, name } of WATERWAYS) {
     simplify(points)
       .map(([px, py]) => `${round(px)} ${round(py)}`)
       .join('L');
-  /** Cut the line where it leaves the map, so it ends at the edge. */
+  // Cut the line where it leaves the map, so it ends at the edge.
   const d = waterIn(path, { x, y, width, height });
   out += `
 /** ${doc}, in the county map's space. */

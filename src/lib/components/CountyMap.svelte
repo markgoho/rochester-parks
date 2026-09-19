@@ -101,7 +101,7 @@
     {/if}
     {#if water?.canal}
       <path
-        class="water"
+        class="water canal"
         clip-path="url(#{clipOf(m.key)})"
         d={water.canal}
       />

@@ -56,7 +56,7 @@
     vector-effect="non-scaling-stroke"
     d={GENESEE_RIVER}
   />
-  <path class="water" vector-effect="non-scaling-stroke" d={ERIE_CANAL} />
+  <path class="water canal" vector-effect="non-scaling-stroke" d={ERIE_CANAL} />
   {#each dots as dot (dot.title)}
     <circle
       class="park"

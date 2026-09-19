@@ -87,7 +87,7 @@
     d={GENESEE_RIVER}
   />
   <path
-    class="water"
+    class="water canal"
     clip-path="url(#{clip})"
     vector-effect="non-scaling-stroke"
     d={ERIE_CANAL}
