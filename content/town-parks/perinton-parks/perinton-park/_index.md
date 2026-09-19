@@ -22,6 +22,7 @@ amenities:
   - Picnic Table
   - Playground
   - Shelter
+  - Skate Park
   - Tennis Court
   - Trails
   - Volleyball
@@ -35,3 +36,7 @@ openingHours:
     opens: '08:00'
     closes: '22:00'
 ---
+
+## Facilities
+
+**Perinton Skatepark** is inside Perinton Park, at 99 O'Connor Road. It covers 13,500 square feet. It has a main skate plaza, a bowl, quarter pipes, grind rails and a pump track. It also has lighting, a shade structure, benches and picnic tables. It is open all year, and it keeps the same hours as the park, 8 a.m. to 10 p.m. Do not skate when the surface is wet, icy or hazardous, and do not salt or shovel it in winter. See the [Perinton Skatepark page](https://perinton.gov/departments/randp/parks-department/parks/perinton-skatepark/) on the town site.
