@@ -2,6 +2,7 @@
   import {
     outlineBox,
     project,
+    squareBox,
     type Marker,
     type Outline,
   } from '#lib/municipalities.js';
@@ -16,14 +17,26 @@
     villages = [],
     markers = [],
     label,
+    square = false,
+    scope,
   }: {
     shape: Outline;
     villages?: Outline[];
     markers?: Marker[];
     label?: string;
+    /** Frame the outline in a square, so every town takes the same room. */
+    square?: boolean;
+    /**
+     * A box that holds both the map and a list of the same parks. Each list
+     * entry marked `data-park` with a marker's key picks out that marker's
+     * dot while the pointer or the focus is on it.
+     */
+    scope?: string;
   } = $props();
 
-  const box = $derived(outlineBox(shape));
+  const box = $derived(
+    square ? squareBox(outlineBox(shape)) : outlineBox(shape)
+  );
   /**
    * Brockport crosses the Sweden–Clarkson line, so villages are clipped. The
    * canal is clipped too, or it would run on past the town's border.
@@ -40,10 +53,39 @@
   const dots = $derived(
     markers.map((m) => ({
       title: m.title,
+      key: m.key,
       ...project(m.latitude, m.longitude),
     }))
   );
+
+  /**
+   * While one entry in the list is picked, its dot grows and the rest fade,
+   * so the dot shows even where others crowd it. SVG has no z-index, so a
+   * dot cannot simply come to the front.
+   *
+   * These rules name each park, so they cannot be written by hand in a
+   * scoped block. Without `:has()` a reader simply never sees a dot picked.
+   */
+  const pick = $derived.by(() => {
+    if (!scope) return '';
+    const keyed = markers.filter((m) => m.key !== undefined);
+    if (!keyed.length) return '';
+    const on = (key: string) =>
+      `${scope}:has([data-park="${key}"]:is(:hover,:focus-within))`;
+    return (
+      `${scope}:has([data-park]:is(:hover,:focus-within)) [data-dot]{opacity:.3}` +
+      keyed
+        .map((m) => `${on(m.key!)} [data-dot="${m.key}"]{opacity:1;scale:2}`)
+        .join('')
+    );
+  });
 </script>
+
+<svelte:head>
+  {#if pick}
+    {@html `<style>${pick}</style>`}
+  {/if}
+</svelte:head>
 
 <svg
   class="town-shape"
@@ -75,9 +117,10 @@
     vector-effect="non-scaling-stroke"
     d={ERIE_CANAL}
   />
-  {#each dots as dot (dot.title)}
+  {#each dots as dot (dot.key ?? dot.title)}
     <circle
       class="park"
+      data-dot={dot.key}
       cx={dot.x}
       cy={dot.y}
       r={Math.max(box.width, box.height) * DOT}
@@ -125,5 +168,17 @@
     fill: var(--orange);
     stroke: var(--ink);
     stroke-width: var(--stroke-base);
+    /* A picked dot grows about its own middle. */
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      scale var(--duration-quick) var(--ease-out),
+      opacity var(--duration-quick) var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .park {
+      transition: none;
+    }
   }
 </style>
