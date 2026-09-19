@@ -6,7 +6,7 @@
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
   import MapDefs from '#lib/components/MapDefs.svelte';
-  import { formatAcres, parkTransitionName } from '#lib/format.js';
+  import { formatAcres, longestWord, parkTransitionName } from '#lib/format.js';
   import {
     isCitySection,
     isCountySection,
@@ -184,7 +184,7 @@
   <div class="layout" class:layout--town={townShape}>
     <div class="head">
       <div class="head__text">
-        <h1>{page.title}</h1>
+        <h1 style:--longest-word={longestWord(page.title)}>{page.title}</h1>
         {#if page.html}
           <div class="prose intro">{@html page.html}</div>
         {/if}
@@ -514,7 +514,7 @@
 
   .counts b {
     color: var(--ink);
-    font-size: var(--text-sm);
+    font-size: var(--step-0);
   }
 
   .table {
@@ -590,13 +590,13 @@
 
   .num {
     grid-area: num;
-    font-size: var(--text-2xs);
+    font-size: var(--step--2);
     color: var(--ink-faint);
   }
 
   .name {
     grid-area: name;
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     font-weight: var(--weight-bold);
   }
 
@@ -625,18 +625,18 @@
 
   .acres {
     grid-area: acres;
-    font-size: var(--text-2xs);
+    font-size: var(--step--2);
     color: var(--ink-muted);
   }
 
   .words {
     grid-area: words;
-    font-size: var(--text-2xs);
+    font-size: var(--step--2);
     color: var(--ink-muted);
   }
 
   .none {
-    font-size: var(--text-2xs);
+    font-size: var(--step--2);
     color: var(--ink-faint);
   }
 
@@ -751,12 +751,12 @@
     inset-inline-start: var(--space-8);
     padding: 0.1em 0.4em;
     background: var(--paper);
-    font-size: var(--text-2xs);
+    font-size: var(--step--2);
     color: var(--ink-muted);
   }
 
   .card__name {
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     font-weight: var(--weight-bold);
   }
 
@@ -765,7 +765,7 @@
   }
 
   .card__facts {
-    font-size: var(--text-2xs);
+    font-size: var(--step--2);
     color: var(--ink-muted);
   }
 

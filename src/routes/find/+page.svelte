@@ -217,7 +217,7 @@
 
   .lede {
     margin: 0;
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     color: var(--ink-soft);
   }
 
@@ -230,7 +230,7 @@
     min-height: var(--tap-target);
     font: inherit;
     font-family: var(--mono);
-    font-size: var(--text-3xs);
+    font-size: var(--step--2);
     letter-spacing: var(--tracking-snug);
     text-transform: uppercase;
   }
@@ -256,14 +256,17 @@
     border-top: var(--line-hair) solid var(--rule-soft);
   }
 
+  /* The longest place name is wider than a phone, so the box stays in the
+     column and the name is cut short. */
   select {
+    max-width: 100%;
     min-height: var(--tap-target);
     padding: 0 var(--space-12);
     border: var(--line-hair) solid var(--rule-strong);
     background: var(--card);
     color: var(--ink);
     font: inherit;
-    font-size: var(--text-sm);
+    font-size: var(--step-0);
   }
 
   .summary {
@@ -282,12 +285,12 @@
     padding: var(--space-20) var(--space-24);
     background: var(--orange);
     color: var(--paper);
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     font-weight: var(--weight-bold);
   }
 
   .count-out .mono {
-    font-size: var(--text-stat);
+    font-size: var(--step-5);
     font-weight: var(--weight-bold);
     line-height: var(--leading-none);
   }
@@ -301,12 +304,12 @@
   }
 
   .coverage__head .mono {
-    font-size: var(--text-xs);
+    font-size: var(--step--1);
   }
 
   .coverage__note {
     margin: 0;
-    font-size: var(--text-sm);
+    font-size: var(--step-0);
     color: var(--ink-soft);
   }
 
@@ -350,7 +353,7 @@
   }
 
   .row__name {
-    font-size: var(--text-xl);
+    font-size: var(--step-1);
     font-weight: var(--weight-bold);
   }
 

@@ -37,3 +37,13 @@ export function formatCoordinates(geo: {
 }): string {
   return `${geo.latitude.toFixed(4)}, ${geo.longitude.toFixed(4)}`;
 }
+
+/**
+ * The letters in the longest part of a name that a line cannot break, for a
+ * heading that must fit its longest word. A line breaks at a space and after a
+ * hyphen. A capitalised word is never hyphenated, so without this a long name
+ * runs past a phone screen.
+ */
+export function longestWord(text: string): number {
+  return Math.max(0, ...text.split(/\s+|(?<=-)/).map((word) => word.length));
+}

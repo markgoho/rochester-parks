@@ -1,6 +1,10 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { formatCoordinates, parkTransitionName } from './format.js';
+import {
+  formatCoordinates,
+  longestWord,
+  parkTransitionName,
+} from './format.js';
 
 describe('parkTransitionName', () => {
   test('names a part of a park by its whole path', () => {
@@ -51,5 +55,15 @@ describe('formatCoordinates', () => {
     expect(formatCoordinates({ latitude: 43.1, longitude: -77.6 })).toBe(
       '43.1000, -77.6000'
     );
+  });
+});
+
+describe('longestWord', () => {
+  test('counts the letters of the longest word in a name', () => {
+    expect(longestWord('Schaufelberger Park')).toBe(14);
+  });
+
+  test('ends a word after a hyphen, where a line can also break', () => {
+    expect(longestWord('Durand-Eastman Park')).toBe(7);
   });
 });

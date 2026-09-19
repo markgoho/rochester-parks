@@ -155,7 +155,7 @@
 
   .lede {
     margin: 0;
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     color: var(--ink-soft);
   }
 
@@ -181,7 +181,7 @@
     min-height: var(--control-height);
     padding: var(--space-8) 0;
     border-bottom: var(--line-hair) solid var(--rule);
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     font-weight: var(--weight-bold);
   }
 
@@ -205,7 +205,7 @@
   }
 
   .stats .mono {
-    font-size: var(--text-stat-sm);
+    font-size: var(--step-4);
     line-height: var(--leading-none);
   }
 
@@ -227,7 +227,7 @@
 
   .caveat {
     margin: var(--space-16) 0 0;
-    font-size: var(--text-sm);
+    font-size: var(--step-0);
     color: var(--ink-soft);
   }
 
@@ -249,12 +249,12 @@
     min-height: var(--tap-target);
     padding: var(--space-6) 0;
     border-bottom: var(--line-hair) solid var(--rule-soft);
-    font-size: var(--text-sm);
+    font-size: var(--step-0);
   }
 
   .towns__grid .mono {
     color: var(--ink-muted);
-    font-size: var(--text-xs);
+    font-size: var(--step--1);
   }
 
   @media (min-width: 60rem) {
