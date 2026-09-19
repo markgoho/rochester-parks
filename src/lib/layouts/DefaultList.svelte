@@ -65,7 +65,7 @@
     min-height: 3.25rem;
     padding: var(--space-8) 0;
     border-bottom: var(--line-hair) solid var(--rule-soft);
-    font-size: var(--text-lg);
+    font-size: var(--step-0);
     font-weight: var(--weight-bold);
   }
 

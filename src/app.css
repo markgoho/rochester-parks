@@ -51,18 +51,18 @@
   --sans: 'Public Sans', 'Public Sans Fallback', sans-serif;
   --mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --text-3xs: 0.6875rem;
-  --text-2xs: 0.75rem;
-  --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-md: 1rem;
-  --text-lg: 1.0625rem;
-  --text-xl: 1.1875rem;
-  --text-2xl: 1.25rem;
-  --text-stat-sm: 2.25rem;
-  --text-stat: 2.5rem;
-  --text-h2: clamp(1.4rem, 1.2rem + 1vw, 1.875rem);
-  --text-h1: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+  /* One fluid type scale sets every font size. Step 0 is the body text: 16px
+     on a 360px screen, up to 21px on a 2560px screen. The ratio between steps
+     goes from 1.2 to 1.25 over the same widths. Made with the Utopia
+     calculator: https://utopia.fyi/type/calculator */
+  --step--2: clamp(0.6944rem, 0.6706rem + 0.1059vi, 0.84rem);
+  --step--1: clamp(0.8333rem, 0.7979rem + 0.1576vi, 1.05rem);
+  --step-0: clamp(1rem, 0.9489rem + 0.2273vi, 1.3125rem);
+  --step-1: clamp(1.2rem, 1.1279rem + 0.3205vi, 1.6406rem);
+  --step-2: clamp(1.44rem, 1.3401rem + 0.4442vi, 2.0508rem);
+  --step-3: clamp(1.728rem, 1.5913rem + 0.6076vi, 2.5635rem);
+  --step-4: clamp(2.0736rem, 1.8886rem + 0.8224vi, 3.2043rem);
+  --step-5: clamp(2.4883rem, 2.2401rem + 1.1034vi, 4.0054rem);
   /* Map labels are in map units, and the map scales with its box. */
   --text-map: 8px;
 
@@ -265,7 +265,7 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: var(--text-md);
+  font-size: var(--step-0);
   font-weight: var(--weight-regular);
   line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
@@ -308,15 +308,15 @@ h3 {
 }
 
 h1 {
-  font-size: var(--text-h1);
+  font-size: var(--step-5);
 }
 
 h2 {
-  font-size: var(--text-h2);
+  font-size: var(--step-2);
 }
 
 h3 {
-  font-size: var(--text-xl);
+  font-size: var(--step-1);
 }
 
 h4,
@@ -341,7 +341,7 @@ p {
 
 .eyebrow {
   font-family: var(--mono);
-  font-size: var(--text-3xs);
+  font-size: var(--step--2);
   font-weight: var(--weight-regular);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
@@ -409,7 +409,7 @@ p {
   align-items: center;
   gap: var(--space-12);
   font-family: var(--display);
-  font-size: var(--text-sm);
+  font-size: var(--step-0);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
 }
@@ -433,7 +433,7 @@ p {
   align-items: center;
   min-height: var(--tap-target);
   font-family: var(--mono);
-  font-size: var(--text-2xs);
+  font-size: var(--step--2);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
@@ -488,7 +488,7 @@ p {
   padding: 0;
   list-style: none;
   font-family: var(--mono);
-  font-size: var(--text-3xs);
+  font-size: var(--step--2);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--ink-muted);
@@ -511,7 +511,7 @@ p {
   min-height: var(--control-height);
   padding: 0 var(--space-24);
   border: var(--line-heavy) solid var(--ink);
-  font-size: var(--text-sm);
+  font-size: var(--step-0);
   font-weight: var(--weight-bold);
   text-align: center;
 }
@@ -545,7 +545,7 @@ p {
   border: var(--line-hair) solid var(--rule-strong);
   background: var(--card);
   font-family: var(--mono);
-  font-size: var(--text-3xs);
+  font-size: var(--step--2);
   letter-spacing: var(--tracking-snug);
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -663,12 +663,12 @@ p {
 
 .prose > h2 {
   margin: var(--space-32) 0 var(--space-12);
-  font-size: var(--text-2xl);
+  font-size: var(--step-1);
 }
 
 .prose > h3 {
   margin: var(--space-24) 0 var(--space-8);
-  font-size: var(--text-lg);
+  font-size: var(--step-0);
 }
 
 .prose a {
@@ -688,7 +688,7 @@ p {
 .prose p > em:only-child {
   display: block;
   font-family: var(--mono);
-  font-size: var(--text-3xs);
+  font-size: var(--step--2);
   font-style: normal;
   letter-spacing: var(--tracking-snug);
   color: var(--ink-muted);
@@ -714,10 +714,6 @@ p {
 @media (min-width: 48rem) {
   :root {
     --gutter: var(--space-44);
-  }
-
-  .wordmark {
-    font-size: var(--text-lg);
   }
 
   .nav {
