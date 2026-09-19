@@ -39,8 +39,8 @@
   --land: hsl(107 13% 79%);
   /* The hover fill must carry white label text, so it is the darker orange. */
   --land-active: var(--orange-ink);
-  /* The Erie Canal. A quiet blue that reads as water beside the land, and
-     never competes with the orange. */
+  /* The Genesee River and the Erie Canal. A quiet blue that reads as water
+     beside the land, and never competes with the orange. */
   --water: hsl(205 45% 42%);
 
   /* Type */
@@ -113,6 +113,8 @@
   --stroke-halo: 2px;
   --stroke-halo-wide: 3px;
   --stroke-water: 2px;
+  /* The river is wider than the canal on the ground, so on the map too. */
+  --stroke-river: 3px;
 
   /* Sizes */
   --tap-target: 2.75rem;

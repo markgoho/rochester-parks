@@ -6,7 +6,7 @@
     type Marker,
     type Outline,
   } from '#lib/municipalities.js';
-  import { ERIE_CANAL } from '#lib/erie-canal.js';
+  import { ERIE_CANAL, GENESEE_RIVER } from '#lib/waterways.js';
 
   /**
    * One shape drawn on its own: a town with the villages inside it, or a
@@ -39,7 +39,7 @@
   );
   /**
    * Brockport crosses the Sweden–Clarkson line, so villages are clipped. The
-   * canal is clipped too, or it would run on past the town's border.
+   * river and canal are clipped too, or they would run on past the border.
    */
   const uid = $props.id();
   const clip = `town-clip-${uid}`;
@@ -112,7 +112,13 @@
     </g>
   {/each}
   <path
-    class="canal"
+    class="water river"
+    clip-path="url(#{clip})"
+    vector-effect="non-scaling-stroke"
+    d={GENESEE_RIVER}
+  />
+  <path
+    class="water canal"
     clip-path="url(#{clip})"
     vector-effect="non-scaling-stroke"
     d={ERIE_CANAL}
@@ -152,15 +158,20 @@
     stroke-linejoin: round;
   }
 
-  /* The Erie Canal, beneath the dots. It is a picture only, so it never
-     takes the pointer from a link. */
-  .canal {
+  /* The Genesee River and the Erie Canal, beneath the dots. They are a
+     picture only, so they never take the pointer from a link. */
+  .water {
     fill: none;
     stroke: var(--water);
     stroke-width: var(--stroke-water);
     stroke-linecap: round;
     stroke-linejoin: round;
     pointer-events: none;
+  }
+
+  /* The river is the wider water. */
+  .river {
+    stroke-width: var(--stroke-river);
   }
 
   /* The park this page is about, in the one accent the site allows. */

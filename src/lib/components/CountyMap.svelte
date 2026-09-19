@@ -5,7 +5,8 @@
     outlineBox,
     type Municipality,
   } from '#lib/municipalities.js';
-  import { canalIn } from '#lib/canal.js';
+  import { waterIn } from '#lib/water.js';
+  import { ERIE_CANAL, GENESEE_RIVER } from '#lib/waterways.js';
 
   /**
    * Where a town's link can be picked from. By default only the map's own
@@ -34,15 +35,24 @@
   const towns = MUNICIPALITIES.filter((m) => m.href !== undefined);
 
   /**
-   * Each town and village carries its own stretch of the canal, cut to its
-   * border. The canal then hides with a resting town and grows with a raised
-   * one, and never floats over the gap a lifted town leaves. Each stretch is
-   * cut to the shape's own box first. See `canalIn`.
+   * Each town and village carries its own stretch of the river and the canal,
+   * cut to its border. The water then hides with a resting town and grows
+   * with a raised one, and never floats over the gap a lifted town leaves.
+   * Each stretch is cut to the shape's own box first. See `waterIn`.
+   *
+   * Where the river is the town line, each town carries its own bank's half
+   * of it, and the boundary stroke stays: the line runs down the water.
    */
   const uid = $props.id();
-  const clipOf = (key: string) => `canal-${uid}-${key}`;
-  const canalOf = new Map(
-    MUNICIPALITIES.map((m) => [m.key, canalIn(outlineBox(m, 0))])
+  const clipOf = (key: string) => `water-${uid}-${key}`;
+  const waterOf = new Map(
+    MUNICIPALITIES.map((m) => {
+      const box = outlineBox(m, 0);
+      return [
+        m.key,
+        { river: waterIn(GENESEE_RIVER, box), canal: waterIn(ERIE_CANAL, box) },
+      ];
+    })
   );
 
   /** A town and the villages inside it move as one piece. */
@@ -77,15 +87,23 @@
 </svelte:head>
 
 {#snippet shape(m: Municipality)}
+  {@const water = waterOf.get(m.key)}
   <g class="municipality" class:village={m.within !== undefined || !m.href}>
     {#each m.paths as d (d)}
       <path class="boundary" {d} />
     {/each}
-    {#if canalOf.get(m.key)}
+    {#if water?.river}
       <path
-        class="canal"
+        class="water river"
         clip-path="url(#{clipOf(m.key)})"
-        d={canalOf.get(m.key)}
+        d={water.river}
+      />
+    {/if}
+    {#if water?.canal}
+      <path
+        class="water canal"
+        clip-path="url(#{clipOf(m.key)})"
+        d={water.canal}
       />
     {/if}
     <text class="boundary-text" x={m.label.x} y={m.label.y}>{m.label.text}</text
@@ -192,15 +210,20 @@
     pointer-events: none;
   }
 
-  /* The Erie Canal. It is a picture only, so it never takes the pointer
-     from a town's link. */
-  .canal {
+  /* The Genesee River and the Erie Canal. They are a picture only, so they
+     never take the pointer from a town's link. */
+  .water {
     fill: none;
     stroke: var(--water);
     stroke-width: var(--stroke-water);
     stroke-linecap: round;
     stroke-linejoin: round;
     pointer-events: none;
+  }
+
+  /* The river is the wider water. */
+  .river {
+    stroke-width: var(--stroke-river);
   }
 
   .resting a:focus-visible {
