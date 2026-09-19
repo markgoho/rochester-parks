@@ -412,6 +412,42 @@ export function contains(
 }
 
 /**
+ * True when a waterway's centre line runs inside the outline. The river runs
+ * just outside Irondequoit, and only the width of its stroke reaches over the
+ * border; clipped to the town, that stroke left slivers of blue. A waterway
+ * that only passes by is not drawn at all.
+ *
+ * The line is one of the generated paths in `waterways.ts`: runs of an `M`
+ * and `L`s. The canal has long straight legs that cross a corner of a town
+ * with no point inside it, so each leg is walked in short steps.
+ */
+export function runsThrough(shape: Outline, path: string): boolean {
+  if (!ringsByShape.has(shape)) ringsByShape.set(shape, ringsOf(shape));
+  const rings = ringsByShape.get(shape)!;
+  const inside = (x: number, y: number) =>
+    rings.some((ring) => inRing(ring, x, y));
+  const STEP = 0.25;
+  return path
+    .split('M')
+    .filter(Boolean)
+    .some((run) => {
+      const points = [...run.matchAll(/(-?[\d.]+) (-?[\d.]+)/g)].map(
+        ([, x, y]) => [Number(x), Number(y)] as const
+      );
+      return points.some(([bx, by], i) => {
+        if (i === 0) return inside(bx, by);
+        const [ax, ay] = points[i - 1];
+        const steps = Math.ceil(Math.hypot(bx - ax, by - ay) / STEP);
+        for (let k = 1; k <= steps; k++) {
+          const t = k / steps;
+          if (inside(ax + t * (bx - ax), ay + t * (by - ay))) return true;
+        }
+        return false;
+      });
+    });
+}
+
+/**
  * The town a place falls in, whatever section its page sits under. A park
  * belongs on the map of the town that actually holds it, and the two can
  * disagree: Belmanor Park is filed under Brighton and stands in Henrietta.

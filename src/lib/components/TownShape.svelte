@@ -2,6 +2,7 @@
   import {
     outlineBox,
     project,
+    runsThrough,
     squareBox,
     type Marker,
     type Outline,
@@ -43,6 +44,10 @@
    */
   const uid = $props.id();
   const clip = `town-clip-${uid}`;
+
+  /** Only the water that runs through the shape. See `runsThrough`. */
+  const river = $derived(runsThrough(shape, GENESEE_RIVER));
+  const canal = $derived(runsThrough(shape, ERIE_CANAL));
 
   /**
    * A dot the same size on every town. The box holds the outline at whatever
@@ -119,18 +124,22 @@
       {/each}
     </g>
   {/each}
-  <path
-    class="water river"
-    clip-path="url(#{clip})"
-    vector-effect="non-scaling-stroke"
-    d={GENESEE_RIVER}
-  />
-  <path
-    class="water canal"
-    clip-path="url(#{clip})"
-    vector-effect="non-scaling-stroke"
-    d={ERIE_CANAL}
-  />
+  {#if river}
+    <path
+      class="water river"
+      clip-path="url(#{clip})"
+      vector-effect="non-scaling-stroke"
+      d={GENESEE_RIVER}
+    />
+  {/if}
+  {#if canal}
+    <path
+      class="water canal"
+      clip-path="url(#{clip})"
+      vector-effect="non-scaling-stroke"
+      d={ERIE_CANAL}
+    />
+  {/if}
   {#each dots as dot (dot.key ?? dot.title)}
     {#if scope && dot.key}
       <!-- A way to the park for the pointer. The map stays a picture to a
