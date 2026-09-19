@@ -1,6 +1,6 @@
 <script lang="ts">
   import { project, type Marker } from '#lib/municipalities.js';
-  import { ERIE_CANAL } from '#lib/erie-canal.js';
+  import { ERIE_CANAL, GENESEE_RIVER } from '#lib/waterways.js';
   import {
     CITY_BOX,
     NEIGHBORHOODS,
@@ -35,7 +35,7 @@
     }))
   );
 
-  /** The canal is clipped to the city, or it would run on past the border. */
+  /** The water is clipped to the city, or it would run on past the border. */
   const uid = $props.id();
   const clip = `city-clip-${uid}`;
 
@@ -81,7 +81,13 @@
     {/if}
   {/each}
   <path
-    class="canal"
+    class="water river"
+    clip-path="url(#{clip})"
+    vector-effect="non-scaling-stroke"
+    d={GENESEE_RIVER}
+  />
+  <path
+    class="water"
     clip-path="url(#{clip})"
     vector-effect="non-scaling-stroke"
     d={ERIE_CANAL}
@@ -131,15 +137,20 @@
     fill: var(--paper-sunk);
   }
 
-  /* The Erie Canal, beneath the dots. It is a picture only, so it never
-     takes the pointer from a link. */
-  .canal {
+  /* The Genesee River and the Erie Canal, beneath the dots. They are a
+     picture only, so they never take the pointer from a link. */
+  .water {
     fill: none;
     stroke: var(--water);
     stroke-width: var(--stroke-water);
     stroke-linecap: round;
     stroke-linejoin: round;
     pointer-events: none;
+  }
+
+  /* The river is the wider water. */
+  .river {
+    stroke-width: var(--stroke-river);
   }
 
   /* The park this page is about, in the one accent the site allows. */

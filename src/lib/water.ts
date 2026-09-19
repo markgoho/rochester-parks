@@ -1,24 +1,22 @@
-import { ERIE_CANAL } from './erie-canal.js';
-
 type Box = { x: number; y: number; width: number; height: number };
 
-const points = [...ERIE_CANAL.matchAll(/(-?[\d.]+) (-?[\d.]+)/g)].map(
-  ([, x, y]) => [Number(x), Number(y)] as const
-);
-
 /**
- * The stretch of the canal inside a box, cut at its sides.
+ * The stretch of a waterway inside a box, cut at its sides. The path is one
+ * of the generated lines in `waterways.ts`: an `M` and a run of `L`s.
  *
- * A clip path hides the canal outside a shape, but the whole canal still
+ * A clip path hides a waterway outside a shape, but the whole line still
  * counts in the bounding box of the group that holds it. On the county map a
  * raised town grows about the middle of that box, so a canal running the
  * width of the county pulled the middle off the town and the town slid as it
- * grew. Cut to the town's own box, the canal adds nothing to it.
+ * grew. Cut to the town's own box, the water adds nothing to it.
  *
- * Each segment is cut by Liang–Barsky. Returns an empty string when the canal
+ * Each segment is cut by Liang–Barsky. Returns an empty string when the line
  * misses the box.
  */
-export function canalIn(box: Box): string {
+export function waterIn(path: string, box: Box): string {
+  const points = [...path.matchAll(/(-?[\d.]+) (-?[\d.]+)/g)].map(
+    ([, x, y]) => [Number(x), Number(y)] as const
+  );
   const left = box.x;
   const right = box.x + box.width;
   const top = box.y;
