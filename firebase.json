@@ -29,6 +29,81 @@
     ],
     "redirects": [
       {
+        "source": "/monroe-county-parks/webster-park/events",
+        "destination": "/monroe-county-parks/webster-park/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/webster-park/history",
+        "destination": "/monroe-county-parks/webster-park/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/webster-park/photos",
+        "destination": "/monroe-county-parks/webster-park/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/webster-park/reservations",
+        "destination": "/monroe-county-parks/webster-park/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/webster-park/reviews",
+        "destination": "/monroe-county-parks/webster-park/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/webster-park/trails",
+        "destination": "/monroe-county-parks/webster-park/",
+        "type": 301
+      },
+      {
+        "source": "/rochester-city-parks/ellwanger-and-barry-park/history",
+        "destination": "/rochester-city-parks/ellwanger-and-barry-park/#history",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/persimmon-park/events",
+        "destination": "/town-parks/brighton-parks/persimmon-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/persimmon-park/history",
+        "destination": "/town-parks/brighton-parks/persimmon-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/persimmon-park/photos",
+        "destination": "/town-parks/brighton-parks/persimmon-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/persimmon-park/reservations",
+        "destination": "/town-parks/brighton-parks/persimmon-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/persimmon-park/reviews",
+        "destination": "/town-parks/brighton-parks/persimmon-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/brighton-parks/persimmon-park/trails",
+        "destination": "/town-parks/brighton-parks/persimmon-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/greece-parks/veterans-memorial-park/history",
+        "destination": "/town-parks/greece-parks/veterans-memorial-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/greece-parks/veterans-memorial-park/trails",
+        "destination": "/town-parks/greece-parks/veterans-memorial-park/",
+        "type": 301
+      },
+      {
         "source": "/about-rochester-parks",
         "destination": "/about/",
         "type": 301

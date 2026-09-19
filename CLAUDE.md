@@ -15,3 +15,7 @@ The five canonical triage roles, each label string equal to its name. See `docs/
 ### Domain docs
 
 Single-context: `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+## Browser support
+
+Target the latest browsers. Use modern HTML and CSS before JavaScript. When a browser does not support a new CSS feature yet, the page must still work without it; do not add a script fallback for it.
