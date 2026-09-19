@@ -38,19 +38,11 @@
     square ? squareBox(outlineBox(shape)) : outlineBox(shape)
   );
   /**
-   * Brockport crosses the Sweden–Clarkson line, so villages are clipped.
-   *
-   * The river and canal are masked, or they would run on past the border. The
-   * mask is the outline grown by a few river widths, not the outline alone:
-   * the Genesee is the border of Henrietta and Chili, and runs just outside
-   * Irondequoit, and a clip to the outline kept only slivers of it where the
-   * lines do not quite agree. Grown, the mask keeps the whole river beside
-   * the town, at the cost of water running a little way past a border it
-   * crosses.
+   * Brockport crosses the Sweden–Clarkson line, so villages are clipped. The
+   * river and canal are clipped too, or they would run on past the border.
    */
   const uid = $props.id();
   const clip = `town-clip-${uid}`;
-  const reach = `town-reach-${uid}`;
 
   /**
    * A dot the same size on every town. The box holds the outline at whatever
@@ -116,18 +108,6 @@
         <path {d} />
       {/each}
     </clipPath>
-    <mask
-      id={reach}
-      maskUnits="userSpaceOnUse"
-      x={box.x - box.width}
-      y={box.y - box.height}
-      width={box.width * 3}
-      height={box.height * 3}
-    >
-      {#each shape.paths as d (d)}
-        <path class="reach" vector-effect="non-scaling-stroke" {d} />
-      {/each}
-    </mask>
   </defs>
   {#each shape.paths as d (d)}
     <path class="outline" vector-effect="non-scaling-stroke" {d} />
@@ -141,13 +121,13 @@
   {/each}
   <path
     class="water river"
-    mask="url(#{reach})"
+    clip-path="url(#{clip})"
     vector-effect="non-scaling-stroke"
     d={GENESEE_RIVER}
   />
   <path
     class="water canal"
-    mask="url(#{reach})"
+    clip-path="url(#{clip})"
     vector-effect="non-scaling-stroke"
     d={ERIE_CANAL}
   />
@@ -190,14 +170,6 @@
     fill: var(--land);
     stroke: var(--rule-strong);
     stroke-width: var(--stroke-base);
-    stroke-linejoin: round;
-  }
-
-  /* The room the water may take: the town and a little around it. */
-  .reach {
-    fill: white;
-    stroke: white;
-    stroke-width: calc(var(--stroke-river) * 4);
     stroke-linejoin: round;
   }
 
