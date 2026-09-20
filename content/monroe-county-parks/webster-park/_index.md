@@ -7,7 +7,7 @@ geo:
   longitude: -77.45505098425168
 acres: 550
 address:
-  streetAddress: '1100 Lake Road'
+  streetAddress: '255 Holt Road'
   addressLocality: 'Webster'
   addressRegion: 'NY'
   addressCountry: 'US'
@@ -30,3 +30,5 @@ openingHours:
     opens: '07:00'
     closes: '22:00'
 ---
+
+Webster Park sits on the shore of Lake Ontario, in the northeast of the county. You can enter from Lake Road or from Holt Road. The park has a campground for RVs, trailers and tents, and space for youth and scout groups. It also has a dog park, which the county opened in October 2023, plus a playground, a pier, and lodges and shelters to rent. You can fish, kayak, hike, run, birdwatch, or try about 40 geocaches. In winter people ski, snowshoe, and sled in a marked area. The park asks you to carry out everything you carry in.

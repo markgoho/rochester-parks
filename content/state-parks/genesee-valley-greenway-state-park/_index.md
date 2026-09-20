@@ -22,6 +22,4 @@ openingHours:
     closes: '22:00'
 ---
 
-A 90-mile trail corridor on the old Genesee Valley Canal and Pennsylvania Railroad beds. It runs from the Erie Canalway Trail in Genesee Valley Park, Rochester, south to the Village of Cuba in Allegany County, and crosses Monroe, Livingston, Wyoming, Allegany and Cattaraugus counties. The northern entrance is the Rochester end.
-
-A page for this park is still being written.
+The Genesee Valley Greenway is a 90-mile corridor of open space. It follows the old Genesee Valley Canal, which ran from 1840 to 1878. It also follows the Pennsylvania Railroad's Rochester Branch, which ran from 1882 to 1963. The northern end is the Erie Canalway Trail in Genesee Valley Park, Rochester. From there the trail runs south to the Village of Cuba, in Allegany County. Most of it is the old rail bed, straight and level, laid with cinders, gravel, and mowed grass. It passes woods, wetlands, river valleys, farmland, steep gorges, and old villages. In all it crosses sixteen towns and five counties.

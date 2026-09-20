@@ -35,4 +35,4 @@ openingHours:
     closes: 'dusk'
 ---
 
-A page for this park is still being written.
+Hamlin Beach State Park sits on the Lake Ontario shore in Hamlin. It has sandy beaches, clear water, and 264 tent and trailer campsites. The Yanty Creek Marsh, at the east end of the park, has a self-guided trail a mile long. Six more miles of trails carry hikers and bikers, and skiers and snowmobiles in winter. You can launch a car-top boat and fish for salmon and trout. The park also has picnic grounds and five pavilions. A Civilian Conservation Corps camp once stood here, and a self-guided tour covers its restoration.

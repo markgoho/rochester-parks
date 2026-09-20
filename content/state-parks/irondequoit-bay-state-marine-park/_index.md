@@ -27,5 +27,3 @@ openingHours:
 ---
 
 A boat launch at the north end of Irondequoit Bay, with fishing access to Lake Ontario. The entrance is off Culver Road, near Route 590. New York State Parks runs it out of Hamlin Beach State Park.
-
-A page for this park is still being written.
