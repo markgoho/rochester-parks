@@ -362,7 +362,8 @@ function parkMetaOf(node: Node): ParkMeta {
     closedOn: node.frontMatter.closedOn,
     facilities: node.frontMatter.facilities?.map((facility) => ({
       ...facility,
-      openingHours: openingHoursOf(facility.openingHours),
+      openingHours:
+        facility.openingHours && openingHoursOf(facility.openingHours),
     })),
     hoursCheckedOn: isoDate(node.frontMatter.hoursCheckedOn),
     status: {
@@ -381,9 +382,11 @@ function parkMetaOf(node: Node): ParkMeta {
 function parkHours(meta: ParkMeta): ParkHours {
   return {
     grounds: hoursView(meta.openingHours ?? [], meta.closedOn ?? [], TODAY),
+    // A Facility with no hours of its own adds no row: an empty row would say
+    // less than no row. The Facilities section names it instead.
     facilities: (meta.facilities ?? []).flatMap((facility) => {
       const view = hoursView(
-        facility.openingHours,
+        facility.openingHours ?? [],
         facility.closedOn ?? [],
         TODAY
       );

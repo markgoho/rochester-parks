@@ -379,7 +379,11 @@ export function hoursJsonLd(
   };
 }
 
-/** Each Facility as a place of its own, with the same rules for its hours. */
+/**
+ * Each Facility as a place of its own, with the same rules for its hours. A
+ * Facility that the public rents keeps no hours, and an empty hours
+ * specification would say it never opens, so the hours are left out whole.
+ */
 export function facilitiesJsonLd(
   facilities: Facility[],
   today: string
@@ -387,6 +391,12 @@ export function facilitiesJsonLd(
   return facilities.map((facility) => ({
     '@type': facility.type,
     name: facility.name,
-    ...hoursJsonLd(facility.openingHours, facility.closedOn ?? [], today),
+    geo: facility.geo && { '@type': 'GeoCoordinates', ...facility.geo },
+    url: facility.rental?.url,
+    email: facility.rental?.email,
+    telephone: facility.rental?.phone,
+    ...(facility.openingHours?.length || facility.closedOn?.length
+      ? hoursJsonLd(facility.openingHours ?? [], facility.closedOn ?? [], today)
+      : {}),
   }));
 }

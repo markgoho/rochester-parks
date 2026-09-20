@@ -4,7 +4,23 @@ import {
   formatCoordinates,
   longestWord,
   parkTransitionName,
+  telHref,
 } from './format.js';
+
+describe('telHref', () => {
+  test('a local number takes the country code', () => {
+    expect(telHref('(585) 617-6174')).toBe('tel:+15856176174');
+    expect(telHref('585-617-6174')).toBe('tel:+15856176174');
+  });
+
+  test('a number that already has its country code keeps it', () => {
+    expect(telHref('+1 585 617 6174')).toBe('tel:+15856176174');
+  });
+
+  test('anything else is dialled as written, digits only', () => {
+    expect(telHref('311')).toBe('tel:311');
+  });
+});
 
 describe('parkTransitionName', () => {
   test('names a part of a park by its whole path', () => {

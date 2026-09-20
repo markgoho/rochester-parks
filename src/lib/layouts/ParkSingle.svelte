@@ -10,6 +10,7 @@
     formatCoordinates,
     longestWord,
     parkTransitionName,
+    telHref,
   } from '#lib/format.js';
   import {
     isCitySection,
@@ -119,6 +120,11 @@
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
       .length
   );
+  const facilities = $derived(park?.facilities ?? []);
+  /** The site that takes a booking, as a reader would name it. */
+  function bookingHost(url: string): string {
+    return new URL(url).hostname.replace(/^www\./, '');
+  }
 </script>
 
 <!-- The article is the container the layout queries. A container cannot query
@@ -310,6 +316,58 @@
       {/if}
 
       <div class="prose">{@html page.html}</div>
+
+      <!-- Facilities are a heading on this page, not a page of their own
+           (ADR-0007), so the section sits in the body with a real heading. The
+           rail's panels label themselves with an eyebrow, which `#facilities`
+           could not point at. Hours stay in the panel beside the grounds'
+           hours; this section says what each Facility is and how to book it. -->
+      {#if facilities.length}
+        <section class="facilities" id="facilities">
+          <h2>Facilities</h2>
+          <ul>
+            {#each facilities as facility (facility.name)}
+              {@const rental = facility.rental}
+              <li class="facility">
+                <h3>{facility.name}</h3>
+                {#if rental?.season}
+                  <!-- The season is printed as its source writes it, so it
+                       takes a label rather than a sentence around it. -->
+                  <p class="facility__line">
+                    <span class="eyebrow">Rented</span>
+                    {rental.season}
+                  </p>
+                {/if}
+                {#if rental && (rental.url || rental.email || rental.phone)}
+                  <p class="facility__line facility__book">
+                    <span class="eyebrow">Book it</span>
+                    {#if rental.url}
+                      <a href={rental.url} rel="noopener"
+                        >{bookingHost(rental.url)}</a
+                      >
+                    {/if}
+                    {#if rental.email}
+                      <a href="mailto:{rental.email}">{rental.email}</a>
+                    {/if}
+                    {#if rental.phone}
+                      <a href={telHref(rental.phone)}>{rental.phone}</a>
+                    {/if}
+                  </p>
+                {:else}
+                  <!-- A Facility nobody rents still needs a line of its own:
+                       the name alone only repeats the hours panel, and what a
+                       reader wants to know is that no booking stands in the
+                       way. Its hours stay in the panel. -->
+                  <p class="facility__line">
+                    <span class="eyebrow">Open to all</span>
+                    No booking
+                  </p>
+                {/if}
+              </li>
+            {/each}
+          </ul>
+        </section>
+      {/if}
 
       {#if page.children.length}
         <nav class="sub" aria-label="More about this park">
@@ -513,6 +571,55 @@
 
   .amenities .tags {
     gap: var(--space-6);
+  }
+
+  /* The Facilities section reads as part of the write-up above it, so its
+     heading takes the same size and rhythm as a heading inside the prose. */
+  .facilities {
+    max-width: var(--measure);
+    margin-top: var(--space-40);
+  }
+
+  .facilities h2 {
+    margin: 0 0 var(--space-12);
+    font-size: var(--step-2);
+  }
+
+  /* One Facility per card, in as many columns as the body has room for, so the
+     row breaks where the content breaks and not at a device width. */
+  .facilities ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--space-16);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .facility {
+    padding: var(--space-14) var(--space-16);
+    border: var(--line-hair) solid var(--rule);
+    background: var(--card);
+  }
+
+  .facility h3 {
+    margin: 0;
+    font-size: var(--step-0);
+  }
+
+  .facility__line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-4) var(--space-8);
+    margin: var(--space-8) 0 0;
+    color: var(--ink-soft);
+  }
+
+  .facility__book a {
+    color: var(--orange-ink);
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset-prose);
   }
 
   .sub {

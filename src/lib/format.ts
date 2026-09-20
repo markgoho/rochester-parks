@@ -47,3 +47,15 @@ export function formatCoordinates(geo: {
 export function longestWord(text: string): number {
   return Math.max(0, ...text.split(/\s+|(?<=-)/).map((word) => word.length));
 }
+
+/**
+ * A telephone number as a link a telephone can dial. The printed number stays
+ * as the source writes it, because a reader reads it; the link holds digits
+ * only. Ten digits are a North American number, so the country code is added.
+ */
+export function telHref(phone: string): string {
+  const digits = phone.replace(/\D/g, '');
+  if (digits.length === 10) return `tel:+1${digits}`;
+  if (phone.trimStart().startsWith('+')) return `tel:+${digits}`;
+  return `tel:${digits}`;
+}
