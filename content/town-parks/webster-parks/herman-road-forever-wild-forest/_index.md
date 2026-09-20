@@ -17,4 +17,4 @@ sameAs:
   - 'https://webstertrails.org/trail/herman-road-forever-wild-forest/'
 ---
 
-Herman Road Forever Wild Forest is a 28-acre forest at 760 Herman Road. The Town of Webster made it a park in September 2023. Gary and Judy Wood, the former owners, helped conserve the land with a New York State DEC grant and a donation honoring the late Michael A. Johnson. Trails wind through mature forest, and you may see deer, fox, fisher, coyote, or turkey. Parking is limited, so many visitors walk in from the pink trail in the neighboring Whiting Road Nature Preserve. Hunting and motorized vehicles are not allowed.
+Herman Road Forever Wild Forest is a 28-acre forest at 760 Hermann Road. The Town of Webster made it a park in September 2023. Gary and Judy Wood, the former owners, helped conserve the land with a New York State DEC grant and a donation honoring the late Michael A. Johnson. Trails wind through mature forest, and you may see deer, fox, fisher, coyote, or turkey. Parking is limited, so many visitors walk in from the pink trail in the neighboring Whiting Road Nature Preserve. Hunting and motorized vehicles are not allowed.
