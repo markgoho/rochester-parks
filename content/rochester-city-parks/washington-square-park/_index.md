@@ -18,4 +18,4 @@ geo:
   longitude: -77.6053673
 ---
 
-A page for this park is still being written.
+Washington Square Park sits downtown, near the GEVA Theater. It is a green space with benches, dedicated to veterans of the armed services. A monument to Abraham Lincoln stands in the park. You can stop by for a lunchtime picnic. The park also hosts summer concerts and ceremonies.

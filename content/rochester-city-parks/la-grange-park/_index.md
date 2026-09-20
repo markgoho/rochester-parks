@@ -20,5 +20,3 @@ geo:
 sameAs:
   - 'https://www.cityofrochester.gov/parkplanning/'
 ---
-
-A page for this park is still being written.

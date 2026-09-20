@@ -18,4 +18,4 @@ sameAs:
   - 'https://www.cityofrochester.gov/locations/lower-falls-park'
 ---
 
-A page for this park is still being written.
+Lower Falls Park is just downriver from High Falls, in the Genesee River gorge. It has waterfalls, steep cliffs, marshes, wetlands, old bridges, and tall trees. The gorge also shows signs of the city's industrial past. Trails link the park to Maplewood Park, the Genesee Riverway Trail, Seneca Park, Turning Point Park, and Seth Green Fishing Access. The city runs guided walks in the gorge each year, including one during the Maplewood Rose Celebration.

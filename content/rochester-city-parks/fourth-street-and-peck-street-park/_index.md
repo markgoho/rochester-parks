@@ -21,4 +21,4 @@ geo:
   longitude: -77.5839711
 ---
 
-A page for this park is still being written.
+Fourth Street and Peck Street Park sits at Fourth Street and Peck Street, in the city's northeast quadrant. It has plenty of green space, a half-court basketball court, and an updated playground. In summer, it also has a water spray feature.

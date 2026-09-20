@@ -14,9 +14,11 @@ amenities:
   - Lodge
   - Playground
   - Tennis Court
+sameAs:
+  - 'https://www.cityofrochester.gov/locations/norton-village-lodge'
 geo:
   latitude: 43.1855095
   longitude: -77.565166
 ---
 
-A page for this park is still being written.
+Norton Village Playground is in the Norton Village neighborhood, on Waring Road. Norton Village Lodge sits on the grounds, surrounded by green space. People use the lodge for gatherings and events. The park also has ball fields, a basketball court, tennis courts, and a playground.
