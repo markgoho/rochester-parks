@@ -17,4 +17,4 @@ geo:
   longitude: -77.6298666
 ---
 
-A page for this park is still being written.
+Jones Square Park fills a six-acre block in the northwest quadrant of the city. In its early days, Civil War soldiers used it as marching grounds. It was also one of Rochester's first baseball fields. Frederick Law Olmsted later redesigned it. The park has a historic fountain, benches, and many trees.
