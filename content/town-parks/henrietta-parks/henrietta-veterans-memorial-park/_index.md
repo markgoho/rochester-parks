@@ -24,6 +24,7 @@ amenities:
 sameAs:
   - 'https://www.henriettany.gov/community/park/veterans-memorial-park'
   - 'https://maps.google.com/?cid=5269678991067189828'
+  - 'https://henriettany.myrec.com/info/facilities/details.aspx?FacilityID=14706'
 geo:
   latitude: 43.0661678
   longitude: -77.6219108
@@ -33,3 +34,5 @@ openingHours:
     opens: '07:00'
     closes: '22:00'
 ---
+
+Veterans Memorial Park covers 90 acres at 595 Calkins Road in Henrietta. It has the Henrietta Recreation Center and a Senior Center. The park has two playgrounds, softball and soccer fields, and basketball and tennis courts. The Roberts and Bushman cabins and picnic pavilions are here, along with outdoor restrooms. A walking trail connects to the Lehigh Valley Trail. The park also has an amphitheater.
