@@ -11,7 +11,7 @@ A single standalone public green space the site covers, in the city, a town, a v
 _Avoid_: Location, site, venue
 
 **Facility**:
-A named place inside a Park that keeps its own hours, or that the public rents: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A rented Facility often has no public hours at all. It is still a Facility, and the Park page tells the reader how to rent it. A number is a name: "Shelter 3" is a Facility. A Facility has its own place inside the Park, so a map of the Park can show where it is. A playground that keeps the same hours as the grounds is an amenity, not a Facility. A Facility always belongs to the Park that holds it. An R-Center with no grounds of its own is not a Park.
+A named place inside a Park that keeps its own hours, or that the public rents: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A rented Facility often has no public hours at all. It is still a Facility, and the Park page tells the reader how to rent it: the link or the telephone number that takes a booking, and the season the Facility is rented in, when the source gives one. The page does not give a fee, because a fee changes more often than the site is built (ADR-0004 asks the site to replace the official page, not to copy each number off it). A number is a name: "Shelter 3" is a Facility. A Facility has its own place inside the Park, so a map of the Park can show where it is. A playground that keeps the same hours as the grounds is an amenity, not a Facility. A Facility always belongs to the Park that holds it. An R-Center with no grounds of its own is not a Park.
 _Avoid_: Venue, building, amenity
 
 **Trail**:
