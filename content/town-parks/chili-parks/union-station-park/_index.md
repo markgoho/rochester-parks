@@ -6,9 +6,10 @@ geo:
   latitude: 43.0900405
   longitude: -77.789273
 address:
-  streetAddress: '3720 Union Street'
-  addressLocality: 'Rochester'
+  streetAddress: '25 Rock Island Road'
+  addressLocality: 'North Chili'
   addressRegion: 'NY'
+  postalCode: '14514'
   addressCountry: 'US'
 acres: 63.11
 sameAs:
