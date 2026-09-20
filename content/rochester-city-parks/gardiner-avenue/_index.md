@@ -4,7 +4,7 @@ description: 'A Rochester City Park called Gardiner Ave. Playground'
 type: 'park'
 acres: 2.9
 address:
-  streetAddress: '61 Grover Street'
+  streetAddress: '75 Grover Street'
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'

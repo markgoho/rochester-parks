@@ -21,16 +21,7 @@ facilities:
   - name: 'Seneca Park Zoo'
     type: Zoo
     openingHours:
-      - dayOfWeek:
-          [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday',
-          ]
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         opens: '10:00'
         closes: '17:00'
     closedOn:
