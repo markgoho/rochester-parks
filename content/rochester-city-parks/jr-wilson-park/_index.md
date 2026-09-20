@@ -22,4 +22,4 @@ geo:
   longitude: -77.6475273
 ---
 
-JR Wilson Park is a neighborhood park in the northwest part of the city, on Burrows Street. It has open greenspace for football and soccer, a full basketball court, tennis courts, and a modern playground. The park is a popular spot for neighbors.
+JR Wilson Park is a neighborhood park in the northwest part of the city, on Burrows Street. It has open green space for football and soccer, a full basketball court, and a modern playground. The park is a popular spot for neighbors.

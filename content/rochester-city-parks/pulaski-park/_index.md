@@ -16,4 +16,4 @@ geo:
   longitude: -77.593283
 ---
 
-Pulaski Park is a neighborhood park between North Street and Carter Street. It covers about 7 acres of open greenspace with winding paths. Neighbors use the park for walking, games, picnics, and relaxing.
+Pulaski Park is a neighborhood park between North Street and Carter Street. It covers about 7 acres of open green space with winding paths. Neighbors use the park for walking, games, picnics, and relaxing.

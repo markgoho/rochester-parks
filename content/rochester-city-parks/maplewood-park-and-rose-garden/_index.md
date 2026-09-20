@@ -22,9 +22,10 @@ amenities:
 sameAs:
   - 'https://www.cityofrochester.gov/locations/maplewood-park-and-rose-garden'
   - 'https://www.cityofrochester.gov/locations/lower-falls-park'
+  - 'https://olmstedrochester.org/maplewood-park/'
 geo:
   latitude: 43.1952197
   longitude: -77.622099
 ---
 
-Maplewood Park is one of two original Rochester parks that Frederick Law Olmsted designed along the Genesee River. It runs about two miles along Lake Avenue in the northwest part of the city. The park holds a nationally accredited Rose Garden, with more than 250 rose varieties blooming from June into November. The Genesee Riverway Trail runs through the park. A side path leads through a gated road to a view of the Middle and Lower Falls. Two tennis courts, six pickleball courts, a picnic area, and a playground are spread across the park. Each year the Rose Garden hosts the Maplewood Rose Celebration, along with guided walks in the gorge.
+Frederick Law Olmsted designed Maplewood Park in the 1890s. It was part of his 1893 plan for Seneca Park, and was once called Seneca Park West. It runs about two miles along the Genesee River, bordered by Lake Avenue and Driving Park Avenue. A path follows the rim of the river gorge. The park holds a Rose Garden with more than 250 kinds of rose. They bloom from June into November. A national body has accredited the garden. The park also has a gazebo, the Dove Cote building, a fishing pond, and tennis and pickleball courts. Each year the garden hosts the Maplewood Rose Celebration. Guided walks in the gorge run at the same time.
