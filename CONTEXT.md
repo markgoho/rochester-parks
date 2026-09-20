@@ -10,6 +10,10 @@ A public guide to every park in and around Rochester, NY. Readers are the genera
 A single standalone public green space the site covers, in the city, a town, a village, the county, or the state system: outdoor land a government owns that the public can go to and use, or will use when an official plan is built. A village Park is listed with the town that holds the village. A street median, a traffic triangle, a street corner, school grounds and a building are not Parks (ADR-0005, ADR-0006). ADR-0009 gives the test that proves a city building has grounds of its own.
 _Avoid_: Location, site, venue
 
+**Former Park**:
+A Park a government has since decommissioned, closed for good or built over. It keeps its page, because the site holds the only record of what was there, and the page says plainly that the park is gone. It is in no Park List, count, map or search result, so nothing sends a reader to a place that no longer exists, but it stays indexable so a reader looking for the old park learns what became of it (ADR-0010). A Park closed for a season or for repair is not a Former Park.
+_Avoid_: Decommissioned park, closed park, abandoned park, ex-park
+
 **Facility**:
 A named place inside a Park that keeps its own hours, or that the public rents: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A rented Facility often has no public hours at all. It is still a Facility, and the Park page tells the reader how to rent it: the link or the telephone number that takes a booking, and the season the Facility is rented in, when the source gives one. The page does not give a fee, because a fee changes more often than the site is built (ADR-0004 asks the site to replace the official page, not to copy each number off it). A number is a name: "Shelter 3" is a Facility. A Facility has its own place inside the Park, so a map of the Park can show where it is. A playground that keeps the same hours as the grounds is an amenity, not a Facility. A Facility always belongs to the Park that holds it. An R-Center with no grounds of its own is not a Park.
 _Avoid_: Venue, building, amenity
