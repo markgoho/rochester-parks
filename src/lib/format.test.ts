@@ -2,9 +2,43 @@
 import { describe, expect, test } from 'bun:test';
 import {
   formatCoordinates,
+  hostOf,
   longestWord,
   parkTransitionName,
+  telHref,
 } from './format.js';
+
+describe('hostOf', () => {
+  test('names the site without its "www."', () => {
+    expect(hostOf('https://www.cityofrochester.gov/parks')).toBe(
+      'cityofrochester.gov'
+    );
+    expect(hostOf('https://ogdenny.myrec.com/info/facilities/')).toBe(
+      'ogdenny.myrec.com'
+    );
+  });
+
+  test('a link the front matter got wrong fails the build', () => {
+    expect(() => hostOf('ogdenny.myrec.com')).toThrow();
+  });
+});
+
+describe('telHref', () => {
+  test('a local number takes the country code', () => {
+    expect(telHref('(585) 617-6174')).toBe('tel:+15856176174');
+    expect(telHref('585-617-6174')).toBe('tel:+15856176174');
+  });
+
+  test('a number that already has its country code keeps it', () => {
+    expect(telHref('+1 585 617 6174')).toBe('tel:+15856176174');
+    // Ten digits of its own, and not a North American number.
+    expect(telHref('+44 1234 5678')).toBe('tel:+4412345678');
+  });
+
+  test('anything else is dialled as written, digits only', () => {
+    expect(telHref('311')).toBe('tel:311');
+  });
+});
 
 describe('parkTransitionName', () => {
   test('names a part of a park by its whole path', () => {

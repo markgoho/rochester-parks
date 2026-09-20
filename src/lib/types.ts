@@ -107,12 +107,39 @@ export type FacilityType =
   | 'Playground'
   | 'CivicStructure';
 
-/** A named place inside a Park that keeps its own hours. */
+/**
+ * How the public rents a Facility. A fee is not here on purpose: a fee changes
+ * more often than the site is built, so the page gives the way to book and the
+ * season, and the booking page gives the price. See `CONTEXT.md`.
+ */
+export interface FacilityRental {
+  /** The page that takes a booking. */
+  url?: string;
+  /** The telephone number that takes a booking, as the source prints it. */
+  phone?: string;
+  /**
+   * The season the Facility is rented in, printed as the source gives it, for
+   * example 'Early May to early October'. This is words, not a window: a
+   * season of hours is a `from` and `through` pair the build turns into real
+   * dates, and a source rarely dates a rental season that closely.
+   */
+  season?: string;
+}
+
+/**
+ * A named place inside a Park that keeps its own hours, or that the public
+ * rents. A rented Facility often has no public hours at all.
+ */
 export interface Facility {
   name: string;
   type: FacilityType;
-  openingHours: OpeningHours[];
+  /** Absent when the Facility keeps no hours of its own. */
+  openingHours?: OpeningHours[];
   closedOn?: Holiday[];
+  /** Its own place inside the Park, so a map of the Park can show it. */
+  geo?: { latitude: number; longitude: number };
+  /** How the public rents it, when the public can. */
+  rental?: FacilityRental;
 }
 
 /** Park facts a list or detail page can show without re-reading the markdown. */
@@ -137,7 +164,7 @@ export interface ParkMeta {
   openingHours?: OpeningHours[];
   /** Holidays the grounds close. */
   closedOn?: Holiday[];
-  /** Places inside the Park that keep their own hours. */
+  /** Places inside the Park that keep their own hours, or that the public rents. */
   facilities?: Facility[];
   /** ISO date the hours were last checked against the official page. */
   hoursCheckedOn?: string;

@@ -1,6 +1,7 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
 import {
+  facilitiesJsonLd,
   formatDate,
   formatHours,
   holidayDate,
@@ -11,7 +12,7 @@ import {
   nextHolidayDate,
   seasonWindow,
 } from './hours.js';
-import type { DayOfWeek, OpeningHours } from './types.js';
+import type { DayOfWeek, Facility, OpeningHours } from './types.js';
 
 const EVERY_DAY: DayOfWeek[] = [
   'Monday',
@@ -268,6 +269,68 @@ describe('hoursView', () => {
 
   test('no hours', () => {
     expect(hoursView([], [], '2026-09-18')).toBeUndefined();
+  });
+});
+
+describe('facilitiesJsonLd', () => {
+  const rinkFacility: Facility = {
+    name: 'Ice rink',
+    type: 'IceSkatingRink',
+    openingHours: [rink],
+  };
+
+  const lodge: Facility = {
+    name: 'Canal Days Lodge',
+    type: 'EventVenue',
+    rental: {
+      url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14724',
+      phone: '(585) 617-6174',
+      season: 'Early May to early October',
+    },
+  };
+
+  test('a Facility with hours keeps them', () => {
+    const [place] = facilitiesJsonLd([rinkFacility], '2026-09-18') as {
+      openingHoursSpecification: object[];
+    }[];
+    expect(place.openingHoursSpecification).toHaveLength(1);
+  });
+
+  test('a rented Facility with no hours names no hours at all', () => {
+    const [place] = facilitiesJsonLd([lodge], '2026-09-18');
+    expect(place).not.toHaveProperty('openingHoursSpecification');
+    expect(place).not.toHaveProperty('specialOpeningHoursSpecification');
+  });
+
+  test('a rented Facility gives the way to book it', () => {
+    expect(facilitiesJsonLd([lodge], '2026-09-18')).toEqual([
+      {
+        '@type': 'EventVenue',
+        name: 'Canal Days Lodge',
+        url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14724',
+        telephone: '(585) 617-6174',
+      },
+    ]);
+  });
+
+  test('a Facility with a place of its own gives its coordinates', () => {
+    const placed: Facility = {
+      ...lodge,
+      geo: { latitude: 43.1985112, longitude: -77.8044681 },
+    };
+    const [place] = facilitiesJsonLd([placed], '2026-09-18');
+    expect(place).toMatchObject({
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 43.1985112,
+        longitude: -77.8044681,
+      },
+    });
+  });
+
+  test('a season a Facility is rented in is never a season of hours', () => {
+    const [place] = facilitiesJsonLd([lodge], '2026-09-18');
+    expect(JSON.stringify(place)).not.toContain('Early May');
   });
 });
 
