@@ -20,3 +20,5 @@ openingHours:
     closes: 'dusk'
     season: { from: 'April 1', through: 'October 31' }
 ---
+
+Hopkins Park is a 9.6-acre park on Barker Road at Mendon Center Road in Pittsford. It has two multipurpose fields, a playground, and restrooms.

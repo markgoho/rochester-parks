@@ -19,3 +19,5 @@ openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     closes: '22:00'
 ---
+
+Thornell Farm Park is a 27-acre park at 480 Mendon Road in Pittsford. It has an artificial turf field, three grass multipurpose fields, and two softball fields, along with lighted courts for tennis, pickleball, and basketball. In winter, a hill in the park is open for sledding. A pavilion with 12 picnic tables gives you a place to gather. Fires are not allowed in the park.

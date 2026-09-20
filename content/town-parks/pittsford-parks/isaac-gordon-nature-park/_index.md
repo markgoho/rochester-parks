@@ -19,3 +19,5 @@ openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     closes: 'dusk'
 ---
+
+Isaac Gordon Nature Park covers 118.5 acres on Clover Street in Pittsford. Trails cross the park for hiking in warm months and cross-country skiing in winter. The park is set around a natural pond.

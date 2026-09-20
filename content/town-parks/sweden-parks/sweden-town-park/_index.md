@@ -29,3 +29,5 @@ openingHours:
     opens: 'dawn'
     closes: 'dusk'
 ---
+
+Sweden Town Park sits at 4745 Redman Road in Brockport. The park has six multipurpose fields for soccer, lacrosse, and football. It also has seven youth baseball fields and a regulation field named for Nietopski. There is a skate park, an 18-hole disc golf course, and hiking trails. The park also has a dog park, three playgrounds, three picnic pavilions, a fishing pond, and a splash pad. A concession stand, restrooms, and the Town Lodge round out the park. The town acquired the land from New York State in 1999. It has added facilities several times since, including the disc golf course in 2006 and the lodge in 2018.

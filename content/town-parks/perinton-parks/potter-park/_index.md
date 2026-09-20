@@ -26,4 +26,7 @@ amenities:
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/potter-park/'
   - 'https://maps.google.com/?cid=7337125732581669157'
+  - 'https://perinton.gov/wp-content/uploads/Park-Plan-2019-1-compressed.pdf'
 ---
+
+Potter Park is a Village of Fairport park on West Church Street. The Town of Perinton runs it under a lease with the village. It is a neighborhood park that residents of nearby village streets can easily reach. The park holds the Lion's Den, a teen center that can also be rented for gatherings and events. Its community garden started in 2011, on the site of a World War II victory garden. Garden members give extra produce to local food pantries. The park also has basketball, pickleball, and tennis courts, a ball field, and a playground.

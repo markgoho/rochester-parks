@@ -30,4 +30,7 @@ amenities:
 sameAs:
   - 'https://perinton.gov/departments/randp/parks-department/parks/fellows-road-park/'
   - 'https://maps.google.com/?cid=1894491776644173436'
+  - 'https://perinton.gov/wp-content/uploads/Park-Plan-2019-1-compressed.pdf'
 ---
+
+Fellows Road Park is a 33.5-acre park off Fellows Road at Whitney Road, in northeast Perinton. You can play softball, tennis, pickleball, or beach volleyball, walk the fitness trail, or use the playground. The park has two shelters and a community building you can reserve for events. It also has a soccer field, basketball court, picnic tables, and grills. It is one of the town's most used parks, and its playground is a favorite with families.

@@ -14,4 +14,4 @@ openingHours:
     closes: 'dusk'
 ---
 
-A page for this park is still being written.
+Habecker Fields covers 6 acres at 34 East Street in Pittsford. The park has two Little League fields and one T-ball field, used for youth baseball and softball games.

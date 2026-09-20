@@ -21,3 +21,5 @@ openingHours:
     opens: '07:00'
     closes: 'sunset'
 ---
+
+Andrews Park is a 30-acre parcel between Victory Baptist Church, Interstate 390 and Wildbriar Road. You park at Blue Mist Lane or Golden Fleece Road, both off Wildbriar Road. The outside loop is three quarters of a mile and takes about 15 minutes to walk. It is flat and easy, and it is accessible. The trail surface is stone dust and coarse gravel. You can hike or bike it, but motorized vehicles are not allowed. The trail passes wetlands and woodlands, and it is a good place to watch birds and other wetland wildlife. Picnic tables and benches sit along the way.

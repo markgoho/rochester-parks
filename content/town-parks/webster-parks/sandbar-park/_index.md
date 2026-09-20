@@ -20,9 +20,12 @@ amenities:
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Sandbar-Park-29'
   - 'https://maps.google.com/?cid=4605622829878013402'
+  - 'https://www.websterny.gov/576/Parks'
 hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     opens: 'dawn'
     closes: 'dusk'
 ---
+
+Sandbar Park sits on the shores of Lake Ontario and Irondequoit Bay, at 302 Lake Road. It has a playground, a fishing spot, and a launch for canoes and kayaks. Restrooms are open in season, and you can picnic along the water. Like all Webster town parks, it is carry-in, carry-out, so bring a bag for your trash.
