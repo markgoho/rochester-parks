@@ -1,6 +1,6 @@
 # ADR-0005: What counts as a Park
 
-- **Status**: Accepted, amended by ADR-0006 and ADR-0009
+- **Status**: Accepted, amended by ADR-0006, ADR-0009 and ADR-0010
 - **Date**: 2026-09-18
 
 ## Context
@@ -32,3 +32,4 @@ For a city row, the city's own park GIS layer (`Hosted/Parks_Open_Space_Points`)
 - #75 applied the grounds clause to the thirteen pages named for a building. It found that this ADR does not say how to prove grounds exist. ADR-0009 gives that test and amends this one.
 - #75 deleted six pages and moved a seventh, with no redirect. Five R-Centers share an address with an operating RCSD school: `adams-street-rec-center`, `clinton-baden-rec-center`, `humboldt-recreation-center`, `south-avenue-recreation-center` and `ryan-community-center`. `danforth-community-center` sits on a parcel classed Benevolent, beside a Street Mall. `seneca-park-zoo` became a `Zoo` Facility of `seneca-park`, and its own page went.
 - #75 kept six pages. `gardiner-avenue` took the layer's `name2`, Gardiner Ave. Playground, as its title. Five R-Centers sit on City parcels that ADR-0009's test proves are grounds, so they stay on the Edgerton pattern: `avenue-d-rec-center`, `campbell-st-rec-center`, `carter-st-rec-center`, `david-f-gantt-recreation-center` and `flint-st-recreation-center`. Each gained its R-Center as a Facility.
+- This ADR sorts a place into two states: it is a Park, or it never was one. `forest-hills-playground` is neither. ADR-0010 adds the third state, a Former Park, and amends this one.
