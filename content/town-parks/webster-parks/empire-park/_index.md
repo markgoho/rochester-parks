@@ -17,9 +17,12 @@ amenities:
   - Trails
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23'
+  - 'https://www.websterny.gov/576/Parks'
 hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     opens: 'dawn'
     closes: 'dusk'
 ---
+
+Empire Park sits at 2130 Empire Boulevard. The Webster Athletic Association uses it for baseball, and it has baseball fields, walking trails, and restrooms.

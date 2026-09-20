@@ -21,6 +21,8 @@ amenities:
   - Spray Park
 sameAs:
   - 'https://www.websterny.gov/Facilities/Facility/Details/Ridgecrest-Park-28'
+  - 'https://www.websterny.gov/Facilities/Facility/Details/28'
+  - 'https://www.websterny.gov/576/Parks'
 hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -33,3 +35,5 @@ facilities:
       - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         season: { from: 'Memorial Day', through: 'Labor Day' }
 ---
+
+Ridgecrest Park is at 985 Ebner Drive. It has a skate park, a basketball court, a box lacrosse rink, and an open play field. A spray park and a playground give younger kids a place to play, and a picnic area sits nearby.
