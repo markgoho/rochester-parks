@@ -1,6 +1,6 @@
 ---
 title: 'Avenue D Rec. Center'
-description: 'A Rochester City Park called Avenue D Rec. Center'
+description: 'The city grounds that hold the Avenue D R-Center'
 type: 'park'
 address:
   streetAddress: '212 Avenue D'
@@ -25,6 +25,9 @@ geo:
   longitude: -77.6187437
 sameAs:
   - 'https://www.cityofrochester.gov/locations/avenue-d-r-center'
+facilities:
+  - name: 'Avenue D R-Center'
+    type: SportsActivityLocation
 ---
 
 A page for this park is still being written.

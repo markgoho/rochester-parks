@@ -1,6 +1,6 @@
 ---
 title: 'David F. Gantt Recreation Center'
-description: 'A Rochester City Park called David F. Gantt Recreation Center'
+description: 'The city grounds that hold the David F. Gantt R-Center'
 type: 'park'
 address:
   streetAddress: '700 North Street'
@@ -26,6 +26,9 @@ geo:
   longitude: -77.5961181
 sameAs:
   - 'https://www.cityofrochester.gov/locations/david-f-gantt-r-center'
+facilities:
+  - name: 'David F. Gantt R-Center'
+    type: SportsActivityLocation
 ---
 
 A page for this park is still being written.

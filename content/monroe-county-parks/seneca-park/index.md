@@ -15,4 +15,17 @@ amenities:
 sameAs:
   - 'https://www.monroecounty.gov/parks-seneca'
   - 'https://maps.google.com/?cid=9168798188261743810'
+  - 'https://senecaparkzoo.org/'
+hoursCheckedOn: '2026-09-18'
+facilities:
+  - name: 'Seneca Park Zoo'
+    type: Zoo
+    openingHours:
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        opens: '10:00'
+        closes: '17:00'
+    closedOn: ['Thanksgiving', 'Christmas', "New Year's Day"]
+    geo:
+      latitude: 43.20738388916131
+      longitude: -77.62537168425285
 ---
