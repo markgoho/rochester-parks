@@ -7,7 +7,7 @@ A public guide to every park in and around Rochester, NY. Readers are the genera
 ### Content
 
 **Park**:
-A single standalone public green space the site covers, in the city, a town, a village, the county, or the state system: outdoor land a government owns that the public can go to and use, or will use when an official plan is built. A village Park is listed with the town that holds the village. A street median, a traffic triangle, a street corner, school grounds and a building are not Parks (ADR-0005, ADR-0006).
+A single standalone public green space the site covers, in the city, a town, a village, the county, or the state system: outdoor land a government owns that the public can go to and use, or will use when an official plan is built. A village Park is listed with the town that holds the village. A street median, a traffic triangle, a street corner, school grounds and a building are not Parks (ADR-0005, ADR-0006). ADR-0009 gives the test that proves a city building has grounds of its own.
 _Avoid_: Location, site, venue
 
 **Facility**:
