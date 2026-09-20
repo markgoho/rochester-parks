@@ -1,6 +1,6 @@
 ---
 title: 'Flint St Recreation Center'
-description: 'The city playground grounds that hold the Willie Walker Lightfoot R-Center'
+description: 'The city grounds that hold the Willie Walker Lightfoot R-Center'
 type: 'park'
 address:
   streetAddress: 'Flint St and Costello Pk'

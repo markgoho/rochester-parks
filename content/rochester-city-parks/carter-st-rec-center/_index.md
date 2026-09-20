@@ -1,6 +1,6 @@
 ---
 title: 'Carter St. Rec Center'
-description: 'The city playground grounds that hold the Carter Street R-Center'
+description: 'The city grounds that hold the Carter Street R-Center'
 type: 'park'
 address:
   streetAddress: '500 Carter Street'

@@ -1,6 +1,6 @@
 ---
 title: 'Avenue D Rec. Center'
-description: 'The city playground grounds that hold the Avenue D R-Center'
+description: 'The city grounds that hold the Avenue D R-Center'
 type: 'park'
 address:
   streetAddress: '212 Avenue D'

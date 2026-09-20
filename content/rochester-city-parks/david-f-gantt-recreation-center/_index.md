@@ -1,6 +1,6 @@
 ---
 title: 'David F. Gantt Recreation Center'
-description: 'The city recreation grounds that hold the David F. Gantt R-Center'
+description: 'The city grounds that hold the David F. Gantt R-Center'
 type: 'park'
 address:
   streetAddress: '700 North Street'

@@ -1,6 +1,6 @@
 ---
 title: 'Campbell St Rec Center'
-description: 'The city recreation grounds that hold the Hope R-Center'
+description: 'The city grounds that hold the Hope R-Center'
 type: 'park'
 address:
   streetAddress: '524 Campbell St.'

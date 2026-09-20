@@ -24,10 +24,7 @@ facilities:
       - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         opens: '10:00'
         closes: '17:00'
-    closedOn:
-      - Thanksgiving
-      - Christmas
-      - "New Year's Day"
+    closedOn: ['Thanksgiving', 'Christmas', "New Year's Day"]
     geo:
       latitude: 43.20738388916131
       longitude: -77.62537168425285

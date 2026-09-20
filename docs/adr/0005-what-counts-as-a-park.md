@@ -1,6 +1,6 @@
 # ADR-0005: What counts as a Park
 
-- **Status**: Accepted, amended by ADR-0006
+- **Status**: Accepted, amended by ADR-0006 and ADR-0009
 - **Date**: 2026-09-18
 
 ## Context
@@ -29,7 +29,6 @@ For a city row, the city's own park GIS layer (`Hosted/Parks_Open_Space_Points`)
 - Winton / Merchants stays rejected. The city layer types it as a Street Mall.
 - Barrington Street Park gets a page. The city layer lists it as a pocket park.
 - The R-Centers and community centers that are still Park pages are handled in #75 under this rule.
-- #75 applied the rule and settled how to read it. **The park layer is the first check, not the only check.** A row proves grounds; no row does not disprove them, because the layer holds 174 curated, named parks and not every parcel of public land. When it is silent, `Open_Data/Tax_Parcels_Open_Data` decides: a City-owned parcel classed Playground or Recreational Facility is grounds, and a parcel classed School is school grounds, which `Hosted/RCSD_Schools` confirms by an exact address match.
-- #75 deleted seven pages, with no redirect and no replacement. `adams-street-rec-center`, `clinton-baden-rec-center`, `humboldt-recreation-center`, `south-avenue-recreation-center` and `ryan-community-center` each share an address with an operating RCSD school. `danforth-community-center` sits on a parcel classed Benevolent, beside a Street Mall. `seneca-park-zoo` became a `Zoo` Facility of `seneca-park`.
-- #75 kept six pages. `gardiner-avenue` took the layer's `name2`, Gardiner Ave. Playground. `avenue-d-rec-center`, `campbell-st-rec-center`, `carter-st-rec-center`, `david-f-gantt-recreation-center` and `flint-st-recreation-center` sit on City parcels classed Playground or Recreational Facility, 2.9 to 6.8 acres, with no school at the address, so they stay on the Edgerton pattern. Each gained its R-Center as a Facility.
-- Those five keep a building name as a title on purpose. No source names their grounds: the park layer has no row, the 2014 `Open_Data/Parks_Open_Data` layer names only the buildings, and OpenStreetMap names nothing there. The owner chose a building name over an invented one. Each `description` says the page covers the grounds that hold the R-Center. A source that names the grounds renames the page.
+- #75 applied the grounds clause to the thirteen pages named for a building. It found that this ADR does not say how to prove grounds exist. ADR-0009 gives that test and amends this one.
+- #75 deleted six pages and moved a seventh, with no redirect. Five R-Centers share an address with an operating RCSD school: `adams-street-rec-center`, `clinton-baden-rec-center`, `humboldt-recreation-center`, `south-avenue-recreation-center` and `ryan-community-center`. `danforth-community-center` sits on a parcel classed Benevolent, beside a Street Mall. `seneca-park-zoo` became a `Zoo` Facility of `seneca-park`, and its own page went.
+- #75 kept six pages. `gardiner-avenue` took the layer's `name2`, Gardiner Ave. Playground, as its title. Five R-Centers sit on City parcels that ADR-0009's test proves are grounds, so they stay on the Edgerton pattern: `avenue-d-rec-center`, `campbell-st-rec-center`, `carter-st-rec-center`, `david-f-gantt-recreation-center` and `flint-st-recreation-center`. Each gained its R-Center as a Facility.
