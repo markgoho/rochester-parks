@@ -8,5 +8,3 @@ geo:
 sameAs:
   - 'https://www.cityofrochester.gov/locations/austin-steward-plaza'
 ---
-
-A page for this park is still being written.

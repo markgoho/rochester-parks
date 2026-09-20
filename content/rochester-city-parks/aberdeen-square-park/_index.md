@@ -15,4 +15,4 @@ geo:
   longitude: -77.6469903
 ---
 
-A page for this park is still being written.
+Aberdeen Square Park is a large grassy field in the 19th Ward neighborhood. Neighbors use it to play soccer and football. Local schools also use the field for their activities. The park hosts the annual Aberdeen Square Fair, a gathering for the neighborhood.

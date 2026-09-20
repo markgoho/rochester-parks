@@ -18,6 +18,8 @@ amenities:
 geo:
   latitude: 43.1700765
   longitude: -77.6038475
+sameAs:
+  - 'https://www.cityofrochester.gov/departments/department-environmental-services-des/minister-franklin-d-florence-civil-rights'
 ---
 
-A page for this park is still being written.
+Baden Park is in the Upper Falls neighborhood of northeast Rochester. The 1964 Rochester uprising began on land that is now part of the park. The city and local groups are planning a civil rights heritage site here. It will carry the name of Minister Franklin D. Florence.

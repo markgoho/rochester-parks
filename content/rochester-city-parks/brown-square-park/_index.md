@@ -15,4 +15,4 @@ geo:
   longitude: -77.623473
 ---
 
-A page for this park is still being written.
+Brown Square Park sits on the site of the old Brown Brothers' Tract. The firm of landscape architect Frederick Law Olmsted designed the park. It's a good spot for a picnic or a short walk. Rochester Animal Services is nearby, so you'll often see volunteers walking dogs along the paths.

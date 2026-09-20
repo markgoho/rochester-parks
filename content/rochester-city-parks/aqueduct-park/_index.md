@@ -12,4 +12,4 @@ sameAs:
   - 'https://www.cityofrochester.gov/locations/aqueduct-park'
 ---
 
-A page for this park is still being written.
+Aqueduct Park sits on the bank of the Genesee River, just west of the Main Street Bridge. It is a green space in the middle of downtown Rochester. Downtown workers often stop here for lunch. You can also watch holiday fireworks from the park. Picnic benches and tables let you sit and enjoy the river view.
