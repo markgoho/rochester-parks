@@ -26,3 +26,5 @@ geo:
   latitude: 43.2088704
   longitude: -77.6961386
 ---
+
+Carter Park sits among stores and other businesses on Long Pond Road. The 12-acre park has athletic fields, a playground, and sport courts. You will find baseball fields, tennis courts, basketball courts, and an open-air shelter.

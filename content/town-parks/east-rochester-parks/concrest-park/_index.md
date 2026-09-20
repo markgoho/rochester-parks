@@ -19,3 +19,5 @@ sameAs:
   - 'https://eastrochesterny.gov/Community-Resources/Parks/Concrest-Park'
   - 'https://maps.google.com/?cid=8717121539632512678'
 ---
+
+Concrest Park has a basketball court and a pavilion. Its playground is built for younger children.
