@@ -15,4 +15,4 @@ geo:
   longitude: -77.5445663
 ---
 
-A page for this park is still being written.
+Browncroft Rose Garden Park is a green space with a collection of antique rose varieties. A group of neighbors takes care of the roses. The park marks the entrance to the historic Browncroft neighborhood.

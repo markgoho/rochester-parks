@@ -38,4 +38,4 @@ facilities:
         closes: '19:30'
 ---
 
-A page for this park is still being written.
+Edgerton Park has grounds at 41 Backus Street. They hold a spray park, outdoor basketball courts, a football and soccer field, a playground, and a baseball and softball field. The Edgerton R-Center sits on the grounds. It has a game room, a kitchen, a computer lab, a meeting room, and the historic Stardust Ballroom. Inside the R-Center is a model train room that opened on October 27, 1950. Governor Thomas E. Dewey opened it, driving a miniature golden spike into the track. The room shows scenes of Rochester and its landmarks through all four seasons.

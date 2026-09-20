@@ -25,4 +25,4 @@ geo:
   longitude: -77.623322
 ---
 
-A page for this park is still being written.
+Troup Street Park sits near the center of Rochester. It has an open ball field and a soccer field, plus a full-size basketball court. You can also find two play structures, swings, benches, and a spray feature. A bike rack sits at the park, and an exercise trail runs around the perimeter for walking or jogging.

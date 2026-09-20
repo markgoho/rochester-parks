@@ -22,4 +22,4 @@ geo:
   longitude: -77.6654239
 ---
 
-A page for this park is still being written.
+Sebastian Park is a neighborhood park. It has a modern playground, a picnic pavilion, baseball fields, and basketball courts. The park is named for Father Sebastian Contegiacomo. He came from Italy and served at Most Precious Blood Parish.

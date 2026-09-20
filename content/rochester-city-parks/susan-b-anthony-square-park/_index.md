@@ -17,4 +17,4 @@ geo:
   longitude: -77.6272246
 ---
 
-A page for this park is still being written.
+Susan B. Anthony Square Park sits off West Main Street, just west of downtown Rochester. It is close to the Susan B. Anthony House Museum. The park's focal point is a bronze sculpture called "Let's Have Tea." It shows Susan B. Anthony and Frederick Douglass, two Rochester leaders in the fight for civil rights. Rochester sculptor Pepsy Kettavong made the sculpture. It was erected in 2001 at the request of the Susan B. Anthony Neighborhood Association. Anthony led the fight for women's rights and suffrage. Douglass led the movement to end slavery before the Civil War.

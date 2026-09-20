@@ -20,4 +20,4 @@ geo:
   longitude: -77.5551353
 ---
 
-A page for this park is still being written.
+Farmington Park sits at 600 Merchants Road, in the North Winton Village neighborhood of the city's southeast quadrant. It has one public tennis court and two pickleball courts. It also has a half-court basketball court and ball fields.

@@ -18,4 +18,4 @@ geo:
   longitude: -77.6159327
 ---
 
-A page for this park is still being written.
+Lunsford Circle Park is a circular green space in the Corn Hill neighborhood, on the city's southwest side. It is named for an early, prominent African American physician. The park has gardens and a gazebo. Musicians use the gazebo as a stage during the Corn Hill Arts Festival. The rest of the year, neighbors use it as a meeting place.

@@ -14,4 +14,4 @@ sameAs:
   - 'https://www.cityofrochester.gov/locations/genesee-crossroads-park'
 ---
 
-A page for this park is still being written.
+Genesee Crossroads Park is a long, narrow park along the east bank of the Genesee River in downtown Rochester. It runs from Andrews Street to the Sister Cities Pedestrian Bridge and Bragdon Place. The Sister Cities Bridge links it to Austin Steward Plaza, on the river's west bank. The park is part of the city's ROC the Riverway program. The city is rebuilding it to open up the river and to tie it into the Genesee Riverway Trail.

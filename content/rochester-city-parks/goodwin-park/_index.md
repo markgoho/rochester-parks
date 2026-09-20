@@ -14,5 +14,3 @@ geo:
   latitude: 43.1523154
   longitude: -77.5935516
 ---
-
-A page for this park is still being written.

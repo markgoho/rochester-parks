@@ -13,6 +13,8 @@ amenities:
 geo:
   latitude: 43.1462163
   longitude: -77.6207538
+sameAs:
+  - 'https://www.whec.com/top-news/mayor-evans-cuts-ribbon-on-renovated-playground-on-bronson-ave/'
 ---
 
-A page for this park is still being written.
+The city renovated the Bronson Avenue playground on Dr. Samuel McCree Way in 2022. Neighbors gave input and feedback on the design. The upgrades added a full-size basketball court and an outdoor classroom with boulder seating. Workers also added benches, bike racks, and sidewalks.
