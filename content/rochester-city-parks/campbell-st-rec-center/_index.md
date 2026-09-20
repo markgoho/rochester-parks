@@ -1,6 +1,6 @@
 ---
 title: 'Campbell St Rec Center'
-description: 'A Rochester City Park called Campbell St Rec Center'
+description: 'The city recreation grounds that hold the Hope R-Center'
 type: 'park'
 address:
   streetAddress: '524 Campbell St.'
@@ -22,6 +22,9 @@ geo:
   longitude: -77.6425758
 sameAs:
   - 'https://www.cityofrochester.gov/locations/hope-r-center'
+facilities:
+  - name: 'Hope R-Center'
+    type: SportsActivityLocation
 ---
 
 A page for this park is still being written.

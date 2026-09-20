@@ -1,6 +1,6 @@
 ---
-title: 'Gardiner Avenue'
-description: 'A Rochester City Park called Gardiner Avenue'
+title: 'Gardiner Ave. Playground'
+description: 'A Rochester City Park called Gardiner Ave. Playground'
 type: 'park'
 acres: 2.9
 address:
@@ -20,6 +20,9 @@ geo:
   longitude: -77.6522279
 sameAs:
   - 'https://www.cityofrochester.gov/locations/roxie-ann-sinkler-r-center'
+facilities:
+  - name: 'Roxie Ann Sinkler R-Center'
+    type: SportsActivityLocation
 ---
 
 A page for this park is still being written.
