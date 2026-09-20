@@ -21,4 +21,4 @@ openingHours:
     closes: 'dusk'
 ---
 
-Carpenter Park sits at the Port of Pittsford, at 22 North Main Street, on the Erie Canal in Pittsford. The park covers about 2 acres. It has benches, picnic tables, and walkways along the water, plus a boat dock with electric hookups and water access, and an outdoor stage with electric service for events. The upper part of the park holds the Pittsford Veterans Monument.
+Carpenter Park sits at the Port of Pittsford, at 22 North Main Street, on the Erie Canal in Pittsford. The park covers about 2 acres. It has benches, picnic tables, and walkways along the water. A boat dock offers electric hookups and water. An outdoor stage with power hosts events. The upper part of the park holds the Pittsford Veterans Monument.

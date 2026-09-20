@@ -17,4 +17,4 @@ sameAs:
   - 'https://www.geneseelandtrust.org/conservation-easements/gosnell-big-woods'
 ---
 
-Gosnell Big Woods Preserve covers 168 acres of woods, fields, and meadows at 680 Vosburg Road. In 2006, Thomas and Georgia Gosnell gave a conservation easement on the old-growth Big Woods to the Genesee Land Trust, then gave the underlying land to the Town of Webster and sold more nearby land to round out the preserve. Some of the oak, hickory, and hemlock trees are as old as 350 years. You can walk the Big Field Trail, the Big Woods Trail, or the Meadow Trail, and watch for turkey, deer, and other birds.
+Gosnell Big Woods Preserve covers 168 acres of woods, fields, and meadows at 680 Vosburg Road. In 2006, Thomas and Georgia Gosnell gave a conservation easement on the old-growth Big Woods to the Genesee Land Trust. They then gave the land itself to the Town of Webster. They also sold more nearby land to round out the preserve. Some of the oak, hickory, and hemlock trees are as old as 350 years. You can walk the Big Field Trail, the Big Woods Trail, or the Meadow Trail, and watch for turkey, deer, and other birds.

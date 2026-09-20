@@ -25,4 +25,4 @@ openingHours:
     closes: 'dusk'
 ---
 
-Empire Park sits at 2130 Empire Boulevard. The Webster Athletic Association uses it for baseball, and it has baseball fields, walking trails, and restrooms.
+Empire Park sits at 2130 Empire Boulevard. It has baseball fields, walking trails, and restrooms. The Webster Athletic Association plays baseball here.

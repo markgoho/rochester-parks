@@ -23,4 +23,4 @@ sameAs:
   - 'https://perinton.gov/wp-content/uploads/Park-Plan-2019-1-compressed.pdf'
 ---
 
-Center Park East is a 45-acre park and open space off Ayrault Road in northeast Perinton. It has soccer fields, hiking trails, and a cross-country ski course, with restrooms and water nearby. Dog owners can walk dogs off leash, since the town allows this on its open-space land. The park itself has few amenities, but it sits near Center Park West and the Perinton Community Center, and connects to the Trolley Trail, so visitors can reach more facilities close by.
+Center Park East is a 45-acre park and open space off Ayrault Road in northeast Perinton. It has soccer fields, hiking trails, and a cross-country ski course, with restrooms and water nearby. You can walk a dog off leash here. The town allows this on its open-space land. The park itself has little else. But it sits near Center Park West and the Perinton Community Center. It also connects to the Trolley Trail, so more is close by.

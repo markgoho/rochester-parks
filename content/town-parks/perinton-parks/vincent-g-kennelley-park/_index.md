@@ -12,4 +12,4 @@ sameAs:
   - 'https://fairportny.com/community/events_and_festivals.php'
 ---
 
-Vincent G. Kennelley Park is a Village of Fairport park with a gazebo at its center. The Village named it for Mayor Vincent Kennelley, who died in office in 1989. The Village owns the park and gazebo, and the Village Clerk manages them for the Board of Trustees. The gazebo hosts a summer concert series, sponsored by the Fairport Public Library and the Town of Perinton's Recreation and Parks Department. People can also rent the gazebo for weddings and other private events, and renting it does not close off the rest of the park.
+Vincent G. Kennelley Park is a Village of Fairport park with a gazebo at its center. The Village named it for Mayor Vincent Kennelley, who died in office in 1989. The Village owns the park and gazebo, and the Village Clerk manages them for the Board of Trustees. The gazebo hosts a summer concert series. The Fairport Public Library and the town's Recreation and Parks Department pay for it. You can also rent the gazebo for a wedding or other private event. Renting it does not close off the rest of the park.

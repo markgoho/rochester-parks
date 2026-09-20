@@ -17,4 +17,4 @@ sameAs:
   - 'https://webstertrails.org/trail/state-road-nature-preserve/'
 ---
 
-State Road Nature Preserve covers 83 acres off State Road. A 1.1-mile loop trail runs through woods and grasslands, following part of Four Mile Creek. Parking is on the road shoulder for now, though the town plans a small lot. The land was farmland with apple orchards decades ago. A farm pond went in during the 1950s, and after that the drier ground grew back into woods while the wetter ground became grass and cattails. Trails can be muddy in spring, and poison ivy grows along them.
+State Road Nature Preserve covers 83 acres off State Road. A 1.1-mile loop trail runs through woods and grasslands, following part of Four Mile Creek. Parking is on the road shoulder for now, though the town plans a small lot. The land was farmland with apple orchards decades ago. A farm pond went in during the 1950s. After that the drier ground grew back into woods. The wetter ground became grass and cattails. Trails can be muddy in spring, and poison ivy grows along them.

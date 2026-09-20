@@ -20,4 +20,4 @@ openingHours:
     closes: 'dusk'
 ---
 
-King’s Bend Park is a 19-acre park at 170 West Jefferson Road in Pittsford. It has a playground, fishing ponds, and two winterized lodges you can rent, one that holds up to 99 people and one that holds up to 50. The park takes its name from a large bend the original Erie Canal made nearby, near where Clover Street meets West Jefferson Road and close to Lock 32. An 1840 watercolor by George Harvey shows a canal packet boat rounding that bend; the painting is kept in the Pittsford Town Historian's office.
+King’s Bend Park is a 19-acre park at 170 West Jefferson Road in Pittsford. It has a playground and fishing ponds. You can rent either of its two heated lodges, which hold 99 people and 50 people. The park is named for a large bend the first Erie Canal made nearby. The bend was close to Lock 32, where Clover Street meets West Jefferson Road. An 1840 watercolor by George Harvey shows a boat rounding that bend. The Pittsford Town Historian's office keeps the painting.

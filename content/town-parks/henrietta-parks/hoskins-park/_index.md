@@ -23,4 +23,4 @@ openingHours:
     closes: 'sunset'
 ---
 
-Hoskins Park is a Town of Henrietta park on Pinnacle Road. In 2024 Rush-Henrietta school district alumni started an Educators Grove memorial here, to honor teachers and mentors. The first trees planted honor Bob Sagan and Paul Cimicata, both tied to the district's theater program. Town Supervisor Steve Schultz said the plan may grow to honor other local figures. These could include two former RIT professors who lived in Henrietta.
+Hoskins Park is a Town of Henrietta park on Pinnacle Road. In 2024, former Rush-Henrietta students started an Educators Grove here. It honors teachers and mentors. The first trees planted honor Bob Sagan and Paul Cimicata, both tied to the district's theater program. Town Supervisor Steve Schultz said the grove may grow to honor others from the town. Two former RIT professors who lived in Henrietta are possible.
