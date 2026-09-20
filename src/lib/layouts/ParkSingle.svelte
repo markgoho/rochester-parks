@@ -277,23 +277,27 @@
           </div>
         </section>
 
-        {#if park.amenities.length}
-          <section class="panel amenities">
-            <div class="panel__head">
-              <span class="eyebrow">What is there</span>
-              <span class="eyebrow mono">{park.amenities.length} recorded</span>
-            </div>
-            <ul class="panel__body tags">
-              {#each park.amenities as amenity (amenity)}
-                <li><span class="tag">{amenity}</span></li>
-              {/each}
-            </ul>
-          </section>
-        {/if}
       </aside>
     {/if}
 
     <div class="body">
+      <!-- What is there heads the write-up rather than the rail. The list
+           grows with the park, and a rail that holds both panels outgrows the
+           screen, which would leave the reader scrolling the rail. -->
+      {#if park?.amenities.length}
+        <section class="panel amenities">
+          <div class="panel__head">
+            <span class="eyebrow">What is there</span>
+            <span class="eyebrow mono">{park.amenities.length} recorded</span>
+          </div>
+          <ul class="panel__body tags">
+            {#each park.amenities as amenity (amenity)}
+              <li><span class="tag">{amenity}</span></li>
+            {/each}
+          </ul>
+        </section>
+      {/if}
+
       {#if park && recorded === 0}
         <div class="panel empty">
           <div class="panel__head">
@@ -410,21 +414,24 @@
     min-width: 0;
   }
 
-  /* Above the write-up, the panels share a row when two fit. */
+  /* The rail holds one panel, above the write-up or beside it. */
   .rail {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
     align-items: start;
-    gap: var(--space-20);
   }
 
   /* Wide: the facts move to a rail beside the write-up. That takes a line of
-     prose at --measure (68ch of Public Sans, 41.6rem), the gap, and the
-     smallest rail: 41.6 + 3.5 + 22.5 = 67.6rem. Below that, a rail beside the
-     text would squeeze both, so the facts stay above it. */
+     prose at --measure (68ch of Public Sans, 41.6rem), the gap, and the rail
+     at 21em, which is about 23rem where the query fires. Below that, a rail
+     beside the text would squeeze both, so the facts stay above it.
+
+     The rail holds an address, a pair of coordinates and a host name, so its
+     width is a count of letters, not of pixels. An em keeps that count the
+     same when the type grows: the page is capped at --page-max, so a wide
+     screen does not widen a rem rail, and its text then runs out of room. */
   @container park (inline-size >= 68rem) {
     .layout {
-      grid-template-columns: minmax(0, 1fr) clamp(22.5rem, 28%, 37.5rem);
+      grid-template-columns: minmax(0, 1fr) 21em;
       grid-template-rows: auto 1fr;
       column-gap: var(--space-56);
     }
@@ -437,7 +444,6 @@
     .rail {
       grid-column: 2;
       grid-row: 1 / span 2;
-      grid-template-columns: minmax(0, 1fr);
       /* The rail stays on screen while the write-up scrolls. It does not
          fill its grid area, so it has room to move. A rail taller than the
          screen scrolls by itself, so its last panel is never out of reach. */
@@ -449,14 +455,17 @@
     }
   }
 
-  .empty {
+  /* The two panels in the body column line up with the prose under them. */
+  .empty,
+  .amenities {
+    max-width: var(--measure);
     margin-bottom: var(--space-24);
   }
 
   /* Where the park is: its outline beside the facts that place it. */
   .place--map {
     display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr);
+    grid-template-columns: 8em minmax(0, 1fr);
     align-items: center;
     gap: var(--space-20);
   }
@@ -475,7 +484,7 @@
   }
 
   .facts--grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9em), 1fr));
     gap: var(--space-20);
   }
 
