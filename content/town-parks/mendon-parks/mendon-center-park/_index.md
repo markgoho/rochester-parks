@@ -12,8 +12,8 @@ geo:
   latitude: 42.9964985
   longitude: -77.559641
 sameAs:
-  - 'https://townofmendon.org/wp-content/uploads/2020/10/Mendon_Center_Park.pdf'
+  - 'https://townofmendonny.gov/wp-content/uploads/2020/10/Mendon_Center_Park.pdf'
   - 'https://maps.google.com/?cid=7149681940509327301'
 ---
 
-A page for this park is still being written.
+Mendon Center Park is a Town of Mendon park on State Route 251 (Rush-Mendon Road), about 0.1 miles east of Mendon Center Road. It has three tennis courts and a drinking fountain.
