@@ -26,3 +26,5 @@ openingHours:
     opens: 'dawn'
     closes: 'dusk'
 ---
+
+Wegman Road Park covers two acres with an open pavilion sized 20 by 40 feet. You can bring kids to play on two play structures, a climbing wall, and a swing set. The park also has an accessible restroom.

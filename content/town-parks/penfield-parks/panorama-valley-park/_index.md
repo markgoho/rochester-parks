@@ -6,7 +6,7 @@ geo:
   latitude: 43.1329241193716
   longitude: -77.49875727810087
 address:
-  streetAddress: '1201 Penfield Road'
+  streetAddress: '1601 Penfield Road'
   addressLocality: 'Rochester'
   addressRegion: 'NY'
   addressCountry: 'US'
@@ -17,4 +17,7 @@ amenities:
 sameAs:
   - 'https://www.penfieldny.gov/detail_T12_R54.php'
   - 'https://maps.google.com/?cid=18382767646029911702'
+  - 'https://www.penfieldny.gov/residents/parks_and_nature_preserves.php'
 ---
+
+Panorama Valley Park sits behind Panorama Plaza, next to Irondequoit Creek. You can launch a canoe or kayak here. The park also has a picnic pavilion for gatherings.
