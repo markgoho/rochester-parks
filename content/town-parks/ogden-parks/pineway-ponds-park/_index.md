@@ -24,23 +24,23 @@ facilities:
   - name: 'Boetcher Lodge'
     type: EventVenue
     rental:
-      email: 'recreation@ogdenny.com'
+      url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14721'
       phone: '(585) 617-6174'
   - name: 'Owens Lodge'
     type: EventVenue
     rental:
-      email: 'recreation@ogdenny.com'
+      url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14722'
       phone: '(585) 617-6174'
   - name: 'Canal Days Lodge'
     type: EventVenue
     rental:
-      email: 'recreation@ogdenny.com'
+      url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14724'
       phone: '(585) 617-6174'
       season: 'Early May to early October'
   - name: 'Gravelle Lodge'
     type: EventVenue
     rental:
-      email: 'recreation@ogdenny.com'
+      url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14723'
       phone: '(585) 617-6174'
       season: 'Early May to early October'
   - name: 'Splash Pad'

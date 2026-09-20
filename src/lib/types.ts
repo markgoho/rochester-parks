@@ -115,8 +115,6 @@ export type FacilityType =
 export interface FacilityRental {
   /** The page that takes a booking. */
   url?: string;
-  /** The address that takes a booking by email. */
-  email?: string;
   /** The telephone number that takes a booking, as the source prints it. */
   phone?: string;
   /**

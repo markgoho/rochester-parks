@@ -55,7 +55,18 @@ export function longestWord(text: string): number {
  */
 export function telHref(phone: string): string {
   const digits = phone.replace(/\D/g, '');
-  if (digits.length === 10) return `tel:+1${digits}`;
+  // A number that names its own country code keeps it, and is tested first:
+  // a country code and a local number can both come to ten digits.
   if (phone.trimStart().startsWith('+')) return `tel:+${digits}`;
+  if (digits.length === 10) return `tel:+1${digits}`;
   return `tel:${digits}`;
+}
+
+/**
+ * The site a link goes to, as a reader would name it: the host without the
+ * "www." nobody says out loud. A link the front matter got wrong throws here
+ * and fails the build, the way a wrong season does.
+ */
+export function hostOf(url: string): string {
+  return new URL(url).hostname.replace(/^www\./, '');
 }

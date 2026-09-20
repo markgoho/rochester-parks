@@ -393,7 +393,6 @@ export function facilitiesJsonLd(
     name: facility.name,
     geo: facility.geo && { '@type': 'GeoCoordinates', ...facility.geo },
     url: facility.rental?.url,
-    email: facility.rental?.email,
     telephone: facility.rental?.phone,
     ...(facility.openingHours?.length || facility.closedOn?.length
       ? hoursJsonLd(facility.openingHours ?? [], facility.closedOn ?? [], today)

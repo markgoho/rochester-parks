@@ -8,6 +8,7 @@
   import {
     formatAcres,
     formatCoordinates,
+    hostOf,
     longestWord,
     parkTransitionName,
     telHref,
@@ -105,9 +106,7 @@
     park?.links.filter((item) => item !== official) ?? []
   );
   /** The site the facts come from, as a reader would name it. */
-  const officialHost = $derived(
-    official ? new URL(official.url).hostname.replace(/^www\./, '') : ''
-  );
+  const officialHost = $derived(official ? hostOf(official.url) : '');
   const uid = $props.id();
   /** The panel is worth drawing only once one of its rows has content. */
   const hasBasics = $derived(
@@ -121,10 +120,6 @@
       .length
   );
   const facilities = $derived(park?.facilities ?? []);
-  /** The site that takes a booking, as a reader would name it. */
-  function bookingHost(url: string): string {
-    return new URL(url).hostname.replace(/^www\./, '');
-  }
 </script>
 
 <!-- The article is the container the layout queries. A container cannot query
@@ -338,29 +333,17 @@
                     {rental.season}
                   </p>
                 {/if}
-                {#if rental && (rental.url || rental.email || rental.phone)}
+                {#if rental && (rental.url || rental.phone)}
                   <p class="facility__line facility__book">
                     <span class="eyebrow">Book it</span>
                     {#if rental.url}
                       <a href={rental.url} rel="noopener"
-                        >{bookingHost(rental.url)}</a
+                        >{hostOf(rental.url)}</a
                       >
-                    {/if}
-                    {#if rental.email}
-                      <a href="mailto:{rental.email}">{rental.email}</a>
                     {/if}
                     {#if rental.phone}
                       <a href={telHref(rental.phone)}>{rental.phone}</a>
                     {/if}
-                  </p>
-                {:else}
-                  <!-- A Facility nobody rents still needs a line of its own:
-                       the name alone only repeats the hours panel, and what a
-                       reader wants to know is that no booking stands in the
-                       way. Its hours stay in the panel. -->
-                  <p class="facility__line">
-                    <span class="eyebrow">Open to all</span>
-                    No booking
                   </p>
                 {/if}
               </li>
@@ -616,6 +599,8 @@
     color: var(--ink-soft);
   }
 
+  /* The section sits beside the write-up, not inside it, so it cannot take
+     the `.prose a` rule and states the same three properties itself. */
   .facility__book a {
     color: var(--orange-ink);
     text-decoration: underline;

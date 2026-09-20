@@ -283,7 +283,7 @@ describe('facilitiesJsonLd', () => {
     name: 'Canal Days Lodge',
     type: 'EventVenue',
     rental: {
-      email: 'recreation@ogdenny.com',
+      url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14724',
       phone: '(585) 617-6174',
       season: 'Early May to early October',
     },
@@ -307,9 +307,7 @@ describe('facilitiesJsonLd', () => {
       {
         '@type': 'EventVenue',
         name: 'Canal Days Lodge',
-        geo: undefined,
-        url: undefined,
-        email: 'recreation@ogdenny.com',
+        url: 'https://ogdenny.myrec.com/info/facilities/area_info.aspx?FacilityID=14712&AreaID=14724',
         telephone: '(585) 617-6174',
       },
     ]);
