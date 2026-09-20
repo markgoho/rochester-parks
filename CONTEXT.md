@@ -26,6 +26,14 @@ _Avoid_: Linear park, greenway, path
 The page describing one Park, sourced from markdown under `content/`. Everything about the Park is on this one page. Its topics, such as Facilities, Trails inside the Park, and History, are headings on the page, not pages of their own (ADR-0007).
 _Avoid_: Park post, park entry
 
+**Sourced description**:
+A Park page body written from official pages the writer read, in the third person, with every fact traceable to a URL in that page's `sameAs`. It is held to the plain-prose standard: 8th-grade reading level, no sentence over 25 words, brief, no marketing adjective and no dated fact (#150, #159).
+_Avoid_: Blurb, summary, copy
+
+**Visit report**:
+The owner's own first-person write-up of a walk through a Park, with the photos from that walk, carried over from the WordPress site. It is not a Sourced description and is not held to that standard: it is a voice, not a record of official facts, and no agent rewrites one (#170).
+_Avoid_: Review, write-up, trip report
+
 **Neighborhood**:
 One of the areas the City of Rochester divides itself into, as the city's own boundary layer draws them. A Neighborhood is to the city what a town is to the county: the city Park List draws the whole city with its Neighborhoods, and a city Park page draws only the Neighborhood that holds the Park. A Neighborhood has no page of its own.
 _Avoid_: District, quadrant, ward
