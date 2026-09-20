@@ -31,3 +31,5 @@ sameAs:
   - 'https://www.brightonny.gov/261/Buckland-Park'
   - 'https://maps.google.com/?cid=6114343675923835446'
 ---
+
+Buckland Park sits at 1341 Westfall Road in Brighton. It has one Major League Baseball field, two junior baseball fields, and five multi-use fields. You will also find three playgrounds, two tennis courts, and two basketball courts. A trail runs around the perimeter of the park, and a lodge and a pavilion sit inside it. The Town restored the historic Buckland farmhouse and its gardens with help from the Brighton Rotary, Historic Brighton, and the Allyn's Creek Garden Club. The renovated farmhouse opened on September 8, 2007.

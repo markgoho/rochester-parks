@@ -22,4 +22,4 @@ sameAs:
   - 'https://www.brightonny.gov/827/Sandra-L-Frankel-Nature-Park'
 ---
 
-A page for this park is still being written.
+Sandra L. Frankel Nature Park covers 72 acres that the Town bought in 2012. The land once supplied clay for Brighton's brickmaking industry in the 1800s and early 1900s. The Brickyard Trail, a 0.8-mile shared-use path through the park, opened on June 29, 2016. It connects Town Hall on Elmwood Avenue to Buckland Park on Westfall Road. The trail crosses northern woodlands, then one of the largest urban wetlands in the Rochester area. State funding, arranged through Assembly Majority Leader Joseph D. Morelle's office, helped pay for construction.
