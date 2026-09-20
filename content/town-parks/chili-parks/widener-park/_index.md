@@ -13,4 +13,8 @@ address:
 acres: 28
 sameAs:
   - 'https://maps.google.com/?cid=16752422339001703920'
+  - 'https://www.chiliny.gov/Facilities/Facility/Details/Widener-Park-3'
+  - 'https://www.chiliny.gov/347/Parks'
 ---
+
+Widener Park is a 28-acre park with wooded trails. It is home to the Chili Disc Golf Course, an 18-hole course. In 1999, the course hosted the PDGA Professional Disc Golf World Championships. The park also has a butterfly garden and open green space. A picnic pavilion here holds up to 40 people and has electricity. The town does not allow alcohol in its parks. A Little Free Library, built by local Boy Scouts, is in the park.
