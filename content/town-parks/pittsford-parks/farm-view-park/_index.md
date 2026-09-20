@@ -15,4 +15,4 @@ openingHours:
     season: { from: 'April 1', through: 'October 31' }
 ---
 
-A page for this park is still being written.
+Farm View Park is a 19-acre park at 1901 Calkins Road in Pittsford. It has three multipurpose fields used for baseball and softball, along with restrooms.

@@ -13,5 +13,7 @@ address:
   addressCountry: 'US'
 sameAs:
   - 'https://maps.google.com/?cid=1388205969212693325'
+  - 'https://parks.ny.gov/blog/happy-trails-empire-state-trail-itineraries-safety-tips-fall'
 ---
-## Lock 32 State Park
+
+Lock 32 sits along the Erie Canalway Trail in Pittsford, near Nazareth University. The lock offers a primitive campsite for people traveling the canal by bike or boat. It is one of only two publicly managed campgrounds along the Erie Canal in western New York.
