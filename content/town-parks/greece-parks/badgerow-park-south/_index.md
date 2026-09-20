@@ -23,3 +23,5 @@ sameAs:
   - 'https://greeceny.gov/departments/parksandrecreation/parks/badgerow-park-south/'
   - 'https://maps.google.com/?cid=5127912719985404874'
 ---
+
+Badgerow Park South sits off Latta Road and covers 33.1 acres. It shares many features with its sister park, Badgerow Park North, including athletic fields, a playground, and a shelter. A trail connects the two parks.

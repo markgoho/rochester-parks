@@ -20,3 +20,5 @@ openingHours:
     opens: '09:00'
     closes: '22:00'
 ---
+
+Village Park sits behind Hilton Quest School on West Avenue. The Jennejahn Lodge inside seats up to 99 people and has a kitchen, restrooms, and a wood-burning fireplace. The lodge has 60 parking spaces.

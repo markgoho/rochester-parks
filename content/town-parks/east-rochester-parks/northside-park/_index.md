@@ -20,3 +20,5 @@ sameAs:
   - 'https://eastrochesterny.gov/Community-Resources/Parks/Northside-Park'
   - 'https://maps.google.com/?cid=3760783777344823520'
 ---
+
+Northside Park serves the northside neighborhood. It has a playground, a pavilion, and a basketball court, plus open space for kids to use.

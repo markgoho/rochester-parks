@@ -52,6 +52,9 @@ facilities:
         season: { from: 'Memorial Day', through: 'Labor Day' }
 hoursCheckedOn: '2026-09-19'
 sameAs:
+  - 'https://ogdenny.gov/wp-content/uploads/2024/09/2024-Parks-Master-Plan2.pdf'
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14712'
   - 'https://maps.google.com/?cid=2856768458763345135'
 ---
+
+Pineway Ponds Park is the Town of Ogden's largest park, with more than 75 acres north of the canal near the Village of Spencerport. It has seven playfields, three hard-surface courts, and a playground with a splash pad. Four lodges in the park hold events and meetings. Walking paths run along the edges of the fields, and you can fish in the ponds with a license. About 250 parking spots serve the park.

@@ -15,3 +15,5 @@ sameAs:
   - 'https://www.townofwheatland.org/points-of-interest'
   - 'https://maps.google.com/?cid=16046864305206165041'
 ---
+
+Freeman Park sits in the Hamlet of Mumford, and the Town of Wheatland maintains it. The park has a pavilion, a playground, and a baseball and softball field. Open green space gives room for games with family and friends. The park does not allow alcohol or tobacco.

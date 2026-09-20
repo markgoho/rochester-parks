@@ -20,6 +20,9 @@ amenities:
   - Soccer Field
 sameAs:
   - 'https://eastrochesterny.gov/Community-Resources/Parks/Legion-Eyer-Park'
+  - 'https://mcnygenealogy.com/pictures/2200/pic-2230.htm'
   - 'https://maps.google.com/?cid=16177856665259352664'
 ---
 ![Legion Eyer Park](Legion-Eyer-Park-for-website.jpg)
+
+Legion Eyer Park opened in 1936 on land given by Harry Eyer. Local schools used it for football, track, and tennis until 1956, and the park was remodeled in 1993. You can get in at the east end of East Chestnut Street. It has the Neil Marvel Pavilion, Quinzi Lodge, baseball and soccer fields, and basketball courts. The park is home to East Rochester Youth Soccer.

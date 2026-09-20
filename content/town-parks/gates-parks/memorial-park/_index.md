@@ -23,3 +23,5 @@ sameAs:
   - 'https://gatesny.myrec.com/info/facilities/details.aspx?FacilityID=14699'
   - 'https://maps.google.com/?cid=10374689392587300648'
 ---
+
+Memorial Park covers 30 acres at 160 Spencerport Road. It has three ball diamonds, two football and soccer fields, a natural pond, and a playground. You can also play bocce on site. Outdoor restrooms serve the fields, and an enclosed shelter with a covered patio stands nearby. The shelter is heated but has no air conditioning.
