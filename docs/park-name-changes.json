@@ -50,7 +50,7 @@
       "source": "park database"
     },
     {
-      "path": "content/town-parks/perinton-parks/ayrualt-boat-launch/_index.md",
+      "path": "content/town-parks/perinton-parks/ayrault-boat-launch/_index.md",
       "old": "Ayrualt Boat Launch",
       "new": "Ayrault Boat Launch",
       "source": "park database"
@@ -68,7 +68,7 @@
       "source": "park database"
     },
     {
-      "path": "content/town-parks/sweden-parks/corbet-park/_index.md",
+      "path": "content/town-parks/sweden-parks/corbett-park/_index.md",
       "old": "Corbet Park",
       "new": "Corbett Park",
       "source": "park database"
@@ -86,10 +86,22 @@
       "source": "park database"
     },
     {
-      "path": "content/town-parks/wheatland-parks/canawagus-park/_index.md",
+      "path": "content/town-parks/wheatland-parks/canawaugus-park/_index.md",
       "old": "Canawagus Park",
       "new": "Canawaugus Park",
       "source": "park database"
+    },
+    {
+      "path": "content/town-parks/sweden-parks/evergreen-tot-lot/_index.md",
+      "old": "Evergreen Tot Lot",
+      "new": "Evergreen Park",
+      "source": "official Village of Brockport parks page"
+    },
+    {
+      "path": "content/town-parks/clarkson-parks/kimball-park/_index.md",
+      "old": "Clarkson Recreation Park",
+      "new": "Kimball Park",
+      "source": "official Town of Clarkson parks page"
     },
     {
       "path": "content/rochester-city-parks/otto-henderberg/_index.md",
