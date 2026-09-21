@@ -37,9 +37,10 @@ export interface ParkJsonLdInput {
  * One Park node per park page, built from the park's own front matter and
  * body. The name, the URL and that it is a park are always stated. A Park
  * is free and open to the public unless its front matter marks it
- * `planned` (a Planned Park, CONTEXT.md, ADR-0006), in which case those two
- * claims are left out rather than asserted false; everything else appears
- * only where the content records it.
+ * `planned` (a Planned Park, CONTEXT.md, ADR-0006) or `former` (a Former
+ * Park, CONTEXT.md, ADR-0010), in which case those two claims are left out
+ * rather than asserted false; everything else appears only where the
+ * content records it.
  */
 export function parkJsonLd(
   input: ParkJsonLdInput,
@@ -54,7 +55,9 @@ export function parkJsonLd(
     url: absUrl(input.url),
     name: input.title,
     description: fm.description,
-    ...(fm.planned ? {} : { isAccessibleForFree: true, publicAccess: true }),
+    ...(fm.planned || meta.former
+      ? {}
+      : { isAccessibleForFree: true, publicAccess: true }),
     address: {
       '@type': 'PostalAddress',
       streetAddress: fm.address?.streetAddress,
@@ -71,8 +74,6 @@ export function parkJsonLd(
     image: input.image,
     telephone: fm.telephone,
     sameAs: fm.sameAs,
-    ...hoursJsonLd(meta.openingHours ?? [], meta.closedOn ?? [], today),
-    containsPlace: facilitiesJsonLd(meta.facilities ?? [], today),
     // schema.org Park has no size property, so acreage rides along as a
     // named value rather than being dropped.
     additionalProperty: fm.acres
@@ -83,12 +84,21 @@ export function parkJsonLd(
           unitText: 'acre',
         }
       : undefined,
-    // The page's own amenity names, so the markup and the panel agree.
-    amenityFeature: meta.amenities.map((name) => ({
-      '@type': 'LocationFeatureSpecification',
-      name,
-      value: true,
-    })),
+    // A Former Park's hours, facilities and amenities are history, not
+    // present facts, so none of the three publish here (CONTEXT.md,
+    // ADR-0010).
+    ...(meta.former
+      ? {}
+      : {
+          ...hoursJsonLd(meta.openingHours ?? [], meta.closedOn ?? [], today),
+          containsPlace: facilitiesJsonLd(meta.facilities ?? [], today),
+          // The page's own amenity names, so the markup and the panel agree.
+          amenityFeature: meta.amenities.map((name) => ({
+            '@type': 'LocationFeatureSpecification',
+            name,
+            value: true,
+          })),
+        }),
     containedInPlace: meta.section.title
       ? {
           '@type': 'Place',

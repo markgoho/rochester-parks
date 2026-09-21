@@ -2,6 +2,7 @@
 title: 'Forest Hills Playground'
 description: 'A park in Greece'
 type: 'park'
+former: true
 amenities:
   - Barbecue
   - Open Field
@@ -9,8 +10,6 @@ amenities:
   - Playground
   - Swingset
 ---
-
-This park has been decommissioned and is no longer a park.
 
 ![Forest hills playground panorama](forweb-PANO_20120613_185303.jpg)
 

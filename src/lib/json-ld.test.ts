@@ -12,16 +12,17 @@ const baseMeta: ParkMeta = {
   status: { written: false, inventoried: false, photographed: false },
   links: [],
   section: { title: 'State', url: '/state-parks/' },
+  former: false,
 };
 
 const baseFrontMatter: FrontMatter = {
   description: 'A test park',
 };
 
-function jsonLdFor(frontMatter: FrontMatter) {
+function jsonLdFor(frontMatter: FrontMatter, meta: ParkMeta = baseMeta) {
   return parkJsonLd(
     { url: '/state-parks/test-park/', title: 'Test Park', frontMatter },
-    baseMeta,
+    meta,
     TODAY
   ) as Record<string, unknown>;
 }
@@ -46,5 +47,36 @@ describe('parkJsonLd', () => {
     expect(node['@type']).toBe('Park');
     expect(node.name).toBe('Test Park');
     expect(node.url).toBe('https://rochesterparks.org/state-parks/test-park/');
+  });
+
+  test('a Former Park publishes no amenities, hours or facilities as present facts', () => {
+    const node = jsonLdFor(baseFrontMatter, {
+      ...baseMeta,
+      former: true,
+      amenities: ['Playground', 'Swingset'],
+      openingHours: [{ dayOfWeek: ['Monday'], opens: '09:00', closes: '17:00' }],
+      facilities: [{ name: 'Shelter 1', type: 'EventVenue' }],
+    });
+    expect('amenityFeature' in node).toBe(false);
+    expect('openingHoursSpecification' in node).toBe(false);
+    expect('containsPlace' in node).toBe(false);
+    expect('isAccessibleForFree' in node).toBe(false);
+    expect('publicAccess' in node).toBe(false);
+    expect(node['@type']).toBe('Park');
+    expect(node.name).toBe('Test Park');
+  });
+
+  test('a non-Former Park with amenities still publishes them as present facts', () => {
+    const node = jsonLdFor(baseFrontMatter, {
+      ...baseMeta,
+      amenities: ['Playground'],
+    });
+    expect(node.amenityFeature).toEqual([
+      {
+        '@type': 'LocationFeatureSpecification',
+        name: 'Playground',
+        value: true,
+      },
+    ]);
   });
 });
