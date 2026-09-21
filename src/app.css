@@ -453,6 +453,9 @@ p {
   color: var(--orange);
 }
 
+/* The container every page's own layout queries. Its content column is
+   narrower than the viewport by 2 * --page-inset, so a page component
+   converts a viewport breakpoint by subtracting that margin. */
 .main {
   display: grid;
   grid-template-columns:
@@ -460,6 +463,7 @@ p {
     [content-start] minmax(0, 1fr)
     [content-end] var(--page-inset)
     [full-end];
+  container-type: inline-size;
 }
 
 /* Each part of a page goes in the page column. min-width: 0 lets it shrink
@@ -722,6 +726,9 @@ p {
 
 /* Wider viewports */
 
+/* Stays a viewport query: it sets the page's own margin (--gutter), which
+   every container below measures itself against, and sizes the header nav.
+   A container cannot query the viewport that defines its own width. */
 @media (min-width: 48rem) {
   :root {
     --gutter: var(--space-44);

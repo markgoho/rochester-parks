@@ -257,7 +257,10 @@
     font-size: var(--step--1);
   }
 
-  @media (min-width: 60rem) {
+  /* .hero and .finder are children of <main>, so that is the container: it
+     measures 59.0625rem (945px) at 60rem (960px) of viewport, the browser's
+     reserved scrollbar-gutter (15px) being the only difference. */
+  @container (inline-size >= 59.0625rem) {
     .hero {
       grid-template-columns: minmax(0, 1fr) 34rem;
       align-items: center;
@@ -273,8 +276,10 @@
 
   /* The map holds 28 town names at 8 units in a 673-unit viewBox, so how well
      it reads is decided by how wide it is drawn. Past this width the text
-     column has more room than it can use, and the map takes the rest. */
-  @media (min-width: 80rem) {
+     column has more room than it can use, and the map takes the rest.
+     80rem (1280px) of viewport is 79.0625rem (1265px) of <main>, the same
+     15px scrollbar-gutter short. */
+  @container (inline-size >= 79.0625rem) {
     .hero {
       grid-template-columns: minmax(0, 1fr) 44rem;
     }

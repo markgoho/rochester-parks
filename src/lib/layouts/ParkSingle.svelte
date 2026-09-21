@@ -665,7 +665,12 @@
     font-weight: var(--weight-bold);
   }
 
-  @media (min-width: 40rem) {
+  /* The paging nav sits in the article, so it queries the same "park"
+     container as the rail above. .park sits in <main>'s content column,
+     inside the page's 2 * 1.25rem margin (the gutter is still the narrow
+     one below 48rem), so 40rem (640px) of viewport is 36.5625rem (585px)
+     here. */
+  @container park (inline-size >= 36.5625rem) {
     .paging {
       grid-template-columns: 1fr 1fr;
     }

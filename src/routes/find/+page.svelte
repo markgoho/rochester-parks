@@ -383,7 +383,10 @@
     color: var(--ink-soft);
   }
 
-  @media (min-width: 60rem) {
+  /* .summary and .row are children of <main>, so that is the container: it
+     measures 59.0625rem (945px) at 60rem (960px) of viewport, the browser's
+     reserved scrollbar-gutter (15px) being the only difference. */
+  @container (inline-size >= 59.0625rem) {
     .summary {
       grid-template-columns: minmax(0, 1fr) 30rem;
       align-items: stretch;
