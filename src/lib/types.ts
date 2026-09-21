@@ -178,6 +178,8 @@ export interface FrontMatter {
   acresSource?: AcresSource;
   /** Whether the Park is a Planned Park. See CONTEXT.md and ADR-0006. */
   planned?: boolean;
+  /** Whether the Park is a Former Park. See CONTEXT.md and ADR-0010. */
+  former?: boolean;
 }
 
 /** Park facts a list or detail page can show without re-reading the markdown. */
@@ -210,6 +212,12 @@ export interface ParkMeta {
   hoursCheckedOn?: string;
   /** The section a park belongs to, e.g. "Greece" or "Monroe County". */
   section: PageLink;
+  /**
+   * Whether this is a Former Park: a Park a government has since
+   * decommissioned, closed for good or built over (CONTEXT.md, ADR-0010).
+   * An authored fact, not derived from the markdown like `ParkStatus`.
+   */
+  former: boolean;
 }
 
 /** What the facts panel shows for one set of hours. */
@@ -265,8 +273,13 @@ export interface Page extends PageLink {
    */
   canonical?: string;
   html: string;
-  /** Child pages and sections, sorted by title. */
+  /** Child pages and sections, sorted by title. Excludes Former Parks. */
   children: ChildLink[];
+  /**
+   * On a park list, the section's Former Parks, listed separately (ADR-0010).
+   * Present only where a section holds at least one.
+   */
+  formerParks?: ChildLink[];
   /** Home first, then each ancestor section. */
   ancestors: PageLink[];
   jsonLd: object[];

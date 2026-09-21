@@ -438,6 +438,18 @@
         )}
       {/if}
 
+      {#if page.formerParks?.length}
+        <!-- A Former Park stays off every park count, map and list, but
+             keeps its page: this is the one place a reader can still find
+             it from here (ADR-0010). -->
+        <h2 class="more">Former parks</h2>
+        <ul class="other">
+          {#each page.formerParks as child (child.url)}
+            <li><a href={child.url}>{child.title}</a></li>
+          {/each}
+        </ul>
+      {/if}
+
       {#if other.length}
         <h2 class="more">More about this section</h2>
         <ul class="other">

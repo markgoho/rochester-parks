@@ -7,6 +7,7 @@ import { normaliseAmenity } from '#lib/amenities.js';
 import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType } from '#lib/park-types.js';
+import { isFormerPark, splitFormerParks } from '#lib/park-split.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import { FACILITIES_TOPIC, topicsOf } from '#lib/topics.js';
 import type {
@@ -201,13 +202,23 @@ function link({ title, url }: PageLink): PageLink {
   return { title, url };
 }
 
-function childrenOf(url: string): ChildLink[] {
+function childrenRaw(url: string): ChildLink[] {
   return [...nodes.values()]
     .filter((node) => node.url !== url && parentOf(node.url)?.url === url)
     .map((node) =>
       isPark(node) ? { ...link(node), park: parkMetaOf(node) } : link(node)
     )
     .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+}
+
+/** A section's children, minus its Former Parks (ADR-0010). */
+function childrenOf(url: string): ChildLink[] {
+  return splitFormerParks(childrenRaw(url)).active;
+}
+
+/** A section's own Former Parks, for its "Former parks" heading. */
+function formerParksOf(url: string): ChildLink[] {
+  return splitFormerParks(childrenRaw(url)).former;
 }
 
 function ancestorsOf(url: string): PageLink[] {
@@ -342,6 +353,7 @@ function parkMetaOf(node: Node): ParkMeta {
       title: parent ? sectionLabel(parent.title) : '',
       url: parent?.url ?? '/',
     },
+    former: Boolean(node.frontMatter.former),
   };
 }
 
@@ -592,7 +604,10 @@ export function getPage(url: string): Page | undefined {
     ancestors,
     jsonLd,
     ...(layout === 'park-list'
-      ? { section: { title: sectionLabel(node.title), url: node.url } }
+      ? {
+          section: { title: sectionLabel(node.title), url: node.url },
+          formerParks: formerParksOf(url),
+        }
       : {}),
     ...(park
       ? {
@@ -611,7 +626,10 @@ export function getPage(url: string): Page | undefined {
 
 /** Totals the home page states, all counted from the content itself. */
 export function getSiteSummary(): SiteSummary {
-  const parks = [...nodes.values()].filter(isPark).map(parkMetaOf);
+  const parks = [...nodes.values()]
+    .filter(isPark)
+    .map(parkMetaOf)
+    .filter((park) => !isFormerPark(park));
   const { amenities, sections } = getParkIndex();
   return {
     parks: parks.length,
@@ -630,19 +648,19 @@ export function getSiteSummary(): SiteSummary {
 export function getParkIndex(): ParkIndex {
   const parks: ParkIndexEntry[] = [...nodes.values()]
     .filter(isPark)
-    .map((node) => {
-      const meta = parkMetaOf(node);
-      return {
-        title: node.title,
-        url: node.url,
-        section: meta.section.title,
-        sectionUrl: meta.section.url,
-        amenities: meta.amenities,
-        written: meta.status.written,
-        photographed: meta.status.photographed,
-        acres: meta.acres,
-      };
-    })
+    .map((node) => ({ node, meta: parkMetaOf(node) }))
+    // A Former Park is not a result in `/find` (ADR-0010).
+    .filter(({ meta }) => !isFormerPark(meta))
+    .map(({ node, meta }) => ({
+      title: node.title,
+      url: node.url,
+      section: meta.section.title,
+      sectionUrl: meta.section.url,
+      amenities: meta.amenities,
+      written: meta.status.written,
+      photographed: meta.status.photographed,
+      acres: meta.acres,
+    }))
     .sort((a, b) => a.title.localeCompare(b.title, 'en'));
 
   const tally = <T>(items: T[], key: (item: T) => string) => {

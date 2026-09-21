@@ -303,13 +303,22 @@
     {/if}
 
     <div class="body">
+      <!-- A Former Park says so before anything else in the body, above the
+           write-up (ADR-0010). This replaces the body sentence the markdown
+           used to carry. -->
+      {#if park?.former}
+        <p class="note">This park no longer exists.</p>
+      {/if}
+
       <!-- What is there heads the write-up rather than the rail. The list
            grows with the park, and a rail that holds both panels outgrows the
            screen, which would leave the reader scrolling the rail. -->
       {#if park?.amenities.length}
         <section class="panel amenities">
           <div class="panel__head">
-            <span class="eyebrow">What is there</span>
+            <span class="eyebrow"
+              >{park.former ? 'What was there' : 'What is there'}</span
+            >
             <span class="eyebrow mono">{park.amenities.length} recorded</span>
           </div>
           <ul class="panel__body tags">
@@ -479,7 +488,9 @@
     }
   }
 
-  /* The two panels in the body column line up with the prose under them. */
+  /* The Former Park notice and the two panels in the body column line up
+     with the prose under them. */
+  .note,
   .empty,
   .amenities {
     max-width: var(--measure);
