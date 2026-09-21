@@ -866,8 +866,9 @@
   }
 
   /* The same "list" container the town map above queries. .list sits in
-     <main>'s content column, inside the page's 2 * 2.75rem margin, so
-     60rem (960px) of viewport is 53.5625rem (857px) here. */
+     <main>'s content column, inside the page's 2 * 2.75rem margin and this
+     browser's reserved scrollbar-gutter, so 60rem (960px) of viewport is
+     53.5625rem (857px) here. */
   @container list (inline-size >= 53.5625rem) {
     /* The county map sits beside the heading, not above the table. */
     .head:has(.locator) {

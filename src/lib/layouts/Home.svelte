@@ -257,9 +257,10 @@
     font-size: var(--step--1);
   }
 
-  /* .hero and .finder are children of <main>, so that is the container: it
-     measures 59.0625rem (945px) at 60rem (960px) of viewport, the browser's
-     reserved scrollbar-gutter (15px) being the only difference. */
+  /* .hero and .finder are children of <main>, the container both query (see
+     .main in app.css): measured here at 59.0625rem (945px) of <main> where
+     60rem (960px) of viewport used to fire the old @media rule, the
+     browser's reserved scrollbar-gutter being the whole difference. */
   @container (inline-size >= 59.0625rem) {
     .hero {
       grid-template-columns: minmax(0, 1fr) 34rem;
@@ -276,9 +277,9 @@
 
   /* The map holds 28 town names at 8 units in a 673-unit viewBox, so how well
      it reads is decided by how wide it is drawn. Past this width the text
-     column has more room than it can use, and the map takes the rest.
-     80rem (1280px) of viewport is 79.0625rem (1265px) of <main>, the same
-     15px scrollbar-gutter short. */
+     column has more room than it can use, and the map takes the rest. Same
+     conversion as above: 80rem (1280px) of viewport is 79.0625rem (1265px)
+     of <main>. */
   @container (inline-size >= 79.0625rem) {
     .hero {
       grid-template-columns: minmax(0, 1fr) 44rem;

@@ -453,9 +453,11 @@ p {
   color: var(--orange);
 }
 
-/* The container every page's own layout queries. Its content column is
-   narrower than the viewport by 2 * --page-inset, so a page component
-   converts a viewport breakpoint by subtracting that margin. */
+/* The container every page's own layout queries. Its own inline-size is the
+   viewport minus this browser's reserved scrollbar-gutter (a few px); a
+   child in its content column is narrower still, by 2 * --page-inset. A
+   page component converts a viewport breakpoint by measuring which one it
+   sits in and subtracting that margin. */
 .main {
   display: grid;
   grid-template-columns:

@@ -383,9 +383,9 @@
     color: var(--ink-soft);
   }
 
-  /* .summary and .row are children of <main>, so that is the container: it
-     measures 59.0625rem (945px) at 60rem (960px) of viewport, the browser's
-     reserved scrollbar-gutter (15px) being the only difference. */
+  /* .summary is a child of <main>, and .row (nested in .results below it)
+     has no nearer container, so both query <main> (see .main in app.css):
+     same conversion as Home.svelte's 60rem hero rule, 59.0625rem (945px). */
   @container (inline-size >= 59.0625rem) {
     .summary {
       grid-template-columns: minmax(0, 1fr) 30rem;
