@@ -1,6 +1,13 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
+import { Marked } from 'marked';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
+import { markedSmartypants } from 'marked-smartypants';
 import { topicsOf } from './topics.js';
+
+// Same pipeline as src/lib/server/content.ts, so this exercises the real
+// `<h2 id="...">` shape gfmHeadingId renders, not a hand-written stand-in.
+const markdown = new Marked(gfmHeadingId(), markedSmartypants());
 
 describe('topicsOf', () => {
   test('no h2 headings gives no topics', () => {
@@ -75,6 +82,24 @@ describe('topicsOf', () => {
     ).toEqual([
       { id: 'facilities', title: 'Facilities' },
       { id: 'history', title: 'History' },
+    ]);
+  });
+
+  test('reads real content.ts-pipeline output, ampersand and all', () => {
+    const html = markdown.parse(
+      [
+        '## Park Guidelines & Rules',
+        '',
+        'Body text.',
+        '',
+        '## Trails',
+        '',
+        'More body text.',
+      ].join('\n')
+    ) as string;
+    expect(topicsOf(html)).toEqual([
+      { id: 'park-guidelines--rules', title: 'Park Guidelines & Rules' },
+      { id: 'trails', title: 'Trails' },
     ]);
   });
 });
