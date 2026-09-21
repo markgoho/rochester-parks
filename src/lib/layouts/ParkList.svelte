@@ -10,6 +10,7 @@
   import {
     isCitySection,
     isCountySection,
+    isStateSection,
     municipality,
     placeAt,
     townKey,
@@ -37,6 +38,13 @@
   const county = $derived(isCountySection(section.url));
   /** The city section is drawn with its neighborhoods. */
   const city = $derived(isCitySection(section.url));
+  /**
+   * The state section has no town of its own either, so it takes the same
+   * frame as the county section, with a dot for each park that has `geo`.
+   * See `isStateSection` on Genesee Valley Greenway, filed here as a Park
+   * until its Trails-section move (#116) lands.
+   */
+  const state = $derived(isStateSection(section.url));
 
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
@@ -208,6 +216,10 @@
         </div>
       {:else if county}
         <div class="locator"><TownLocator /></div>
+      {:else if state}
+        <div class="locator">
+          <TownLocator {markers} label="The state parks of Monroe County" />
+        </div>
       {/if}
     </div>
 
