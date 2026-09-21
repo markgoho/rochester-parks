@@ -14,6 +14,7 @@ import { normaliseAmenity } from '#lib/amenities.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import type {
+  AcresSource,
   ChildLink,
   Facility,
   Holiday,
@@ -50,6 +51,8 @@ interface FrontMatter {
   amenities?: string[];
   /** Park size in acres. ADR-0003 ranks the sources. */
   acres?: number;
+  /** Which source set `acres`. ADR-0003 ranks the sources. */
+  acresSource?: AcresSource;
 }
 
 interface Node extends PageLink {
@@ -354,6 +357,7 @@ function parkMetaOf(node: Node): ParkMeta {
         ? { latitude, longitude }
         : undefined,
     acres: node.frontMatter.acres,
+    acresSource: node.frontMatter.acresSource,
     address: parkAddress(node),
     links: parkLinks(node.frontMatter.sameAs ?? []),
     openingHours: node.frontMatter.openingHours

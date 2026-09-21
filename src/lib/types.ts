@@ -40,6 +40,12 @@ export interface ParkLink {
   label: string;
 }
 
+/**
+ * Which source set a Park's `acres` figure, in ADR-0003's priority order:
+ * the official page beats the park database, which beats the city GIS layer.
+ */
+export type AcresSource = 'official page' | 'park database' | 'city GIS layer';
+
 export type DayOfWeek =
   | 'Monday'
   | 'Tuesday'
@@ -156,6 +162,8 @@ export interface ParkMeta {
   geo?: { latitude: number; longitude: number };
   /** Park size in acres, when the front matter says. An authored fact. */
   acres?: number;
+  /** Which source set `acres`, when the front matter records one. */
+  acresSource?: AcresSource;
   /** Where the park is, in words. */
   address?: ParkAddress;
   /** Off-site pages about the park, labelled. Empty when there are none. */
