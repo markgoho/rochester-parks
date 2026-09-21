@@ -6,10 +6,8 @@ geo:
   latitude: 43.0187388
   longitude: -77.7475843
 address:
-  streetAddress: '4260 River Rd'
-  addressLocality: 'Scottsville'
+  addressLocality: 'Rochester'
   addressRegion: 'NY'
-  postalCode: '14546'
   addressCountry: 'US'
 amenities:
   - Bridle Trail
@@ -20,7 +18,6 @@ amenities:
   - Trails
 sameAs:
   - 'https://parks.ny.gov/visit/state-parks/genesee-valley-greenway-state-park'
-  - 'https://maps.google.com/?cid=3431446732967664162'
 hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
