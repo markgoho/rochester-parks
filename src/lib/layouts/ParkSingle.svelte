@@ -28,29 +28,44 @@
 
   let { page }: { page: Page } = $props();
 
-  const park = $derived(page.park);
+  /**
+   * A Trail page carries `page.trail` instead of `page.park` (ADR-0006): a
+   * Trail is never a Park, so the two never both exist on one page, and
+   * `meta` reads whichever one this page has. Everything below that
+   * branches on Park-only concepts (the section kind, the Neighborhood map)
+   * checks `trailPage` first, so a Trail never takes a Park-only path.
+   */
+  const trailPage = $derived(page.trail !== undefined);
+  const meta = $derived(page.park ?? page.trail);
   const county = $derived(
-    park !== undefined && isCountySection(park.section.url)
+    meta !== undefined && !trailPage && isCountySection(meta.section.url)
   );
-  const city = $derived(park !== undefined && isCitySection(park.section.url));
+  const city = $derived(
+    meta !== undefined && !trailPage && isCitySection(meta.section.url)
+  );
   /**
    * The town to draw. The coordinates decide it, so a park filed under one
    * section but standing in another is shown where it really is; the section
    * is only the fallback. A county park has no town section to fall back on,
    * and several stand in the city, so the city counts as a place for it. A
-   * city park is drawn on its neighborhood instead.
+   * city park is drawn on its neighborhood instead. A Trail is filed in one
+   * flat `/trails/` section, not a city or town section, so it always takes
+   * the same county-wide lookup a county park does: `city` is never true for
+   * a Trail, so it never takes the Neighborhood branch below, even when its
+   * point stands inside Rochester (it draws the city's own outline there,
+   * the same one the county-wide map uses).
    */
   const town = $derived(
-    park?.geo && !city
-      ? county
-        ? placeAt(park.geo.latitude, park.geo.longitude)
-        : (townAt(park.geo.latitude, park.geo.longitude) ??
-          townKey(park.section.url))
+    meta?.geo && !city
+      ? trailPage || county
+        ? placeAt(meta.geo.latitude, meta.geo.longitude)
+        : (townAt(meta.geo.latitude, meta.geo.longitude) ??
+          townKey(meta.section.url))
       : undefined
   );
   const neighborhood = $derived(
-    park?.geo && city
-      ? neighborhoodAt(park.geo.latitude, park.geo.longitude)
+    meta?.geo && city
+      ? neighborhoodAt(meta.geo.latitude, meta.geo.longitude)
       : undefined
   );
   const shape = $derived(
@@ -67,14 +82,14 @@
       (town ? municipality(town)?.label.text : undefined) ??
       (county ? 'Monroe County' : city ? 'Rochester' : undefined)
   );
-  const status = $derived(park?.status);
+  const status = $derived(meta?.status);
   /** The address on one line, with any part the front matter left out dropped. */
   const address = $derived(
-    park?.address
+    meta?.address
       ? [
-          park.address.streetAddress,
-          park.address.addressLocality,
-          [park.address.addressRegion, park.address.postalCode]
+          meta.address.streetAddress,
+          meta.address.addressLocality,
+          [meta.address.addressRegion, meta.address.postalCode]
             .filter(Boolean)
             .join(' '),
         ]
@@ -101,10 +116,10 @@
    * cited on its own. The other links stay under "Elsewhere".
    */
   const official = $derived(
-    park?.links.find((item) => item.label === 'Official page')
+    meta?.links.find((item) => item.label === 'Official page')
   );
   const elsewhere = $derived(
-    park?.links.filter((item) => item !== official) ?? []
+    meta?.links.filter((item) => item !== official) ?? []
   );
   /** The site the facts come from, as a reader would name it. */
   const officialHost = $derived(official ? hostOf(official.url) : '');
@@ -113,14 +128,14 @@
   const hasBasics = $derived(
     hasHours ||
       Boolean(address) ||
-      park?.acres !== undefined ||
-      (park?.links.length ?? 0) > 0
+      meta?.acres !== undefined ||
+      (meta?.links.length ?? 0) > 0
   );
   const recorded = $derived(
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
       .length
   );
-  const facilities = $derived(park?.facilities ?? []);
+  const facilities = $derived(meta?.facilities ?? []);
   /**
    * Already reduced to `[]` unless the page has two or more topics
    * (ADR-0007), so the nav below only has to check its length.
@@ -155,37 +170,37 @@
       </div>
     {/snippet}
 
-    {#if park}
+    {#if meta}
       <!-- The facts about the park. Beside the write-up when there is room for
            both, above it when there is not. -->
       <aside class="rail" aria-label="About {page.title}">
         <section class="panel basics">
           <div class="panel__head">
             <span class="eyebrow">The basics</span>
-            <ParkFlags status={park.status} />
+            <ParkFlags status={meta.status} />
           </div>
           <div class="panel__body">
             <!-- Where the park is: the outline beside the facts it stands for. -->
-            {#if (park.geo && where) || address}
-              <div class="place" class:place--map={park.geo && where}>
-                {#if park.geo && where}
+            {#if (meta.geo && where) || address}
+              <div class="place" class:place--map={meta.geo && where}>
+                {#if meta.geo && where}
                   <div class="map">
                     {#if shape}
                       <TownShape
                         {shape}
                         {villages}
                         label="{page.title} in {where}"
-                        markers={[{ title: page.title, ...park.geo }]}
+                        markers={[{ title: page.title, ...meta.geo }]}
                       />
                     {:else if city}
                       <CityLocator
                         label="{page.title} in {where}"
-                        markers={[{ title: page.title, ...park.geo }]}
+                        markers={[{ title: page.title, ...meta.geo }]}
                       />
                     {:else}
                       <TownLocator
                         label="{page.title} in {where}"
-                        markers={[{ title: page.title, ...park.geo }]}
+                        markers={[{ title: page.title, ...meta.geo }]}
                       />
                     {/if}
                   </div>
@@ -207,10 +222,10 @@
                       <dd>{address}</dd>
                     </div>
                   {/if}
-                  {#if park.geo}
+                  {#if meta.geo}
                     <div class="fact">
                       <dt class="eyebrow">Coordinates</dt>
-                      <dd class="mono">{formatCoordinates(park.geo)}</dd>
+                      <dd class="mono">{formatCoordinates(meta.geo)}</dd>
                     </div>
                   {/if}
                 </dl>
@@ -253,10 +268,10 @@
                   {/if}
                 </dd>
               </div>
-              {#if park.acres !== undefined}
+              {#if meta.acres !== undefined}
                 <div class="fact">
                   <dt class="eyebrow">Size</dt>
-                  <dd class="mono">{formatAcres(park.acres)} acres</dd>
+                  <dd class="mono">{formatAcres(meta.acres)} acres</dd>
                 </div>
               {/if}
               {#if official}
@@ -306,30 +321,30 @@
       <!-- A Former Park says so before anything else in the body, above the
            write-up (ADR-0010). This replaces the body sentence the markdown
            used to carry. -->
-      {#if park?.former}
+      {#if page.park?.former}
         <p class="note">This park no longer exists.</p>
       {/if}
 
       <!-- What is there heads the write-up rather than the rail. The list
            grows with the park, and a rail that holds both panels outgrows the
            screen, which would leave the reader scrolling the rail. -->
-      {#if park?.amenities.length}
+      {#if meta?.amenities.length}
         <section class="panel amenities">
           <div class="panel__head">
             <span class="eyebrow"
-              >{park.former ? 'What was there' : 'What is there'}</span
+              >{meta.former ? 'What was there' : 'What is there'}</span
             >
-            <span class="eyebrow mono">{park.amenities.length} recorded</span>
+            <span class="eyebrow mono">{meta.amenities.length} recorded</span>
           </div>
           <ul class="panel__body tags">
-            {#each park.amenities as amenity (amenity)}
+            {#each meta.amenities as amenity (amenity)}
               <li><span class="tag">{amenity}</span></li>
             {/each}
           </ul>
         </section>
       {/if}
 
-      {#if park && recorded === 0}
+      {#if meta && recorded === 0}
         <div class="panel empty">
           <div class="panel__head">
             <span class="eyebrow">What we know</span>
@@ -388,7 +403,7 @@
       {/if}
 
       {#if page.children.length}
-        <nav class="sub" aria-label="More about this park">
+        <nav class="sub" aria-label="More about {page.title}">
           <p class="eyebrow">More about {page.title}</p>
           <ul>
             {#each page.children as child (child.url)}
@@ -401,10 +416,10 @@
   </div>
 
   {#if page.neighbours?.previous || page.neighbours?.next}
-    <nav class="paging" aria-label="Other parks in {park?.section.title}">
+    <nav class="paging" aria-label="Other parks in {page.park?.section.title}">
       {#if page.neighbours.previous}
         <a class="paging__link" href={page.neighbours.previous.url}>
-          <span class="eyebrow">Previous in {park?.section.title}</span>
+          <span class="eyebrow">Previous in {page.park?.section.title}</span>
           <span class="paging__title">{page.neighbours.previous.title}</span>
         </a>
       {/if}
@@ -413,7 +428,7 @@
           class="paging__link paging__link--end"
           href={page.neighbours.next.url}
         >
-          <span class="eyebrow">Next in {park?.section.title}</span>
+          <span class="eyebrow">Next in {page.park?.section.title}</span>
           <span class="paging__title">{page.neighbours.next.title}</span>
         </a>
       {/if}

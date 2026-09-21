@@ -299,7 +299,7 @@ export interface Page extends PageLink {
   /** The parks either side of this one in its section, by title. */
   neighbours?: { previous?: PageLink; next?: PageLink };
   /**
-   * Present on park pages only: the page navigation's topics, already
+   * Present on Park and Trail pages: the page navigation's topics, already
    * reduced to `[]` unless there are two or more (ADR-0007).
    */
   topics?: Topic[];

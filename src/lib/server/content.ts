@@ -637,7 +637,16 @@ export function getPage(url: string): Page | undefined {
           ),
         }
       : {}),
-    ...(trailMeta ? { trail: trailMeta, hours: parkHours(trailMeta) } : {}),
+    ...(trailMeta
+      ? {
+          trail: trailMeta,
+          hours: parkHours(trailMeta),
+          topics: topicsOf(
+            node.html,
+            trailMeta.facilities?.length ? [FACILITIES_TOPIC] : []
+          ),
+        }
+      : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
   };
 }
