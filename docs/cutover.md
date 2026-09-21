@@ -19,6 +19,7 @@ Target: **the bare apex, no `www` anywhere.** WordPress currently 301s the apex 
 
 - [x] Seven old URLs with no match here now 301 in `firebase.json`.
 - [x] Gates Town Park, the one old URL with no equivalent page, now 301s to First Responders Park. They are one park under its old and new names.
+- [x] Lehigh Valley Trail Linear Park, Genesee Valley Greenway State Park, and Chili Nature Trail moved to the Trails section (ADR-0006, #116). Their old URLs 301 to the new ones in `firebase.json`.
 - [x] Pirsch Analytics in `src/app.html`. Ignores localhost, so dev and preview never report.
 - [x] `robots.txt` opened to crawlers, ahead of cutover. See step 1.
 

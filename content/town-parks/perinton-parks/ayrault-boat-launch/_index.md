@@ -20,4 +20,4 @@ sameAs:
   - 'https://perinton.gov/wp-content/uploads/Park-Plan-2019-1-compressed.pdf'
 ---
 
-Ayrault Boat Launch is a small park off Ayrault Road in northwest Perinton. It gives boaters an access point to the Erie Canal, with a boat ramp, docks, and parking sized for boat trailers. Kayakers and canoers use it often, since it is an easy place to put in on the canal. The launch does not connect to other parks by land, but boaters can reach other canal-side parks, including Bushnell's Basin.
+Ayrault Boat Launch is a small park off Ayrault Road in northwest Perinton. It gives boaters an access point to the [Erie Canal](/trails/erie-canal-trail/), with a boat ramp, docks, and parking sized for boat trailers. Kayakers and canoers use it often, since it is an easy place to put in on the canal. The launch does not connect to other parks by land, but boaters can reach other canal-side parks, including Bushnell's Basin.

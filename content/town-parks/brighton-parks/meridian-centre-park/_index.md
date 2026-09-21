@@ -33,4 +33,4 @@ sameAs:
   - 'https://maps.google.com/?cid=17150999376327278430'
 ---
 
-Meridian Centre Park covers 24 acres off Meridian Centre Boulevard. It has three multiuse fields, two Little League fields, and a youth softball field. You will find a playground, two tennis courts, and a concession stand with restrooms. The park also has an amphitheater, a boat dock, and a fishing dock. A perimeter trail connects to the New York State Erie Canal path.
+Meridian Centre Park covers 24 acres off Meridian Centre Boulevard. It has three multiuse fields, two Little League fields, and a youth softball field. You will find a playground, two tennis courts, and a concession stand with restrooms. The park also has an amphitheater, a boat dock, and a fishing dock. A perimeter trail connects to the [New York State Erie Canal path](/trails/erie-canal-trail/).

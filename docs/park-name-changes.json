@@ -126,6 +126,18 @@
       "old": "Gates Town Park",
       "new": "First Responders Park",
       "source": "merged: park database has one row, First Responders Park, and both pages describe that park (#61)"
+    },
+    {
+      "path": "content/rochester-city-parks/conkey-corner-park-el-camino-trail/_index.md",
+      "old": "Conkey Corner Park & El Camino Trail",
+      "new": "Conkey Corner Park",
+      "source": "split: #116 separates the Park from the El Camino Trail (ADR-0006); this page keeps the Park's URL and content, renamed to name the park only"
+    },
+    {
+      "path": "content/trails/el-camino-trail/_index.md",
+      "old": "Conkey Corner Park & El Camino Trail",
+      "new": "El Camino Trail",
+      "source": "split: #116 separates the Park from the El Camino Trail (ADR-0006); this page is new, so an importer must join any comment about the trail here by hand"
     }
   ]
 }

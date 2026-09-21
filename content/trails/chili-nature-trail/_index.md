@@ -1,7 +1,7 @@
 ---
 title: 'Chili Nature Trail'
-description: 'A park in Chili'
-type: 'park'
+description: 'A trail in Chili'
+type: 'trail'
 address:
   streetAddress: '3613 Chili Ave'
   addressLocality: 'Rochester'
@@ -16,4 +16,4 @@ sameAs:
   - 'https://www.chiliny.gov/347/Parks'
 ---
 
-Chili Nature Trail is off Chili Avenue, behind the Chili Heights Apartments. The park covers 36 acres. It has walking trails, an open field, a pond, and two overlook areas.
+Chili Nature Trail is off Chili Avenue, behind the Chili Heights Apartments. It covers 36 acres, with walking trails, an open field, a pond, and two overlook areas.
