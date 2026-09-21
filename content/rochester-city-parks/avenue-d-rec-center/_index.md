@@ -25,9 +25,17 @@ geo:
   longitude: -77.6187437
 sameAs:
   - 'https://www.cityofrochester.gov/locations/avenue-d-r-center'
+hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Avenue D R-Center'
     type: SportsActivityLocation
+    openingHours:
+      - dayOfWeek: ['Monday', 'Wednesday', 'Friday']
+        opens: '08:30'
+        closes: '17:30'
+      - dayOfWeek: ['Tuesday', 'Thursday']
+        opens: '08:30'
+        closes: '19:30'
 ---
 
 A page for this park is still being written.

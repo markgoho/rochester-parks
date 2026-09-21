@@ -22,9 +22,17 @@ geo:
   longitude: -77.6425758
 sameAs:
   - 'https://www.cityofrochester.gov/locations/hope-r-center'
+hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Hope R-Center'
     type: SportsActivityLocation
+    openingHours:
+      - dayOfWeek: ['Monday', 'Thursday', 'Friday']
+        opens: '08:30'
+        closes: '17:30'
+      - dayOfWeek: ['Tuesday', 'Wednesday']
+        opens: '08:30'
+        closes: '19:30'
 ---
 
 A page for this park is still being written.

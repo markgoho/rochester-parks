@@ -25,9 +25,17 @@ geo:
   longitude: -77.5909841
 sameAs:
   - 'https://www.cityofrochester.gov/locations/carter-street-r-center'
+hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Carter Street R-Center'
     type: SportsActivityLocation
+    openingHours:
+      - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday']
+        opens: '08:30'
+        closes: '19:30'
+      - dayOfWeek: ['Friday']
+        opens: '08:30'
+        closes: '18:00'
 ---
 
 A page for this park is still being written.
