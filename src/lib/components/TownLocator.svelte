@@ -31,6 +31,7 @@
   const dots = $derived(
     markers.map((m) => ({
       title: m.title,
+      key: m.key,
       ...project(m.latitude, m.longitude),
     }))
   );
@@ -57,14 +58,29 @@
     d={GENESEE_RIVER}
   />
   <path class="water canal" vector-effect="non-scaling-stroke" d={ERIE_CANAL} />
-  {#each dots as dot (dot.title)}
-    <circle
-      class="park"
-      cx={dot.x}
-      cy={dot.y}
-      r={SPAN * DOT}
-      vector-effect="non-scaling-stroke"
-    />
+  {#each dots as dot (dot.key ?? dot.title)}
+    {#if dot.key}
+      <!-- A way to the park for the pointer. The map stays a picture to a
+           screen reader and out of the tab order: the list carries the same
+           links, and the keyboard reaches them there. See `TownShape`. -->
+      <a href={dot.key} tabindex="-1" aria-label={dot.title}>
+        <circle
+          class="park"
+          cx={dot.x}
+          cy={dot.y}
+          r={SPAN * DOT}
+          vector-effect="non-scaling-stroke"
+        />
+      </a>
+    {:else}
+      <circle
+        class="park"
+        cx={dot.x}
+        cy={dot.y}
+        r={SPAN * DOT}
+        vector-effect="non-scaling-stroke"
+      />
+    {/if}
   {/each}
 </svg>
 

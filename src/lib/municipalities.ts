@@ -508,10 +508,11 @@ export function isCitySection(url: string): boolean {
 }
 
 /**
- * True for the state park section. Every state park still in this section
- * stands in Monroe County (ADR-0006 moves the one that does not, Genesee
- * Valley Greenway, to the Trails section), so it takes the same county-wide
- * frame as `isCountySection`, with no single town to carry the accent.
+ * True for the state park section. Every state park in it stands in Monroe
+ * County, so it takes the same county-wide frame as `isCountySection`, with
+ * no single town to carry the accent. Genesee Valley Greenway is a Trail
+ * filed here as a Park; ADR-0006 moves it to a Trails section (#116), but
+ * until that lands it is still one of these parks.
  */
 export function isStateSection(url: string): boolean {
   return url === '/state-parks/';

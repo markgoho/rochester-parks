@@ -39,9 +39,10 @@
   /** The city section is drawn with its neighborhoods. */
   const city = $derived(isCitySection(section.url));
   /**
-   * The state section has no town of its own either, and every state park
-   * still in it stands in Monroe County (ADR-0006), so it takes the same
+   * The state section has no town of its own either, so it takes the same
    * frame as the county section, with a dot for each park that has `geo`.
+   * See `isStateSection` on Genesee Valley Greenway, filed here as a Park
+   * until its Trails-section move (#116) lands.
    */
   const state = $derived(isStateSection(section.url));
 
