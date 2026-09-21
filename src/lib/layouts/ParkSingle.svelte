@@ -23,6 +23,7 @@
     villagesIn,
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
+  import { FACILITIES_TOPIC } from '#lib/topics.js';
   import type { HoursView, Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
@@ -343,8 +344,8 @@
            could not point at. Hours stay in the panel beside the grounds'
            hours; this section says what each Facility is and how to book it. -->
       {#if facilities.length}
-        <section class="facilities" id="facilities">
-          <h2>Facilities</h2>
+        <section class="facilities" id={FACILITIES_TOPIC.id}>
+          <h2>{FACILITIES_TOPIC.title}</h2>
           <ul>
             {#each facilities as facility (facility.name)}
               {@const rental = facility.rental}

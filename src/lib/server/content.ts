@@ -8,7 +8,7 @@ import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType } from '#lib/park-types.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
-import { topicsOf } from '#lib/topics.js';
+import { FACILITIES_TOPIC, topicsOf } from '#lib/topics.js';
 import type {
   ChildLink,
   Facility,
@@ -601,9 +601,7 @@ export function getPage(url: string): Page | undefined {
           neighbours: neighboursOf(node),
           topics: topicsOf(
             node.html,
-            park.facilities?.length
-              ? [{ id: 'facilities', title: 'Facilities' }]
-              : []
+            park.facilities?.length ? [FACILITIES_TOPIC] : []
           ),
         }
       : {}),
