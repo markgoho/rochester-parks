@@ -1,6 +1,6 @@
 ---
 title: 'Carter Park'
-description: 'A Greece Town Park called Carter Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '1281 Long Pond Road'

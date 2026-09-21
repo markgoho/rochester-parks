@@ -1,6 +1,6 @@
 ---
 title: 'Northside Park'
-description: 'A East Rochester Town Park called Northside Park'
+description: 'A park in East Rochester'
 type: 'park'
 geo:
   latitude: 43.1183769

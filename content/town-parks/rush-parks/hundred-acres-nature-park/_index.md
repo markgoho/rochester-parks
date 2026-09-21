@@ -1,6 +1,6 @@
 ---
 title: 'Hundred Acres Nature Park'
-description: 'A Rush Town Park called Hundred Acres Nature Park'
+description: 'A park in Rush'
 type: 'park'
 geo:
   latitude: 43.0043703

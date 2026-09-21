@@ -1,6 +1,6 @@
 ---
 title: 'Royal Coach Park'
-description: 'A Pittsford Town Park called Royal Coach Park'
+description: 'A park in Pittsford'
 type: 'park'
 address:
   streetAddress: 'West Bloomfield Road'

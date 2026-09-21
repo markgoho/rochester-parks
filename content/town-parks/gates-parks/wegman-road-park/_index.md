@@ -1,6 +1,6 @@
 ---
 title: 'Wegman Road Park'
-description: 'A Gates Town Park called Wegman Road Park'
+description: 'A park in Gates'
 type: 'park'
 geo:
   latitude: 43.16112496868358

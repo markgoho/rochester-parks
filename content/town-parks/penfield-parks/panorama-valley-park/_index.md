@@ -1,6 +1,6 @@
 ---
 title: 'Panorama Valley Park'
-description: 'A Penfield Town Park called Panorama Valley Park'
+description: 'A park in Penfield'
 type: 'park'
 geo:
   latitude: 43.1329241193716

@@ -1,6 +1,6 @@
 ---
 title: 'Salmon Creek Park'
-description: 'A Parma Town Park called Salmon Creek Park'
+description: 'A park in Parma'
 type: 'park'
 geo:
   latitude: 43.2879119

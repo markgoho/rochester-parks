@@ -1,6 +1,6 @@
 ---
 title: 'Hubbard Park'
-description: 'A Chili Town Park called Hubbard Park'
+description: 'A park in Chili'
 type: 'park'
 geo:
   latitude: 43.1193773

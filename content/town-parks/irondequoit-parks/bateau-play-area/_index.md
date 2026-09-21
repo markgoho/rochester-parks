@@ -1,6 +1,6 @@
 ---
 title: 'Bateau Play Area'
-description: 'An Irondequoit Town Park called Bateau Play Area'
+description: 'A park in Irondequoit'
 type: 'park'
 amenities:
   - Playground

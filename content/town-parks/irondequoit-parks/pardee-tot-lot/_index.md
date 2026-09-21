@@ -1,6 +1,6 @@
 ---
 title: 'Pardee Tot Lot'
-description: 'An Irondequoit Town Park called Pardee Tot Lot'
+description: 'A park in Irondequoit'
 type: 'park'
 amenities:
   - Playground

@@ -1,6 +1,6 @@
 ---
 title: 'First Responders Park'
-description: 'A Gates Town Park called First Responders Park'
+description: 'A park in Gates'
 type: 'park'
 address:
   streetAddress: '4310 Lyell Road'

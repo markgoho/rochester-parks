@@ -1,6 +1,6 @@
 ---
 title: 'Ogden Heritage Park'
-description: 'A Ogden Town Park called Ogden Heritage Park'
+description: 'A park in Ogden'
 type: 'park'
 address:
   streetAddress: '2750 Spencerport Road'

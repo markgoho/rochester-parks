@@ -1,6 +1,6 @@
 ---
 title: 'Sandra L. Frankel Nature Park'
-description: 'A Brighton Town Park called Sandra L. Frankel Nature Park'
+description: 'A park in Brighton'
 type: 'park'
 address:
   streetAddress: 'Elmwood Ave'

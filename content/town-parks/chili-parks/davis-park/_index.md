@@ -1,6 +1,6 @@
 ---
 title: 'Davis Park'
-description: 'A Chili Town Park called Davis Park'
+description: 'A park in Chili'
 type: 'park'
 address:
   streetAddress: '551 Chestnut Ridge Rd'

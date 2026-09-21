@@ -1,6 +1,6 @@
 ---
 title: 'Basil Marella Park'
-description: 'A Greece Town Park called Basil Marella Park'
+description: 'A park in Greece'
 type: 'park'
 geo:
   latitude: 43.2348356

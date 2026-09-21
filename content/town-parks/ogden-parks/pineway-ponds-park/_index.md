@@ -1,6 +1,6 @@
 ---
 title: 'Pineway Ponds Park'
-description: 'A Ogden Town Park called Pineway Ponds Park'
+description: 'A park in Ogden'
 type: 'park'
 geo:
   latitude: 43.1985112

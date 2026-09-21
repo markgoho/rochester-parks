@@ -1,6 +1,6 @@
 ---
 title: 'Westgate Park'
-description: 'A Gates Town Park called Westgate Park'
+description: 'A park in Gates'
 type: 'park'
 geo:
   latitude: 43.1321664

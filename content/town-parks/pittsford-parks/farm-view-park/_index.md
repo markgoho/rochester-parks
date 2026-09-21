@@ -1,6 +1,6 @@
 ---
 title: 'Farm View Park'
-description: 'A Pittsford Town Park called Farm View Park'
+description: 'A park in Pittsford'
 type: 'park'
 acres: 19
 geo:

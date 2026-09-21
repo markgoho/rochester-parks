@@ -1,6 +1,6 @@
 ---
 title: 'Vincent G. Kennelley Park'
-description: 'A Perinton Town Park called Vincent G. Kennelley Park'
+description: 'A park in Perinton'
 type: 'park'
 amenities:
   - Gazebo

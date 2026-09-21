@@ -1,6 +1,6 @@
 ---
 title: "Sadie's Place"
-description: "An Irondequoit Town Park called Sadie's Place"
+description: 'A park in Irondequoit'
 type: 'park'
 amenities:
   - Playground

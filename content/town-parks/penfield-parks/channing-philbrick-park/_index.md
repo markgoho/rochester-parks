@@ -1,6 +1,6 @@
 ---
 title: 'Channing Philbrick Park'
-description: 'A Penfield Town Park called Channing Philbrick Park'
+description: 'A park in Penfield'
 type: 'park'
 geo:
   latitude: 43.1258715

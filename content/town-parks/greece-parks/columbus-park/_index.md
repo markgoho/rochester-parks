@@ -1,6 +1,6 @@
 ---
 title: 'Columbus Park'
-description: 'A Greece Town Park called Columbus Park'
+description: 'A park in Greece'
 type: 'park'
 geo:
   latitude: 43.2133021

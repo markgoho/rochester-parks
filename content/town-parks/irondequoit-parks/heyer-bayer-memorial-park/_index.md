@@ -1,6 +1,6 @@
 ---
 title: 'Heyer-Bayer Memorial Park'
-description: 'An Irondequoit Town Park called Heyer-Bayer Memorial Park'
+description: 'A park in Irondequoit'
 type: 'park'
 address:
   streetAddress: 'Rudman Road'

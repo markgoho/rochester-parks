@@ -1,6 +1,6 @@
 ---
 title: 'Rotary Park'
-description: 'A Mendon Town Park called Rotary Park'
+description: 'A park in Mendon'
 type: 'park'
 geo:
   latitude: 42.9601381

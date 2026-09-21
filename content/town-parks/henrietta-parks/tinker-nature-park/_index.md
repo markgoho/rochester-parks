@@ -1,6 +1,6 @@
 ---
 title: 'Tinker Nature Park'
-description: 'A Henrietta Town Park called Tinker Nature Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.066003

@@ -1,6 +1,6 @@
 ---
 title: 'McAvoy Park'
-description: 'An Irondequoit Town Park called McAvoy Park'
+description: 'A park in Irondequoit'
 type: 'park'
 geo:
   latitude: 43.1757205

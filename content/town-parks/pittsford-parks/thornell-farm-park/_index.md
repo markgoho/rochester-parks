@@ -1,6 +1,6 @@
 ---
 title: 'Thornell Farm Park'
-description: 'A Pittsford Town Park called Thornell Farm Park'
+description: 'A park in Pittsford'
 type: 'park'
 geo:
   latitude: 43.0570488

@@ -1,6 +1,6 @@
 ---
 title: 'Brighton Town Park'
-description: 'A Brighton Town Park called Brighton Town Park'
+description: 'A park in Brighton'
 type: 'park'
 geo:
   latitude: 43.1128344

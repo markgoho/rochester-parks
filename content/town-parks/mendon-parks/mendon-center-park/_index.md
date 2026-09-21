@@ -1,6 +1,6 @@
 ---
 title: 'Mendon Center Park'
-description: 'A Mendon Town Park called Mendon Center Park'
+description: 'A park in Mendon'
 type: 'park'
 address:
   streetAddress: '3315 Rush Mendon Road'

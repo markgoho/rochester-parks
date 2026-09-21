@@ -1,6 +1,6 @@
 ---
 title: 'Sherwood Fields Park'
-description: 'A Penfield Town Park called Sherwood Fields Park'
+description: 'A park in Penfield'
 type: 'park'
 address:
   streetAddress: '2514 Penfield Road'

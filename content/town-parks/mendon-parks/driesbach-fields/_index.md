@@ -1,6 +1,6 @@
 ---
 title: 'Driesbach Fields'
-description: 'A Mendon Town Park called Driesbach Fields'
+description: 'A park in Mendon'
 type: 'park'
 geo:
   latitude: 42.9780239

@@ -1,6 +1,6 @@
 ---
 title: 'Empire Park'
-description: 'A Webster Town Park called Empire Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.198782

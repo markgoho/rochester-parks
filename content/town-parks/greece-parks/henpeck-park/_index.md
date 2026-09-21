@@ -1,6 +1,6 @@
 ---
 title: 'Henpeck Park'
-description: 'A Greece Town Park called Henpeck Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '2901 Ridgeway Avenue'

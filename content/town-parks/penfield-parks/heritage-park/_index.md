@@ -1,6 +1,6 @@
 ---
 title: 'Heritage Park'
-description: 'A Penfield Town Park called Heritage Park'
+description: 'A park in Penfield'
 type: 'park'
 geo:
   latitude: 43.1318009

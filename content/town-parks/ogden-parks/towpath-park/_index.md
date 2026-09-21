@@ -1,6 +1,6 @@
 ---
 title: 'Towpath Park'
-description: 'A Ogden Town Park called Towpath Park'
+description: 'A park in Ogden'
 type: 'park'
 acres: 0.28
 geo:

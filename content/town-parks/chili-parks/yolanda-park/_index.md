@@ -1,6 +1,6 @@
 ---
 title: 'Yolanda Park'
-description: 'A Chili Town Park called Yolanda Park'
+description: 'A park in Chili'
 type: 'park'
 geo:
   latitude: 43.1210257

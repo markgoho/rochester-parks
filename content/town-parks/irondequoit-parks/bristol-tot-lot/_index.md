@@ -1,6 +1,6 @@
 ---
 title: 'Bristol Tot Lot'
-description: 'An Irondequoit Town Park called Bristol Tot Lot'
+description: 'A park in Irondequoit'
 type: 'park'
 amenities:
   - Playground

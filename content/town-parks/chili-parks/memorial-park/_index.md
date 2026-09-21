@@ -1,6 +1,6 @@
 ---
 title: 'Memorial Park'
-description: 'A Chili Town Park called Memorial Park'
+description: 'A park in Chili'
 type: 'park'
 address:
   streetAddress: '3235 Chili Ave'

@@ -1,6 +1,6 @@
 ---
 title: 'Spring Lake Park'
-description: 'A Perinton Town Park called Spring Lake Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.1177009

@@ -1,6 +1,6 @@
 ---
 title: 'Sandbar Park'
-description: 'A Webster Town Park called Sandbar Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.2378755

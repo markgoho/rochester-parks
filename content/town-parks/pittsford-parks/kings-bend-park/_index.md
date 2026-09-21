@@ -1,6 +1,6 @@
 ---
 title: 'King’s Bend Park'
-description: 'A Pittsford Town Park called King’s Bend Park'
+description: 'A park in Pittsford'
 type: 'park'
 geo:
   latitude: 43.0890541

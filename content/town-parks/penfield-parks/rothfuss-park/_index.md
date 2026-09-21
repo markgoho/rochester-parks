@@ -1,6 +1,6 @@
 ---
 title: 'Rothfuss Park'
-description: 'A Penfield Town Park called Rothfuss Park'
+description: 'A park in Penfield'
 type: 'park'
 geo:
   latitude: 43.164269

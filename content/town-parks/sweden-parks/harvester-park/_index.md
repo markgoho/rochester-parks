@@ -1,6 +1,6 @@
 ---
 title: 'Harvester Park'
-description: 'A Sweden Town Park called Harvester Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.21571038872937

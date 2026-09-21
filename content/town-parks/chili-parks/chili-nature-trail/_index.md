@@ -1,6 +1,6 @@
 ---
 title: 'Chili Nature Trail'
-description: 'A Chili Town Park called Chili Nature Trail'
+description: 'A park in Chili'
 type: 'park'
 address:
   streetAddress: '3613 Chili Ave'

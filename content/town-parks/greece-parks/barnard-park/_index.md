@@ -1,6 +1,6 @@
 ---
 title: 'Barnard Park'
-description: 'A Greece Town Park called Barnard Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '410 Maiden Lane'

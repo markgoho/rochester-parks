@@ -1,6 +1,6 @@
 ---
 title: 'Sweden Town Park'
-description: 'A Sweden Town Park called Sweden Town Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.2029776

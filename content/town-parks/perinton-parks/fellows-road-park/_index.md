@@ -1,6 +1,6 @@
 ---
 title: 'Fellows Road Park'
-description: 'A Perinton Town Park called Fellows Road Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.1096208

@@ -1,6 +1,6 @@
 ---
 title: 'Hoskins Park'
-description: 'A Henrietta Town Park called Hoskins Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.082152

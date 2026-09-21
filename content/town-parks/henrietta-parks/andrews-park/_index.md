@@ -1,6 +1,6 @@
 ---
 title: 'Andrews Park'
-description: 'A Henrietta Town Park called Andrews Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.0772749

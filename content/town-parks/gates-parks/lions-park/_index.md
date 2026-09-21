@@ -1,6 +1,6 @@
 ---
 title: 'Lions Park'
-description: 'A Gates Town Park called Lions Park'
+description: 'A park in Gates'
 type: 'park'
 address:
   streetAddress: '100 Kentucky Avenue'

@@ -1,6 +1,6 @@
 ---
 title: 'Freeman Park'
-description: 'A Wheatland Town Park called Freeman Park'
+description: 'A park in Wheatland'
 type: 'park'
 acres: 4.60
 amenities:

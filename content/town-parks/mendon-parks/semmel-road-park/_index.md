@@ -1,6 +1,6 @@
 ---
 title: 'Semmel Road Park'
-description: 'A Mendon Town Park called Semmel Road Park'
+description: 'A park in Mendon'
 type: 'park'
 address:
   streetAddress: '95 Semmel Road'

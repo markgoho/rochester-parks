@@ -1,6 +1,6 @@
 ---
 title: 'Grandview Park'
-description: 'A Greece Town Park called Grandview Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '225 Beechwood Park'

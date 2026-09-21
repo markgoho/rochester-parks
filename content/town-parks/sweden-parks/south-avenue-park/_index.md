@@ -1,6 +1,6 @@
 ---
 title: 'South Avenue Park'
-description: 'A Sweden Town Park called South Avenue Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.2082688

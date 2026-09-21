@@ -1,6 +1,6 @@
 ---
 title: 'Camp Eastman'
-description: 'An Irondequoit Town Park called Camp Eastman'
+description: 'A park in Irondequoit'
 type: 'park'
 amenities:
   - Camping

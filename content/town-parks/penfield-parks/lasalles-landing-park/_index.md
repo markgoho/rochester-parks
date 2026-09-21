@@ -1,6 +1,6 @@
 ---
 title: 'LaSalle''s Landing Park'
-description: 'A Penfield Town Park called LaSalle''s Landing Park'
+description: 'A park in Penfield'
 type: 'park'
 address:
   streetAddress: '1080 Empire Blvd'

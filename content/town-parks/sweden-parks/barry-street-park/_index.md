@@ -1,6 +1,6 @@
 ---
 title: 'Barry Street Park'
-description: 'A Sweden Town Park called Barry Street Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.2166641

@@ -1,6 +1,6 @@
 ---
 title: 'Great Bend Park'
-description: 'A Mendon Town Park called Great Bend Park'
+description: 'A park in Mendon'
 type: 'park'
 address:
   streetAddress: 'Clover Street'

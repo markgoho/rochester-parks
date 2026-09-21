@@ -1,6 +1,6 @@
 ---
 title: 'Potter Park'
-description: 'A Perinton Town Park called Potter Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.096658

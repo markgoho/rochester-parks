@@ -1,6 +1,6 @@
 ---
 title: 'Hafner Park'
-description: 'A Clarkson Town Park called Hafner Park'
+description: 'A park in Clarkson'
 type: 'park'
 geo:
   latitude: 43.2376761

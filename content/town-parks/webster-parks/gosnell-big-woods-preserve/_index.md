@@ -1,6 +1,6 @@
 ---
 title: 'Gosnell Big Woods Preserve'
-description: 'A Webster Town Park called Gosnell Big Woods Preserve'
+description: 'A park in Webster'
 type: 'park'
 address:
   streetAddress: '680 Vosburg Road'
