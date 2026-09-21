@@ -8,6 +8,7 @@ import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType } from '#lib/park-types.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
+import { topicsOf } from '#lib/topics.js';
 import type {
   ChildLink,
   Facility,
@@ -594,7 +595,17 @@ export function getPage(url: string): Page | undefined {
       ? { section: { title: sectionLabel(node.title), url: node.url } }
       : {}),
     ...(park
-      ? { park, hours: parkHours(park), neighbours: neighboursOf(node) }
+      ? {
+          park,
+          hours: parkHours(park),
+          neighbours: neighboursOf(node),
+          topics: topicsOf(
+            node.html,
+            park.facilities?.length
+              ? [{ id: 'facilities', title: 'Facilities' }]
+              : []
+          ),
+        }
       : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
   };

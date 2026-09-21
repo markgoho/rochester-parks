@@ -120,6 +120,11 @@
       .length
   );
   const facilities = $derived(park?.facilities ?? []);
+  /**
+   * Already reduced to `[]` unless the page has two or more topics
+   * (ADR-0007), so the nav below only has to check its length.
+   */
+  const topics = $derived(page.topics ?? []);
 </script>
 
 <!-- The article is the container the layout queries. A container cannot query
@@ -277,6 +282,22 @@
           </div>
         </section>
 
+        {#if topics.length}
+          <!-- The page navigation (ADR-0007): a link to each h2 topic. The
+               current topic is marked with :target-current, CSS only, no
+               script. A browser without scroll-target-group shows the same
+               links with no highlight; they still jump to their heading. -->
+          <nav class="panel topics" aria-label="Topics on this page">
+            <div class="panel__head">
+              <span class="eyebrow">On this page</span>
+            </div>
+            <ol class="panel__body topics__list">
+              {#each topics as topic (topic.id)}
+                <li><a href="#{topic.id}">{topic.title}</a></li>
+              {/each}
+            </ol>
+          </nav>
+        {/if}
       </aside>
     {/if}
 
@@ -355,17 +376,6 @@
           </ul>
         </section>
       {/if}
-
-      {#if page.children.length}
-        <nav class="sub" aria-label="More about this park">
-          <p class="eyebrow">More about {page.title}</p>
-          <ul>
-            {#each page.children as child (child.url)}
-              <li><a href={child.url}>{child.title}</a></li>
-            {/each}
-          </ul>
-        </nav>
-      {/if}
     </div>
   </div>
 
@@ -414,10 +424,12 @@
     min-width: 0;
   }
 
-  /* The rail holds one panel, above the write-up or beside it. */
+  /* The rail holds the facts panel, and the page navigation when the page
+     has one, above the write-up or beside it. */
   .rail {
     display: grid;
     align-items: start;
+    gap: var(--space-24);
   }
 
   /* Wide: the facts move to a rail beside the write-up. That takes a line of
@@ -616,27 +628,24 @@
     text-underline-offset: var(--underline-offset-prose);
   }
 
-  .sub {
-    margin-top: var(--space-40);
-  }
-
-  .sub ul {
-    display: flex;
-    flex-wrap: wrap;
+  /* The list of anchor links to this page's topics (ADR-0007). Marked as a
+     scroll-target-group so the browser can track which target is in view;
+     `:target-current` below marks the current link with no script. */
+  .topics__list {
+    scroll-target-group: auto;
+    display: grid;
     gap: var(--space-8);
-    margin: var(--space-8) 0 0;
-    padding: 0;
+    margin: 0;
     list-style: none;
   }
 
-  .sub a {
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--tap-target);
-    padding: 0 var(--space-16);
-    border: var(--line-hair) solid var(--rule-strong);
-    background: var(--card);
+  /* Weight and an underline mark the current topic, not color alone. A
+     browser without scroll-target-group matches no link here, so the list
+     shows plain and every link still works. */
+  .topics__list a:target-current {
     font-weight: var(--weight-bold);
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset-prose);
   }
 
   .paging {
