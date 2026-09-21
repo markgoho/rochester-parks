@@ -21,7 +21,7 @@ sameAs:
 geo:
   latitude: 43.1538814
   longitude: -77.60187
-hoursCheckedOn: '2026-09-18'
+hoursCheckedOn: '2026-09-20'
 facilities:
   - name: 'Ice rink'
     type: IceSkatingRink

@@ -16,7 +16,7 @@ sameAs:
   - 'https://www.monroecounty.gov/parks-seneca'
   - 'https://maps.google.com/?cid=9168798188261743810'
   - 'https://senecaparkzoo.org/'
-hoursCheckedOn: '2026-09-18'
+hoursCheckedOn: '2026-09-20'
 facilities:
   - name: 'Seneca Park Zoo'
     type: Zoo
