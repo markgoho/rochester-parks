@@ -13,7 +13,7 @@ geo:
   longitude: -77.60704971638812
 ---
 
-There is an incredible amount of history in St. Joseph's Park. The small plot of land consists of a Catholic church building that all but [burned down on October 18, 1974](https://www.democratandchronicle.com/story/news/local/rocroots/2014/06/13/whatever-happened-st-josephs-church/10505845/). The tower and walls alone survived. The [Landmark Society of Western New York](https://www.landmarksociety.org/programs/historic-sites/st-josephs-park/) contributed to this effort. So did The State University at Brockport, the City of Rochester, the Downtown Development Corporation, and the Redemptorist Fathers. Together, their efforts eventually converted the church and its land into the park that exists today.
+There is an incredible amount of history in St. Joseph's Park. The small plot of land consists of a Catholic church building that all but [burned down on October 18, 1974](https://www.democratandchronicle.com/story/news/local/rocroots/2014/06/13/whatever-happened-st-josephs-church/10505845/). The tower and walls alone survived. The [Landmark Society of Western New York](https://www.landmarksociety.org/programs/historic-sites/st-josephs-park/) contributed to this effort. So did the State University at Brockport, the City of Rochester, the Downtown Development Corporation, and the Redemptorist Fathers. Together, their efforts eventually converted the church and its land into the park that exists today.
 
 ![St. Joseph's Park from across the street](Rochester-City-Parks-St.-Joseph-Park-14-of-14-e1425487492940.jpg)
 
