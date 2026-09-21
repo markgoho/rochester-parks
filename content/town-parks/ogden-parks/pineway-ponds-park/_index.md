@@ -50,7 +50,7 @@ facilities:
         opens: '10:00'
         closes: '20:00'
         season: { from: 'Memorial Day', through: 'Labor Day' }
-hoursCheckedOn: '2026-09-19'
+hoursCheckedOn: '2026-09-20'
 sameAs:
   - 'https://ogdenny.gov/wp-content/uploads/2024/09/2024-Parks-Master-Plan2.pdf'
   - 'https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14712'
