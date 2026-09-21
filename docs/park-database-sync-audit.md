@@ -7,6 +7,9 @@ The official town, county and city websites outrank the sheet for a park name. T
 **Park names now follow the database.** Fifteen pages had a name the database spells differently; each one took the database spelling. Folder slugs are untouched, so no URL changed and no redirect is needed. No page was moved or deleted.
 
 
+**Resolved since this audit ran.** This page is a record of one sync run, so the notes below keep the wording they had on the day. Where a note has since been settled, the resolution is here instead of an edit to the note: **Belmanor Park** was moved to Henrietta. The page now lives at `content/town-parks/henrietta-parks/belmanor-park/_index.md`, which matches the database, so every note below that files it under Brighton is out of date.
+
+
 One thing is NOT settled and needs you: `docs/cutover.md` says Gates Town Park was added on purpose, to cover the one old WordPress URL with no equivalent page. The Gates agent, not knowing that, read it as a duplicate of First Responders Park and suggested merging the two. Do not merge it — but the two pages do describe one physical park, so it is worth deciding what Gates Town Park should say.
 
 
