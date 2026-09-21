@@ -665,9 +665,14 @@
     font-weight: var(--weight-bold);
   }
 
-  @media (min-width: 40rem) {
+  /* The paging nav sits in the article, so it queries the same "park"
+     container as the rail above. Each link needs room for an eyebrow line
+     and a park title (a long one, e.g. "Irondequoit Bay State Marine
+     Park", wraps inside it): 16rem + 16rem = 32rem. No gap: the two
+     columns meet at a border, not a grid gap. */
+  @container park (inline-size >= 32rem) {
     .paging {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 1fr);
     }
 
     .paging__link + .paging__link {

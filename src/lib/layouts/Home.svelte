@@ -19,7 +19,12 @@
   const topAmenities = $derived((summary?.amenities ?? []).slice(0, 5));
 </script>
 
-<div class="hero">
+<!-- The frame is the container .hero queries below. A container cannot
+     query itself, and <main> itself is the wrong ancestor: .hero sits in
+     its narrower "content" column (see app.css), not its full width, so
+     the frame reports the space .hero actually renders in. -->
+<div class="hero-frame">
+  <div class="hero">
   <div class="hero__text">
     <p class="eyebrow rule-in">Monroe County, New York</p>
     <h1>Every park,<br />town by town.</h1>
@@ -59,6 +64,7 @@
     <p class="eyebrow">Pick a town</p>
     <CountyMap />
   </div>
+  </div>
 </div>
 
 <section class="stats full-bleed">
@@ -86,6 +92,9 @@
   </div>
 </section>
 
+<!-- The frame is the container .finder queries below, for the same reason
+     .hero-frame exists above. -->
+<div class="finder-frame">
 <section class="finder">
   <div>
     <h2>Or start from what you need.</h2>
@@ -121,6 +130,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <section class="towns">
   <h2>The towns</h2>
@@ -257,26 +267,42 @@
     font-size: var(--step--1);
   }
 
-  @media (min-width: 60rem) {
+  .hero-frame {
+    container: hero / inline-size;
+  }
+
+  .finder-frame {
+    container: finder / inline-size;
+  }
+
+  /* 20rem text + 34rem map + 3.5rem gap = 57.5rem. */
+  @container hero (inline-size >= 57.5rem) {
     .hero {
-      grid-template-columns: minmax(0, 1fr) 34rem;
+      grid-template-columns: minmax(20rem, 1fr) 34rem;
       align-items: center;
       gap: var(--space-56);
       padding-top: var(--space-56);
     }
+  }
 
+  /* .finder has its own, smaller need: 20rem text + 30rem panel + 1.75rem
+     gap = 51.75rem. */
+  @container finder (inline-size >= 51.75rem) {
     .finder {
-      grid-template-columns: minmax(0, 1fr) 30rem;
+      grid-template-columns: minmax(20rem, 1fr) 30rem;
       align-items: start;
     }
   }
 
   /* The map holds 28 town names at 8 units in a 673-unit viewBox, so how well
-     it reads is decided by how wide it is drawn. Past this width the text
-     column has more room than it can use, and the map takes the rest. */
-  @media (min-width: 80rem) {
+     it reads is decided by how wide it is drawn. Once the text column has
+     grown as wide as the map's own first size, the extra room should go to
+     the map instead: 34rem text + 44rem map + 3.5rem gap = 81.5rem. (The
+     frame cannot pass 84.5rem, --page-max minus 2 * --gutter, so a larger
+     text minimum here would make this rule unreachable.) */
+  @container hero (inline-size >= 81.5rem) {
     .hero {
-      grid-template-columns: minmax(0, 1fr) 44rem;
+      grid-template-columns: minmax(34rem, 1fr) 44rem;
     }
   }
 </style>

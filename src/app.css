@@ -722,6 +722,9 @@ p {
 
 /* Wider viewports */
 
+/* Stays a viewport query: it sets the page's own margin (--gutter), which
+   every container below measures itself against, and sizes the header nav.
+   A container cannot query the viewport that defines its own width. */
 @media (min-width: 48rem) {
   :root {
     --gutter: var(--space-44);
