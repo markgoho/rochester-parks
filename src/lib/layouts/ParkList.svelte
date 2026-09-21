@@ -257,25 +257,27 @@
             >{child.title}</span
           ></a
         >
-        <span class="status"><ParkFlags status={park.status} /></span>
-        <span class="tags">
-          {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
-            <span class="tag">{amenity}</span>
-          {/each}
-          {#if park.amenities.length > SHOWN}
-            <span class="tag tag--off"
-              >+{park.amenities.length - SHOWN} more</span
-            >
-          {:else if park.amenities.length === 0}
-            <span class="mono none">not recorded yet</span>
-          {/if}
-        </span>
-        <span class="mono end acres">
-          {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
-        </span>
-        <span class="mono end words">
-          {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
-            note{:else}—{/if}
+        <span class="facts">
+          <span class="status"><ParkFlags status={park.status} /></span>
+          <span class="tags">
+            {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
+              <span class="tag">{amenity}</span>
+            {/each}
+            {#if park.amenities.length > SHOWN}
+              <span class="tag tag--off"
+                >+{park.amenities.length - SHOWN} more</span
+              >
+            {:else if park.amenities.length === 0}
+              <span class="mono none">not recorded yet</span>
+            {/if}
+          </span>
+          <span class="mono end acres">
+            {#if park.acres !== undefined}{formatAcres(park.acres)} acres{:else}—{/if}
+          </span>
+          <span class="mono end words">
+            {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
+              note{:else}—{/if}
+          </span>
         </span>
       </li>
     {/snippet}
@@ -541,13 +543,21 @@
     grid-template-columns: 2rem minmax(0, 1fr);
     grid-template-areas:
       'num name'
-      '. status'
-      '. tags'
-      '. acres'
-      '. words';
+      '. facts';
     gap: var(--space-6) var(--space-14);
     padding: var(--space-12) 0;
     border-bottom: var(--line-hair) solid var(--rule-soft);
+  }
+
+  /* Stacked: the four facts share a wrapping line under the name, instead of
+     a grid row each. Table: overridden below to a subgrid row, so each fact
+     still lands in its own column. */
+  .facts {
+    grid-area: facts;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-6) var(--space-14);
   }
 
   /* Below the table width the grid has no columns to head, so the row keeps
@@ -921,6 +931,47 @@
       align-items: center;
       gap: var(--space-16);
       padding: var(--space-8) var(--space-14);
+    }
+
+    /* A data row's four facts are one grid item, `.facts`, spanning the
+       status/tags/acres/words tracks. The head row keeps them as its own
+       four named areas, so it is excluded here. */
+    .row:not(.row--head) {
+      grid-template-areas: 'num name facts facts facts facts';
+    }
+
+    /* `.facts` takes the four tracks it spans as a subgrid, so each fact
+       still lands in its own column, lined up with the head row above it.
+       `gap: normal` lets it inherit the row's own column gap for those
+       tracks, instead of the wrapping layout's gap. Each fact is placed by
+       track number: its own `grid-area` name (kept for the head row, which
+       is not a subgrid) has no matching line inside `.facts`, so it is set
+       explicitly rather than left to that fallback. */
+    .facts {
+      display: grid;
+      grid-template-columns: subgrid;
+      align-items: center;
+      gap: normal;
+    }
+
+    .facts > * {
+      grid-row: 1;
+    }
+
+    .facts > .status {
+      grid-column: 1;
+    }
+
+    .facts > .tags {
+      grid-column: 2;
+    }
+
+    .facts > .acres {
+      grid-column: 3;
+    }
+
+    .facts > .words {
+      grid-column: 4;
     }
 
     .row:nth-child(even) {
