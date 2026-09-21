@@ -155,7 +155,7 @@
 
   .lede {
     margin: 0;
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     color: var(--ink-soft);
   }
 
@@ -181,7 +181,7 @@
     min-height: var(--control-height);
     padding: var(--space-8) 0;
     border-bottom: var(--line-hair) solid var(--rule);
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     font-weight: var(--weight-bold);
   }
 
@@ -249,7 +249,7 @@
     min-height: var(--tap-target);
     padding: var(--space-6) 0;
     border-bottom: var(--line-hair) solid var(--rule-soft);
-    font-size: var(--step-0);
+    font-size: var(--step--1);
   }
 
   .towns__grid .mono {

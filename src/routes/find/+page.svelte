@@ -217,7 +217,7 @@
 
   .lede {
     margin: 0;
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     color: var(--ink-soft);
   }
 
