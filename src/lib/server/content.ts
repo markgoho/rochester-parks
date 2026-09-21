@@ -637,6 +637,9 @@ export function getPage(url: string): Page | undefined {
           ),
         }
       : {}),
+    // No `neighbours` here, deliberately: ParkSingle.svelte's paging nav
+    // reads `page.park?.section.title`, a Park-only label. Add paging for
+    // Trails only alongside a wording fix there too.
     ...(trailMeta
       ? {
           trail: trailMeta,
