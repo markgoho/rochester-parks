@@ -1,6 +1,6 @@
 ---
 title: 'Sagawa Park'
-description: 'A Sweden Town Park called Sagawa Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.2143525

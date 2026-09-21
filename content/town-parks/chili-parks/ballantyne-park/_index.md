@@ -1,6 +1,6 @@
 ---
 title: 'Ballantyne Park'
-description: 'A Chili Town Park called Ballantyne Park'
+description: 'A park in Chili'
 type: 'park'
 geo:
   latitude: 43.0935178

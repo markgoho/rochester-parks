@@ -1,6 +1,6 @@
 ---
 title: 'Havenwood Park'
-description: 'A Sweden Town Park called Havenwood Park'
+description: 'A park in Sweden'
 type: 'park'
 acres: 0.2
 geo:

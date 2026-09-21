@@ -1,6 +1,6 @@
 ---
 title: 'Hamlin Recreation Area'
-description: 'A Hamlin Town Park called Hamlin Recreation Area'
+description: 'A park in Hamlin'
 type: 'park'
 geo:
   latitude: 43.2966732

@@ -1,6 +1,6 @@
 ---
 title: 'D''Amico Park'
-description: 'A Webster Town Park called D''Amico Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.2355653

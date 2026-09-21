@@ -1,6 +1,6 @@
 ---
 title: 'Big Eddy Park'
-description: 'A Mendon Town Park called Big Eddy Park'
+description: 'A park in Mendon'
 type: 'park'
 geo:
   latitude: 42.961398604905085

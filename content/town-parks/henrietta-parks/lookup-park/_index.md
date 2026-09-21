@@ -1,6 +1,6 @@
 ---
 title: 'Lookup Park'
-description: 'A Henrietta Town Park called Lookup Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.0460778

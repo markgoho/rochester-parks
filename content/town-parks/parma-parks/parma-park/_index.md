@@ -1,6 +1,6 @@
 ---
 title: 'Parma Park'
-description: 'A Parma Town Park called Parma Park'
+description: 'A park in Parma'
 type: 'park'
 geo:
   latitude: 43.2525426

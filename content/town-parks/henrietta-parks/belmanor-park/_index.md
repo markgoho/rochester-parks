@@ -1,6 +1,6 @@
 ---
 title: 'Belmanor Park'
-description: 'A Henrietta Town Park called Belmanor Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.09054699664794

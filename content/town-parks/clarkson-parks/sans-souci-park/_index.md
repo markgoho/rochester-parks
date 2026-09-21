@@ -1,6 +1,6 @@
 ---
 title: 'Sans Souci Park'
-description: 'A Clarkson Town Park called Sans Souci Park'
+description: 'A park in Clarkson'
 type: 'park'
 geo:
   latitude: 43.222056

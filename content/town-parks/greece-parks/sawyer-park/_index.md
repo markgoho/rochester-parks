@@ -1,6 +1,6 @@
 ---
 title: 'Sawyer Park'
-description: 'A Greece Town Park called Sawyer Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '732 Long Pond Road'

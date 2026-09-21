@@ -1,6 +1,6 @@
 ---
 title: 'Park Circle Park'
-description: 'A Perinton Town Park called Park Circle Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.0912422

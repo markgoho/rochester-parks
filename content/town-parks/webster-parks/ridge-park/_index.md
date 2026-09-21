@@ -1,6 +1,6 @@
 ---
 title: 'Ridge Park'
-description: 'A Webster Town Park called Ridge Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.2124299

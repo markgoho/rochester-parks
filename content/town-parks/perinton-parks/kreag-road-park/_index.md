@@ -1,6 +1,6 @@
 ---
 title: 'Kreag Road Park'
-description: 'A Perinton Town Park called Kreag Road Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.06427986545538

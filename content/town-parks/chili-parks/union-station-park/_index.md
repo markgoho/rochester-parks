@@ -1,6 +1,6 @@
 ---
 title: 'Union Station Park'
-description: 'A Chili Town Park called Union Station Park'
+description: 'A park in Chili'
 type: 'park'
 geo:
   latitude: 43.0900405

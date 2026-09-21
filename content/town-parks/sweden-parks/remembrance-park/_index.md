@@ -1,6 +1,6 @@
 ---
 title: 'Remembrance Park'
-description: 'A Sweden Town Park called Remembrance Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.2116473

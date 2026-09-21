@@ -1,6 +1,6 @@
 ---
 title: 'Veteran''s Memorial Park'
-description: 'A Greece Town Park called Veteran''s Memorial Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '4614 Dewey Avenue'

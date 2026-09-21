@@ -1,6 +1,6 @@
 ---
 title: 'Badgerow Park South'
-description: 'A Greece Town Park called Badgerow Park South'
+description: 'A park in Greece'
 type: 'park'
 geo:
   latitude: 43.2555295

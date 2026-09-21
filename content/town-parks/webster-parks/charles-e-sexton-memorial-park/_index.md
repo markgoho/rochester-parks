@@ -1,6 +1,6 @@
 ---
 title: 'Charles E. Sexton Memorial Park'
-description: 'A Webster Town Park called Charles E. Sexton Memorial Park'
+description: 'A park in Webster'
 type: 'park'
 address:
   streetAddress: '750 Holt Road'

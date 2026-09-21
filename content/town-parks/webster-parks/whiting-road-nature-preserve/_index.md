@@ -1,6 +1,6 @@
 ---
 title: 'Whiting Road Nature Preserve'
-description: 'A Webster Town Park called Whiting Road Nature Preserve'
+description: 'A park in Webster'
 type: 'park'
 address:
   streetAddress: '403 Whiting Road'

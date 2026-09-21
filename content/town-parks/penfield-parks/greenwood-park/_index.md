@@ -1,6 +1,6 @@
 ---
 title: 'Greenwood Park'
-description: 'A Penfield Town Park called Greenwood Park'
+description: 'A park in Penfield'
 type: 'park'
 address:
   streetAddress: '1550 Scribner Road'

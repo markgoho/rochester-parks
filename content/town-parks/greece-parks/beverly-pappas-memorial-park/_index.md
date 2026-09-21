@@ -1,6 +1,6 @@
 ---
 title: 'Beverly Papas Park'
-description: 'A Greece Town Park called Beverly Papas Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '67 Haviland Park'

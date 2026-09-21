@@ -1,6 +1,6 @@
 ---
 title: 'Scout Park'
-description: 'A Hamlin Town Park called Scout Park'
+description: 'A park in Hamlin'
 type: 'park'
 geo:
   latitude: 43.3141592

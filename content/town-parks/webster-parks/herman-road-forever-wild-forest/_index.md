@@ -1,6 +1,6 @@
 ---
 title: 'Herman Road Forever Wild Forest'
-description: 'A Webster Town Park called Herman Road Forever Wild Forest'
+description: 'A park in Webster'
 type: 'park'
 address:
   streetAddress: '760 Hermann Road'

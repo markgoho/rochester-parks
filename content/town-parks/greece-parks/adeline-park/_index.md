@@ -1,6 +1,6 @@
 ---
 title: 'Adeline Park'
-description: 'A Greece Town Park called Adeline Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '124 Armstrong Road'

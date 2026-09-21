@@ -1,6 +1,6 @@
 ---
 title: 'Finn Park'
-description: 'A Webster Town Park called Finn Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.2169084

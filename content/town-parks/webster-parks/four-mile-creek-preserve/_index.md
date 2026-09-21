@@ -1,6 +1,6 @@
 ---
 title: 'Four Mile Creek Preserve'
-description: 'A Webster Town Park called Four Mile Creek Preserve'
+description: 'A park in Webster'
 type: 'park'
 address:
   streetAddress: '160 Phillips Road'

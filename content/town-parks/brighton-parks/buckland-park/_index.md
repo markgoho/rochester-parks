@@ -1,6 +1,6 @@
 ---
 title: 'Buckland Park'
-description: 'A Brighton Town Park called Buckland Park'
+description: 'A park in Brighton'
 type: 'park'
 geo:
   latitude: 43.1132391

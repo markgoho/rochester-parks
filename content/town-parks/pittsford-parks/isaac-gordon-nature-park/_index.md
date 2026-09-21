@@ -1,6 +1,6 @@
 ---
 title: 'Isaac Gordon Nature Park'
-description: 'A Pittsford Town Park called Isaac Gordon Nature Park'
+description: 'A park in Pittsford'
 type: 'park'
 geo:
   latitude: 43.0485798

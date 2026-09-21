@@ -1,6 +1,6 @@
 ---
 title: 'Veteran''s Memorial Park'
-description: 'A Ogden Town Park called Veteran''s Memorial Park'
+description: 'A park in Ogden'
 type: 'park'
 geo:
   latitude: 43.1859146

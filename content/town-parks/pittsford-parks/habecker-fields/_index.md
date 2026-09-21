@@ -1,6 +1,6 @@
 ---
 title: 'Habecker Fields'
-description: 'A Pittsford Town Park called Habecker Fields'
+description: 'A park in Pittsford'
 type: 'park'
 acres: 6
 geo:

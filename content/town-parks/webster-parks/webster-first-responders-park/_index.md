@@ -1,6 +1,6 @@
 ---
 title: 'First Responders Park'
-description: 'A Webster Town Park called First Responders Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.2281133

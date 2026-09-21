@@ -1,6 +1,6 @@
 ---
 title: 'Johnson Park'
-description: 'A Wheatland Town Park called Johnson Park'
+description: 'A park in Wheatland'
 type: 'park'
 acres: 2.72
 amenities:

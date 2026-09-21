@@ -1,6 +1,6 @@
 ---
 title: 'Griffith Park'
-description: 'A Pittsford Town Park called Griffith Park'
+description: 'A park in Pittsford'
 type: 'park'
 address:
   streetAddress: '366 Marsh Road'

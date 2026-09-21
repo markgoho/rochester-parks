@@ -1,6 +1,6 @@
 ---
 title: 'Concrest Park'
-description: 'A East Rochester Town Park called Concrest Park'
+description: 'A park in East Rochester'
 type: 'park'
 geo:
   latitude: 43.1156913

@@ -1,6 +1,6 @@
 ---
 title: 'Corbett’s Glen Nature Park'
-description: 'A Brighton Town Park called Corbett’s Glen Nature Park'
+description: 'A park in Brighton'
 type: 'park'
 geo:
   latitude: 43.1335385

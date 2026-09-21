@@ -1,6 +1,6 @@
 ---
 title: 'Perinton Park'
-description: 'A Perinton Town Park called Perinton Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.1012874

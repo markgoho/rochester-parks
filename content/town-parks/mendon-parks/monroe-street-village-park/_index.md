@@ -1,6 +1,6 @@
 ---
 title: 'Monroe Street Village Park'
-description: 'A Mendon Town Park called Monroe Street Village Park'
+description: 'A park in Mendon'
 type: 'park'
 address:
   streetAddress: '321 Monroe Street'

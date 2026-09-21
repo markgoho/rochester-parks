@@ -1,6 +1,6 @@
 ---
 title: 'Chapman''s Corner Park'
-description: 'A Henrietta Town Park called Chapman''s Corner Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.0398245

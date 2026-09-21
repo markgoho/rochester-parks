@@ -1,6 +1,6 @@
 ---
 title: 'Lynch Woods Nature Park'
-description: 'A Brighton Town Park called Lynch Woods Nature Park'
+description: 'A park in Brighton'
 type: 'park'
 geo:
   latitude: 43.099069

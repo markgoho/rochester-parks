@@ -1,6 +1,6 @@
 ---
 title: 'Memorial Park'
-description: 'A Gates Town Park called Memorial Park'
+description: 'A park in Gates'
 type: 'park'
 geo:
   latitude: 43.17105640582264

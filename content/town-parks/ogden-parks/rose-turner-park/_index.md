@@ -1,6 +1,6 @@
 ---
 title: 'Rose Turner Park'
-description: 'An Ogden Town Park called Rose Turner Park'
+description: 'A park in Ogden'
 type: 'park'
 geo:
   latitude: 43.19406704997022

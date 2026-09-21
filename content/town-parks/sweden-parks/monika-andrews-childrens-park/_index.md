@@ -1,6 +1,6 @@
 ---
 title: 'Monika Andrews Children’s Park'
-description: 'A Sweden Town Park called Monika Andrews Children’s Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.2138234

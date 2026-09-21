@@ -1,6 +1,6 @@
 ---
 title: 'Joshua Park'
-description: 'An Irondequoit Town Park called Joshua Park'
+description: 'A park in Irondequoit'
 type: 'park'
 geo:
   latitude: 43.20730004667224

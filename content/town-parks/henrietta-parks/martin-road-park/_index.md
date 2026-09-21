@@ -1,6 +1,6 @@
 ---
 title: 'Martin Road Park'
-description: 'A Henrietta Town Park called Martin Road Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.0302265

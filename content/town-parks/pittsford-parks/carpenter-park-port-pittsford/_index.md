@@ -1,6 +1,6 @@
 ---
 title: 'Carpenter Park at the Port of Pittsford'
-description: 'A Pittsford Town Park called Carpenter Park at the Port of Pittsford'
+description: 'A park in Pittsford'
 type: 'park'
 address:
   streetAddress: '22 North Main Street'

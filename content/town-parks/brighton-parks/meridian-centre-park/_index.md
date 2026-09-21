@@ -1,6 +1,6 @@
 ---
 title: 'Meridian Centre Park'
-description: 'A Brighton Town Park called Meridian Centre Park'
+description: 'A park in Brighton'
 type: 'park'
 geo:
   latitude: 43.1048201

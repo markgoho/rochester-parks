@@ -1,6 +1,6 @@
 ---
 title: 'Veterans Memorial Park'
-description: 'A Henrietta Town Park called Veterans Memorial Park'
+description: 'A park in Henrietta'
 type: 'park'
 address:
   streetAddress: '595 Calkins Road'

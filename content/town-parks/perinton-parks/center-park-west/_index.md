@@ -1,6 +1,6 @@
 ---
 title: 'Center Park West'
-description: 'A Perinton Town Park called Center Park West'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.0793138

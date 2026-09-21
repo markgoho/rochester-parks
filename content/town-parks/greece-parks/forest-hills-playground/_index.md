@@ -1,6 +1,6 @@
 ---
 title: 'Forest Hills Playground'
-description: 'A Greece Town Park called Forest Hills Playground'
+description: 'A park in Greece'
 type: 'park'
 amenities:
   - Barbecue

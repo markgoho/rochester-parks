@@ -1,6 +1,6 @@
 ---
 title: 'Kimball Park'
-description: 'A Clarkson Town Park called Kimball Park'
+description: 'A park in Clarkson'
 type: 'park'
 geo:
   latitude: 43.2295341

@@ -1,6 +1,6 @@
 ---
 title: 'Breese Park'
-description: 'A Henrietta Town Park called Breese Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.0279591

@@ -1,6 +1,6 @@
 ---
 title: 'Winding Brook Park'
-description: 'A Perinton Town Park called Winding Brook Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.0913425

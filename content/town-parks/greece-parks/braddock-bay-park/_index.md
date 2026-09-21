@@ -1,6 +1,6 @@
 ---
 title: 'Braddock Bay Park'
-description: 'A Greece Town Park called Braddock Bay Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '199 East Manitou Road'

@@ -1,6 +1,6 @@
 ---
 title: 'Harry Allen Park'
-description: 'A Mendon Town Park called Harry Allen Park'
+description: 'A park in Mendon'
 type: 'park'
 geo:
   latitude: 42.9542122

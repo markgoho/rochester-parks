@@ -1,6 +1,6 @@
 ---
 title: 'Schaufelberger Park'
-description: 'A Penfield Town Park called Schaufelberger Park'
+description: 'A park in Penfield'
 type: 'park'
 address:
   streetAddress: '1820 Penfield Road'

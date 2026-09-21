@@ -1,6 +1,6 @@
 ---
 title: 'Frisbee Hill Park'
-description: 'A Greece Town Park called Frisbee Hill Park'
+description: 'A park in Greece'
 type: 'park'
 address:
   streetAddress: '141 Frisbee Hill Road'

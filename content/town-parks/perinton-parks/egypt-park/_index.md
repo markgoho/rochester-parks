@@ -1,6 +1,6 @@
 ---
 title: 'Egypt Park'
-description: 'A Perinton Town Park called Egypt Park'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.063189

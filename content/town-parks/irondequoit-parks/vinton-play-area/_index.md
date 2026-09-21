@@ -1,6 +1,6 @@
 ---
 title: 'Vinton Play Area'
-description: 'An Irondequoit Town Park called Vinton Play Area'
+description: 'A park in Irondequoit'
 type: 'park'
 amenities:
   - Playground

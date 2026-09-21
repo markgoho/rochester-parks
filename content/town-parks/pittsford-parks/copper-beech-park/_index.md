@@ -1,6 +1,6 @@
 ---
 title: 'Copper Beech Park'
-description: 'A Pittsford Town Park called Copper Beech Park'
+description: 'A park in Pittsford'
 type: 'park'
 address:
   streetAddress: '14 State Street'

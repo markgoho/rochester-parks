@@ -1,6 +1,6 @@
 ---
 title: 'Spezio Park'
-description: 'An Irondequoit Town Park called Spezio Park'
+description: 'A park in Irondequoit'
 type: 'park'
 geo:
   latitude: 43.25273145778468

@@ -1,6 +1,6 @@
 ---
 title: 'Evergreen Park'
-description: 'A Sweden Town Park called Evergreen Park'
+description: 'A park in Sweden'
 type: 'park'
 geo:
   latitude: 43.21509168876888

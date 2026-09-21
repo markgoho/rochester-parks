@@ -1,6 +1,6 @@
 ---
 title: 'Ayrault Boat Launch'
-description: 'A Perinton Town Park called Ayrault Boat Launch'
+description: 'A park in Perinton'
 type: 'park'
 geo:
   latitude: 43.07939289746402

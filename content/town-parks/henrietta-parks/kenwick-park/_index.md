@@ -1,6 +1,6 @@
 ---
 title: 'Kenwick Park'
-description: 'A Henrietta Town Park called Kenwick Park'
+description: 'A park in Henrietta'
 type: 'park'
 geo:
   latitude: 43.078703

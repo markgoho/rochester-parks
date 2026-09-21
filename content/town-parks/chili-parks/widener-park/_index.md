@@ -1,6 +1,6 @@
 ---
 title: 'Widener Park'
-description: 'A Chili Town Park called Widener Park'
+description: 'A park in Chili'
 type: 'park'
 geo:
   latitude: 43.0783248

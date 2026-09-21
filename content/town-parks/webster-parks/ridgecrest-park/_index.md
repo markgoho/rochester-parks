@@ -1,6 +1,6 @@
 ---
 title: 'Ridgecrest Park'
-description: 'A Webster Town Park called Ridgecrest Park'
+description: 'A park in Webster'
 type: 'park'
 geo:
   latitude: 43.2056576

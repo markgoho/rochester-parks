@@ -1,6 +1,6 @@
 ---
 title: 'Harris Whalen Park'
-description: 'A Penfield Town Park called Harris Whalen Park'
+description: 'A park in Penfield'
 type: 'park'
 address:
   streetAddress: '2126 Penfield Road'

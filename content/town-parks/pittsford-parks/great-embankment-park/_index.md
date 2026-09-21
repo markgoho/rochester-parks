@@ -1,6 +1,6 @@
 ---
 title: 'Great Embankment Park'
-description: 'A Pittsford Town Park called Great Embankment Park'
+description: 'A park in Pittsford'
 type: 'park'
 address:
   streetAddress: 'Marsh Road'

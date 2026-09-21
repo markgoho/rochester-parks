@@ -1,6 +1,6 @@
 ---
 title: 'Hopkins Park'
-description: 'A Pittsford Town Park called Hopkins Park'
+description: 'A park in Pittsford'
 type: 'park'
 address:
   streetAddress: 'Barker Road'
