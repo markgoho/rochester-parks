@@ -162,6 +162,26 @@
         "source": "/town-parks/brighton-parks/belmanor-park",
         "destination": "/town-parks/henrietta-parks/belmanor-park/",
         "type": 301
+      },
+      {
+        "source": "/town-parks/sweden-parks/corbet-park",
+        "destination": "/town-parks/sweden-parks/corbett-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/wheatland-parks/canawagus-park",
+        "destination": "/town-parks/wheatland-parks/canawaugus-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/perinton-parks/ayrualt-boat-launch",
+        "destination": "/town-parks/perinton-parks/ayrault-boat-launch/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/clarkson-parks/clarkson-recreation-park",
+        "destination": "/town-parks/clarkson-parks/kimball-park/",
+        "type": 301
       }
     ]
   },
