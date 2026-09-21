@@ -148,6 +148,29 @@ export interface Facility {
   rental?: FacilityRental;
 }
 
+/** A content page's raw frontmatter, as `gray-matter` parses it. */
+export interface FrontMatter {
+  title?: string;
+  description?: string;
+  type?: string;
+  address?: Record<string, string>;
+  geo?: { latitude?: number; longitude?: number };
+  image?: string;
+  sameAs?: string[];
+  openingHours?: OpeningHours[];
+  closedOn?: Holiday[];
+  facilities?: Facility[];
+  hoursCheckedOn?: string;
+  telephone?: string;
+  amenities?: string[];
+  /** Park size in acres. ADR-0003 ranks the sources. */
+  acres?: number;
+  /** Which source set `acres`. ADR-0003 ranks the sources. */
+  acresSource?: AcresSource;
+  /** Whether the Park is a Planned Park. See CONTEXT.md and ADR-0006. */
+  planned?: boolean;
+}
+
 /** Park facts a list or detail page can show without re-reading the markdown. */
 export interface ParkMeta {
   /** Normalised amenity names, sorted. */

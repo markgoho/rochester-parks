@@ -2,22 +2,15 @@ import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedSmartypants } from 'marked-smartypants';
-import {
-  buildDate,
-  facilitiesJsonLd,
-  formatDate,
-  hoursJsonLd,
-  hoursView,
-  isTime,
-} from '#lib/hours.js';
+import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
+import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import type {
-  AcresSource,
   ChildLink,
   Facility,
-  Holiday,
+  FrontMatter,
   Layout,
   OpeningHours,
   Page,
@@ -34,26 +27,6 @@ import type {
 // Loads content/**/*.md with Hugo's page model: `_index.md` is a section,
 // `index.md` and `foo.md` are pages, and top-level folders without an
 // `_index.md` become auto sections.
-
-interface FrontMatter {
-  title?: string;
-  description?: string;
-  type?: string;
-  address?: Record<string, string>;
-  geo?: { latitude?: number; longitude?: number };
-  image?: string;
-  sameAs?: string[];
-  openingHours?: OpeningHours[];
-  closedOn?: Holiday[];
-  facilities?: Facility[];
-  hoursCheckedOn?: string;
-  telephone?: string;
-  amenities?: string[];
-  /** Park size in acres. ADR-0003 ranks the sources. */
-  acres?: number;
-  /** Which source set `acres`. ADR-0003 ranks the sources. */
-  acresSource?: AcresSource;
-}
 
 interface Node extends PageLink {
   kind: 'home' | 'section' | 'page';
@@ -447,89 +420,12 @@ function breadcrumbJsonLd(trail: PageLink[]): object {
   };
 }
 
-/**
- * Drops empty values, at any depth. Most parks record little more than a
- * name, and a field with `""` or `null` in it claims to say something it
- * does not, so nothing empty is published.
- */
-function compact(value: unknown): unknown {
-  if (Array.isArray(value)) {
-    const items = value.map(compact).filter((item) => item !== undefined);
-    return items.length ? items : undefined;
-  }
-  if (value && typeof value === 'object') {
-    const entries = Object.entries(value as Record<string, unknown>)
-      .map(([key, item]) => [key, compact(item)] as const)
-      .filter(([, item]) => item !== undefined);
-    // A node of nothing but its own @type says nothing.
-    if (!entries.some(([key]) => key !== '@type')) return undefined;
-    return Object.fromEntries(entries);
-  }
-  if (value === null || value === '') return undefined;
-  return value;
-}
-
-/**
- * One Park node per park page, built from the park's own front matter and
- * body. Only the four always-true facts — the name, the URL, that it is a
- * park, and that it is free and open to the public — are stated for every
- * park; everything else appears only where the content records it.
- */
-function parkJsonLd(node: Node, meta: ParkMeta): object {
-  const fm = node.frontMatter;
+/** The image `parkJsonLd` shows for a park page, resolved and absolute. */
+function parkImage(node: Node): string | undefined {
   const image = node.photo && resolveImage(node.photo, node.url);
-  const fallback = fm.image && resolveImage(fm.image, node.url);
-  return compact({
-    '@context': 'https://schema.org',
-    '@type': 'Park',
-    '@id': absUrl(node.url),
-    url: absUrl(node.url),
-    name: node.title,
-    description: fm.description,
-    isAccessibleForFree: true,
-    publicAccess: true,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: fm.address?.streetAddress,
-      addressLocality: fm.address?.addressLocality,
-      addressRegion: fm.address?.addressRegion,
-      postalCode: fm.address?.postalCode,
-      addressCountry: fm.address?.addressCountry,
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: fm.geo?.latitude,
-      longitude: fm.geo?.longitude,
-    },
-    image: image ?? fallback,
-    telephone: fm.telephone,
-    sameAs: fm.sameAs,
-    ...hoursJsonLd(meta.openingHours ?? [], meta.closedOn ?? [], TODAY),
-    containsPlace: facilitiesJsonLd(meta.facilities ?? [], TODAY),
-    // schema.org Park has no size property, so acreage rides along as a
-    // named value rather than being dropped.
-    additionalProperty: fm.acres
-      ? {
-          '@type': 'PropertyValue',
-          name: 'Area',
-          value: fm.acres,
-          unitText: 'acre',
-        }
-      : undefined,
-    // The page's own amenity names, so the markup and the panel agree.
-    amenityFeature: meta.amenities.map((name) => ({
-      '@type': 'LocationFeatureSpecification',
-      name,
-      value: true,
-    })),
-    containedInPlace: meta.section.title
-      ? {
-          '@type': 'Place',
-          name: meta.section.title,
-          url: absUrl(meta.section.url),
-        }
-      : undefined,
-  }) as object;
+  const fallback =
+    node.frontMatter.image && resolveImage(node.frontMatter.image, node.url);
+  return image ?? fallback;
 }
 
 /**
@@ -680,7 +576,19 @@ export function getPage(url: string): Page | undefined {
   const trail = [...ancestors, link(node)];
   const jsonLd =
     park && layout === 'park-single'
-      ? [parkJsonLd(node, park), breadcrumbJsonLd(trail)]
+      ? [
+          parkJsonLd(
+            {
+              url: node.url,
+              title: node.title,
+              frontMatter: node.frontMatter,
+              image: parkImage(node),
+            },
+            park,
+            TODAY
+          ),
+          breadcrumbJsonLd(trail),
+        ]
       : layout === 'park-list'
         ? [breadcrumbJsonLd(trail)]
         : [];
