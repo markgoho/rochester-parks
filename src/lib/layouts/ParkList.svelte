@@ -596,7 +596,7 @@
 
   .name {
     grid-area: name;
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     font-weight: var(--weight-bold);
   }
 
@@ -760,7 +760,7 @@
   }
 
   .card__name {
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     font-weight: var(--weight-bold);
   }
 
