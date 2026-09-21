@@ -23,7 +23,7 @@ A named path on government land that the public walks or rides and that is a pla
 _Avoid_: Linear park, greenway, path
 
 **Park page**:
-The page describing one Park, sourced from markdown under `content/`. Everything about the Park is on this one page. Its topics, such as Facilities, Trails inside the Park, and History, are headings on the page, not pages of their own (ADR-0007).
+The page describing one Park, sourced from markdown under `content/`. Everything about the Park is on this one page. Its topics, such as Facilities, Trails inside the Park, and History, are headings on the page, not pages of their own (ADR-0007). The write-up has no standard set of topics and tracks no figure per topic (ADR-0011).
 _Avoid_: Park post, park entry
 
 **Sourced description**:
