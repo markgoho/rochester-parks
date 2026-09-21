@@ -23,6 +23,7 @@
     villagesIn,
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
+  import { FACILITIES_TOPIC } from '#lib/topics.js';
   import type { HoursView, Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
@@ -120,6 +121,11 @@
       .length
   );
   const facilities = $derived(park?.facilities ?? []);
+  /**
+   * Already reduced to `[]` unless the page has two or more topics
+   * (ADR-0007), so the nav below only has to check its length.
+   */
+  const topics = $derived(page.topics ?? []);
 </script>
 
 <!-- The article is the container the layout queries. A container cannot query
@@ -277,6 +283,22 @@
           </div>
         </section>
 
+        {#if topics.length}
+          <!-- The page navigation (ADR-0007): a link to each h2 topic. The
+               current topic is marked with :target-current, CSS only, no
+               script. A browser without scroll-target-group shows the same
+               links with no highlight; they still jump to their heading. -->
+          <nav class="panel topics" aria-label="Topics on this page">
+            <div class="panel__head">
+              <span class="eyebrow">On this page</span>
+            </div>
+            <ol class="panel__body topics__list">
+              {#each topics as topic (topic.id)}
+                <li><a href="#{topic.id}">{topic.title}</a></li>
+              {/each}
+            </ol>
+          </nav>
+        {/if}
       </aside>
     {/if}
 
@@ -322,8 +344,8 @@
            could not point at. Hours stay in the panel beside the grounds'
            hours; this section says what each Facility is and how to book it. -->
       {#if facilities.length}
-        <section class="facilities" id="facilities">
-          <h2>Facilities</h2>
+        <section class="facilities" id={FACILITIES_TOPIC.id}>
+          <h2>{FACILITIES_TOPIC.title}</h2>
           <ul>
             {#each facilities as facility (facility.name)}
               {@const rental = facility.rental}
@@ -414,10 +436,12 @@
     min-width: 0;
   }
 
-  /* The rail holds one panel, above the write-up or beside it. */
+  /* The rail holds the facts panel, and the page navigation when the page
+     has one, above the write-up or beside it. */
   .rail {
     display: grid;
     align-items: start;
+    gap: var(--space-24);
   }
 
   /* Wide: the facts move to a rail beside the write-up. That takes a line of
@@ -616,6 +640,29 @@
     text-underline-offset: var(--underline-offset-prose);
   }
 
+  /* The list of anchor links to this page's topics (ADR-0007). Marked as a
+     scroll-target-group so the browser can track which target is in view;
+     `:target-current` below marks the current link with no script. */
+  .topics__list {
+    scroll-target-group: auto;
+    display: grid;
+    gap: var(--space-8);
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Weight and an underline mark the current topic, not color alone. A
+     browser without scroll-target-group matches no link here, so the list
+     shows plain and every link still works. */
+  .topics__list a:target-current {
+    font-weight: var(--weight-bold);
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset-prose);
+  }
+
+  /* Links to a Park's own subpages (for example a Trails page), separate
+     from the in-page topics nav above: these go to other pages, not to a
+     heading here. */
   .sub {
     margin-top: var(--space-40);
   }

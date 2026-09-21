@@ -11,6 +11,15 @@ export interface PageLink {
 }
 
 /**
+ * One `h2` topic heading on a Park page, listed in its page navigation
+ * (ADR-0007). `id` matches the heading's `id`, so the link is `#{id}`.
+ */
+export interface Topic {
+  id: string;
+  title: string;
+}
+
+/**
  * What the site can honestly say about a park, derived from its own content.
  * Nothing here is authored by hand; all three flags follow from the markdown.
  */
@@ -269,6 +278,11 @@ export interface Page extends PageLink {
   summary?: SiteSummary;
   /** The parks either side of this one in its section, by title. */
   neighbours?: { previous?: PageLink; next?: PageLink };
+  /**
+   * Present on park pages only: the page navigation's topics, already
+   * reduced to `[]` unless there are two or more (ADR-0007).
+   */
+  topics?: Topic[];
 }
 
 /** One row of the prerendered index the finder filters in the browser. */
