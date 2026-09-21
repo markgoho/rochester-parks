@@ -1,6 +1,6 @@
 # ADR-0007: One page per Park, with page navigation
 
-- **Status**: Accepted
+- **Status**: Accepted, amended by ADR-0011
 - **Date**: 2026-09-18
 
 ## Context
@@ -35,4 +35,4 @@ We rejected two alternatives:
 - The page navigation is new work. Firefox and Safari show it with no highlight until they support `scroll-target-group`.
 - `:target-current` is not exposed to a screen reader, and without a script there is no `aria-current`. A screen reader user gets the list and the headings, but not the current topic.
 - The Facilities topic needs a Facility that can have no hours, with how to rent it and its place in the Park (#77).
-- #111 still decides whether a Park page has a standard set of topics.
+- ADR-0011 answers #111: the write-up has no standard set of topics, and tracks no figure per topic.
