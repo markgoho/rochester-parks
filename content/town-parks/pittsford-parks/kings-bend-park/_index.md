@@ -14,6 +14,7 @@ acres: 19
 sameAs:
   - 'https://www.townofpittsfordny.gov/parks-and-trails'
   - 'https://www.townofpittsfordny.gov/pittsfordhistory-kingsbend'
+  - 'https://maps.google.com/?cid=414265816120749048'
 hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
