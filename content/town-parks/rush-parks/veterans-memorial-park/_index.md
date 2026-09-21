@@ -16,7 +16,7 @@ sameAs:
 
 One of two small parks in Rush NY, Veterans Memorial Park (and others like it) is a popular addition to the towns of Rochester. Veterans Memorial Park serves as a permanent memorial to the veterans who have fought in the various wars since World War II.
 
-The park was presented to the Town of Rush on April 2nd, 1948 (two and a half years after the end of World War II) by the Rush Improvement Association. This group, “…was formed with the goal of acquiring the former mill site to create a park on both sides of Honeoye Creek.” (Mee 2014)
+The Rush Improvement Association presented the park to the Town of Rush on April 2nd, 1948. That was two and a half years after the end of World War II. The group, “…was formed with the goal of acquiring the former mill site to create a park on both sides of Honeoye Creek.” (Mee 2014)
 
 The park was dedicated on May 31, 1964 “to all those who had served Rush in time of war.”
 

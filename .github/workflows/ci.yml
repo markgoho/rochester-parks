@@ -1,0 +1,14 @@
+name: CI
+on:
+  pull_request:
+jobs:
+  test_and_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun test
+      # The reading-level checker runs as part of `bun run build`, so a Park
+      # page that breaks the 8th-grade standard fails the PR, not the deploy.
+      - run: bun run build

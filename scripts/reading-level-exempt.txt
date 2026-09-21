@@ -1,0 +1,28 @@
+# Explicit exemption list for scripts/reading-level.ts.
+#
+# Each line is a Park page id (its content path, as `pageId()` derives it)
+# and, after `#`, the reason it is exempt. A page not on this list must pass.
+#
+# These nineteen pages are the owner's own first-person visit reports,
+# carried over from the WordPress site: a voice, not a record of official
+# facts, and not held to the sourced-description standard (#170).
+
+town-parks/pittsford-parks/griffith-park # Visit report (#170)
+town-parks/greece-parks/beverly-pappas-memorial-park # Visit report (#170)
+town-parks/greece-parks/columbus-park # Visit report (#170)
+town-parks/greece-parks/henpeck-park # Visit report (#170)
+town-parks/irondequoit-parks/heyer-bayer-memorial-park # Visit report (#170)
+monroe-county-parks/devils-cove-park # Visit report (#170)
+town-parks/perinton-parks/kreag-road-park # Visit report (#170)
+town-parks/greece-parks/sawyer-park # Visit report (#170)
+town-parks/greece-parks/forest-hills-playground # Visit report (#170); also a Former Park under ADR-0010, handled by #168
+town-parks/greece-parks/goodwin-park # Visit report (#170)
+town-parks/gates-parks/first-responders-park # Visit report (#170)
+town-parks/pittsford-parks/great-embankment-park # Visit report (#170)
+town-parks/greece-parks/badgerow-park-north # Visit report (#170)
+town-parks/rush-parks/stoney-brook-road-park # Visit report (#170)
+town-parks/greece-parks/veterans-memorial-park # Visit report (#170)
+town-parks/greece-parks/grandview-park # Visit report (#170)
+rochester-city-parks/ellwanger-and-barry-park # Visit report (#170)
+town-parks/greece-parks/adeline-park # Visit report (#170)
+town-parks/riga-parks/sanford-road-park # Visit report (#170)

@@ -6,6 +6,7 @@ import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
 import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
+import { isParkContainer, isParkType } from '#lib/park-types.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import type {
   ChildLink,
@@ -217,25 +218,13 @@ function ancestorsOf(url: string): PageLink[] {
 }
 
 /**
- * Sections that group parks rather than being one. `type: 'park'` cascades
- * nowhere, but the town sections carry it too, so depth is what separates
- * them: `/town-parks/greece-parks/` holds parks, `/monroe-county-parks/x/`
- * is one.
- */
-function isParkContainer(url: string): boolean {
-  const segments = url.split('/').filter(Boolean);
-  if (segments.length <= 1) return true;
-  return segments.length === 2 && segments[0] === 'town-parks';
-}
-
-/**
  * A park is a `type: 'park'` node that hangs directly off a container. Some
  * sub-pages (`trails`, `history`) inherited the type by hand, so the type
  * alone would count them as parks of their own.
  */
 function isPark(node: Node): boolean {
   const { type } = node.frontMatter;
-  if (type !== 'park' && type !== 'county-parks') return false;
+  if (!isParkType(type)) return false;
   if (isParkContainer(node.url)) return false;
   const parent = parentOf(node.url);
   return parent !== undefined && isParkContainer(parent.url);
