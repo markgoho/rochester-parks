@@ -377,6 +377,17 @@
           </ul>
         </section>
       {/if}
+
+      {#if page.children.length}
+        <nav class="sub" aria-label="More about this park">
+          <p class="eyebrow">More about {page.title}</p>
+          <ul>
+            {#each page.children as child (child.url)}
+              <li><a href={child.url}>{child.title}</a></li>
+            {/each}
+          </ul>
+        </nav>
+      {/if}
     </div>
   </div>
 
@@ -647,6 +658,32 @@
     font-weight: var(--weight-bold);
     text-decoration: underline;
     text-underline-offset: var(--underline-offset-prose);
+  }
+
+  /* Links to a Park's own subpages (for example a Trails page), separate
+     from the in-page topics nav above: these go to other pages, not to a
+     heading here. */
+  .sub {
+    margin-top: var(--space-40);
+  }
+
+  .sub ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sub a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--tap-target);
+    padding: 0 var(--space-16);
+    border: var(--line-hair) solid var(--rule-strong);
+    background: var(--card);
+    font-weight: var(--weight-bold);
   }
 
   .paging {
