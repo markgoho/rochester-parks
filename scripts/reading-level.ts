@@ -90,7 +90,7 @@ function main(): void {
   }
 
   console.log(
-    `\n${measured} Park page bodies measured, ${exemptions.size} exempt, ${failures} failing.`
+    `\n${measured} Park and Trail page bodies measured, ${exemptions.size} exempt, ${failures} failing.`
   );
   process.exit(failures > 0 ? 1 : 0);
 }

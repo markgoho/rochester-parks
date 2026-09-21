@@ -20,10 +20,15 @@
   // no literal "park" wording appears below.
   const trail = $derived(page.trail);
   /**
-   * The town a Trail's point falls in. Every trailhead the site records
-   * today stands in Monroe County, so this always tries the county-wide
-   * lookup rather than branching on a city or town section the way a Park
-   * page does.
+   * The town a Trail's point falls in. Unlike a Park page, this never
+   * branches into the city's Neighborhood lookup: a Trail is filed in one
+   * flat `/trails/` section, not under a city or town section, so there is
+   * no section to read that branch from. El Camino Trail's point stands in
+   * the city and so draws the town/county shape here, while Conkey Corner
+   * Park at the same coordinates draws its Neighborhood on the Park page —
+   * two pages about the same spot, showing different maps. Every trailhead
+   * the site records today also happens to fall in Monroe County, so the
+   * plain county-wide lookup is enough for now.
    */
   const town = $derived(
     trail?.geo ? placeAt(trail.geo.latitude, trail.geo.longitude) : undefined
