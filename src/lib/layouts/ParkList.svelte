@@ -10,6 +10,7 @@
   import {
     isCitySection,
     isCountySection,
+    isStateSection,
     municipality,
     placeAt,
     townKey,
@@ -37,6 +38,12 @@
   const county = $derived(isCountySection(section.url));
   /** The city section is drawn with its neighborhoods. */
   const city = $derived(isCitySection(section.url));
+  /**
+   * The state section has no town of its own either, and every state park
+   * still in it stands in Monroe County (ADR-0006), so it takes the same
+   * frame as the county section, with a dot for each park that has `geo`.
+   */
+  const state = $derived(isStateSection(section.url));
 
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
@@ -208,6 +215,10 @@
         </div>
       {:else if county}
         <div class="locator"><TownLocator /></div>
+      {:else if state}
+        <div class="locator">
+          <TownLocator {markers} label="The state parks of Monroe County" />
+        </div>
       {/if}
     </div>
 
