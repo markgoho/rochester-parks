@@ -865,15 +865,16 @@
     font-weight: var(--weight-bold);
   }
 
-  /* The same "list" container the town map above queries. .list sits in
-     <main>'s content column, inside the page's 2 * 2.75rem margin and this
-     browser's reserved scrollbar-gutter, so 60rem (960px) of viewport is
-     53.5625rem (857px) here. */
-  @container list (inline-size >= 53.5625rem) {
-    /* The county map sits beside the heading, not above the table. */
+  /* The same "list" container the town map above queries. The county map
+     sits beside the heading, not above the table: 15rem text (a name-list
+     column reads fine this narrow, see DefaultList.svelte) + 13rem locator
+     + 2.5rem gap = 30.5rem. Kept below 41.5625rem: past that, .list's width
+     briefly runs backwards as --gutter widens at 48rem of viewport (see
+     app.css), and a threshold in that dip would flicker on and off. */
+  @container list (inline-size >= 30.5rem) {
     .head:has(.locator) {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 13rem;
+      grid-template-columns: minmax(15rem, 1fr) 13rem;
       align-items: start;
       gap: var(--space-40);
     }
@@ -881,19 +882,27 @@
     .locator {
       justify-self: end;
     }
+  }
 
-    /* Forty-eight neighborhoods need more room than one town to be picked. */
+  /* Forty-eight neighborhoods need more room than one town to be picked:
+     15rem text + 20rem locator + 2.5rem gap = 37.5rem (also below the
+     41.5625rem dip described above). */
+  @container list (inline-size >= 37.5rem) {
     .head:has(.locator--city) {
-      grid-template-columns: minmax(0, 1fr) 20rem;
+      grid-template-columns: minmax(15rem, 1fr) 20rem;
     }
 
     .locator--city {
       width: 20rem;
     }
+  }
 
+  /* The table row: 2.5rem num + 10rem name + 5.5rem status + 10rem tags +
+     6rem acres + 6rem words + 5 * 1rem gap = 45rem. */
+  @container list (inline-size >= 45rem) {
     .row {
       grid-template-columns:
-        2.5rem minmax(0, 13rem) 5.5rem minmax(0, 1fr)
+        2.5rem minmax(10rem, 13rem) 5.5rem minmax(10rem, 1fr)
         6rem 6rem;
       grid-template-areas: 'num name status tags acres words';
       align-items: center;

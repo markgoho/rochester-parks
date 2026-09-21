@@ -453,11 +453,6 @@ p {
   color: var(--orange);
 }
 
-/* The container every page's own layout queries. Its own inline-size is the
-   viewport minus this browser's reserved scrollbar-gutter (a few px); a
-   child in its content column is narrower still, by 2 * --page-inset. A
-   page component converts a viewport breakpoint by measuring which one it
-   sits in and subtracting that margin. */
 .main {
   display: grid;
   grid-template-columns:
@@ -465,7 +460,6 @@ p {
     [content-start] minmax(0, 1fr)
     [content-end] var(--page-inset)
     [full-end];
-  container-type: inline-size;
 }
 
 /* Each part of a page goes in the page column. min-width: 0 lets it shrink

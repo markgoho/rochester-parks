@@ -113,6 +113,9 @@
   </div>
 </section>
 
+<!-- The frame is the container .summary queries below. A container cannot
+     query itself. -->
+<div class="summary-frame">
 <div class="summary">
   <p class="count-out">
     <span class="mono">{matched.length}</span>
@@ -139,6 +142,7 @@
       </p>
     </div>
   </div>
+</div>
 </div>
 
 <section class="results" aria-live="polite">
@@ -313,6 +317,16 @@
     color: var(--ink-soft);
   }
 
+  /* Named "results": the container .row queries below, the space .row
+     actually gets. */
+  .results {
+    container: results / inline-size;
+  }
+
+  .summary-frame {
+    container: summary / inline-size;
+  }
+
   .group {
     margin: var(--space-32) 0 var(--space-12);
     padding-bottom: var(--space-12);
@@ -383,17 +397,19 @@
     color: var(--ink-soft);
   }
 
-  /* .summary is a child of <main>, and .row (nested in .results below it)
-     has no nearer container, so both query <main> (see .main in app.css):
-     same conversion as Home.svelte's 60rem hero rule, 59.0625rem (945px). */
-  @container (inline-size >= 59.0625rem) {
+  /* 20rem text + 30rem coverage panel + 1rem gap = 51rem. */
+  @container summary (inline-size >= 51rem) {
     .summary {
-      grid-template-columns: minmax(0, 1fr) 30rem;
+      grid-template-columns: minmax(20rem, 1fr) 30rem;
       align-items: stretch;
     }
+  }
 
+  /* .row sits inside .results, its nearer "results" container: 10rem name +
+     8rem section + 10rem tags + 2 * 1.25rem gap = 30.5rem. */
+  @container results (inline-size >= 30.5rem) {
     .row {
-      grid-template-columns: minmax(0, 16rem) 8rem minmax(0, 1fr);
+      grid-template-columns: minmax(10rem, 16rem) 8rem minmax(10rem, 1fr);
       align-items: center;
       gap: var(--space-20);
     }
