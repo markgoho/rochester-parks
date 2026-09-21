@@ -34,6 +34,11 @@
         "type": 301
       },
       {
+        "source": "/monroe-county-parks/seneca-park-zoo",
+        "destination": "/monroe-county-parks/seneca-park/",
+        "type": 301
+      },
+      {
         "source": "/town-parks/webster-parks/north-ponds-park",
         "destination": "/town-parks/webster-parks/charles-e-sexton-memorial-park/",
         "type": 301
