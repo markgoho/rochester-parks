@@ -2,6 +2,7 @@
 title: 'High Falls State Park'
 description: 'A planned New York State park at High Falls in downtown Rochester'
 type: 'park'
+planned: true
 address:
   addressLocality: 'Rochester'
   addressRegion: 'NY'

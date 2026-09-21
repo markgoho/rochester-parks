@@ -14,6 +14,10 @@ _Avoid_: Location, site, venue
 A Park a government has since decommissioned, closed for good or built over. It keeps its page, because the site holds the only record of what was there, and the page says plainly that the park is gone. It is in no Park List, count, map or search result, so nothing sends a reader to a place that no longer exists, but it stays indexable so a reader looking for the old park learns what became of it (ADR-0010). A Park closed for a season or for repair is not a Former Park.
 _Avoid_: Decommissioned park, closed park, abandoned park, ex-park
 
+**Planned Park**:
+A Park that an official plan names but that is not open to the public yet (ADR-0006). Its page says plainly that the park is planned, not open, and its structured data omits the free-and-open-to-the-public claims a Park normally carries. The state is an authored fact in the page frontmatter, `planned: true`, the same precedent `former: true` sets: nothing here is derived from the markdown. High Falls State Park is the one Planned Park today.
+_Avoid_: Future park, proposed park, park in progress
+
 **Facility**:
 A named place inside a Park that keeps its own hours, or that the public rents: a rec center, lodge, pavilion, ice rink, zoo, spray park or beach. A rented Facility often has no public hours at all. It is still a Facility, and the Park page tells the reader how to rent it: the link or the telephone number that takes a booking, and the season the Facility is rented in, when the source gives one. The page does not give a fee, because a fee changes more often than the site is built (ADR-0004 asks the site to replace the official page, not to copy each number off it). A number is a name: "Shelter 3" is a Facility. A Facility has its own place inside the Park, so a map of the Park can show where it is. A playground that keeps the same hours as the grounds is an amenity, not a Facility. A Facility always belongs to the Park that holds it. An R-Center with no grounds of its own is not a Park.
 _Avoid_: Venue, building, amenity
