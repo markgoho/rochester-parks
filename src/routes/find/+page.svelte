@@ -406,8 +406,9 @@
   }
 
   /* .row sits inside .results, its nearer "results" container: 10rem name +
-     8rem section + 10rem tags + 2 * 1.25rem gap = 30.5rem. */
-  @container results (inline-size >= 30.5rem) {
+     8rem section + 10rem tags + 2 * 1.25rem gap + 2rem of the row's own
+     horizontal padding (2 * --space-16) = 32.5rem. */
+  @container results (inline-size >= 32.5rem) {
     .row {
       grid-template-columns: minmax(10rem, 16rem) 8rem minmax(10rem, 1fr);
       align-items: center;

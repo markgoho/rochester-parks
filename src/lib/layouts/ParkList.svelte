@@ -898,8 +898,9 @@
   }
 
   /* The table row: 2.5rem num + 10rem name + 5.5rem status + 10rem tags +
-     6rem acres + 6rem words + 5 * 1rem gap = 45rem. */
-  @container list (inline-size >= 45rem) {
+     6rem acres + 6rem words + 5 * 1rem gap + 1.75rem of the row's own
+     horizontal padding (2 * --space-14) = 46.75rem. */
+  @container list (inline-size >= 46.75rem) {
     .row {
       grid-template-columns:
         2.5rem minmax(10rem, 13rem) 5.5rem minmax(10rem, 1fr)
