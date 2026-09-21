@@ -7,7 +7,7 @@ geo:
   longitude: -77.59276380462059
 address:
   streetAddress: 'S Clinton Ave'
-  addressLocality: 'Brighton'
+  addressLocality: 'Rochester'
   addressRegion: 'NY'
   postalCode: '14620'
   addressCountry: 'US'
