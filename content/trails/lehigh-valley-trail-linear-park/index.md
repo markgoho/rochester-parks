@@ -1,7 +1,7 @@
 ---
 title: 'Lehigh Valley Trail Linear Park'
-description: 'A monroe county park called Lehigh Valley Trail Linear Park'
-type: 'county-parks'
+description: 'A Monroe County trail called Lehigh Valley Trail Linear Park'
+type: 'trail'
 geo:
   latitude: 43.0035602
   longitude: -77.6232056

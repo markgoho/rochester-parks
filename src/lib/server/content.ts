@@ -6,7 +6,7 @@ import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
 import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
-import { isParkContainer, isParkType } from '#lib/park-types.js';
+import { isParkContainer, isParkType, isTrailType } from '#lib/park-types.js';
 import { isFormerPark, splitFormerParks } from '#lib/park-split.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import { FACILITIES_TOPIC, topicsOf } from '#lib/topics.js';
@@ -242,6 +242,21 @@ function isPark(node: Node): boolean {
   return parent !== undefined && isParkContainer(parent.url);
 }
 
+/**
+ * A Trail is a `type: 'trail'` node that hangs directly off a container, the
+ * same shape a Park takes (ADR-0006). It is never also a Park: the two
+ * front-matter types are disjoint (`isTrailType`/`isParkType`), so a Trail
+ * never reaches a Park List, park count or `/find` result, all of which
+ * filter on `isPark`.
+ */
+function isTrail(node: Node): boolean {
+  const { type } = node.frontMatter;
+  if (!isTrailType(type)) return false;
+  if (isParkContainer(node.url)) return false;
+  const parent = parentOf(node.url);
+  return parent !== undefined && isParkContainer(parent.url);
+}
+
 /** Strips the trailing noun so a breadcrumb reads "Greece", not "Greece Parks". */
 function sectionLabel(title: string): string {
   return title.replace(/\s+Parks$/i, '');
@@ -402,6 +417,7 @@ function layoutOf(node: Node): Layout {
   // Whether a park is written as `_index.md` or `index.md` is a filing
   // detail, not a layout: both get the park page.
   if (isPark(node)) return 'park-single';
+  if (isTrail(node)) return 'trail-single';
   if (node.kind === 'section') {
     return isParkSection(node.url) ? 'park-list' : 'default-list';
   }
@@ -574,8 +590,9 @@ export function getPage(url: string): Page | undefined {
 
   const layout = layoutOf(node);
   const park = isPark(node) ? parkMetaOf(node) : undefined;
+  const trailMeta = isTrail(node) ? parkMetaOf(node) : undefined;
   const ancestors = ancestorsOf(url);
-  const trail = [...ancestors, link(node)];
+  const crumbs = [...ancestors, link(node)];
   const jsonLd =
     park && layout === 'park-single'
       ? [
@@ -589,10 +606,10 @@ export function getPage(url: string): Page | undefined {
             park,
             TODAY
           ),
-          breadcrumbJsonLd(trail),
+          breadcrumbJsonLd(crumbs),
         ]
-      : layout === 'park-list'
-        ? [breadcrumbJsonLd(trail)]
+      : layout === 'park-list' || layout === 'trail-single'
+        ? [breadcrumbJsonLd(crumbs)]
         : [];
 
   return {
@@ -617,6 +634,19 @@ export function getPage(url: string): Page | undefined {
           topics: topicsOf(
             node.html,
             park.facilities?.length ? [FACILITIES_TOPIC] : []
+          ),
+        }
+      : {}),
+    // No `neighbours` here, deliberately: ParkSingle.svelte's paging nav
+    // reads `page.park?.section.title`, a Park-only label. Add paging for
+    // Trails only alongside a wording fix there too.
+    ...(trailMeta
+      ? {
+          trail: trailMeta,
+          hours: parkHours(trailMeta),
+          topics: topicsOf(
+            node.html,
+            trailMeta.facilities?.length ? [FACILITIES_TOPIC] : []
           ),
         }
       : {}),

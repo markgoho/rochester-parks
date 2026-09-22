@@ -125,7 +125,22 @@
       },
       {
         "source": "/monroe-county-parks/lehigh-valley-linear-park",
-        "destination": "/monroe-county-parks/lehigh-valley-trail-linear-park/",
+        "destination": "/trails/lehigh-valley-trail-linear-park/",
+        "type": 301
+      },
+      {
+        "source": "/monroe-county-parks/lehigh-valley-trail-linear-park",
+        "destination": "/trails/lehigh-valley-trail-linear-park/",
+        "type": 301
+      },
+      {
+        "source": "/state-parks/genesee-valley-greenway-state-park",
+        "destination": "/trails/genesee-valley-greenway-state-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/chili-parks/chili-nature-trail",
+        "destination": "/trails/chili-nature-trail/",
         "type": 301
       },
       {

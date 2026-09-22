@@ -15,4 +15,4 @@ openingHours:
     closes: 'dusk'
 ---
 
-Lock 62 Canal Park covers 15 acres at 3195 Monroe Avenue in Pittsford. Trails lead to a viewing area at an old double lock from the Erie Canal.
+Lock 62 Canal Park covers 15 acres at 3195 Monroe Avenue in Pittsford. Trails lead to a viewing area at an old double lock from the [Erie Canal](/trails/erie-canal-trail/).

@@ -3,7 +3,8 @@ export type Layout =
   | 'default-list'
   | 'default-single'
   | 'park-list'
-  | 'park-single';
+  | 'park-single'
+  | 'trail-single';
 
 export interface PageLink {
   title: string;
@@ -283,16 +284,22 @@ export interface Page extends PageLink {
   /** Home first, then each ancestor section. */
   ancestors: PageLink[];
   jsonLd: object[];
-  /** Present on park pages only. */
+  /** Present on Park pages only. */
   park?: ParkMeta;
-  /** Present on park pages only: the hours, resolved against the build date. */
+  /**
+   * Present on Trail pages only. The same shape as a Park's facts: a Trail
+   * shows what a Park page shows where it applies (ADR-0006), but it is
+   * never a Park, so it carries its own field rather than reusing `park`.
+   */
+  trail?: ParkMeta;
+  /** Present on Park and Trail pages: the hours, resolved against the build date. */
   hours?: ParkHours;
   /** Present on the home page only. */
   summary?: SiteSummary;
   /** The parks either side of this one in its section, by title. */
   neighbours?: { previous?: PageLink; next?: PageLink };
   /**
-   * Present on park pages only: the page navigation's topics, already
+   * Present on Park and Trail pages: the page navigation's topics, already
    * reduced to `[]` unless there are two or more (ADR-0007).
    */
   topics?: Topic[];

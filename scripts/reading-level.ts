@@ -1,16 +1,17 @@
 /**
  * Runs the #150 reading-level standard (src/lib/reading-level.ts) over every
- * Park page body in the content tree, committed so the standard has one
- * definition (#159).
+ * Park and Trail page body in the content tree, committed so the standard has
+ * one definition (#159). A Trail page holds the same standard as a Park page
+ * (#116): it is a write-up a reader reads, not a different kind of prose.
  *
  *   bun scripts/reading-level.ts
  *   bun scripts/reading-level.ts --all   # print every measured page, not only failures
  *
- * Exits non-zero when any non-exempt Park page fails either rule.
+ * Exits non-zero when any non-exempt Park or Trail page fails either rule.
  */
 import { globSync, readFileSync } from 'node:fs';
 import matter from 'gray-matter';
-import { isParkContainer, isParkType } from '../src/lib/park-types';
+import { isParkContainer, isParkType, isTrailType } from '../src/lib/park-types';
 import { evaluate } from '../src/lib/reading-level';
 
 interface FrontMatter {
@@ -24,9 +25,9 @@ function pageId(relativePath: string): string {
     .replace(/\.md$/, '');
 }
 
-/** A Park page: Park front matter, directly under its section. */
-function isMeasuredPark(id: string, type: string | undefined): boolean {
-  if (!isParkType(type)) return false;
+/** A Park or Trail page: Park or Trail front matter, directly under its section. */
+function isMeasuredPage(id: string, type: string | undefined): boolean {
+  if (!isParkType(type) && !isTrailType(type)) return false;
   if (isParkContainer(`/${id}/`)) return false;
   const parentId = id.split('/').slice(0, -1).join('/');
   return isParkContainer(`/${parentId}/`);
@@ -64,7 +65,7 @@ function main(): void {
     const { data, content } = matter(source);
     const front = data as FrontMatter;
     const id = pageId(file.slice(contentRoot.length + 1));
-    if (!isMeasuredPark(id, front.type)) continue;
+    if (!isMeasuredPage(id, front.type)) continue;
     measured++;
 
     const result = evaluate(content);
@@ -89,7 +90,7 @@ function main(): void {
   }
 
   console.log(
-    `\n${measured} Park page bodies measured, ${exemptions.size} exempt, ${failures} failing.`
+    `\n${measured} Park and Trail page bodies measured, ${exemptions.size} exempt, ${failures} failing.`
   );
   process.exit(failures > 0 ? 1 : 0);
 }

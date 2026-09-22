@@ -1,6 +1,6 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { isParkContainer, isParkType } from './park-types.js';
+import { isParkContainer, isParkType, isTrailType } from './park-types.js';
 
 describe('isParkType', () => {
   test('accepts both Park front-matter types', () => {
@@ -11,6 +11,18 @@ describe('isParkType', () => {
   test('rejects anything else', () => {
     expect(isParkType('trail')).toBe(false);
     expect(isParkType(undefined)).toBe(false);
+  });
+});
+
+describe('isTrailType', () => {
+  test('accepts the Trail front-matter type', () => {
+    expect(isTrailType('trail')).toBe(true);
+  });
+
+  test('rejects a Park type or anything else, so a page cannot be both', () => {
+    expect(isTrailType('park')).toBe(false);
+    expect(isTrailType('county-parks')).toBe(false);
+    expect(isTrailType(undefined)).toBe(false);
   });
 });
 
