@@ -109,9 +109,16 @@
      other Comments, and the orange rule hangs in the margin to its left.
      The rule and the signature are its only mark. */
   .entry--owner {
-    margin-inline-start: calc(-1 * (var(--space-16) + var(--line-quote)));
-    padding-inline-start: var(--space-16);
-    border-inline-start: var(--line-quote) solid var(--orange);
+    position: relative;
+  }
+
+  .entry--owner::before {
+    content: '';
+    position: absolute;
+    inset-block: var(--space-20);
+    inset-inline-start: calc(-1 * (var(--space-16) + var(--line-quote)));
+    inline-size: var(--line-quote);
+    background: var(--orange);
   }
 
   .meta {
