@@ -172,9 +172,10 @@
 
     <!-- VIEW A, Ledger. Comments first, form last. The notice is a banner
          above the whole area. An owner reply is indented under an orange
-         rule and signed as the site, not a person. Age is the plain ISO date
-         plus an "old site" mark on every Archive comment. Subject radios head
-         the form. After submit: a banner at the top, the list stays. -->
+         rule and signed as the site, not a person; nothing else marks it.
+         Age is the plain ISO date, with no archive mark. Subject radios head
+         the form. After submit: a banner at the top, the list stays.
+         Chosen; the two eyebrows it first had were dropped on review. -->
     <section class="view view--a area-a" aria-labelledby="comments-a-{uid}">
       <p class="sent sent-a">
         <strong>Thanks.</strong> Your comment is in the queue. It shows here
@@ -195,7 +196,6 @@
             <p class="meta-a">
               <span class="who">{c.author}</span>
               <time class="mono" datetime={c.date}>{isoDate(c.date)}</time>
-              <span class="eyebrow">From the old site</span>
             </p>
             <p class="text">{@html c.html}</p>
             {#each c.replies ?? [] as r (r.date + r.author)}
@@ -203,9 +203,7 @@
                 <p class="meta-a">
                   <span class="who">{r.owner ? 'Rochester Parks' : r.author}</span
                   >
-                  {#if r.owner}<span class="eyebrow eyebrow--accent"
-                      >Reply from this site</span
-                    >{:else}<span class="eyebrow">Reply</span>{/if}
+                  {#if !r.owner}<span class="eyebrow">Reply</span>{/if}
                   <time class="mono" datetime={r.date}>{isoDate(r.date)}</time>
                 </p>
                 <p class="text">{@html r.html}</p>
