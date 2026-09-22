@@ -30,7 +30,12 @@ const documents = snapshot.docs.map((doc) => {
   const data = doc.data() as Omit<StoredComment, 'created'> & {
     created: Timestamp;
   };
-  return { ...data, id: doc.id, created: data.created.toDate() };
+  const comment: StoredCommentWithId = {
+    ...data,
+    id: doc.id,
+    created: data.created.toDate(),
+  };
+  return comment;
 });
 const pages = shapeComments(documents);
 

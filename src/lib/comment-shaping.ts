@@ -2,8 +2,9 @@ import type { CommentWithReplies, PageComment } from './types.js';
 
 /**
  * A Comment as the `comments` collection stores it (#217). The build reads
- * only Approved ones, but the shape is the whole document, so the shaping
- * below is the one place that decides what a reader may see.
+ * only Approved ones, and the document holds private fields (email,
+ * Subject, flags), so the shaping below is the one place that decides what
+ * a reader may see.
  */
 export interface StoredComment {
   /** URL path of the page, e.g. "/town-parks/riga-parks/sanford-road-park/". */
@@ -20,6 +21,9 @@ export interface StoredComment {
   flags: string[];
 }
 
+/** A stored Comment with its document id. */
+export type StoredCommentWithId = StoredComment & { id: string };
+
 /** The day a Comment was written, as a reader in Rochester would date it. */
 const rochesterDay = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/New_York',
@@ -28,7 +32,7 @@ const rochesterDay = new Intl.DateTimeFormat('en-CA', {
   day: '2-digit',
 });
 
-function visible(id: string, comment: StoredComment): PageComment {
+function toPageComment(id: string, comment: StoredComment): PageComment {
   return {
     id,
     name: comment.name,
@@ -38,10 +42,8 @@ function visible(id: string, comment: StoredComment): PageComment {
   };
 }
 
-const oldestFirst = (
-  a: { created: Date; id: string },
-  b: { created: Date; id: string }
-) => a.created.getTime() - b.created.getTime() || a.id.localeCompare(b.id);
+const oldestFirst = (a: StoredCommentWithId, b: StoredCommentWithId) =>
+  a.created.getTime() - b.created.getTime() || a.id.localeCompare(b.id);
 
 /**
  * Approved Comment documents in, the per-page render shape out, keyed by page
@@ -51,18 +53,23 @@ const oldestFirst = (
  * their Replies are oldest first.
  */
 export function shapeComments(
-  documents: (StoredComment & { id: string })[]
+  documents: StoredCommentWithId[]
 ): Record<string, CommentWithReplies[]> {
   const sorted = [...documents].sort(oldestFirst);
   const topLevel = new Map<string, CommentWithReplies>();
+  const pageOf = new Map<string, string>();
   for (const doc of sorted) {
     if (doc.parent === null) {
-      topLevel.set(doc.id, { ...visible(doc.id, doc), replies: [] });
+      topLevel.set(doc.id, { ...toPageComment(doc.id, doc), replies: [] });
+      pageOf.set(doc.id, doc.page);
     }
   }
   for (const doc of sorted) {
-    if (doc.parent !== null) {
-      topLevel.get(doc.parent)?.replies.push(visible(doc.id, doc));
+    if (doc.parent === null) continue;
+    const parent = topLevel.get(doc.parent);
+    // A Reply shows only under its own parent, on its parent's page.
+    if (parent && pageOf.get(doc.parent) === doc.page) {
+      parent.replies.push(toPageComment(doc.id, doc));
     }
   }
 

@@ -1,6 +1,10 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { shapeComments, type StoredComment } from './comment-shaping.js';
+import {
+  shapeComments,
+  type StoredComment,
+  type StoredCommentWithId,
+} from './comment-shaping.js';
 
 const PAGE = '/town-parks/riga-parks/sanford-road-park/';
 const OTHER = '/trails/erie-canal/';
@@ -9,7 +13,7 @@ const OTHER = '/trails/erie-canal/';
 function stored(
   id: string,
   overrides: Partial<StoredComment> = {}
-): StoredComment & { id: string } {
+): StoredCommentWithId {
   return {
     id,
     page: PAGE,
@@ -90,6 +94,15 @@ describe('shapeComments', () => {
     ]);
     expect(shaped[PAGE]).toHaveLength(1);
     expect(shaped[PAGE][0].replies).toEqual([]);
+  });
+
+  test('drops a Reply filed on a different page from its parent', () => {
+    const shaped = shapeComments([
+      stored('a'),
+      stored('stray', { parent: 'a', page: OTHER }),
+    ]);
+    expect(shaped[PAGE][0].replies).toEqual([]);
+    expect(shaped[OTHER]).toBeUndefined();
   });
 
   test('a page with only an orphan Reply has no entry', () => {
