@@ -181,6 +181,18 @@ export interface FrontMatter {
   planned?: boolean;
   /** Whether the Park is a Former Park. See CONTEXT.md and ADR-0010. */
   former?: boolean;
+  /**
+   * Who takes bookings for the Parks in this section. Only a section index
+   * that holds Park pages carries it; a Park takes its section's link. One
+   * link per owner, never per Facility.
+   */
+  reservations?: Reservations;
+}
+
+/** The owner that takes bookings for a section's Parks, and where to start. */
+export interface Reservations {
+  name: string;
+  url: string;
 }
 
 /** Park facts a list or detail page can show without re-reading the markdown. */
