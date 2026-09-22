@@ -1,5 +1,6 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
+  import CommentAreaPrototype from '#lib/components/CommentAreaPrototype.svelte';
   import ParkFlags from '#lib/components/ParkFlags.svelte';
   import Tip from '#lib/components/Tip.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
@@ -397,6 +398,9 @@
           </ul>
         </nav>
       {/if}
+
+      <!-- PROTOTYPE (comment area): renders only on its two seeded pages. -->
+      <CommentAreaPrototype {page} />
     </div>
   </div>
 
