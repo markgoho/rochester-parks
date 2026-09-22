@@ -81,11 +81,11 @@ The owner-only pages where the Moderation queue is read and a Comment is Approve
 _Avoid_: Admin, dashboard, back end, console
 
 **Approved**:
-The state of a Comment that the site owner has accepted for publication. Only Approved Comments reach readers.
+The state of a Comment that the site owner has accepted for publication. Only Approved Comments reach readers. A new Comment becomes Approved when the owner approves it from the Moderation queue. An Archive comment is Approved when it is carried over, because it was already public on the old site.
 _Avoid_: Published, live, accepted
 
 **Archive comment**:
-One of the roughly 140 Comments carried over from the WordPress site, dated 2012 to 2024. Distinguished from a new Comment because its author is unreachable and its reply structure is unrecoverable from the export.
+One of the 128 Comments carried over from the WordPress site, dated 2012 to 2024. Pingbacks are not carried over. Distinguished from a new Comment because its Commenter is unreachable, it has no Subject, and it never passes through the Moderation queue. Its Replies are carried over with it.
 _Avoid_: Legacy comment, imported comment, old comment
 
 **Pingback**:
