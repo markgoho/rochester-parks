@@ -73,8 +73,12 @@ A Comment from a reader who mistakes this site for the parks department and asks
 _Avoid_: Booking request, rental request
 
 **Moderation queue**:
-The set of Comments that have been submitted and are not yet Approved. Nothing in it is visible to the public.
+The set of Comments that have been submitted and are not yet Approved. Nothing in it is visible to the public. A Comment leaves the queue in one of two ways: the owner Approves it, or the owner rejects it, and a rejected Comment is deleted.
 _Avoid_: Pending list, inbox, drafts
+
+**Moderation surface**:
+The owner-only pages where the Moderation queue is read and a Comment is Approved, rejected, redacted before approval, answered with a Reply, or, once Approved, deleted. Nothing on it is public.
+_Avoid_: Admin, dashboard, back end, console
 
 **Approved**:
 The state of a Comment that the site owner has accepted for publication. Only Approved Comments reach readers.
