@@ -1,5 +1,6 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
+  import CommentArea from '#lib/components/CommentArea.svelte';
   import ParkFlags from '#lib/components/ParkFlags.svelte';
   import Tip from '#lib/components/Tip.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
@@ -412,6 +413,8 @@
           </ul>
         </nav>
       {/if}
+
+      {#if page.comments}<CommentArea area={page.comments} />{/if}
     </div>
   </div>
 

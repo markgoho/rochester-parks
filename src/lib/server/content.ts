@@ -4,6 +4,7 @@ import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedSmartypants } from 'marked-smartypants';
 import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
+import { commentAreaOf } from '#lib/comment-area.js';
 import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType, isTrailType } from '#lib/park-types.js';
@@ -593,6 +594,14 @@ export function getPage(url: string): Page | undefined {
   const trailMeta = isTrail(node) ? parkMetaOf(node) : undefined;
   const ancestors = ancestorsOf(url);
   const crumbs = [...ancestors, link(node)];
+  // A Park takes its section's reservation link; a village Park is filed
+  // under its town, so it takes the town's.
+  const comments = commentAreaOf({
+    layout,
+    url: node.url,
+    frontMatter: node.frontMatter,
+    reservations: parentOf(node.url)?.frontMatter.reservations,
+  });
   const jsonLd =
     park && layout === 'park-single'
       ? [
@@ -651,6 +660,7 @@ export function getPage(url: string): Page | undefined {
         }
       : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
+    ...(comments ? { comments } : {}),
   };
 }
 

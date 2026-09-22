@@ -188,6 +188,11 @@ export interface FrontMatter {
    * whole section: a Facility's own rental link stays in its Facility.
    */
   reservations?: ReservationLink;
+  /**
+   * `false` closes the comment form on this page; absent means open. It
+   * cannot open a page kind that takes no Comments (#212).
+   */
+  comments?: boolean;
 }
 
 /** The government that takes bookings for a section's Parks, and its page. */
@@ -316,6 +321,45 @@ export interface Page extends PageLink {
    * reduced to `[]` unless there are two or more (ADR-0007).
    */
   topics?: Topic[];
+  /**
+   * Present on the pages that take Comments: Park pages, Trail pages and Blog
+   * posts (#212). Absent everywhere else, so no other page shows the area.
+   */
+  comments?: CommentArea;
+}
+
+/**
+ * One Approved Comment as a page shows it. Only what a reader may see: no
+ * email, Subject, flags or state.
+ */
+export interface PageComment {
+  id: string;
+  /** The author as they signed. Not shown for an owner Comment. */
+  name: string;
+  /** Plain text; line breaks are kept and URLs stay text. */
+  body: string;
+  /** ISO date, `YYYY-MM-DD`. */
+  created: string;
+  /** Written by the site owner: signed "Rochester Parks" under an orange rule. */
+  owner: boolean;
+}
+
+/** A top-level Comment with its Replies. A Reply never has a Reply. */
+export interface CommentThread extends PageComment {
+  replies: PageComment[];
+}
+
+/** What the comment area at the end of a page shows. */
+export interface CommentArea {
+  /** Whether the form shows. `comments: false` in front matter closes it. */
+  open: boolean;
+  /**
+   * Who takes bookings, for the notice. Only on a Park page whose section
+   * has a `reservations` link; the notice falls back to the all-parks list.
+   */
+  reservations?: ReservationLink;
+  /** Approved Comments, oldest first, each with its Replies oldest first. */
+  comments: CommentThread[];
 }
 
 /** One row of the prerendered index the finder filters in the browser. */
