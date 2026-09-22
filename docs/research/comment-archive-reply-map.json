@@ -2,8 +2,8 @@
   "note": "Maps each reply row in the WordPress comment export (Google Sheet `RP Comments`, 150DeCFPU3RNlfJ2I0RkWNvqlRCLaVvoZVaEPHX5lNXE, read 2026-09-22) onto its parent row. The export has a `parent` column of WordPress comment ids but no `id` column. Rows are sheet row numbers with the header as row 1; `reply_author` + `reply_date` is the natural key if the sheet is re-sorted. WordPress comment ids rise with time across the whole site, so the dates of matched parents must rise with `wp_parent_id`; this file passes that check. Emails, IPs and comment text are deliberately absent. Wayfinder ticket #27.",
   "reply_rows": 30,
   "counts": {
-    "certain": 29,
-    "likely": 1,
+    "certain": 30,
+    "likely": 0,
     "unresolved": 0
   },
   "id_order_violations": 0,
@@ -18,8 +18,8 @@
       "parent_author": "Aussie Pete",
       "parent_date": "2012-06-13 23:01:04",
       "parent_is_reply": false,
-      "confidence": "likely",
-      "evidence": "closest in time of 3 candidates in the id window: row 139 Aussie Pete (2012-06-13 23:01:04), row 138 Helen (2012-06-13 17:56:54), row 5 Mark (2012-06-13 17:05:48)"
+      "confidence": "certain",
+      "evidence": "confirmed by content in #208: the reply thanks the parent for a point about ranking parks, which is Aussie Pete's argument, not Helen's praise; also closest in time of 3 candidates in the id window: row 139 Aussie Pete (2012-06-13 23:01:04), row 138 Helen (2012-06-13 17:56:54), row 5 Mark (2012-06-13 17:05:48)"
     },
     {
       "reply_row": 40,
