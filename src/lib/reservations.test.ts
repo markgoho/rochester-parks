@@ -43,7 +43,9 @@ const parkSections = [
   ),
 ].sort();
 
-const sections = new Map(pages.map((page) => [page.url, page.frontMatter]));
+const frontMatterByUrl = new Map(
+  pages.map((page) => [page.url, page.frontMatter])
+);
 
 describe('reservations', () => {
   test('finds the town, City, County and State sections', () => {
@@ -54,7 +56,7 @@ describe('reservations', () => {
   });
 
   test.each(parkSections)('%s names who takes its bookings', (url) => {
-    const reservations = sections.get(url)?.reservations;
+    const reservations = frontMatterByUrl.get(url)?.reservations;
     expect(reservations).toEqual({
       name: expect.any(String),
       url: expect.stringMatching(/^https:\/\//),
