@@ -325,7 +325,7 @@ export interface Page extends PageLink {
    * Present on the pages that take Comments: Park pages, Trail pages and Blog
    * posts (#212). Absent everywhere else, so no other page shows the area.
    */
-  comments?: CommentArea;
+  commentArea?: CommentArea;
 }
 
 /**
@@ -345,7 +345,7 @@ export interface PageComment {
 }
 
 /** A top-level Comment with its Replies. A Reply never has a Reply. */
-export interface CommentThread extends PageComment {
+export interface CommentWithReplies extends PageComment {
   replies: PageComment[];
 }
 
@@ -359,7 +359,7 @@ export interface CommentArea {
    */
   reservations?: ReservationLink;
   /** Approved Comments, oldest first, each with its Replies oldest first. */
-  comments: CommentThread[];
+  comments: CommentWithReplies[];
 }
 
 /** One row of the prerendered index the finder filters in the browser. */

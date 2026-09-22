@@ -58,14 +58,16 @@
     </ol>
   {/if}
 
-  {#if !area.open}
+  {#if area.open}
+    <!-- The form goes here with the write path (#221), so a form never
+         posts to nothing. -->
+  {:else}
     <p class="closed">Comments are closed on this page.</p>
   {/if}
 </section>
 
 <style>
   .comments {
-    container: comments / inline-size;
     max-inline-size: var(--measure);
     margin-block-start: var(--space-48);
   }
@@ -81,7 +83,7 @@
   }
 
   .notice {
-    margin: var(--space-16) 0 0;
+    margin-block: var(--space-16) 0;
   }
 
   /* The area sits outside .prose, so its links state the prose link rule
@@ -103,9 +105,11 @@
     border-block-end: var(--line-hair) solid var(--rule);
   }
 
-  /* An owner top-level Comment keeps its place in the list, not indented;
-     the orange rule and the signature are its only mark. */
+  /* An owner top-level Comment is not indented: its text lines up with the
+     other Comments, and the orange rule hangs in the margin to its left.
+     The rule and the signature are its only mark. */
   .entry--owner {
+    margin-inline-start: calc(-1 * (var(--space-16) + var(--line-quote)));
     padding-inline-start: var(--space-16);
     border-inline-start: var(--line-quote) solid var(--orange);
   }
@@ -115,7 +119,7 @@
     flex-wrap: wrap;
     align-items: baseline;
     gap: var(--space-4) var(--space-12);
-    margin: 0 0 var(--space-6);
+    margin-block: 0 var(--space-6);
   }
 
   .who {
@@ -127,8 +131,9 @@
     color: var(--ink-muted);
   }
 
-  /* Plain text: the line breaks the Commenter typed are kept, and a long
-     URL wraps rather than widening the page. */
+  /* Plain text: the line breaks the Commenter typed are kept. A pasted URL
+     is one long word, so it may break to keep the page from scrolling
+     sideways; ordinary words still wrap whole. */
   .text {
     margin: 0;
     color: var(--ink-soft);
@@ -150,7 +155,7 @@
   }
 
   .closed {
-    margin: var(--space-24) 0 0;
+    margin-block: var(--space-24) 0;
     color: var(--ink-muted);
   }
 </style>

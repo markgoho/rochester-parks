@@ -596,7 +596,7 @@ export function getPage(url: string): Page | undefined {
   const crumbs = [...ancestors, link(node)];
   // A Park takes its section's reservation link; a village Park is filed
   // under its town, so it takes the town's.
-  const comments = commentAreaOf({
+  const commentArea = commentAreaOf({
     layout,
     url: node.url,
     frontMatter: node.frontMatter,
@@ -660,7 +660,7 @@ export function getPage(url: string): Page | undefined {
         }
       : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
-    ...(comments ? { comments } : {}),
+    ...(commentArea ? { commentArea } : {}),
   };
 }
 

@@ -414,7 +414,7 @@
         </nav>
       {/if}
 
-      {#if page.comments}<CommentArea area={page.comments} />{/if}
+      {#if page.commentArea}<CommentArea area={page.commentArea} />{/if}
     </div>
   </div>
 

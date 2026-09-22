@@ -13,8 +13,8 @@
   <article class="prose" style="margin-top: var(--space-20)">
     {@html page.html}
   </article>
-  <!-- Only a Blog post carries `comments`; About shares this layout. -->
-  {#if page.comments}<CommentArea area={page.comments} />{/if}
+  <!-- Only a Blog post carries `commentArea`; About shares this layout. -->
+  {#if page.commentArea}<CommentArea area={page.commentArea} />{/if}
 </div>
 
 <style>
