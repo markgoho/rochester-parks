@@ -174,8 +174,8 @@ The link text is `name`; the href is `url`.
 
 ### 6.2 What the Function does, in order
 
-1. **Honeypot.** If the honeypot field has any value, answer the normal 303 (§6.3) and write nothing (#24). The honeypot is the only silent delete (#24).
-2. **Token.** Recompute the HMAC of the posted page path with the key from Secret Manager and compare it in constant time with the posted token. A mismatch is a blind POST: answer 400 (#24). A valid token proves the build made that page's form, so the Function needs no list of pages.
+1. **Token.** Recompute the HMAC of the posted page path with the key from Secret Manager and compare it in constant time with the posted token. A mismatch is a blind POST: answer 400 (#24). A valid token proves the build made that page's form, so the Function needs no list of pages.
+2. **Honeypot.** If the honeypot field has any value, answer the normal 303 (§6.3) and write nothing (#24). The honeypot is the only silent delete (#24). The token check runs first, so the 303 only ever goes to a page path the build signed, never to a URL a bot posted.
 3. **Validate** (#24):
    - `subject` is one of the three tokens (§2.4).
    - `name` is present after trimming. **Spec choice**: at most 100 characters.
@@ -189,7 +189,7 @@ The link text is `name`; the href is `url`.
 
 What a Comment never stores at launch: IP and user agent (#206).
 
-**Spec choice: a failed check.** The map did not say what a reader sees when step 2 or 3 fails. The browser's own `required`, `type="email"` and `maxlength` checks catch nearly every human error before the POST. What reaches the server failing is almost always a bot. So the Function answers 400 with a small plain HTML page, "Your comment was not sent", naming the problem and asking the reader to go back. The browser's Back button keeps the typed text.
+**Spec choice: a failed check.** The map did not say what a reader sees when step 1 or 3 fails. The browser's own `required`, `type="email"` and `maxlength` checks catch nearly every human error before the POST. What reaches the server failing is almost always a bot. So the Function answers 400 with a small plain HTML page, "Your comment was not sent", naming the problem and asking the reader to go back. The browser's Back button keeps the typed text.
 
 ### 6.3 The redirect and the banner
 
@@ -313,6 +313,8 @@ A rebuild is the only way a Comment reaches a page. A submit writes one document
 
 **Spec choice: how the read meets the loader.** `src/lib/server/content.ts` loads content synchronously from files. The step is a script, `scripts/fetch-comments.ts`, that writes a gitignored JSON file; the loader reads that file and treats a missing file as no Comments. So `bun run dev` and a local build work with no credentials. In CI the step runs as its own workflow step and **fails the job** on any error, because a deploy with an empty file would take every Comment off the live site.
 
+**Spec choice: a build with no HMAC key.** The page token (§7.1) needs the HMAC key at build time, and `bun run dev` and `ci.yml` have none. With no key, the build writes an empty token, so a form in dev or a CI build fails the token check, which is harmless there. The deploy workflow passes the key from GitHub Actions secrets and fails the job if it is missing, for the same reason as the fetch step.
+
 ### 10.3 The export path
 
 If the vendor changes its free tier: one script reads one collection and writes JSON per page, about an hour; the build already reads Comments from a source, so the source is what moves (#29, ADR-0012). `scripts/fetch-comments.ts` is most of that script already.
@@ -386,13 +388,14 @@ Nothing else. The Function runs as the default service account with no key mater
 ### 12.2 One-time setup
 
 1. Grant `roles/datastore.viewer` to `github-action-357220121@rochester-parks.iam.gserviceaccount.com` (#29).
-2. Create the HMAC key and store it in both places. Create the Basic-auth password. Create the fine-grained token with Actions write and Issues write on this repo, no expiry. Store both in Secret Manager.
+2. Create the HMAC key and store it in both places. Create the Basic-auth password. Create the fine-grained token with Actions write and Issues write on this repo, no expiry. Store the password and the token in Secret Manager.
 3. Add the Function's source directory. None exists today. Add `functions.source` to `firebase.json` and change the `functions.predeploy` block from `npm` to `bun` (#29). `firebase-tools` is already a devDependency, so `bunx firebase` works (#29).
-4. The first Function deploy enables Cloud Run, Cloud Build and Artifact Registry. Eventarc is not needed for an HTTPS function (#25, #29).
-5. Add the `/comment` rewrite to `firebase.json` (§6.1).
-6. Add `workflow_dispatch` and the `concurrency` group to `firebase-hosting-merge.yml`, and the fetch step (§10).
-7. Add `announce-comment.yml` to `main` (§8.2) and create the `comment` label.
-8. Add the `reservations` key to each section `_index.md` that holds Park pages (§5.2).
+4. The Function reads its Secret Manager values as declared function secrets (`defineSecret`), so the deploy grants the default service account access to each one. The Function's own `run.app` base URL, which the announcement link needs (§8.2), is a config value set after the first deploy.
+5. The first Function deploy enables Cloud Run, Cloud Build and Artifact Registry. Eventarc is not needed for an HTTPS function (#25, #29).
+6. Add the `/comment` rewrite to `firebase.json` (§6.1).
+7. Add `workflow_dispatch` and the `concurrency` group to `firebase-hosting-merge.yml`, and the fetch step (§10).
+8. Add `announce-comment.yml` to `main` (§8.2) and create the `comment` label.
+9. Add the `reservations` key to each section `_index.md` that holds Park pages (§5.2).
 
 **Spec choice: how the Function deploys.** By hand, `bunx firebase deploy --only functions`, from the owner's machine. The Function changes rarely, and the existing CI deploy stays Hosting only. The Hosting rewrite ships with the normal site deploy.
 
