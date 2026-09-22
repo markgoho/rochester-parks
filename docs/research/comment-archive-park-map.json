@@ -1,12 +1,11 @@
 {
-  "note": "Maps each distinct `Park Name` in the WordPress comment export (Google Sheet `RP Comments`, 150DeCFPU3RNlfJ2I0RkWNvqlRCLaVvoZVaEPHX5lNXE, read 2026-09-21) onto a content file. This file, not docs/park-name-changes.json, is the join key for the archive import: two archive names (`Pappas Park`, `Badgerow Park North`) match neither that file's `old` column nor its `new` column. `kind` is `park` for a park page, `page` for a non-park page, and `attachment` for a WordPress media page whose title is the image title; comments on an attachment page belong on the parent park page. Pingbacks (empty email, a URL in the author cell) are counted here and dropped by the import. Wayfinder ticket #26.",
-  "source_rows": 141,
-  "distinct_names": 39,
+  "note": "Maps each distinct `Park Name` in the WordPress comment export (Google Sheet `RP Comments`, 150DeCFPU3RNlfJ2I0RkWNvqlRCLaVvoZVaEPHX5lNXE, read 2026-09-21) onto a content file. This file, not docs/park-name-changes.json, is the join key for the archive import: two archive names (`Pappas Park`, `Badgerow Park North`) match neither that file's `old` column nor its `new` column. `kind` is `park` for a park page, `page` for a non-park page, and `attachment` for a WordPress media page whose title is the image title; comments on an attachment page belong on the parent park page. Pingbacks (empty email, a URL in the author cell) are counted here and dropped by the import. Wayfinder ticket #26. The one About row was deleted from the sheet on 2026-09-22 by #212, because the About page takes no Comments.",
+  "source_rows": 140,
+  "distinct_names": 38,
   "pingback_rows": 13,
-  "importable_rows": 128,
+  "importable_rows": 127,
   "unmatched_names": 0,
   "rows": [
-    {"archive_name": "About", "path": "content/about/index.md", "kind": "page", "rows": 1, "pingback_rows": 0, "matched_by": "slug", "note": "Title is 'About Rochester Parks'. Not a park page; whether About takes comments is undecided."},
     {"archive_name": "Abraham Lincoln Park", "path": "content/monroe-county-parks/abraham-lincoln-park/_index.md", "kind": "park", "rows": 2, "pingback_rows": 0, "matched_by": "title", "note": ""},
     {"archive_name": "Adeline Park", "path": "content/town-parks/greece-parks/adeline-park/_index.md", "kind": "park", "rows": 16, "pingback_rows": 0, "matched_by": "title", "note": ""},
     {"archive_name": "Badgerow Park North", "path": "content/town-parks/greece-parks/veterans-memorial-park/_index.md", "kind": "park", "rows": 4, "pingback_rows": 0, "matched_by": "merge", "note": "The Badgerow Park North page merged into Greece's Veteran's Memorial Park (#202, same park at 4614 Dewey Avenue); the old URL redirects there, so these rows follow the merge. Refreshed by #208."},

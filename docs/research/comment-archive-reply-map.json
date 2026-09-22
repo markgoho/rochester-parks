@@ -1,5 +1,5 @@
 {
-  "note": "Maps each reply row in the WordPress comment export (Google Sheet `RP Comments`, 150DeCFPU3RNlfJ2I0RkWNvqlRCLaVvoZVaEPHX5lNXE, read 2026-09-22) onto its parent row. The export has a `parent` column of WordPress comment ids but no `id` column. Rows are sheet row numbers with the header as row 1; `reply_author` + `reply_date` is the natural key if the sheet is re-sorted. WordPress comment ids rise with time across the whole site, so the dates of matched parents must rise with `wp_parent_id`; this file passes that check. Emails, IPs and comment text are deliberately absent. Wayfinder ticket #27.",
+  "note": "Maps each reply row in the WordPress comment export (Google Sheet `RP Comments`, 150DeCFPU3RNlfJ2I0RkWNvqlRCLaVvoZVaEPHX5lNXE, read 2026-09-22) onto its parent row. The export has a `parent` column of WordPress comment ids but no `id` column. Rows are sheet row numbers with the header as row 1; `reply_author` + `reply_date` is the natural key if the sheet is re-sorted. WordPress comment ids rise with time across the whole site, so the dates of matched parents must rise with `wp_parent_id`; this file passes that check. Emails, IPs and comment text are deliberately absent. Wayfinder ticket #27. Row numbers renumbered on 2026-09-22 after the About row (sheet row 2) was deleted from the sheet by #212; every cited row moved up by one and was checked against the sheet by author and date.",
   "reply_rows": 30,
   "counts": {
     "certain": 30,
@@ -9,25 +9,25 @@
   "id_order_violations": 0,
   "pairs": [
     {
-      "reply_row": 8,
+      "reply_row": 7,
       "reply_author": "Mark",
       "reply_date": "2012-06-13 23:08:15",
       "park_name": "What makes a Rochester park great?",
       "wp_parent_id": 23,
-      "parent_row": 139,
+      "parent_row": 138,
       "parent_author": "Aussie Pete",
       "parent_date": "2012-06-13 23:01:04",
       "parent_is_reply": false,
       "confidence": "certain",
-      "evidence": "confirmed by content in #208: the reply thanks the parent for a point about ranking parks, which is Aussie Pete's argument, not Helen's praise; also closest in time of 3 candidates in the id window: row 139 Aussie Pete (2012-06-13 23:01:04), row 138 Helen (2012-06-13 17:56:54), row 5 Mark (2012-06-13 17:05:48)"
+      "evidence": "confirmed by content in #208: the reply thanks the parent for a point about ranking parks, which is Aussie Pete's argument, not Helen's praise; also closest in time of 3 candidates in the id window: row 138 Aussie Pete (2012-06-13 23:01:04), row 137 Helen (2012-06-13 17:56:54), row 4 Mark (2012-06-13 17:05:48)"
     },
     {
-      "reply_row": 40,
+      "reply_row": 39,
       "reply_author": "Mark",
       "reply_date": "2012-10-10 19:57:39",
       "park_name": "Adeline Park",
       "wp_parent_id": 97,
-      "parent_row": 4,
+      "parent_row": 3,
       "parent_author": "Terri",
       "parent_date": "2012-10-09 15:44:56",
       "parent_is_reply": false,
@@ -35,12 +35,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 18,
+      "reply_row": 17,
       "reply_author": "Mark",
       "reply_date": "2012-11-24 17:23:38",
       "park_name": "Black Creek Park",
       "wp_parent_id": 141,
-      "parent_row": 25,
+      "parent_row": 24,
       "parent_author": "deborah",
       "parent_date": "2012-11-24 17:17:19",
       "parent_is_reply": false,
@@ -48,12 +48,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 24,
+      "reply_row": 23,
       "reply_author": "Mark",
       "reply_date": "2013-01-08 21:21:59",
       "park_name": "Henpeck Park",
       "wp_parent_id": 152,
-      "parent_row": 82,
+      "parent_row": 81,
       "parent_author": "Sue",
       "parent_date": "2013-01-02 21:57:55",
       "parent_is_reply": false,
@@ -61,12 +61,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 44,
+      "reply_row": 43,
       "reply_author": "Mark Goho",
       "reply_date": "2014-03-02 20:25:20",
       "park_name": "Adeline Park",
       "wp_parent_id": 401,
-      "parent_row": 7,
+      "parent_row": 6,
       "parent_author": "Kim",
       "parent_date": "2014-03-02 14:31:05",
       "parent_is_reply": false,
@@ -74,12 +74,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 59,
+      "reply_row": 58,
       "reply_author": "Mark Goho",
       "reply_date": "2014-04-10 9:33:37",
       "park_name": "Joshua Park",
       "wp_parent_id": 437,
-      "parent_row": 87,
+      "parent_row": 86,
       "parent_author": "Sally Eisenberg",
       "parent_date": "2014-04-09 17:51:20",
       "parent_is_reply": false,
@@ -87,12 +87,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 96,
+      "reply_row": 95,
       "reply_author": "Lee",
       "reply_date": "2020-09-27 13:14:11",
       "park_name": "Joshua Park",
       "wp_parent_id": 437,
-      "parent_row": 87,
+      "parent_row": 86,
       "parent_author": "Sally Eisenberg",
       "parent_date": "2014-04-09 17:51:20",
       "parent_is_reply": false,
@@ -100,12 +100,12 @@
       "evidence": "same WordPress parent id as a certain pairing"
     },
     {
-      "reply_row": 15,
+      "reply_row": 14,
       "reply_author": "Mark Goho",
       "reply_date": "2014-04-13 11:34:59",
       "park_name": "Abraham Lincoln Park",
       "wp_parent_id": 439,
-      "parent_row": 3,
+      "parent_row": 2,
       "parent_author": "Dale Boris-Kane",
       "parent_date": "2014-04-13 10:30:59",
       "parent_is_reply": false,
@@ -113,12 +113,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 86,
+      "reply_row": 85,
       "reply_author": "Mark Goho",
       "reply_date": "2014-05-03 11:44:57",
       "park_name": "Braddock Bay Park",
       "wp_parent_id": 453,
-      "parent_row": 31,
+      "parent_row": 30,
       "parent_author": "Silvana",
       "parent_date": "2014-05-03 11:03:11",
       "parent_is_reply": false,
@@ -126,12 +126,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 39,
+      "reply_row": 38,
       "reply_author": "Mark Goho",
       "reply_date": "2014-06-25 22:44:20",
       "park_name": "Adeline Park",
       "wp_parent_id": 504,
-      "parent_row": 6,
+      "parent_row": 5,
       "parent_author": "Rita Desantis",
       "parent_date": "2014-06-25 11:11:34",
       "parent_is_reply": false,
@@ -139,12 +139,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 35,
+      "reply_row": 34,
       "reply_author": "Mark Goho",
       "reply_date": "2014-08-06 12:43:45",
       "park_name": "Sawyer Park",
       "wp_parent_id": 599,
-      "parent_row": 119,
+      "parent_row": 118,
       "parent_author": "Weaver",
       "parent_date": "2014-08-06 12:40:27",
       "parent_is_reply": false,
@@ -152,12 +152,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 88,
+      "reply_row": 87,
       "reply_author": "Mark Goho",
       "reply_date": "2014-10-15 16:24:53",
       "park_name": "Braddock Bay Park",
       "wp_parent_id": 1534,
-      "parent_row": 32,
+      "parent_row": 31,
       "parent_author": "annette vanleuven",
       "parent_date": "2014-10-15 16:10:09",
       "parent_is_reply": false,
@@ -165,12 +165,12 @@
       "evidence": "reply text names the parent author; no other candidate is named"
     },
     {
-      "reply_row": 46,
+      "reply_row": 45,
       "reply_author": "Mark Goho",
       "reply_date": "2014-10-16 22:37:11",
       "park_name": "Adeline Park",
       "wp_parent_id": 1536,
-      "parent_row": 9,
+      "parent_row": 8,
       "parent_author": "rebecca",
       "parent_date": "2014-10-16 22:13:04",
       "parent_is_reply": false,
@@ -178,12 +178,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 27,
+      "reply_row": 26,
       "reply_author": "Thomas Reddick",
       "reply_date": "2015-02-07 17:44:29",
       "park_name": "Black Creek Park",
       "wp_parent_id": 1623,
-      "parent_row": 26,
+      "parent_row": 25,
       "parent_author": "Bryan",
       "parent_date": "2015-01-16 9:05:10",
       "parent_is_reply": false,
@@ -191,12 +191,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 55,
+      "reply_row": 54,
       "reply_author": "Mark Goho",
       "reply_date": "2015-05-30 13:55:49",
       "park_name": "Badgerow Park North",
       "wp_parent_id": 1695,
-      "parent_row": 21,
+      "parent_row": 20,
       "parent_author": "chris hickson",
       "parent_date": "2015-05-09 21:19:22",
       "parent_is_reply": false,
@@ -204,12 +204,12 @@
       "evidence": "reply text names the parent author; no other candidate is named"
     },
     {
-      "reply_row": 58,
+      "reply_row": 57,
       "reply_author": "Mark Goho",
       "reply_date": "2015-05-30 14:02:42",
       "park_name": "Badgerow Park North",
       "wp_parent_id": 1699,
-      "parent_row": 20,
+      "parent_row": 19,
       "parent_author": "G Lipani",
       "parent_date": "2015-05-18 8:06:29",
       "parent_is_reply": false,
@@ -217,12 +217,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 105,
+      "reply_row": 104,
       "reply_author": "Mark Goho",
       "reply_date": "2015-06-18 16:30:34",
       "park_name": "Sanford Road Park",
       "wp_parent_id": 1711,
-      "parent_row": 109,
+      "parent_row": 108,
       "parent_author": "Barbara Blanchard",
       "parent_date": "2015-06-14 22:30:07",
       "parent_is_reply": false,
@@ -230,12 +230,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 75,
+      "reply_row": 74,
       "reply_author": "Mark Goho",
       "reply_date": "2015-07-14 17:53:56",
       "park_name": "Devil's Cove Park",
       "wp_parent_id": 1715,
-      "parent_row": 43,
+      "parent_row": 42,
       "parent_author": "barbara",
       "parent_date": "2015-06-23 12:05:36",
       "parent_is_reply": false,
@@ -243,12 +243,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 62,
+      "reply_row": 61,
       "reply_author": "Mark Goho",
       "reply_date": "2015-07-14 17:49:18",
       "park_name": "Joshua Park",
       "wp_parent_id": 1717,
-      "parent_row": 89,
+      "parent_row": 88,
       "parent_author": "Ashley",
       "parent_date": "2015-06-25 9:31:11",
       "parent_is_reply": false,
@@ -256,12 +256,12 @@
       "evidence": "only candidate whose date fits between the neighbouring parent ids"
     },
     {
-      "reply_row": 61,
+      "reply_row": 60,
       "reply_author": "Mark Goho",
       "reply_date": "2015-07-14 17:48:03",
       "park_name": "Joshua Park",
       "wp_parent_id": 1718,
-      "parent_row": 90,
+      "parent_row": 89,
       "parent_author": "Maryanne Reed",
       "parent_date": "2015-06-27 9:14:30",
       "parent_is_reply": false,
@@ -269,12 +269,12 @@
       "evidence": "reply text names the parent author; no other candidate is named"
     },
     {
-      "reply_row": 107,
+      "reply_row": 106,
       "reply_author": "Mark Goho",
       "reply_date": "2015-07-13 13:49:52",
       "park_name": "Sanford Road Park",
       "wp_parent_id": 1736,
-      "parent_row": 110,
+      "parent_row": 109,
       "parent_author": "Wendy Didas",
       "parent_date": "2015-07-13 12:07:50",
       "parent_is_reply": false,
@@ -282,12 +282,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 93,
+      "reply_row": 92,
       "reply_author": "Mark Goho",
       "reply_date": "2016-02-15 21:21:40",
       "park_name": "Braddock Bay Park",
       "wp_parent_id": 1752,
-      "parent_row": 34,
+      "parent_row": 33,
       "parent_author": "Angel",
       "parent_date": "2015-07-28 13:08:01",
       "parent_is_reply": false,
@@ -295,12 +295,12 @@
       "evidence": "only candidate whose date fits between the neighbouring parent ids"
     },
     {
-      "reply_row": 102,
+      "reply_row": 101,
       "reply_author": "Joel humphrey",
       "reply_date": "2018-11-01 16:51:58",
       "park_name": "Rose Turner Park",
       "wp_parent_id": 1764,
-      "parent_row": 101,
+      "parent_row": 100,
       "parent_author": "Caitlin Ely",
       "parent_date": "2015-08-12 20:00:46",
       "parent_is_reply": false,
@@ -308,12 +308,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 108,
+      "reply_row": 107,
       "reply_author": "Mark Goho",
       "reply_date": "2016-02-15 21:21:10",
       "park_name": "Sanford Road Park",
       "wp_parent_id": 1787,
-      "parent_row": 106,
+      "parent_row": 105,
       "parent_author": "Nicole",
       "parent_date": "2015-11-01 12:47:23",
       "parent_is_reply": false,
@@ -321,12 +321,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 94,
+      "reply_row": 93,
       "reply_author": "Mark Goho",
       "reply_date": "2016-02-15 21:22:07",
       "park_name": "Braddock Bay Park",
       "wp_parent_id": 1850,
-      "parent_row": 37,
+      "parent_row": 36,
       "parent_author": "ed",
       "parent_date": "2016-02-15 21:07:30",
       "parent_is_reply": false,
@@ -334,12 +334,12 @@
       "evidence": "only candidate whose date fits between the neighbouring parent ids"
     },
     {
-      "reply_row": 50,
+      "reply_row": 49,
       "reply_author": "Mark Goho",
       "reply_date": "2016-04-20 10:38:34",
       "park_name": "Adeline Park",
       "wp_parent_id": 1889,
-      "parent_row": 13,
+      "parent_row": 12,
       "parent_author": "sharon hernandez",
       "parent_date": "2016-04-19 17:48:54",
       "parent_is_reply": false,
@@ -347,12 +347,12 @@
       "evidence": "reply text names the parent author; no other candidate is named"
     },
     {
-      "reply_row": 77,
+      "reply_row": 76,
       "reply_author": "Mark Goho",
       "reply_date": "2016-07-03 16:08:26",
       "park_name": "Devil's Cove Park",
       "wp_parent_id": 1934,
-      "parent_row": 45,
+      "parent_row": 44,
       "parent_author": "Eileen Wuorio",
       "parent_date": "2016-07-03 15:57:01",
       "parent_is_reply": false,
@@ -360,12 +360,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 64,
+      "reply_row": 63,
       "reply_author": "Timbo",
       "reply_date": "2016-07-30 13:43:50",
       "park_name": "Gates Town Park playground",
       "wp_parent_id": 1949,
-      "parent_row": 63,
+      "parent_row": 62,
       "parent_author": "Timbo",
       "parent_date": "2016-07-30 13:43:01",
       "parent_is_reply": false,
@@ -373,12 +373,12 @@
       "evidence": "only earlier comment on this page"
     },
     {
-      "reply_row": 65,
+      "reply_row": 64,
       "reply_author": "Mark Goho",
       "reply_date": "2016-09-26 15:45:58",
       "park_name": "Joshua Park",
       "wp_parent_id": 1966,
-      "parent_row": 91,
+      "parent_row": 90,
       "parent_author": "Mary Richardson",
       "parent_date": "2016-09-26 14:53:58",
       "parent_is_reply": false,
@@ -386,12 +386,12 @@
       "evidence": "reply text names the parent author; no other candidate is named"
     },
     {
-      "reply_row": 81,
+      "reply_row": 80,
       "reply_author": "Greg Geer",
       "reply_date": "2022-08-26 20:26:54",
       "park_name": "Griffith Park",
       "wp_parent_id": 3251,
-      "parent_row": 79,
+      "parent_row": 78,
       "parent_author": "Henry gould Griffith",
       "parent_date": "2020-02-13 11:52:03",
       "parent_is_reply": false,
