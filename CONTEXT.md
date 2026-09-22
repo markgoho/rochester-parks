@@ -53,7 +53,7 @@ _Avoid_: Park title, slug
 ### Comments
 
 **Comment**:
-A message a reader leaves on a Park page or a Blog post.
+A message a reader leaves on a Park page, a Trail page or a Blog post. No other page takes Comments. A page can close its Comments; it then keeps showing the Approved ones and takes no new ones.
 _Avoid_: Post, feedback, message
 
 **Commenter**:
@@ -85,7 +85,7 @@ The state of a Comment that the site owner has accepted for publication. Only Ap
 _Avoid_: Published, live, accepted
 
 **Archive comment**:
-One of the 128 Comments carried over from the WordPress site, dated 2012 to 2024. Pingbacks are not carried over. Distinguished from a new Comment because its Commenter is unreachable, it has no Subject, and it never passes through the Moderation queue. Its Replies are carried over with it.
+One of the 127 Comments carried over from the WordPress site, dated 2012 to 2024. Pingbacks are not carried over. Distinguished from a new Comment because its Commenter is unreachable, it has no Subject, and it never passes through the Moderation queue. Its Replies are carried over with it.
 _Avoid_: Legacy comment, imported comment, old comment
 
 **Pingback**:
