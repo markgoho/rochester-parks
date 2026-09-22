@@ -58,6 +58,27 @@ describe('commentAreaOf', () => {
     }
   });
 
+  test("carries the page's Comments, and keeps them on a closed page", () => {
+    const comments = [
+      {
+        id: 'a',
+        name: 'Barbara',
+        body: 'Hi',
+        created: '2015-06-14',
+        owner: false,
+        replies: [],
+      },
+    ];
+    expect(
+      commentAreaOf({
+        layout: 'trail-single',
+        url: '/trails/erie-canal/',
+        frontMatter: { comments: false },
+        comments,
+      })
+    ).toEqual({ open: false, comments });
+  });
+
   test('comments: false closes the form and keeps the notice link', () => {
     expect(
       commentAreaOf({

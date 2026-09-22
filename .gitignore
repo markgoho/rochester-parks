@@ -16,3 +16,5 @@ public
 .firebase/
 
 .DS_Store
+# Approved Comments, fetched from Firestore before the deploy build
+generated

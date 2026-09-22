@@ -10,6 +10,16 @@ name: Deploy to Firebase Hosting on merge
   # the site rebuilds each day from the same content (ADR-0004).
   schedule:
     - cron: '0 9 * * *'
+  # Approve, an owner Reply and delete dispatch this workflow through the
+  # GitHub API, because a rebuild is the only way a Comment reaches a page
+  # (ADR-0012).
+  workflow_dispatch:
+# Runs wait for each other rather than race. GitHub keeps one run waiting
+# and drops older waiting ones, which loses nothing: every run fetches all
+# Approved Comments.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -17,6 +27,11 @@ jobs:
       - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
+      # Writes generated/comments.json. Any error fails the job: a build with
+      # no file would take every Approved Comment off the live site.
+      - run: bun scripts/fetch-comments.ts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ROCHESTER_PARKS }}'
       - run: bun run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

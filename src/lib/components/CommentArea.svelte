@@ -46,8 +46,10 @@
   {#if area.comments.length}
     <ol class="ledger">
       {#each area.comments as comment (comment.id)}
-        <li class="entry" class:entry--owner={comment.owner}>
-          {@render signed(comment, false)}
+        <li class="entry">
+          <div class="own" class:own--owner={comment.owner}>
+            {@render signed(comment, false)}
+          </div>
           {#each comment.replies as reply (reply.id)}
             <div class="reply" class:reply--owner={reply.owner}>
               {@render signed(reply, true)}
@@ -108,10 +110,18 @@
   /* An owner top-level Comment is not indented: its text lines up with the
      other Comments, and the orange rule hangs in the margin to its left.
      The rule and the signature are its only mark. */
-  .entry--owner {
-    margin-inline-start: calc(-1 * (var(--space-16) + var(--line-quote)));
-    padding-inline-start: var(--space-16);
-    border-inline-start: var(--line-quote) solid var(--orange);
+  .own--owner {
+    position: relative;
+  }
+
+  /* The rule runs beside the Comment's own words only, not its Replies. */
+  .own--owner::before {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: calc(-1 * (var(--space-16) + var(--line-quote)));
+    inline-size: var(--line-quote);
+    background: var(--orange);
   }
 
   .meta {

@@ -1,5 +1,6 @@
 import type {
   CommentArea,
+  CommentWithReplies,
   FrontMatter,
   Layout,
   ReservationLink,
@@ -27,17 +28,20 @@ export function commentAreaOf({
   url,
   frontMatter,
   reservations,
+  comments = [],
 }: {
   layout: Layout;
   url: string;
   frontMatter: FrontMatter;
   /** The `reservations` link of the section the page is filed under. */
   reservations?: ReservationLink;
+  /** The page's Approved Comments, already shaped. */
+  comments?: CommentWithReplies[];
 }): CommentArea | undefined {
   if (!takesComments(layout, url)) return undefined;
   return {
     open: frontMatter.comments !== false,
     ...(layout === 'park-single' && reservations ? { reservations } : {}),
-    comments: [],
+    comments,
   };
 }

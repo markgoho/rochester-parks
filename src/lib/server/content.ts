@@ -13,6 +13,7 @@ import { SITE_TITLE, absUrl } from '#lib/site.js';
 import { FACILITIES_TOPIC, topicsOf } from '#lib/topics.js';
 import type {
   ChildLink,
+  CommentWithReplies,
   Facility,
   FrontMatter,
   Layout,
@@ -74,6 +75,17 @@ const files = import.meta.glob('/content/**/*.md', {
   import: 'default',
   eager: true,
 }) as Record<string, string>;
+
+// Approved Comments per page, written by `scripts/fetch-comments.ts` before
+// the deploy build (ADR-0012). The file is git-ignored: a glob that matches
+// nothing gives no Comments, so dev and local builds need no credentials.
+const approvedComments: Record<string, CommentWithReplies[]> =
+  Object.values(
+    import.meta.glob<Record<string, CommentWithReplies[]>>(
+      '/generated/comments.json',
+      { import: 'default', eager: true }
+    )
+  )[0] ?? {};
 
 // Every image the site actually ships. A park page can name a picture that
 // was never carried over, and a structured-data image that 404s is worse
@@ -601,6 +613,7 @@ export function getPage(url: string): Page | undefined {
     url: node.url,
     frontMatter: node.frontMatter,
     reservations: parentOf(node.url)?.frontMatter.reservations,
+    comments: approvedComments[node.url],
   });
   const jsonLd =
     park && layout === 'park-single'
