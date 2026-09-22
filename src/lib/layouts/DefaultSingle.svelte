@@ -1,5 +1,6 @@
 <script lang="ts">
   import Breadcrumbs from '#lib/components/Breadcrumbs.svelte';
+  import CommentArea from '#lib/components/CommentArea.svelte';
   import { longestWord } from '#lib/format.js';
   import type { Page } from '#lib/types.js';
 
@@ -12,6 +13,8 @@
   <article class="prose" style="margin-top: var(--space-20)">
     {@html page.html}
   </article>
+  <!-- Only a Blog post carries `commentArea`; About shares this layout. -->
+  {#if page.commentArea}<CommentArea area={page.commentArea} />{/if}
 </div>
 
 <style>
