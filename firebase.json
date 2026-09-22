@@ -159,6 +159,11 @@
         "type": 301
       },
       {
+        "source": "/town-parks/greece-parks/badgerow-park-north",
+        "destination": "/town-parks/greece-parks/veterans-memorial-park/",
+        "type": 301
+      },
+      {
         "source": "/town-parks/greece-parks/pappas-park",
         "destination": "/town-parks/greece-parks/beverly-pappas-memorial-park/",
         "type": 301

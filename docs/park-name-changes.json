@@ -138,6 +138,12 @@
       "old": "Conkey Corner Park & El Camino Trail",
       "new": "El Camino Trail",
       "source": "split: #116 separates the Park from the El Camino Trail (ADR-0006); this page is new. Shares its \"old\" name with the entry above for the same reason: a join on \"old\" alone is ambiguous between the two, so an importer must read each comment by hand"
+    },
+    {
+      "path": "content/town-parks/greece-parks/veterans-memorial-park/_index.md",
+      "old": "Badgerow Park North",
+      "new": "Veteran's Memorial Park",
+      "source": "merged: park database and the Town of Greece page name the park at 4614 Dewey Avenue Veteran's Memorial Park, and both pages describe that park (#202)"
     }
   ]
 }

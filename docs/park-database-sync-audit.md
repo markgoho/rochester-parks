@@ -96,7 +96,7 @@ Three names the database got wrong were caught this way and are NOT changed to w
 | --- | --- | --- |
 | brighton | Belmanor Park | not in the Brighton database. It is in the Henrietta database slice (municipality: Henrietta, 108 Belmanor Drive). Left in place per spec (no rename/delete/move). |
 | gates | Gates Town Park | No database row. Body content describes the same physical park as First Responders Park (Lyell Road, unpaved entry, four soccer fields, 9-hole disc golf course, pond with dock; the First Responders Park body even links to 'The Woodlands at Gates Town Park'). Appears to be a duplicate/earlier-named page for the same park that the database row was matched to. Not deleted, renamed, or given the database's address/cid to avoid duplicating structured data across two pages for one physical park. Merge or redirect is the owner's call. |
-| greece | Badgerow Park North | not in the database; only Badgerow Park South is in the database slice |
+| greece | Badgerow Park North | not in the database; only Badgerow Park South is in the database slice. Resolved 2026-09-22: it is Veteran's Memorial Park under its old name. The Badgerow Park North page was removed, and its URL redirects to Veteran's Memorial Park (#202). |
 | greece | Forest Hills Playground | not in the database; page body states the park has been decommissioned |
 | mendon | Big Eddy Park | not in the database |
 | pittsford | Lock 32 State Canal Park | not in the database; distinct location from the database's Lock 62 Canal Park row (different coordinates, ~1 mile apart) so this is not the same park under a different name |
