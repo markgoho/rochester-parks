@@ -19,6 +19,7 @@ Target: **the bare apex, no `www` anywhere.** WordPress currently 301s the apex 
 
 - [x] Seven old URLs with no match here now 301 in `firebase.json`.
 - [x] Gates Town Park, the one old URL with no equivalent page, now 301s to First Responders Park. They are one park under its old and new names.
+- [x] Badgerow Park North now 301s to Veteran's Memorial Park. They are one park under its old and new names (#202).
 - [x] Pirsch Analytics in `src/app.html`. Ignores localhost, so dev and preview never report.
 - [x] `robots.txt` opened to crawlers, ahead of cutover. See step 1.
 

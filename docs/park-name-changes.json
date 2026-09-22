@@ -125,7 +125,12 @@
       "path": "content/town-parks/gates-parks/first-responders-park/_index.md",
       "old": "Gates Town Park",
       "new": "First Responders Park",
-      "source": "merged: park database has one row, First Responders Park, and both pages describe that park (#61)"
+      "source": "merged: park database has one row, First Responders Park, and both pages describe that park (#61)"    },
+    {
+      "path": "content/town-parks/greece-parks/veterans-memorial-park/_index.md",
+      "old": "Badgerow Park North",
+      "new": "Veteran's Memorial Park",
+      "source": "merged: park database and the Town of Greece page name the park at 4614 Dewey Avenue Veteran's Memorial Park, and both pages describe that park (#202)"
     }
   ]
 }

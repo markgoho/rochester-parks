@@ -19,7 +19,6 @@ town-parks/greece-parks/forest-hills-playground # Visit report (#170); also a Fo
 town-parks/greece-parks/goodwin-park # Visit report (#170)
 town-parks/gates-parks/first-responders-park # Visit report (#170)
 town-parks/pittsford-parks/great-embankment-park # Visit report (#170)
-town-parks/greece-parks/badgerow-park-north # Visit report (#170)
 town-parks/rush-parks/stoney-brook-road-park # Visit report (#170)
 town-parks/greece-parks/veterans-memorial-park # Visit report (#170)
 town-parks/greece-parks/grandview-park # Visit report (#170)
