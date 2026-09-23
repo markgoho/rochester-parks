@@ -279,6 +279,7 @@ describe('the announcement', () => {
         pageTitle: 'Sanford Road Park',
         subject: 'reservation-question',
         date: '2026-09-22',
+        flag: 'none',
         commentId: 'id-1',
       },
     ]);

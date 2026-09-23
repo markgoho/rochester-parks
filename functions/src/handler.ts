@@ -51,8 +51,7 @@ export interface CommentStore {
 }
 
 /**
- * What the announcement workflow gets (#222). Only an unflagged Comment
- * announces (#258), so it carries no flags. It opens a public issue, so it
+ * What the announcement workflow gets (#222). It opens a public issue, so it
  * never carries a Commenter's name, words or email: the repo is public.
  */
 export interface Announcement {
@@ -60,6 +59,9 @@ export interface Announcement {
   subject: Subject;
   /** The day the Comment came in, in Rochester, `YYYY-MM-DD`. */
   date: string;
+  /** The Comment's flags, or `none`. Only an unflagged Comment announces
+   *  (#258), so today it is always `none`. */
+  flag: string;
   commentId: string;
 }
 
@@ -206,6 +208,7 @@ async function receive(
         pageTitle: titleOf(page),
         subject,
         date: rochesterDay.format(created),
+        flag: 'none',
         commentId: id,
       });
     } catch (error) {
