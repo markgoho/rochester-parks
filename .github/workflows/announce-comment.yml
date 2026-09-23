@@ -1,0 +1,52 @@
+# Opens one issue for each new Comment, so GitHub emails the owner (#222).
+# The comments Function dispatches it after it writes the Comment. The issue
+# is opened with this workflow's own GITHUB_TOKEN, so its author is
+# github-actions[bot]; an issue from the owner's own token would email nobody.
+#
+# The repo is public, so the issue never carries a Commenter's name, words or
+# email: only the page, the Subject, the date, any flag and the Comment's id,
+# with a link to the Comment on the Moderation surface.
+name: Announce a new Comment
+'on':
+  workflow_dispatch:
+    inputs:
+      page_title:
+        description: The page the Comment is on
+        required: true
+      subject:
+        description: comment, correction or reservation-question
+        required: true
+      date:
+        description: The day the Comment came in, YYYY-MM-DD
+        required: true
+      flag:
+        description: The Comment's flags, or none
+        required: true
+      comment_id:
+        description: The Comment's Firestore id
+        required: true
+permissions:
+  issues: write
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PAGE_TITLE: ${{ inputs.page_title }}
+          SUBJECT: ${{ inputs.subject }}
+          DATE: ${{ inputs.date }}
+          FLAG: ${{ inputs.flag }}
+          COMMENT_ID: ${{ inputs.comment_id }}
+          MODERATION_URL: ${{ vars.MODERATION_URL }}
+        run: |
+          body="- Page: ${PAGE_TITLE}
+          - Subject: ${SUBJECT}
+          - Date: ${DATE}
+          - Flag: ${FLAG}
+          - Comment: ${COMMENT_ID}
+
+          Read it on the Moderation surface: ${MODERATION_URL}/comments/${COMMENT_ID}"
+          gh issue create --title "New comment on ${PAGE_TITLE}" --label comment --body "$body"

@@ -1,6 +1,11 @@
 /// <reference types="bun" />
 import { beforeEach, describe, expect, test } from 'bun:test';
-import { handle, type Deps, type NewComment } from './handler.js';
+import {
+  handle,
+  type Announcement,
+  type Deps,
+  type NewComment,
+} from './handler.js';
 import { pageToken } from './token.js';
 
 const KEY = 'test-key';
@@ -8,11 +13,21 @@ const PAGE = '/town-parks/riga-parks/sanford-road-park/';
 const NOW = new Date('2026-09-22T12:00:00Z');
 
 let written: NewComment[];
+let announced: Announcement[];
+let logged: string[];
 let deps: Deps;
 
 beforeEach(() => {
   written = [];
+  announced = [];
+  logged = [];
   deps = {
+    github: {
+      async announce(announcement) {
+        announced.push(announcement);
+      },
+    },
+    logError: (message) => logged.push(message),
     store: {
       async add(comment) {
         written.push(comment);
@@ -178,6 +193,52 @@ describe('the public post', () => {
       email: 'b@example.com',
       body: 'Hi',
     });
+  });
+});
+
+describe('the announcement', () => {
+  test('a valid post dispatches one announcement with no private words', async () => {
+    await post({ subject: 'reservation-question' });
+    expect(announced).toEqual([
+      {
+        pageTitle: 'Sanford Road Park',
+        subject: 'reservation-question',
+        date: '2026-09-22',
+        flag: 'none',
+        commentId: 'id-1',
+      },
+    ]);
+    const inputs = JSON.stringify(announced);
+    for (const secret of [
+      'Barbara',
+      'barbara@example.com',
+      'reserve the lodge',
+    ]) {
+      expect(inputs).not.toContain(secret);
+    }
+  });
+
+  test('a flagged Comment still announces, marked', async () => {
+    await post({ body: 'See https://a.example and https://b.example' });
+    expect(announced[0].flag).toBe('links');
+  });
+
+  test('a failing GitHub client still writes and still answers 303', async () => {
+    deps.github.announce = async () => {
+      throw new Error('401 Bad credentials');
+    };
+    const response = await post();
+    expect(response.status).toBe(303);
+    expect(written).toHaveLength(1);
+    expect(logged).toHaveLength(1);
+    expect(logged[0]).toContain('id-1');
+  });
+
+  test('the honeypot and a bad token announce nothing', async () => {
+    await post({ leave_blank: 'x' });
+    await post({ token: 'nope' });
+    await post({ body: '' });
+    expect(announced).toEqual([]);
   });
 });
 
