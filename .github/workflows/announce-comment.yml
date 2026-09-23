@@ -4,8 +4,9 @@
 # github-actions[bot]; an issue from the owner's own token would email nobody.
 #
 # The repo is public, so the issue never carries a Commenter's name, words or
-# email: only the page, the Subject, the date, any flag and the Comment's id,
-# with a link to the Comment on the Moderation surface.
+# email: only the page, the Subject, the date and the Comment's id, with a
+# link to the Comment on the Moderation surface. A flagged Comment is never
+# announced (#258).
 name: Announce a new Comment
 'on':
   workflow_dispatch:
@@ -18,9 +19,6 @@ name: Announce a new Comment
         required: true
       date:
         description: The day the Comment came in, YYYY-MM-DD
-        required: true
-      flag:
-        description: The Comment's flags, or none
         required: true
       comment_id:
         description: The Comment's Firestore id
@@ -38,14 +36,12 @@ jobs:
           PAGE_TITLE: ${{ inputs.page_title }}
           SUBJECT: ${{ inputs.subject }}
           DATE: ${{ inputs.date }}
-          FLAG: ${{ inputs.flag }}
           COMMENT_ID: ${{ inputs.comment_id }}
           MODERATION_URL: ${{ vars.MODERATION_URL }}
         run: |
           body="- Page: ${PAGE_TITLE}
           - Subject: ${SUBJECT}
           - Date: ${DATE}
-          - Flag: ${FLAG}
           - Comment: ${COMMENT_ID}
 
           Read it on the Moderation surface: ${MODERATION_URL:-(set the MODERATION_URL repo variable)}/comments/${COMMENT_ID}"

@@ -88,12 +88,11 @@ async function closeAnnouncement(commentId: string): Promise<void> {
 }
 
 const github: GitHubClient = {
-  announce: ({ pageTitle, subject, date, flag, commentId }) =>
+  announce: ({ pageTitle, subject, date, commentId }) =>
     dispatch('announce-comment.yml', {
       page_title: pageTitle,
       subject,
       date,
-      flag,
       comment_id: commentId,
     }),
   closeAnnouncement,

@@ -51,7 +51,8 @@ export interface CommentStore {
 }
 
 /**
- * What the announcement workflow gets (#222). It opens a public issue, so it
+ * What the announcement workflow gets (#222). Only an unflagged Comment
+ * announces (#258), so it carries no flags. It opens a public issue, so it
  * never carries a Commenter's name, words or email: the repo is public.
  */
 export interface Announcement {
@@ -59,8 +60,6 @@ export interface Announcement {
   subject: Subject;
   /** The day the Comment came in, in Rochester, `YYYY-MM-DD`. */
   date: string;
-  /** The Comment's flags, or `none`. */
-  flag: string;
   commentId: string;
 }
 
@@ -198,18 +197,20 @@ async function receive(
     flags,
   });
 
-  // 6. Announce. A failure keeps the Comment: it waits in the queue, and the
-  //    error log raises the alert (#30).
-  try {
-    await deps.github.announce({
-      pageTitle: titleOf(page),
-      subject,
-      date: rochesterDay.format(created),
-      flag: flags.join(', ') || 'none',
-      commentId: id,
-    });
-  } catch (error) {
-    deps.logError(`Announcement failed for Comment ${id}`, error);
+  // 6. Announce an unflagged post only. A flagged one waits in the queue,
+  //    sorted last, with no email (#258). A failure keeps the Comment: it
+  //    waits in the queue, and the error log raises the alert (#30).
+  if (flags.length === 0) {
+    try {
+      await deps.github.announce({
+        pageTitle: titleOf(page),
+        subject,
+        date: rochesterDay.format(created),
+        commentId: id,
+      });
+    } catch (error) {
+      deps.logError(`Announcement failed for Comment ${id}`, error);
+    }
   }
 
   // 7. Back to the page, where the banner shows.
