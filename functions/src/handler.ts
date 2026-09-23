@@ -175,9 +175,16 @@ async function receive(
   //    posted, before HTML is stripped (#256).
   const links = countLinks(posted);
 
+  //    And a body written mostly in a non-Latin script (#257): the site is
+  //    an English guide, and none of the Archive comments is in one.
+  const script = mostlyNonLatin(body);
+
   // 5. Write one queue document. No IP, no user agent (#206).
   const created = deps.clock();
-  const flags = links >= 2 ? ['links'] : [];
+  const flags = [
+    ...(links >= 2 ? ['links'] : []),
+    ...(script ? ['script'] : []),
+  ];
   const id = await deps.store.add({
     page,
     parent: null,
@@ -210,19 +217,35 @@ async function receive(
 }
 
 /**
+ * A URL outside a link element: it starts with a scheme or a bare www. and
+ * runs to whitespace, a quote, a tag or a bracket.
+ */
+const BARE_URL = /\b(?:https?:\/\/|www\.)[^\s"'<>[\]]+/gi;
+
+/**
  * The links in a body as posted. An HTML or BBCode link element is one link,
  * whatever its words say, so a link whose words are its own URL counts once.
- * Outside those elements a URL starts with a scheme or a bare www. and runs
- * to whitespace, a quote, a tag or a bracket, so https://www.example.com
- * counts once. The same URL posted twice counts twice.
+ * Outside those elements each URL is one link, so https://www.example.com
+ * counts once and the same URL posted twice counts twice.
  */
 function countLinks(posted: string): number {
   const element = /<a\b[^>]*>[\s\S]*?<\/a>|\[url\b[^\]]*\][\s\S]*?\[\/url\]/gi;
   const elements = posted.match(element)?.length ?? 0;
-  const urls =
-    posted.replace(element, ' ').match(/\b(?:https?:\/\/|www\.)[^\s"'<>[\]]+/gi)
-      ?.length ?? 0;
+  const urls = posted.replace(element, ' ').match(BARE_URL)?.length ?? 0;
   return elements + urls;
+}
+
+/**
+ * Whether more of a body's letters are outside the Latin script than in it,
+ * so an English Comment with one foreign name is not flagged. Accented Latin
+ * letters (é, ñ) are Latin. URLs are left out, so a link's Latin letters do
+ * not hide the words around it.
+ */
+function mostlyNonLatin(body: string): boolean {
+  const text = body.replace(BARE_URL, ' ');
+  const letters = text.match(/\p{L}/gu)?.length ?? 0;
+  const latin = text.match(/\p{Script=Latin}/gu)?.length ?? 0;
+  return letters - latin > latin;
 }
 
 /**
