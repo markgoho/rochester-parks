@@ -121,8 +121,9 @@
         <span class="error">Write your comment.</span>
       </div>
       <!-- The honeypot. A person never sees or reaches it; a bot that fills
-           every field fills it too. Named so Chrome does not autofill it. -->
-      <div class="trap" aria-hidden="true">
+           every field fills it too. Named so Chrome does not autofill it.
+           Clipped by a class, not display: none, which spam bots skip (#255). -->
+      <div class="visually-hidden" aria-hidden="true">
         <label
           >Leave this blank <input
             name="leave_blank"
@@ -331,18 +332,6 @@
     align-items: center;
     gap: var(--space-10);
     min-block-size: var(--tap-target);
-  }
-
-  /* The honeypot is out of sight by a class, never an inline style. It is
-     clipped, not display: none, because spam bots skip a field hidden that
-     way (#255). tabindex and aria-hidden keep people from reaching it. */
-  .trap {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    clip-path: inset(50%);
   }
 
   .form .button {
