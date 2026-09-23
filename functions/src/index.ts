@@ -125,6 +125,17 @@ const store: CommentStore = {
     const snapshot = await collection().where('state', '==', 'queue').get();
     return snapshot.docs.map((doc) => stored(doc.id, doc.data()));
   },
+  async approved() {
+    const snapshot = await collection().where('state', '==', 'approved').get();
+    return snapshot.docs.map((doc) => stored(doc.id, doc.data()));
+  },
+  async removeWithReplies(id) {
+    const replies = await collection().where('parent', '==', id).get();
+    const batch = getFirestore().batch();
+    for (const doc of replies.docs) batch.delete(doc.ref);
+    batch.delete(collection().doc(id));
+    await batch.commit();
+  },
   async approve(id, body) {
     await collection().doc(id).update({ state: 'approved', body });
   },

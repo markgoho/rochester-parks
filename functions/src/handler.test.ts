@@ -4,7 +4,7 @@ import {
   handle,
   type Announcement,
   type Deps,
-  type NewComment,
+  type StoredComment,
 } from './handler.js';
 import { pageToken } from './token.js';
 
@@ -12,7 +12,7 @@ const KEY = 'test-key';
 const PAGE = '/town-parks/riga-parks/sanford-road-park/';
 const NOW = new Date('2026-09-22T12:00:00Z');
 
-let written: NewComment[];
+let written: Omit<StoredComment, 'id'>[];
 let announced: Announcement[];
 let logged: string[];
 let deps: Deps;
@@ -37,6 +37,8 @@ beforeEach(() => {
       },
       get: async () => undefined,
       inQueue: async () => [],
+      approved: async () => [],
+      removeWithReplies: async () => {},
       approve: async () => {},
       remove: async () => {},
     },
