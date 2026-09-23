@@ -33,7 +33,7 @@ Two facts from the repo shaped the choice. A Firestore database already exists i
 
 ## Consequences
 
-- **The runtime needs a bump before each decommission date.** Google may disable a Function on a decommissioned runtime. Node 22 decommissions on 2027-10-31. Node 24 is a Cloud Run functions runtime that decommissions on 2028-10-31, but Firebase CLI and SDK support for it is not confirmed. The bump is a code change, so the daily rebuild does not do it. The spec must schedule it.
+- **The runtime needs a bump before each decommission date.** Google may disable a Function on a decommissioned runtime. Node 22 decommissions on 2027-10-31. Node 24 decommissions on 2028-10-31; the Function moved to it on 2026-09-23 (#230), with Firebase CLI 15.30.2 and `firebase-functions` 7.4.0. The bump is a code change, so the daily rebuild does not do it. The spec must schedule it.
 - **A rebuild is the only way a Comment reaches a page.** A submit writes one document and nothing else happens. This is constraint 5 of the map, and it is why storage and rendering stay separate.
 - **A GitHub token unused for a year is revoked.** At one Comment a month it stays in use. If it lapses, approval shows the failure in the moderation surface, and the cron publishes the Comment anyway.
 - **Export is an hour.** A script reads one collection and writes JSON. If Firestore's free tier changes, the build already reads data from a source, so the source is what moves.
