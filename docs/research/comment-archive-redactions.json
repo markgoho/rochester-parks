@@ -1,0 +1,8 @@
+{
+  "note": "Replacement bodies for the three Archive comments that hold private contact details, keyed by `author|date` exactly as the export writes them (#208). Written by the #206 rule: a private phone number, email or postal address becomes [phone removed], [email removed] or [address removed]; everything else stays as the Commenter wrote it. The Riga Town Hall number in the owner's 2016 Sanford Road Park Reply is a public office number and is not here. Read by scripts/archive-import.ts.",
+  "redactions": {
+    "deborah|2012-11-24 17:17:19": "i would like to reserved the park for july 6, 2013 (saturday).  i can be reached at [phone removed] (Leonard Miller).  the best time to call is after noon.  thank you.",
+    "Ofelia Goodwin|2016-05-03 9:47:54": "I am looking to rent one of the pavilion.  Can you get me some information and details.  Please contact me with my email above or call.\nThank you. Ofelia Goodwin\n[phone removed]",
+    "Bob Paiement|2017-02-07 8:48:18": "I just wanted to THANK whoever is responsible for the skating area at Ellison Park.  I'm trying to learn to skate again after a 50 year absence.  It's a lot harder than I thought, as my son says \"It's not like riding a bike\".  I've tried free skating at some local rinks but always drove by Ellison Park to see if it was open.  Yesterday it was, and I spent over an hour doing and trying different things, including skating with a stick and a puck.   It was fantastic (not my skating but the opportunity) and I appreciate the effort you made.\nThanks a lot,\nBob Paiement\n[address removed]\n[phone removed]\n[email removed]"
+  }
+}
