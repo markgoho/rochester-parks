@@ -7,6 +7,7 @@ import {
   handle,
   type CommentStore,
   type GitHubClient,
+  type SpamInput,
   type StoredComment,
 } from './handler.js';
 
@@ -29,6 +30,9 @@ const githubToken = defineSecret('GITHUB_DISPATCH_TOKEN');
 
 /** The Moderation surface's one password (#223). */
 const moderationPassword = defineSecret('MODERATION_PASSWORD');
+
+/** TypeSafe's API key, for the spam check (#259). */
+const typesafeKey = defineSecret('TYPESAFE_API_KEY');
 
 const REPO = 'markgoho/rochester-parks';
 
@@ -100,6 +104,58 @@ const github: GitHubClient = {
   deploy: () => dispatch('firebase-hosting-merge.yml'),
 };
 
+/**
+ * Asks TypeSafe's Jev for the probability that a post is spam (#259). The
+ * question is the one tested offline on the spam of 2026-09-23 and the
+ * Archive; a change to it needs that test again. Any failure is null: no
+ * signal, so the post goes on as if unchecked (#32).
+ */
+async function spam(input: SpamInput): Promise<number | null> {
+  try {
+    const response = await fetch('https://api.typesafe.ai/v1/systemone', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${typesafeKey.value()}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'jev-1.13.0',
+        state: {
+          page_title: input.pageTitle,
+          name: input.name,
+          comment: input.body,
+        },
+        questions: {
+          spam: {
+            type: 'noul',
+            instructions:
+              'Was `comment` written to advertise or to get a link seen, rather than by a real visitor to a page about `page_title`, a park guide for Rochester, NY?',
+            criteria: {
+              true: 'Spam: it promotes a product, service, website, clinic, casino, crypto scheme or SEO offer, or it is generic praise that could be pasted on any website.',
+              false:
+                'A real comment: a question, a correction, a memory or an opinion about this park, this post or parks in Rochester, even if short, misspelled or with a link to a real source.',
+            },
+          },
+        },
+      }),
+      // The Commenter waits on this; a median call takes about 150 ms.
+      signal: AbortSignal.timeout(3_000),
+    });
+    if (!response.ok) {
+      throw new Error(`${response.status} ${await response.text()}`);
+    }
+    const result = (await response.json()) as {
+      answers: { spam: { noul: number } };
+    };
+    return result.answers.spam.noul;
+  } catch (error) {
+    logger.warn('The spam check failed; the post goes on unchecked', {
+      error: String(error),
+    });
+    return null;
+  }
+}
+
 const collection = () => getFirestore().collection('comments');
 
 function stored(
@@ -147,7 +203,7 @@ const store: CommentStore = {
 export const comments = onRequest(
   {
     region: 'us-east4',
-    secrets: [hmacKey, githubToken, moderationPassword],
+    secrets: [hmacKey, githubToken, moderationPassword, typesafeKey],
     minInstances: 0,
     invoker: 'public',
   },
@@ -169,6 +225,7 @@ export const comments = onRequest(
           hmacKey: hmacKey.value(),
           password: moderationPassword.value(),
         },
+        spam,
         clock: () => new Date(),
       }
     );

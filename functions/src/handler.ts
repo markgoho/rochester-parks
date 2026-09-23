@@ -65,6 +65,13 @@ export interface Announcement {
   commentId: string;
 }
 
+/** What the spam check sees: never the email (#259). */
+export interface SpamInput {
+  pageTitle: string;
+  name: string;
+  body: string;
+}
+
 export interface GitHubClient {
   /** Dispatches the announcement workflow on `main`. */
   announce(announcement: Announcement): Promise<void>;
@@ -84,6 +91,11 @@ export interface Deps {
     /** The one password of the Moderation surface. */
     password: string;
   };
+  /**
+   * The probability that a post is spam, from TypeSafe's Jev (#259), or
+   * null when the check failed. A failure is no signal (#32).
+   */
+  spam: (input: SpamInput) => Promise<number | null>;
   clock: () => Date;
 }
 
@@ -106,6 +118,14 @@ export interface FunctionResponse {
 
 const NAME_MAX = 100;
 const BODY_MAX = 5000;
+
+/**
+ * Spam thresholds (#259), set on the 21 spam posts of 2026-09-23 and the 127
+ * Archive comments: at 0.9 every spam post was rejected and no real Comment
+ * was. A real Comment scored up to 0.79, so the band below only flags.
+ */
+const SPAM_REJECT = 0.9;
+const SPAM_FLAG = 0.5;
 
 export async function handle(
   request: FunctionRequest,
@@ -180,11 +200,23 @@ async function receive(
   //    an English guide, and none of the Archive comments is in one.
   const script = mostlyNonLatin(body);
 
+  //    Likely spam is refused, not queued (#259). The page says so, so a
+  //    real person caught by mistake can reword it; a bot does not read it.
+  const pageTitle = titleOf(page);
+  const spam = await deps.spam({ pageTitle, name, body });
+  if (spam !== null && spam >= SPAM_REJECT) {
+    console.info('Refused as spam', { page, spam });
+    return notSent(
+      'It looks like an advertisement to our spam check, so it was not sent. If it is a real comment about this page, please reword it and send it again.'
+    );
+  }
+
   // 5. Write one queue document. No IP, no user agent (#206).
   const created = deps.clock();
   const flags = [
     ...(links >= 2 ? ['links'] : []),
     ...(script ? ['script'] : []),
+    ...(spam !== null && spam >= SPAM_FLAG ? ['spam'] : []),
   ];
   const id = await deps.store.add({
     page,
@@ -205,7 +237,7 @@ async function receive(
   if (flags.length === 0) {
     try {
       await deps.github.announce({
-        pageTitle: titleOf(page),
+        pageTitle,
         subject,
         date: rochesterDay.format(created),
         flag: 'none',

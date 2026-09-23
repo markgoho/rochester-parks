@@ -80,6 +80,7 @@ beforeEach(() => {
     },
     logError: (message) => logged.push(message),
     secrets: { hmacKey: 'k', password: PASSWORD },
+    spam: async () => null,
     clock: () => new Date('2026-09-22T12:00:00Z'),
   };
 });

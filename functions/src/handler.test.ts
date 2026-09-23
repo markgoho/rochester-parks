@@ -4,6 +4,7 @@ import {
   handle,
   type Announcement,
   type Deps,
+  type SpamInput,
   type StoredComment,
 } from './handler.js';
 import { pageToken } from './token.js';
@@ -16,11 +17,15 @@ let written: Omit<StoredComment, 'id'>[];
 let announced: Announcement[];
 let logged: string[];
 let deps: Deps;
+let judged: SpamInput[];
+let spamScore: number | null;
 
 beforeEach(() => {
   written = [];
   announced = [];
   logged = [];
+  judged = [];
+  spamScore = 0.1;
   deps = {
     github: {
       async announce(announcement) {
@@ -43,6 +48,10 @@ beforeEach(() => {
       remove: async () => {},
     },
     secrets: { hmacKey: KEY, password: 'p' },
+    spam: async (input) => {
+      judged.push(input);
+      return spamScore;
+    },
     clock: () => NOW,
   };
 });
@@ -268,6 +277,58 @@ describe('the public post', () => {
       email: 'b@example.com',
       body: 'Hi',
     });
+  });
+});
+
+describe('the spam check', () => {
+  test('sends the page title, the name and the body, never the email', async () => {
+    await post();
+    expect(judged).toEqual([
+      {
+        pageTitle: 'Sanford Road Park',
+        name: 'Barbara',
+        body: 'How do I reserve the lodge?',
+      },
+    ]);
+  });
+
+  test('a likely spam post answers 400, writes nothing and announces nothing', async () => {
+    spamScore = 0.9;
+    const response = await post();
+    expect(response.status).toBe(400);
+    expect(response.body).toContain('looks like an advertisement');
+    expect(written).toEqual([]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a possible spam post writes with the spam flag and announces nothing', async () => {
+    spamScore = 0.5;
+    const response = await post();
+    expect(response.status).toBe(303);
+    expect(written[0].flags).toEqual(['spam']);
+    expect(announced).toEqual([]);
+  });
+
+  test('a clean post writes with no flag and announces', async () => {
+    spamScore = 0.49;
+    await post();
+    expect(written[0].flags).toEqual([]);
+    expect(announced).toHaveLength(1);
+  });
+
+  test('a failed check is no signal: the post writes and announces', async () => {
+    spamScore = null;
+    const response = await post();
+    expect(response.status).toBe(303);
+    expect(written[0].flags).toEqual([]);
+    expect(announced).toHaveLength(1);
+  });
+
+  test('the honeypot, a bad token and a refused post are never checked', async () => {
+    await post({ leave_blank: 'x' });
+    await post({ token: 'nope' });
+    await post({ body: '' });
+    expect(judged).toEqual([]);
   });
 });
 

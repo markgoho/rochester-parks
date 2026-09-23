@@ -116,9 +116,17 @@
       </div>
       <div class="field">
         <label for="body-{uid}">Comment</label>
-        <textarea id="body-{uid}" name="body" rows="5" maxlength="5000" required
-        ></textarea>
+        <textarea
+          id="body-{uid}"
+          name="body"
+          rows="5"
+          maxlength="5000"
+          aria-describedby="body-hint-{uid}"
+          required></textarea>
         <span class="error">Write your comment.</span>
+        <span id="body-hint-{uid}" class="hint"
+          >Your name and comment are checked for spam by TypeSafe.</span
+        >
       </div>
       <!-- The honeypot. A person never sees or reaches it; a bot that fills
            every field fills it too. Named so Chrome does not autofill it.
