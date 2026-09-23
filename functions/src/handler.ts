@@ -1,3 +1,4 @@
+import { moderate } from './surface.js';
 import { tokenMatches } from './token.js';
 
 /**
@@ -32,9 +33,30 @@ export interface NewComment {
   flags: string[];
 }
 
+/** A Comment as the `comments` collection holds it, with its id (#217). */
+export interface StoredComment {
+  id: string;
+  page: string;
+  parent: string | null;
+  state: 'queue' | 'approved';
+  name: string;
+  email: string | null;
+  body: string;
+  subject: Subject | null;
+  created: Date;
+  owner: boolean;
+  flags: string[];
+}
+
 export interface CommentStore {
   /** Writes one document and returns its id. */
   add(comment: NewComment): Promise<string>;
+  get(id: string): Promise<StoredComment | undefined>;
+  /** Every Comment in the Moderation queue. */
+  inQueue(): Promise<StoredComment[]>;
+  /** Sets `approved` and saves the body, which the owner may have redacted. */
+  approve(id: string, body: string): Promise<void>;
+  remove(id: string): Promise<void>;
 }
 
 /**
@@ -54,6 +76,10 @@ export interface Announcement {
 export interface GitHubClient {
   /** Dispatches the announcement workflow on `main`. */
   announce(announcement: Announcement): Promise<void>;
+  /** Closes the open `comment` issue whose body holds this Comment's id. */
+  closeAnnouncement(commentId: string): Promise<void>;
+  /** Dispatches the deploy workflow on `main`, which rebuilds the site. */
+  deploy(): Promise<void>;
 }
 
 export interface Deps {
@@ -61,7 +87,11 @@ export interface Deps {
   github: GitHubClient;
   /** Logs at error level, which the Function's error alert watches. */
   logError: (message: string, error?: unknown) => void;
-  secrets: { hmacKey: string };
+  secrets: {
+    hmacKey: string;
+    /** The one password of the Moderation surface. */
+    password: string;
+  };
   clock: () => Date;
 }
 
@@ -70,6 +100,8 @@ export interface FunctionRequest {
   path: string;
   /** The url-encoded form fields, as the platform parsed them. */
   form: Record<string, unknown>;
+  /** Request headers, lower-case names. */
+  headers?: Record<string, string | undefined>;
 }
 
 export interface FunctionResponse {
@@ -85,6 +117,9 @@ export async function handle(
   request: FunctionRequest,
   deps: Deps
 ): Promise<FunctionResponse> {
+  if (request.path === '/comments' || request.path.startsWith('/comments/')) {
+    return moderate(request, deps);
+  }
   if (request.path !== '/comment') return text(404, 'Not found.');
   if (request.method !== 'POST') {
     const refused = text(405, 'Method not allowed.');
@@ -184,7 +219,7 @@ async function receive(
 }
 
 /** The day a Comment came in, as the owner in Rochester would date it. */
-const rochesterDay = new Intl.DateTimeFormat('en-CA', {
+export const rochesterDay = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/New_York',
   year: 'numeric',
   month: '2-digit',
@@ -205,7 +240,7 @@ function titleOf(path: string): string {
     .join(' ');
 }
 
-function text(status: number, message: string): FunctionResponse {
+export function text(status: number, message: string): FunctionResponse {
   return {
     status,
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },

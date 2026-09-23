@@ -26,6 +26,8 @@ beforeEach(() => {
       async announce(announcement) {
         announced.push(announcement);
       },
+      closeAnnouncement: async () => {},
+      deploy: async () => {},
     },
     logError: (message) => logged.push(message),
     store: {
@@ -33,8 +35,12 @@ beforeEach(() => {
         written.push(comment);
         return `id-${written.length}`;
       },
+      get: async () => undefined,
+      inQueue: async () => [],
+      approve: async () => {},
+      remove: async () => {},
     },
-    secrets: { hmacKey: KEY },
+    secrets: { hmacKey: KEY, password: 'p' },
     clock: () => NOW,
   };
 });
