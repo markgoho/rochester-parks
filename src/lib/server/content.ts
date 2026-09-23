@@ -5,6 +5,7 @@ import { markedSmartypants } from 'marked-smartypants';
 import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
 import { commentAreaOf } from '#lib/comment-area.js';
+import { pageToken } from '../../../functions/src/token.js';
 import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType, isTrailType } from '#lib/park-types.js';
@@ -86,6 +87,10 @@ const approvedComments: Record<string, CommentWithReplies[]> =
       { import: 'default', eager: true }
     )
   )[0] ?? {};
+
+// The page-token key. The deploy workflow requires it; with none (dev, CI)
+// every form carries an empty token, which the Function refuses.
+const COMMENT_HMAC_KEY = process.env.COMMENT_HMAC_KEY ?? '';
 
 // Every image the site actually ships. A park page can name a picture that
 // was never carried over, and a structured-data image that 404s is worse
@@ -614,6 +619,7 @@ export function getPage(url: string): Page | undefined {
     frontMatter: node.frontMatter,
     reservations: parentOf(node.url)?.frontMatter.reservations,
     comments: approvedComments[node.url],
+    token: COMMENT_HMAC_KEY ? pageToken(node.url, COMMENT_HMAC_KEY) : '',
   });
   const jsonLd =
     park && layout === 'park-single'

@@ -13,7 +13,13 @@ describe('commentAreaOf', () => {
         frontMatter: {},
         reservations: riga,
       })
-    ).toEqual({ open: true, reservations: riga, comments: [] });
+    ).toEqual({
+      page: '/town-parks/riga-parks/sanford-road-park/',
+      token: '',
+      open: true,
+      reservations: riga,
+      comments: [],
+    });
   });
 
   test('a Park in a section with no link takes Comments with no link', () => {
@@ -23,7 +29,7 @@ describe('commentAreaOf', () => {
         url: '/state-parks/x/',
         frontMatter: {},
       })
-    ).toEqual({ open: true, comments: [] });
+    ).toEqual({ page: '/state-parks/x/', token: '', open: true, comments: [] });
   });
 
   test('a Trail page takes Comments but never a reservation link', () => {
@@ -34,7 +40,12 @@ describe('commentAreaOf', () => {
         frontMatter: {},
         reservations: riga,
       })
-    ).toEqual({ open: true, comments: [] });
+    ).toEqual({
+      page: '/trails/erie-canal/',
+      token: '',
+      open: true,
+      comments: [],
+    });
   });
 
   test('a Blog post takes Comments', () => {
@@ -44,7 +55,12 @@ describe('commentAreaOf', () => {
         url: '/blog/what-makes-a-rochester-park-great/',
         frontMatter: {},
       })
-    ).toEqual({ open: true, comments: [] });
+    ).toEqual({
+      page: '/blog/what-makes-a-rochester-park-great/',
+      token: '',
+      open: true,
+      comments: [],
+    });
   });
 
   test('About, list and index pages take no Comments', () => {
@@ -76,7 +92,28 @@ describe('commentAreaOf', () => {
         frontMatter: { comments: false },
         comments,
       })
-    ).toEqual({ open: false, comments });
+    ).toEqual({
+      page: '/trails/erie-canal/',
+      token: '',
+      open: false,
+      comments,
+    });
+  });
+
+  test('carries the page token the build signed', () => {
+    expect(
+      commentAreaOf({
+        layout: 'park-single',
+        url: '/state-parks/x/',
+        frontMatter: {},
+        token: 'abc123',
+      })
+    ).toEqual({
+      page: '/state-parks/x/',
+      token: 'abc123',
+      open: true,
+      comments: [],
+    });
   });
 
   test('comments: false closes the form and keeps the notice link', () => {
@@ -87,7 +124,13 @@ describe('commentAreaOf', () => {
         frontMatter: { comments: false },
         reservations: riga,
       })
-    ).toEqual({ open: false, reservations: riga, comments: [] });
+    ).toEqual({
+      page: '/town-parks/riga-parks/sanford-road-park/',
+      token: '',
+      open: false,
+      reservations: riga,
+      comments: [],
+    });
   });
 
   test('comments: false cannot open a page kind that takes none', () => {

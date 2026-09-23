@@ -351,6 +351,13 @@ export interface CommentWithReplies extends PageComment {
 
 /** What the comment area at the end of a page shows. */
 export interface CommentArea {
+  /** The page's path, which the form posts back so the reader returns here. */
+  page: string;
+  /**
+   * HMAC-SHA256 of `page` with the site's key, which the Function checks
+   * (#24). Empty in dev and CI, where the build has no key.
+   */
+  token: string;
   /** Whether the form shows. `comments: false` in front matter closes it. */
   open: boolean;
   /**
