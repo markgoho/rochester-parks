@@ -194,6 +194,47 @@ describe('the public post', () => {
     expect(written[0].flags).toEqual(['links']);
   });
 
+  test('two HTML links set the links flag and still write', async () => {
+    const response = await post({
+      body: 'Try <a href="https://a.example">this</a> or <a href=\'https://b.example\'>that</a>',
+    });
+    expect(response.status).toBe(303);
+    expect(written[0].flags).toEqual(['links']);
+    expect(written[0].body).toBe('Try this or that');
+  });
+
+  test('an HTML link whose words are its own URL counts once', async () => {
+    await post({
+      body: 'See <a href="https://a.example/x">https://a.example/x</a>',
+    });
+    expect(written[0].flags).toEqual([]);
+    expect(written[0].body).toBe('See https://a.example/x');
+  });
+
+  test('an HTML link whose words end in a full stop counts once', async () => {
+    await post({
+      body: 'See <a href="https://a.example">https://a.example.</a>',
+    });
+    expect(written[0].flags).toEqual([]);
+  });
+
+  test('a BBCode link counts once', async () => {
+    await post({ body: '[url=https://a.example]https://a.example[/url]' });
+    expect(written[0].flags).toEqual([]);
+  });
+
+  test('an HTML link and a plain link set the links flag', async () => {
+    await post({
+      body: '<a href="https://a.example">here</a> or https://b.example',
+    });
+    expect(written[0].flags).toEqual(['links']);
+  });
+
+  test('the same plain link posted twice counts twice', async () => {
+    await post({ body: 'https://a.example and https://a.example' });
+    expect(written[0].flags).toEqual(['links']);
+  });
+
   test('trims the name, email and body it stores', async () => {
     await post({ name: ' Barbara ', email: ' b@example.com ', body: ' Hi ' });
     expect(written[0]).toMatchObject({
