@@ -172,10 +172,16 @@ async function receive(
     return notSent(`Your comment is longer than ${BODY_MAX} characters.`);
   }
 
-  // 4. Flag, never reject: two or more links.
-  //    A link starts with a scheme or a bare www., and runs to whitespace,
-  //    so https://www.example.com counts once.
-  const links = body.match(/\b(?:https?:\/\/|www\.)\S+/gi)?.length ?? 0;
+  // 4. Flag, never reject: two or more links, counted on the body as posted,
+  //    before HTML is stripped (#256). An href is a link, and so is a URL
+  //    that starts with a scheme or a bare www.; a URL runs to whitespace, a
+  //    quote or a tag, so https://www.example.com counts once. A Set counts
+  //    an HTML link whose words are its own URL once.
+  const raw = field('body');
+  const links = new Set([
+    ...Array.from(raw.matchAll(/\bhref\s*=\s*["']?([^"'\s>]+)/gi), (m) => m[1]),
+    ...(raw.match(/\b(?:https?:\/\/|www\.)[^\s"'<>]+/gi) ?? []),
+  ]).size;
 
   // 5. Write one queue document. No IP, no user agent (#206).
   const created = deps.clock();
