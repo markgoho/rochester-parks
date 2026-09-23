@@ -39,6 +39,9 @@ async function dispatch(
         'X-GitHub-Api-Version': '2022-11-28',
       },
       body: JSON.stringify({ ref: 'main', inputs }),
+      // The reader waits on this before the 303, so a slow GitHub fails
+      // fast and is logged instead.
+      signal: AbortSignal.timeout(10_000),
     }
   );
   if (!response.ok) {

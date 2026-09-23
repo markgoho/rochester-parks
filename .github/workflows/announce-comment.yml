@@ -48,5 +48,5 @@ jobs:
           - Flag: ${FLAG}
           - Comment: ${COMMENT_ID}
 
-          Read it on the Moderation surface: ${MODERATION_URL}/comments/${COMMENT_ID}"
+          Read it on the Moderation surface: ${MODERATION_URL:-(set the MODERATION_URL repo variable)}/comments/${COMMENT_ID}"
           gh issue create --title "New comment on ${PAGE_TITLE}" --label comment --body "$body"

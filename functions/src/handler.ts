@@ -194,7 +194,8 @@ const rochesterDay = new Intl.DateTimeFormat('en-CA', {
 /**
  * A page's title from its signed path: "sanford-road-park" becomes "Sanford
  * Road Park". The form posts no title, and a posted one would let anyone
- * write into a public issue title.
+ * write into a public issue title. The site's content loader titles an
+ * untitled page the same way (`titleFromUrl` in src/lib/server/content.ts).
  */
 function titleOf(path: string): string {
   const slug = path.split('/').filter(Boolean).pop() ?? '';
