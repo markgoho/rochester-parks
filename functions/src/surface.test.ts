@@ -135,6 +135,26 @@ describe('the password', () => {
     }
   });
 
+  test('a malformed Origin is refused, not a crash', async () => {
+    comment('a');
+    const response = await handle(
+      owner('POST', '/comments/a/reject', {}, { origin: 'not a url' }),
+      deps
+    );
+    expect(response.status).toBe(403);
+    expect(docs.has('a')).toBe(true);
+  });
+
+  test('a store failure answers 500 and stays private', async () => {
+    deps.store.inQueue = async () => {
+      throw new Error('Firestore down');
+    };
+    const response = await handle(owner('GET', '/comments'), deps);
+    expect(response.status).toBe(500);
+    expect(response.headers['Cache-Control']).toBe('no-store');
+    expect(logged).toHaveLength(1);
+  });
+
   test('a post from another site is refused', async () => {
     comment('a');
     const response = await handle(
@@ -219,7 +239,10 @@ describe('approve', () => {
       }),
       deps
     );
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(303);
+    expect(response.headers.Location).toBe(
+      '/comments?done=approved&issue=closed&deploy=started'
+    );
     expect(docs.get('a')?.state).toBe('approved');
     expect(closed).toEqual(['a']);
     expect(deploys).toBe(1);
@@ -238,16 +261,6 @@ describe('approve', () => {
     );
   });
 
-  test('an empty edited body is refused', async () => {
-    comment('a');
-    const response = await handle(
-      owner('POST', '/comments/a/approve', { body: '  ' }),
-      deps
-    );
-    expect(response.status).toBe(400);
-    expect(docs.get('a')?.state).toBe('queue');
-  });
-
   test('a failing deploy dispatch shows and leaves the Comment Approved', async () => {
     comment('a');
     deps.github.deploy = async () => {
@@ -257,10 +270,43 @@ describe('approve', () => {
       owner('POST', '/comments/a/approve', { body: 'Hi' }),
       deps
     );
-    expect(response.status).toBe(200);
-    expect(response.body).toContain('did not start');
+    expect(response.headers.Location).toContain('deploy=failed');
     expect(docs.get('a')?.state).toBe('approved');
     expect(logged).toHaveLength(1);
+    const shown = await handle(
+      {
+        ...owner('GET', '/comments'),
+        query: { done: 'approved', issue: 'closed', deploy: 'failed' },
+      },
+      deps
+    );
+    expect(shown.body).toContain('did not start');
+  });
+
+  test('an empty edited body is refused with a reason', async () => {
+    comment('a');
+    const response = await handle(
+      owner('POST', '/comments/a/approve', { body: '  ' }),
+      deps
+    );
+    expect(response.status).toBe(400);
+    expect(response.body).toContain('The body is empty');
+  });
+
+  test('an Approved Comment shows no approve or reject', async () => {
+    comment('a', { state: 'approved' });
+    const { body } = await handle(owner('GET', '/comments/a'), deps);
+    expect(body).not.toContain('/approve"');
+    expect(body).not.toContain('/reject"');
+    for (const action of ['approve', 'reject']) {
+      const response = await handle(
+        owner('POST', `/comments/a/${action}`, { body: 'x' }),
+        deps
+      );
+      expect(response.status).toBe(409);
+    }
+    expect(docs.has('a')).toBe(true);
+    expect(deploys).toBe(0);
   });
 });
 
@@ -268,7 +314,10 @@ describe('reject', () => {
   test('deletes the document and closes the issue', async () => {
     comment('a');
     const response = await handle(owner('POST', '/comments/a/reject'), deps);
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(303);
+    expect(response.headers.Location).toBe(
+      '/comments?done=rejected&issue=closed'
+    );
     expect(docs.has('a')).toBe(false);
     expect(closed).toEqual(['a']);
     expect(deploys).toBe(0);

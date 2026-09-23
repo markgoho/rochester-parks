@@ -1,3 +1,4 @@
+import { rochesterDay, text } from './respond.js';
 import { moderate } from './surface.js';
 import { tokenMatches } from './token.js';
 
@@ -102,6 +103,8 @@ export interface FunctionRequest {
   form: Record<string, unknown>;
   /** Request headers, lower-case names. */
   headers?: Record<string, string | undefined>;
+  /** The query string's parameters. */
+  query?: Record<string, string>;
 }
 
 export interface FunctionResponse {
@@ -218,14 +221,6 @@ async function receive(
   return sent;
 }
 
-/** The day a Comment came in, as the owner in Rochester would date it. */
-export const rochesterDay = new Intl.DateTimeFormat('en-CA', {
-  timeZone: 'America/New_York',
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-});
-
 /**
  * A page's title from its signed path: "sanford-road-park" becomes "Sanford
  * Road Park". The form posts no title, and a posted one would let anyone
@@ -238,14 +233,6 @@ function titleOf(path: string): string {
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-}
-
-export function text(status: number, message: string): FunctionResponse {
-  return {
-    status,
-    headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-    body: message,
-  };
 }
 
 /**

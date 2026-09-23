@@ -1,12 +1,11 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
-import {
-  rochesterDay,
-  text,
-  type Deps,
-  type FunctionRequest,
-  type FunctionResponse,
-  type StoredComment,
+import type {
+  Deps,
+  FunctionRequest,
+  FunctionResponse,
+  StoredComment,
 } from './handler.js';
+import { rochesterDay, text } from './respond.js';
 
 /**
  * The Moderation surface (#217, #223): owner-only HTML pages on the comments
@@ -18,15 +17,26 @@ import {
  *   GET  /comments/{id}         one Comment, with its actions
  *   POST /comments/{id}/approve approve, with the body as edited
  *   POST /comments/{id}/reject  delete
+ *
+ * Approve and reject act on a queued Comment only, and answer with a 303 to
+ * the queue, so a refresh never sends the action twice.
  */
 
 const BODY_MAX = 5000;
+
+const GONE = 'No such Comment. It may have been deleted.';
 
 export async function moderate(
   request: FunctionRequest,
   deps: Deps
 ): Promise<FunctionResponse> {
-  const response = await route(request, deps);
+  let response: FunctionResponse;
+  try {
+    response = await route(request, deps);
+  } catch (error) {
+    deps.logError('The Moderation surface failed', error);
+    response = text(500, 'Something went wrong. Try again in a minute.');
+  }
   // Nothing on the surface is cached or indexed, including the refusals.
   return {
     ...response,
@@ -44,10 +54,11 @@ async function route(
 ): Promise<FunctionResponse> {
   const headers = request.headers ?? {};
   if (!signedIn(headers.authorization, deps.secrets.password)) {
+    const refused = text(401, 'Sign in to moderate Comments.');
     return {
-      ...text(401, 'Sign in to moderate Comments.'),
+      ...refused,
       headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
+        ...refused.headers,
         'WWW-Authenticate': 'Basic realm="Rochester Parks moderation"',
       },
     };
@@ -55,7 +66,7 @@ async function route(
 
   const [, , id, action] = request.path.split('/');
   if (request.method === 'GET') {
-    if (!id) return queuePage(deps);
+    if (!id) return queuePage(deps, request.query ?? {});
     if (!action) return commentPage(id, deps);
     return text(404, 'Not found.');
   }
@@ -64,14 +75,16 @@ async function route(
     return text(403, 'A form on another site cannot moderate.');
 
   const comment = await deps.store.get(id);
-  if (!comment) return text(404, 'No such Comment. It may have been deleted.');
-  const field = (name: string) =>
-    typeof request.form[name] === 'string'
-      ? (request.form[name] as string)
-      : '';
-  if (action === 'approve') return approve(comment, field('body'), deps);
+  if (!comment) return text(404, GONE);
+  if (action !== 'approve' && action !== 'reject') {
+    return text(404, 'Not found.');
+  }
+  if (comment.state !== 'queue') {
+    return text(409, 'This Comment is already Approved.');
+  }
   if (action === 'reject') return reject(comment, deps);
-  return text(404, 'Not found.');
+  const body = request.form.body;
+  return approve(comment, typeof body === 'string' ? body : '', deps);
 }
 
 /** Basic auth: any user name, the one password, compared in constant time. */
@@ -97,11 +110,44 @@ function sameSite(headers: Record<string, string | undefined>): boolean {
   const site = headers['sec-fetch-site'];
   if (site && site !== 'same-origin' && site !== 'none') return false;
   const origin = headers.origin;
-  if (!origin || origin === 'null') return true;
-  return !headers.host || new URL(origin).host === headers.host;
+  if (!origin) return true;
+  if (!headers.host) return false;
+  try {
+    return new URL(origin).host === headers.host;
+  } catch {
+    return false;
+  }
 }
 
-async function queuePage(deps: Deps): Promise<FunctionResponse> {
+/** What the queue says after an action, from the redirect's parameters. */
+function notices(query: Record<string, string>): string[] {
+  const said: string[] = [];
+  if (query.done === 'approved') said.push('Approved.');
+  if (query.done === 'rejected') said.push('Rejected. The Comment is deleted.');
+  if (query.issue === 'closed') said.push('Its announcement issue is closed.');
+  if (query.issue === 'failed') {
+    said.push(
+      'Its announcement issue could not be closed. Close it by hand on GitHub.'
+    );
+  }
+  if (query.deploy === 'started') {
+    said.push(
+      'The site is rebuilding. The Comment shows on its page in about 90 seconds.'
+    );
+  }
+  if (query.deploy === 'failed') {
+    // The cron in firebase-hosting-merge.yml is the backstop (ADR-0012).
+    said.push(
+      'The rebuild did not start. The Comment stays Approved, and the daily rebuild publishes it.'
+    );
+  }
+  return said;
+}
+
+async function queuePage(
+  deps: Deps,
+  query: Record<string, string>
+): Promise<FunctionResponse> {
   // Unflagged by date first, flagged last, so likely spam does not bury a
   // real Comment. A reservation question gets no special place (#213).
   const queue = (await deps.store.inQueue()).sort(
@@ -109,35 +155,48 @@ async function queuePage(deps: Deps): Promise<FunctionResponse> {
       Number(a.flags.length > 0) - Number(b.flags.length > 0) ||
       a.created.getTime() - b.created.getTime()
   );
+  const said = notices(query)
+    .map((notice) => `<p class="notice">${escape(notice)}</p>`)
+    .join('');
   return page(
     'Moderation queue',
-    queue.length
-      ? `<ol class="queue">${queue
-          .map(
-            (comment) =>
-              `<li>${card(comment)}<p><a href="/comments/${escape(comment.id)}">Open this Comment</a></p></li>`
-          )
-          .join('')}</ol>`
-      : '<p>The queue is empty.</p>'
+    said +
+      (queue.length
+        ? `<ol class="queue">${queue
+            .map(
+              (comment) =>
+                `<li>${card(comment)}<p><a href="/comments/${escape(comment.id)}">Open this Comment</a></p></li>`
+            )
+            .join('')}</ol>`
+        : '<p>The queue is empty.</p>')
   );
 }
 
-async function commentPage(id: string, deps: Deps): Promise<FunctionResponse> {
+async function commentPage(
+  id: string,
+  deps: Deps,
+  problem?: string
+): Promise<FunctionResponse> {
   const comment = await deps.store.get(id);
-  if (!comment) return text(404, 'No such Comment. It may have been deleted.');
+  if (!comment) return text(404, GONE);
   const at = `/comments/${escape(comment.id)}`;
-  return page(
-    comment.state === 'approved' ? 'Approved Comment' : 'Comment in the queue',
-    `${card(comment)}
-<form method="post" action="${at}/approve">
+  const actions =
+    comment.state === 'queue'
+      ? `<form method="post" action="${at}/approve">
   <label for="body">Body as it will be published</label>
   <p class="hint">Before you approve, replace a private phone number, email or postal address with [phone removed], [email removed] or [address removed]. A public office number stays.</p>
+  ${problem ? `<p class="notice">${escape(problem)}</p>` : ''}
   <textarea id="body" name="body" rows="8" maxlength="${BODY_MAX}" required>${escape(comment.body)}</textarea>
   <button type="submit">Approve</button>
 </form>
 <form method="post" action="${at}/reject">
   <button type="submit" class="quiet">Reject and delete</button>
-</form>
+</form>`
+      : '<p>This Comment is Approved and on its page.</p>';
+  return page(
+    comment.state === 'approved' ? 'Approved Comment' : 'Comment in the queue',
+    `${card(comment)}
+${actions}
 <p><a href="/comments">Back to the queue</a></p>`
   );
 }
@@ -149,18 +208,15 @@ async function approve(
 ): Promise<FunctionResponse> {
   const body = edited.replace(/\r\n/g, '\n').trim();
   if (!body || body.length > BODY_MAX) {
-    return {
-      ...(await commentPage(comment.id, deps)),
-      status: 400,
-    };
+    const problem = body
+      ? `The body is longer than ${BODY_MAX} characters.`
+      : 'The body is empty. Reject the Comment instead, or write what to publish.';
+    return { ...(await commentPage(comment.id, deps, problem)), status: 400 };
   }
   await deps.store.approve(comment.id, body);
-  const notes = [
-    'Approved.',
-    await closeIssue(comment.id, deps),
-    await rebuild(deps),
-  ];
-  return done(notes);
+  const issue = await closeIssue(comment.id, deps);
+  const deploy = await rebuild(deps);
+  return toQueue(`done=approved&issue=${issue}&deploy=${deploy}`);
 }
 
 async function reject(
@@ -168,43 +224,39 @@ async function reject(
   deps: Deps
 ): Promise<FunctionResponse> {
   await deps.store.remove(comment.id);
-  return done([
-    'Rejected. The Comment is deleted.',
-    await closeIssue(comment.id, deps),
-  ]);
+  return toQueue(`done=rejected&issue=${await closeIssue(comment.id, deps)}`);
+}
+
+function toQueue(query: string): FunctionResponse {
+  return { status: 303, headers: { Location: `/comments?${query}` }, body: '' };
 }
 
 /** Closes the announcement issue; a failure is noted, never fatal. */
-async function closeIssue(id: string, deps: Deps): Promise<string> {
+async function closeIssue(
+  id: string,
+  deps: Deps
+): Promise<'closed' | 'failed'> {
   try {
     await deps.github.closeAnnouncement(id);
-    return 'Its announcement issue is closed.';
+    return 'closed';
   } catch (error) {
     deps.logError(`Closing the announcement for Comment ${id} failed`, error);
-    return 'Its announcement issue could not be closed. Close it by hand on GitHub.';
+    return 'failed';
   }
 }
 
 /**
- * Dispatches the deploy. A failure shows on the page: the Comment stays
- * Approved, and the daily rebuild publishes it (ADR-0012).
+ * Dispatches the deploy. A failure shows on the queue page: the Comment
+ * stays Approved, and the daily rebuild publishes it (ADR-0012).
  */
-async function rebuild(deps: Deps): Promise<string> {
+async function rebuild(deps: Deps): Promise<'started' | 'failed'> {
   try {
     await deps.github.deploy();
-    return 'The site is rebuilding. The Comment shows on its page in about 90 seconds.';
+    return 'started';
   } catch (error) {
     deps.logError('The deploy dispatch failed', error);
-    return 'The rebuild did not start. The Comment stays Approved, and the daily rebuild at 09:00 UTC publishes it.';
+    return 'failed';
   }
-}
-
-function done(notes: string[]): FunctionResponse {
-  return page(
-    'Done',
-    `${notes.map((note) => `<p>${escape(note)}</p>`).join('')}
-<p><a href="/comments">Back to the queue</a></p>`
-  );
 }
 
 /** One Comment with everything the owner decides from (#30). */
@@ -256,6 +308,7 @@ function page(title: string, content: string): FunctionResponse {
   .hint { font-size: 0.9em; color: #555; margin: 0; }
   button { justify-self: start; font: inherit; padding: 0.5rem 1rem; cursor: pointer; }
   .quiet { background: none; border: 1px solid #999; }
+  .notice { border-inline-start: 4px solid #c2410c; padding-inline-start: 0.75rem; }
 </style>
 <h1>${escape(title)}</h1>
 ${content}

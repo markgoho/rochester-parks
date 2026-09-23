@@ -33,7 +33,7 @@ const moderationPassword = defineSecret('MODERATION_PASSWORD');
 const REPO = 'markgoho/rochester-parks';
 
 /** One GitHub REST call; any status but 2xx throws. */
-async function gitHub(
+async function gitHubRequest(
   method: string,
   path: string,
   body?: unknown
@@ -63,7 +63,7 @@ async function dispatch(
   workflow: string,
   inputs: Record<string, string> = {}
 ): Promise<void> {
-  await gitHub('POST', `/actions/workflows/${workflow}/dispatches`, {
+  await gitHubRequest('POST', `/actions/workflows/${workflow}/dispatches`, {
     ref: 'main',
     inputs,
   });
@@ -74,13 +74,13 @@ async function dispatch(
  * document stores no issue number (#217), so the id is the join.
  */
 async function closeAnnouncement(commentId: string): Promise<void> {
-  const response = await gitHub(
+  const response = await gitHubRequest(
     'GET',
     '/issues?labels=comment&state=open&per_page=100'
   );
   const issues = (await response.json()) as { number: number; body?: string }[];
   for (const issue of issues.filter((i) => i.body?.includes(commentId))) {
-    await gitHub('PATCH', `/issues/${issue.number}`, {
+    await gitHubRequest('PATCH', `/issues/${issue.number}`, {
       state: 'closed',
       state_reason: 'completed',
     });
@@ -147,6 +147,7 @@ export const comments = onRequest(
         path: request.path,
         form: request.body ?? {},
         headers: request.headers as Record<string, string | undefined>,
+        query: request.query as Record<string, string>,
       },
       {
         store,
