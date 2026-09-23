@@ -161,6 +161,16 @@ describe('the public post', () => {
     expect(written[0].flags).toEqual([]);
   });
 
+  test('one https://www. link is one link, not two', async () => {
+    await post({ body: 'See https://www.example.com/x' });
+    expect(written[0].flags).toEqual([]);
+  });
+
+  test('a bare www. link counts', async () => {
+    await post({ body: 'See www.a.example and https://b.example' });
+    expect(written[0].flags).toEqual(['links']);
+  });
+
   test('trims the name, email and body it stores', async () => {
     await post({ name: ' Barbara ', email: ' b@example.com ', body: ' Hi ' });
     expect(written[0]).toMatchObject({

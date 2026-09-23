@@ -6,9 +6,17 @@ import { tokenMatches } from './token.js';
  * in-memory fakes and nothing here touches Firebase.
  */
 
-export const SUBJECTS = ['comment', 'correction', 'reservation-question'];
+/** The Subject tokens, the same on the form and in storage (#217). */
+export const SUBJECTS = [
+  'comment',
+  'correction',
+  'reservation-question',
+] as const;
 
-export type Subject = 'comment' | 'correction' | 'reservation-question';
+export type Subject = (typeof SUBJECTS)[number];
+
+const isSubject = (value: string): value is Subject =>
+  (SUBJECTS as readonly string[]).includes(value);
 
 /** A new Comment as the public form writes it to the Moderation queue. */
 export interface NewComment {
@@ -57,7 +65,8 @@ export async function handle(
 ): Promise<FunctionResponse> {
   if (request.path !== '/comment') return text(404, 'Not found.');
   if (request.method !== 'POST') {
-    return { ...text(405, 'Method not allowed.'), headers: { Allow: 'POST' } };
+    const refused = text(405, 'Method not allowed.');
+    return { ...refused, headers: { ...refused.headers, Allow: 'POST' } };
   }
   return receive(request.form, deps);
 }
@@ -98,7 +107,7 @@ async function receive(
   const body = field('body')
     .replace(/<[^>]*>/g, '')
     .trim();
-  if (!SUBJECTS.includes(subject)) {
+  if (!isSubject(subject)) {
     return notSent('Pick what the comment is about.');
   }
   if (!name) return notSent('Your name is missing.');
@@ -114,7 +123,9 @@ async function receive(
   }
 
   // 4. Flag, never reject: two or more links.
-  const links = body.match(/https?:\/\/|www\./gi)?.length ?? 0;
+  //    A link starts with a scheme or a bare www., and runs to whitespace,
+  //    so https://www.example.com counts once.
+  const links = body.match(/\b(?:https?:\/\/|www\.)\S+/gi)?.length ?? 0;
 
   // 5. Write one queue document. No IP, no user agent (#206).
   await deps.store.add({
@@ -124,7 +135,7 @@ async function receive(
     name,
     email,
     body,
-    subject: subject as Subject,
+    subject,
     created: deps.clock(),
     owner: false,
     flags: links >= 2 ? ['links'] : [],
