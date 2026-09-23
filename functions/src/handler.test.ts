@@ -293,9 +293,15 @@ describe('the announcement', () => {
     }
   });
 
-  test('a flagged Comment still announces, marked', async () => {
-    await post({ body: 'See https://a.example and https://b.example' });
-    expect(announced[0].flag).toBe('links');
+  test.each([
+    ['links', 'See https://a.example and https://b.example'],
+    ['script', 'Вывод из запоя на дому в Москве'],
+  ])('a post flagged %s writes and announces nothing', async (_, body) => {
+    const response = await post({ body });
+    expect(response.status).toBe(303);
+    expect(written).toHaveLength(1);
+    expect(written[0].flags).not.toEqual([]);
+    expect(announced).toEqual([]);
   });
 
   test('a failing GitHub client still writes and still answers 303', async () => {

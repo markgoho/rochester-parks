@@ -59,7 +59,8 @@ export interface Announcement {
   subject: Subject;
   /** The day the Comment came in, in Rochester, `YYYY-MM-DD`. */
   date: string;
-  /** The Comment's flags, or `none`. */
+  /** The Comment's flags, or `none`. Only an unflagged Comment announces
+   *  (#258), so today it is always `none`. */
   flag: string;
   commentId: string;
 }
@@ -198,18 +199,21 @@ async function receive(
     flags,
   });
 
-  // 6. Announce. A failure keeps the Comment: it waits in the queue, and the
-  //    error log raises the alert (#30).
-  try {
-    await deps.github.announce({
-      pageTitle: titleOf(page),
-      subject,
-      date: rochesterDay.format(created),
-      flag: flags.join(', ') || 'none',
-      commentId: id,
-    });
-  } catch (error) {
-    deps.logError(`Announcement failed for Comment ${id}`, error);
+  // 6. Announce an unflagged post only. A flagged one waits in the queue,
+  //    sorted last, with no email (#258). A failure keeps the Comment: it
+  //    waits in the queue, and the error log raises the alert (#30).
+  if (flags.length === 0) {
+    try {
+      await deps.github.announce({
+        pageTitle: titleOf(page),
+        subject,
+        date: rochesterDay.format(created),
+        flag: 'none',
+        commentId: id,
+      });
+    } catch (error) {
+      deps.logError(`Announcement failed for Comment ${id}`, error);
+    }
   }
 
   // 7. Back to the page, where the banner shows.
