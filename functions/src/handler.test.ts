@@ -38,7 +38,7 @@ beforeEach(() => {
       get: async () => undefined,
       inQueue: async () => [],
       approved: async () => [],
-      replies: async () => [],
+      removeWithReplies: async () => {},
       approve: async () => {},
       remove: async () => {},
     },

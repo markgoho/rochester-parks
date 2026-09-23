@@ -20,20 +20,6 @@ export type Subject = (typeof SUBJECTS)[number];
 const isSubject = (value: string): value is Subject =>
   (SUBJECTS as readonly string[]).includes(value);
 
-/** A new Comment as the public form writes it to the Moderation queue. */
-export interface NewComment {
-  page: string;
-  parent: null;
-  state: 'queue';
-  name: string;
-  email: string;
-  body: string;
-  subject: Subject;
-  created: Date;
-  owner: false;
-  flags: string[];
-}
-
 /** A Comment as the `comments` collection holds it, with its id (#217). */
 export interface StoredComment {
   id: string;
@@ -57,8 +43,8 @@ export interface CommentStore {
   inQueue(): Promise<StoredComment[]>;
   /** Every Approved Comment and Reply. */
   approved(): Promise<StoredComment[]>;
-  /** The Replies under one Comment. */
-  replies(id: string): Promise<StoredComment[]>;
+  /** Deletes a Comment and every Reply under it, in one batch. */
+  removeWithReplies(id: string): Promise<void>;
   /** Sets `approved` and saves the body, which the owner may have redacted. */
   approve(id: string, body: string): Promise<void>;
   remove(id: string): Promise<void>;

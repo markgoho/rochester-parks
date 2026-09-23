@@ -85,7 +85,10 @@ async function route(
 
   const comment = await deps.store.get(id);
   if (!comment) return text(404, GONE);
-  const posted = typeof request.form.body === 'string' ? request.form.body : '';
+  const field = (name: string) =>
+    typeof request.form[name] === 'string'
+      ? (request.form[name] as string)
+      : '';
   switch (action) {
     case 'approve':
     case 'reject':
@@ -93,13 +96,11 @@ async function route(
         return text(409, 'This Comment is already Approved.');
       }
       return action === 'approve'
-        ? approve(comment, posted, deps)
+        ? approve(comment, field('body'), deps)
         : reject(comment, deps);
     case 'reply':
-      if (comment.parent !== null) {
-        return text(409, 'A Reply never has a Reply.');
-      }
-      return reply(comment, posted, deps);
+      if (isReply(comment)) return text(409, 'A Reply never has a Reply.');
+      return reply(comment, field('reply'), field('body'), deps);
     case 'delete':
       if (comment.state !== 'approved') {
         return text(409, 'Reject a queued Comment instead.');
@@ -148,9 +149,8 @@ function notices(query: Record<string, string>): string[] {
   if (query.done === 'approved') said.push('Approved.');
   if (query.done === 'rejected') said.push('Rejected. The Comment is deleted.');
   if (query.done === 'replied') said.push('Your Reply is saved and Approved.');
-  if (query.done === 'deleted') {
-    said.push('Deleted, with its Replies.');
-  }
+  if (query.done === 'deleted') said.push('Deleted, with its Replies.');
+  if (query.done === 'deleted-reply') said.push('The Reply is deleted.');
   if (query.issue === 'closed') said.push('Its announcement issue is closed.');
   if (query.issue === 'failed') {
     said.push(
@@ -182,7 +182,7 @@ async function queuePage(
   );
   return page(
     'Moderation queue',
-    said(query) +
+    noticeHtml(query) +
       (queue.length
         ? `<ol class="queue">${queue
             .map(
@@ -195,7 +195,7 @@ async function queuePage(
   );
 }
 
-function said(query: Record<string, string>): string {
+function noticeHtml(query: Record<string, string>): string {
   return notices(query)
     .map((notice) => `<p class="notice">${escape(notice)}</p>`)
     .join('');
@@ -204,52 +204,57 @@ function said(query: Record<string, string>): string {
 async function commentPage(
   id: string,
   deps: Deps,
-  problem?: string
+  problem?: string,
+  draft = ''
 ): Promise<FunctionResponse> {
   const comment = await deps.store.get(id);
   if (!comment) return text(404, GONE);
   const at = `/comments/${escape(comment.id)}`;
-  const said = problem ? `<p class="notice">${escape(problem)}</p>` : '';
+  const note = problem ? `<p class="notice">${escape(problem)}</p>` : '';
+  // A queued Comment has one form for both actions, so a redaction in the
+  // body goes with a Reply as well as with a plain approve.
   const actions =
     comment.state === 'queue'
       ? `<form method="post" action="${at}/approve">
   <label for="body">Body as it will be published</label>
   <p class="hint">Before you approve, replace a private phone number, email or postal address with [phone removed], [email removed] or [address removed]. A public office number stays.</p>
   <textarea id="body" name="body" rows="8" maxlength="${BODY_MAX}" required>${escape(comment.body)}</textarea>
-  <button type="submit">Approve</button>
+  <label for="reply">Reply as ${SITE} (optional)</label>
+  <textarea id="reply" name="reply" rows="4" maxlength="${BODY_MAX}">${escape(draft)}</textarea>
+  <p class="actions"><button type="submit">Approve</button> <button type="submit" formaction="${at}/reply">Approve and reply</button></p>
 </form>
-${replyForm(comment)}
 <form method="post" action="${at}/reject">
   <button type="submit" class="quiet">Reject and delete</button>
 </form>`
-      : `<p>This ${comment.parent ? 'Reply' : 'Comment'} is Approved and on its page.</p>
-${replyForm(comment)}${deleteForm(comment)}`;
+      : `<p>This ${isReply(comment) ? 'Reply' : 'Comment'} is Approved and on its page.</p>
+${replyForm(comment, draft)}${deleteForm(comment)}`;
   return page(
     comment.state === 'approved' ? 'Approved Comment' : 'Comment in the queue',
     `${card(comment)}
-${said}${actions}
+${note}${actions}
 <p><a href="/comments">The queue</a> · <a href="/comments/approved">Approved Comments</a></p>`
   );
 }
 
+const isReply = (comment: StoredComment) => comment.parent !== null;
+
 /**
- * Reply as the site, under a top-level Comment only: a Reply never has a
- * Reply. On a queued Comment the Reply approves it too (#217).
+ * Reply as the site, under an Approved top-level Comment only: a Reply
+ * never has a Reply. A queued Comment takes its Reply in the approve form.
  */
-function replyForm(comment: StoredComment): string {
-  if (comment.parent !== null) return '';
+function replyForm(comment: StoredComment, draft = ''): string {
+  if (isReply(comment)) return '';
   const field = `reply-${escape(comment.id)}`;
   return `<form method="post" action="/comments/${escape(comment.id)}/reply">
   <label for="${field}">Reply as ${SITE}</label>
-  ${comment.state === 'queue' ? '<p class="hint">Replying approves this Comment as it stands.</p>' : ''}
-  <textarea id="${field}" name="body" rows="4" maxlength="${BODY_MAX}" required></textarea>
+  <textarea id="${field}" name="reply" rows="4" maxlength="${BODY_MAX}" required>${escape(draft)}</textarea>
   <button type="submit">Reply</button>
 </form>`;
 }
 
 function deleteForm(comment: StoredComment): string {
   return `<form method="post" action="/comments/${escape(comment.id)}/delete">
-  <button type="submit" class="quiet">Delete${comment.parent ? '' : ' with its Replies'}</button>
+  <button type="submit" class="quiet">Delete${isReply(comment) ? '' : ' with its Replies'}</button>
 </form>`;
 }
 
@@ -262,34 +267,37 @@ async function approvedPage(
     (a, b) => a.created.getTime() - b.created.getTime()
   );
   const pages = [...new Set(all.map((comment) => comment.page))].sort();
-  const entry = (comment: StoredComment) =>
-    `<li>${card(comment)}${replyForm(comment)}${deleteForm(comment)}</li>`;
+  const entry = (comment: StoredComment, below = '') =>
+    `<li>${card(comment)}${replyForm(comment)}${deleteForm(comment)}${below}</li>`;
   const listed = pages
     .map((path) => {
       const here = all.filter((comment) => comment.page === path);
-      const top = here.filter((comment) => comment.parent === null);
+      const top = here.filter((comment) => !isReply(comment));
+      const repliesTo = (parent: StoredComment) =>
+        here.filter((comment) => comment.parent === parent.id);
       const orphans = here.filter(
         (comment) =>
-          comment.parent !== null &&
+          isReply(comment) &&
           !top.some((parent) => parent.id === comment.parent)
       );
       const items = top
         .map((parent) => {
-          const replies = here.filter((c) => c.parent === parent.id);
-          return `<li>${card(parent)}${replyForm(parent)}${deleteForm(parent)}${
+          const replies = repliesTo(parent);
+          return entry(
+            parent,
             replies.length
-              ? `<ol class="replies">${replies.map(entry).join('')}</ol>`
+              ? `<ol class="replies">${replies.map((r) => entry(r)).join('')}</ol>`
               : ''
-          }</li>`;
+          );
         })
-        .concat(orphans.map(entry))
+        .concat(orphans.map((orphan) => entry(orphan)))
         .join('');
       return `<section><h2>${escape(path)}</h2><ol class="queue">${items}</ol></section>`;
     })
     .join('');
   return page(
     'Approved Comments',
-    `${said(query)}${listed || '<p>No Approved Comments yet.</p>'}
+    `${noticeHtml(query)}${listed || '<p>No Approved Comments yet.</p>'}
 <p><a href="/comments">The queue</a></p>`
   );
 }
@@ -323,20 +331,30 @@ async function reject(
 async function reply(
   comment: StoredComment,
   posted: string,
+  editedBody: string,
   deps: Deps
 ): Promise<FunctionResponse> {
-  const body = posted.replace(/\r\n/g, '\n').trim();
-  if (!body || body.length > BODY_MAX) {
-    const problem = body
+  const answer = posted.replace(/\r\n/g, '\n').trim();
+  const queued = comment.state === 'queue';
+  const body = queued ? editedBody.replace(/\r\n/g, '\n').trim() : '';
+  const problem = !answer
+    ? 'The Reply is empty.'
+    : answer.length > BODY_MAX
       ? `The Reply is longer than ${BODY_MAX} characters.`
-      : 'The Reply is empty.';
-    return { ...(await commentPage(comment.id, deps, problem)), status: 400 };
+      : queued && (!body || body.length > BODY_MAX)
+        ? 'The body to publish is empty or too long.'
+        : undefined;
+  if (problem) {
+    return {
+      ...(await commentPage(comment.id, deps, problem, posted)),
+      status: 400,
+    };
   }
   // The answer never sits under nothing: a queued Comment is approved in the
-  // same step, as it stands, and its announcement issue closes.
+  // same step, with the body as edited, and its announcement issue closes.
   let issue = '';
-  if (comment.state === 'queue') {
-    await deps.store.approve(comment.id, comment.body);
+  if (queued) {
+    await deps.store.approve(comment.id, body);
     issue = `&issue=${await closeIssue(comment.id, deps)}`;
   }
   await deps.store.add({
@@ -345,7 +363,7 @@ async function reply(
     state: 'approved',
     name: SITE,
     email: null,
-    body,
+    body: answer,
     subject: null,
     created: deps.clock(),
     owner: true,
@@ -362,13 +380,11 @@ async function remove(
   comment: StoredComment,
   deps: Deps
 ): Promise<FunctionResponse> {
-  for (const answer of await deps.store.replies(comment.id)) {
-    await deps.store.remove(answer.id);
-  }
-  await deps.store.remove(comment.id);
+  await deps.store.removeWithReplies(comment.id);
+  const done = isReply(comment) ? 'deleted-reply' : 'deleted';
   return toPage(
     '/comments/approved',
-    `done=deleted&deploy=${await rebuild(deps)}`
+    `done=${done}&deploy=${await rebuild(deps)}`
   );
 }
 
