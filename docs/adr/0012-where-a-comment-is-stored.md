@@ -40,3 +40,7 @@ Two facts from the repo shaped the choice. A Firestore database already exists i
 - **Rate limits are cheap, not free.** Firestore TTL deletes have no free allowance and bill as ordinary deletes from the first one. At a handful of counter documents a day that rounds to $0 on Blaze, so the daily counters from the spam survey stay on the table.
 - **Cloud Run, Cloud Build and Artifact Registry become enabled** on the first Function deploy. Eventarc is not needed for an HTTPS function.
 - This decision does not pick the moderation surface or its login. It rules out one candidate, the pull request per Comment, and it requires that the surface can write the state field and call the GitHub API. Whether it reaches Firestore through a Function or through an owner-only rule is #30's call.
+
+## Amendments
+
+- **2026-09-23, from the implementation spec (#217) and #222.** A submit now does one more thing after the write: the Function dispatches an announcement workflow, which opens one issue so GitHub emails the owner. A failed dispatch keeps the Comment. The fine-grained token therefore has two permissions, Actions write and Issues write: Actions write dispatches the announcement and the deploy, and Issues write lets approve and reject close the announcement issue. The Comment document stores no issue number; the issue carries the Comment's id instead.

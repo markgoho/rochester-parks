@@ -37,8 +37,30 @@ export interface CommentStore {
   add(comment: NewComment): Promise<string>;
 }
 
+/**
+ * What the announcement workflow gets (#222). It opens a public issue, so it
+ * never carries a Commenter's name, words or email: the repo is public.
+ */
+export interface Announcement {
+  pageTitle: string;
+  subject: Subject;
+  /** The day the Comment came in, in Rochester, `YYYY-MM-DD`. */
+  date: string;
+  /** The Comment's flags, or `none`. */
+  flag: string;
+  commentId: string;
+}
+
+export interface GitHubClient {
+  /** Dispatches the announcement workflow on `main`. */
+  announce(announcement: Announcement): Promise<void>;
+}
+
 export interface Deps {
   store: CommentStore;
+  github: GitHubClient;
+  /** Logs at error level, which the Function's error alert watches. */
+  logError: (message: string, error?: unknown) => void;
   secrets: { hmacKey: string };
   clock: () => Date;
 }
@@ -128,7 +150,9 @@ async function receive(
   const links = body.match(/\b(?:https?:\/\/|www\.)\S+/gi)?.length ?? 0;
 
   // 5. Write one queue document. No IP, no user agent (#206).
-  await deps.store.add({
+  const created = deps.clock();
+  const flags = links >= 2 ? ['links'] : [];
+  const id = await deps.store.add({
     page,
     parent: null,
     state: 'queue',
@@ -136,13 +160,49 @@ async function receive(
     email,
     body,
     subject,
-    created: deps.clock(),
+    created,
     owner: false,
-    flags: links >= 2 ? ['links'] : [],
+    flags,
   });
 
-  // 6. Back to the page, where the banner shows.
+  // 6. Announce. A failure keeps the Comment: it waits in the queue, and the
+  //    error log raises the alert (#30).
+  try {
+    await deps.github.announce({
+      pageTitle: titleOf(page),
+      subject,
+      date: rochesterDay.format(created),
+      flag: flags.join(', ') || 'none',
+      commentId: id,
+    });
+  } catch (error) {
+    deps.logError(`Announcement failed for Comment ${id}`, error);
+  }
+
+  // 7. Back to the page, where the banner shows.
   return sent;
+}
+
+/** The day a Comment came in, as the owner in Rochester would date it. */
+const rochesterDay = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'America/New_York',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+/**
+ * A page's title from its signed path: "sanford-road-park" becomes "Sanford
+ * Road Park". The form posts no title, and a posted one would let anyone
+ * write into a public issue title. The site's content loader titles an
+ * untitled page the same way (`titleFromUrl` in src/lib/server/content.ts).
+ */
+function titleOf(path: string): string {
+  const slug = path.split('/').filter(Boolean).pop() ?? '';
+  return slug
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
 
 function text(status: number, message: string): FunctionResponse {
