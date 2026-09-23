@@ -125,6 +125,14 @@ const store: CommentStore = {
     const snapshot = await collection().where('state', '==', 'queue').get();
     return snapshot.docs.map((doc) => stored(doc.id, doc.data()));
   },
+  async approved() {
+    const snapshot = await collection().where('state', '==', 'approved').get();
+    return snapshot.docs.map((doc) => stored(doc.id, doc.data()));
+  },
+  async replies(id) {
+    const snapshot = await collection().where('parent', '==', id).get();
+    return snapshot.docs.map((doc) => stored(doc.id, doc.data()));
+  },
   async approve(id, body) {
     await collection().doc(id).update({ state: 'approved', body });
   },

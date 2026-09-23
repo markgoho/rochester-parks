@@ -42,8 +42,16 @@ beforeEach(() => {
   logged = [];
   deps = {
     store: {
-      async add() {
-        return 'new';
+      async add(doc) {
+        const id = `new-${docs.size}`;
+        docs.set(id, { ...doc, id });
+        return id;
+      },
+      async approved() {
+        return [...docs.values()].filter((doc) => doc.state === 'approved');
+      },
+      async replies(id) {
+        return [...docs.values()].filter((doc) => doc.parent === id);
       },
       async get(id) {
         return docs.get(id);
@@ -179,7 +187,7 @@ describe('the queue', () => {
     });
     comment('late', { created: new Date('2026-09-21T12:00:00Z') });
     comment('early', { created: new Date('2026-09-01T12:00:00Z') });
-    comment('approved', { state: 'approved' });
+    comment('published', { state: 'approved' });
     const { body, status } = await handle(owner('GET', '/comments'), deps);
     expect(status).toBe(200);
     const order = ['early', 'late', 'flagged-old'].map((id) =>
@@ -187,7 +195,7 @@ describe('the queue', () => {
     );
     expect(order.every((at) => at > -1)).toBe(true);
     expect(order).toEqual([...order].sort((a, b) => a - b));
-    expect(body).not.toContain('/comments/approved"');
+    expect(body).not.toContain('/comments/published"');
   });
 
   test('shows page, Subject, date, flags, name, email and body', async () => {
@@ -321,5 +329,115 @@ describe('reject', () => {
     expect(docs.has('a')).toBe(false);
     expect(closed).toEqual(['a']);
     expect(deploys).toBe(0);
+  });
+});
+
+describe('reply as the site', () => {
+  test('writes an owner Reply under an Approved Comment and dispatches the deploy', async () => {
+    comment('a', { state: 'approved' });
+    const response = await handle(
+      owner('POST', '/comments/a/reply', { body: 'Call the Town Hall.' }),
+      deps
+    );
+    expect(response.status).toBe(303);
+    const reply = [...docs.values()].find((doc) => doc.parent === 'a');
+    expect(reply).toMatchObject({
+      page: '/town-parks/riga-parks/sanford-road-park/',
+      parent: 'a',
+      state: 'approved',
+      body: 'Call the Town Hall.',
+      subject: null,
+      email: null,
+      owner: true,
+      flags: [],
+      created: new Date('2026-09-22T12:00:00Z'),
+    });
+    expect(deploys).toBe(1);
+  });
+
+  test('replying to a queued Comment approves it and closes its issue', async () => {
+    comment('a');
+    await handle(
+      owner('POST', '/comments/a/reply', { body: 'Call the Town Hall.' }),
+      deps
+    );
+    expect(docs.get('a')?.state).toBe('approved');
+    expect(closed).toEqual(['a']);
+    expect(deploys).toBe(1);
+  });
+
+  test('a Reply never has a Reply', async () => {
+    comment('a', { state: 'approved' });
+    comment('r', { state: 'approved', parent: 'a', owner: true });
+    const response = await handle(
+      owner('POST', '/comments/r/reply', { body: 'x' }),
+      deps
+    );
+    expect(response.status).toBe(409);
+    expect([...docs.values()].filter((doc) => doc.parent === 'r')).toEqual([]);
+    const { body } = await handle(owner('GET', '/comments/r'), deps);
+    expect(body).not.toContain('/reply"');
+  });
+
+  test('an empty Reply is refused', async () => {
+    comment('a', { state: 'approved' });
+    const response = await handle(
+      owner('POST', '/comments/a/reply', { body: ' ' }),
+      deps
+    );
+    expect(response.status).toBe(400);
+    expect(docs.size).toBe(1);
+  });
+});
+
+describe('the Approved list', () => {
+  test('lists Approved Comments per page, with delete, and Reply only on a top-level one', async () => {
+    comment('a', { state: 'approved' });
+    comment('r', { state: 'approved', parent: 'a', owner: true });
+    comment('b', { state: 'approved', page: '/trails/erie-canal/' });
+    comment('q');
+    const { body, status } = await handle(
+      owner('GET', '/comments/approved'),
+      deps
+    );
+    expect(status).toBe(200);
+    expect(body).toContain('/trails/erie-canal/');
+    for (const id of ['a', 'r', 'b']) {
+      expect(body).toContain(`action="/comments/${id}/delete"`);
+    }
+    expect(body).toContain('action="/comments/a/reply"');
+    expect(body).toContain('action="/comments/b/reply"');
+    expect(body).not.toContain('action="/comments/r/reply"');
+    expect(body).not.toContain('/comments/q/');
+  });
+});
+
+describe('delete an Approved Comment', () => {
+  test('removes the Comment and its Replies and dispatches the deploy', async () => {
+    comment('a', { state: 'approved' });
+    comment('r1', { state: 'approved', parent: 'a' });
+    comment('r2', { state: 'approved', parent: 'a', owner: true });
+    comment('other', { state: 'approved' });
+    const response = await handle(owner('POST', '/comments/a/delete'), deps);
+    expect(response.status).toBe(303);
+    expect([...docs.keys()]).toEqual(['other']);
+    expect(deploys).toBe(1);
+  });
+
+  test('a queued Comment is rejected, not deleted here', async () => {
+    comment('q');
+    const response = await handle(owner('POST', '/comments/q/delete'), deps);
+    expect(response.status).toBe(409);
+    expect(docs.has('q')).toBe(true);
+  });
+
+  test('a failing deploy dispatch shows on the page', async () => {
+    comment('a', { state: 'approved' });
+    deps.github.deploy = async () => {
+      throw new Error('403');
+    };
+    const response = await handle(owner('POST', '/comments/a/delete'), deps);
+    expect(response.headers.Location).toContain('deploy=failed');
+    expect(docs.has('a')).toBe(false);
   });
 });
