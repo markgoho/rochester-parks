@@ -24,6 +24,13 @@
 {/snippet}
 
 <section class="comments" aria-labelledby="comments-{uid}">
+  <!-- The Function sends the reader back to this page with #comment-sent.
+       :target shows the banner; nothing else does, and no script runs. -->
+  <p id="comment-sent" class="sent" role="status">
+    <strong>Thanks.</strong> Your comment is in the queue. It shows here once it
+    has been read.
+  </p>
+
   <div class="head">
     <h2 id="comments-{uid}">Comments</h2>
     {#if count > 0}<span class="eyebrow mono">{count} so far</span>{/if}
@@ -61,8 +68,73 @@
   {/if}
 
   {#if area.open}
-    <!-- The form goes here with the write path (#221), so a form never
-         posts to nothing. -->
+    <!-- A plain form that works with JavaScript off. The browser checks the
+         required fields; :user-invalid marks one only after the reader has
+         been in it. The Function checks everything again. -->
+    <form class="form" method="post" action="/comment">
+      <h3>Leave a comment</h3>
+      <fieldset class="subjects">
+        <legend class="eyebrow">What is this about?</legend>
+        <label
+          ><input type="radio" name="subject" value="comment" checked /> A comment</label
+        >
+        <label
+          ><input type="radio" name="subject" value="correction" /> A correction</label
+        >
+        <label
+          ><input type="radio" name="subject" value="reservation-question" /> A reservation
+          question</label
+        >
+      </fieldset>
+      <div class="field">
+        <label for="name-{uid}">Name</label>
+        <input
+          id="name-{uid}"
+          name="name"
+          autocomplete="name"
+          maxlength="100"
+          required
+        />
+        <span class="error">Enter your name.</span>
+      </div>
+      <div class="field">
+        <label for="email-{uid}">Email</label>
+        <input
+          id="email-{uid}"
+          name="email"
+          type="email"
+          autocomplete="email"
+          aria-describedby="email-hint-{uid}"
+          required
+        />
+        <span class="error">Enter an email address, like name@example.com.</span
+        >
+        <span id="email-hint-{uid}" class="hint"
+          >Never shown. Only the site owner sees it. Ask and your Comment is
+          removed.</span
+        >
+      </div>
+      <div class="field">
+        <label for="body-{uid}">Comment</label>
+        <textarea id="body-{uid}" name="body" rows="5" maxlength="5000" required
+        ></textarea>
+        <span class="error">Write your comment.</span>
+      </div>
+      <!-- The honeypot. A person never sees or reaches it; a bot that fills
+           every field fills it too. Named so Chrome does not autofill it. -->
+      <div class="trap" aria-hidden="true">
+        <label
+          >Leave this blank <input
+            name="leave_blank"
+            autocomplete="off"
+            tabindex="-1"
+          /></label
+        >
+      </div>
+      <input type="hidden" name="page" value={area.page} />
+      <input type="hidden" name="token" value={area.token} />
+      <button class="button button--primary" type="submit">Send comment</button>
+    </form>
   {:else}
     <p class="closed">Comments are closed on this page.</p>
   {/if}
@@ -162,6 +234,114 @@
 
   .reply--owner {
     border-inline-start-color: var(--orange);
+  }
+
+  .sent {
+    margin-block: 0 var(--space-24);
+    padding: var(--space-16);
+    border: var(--line-hair) solid var(--ink);
+    background: var(--card);
+    scroll-margin-block-start: var(--space-16);
+  }
+
+  .sent:not(:target) {
+    display: none;
+  }
+
+  .form {
+    display: grid;
+    gap: var(--space-16);
+    padding-block-start: var(--space-32);
+  }
+
+  .field {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .field label {
+    font-weight: var(--weight-bold);
+  }
+
+  .hint,
+  .error {
+    font-family: var(--mono);
+    font-size: var(--step--2);
+    letter-spacing: var(--tracking-snug);
+    color: var(--ink-muted);
+  }
+
+  /* Each error says what to do in words, not only in color, and shows only
+     after the reader has been in the field. */
+  .error {
+    display: none;
+    color: var(--orange-ink);
+  }
+
+  input:user-invalid ~ .error,
+  textarea:user-invalid ~ .error {
+    display: block;
+  }
+
+  input:not([type='radio']),
+  textarea {
+    inline-size: 100%;
+    min-block-size: var(--control-height);
+    padding: var(--space-10) var(--space-12);
+    border: var(--line-hair) solid var(--rule-strong);
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: var(--line-heavy) solid var(--orange);
+    outline-offset: var(--focus-offset);
+  }
+
+  input:user-invalid,
+  textarea:user-invalid {
+    border-color: var(--orange-ink);
+    border-width: var(--line-heavy);
+  }
+
+  input[type='radio'] {
+    accent-color: var(--orange);
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    margin: 0;
+  }
+
+  .subjects {
+    display: grid;
+    gap: var(--space-8);
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .subjects legend {
+    margin-block-end: var(--space-8);
+    padding: 0;
+  }
+
+  .subjects label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-10);
+    min-block-size: var(--tap-target);
+  }
+
+  /* The honeypot is out of sight by a class, never an inline style. */
+  .trap {
+    display: none;
+  }
+
+  .form .button {
+    justify-self: start;
+    cursor: pointer;
+    font-family: inherit;
   }
 
   .closed {

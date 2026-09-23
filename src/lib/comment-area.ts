@@ -29,6 +29,7 @@ export function commentAreaOf({
   frontMatter,
   reservations,
   comments = [],
+  token = '',
 }: {
   layout: Layout;
   url: string;
@@ -37,9 +38,13 @@ export function commentAreaOf({
   reservations?: ReservationLink;
   /** The page's Approved Comments, already shaped. */
   comments?: CommentWithReplies[];
+  /** The page token the build signed; empty when the build has no key. */
+  token?: string;
 }): CommentArea | undefined {
   if (!takesComments(layout, url)) return undefined;
   return {
+    page: url,
+    token,
     open: frontMatter.comments !== false,
     ...(layout === 'park-single' && reservations ? { reservations } : {}),
     comments,
