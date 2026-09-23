@@ -217,18 +217,21 @@ async function receive(
 }
 
 /**
+ * A URL outside a link element: it starts with a scheme or a bare www. and
+ * runs to whitespace, a quote, a tag or a bracket.
+ */
+const BARE_URL = /\b(?:https?:\/\/|www\.)[^\s"'<>[\]]+/gi;
+
+/**
  * The links in a body as posted. An HTML or BBCode link element is one link,
  * whatever its words say, so a link whose words are its own URL counts once.
- * Outside those elements a URL starts with a scheme or a bare www. and runs
- * to whitespace, a quote, a tag or a bracket, so https://www.example.com
- * counts once. The same URL posted twice counts twice.
+ * Outside those elements each URL is one link, so https://www.example.com
+ * counts once and the same URL posted twice counts twice.
  */
 function countLinks(posted: string): number {
   const element = /<a\b[^>]*>[\s\S]*?<\/a>|\[url\b[^\]]*\][\s\S]*?\[\/url\]/gi;
   const elements = posted.match(element)?.length ?? 0;
-  const urls =
-    posted.replace(element, ' ').match(/\b(?:https?:\/\/|www\.)[^\s"'<>[\]]+/gi)
-      ?.length ?? 0;
+  const urls = posted.replace(element, ' ').match(BARE_URL)?.length ?? 0;
   return elements + urls;
 }
 
@@ -239,9 +242,9 @@ function countLinks(posted: string): number {
  * not hide the words around it.
  */
 function mostlyNonLatin(body: string): boolean {
-  const words = body.replace(/\b(?:https?:\/\/|www\.)\S+/gi, ' ');
-  const letters = words.match(/\p{L}/gu)?.length ?? 0;
-  const latin = words.match(/\p{Script=Latin}/gu)?.length ?? 0;
+  const text = body.replace(BARE_URL, ' ');
+  const letters = text.match(/\p{L}/gu)?.length ?? 0;
+  const latin = text.match(/\p{Script=Latin}/gu)?.length ?? 0;
   return letters - latin > latin;
 }
 

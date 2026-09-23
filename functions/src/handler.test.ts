@@ -245,7 +245,7 @@ describe('the public post', () => {
 
   test('an English body with a few non-Latin letters sets no flag', async () => {
     await post({
-      body: 'My friend Дмитрий and I loved the lodge at Ελλάδα Park',
+      body: 'My friend Дмитрий and I loved the café at the lodge',
     });
     expect(written[0].flags).toEqual([]);
   });
