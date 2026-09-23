@@ -179,6 +179,27 @@ describe('transformArchive', () => {
     expect(doc.body).toBe('It’s great & free <3 see https://a.example');
   });
 
+  test("keeps a link's URL as text when its words are not the URL", () => {
+    const [doc] = transformArchive(
+      input([
+        row({
+          content:
+            'See <a href="https://x.example/snow">Snowshoeing here</a> today.',
+        }),
+      ])
+    );
+    expect(doc.body).toBe(
+      'See Snowshoeing here (https://x.example/snow) today.'
+    );
+  });
+
+  test('a missing column fails before anything else', () => {
+    const { content: _, ...noContent } = row({});
+    expect(() =>
+      transformArchive(input([noContent as unknown as ArchiveRow]))
+    ).toThrow('content');
+  });
+
   test('applies the redaction file by author and date', () => {
     const [doc] = transformArchive(
       input([row({ content: 'Call 585-555-0100.' })], {

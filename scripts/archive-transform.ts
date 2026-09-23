@@ -60,13 +60,14 @@ export interface ArchiveDocument {
   flags: string[];
 }
 
+/** The natural key of an Archive row, unique across the sheet (#27). */
+const key = (author: string, date: string) => `${author}|${date}`;
+
 /** `archive-` plus the first 20 hex characters of SHA-256 of `author|date`. */
 export function archiveId(author: string, date: string): string {
-  const hash = createHash('sha256').update(`${author}|${date}`).digest('hex');
+  const hash = createHash('sha256').update(key(author, date)).digest('hex');
   return `archive-${hash.slice(0, 20)}`;
 }
-
-const key = (author: string, date: string) => `${author}|${date}`;
 
 /** Empty email, a URL in the author cell, or WordPress's […] excerpt (#26). */
 function isPingback(row: ArchiveRow): boolean {
@@ -101,9 +102,17 @@ const NAMED: Record<string, string> = {
   mdash: '—',
 };
 
-/** Plain text: tags stripped, then entities decoded, URLs kept as text. */
+/**
+ * Plain text: a link keeps its URL as text, then tags are stripped, then
+ * entities decoded. Stripping first means an escaped `&lt;b&gt;` stays text.
+ */
 function plainText(html: string): string {
   return html
+    .replace(
+      /<a\s[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi,
+      (_, href: string, words: string) =>
+        words.includes(href) ? words : `${words} (${href})`
+    )
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<[^>]*>/g, '')
     .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
@@ -163,7 +172,17 @@ function rochesterTime(date: string): Date {
  * through the reply map; any row that cannot, and any redaction that matches
  * no row, fails the whole run, so nothing is half-imported.
  */
+const COLUMNS = ['author', 'email', 'date', 'Park Name', 'content', 'parent'];
+
 export function transformArchive(input: ArchiveInput): ArchiveDocument[] {
+  const missing = COLUMNS.filter((column) =>
+    input.rows.some(
+      (row) => typeof row[column as keyof ArchiveRow] !== 'string'
+    )
+  );
+  if (missing.length) {
+    throw new Error(`The export has no column ${missing.join(', ')}`);
+  }
   const pages = new Map(
     input.parkMap.map((entry) => [entry.archive_name, pageOf(entry.path)])
   );

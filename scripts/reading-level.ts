@@ -11,7 +11,11 @@
  */
 import { globSync, readFileSync } from 'node:fs';
 import matter from 'gray-matter';
-import { isParkContainer, isParkType, isTrailType } from '../src/lib/park-types';
+import {
+  isParkContainer,
+  isParkType,
+  isTrailType,
+} from '../src/lib/park-types';
 import { evaluate } from '../src/lib/reading-level';
 
 interface FrontMatter {

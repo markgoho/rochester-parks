@@ -53,10 +53,15 @@ if (dryRun) {
     credential: applicationDefault(),
     projectId: 'rochester-parks',
   });
-  const comments = getFirestore().collection('comments');
+  const firestore = getFirestore();
+  const comments = firestore.collection('comments');
+  // One batch, so the set lands whole or not at all (127 is under the
+  // batch limit of 500).
+  const batch = firestore.batch();
   await importArchive(documents, async (id, document) => {
-    await comments.doc(id).set(document);
+    batch.set(comments.doc(id), document);
     written++;
   });
+  await batch.commit();
   console.log(`Wrote ${written} Archive comments, Approved.`);
 }
