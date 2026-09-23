@@ -35,6 +35,7 @@ beforeEach(() => {
       deploy: async () => {},
     },
     logError: (message) => logged.push(message),
+    logInfo: (message) => logged.push(message),
     store: {
       async add(comment) {
         written.push(comment);
@@ -299,10 +300,11 @@ describe('the spam check', () => {
     expect(response.body).toContain('looks like an advertisement');
     expect(written).toEqual([]);
     expect(announced).toEqual([]);
+    expect(logged).toEqual([`Refused as spam (0.9) on ${PAGE}`]);
   });
 
   test('a possible spam post writes with the spam flag and announces nothing', async () => {
-    spamScore = 0.5;
+    spamScore = 0.7;
     const response = await post();
     expect(response.status).toBe(303);
     expect(written[0].flags).toEqual(['spam']);
@@ -310,7 +312,7 @@ describe('the spam check', () => {
   });
 
   test('a clean post writes with no flag and announces', async () => {
-    spamScore = 0.49;
+    spamScore = 0.69;
     await post();
     expect(written[0].flags).toEqual([]);
     expect(announced).toHaveLength(1);

@@ -86,6 +86,8 @@ export interface Deps {
   github: GitHubClient;
   /** Logs at error level, which the Function's error alert watches. */
   logError: (message: string, error?: unknown) => void;
+  /** Logs at info level, which no alert watches. */
+  logInfo: (message: string) => void;
   secrets: {
     hmacKey: string;
     /** The one password of the Moderation surface. */
@@ -121,11 +123,11 @@ const BODY_MAX = 5000;
 
 /**
  * Spam thresholds (#259), set on the 21 spam posts of 2026-09-23 and the 127
- * Archive comments: at 0.9 every spam post was rejected and no real Comment
- * was. A real Comment scored up to 0.79, so the band below only flags.
+ * Archive comments: at 0.9 every spam post was refused and no real Comment
+ * was. From 0.7, 2 of the 100 real Comments would be flagged; from 0.5, 8.
  */
 const SPAM_REJECT = 0.9;
-const SPAM_FLAG = 0.5;
+const SPAM_FLAG = 0.7;
 
 export async function handle(
   request: FunctionRequest,
@@ -205,7 +207,7 @@ async function receive(
   const pageTitle = titleOf(page);
   const spam = await deps.spam({ pageTitle, name, body });
   if (spam !== null && spam >= SPAM_REJECT) {
-    console.info('Refused as spam', { page, spam });
+    deps.logInfo(`Refused as spam (${spam}) on ${page}`);
     return notSent(
       'It looks like an advertisement to our spam check, so it was not sent. If it is a real comment about this page, please reword it and send it again.'
     );

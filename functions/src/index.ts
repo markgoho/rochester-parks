@@ -221,6 +221,7 @@ export const comments = onRequest(
         github,
         logError: (message, error) =>
           logger.error(message, { error: String(error) }),
+        logInfo: (message) => logger.info(message),
         secrets: {
           hmacKey: hmacKey.value(),
           password: moderationPassword.value(),
