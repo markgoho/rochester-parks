@@ -175,9 +175,16 @@ async function receive(
   //    posted, before HTML is stripped (#256).
   const links = countLinks(posted);
 
+  //    And a body written mostly in a non-Latin script (#257): the site is
+  //    an English guide, and none of the Archive comments is in one.
+  const script = mostlyNonLatin(body);
+
   // 5. Write one queue document. No IP, no user agent (#206).
   const created = deps.clock();
-  const flags = links >= 2 ? ['links'] : [];
+  const flags = [
+    ...(links >= 2 ? ['links'] : []),
+    ...(script ? ['script'] : []),
+  ];
   const id = await deps.store.add({
     page,
     parent: null,
@@ -223,6 +230,19 @@ function countLinks(posted: string): number {
     posted.replace(element, ' ').match(/\b(?:https?:\/\/|www\.)[^\s"'<>[\]]+/gi)
       ?.length ?? 0;
   return elements + urls;
+}
+
+/**
+ * Whether more of a body's letters are outside the Latin script than in it,
+ * so an English Comment with one foreign name is not flagged. Accented Latin
+ * letters (é, ñ) are Latin. URLs are left out, so a link's Latin letters do
+ * not hide the words around it.
+ */
+function mostlyNonLatin(body: string): boolean {
+  const words = body.replace(/\b(?:https?:\/\/|www\.)\S+/gi, ' ');
+  const letters = words.match(/\p{L}/gu)?.length ?? 0;
+  const latin = words.match(/\p{Script=Latin}/gu)?.length ?? 0;
+  return letters - latin > latin;
 }
 
 /**

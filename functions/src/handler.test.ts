@@ -235,6 +235,32 @@ describe('the public post', () => {
     expect(written[0].flags).toEqual(['links']);
   });
 
+  test('a Cyrillic body sets the script flag and still writes', async () => {
+    const response = await post({
+      body: 'Вывод из запоя на дому в Москве, круглосуточно и недорого',
+    });
+    expect(response.status).toBe(303);
+    expect(written[0].flags).toEqual(['script']);
+  });
+
+  test('an English body with a few non-Latin letters sets no flag', async () => {
+    await post({
+      body: 'My friend Дмитрий and I loved the lodge at Ελλάδα Park',
+    });
+    expect(written[0].flags).toEqual([]);
+  });
+
+  test('a French or Spanish body sets no flag', async () => {
+    await post({ body: 'Très joli parc, on a adoré le café près du lac' });
+    await post({ body: 'El parque es pequeño pero muy bonito, ¡qué día!' });
+    expect(written.map((c) => c.flags)).toEqual([[], []]);
+  });
+
+  test('a Cyrillic body with two links sets both flags', async () => {
+    await post({ body: 'Вывод из запоя https://a.example https://b.example' });
+    expect(written[0].flags).toEqual(['links', 'script']);
+  });
+
   test('trims the name, email and body it stores', async () => {
     await post({ name: ' Barbara ', email: ' b@example.com ', body: ' Hi ' });
     expect(written[0]).toMatchObject({
