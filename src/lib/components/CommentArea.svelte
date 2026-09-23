@@ -333,9 +333,16 @@
     min-block-size: var(--tap-target);
   }
 
-  /* The honeypot is out of sight by a class, never an inline style. */
+  /* The honeypot is out of sight by a class, never an inline style. It is
+     clipped, not display: none, because spam bots skip a field hidden that
+     way (#255). tabindex and aria-hidden keep people from reaching it. */
   .trap {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    clip-path: inset(50%);
   }
 
   .form .button {
