@@ -13,6 +13,7 @@ jobs:
       # Neither the tests nor the Vite build check types.
       - run: bun run check
       - run: bunx tsc --noEmit -p functions
+      - run: bun run --cwd functions lint
       # The reading-level checker runs as part of `bun run build`, so a Park
       # page that breaks the 8th-grade standard fails the PR, not the deploy.
       - run: bun run build
