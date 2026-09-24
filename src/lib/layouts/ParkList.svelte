@@ -43,6 +43,11 @@
    * frame as the county section, with a dot for each park that has `geo`.
    */
   const state = $derived(isStateSection(section.url));
+  // The sections that draw a map: it takes a column of its own, with the
+  // view switch under it.
+  const hasSide = $derived(
+    Boolean((townShape && town) || city || county || state)
+  );
 
   const parks = $derived(
     page.children.filter((child) => child.park !== undefined)
@@ -187,15 +192,20 @@
   {#if cardPlaces.length}
     <MapDefs shapes={cardPlaces} />
   {/if}
-  <div class="layout" class:layout--town={townShape}>
+  <div
+    class="layout"
+    class:layout--side={hasSide}
+    class:layout--town={townShape}
+  >
     <div class="head">
       <div class="head__text">
         <h1 style:--longest-word={longestWord(page.title)}>{page.title}</h1>
         {#if page.html}
           <div class="prose intro">{@html page.html}</div>
         {/if}
-        <!-- The view is a property of the whole section, so its switch sits
-         with the section's counts, in the same place on both views. -->
+        <!-- The view is a property of the whole section. With no map, its
+         switch sits with the section's counts; with a map, it sits under
+         the map, so it stays in sight while the list scrolls. -->
         <div class="counts-line">
           <p class="eyebrow counts">
             <span><b class="mono">{parks.length}</b> parks</span>
@@ -204,35 +214,42 @@
             <span><b class="mono">{inventoried}</b> with amenity data</span>
             <span><b class="mono">{measured}</b> measured</span>
           </p>
-          <ViewSwitch {cards} {tableUrl} {cardsUrl} />
+          {#if !hasSide}
+            <ViewSwitch {cards} {tableUrl} {cardsUrl} />
+          {/if}
         </div>
       </div>
-      {#if city}
-        <div class="locator locator--city">
-          <CityLocator {counts} />
-          <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
-        </div>
-      {:else if county}
-        <div class="locator"><TownLocator /></div>
-      {:else if state}
-        <div class="locator">
-          <TownLocator {markers} label="The state parks of Monroe County" />
-        </div>
-      {/if}
     </div>
 
-    {#if townShape && town}
-      <!-- The town with a dot for each park. The dot of the row under the
-       pointer or the focus grows. -->
-      <div class="town-map">
-        <TownShape
-          shape={townShape}
-          villages={villagesIn(town)}
-          {markers}
-          square
-          scope=".list"
-          label="The parks of {section.title}"
-        />
+    {#if hasSide}
+      <!-- The map of the section, and under it the view switch. Wide, this
+       column is beside the list and stays on screen while the list
+       scrolls, so the dot a row picks and the switch are always in sight. -->
+      <div class="side" class:side--city={city} class:side--town={townShape}>
+        {#if townShape && town}
+          <!-- The town with a dot for each park. The dot of the row under the
+           pointer or the focus grows. -->
+          <TownShape
+            shape={townShape}
+            villages={villagesIn(town)}
+            {markers}
+            square
+            scope=".list"
+            label="The parks of {section.title}"
+          />
+        {:else if city}
+          <CityLocator {counts} />
+        {:else if county}
+          <TownLocator />
+        {:else}
+          <TownLocator {markers} label="The state parks of Monroe County" />
+        {/if}
+        <div class="side__line">
+          {#if city}
+            <p class="eyebrow map-hint">Pick a neighborhood to see its parks</p>
+          {/if}
+          <ViewSwitch {cards} {tableUrl} {cardsUrl} />
+        </div>
       </div>
     {/if}
 
@@ -466,30 +483,31 @@
     container: list / inline-size;
   }
 
-  .town-map {
-    max-inline-size: 24rem;
-    padding-top: var(--space-20);
+  /* The map column. Its width is the map's: a town is the largest, the city
+     next, and the county and state locators the smallest. */
+  .side {
+    --side-size: 13rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    inline-size: var(--side-size);
+    max-inline-size: 100%;
+    padding-bottom: var(--space-20);
   }
 
-  /* Wide: the town map beside the list, on screen while the list scrolls,
-     so the dot a row picks is always in sight. */
-  @container list (inline-size >= 68rem) {
-    .layout--town {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) clamp(20rem, 28%, 28rem);
-      grid-template-rows: auto 1fr;
-      column-gap: var(--space-40);
-    }
+  .side--town {
+    --side-size: 24rem;
+  }
 
-    .layout--town .town-map {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-      align-self: start;
-      max-inline-size: none;
-      padding-top: 0;
-      position: sticky;
-      top: var(--space-24);
-    }
+  /* The hint and the switch share the line under the map. */
+  .side__line {
+    display: flex;
+    align-items: center;
+    gap: var(--space-16);
+  }
+
+  .side__line :global(.views) {
+    margin-inline-start: auto;
   }
 
   .head {
@@ -497,7 +515,13 @@
     flex-direction: column;
     gap: var(--space-14);
     padding-bottom: var(--space-20);
-    border-bottom: var(--line-heavy) solid var(--ink);
+  }
+
+  /* The heavy rule opens the list, under the heading and, when it is
+     beside the heading, the map. */
+  .body {
+    container: rows / inline-size;
+    border-top: var(--line-heavy) solid var(--ink);
   }
 
   .head__text {
@@ -505,11 +529,6 @@
     flex-direction: column;
     gap: var(--space-14);
     min-width: 0;
-  }
-
-  .locator {
-    width: 13rem;
-    max-width: 100%;
   }
 
   .intro :global(p:last-child) {
@@ -676,9 +695,12 @@
     margin: var(--space-40) 0 var(--space-12);
   }
 
+  /* The hint takes what the switch leaves, and wraps inside it, so the two
+     stay on one line. */
   .map-hint {
-    margin: var(--space-8) 0 0;
-    text-align: center;
+    flex: 1 1 0;
+    min-inline-size: 0;
+    margin: 0;
   }
 
   .toolbar {
@@ -897,22 +919,37 @@
     font-weight: var(--weight-bold);
   }
 
-  /* The same "list" container the town map above queries. The county map
-     sits beside the heading, not above the table: 15rem text (a name-list
-     column reads fine this narrow, see DefaultList.svelte) + 13rem locator
-     + 2.5rem gap = 30.5rem. Kept below 41.5625rem: past that, .list's width
-     briefly runs backwards as --gutter widens at 48rem of viewport (see
-     app.css), and a threshold in that dip would flicker on and off. */
+  /* The same "list" container. The county, state and city maps sit beside
+     the heading, not above the table: 15rem text (a name-list column reads
+     fine this narrow, see DefaultList.svelte) + 13rem locator + 2.5rem gap
+     = 30.5rem. Kept below 41.5625rem: past that, .list's width briefly runs
+     backwards as --gutter widens at 48rem of viewport (see app.css), and a
+     threshold in that dip would flicker on and off. A town's map stays
+     under its heading until the wide layout. */
   @container list (inline-size >= 30.5rem) {
-    .head:has(.locator) {
+    .layout--side:not(.layout--town) {
       display: grid;
-      grid-template-columns: minmax(15rem, 1fr) 13rem;
-      align-items: start;
-      gap: var(--space-40);
+      grid-template-columns: minmax(15rem, 1fr) auto;
+      grid-template-areas:
+        'head side'
+        'body body';
+      column-gap: var(--space-40);
     }
 
-    .locator {
+    .layout--side:not(.layout--town) .side {
       justify-self: end;
+    }
+
+    .head {
+      grid-area: head;
+    }
+
+    .side {
+      grid-area: side;
+    }
+
+    .body {
+      grid-area: body;
     }
   }
 
@@ -920,19 +957,45 @@
      15rem text + 20rem locator + 2.5rem gap = 37.5rem (also below the
      41.5625rem dip described above). */
   @container list (inline-size >= 37.5rem) {
-    .head:has(.locator--city) {
-      grid-template-columns: minmax(15rem, 1fr) 20rem;
-    }
-
-    .locator--city {
-      width: 20rem;
+    .side--city {
+      --side-size: 20rem;
     }
   }
 
-  /* The table row: 2.5rem num + 10rem name + 5.5rem status + 10rem tags +
+  /* Wide: the map beside the list, on screen while the list scrolls, so the
+     dot a row picks and the view switch are always in sight. The list keeps
+     the table's full width: 46.75rem table (below) + 2.5rem gap + 20rem
+     map = 69.25rem. */
+  @container list (inline-size >= 69.25rem) {
+    /* Two classes, to outrank the narrower layout above. */
+    .layout.layout--side {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        'head side'
+        'body side';
+      column-gap: var(--space-40);
+    }
+
+    .layout--town .side {
+      --side-size: clamp(20rem, 28cqi, 28rem);
+    }
+
+    .layout--side .side {
+      align-self: start;
+      justify-self: end;
+      position: sticky;
+      top: var(--space-24);
+      padding-bottom: 0;
+    }
+  }
+
+  /* The table row, measured on the list column, so it stays stacked
+     until the table fits beside the map: 2.5rem num + 10rem name + 5.5rem status + 10rem tags +
      6rem acres + 6rem words + 5 * 1rem gap + 1.75rem of the row's own
      horizontal padding (2 * --space-14) = 46.75rem. */
-  @container list (inline-size >= 46.75rem) {
+  @container rows (inline-size >= 46.75rem) {
     .row {
       grid-template-columns:
         2.5rem minmax(10rem, 13rem) 5.5rem minmax(10rem, 1fr)
