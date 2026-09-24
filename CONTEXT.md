@@ -65,11 +65,11 @@ A Comment that answers another Comment. Nesting is one level deep only. A Reply 
 _Avoid_: Thread, nested comment, child comment
 
 **Subject**:
-The category a Commenter picks on the form. Exactly three values: comment, correction, reservation question.
+The category a Commenter picks on the form. Exactly two values: comment and correction. There is no reservation value, because the form must not suggest that this site takes bookings.
 _Avoid_: Type, category, kind
 
 **Reservation inquiry**:
-A Comment from a reader who mistakes this site for the parks department and asks to book a lodge, a shelter, or a pavilion. The dominant pattern in the archive. Named because it drives both the Subject enum and the redirect notice on the page.
+A Comment from a reader who mistakes this site for the parks department and asks to book a lodge, a shelter, or a pavilion. The dominant pattern in the archive. Named because it drives the redirect notice on the page.
 _Avoid_: Booking request, rental request
 
 **Moderation queue**:

@@ -15,7 +15,7 @@ export interface StoredComment {
   name: string;
   email: string | null;
   body: string;
-  subject: 'comment' | 'correction' | 'reservation-question' | null;
+  subject: 'comment' | 'correction' | null;
   created: Date;
   owner: boolean;
   flags: string[];

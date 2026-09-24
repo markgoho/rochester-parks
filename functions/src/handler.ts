@@ -9,11 +9,7 @@ import { tokenMatches } from './token.js';
  */
 
 /** The Subject tokens, the same on the form and in storage (#217). */
-export const SUBJECTS = [
-  'comment',
-  'correction',
-  'reservation-question',
-] as const;
+export const SUBJECTS = ['comment', 'correction'] as const;
 
 export type Subject = (typeof SUBJECTS)[number];
 
