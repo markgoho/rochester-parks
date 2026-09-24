@@ -212,6 +212,11 @@
         "source": "/town-parks/clarkson-parks/clarkson-recreation-park",
         "destination": "/town-parks/clarkson-parks/kimball-park/",
         "type": 301
+      },
+      {
+        "source": "/:path*/amp",
+        "destination": "/:path*/",
+        "type": 301
       }
     ]
   },
