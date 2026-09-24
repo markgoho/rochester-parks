@@ -1,4 +1,4 @@
-import { createHash, timingSafeEqual } from 'node:crypto';
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 import type {
   Deps,
   FunctionRequest,
@@ -10,9 +10,12 @@ import { rochesterDay, text } from './respond.js';
 /**
  * The Moderation surface (#217, #223): owner-only HTML pages on the comments
  * Function, at its own `run.app` URL, never rewritten through Hosting. Plain
- * forms and no client JavaScript. One password by HTTP Basic auth; the
+ * forms and no client JavaScript. One password, typed into a sign-in form so
+ * a password manager can save it, and then a signed session cookie; the
  * platform serves only HTTPS.
  *
+ *   POST /comments/sign-in      check the password, set the session cookie
+ *   POST /comments/sign-out     clear the session cookie
  *   GET  /comments              the Moderation queue
  *   GET  /comments/{id}         one Comment, with its actions
  *   POST /comments/{id}/approve approve, with the body as edited
@@ -31,6 +34,10 @@ const GONE = 'No such Comment. It may have been deleted.';
 
 /** The owner's own Comments are signed as the site (#28). */
 const SITE = 'Rochester Parks';
+
+/** `__Host-` makes the browser refuse the cookie unless Secure, Path=/ and no Domain. */
+const COOKIE = '__Host-session';
+const SESSION_DAYS = 30;
 
 export async function moderate(
   request: FunctionRequest,
@@ -59,15 +66,41 @@ async function route(
   deps: Deps
 ): Promise<FunctionResponse> {
   const headers = request.headers ?? {};
-  if (!signedIn(headers.authorization, deps.secrets.password)) {
-    const refused = text(401, 'Sign in to moderate Comments.');
+  const now = deps.clock();
+  const password = deps.secrets.password;
+  if (request.path === '/comments/sign-in' && request.method === 'POST') {
+    if (!sameSite(headers))
+      return text(403, 'A form on another site cannot sign in.');
+    const given =
+      typeof request.form.password === 'string' ? request.form.password : '';
+    if (!password || !same(given, password)) {
+      return signInPage(401, nextPath(request.form.next), 'Wrong password.');
+    }
+    const expires = now.getTime() + SESSION_DAYS * 24 * 60 * 60 * 1000;
     return {
-      ...refused,
+      status: 303,
       headers: {
-        ...refused.headers,
-        'WWW-Authenticate': 'Basic realm="Rochester Parks moderation"',
+        Location: nextPath(request.form.next),
+        'Set-Cookie': `${COOKIE}=${session(password, expires)}; Max-Age=${SESSION_DAYS * 24 * 60 * 60}; Path=/; Secure; HttpOnly; SameSite=Strict`,
       },
+      body: '',
     };
+  }
+  if (request.path === '/comments/sign-out' && request.method === 'POST') {
+    return {
+      status: 303,
+      headers: {
+        Location: '/comments',
+        'Set-Cookie': `${COOKIE}=; Max-Age=0; Path=/; Secure; HttpOnly; SameSite=Strict`,
+      },
+      body: '',
+    };
+  }
+  if (!signedIn(headers.cookie, password, now)) {
+    return signInPage(
+      401,
+      request.method === 'GET' ? request.path : '/comments'
+    );
   }
 
   const [, , id, action] = request.path.split('/');
@@ -111,24 +144,81 @@ async function route(
   }
 }
 
-/** Basic auth: any user name, the one password, compared in constant time. */
+/**
+ * The session cookie's value: its expiry in milliseconds, a dot, and an HMAC
+ * of the expiry keyed by the password. A new password ends every session.
+ */
+export function session(password: string, expires: number): string {
+  const mac = createHmac('sha256', password)
+    .update(`session:${expires}`)
+    .digest('hex');
+  return `${expires}.${mac}`;
+}
+
 function signedIn(
-  authorization: string | undefined,
-  password: string
+  cookies: string | undefined,
+  password: string,
+  now: Date
 ): boolean {
-  if (!password || !authorization?.startsWith('Basic ')) return false;
-  const decoded = Buffer.from(authorization.slice(6), 'base64').toString();
-  const given = decoded.slice(decoded.indexOf(':') + 1);
-  // Hashing first gives both sides the same length, so the compare leaks
-  // nothing about the password's length either.
-  const digest = (value: string) => createHash('sha256').update(value).digest();
-  return timingSafeEqual(digest(given), digest(password));
+  if (!password || !cookies) return false;
+  const value = cookies
+    .split(';')
+    .map((part) => part.trim())
+    .find((part) => part.startsWith(`${COOKIE}=`))
+    ?.slice(COOKIE.length + 1);
+  const expires = Number(value?.split('.')[0]);
+  if (!value || !Number.isSafeInteger(expires) || expires <= now.getTime()) {
+    return false;
+  }
+  return same(value, session(password, expires));
 }
 
 /**
- * The browser sends the Basic credentials with any request to this host, so
- * a form on another site could post here as the owner. A post must come from
- * the surface's own pages.
+ * Compares in constant time. Hashing first gives both sides the same length,
+ * so the compare leaks nothing about the length either.
+ */
+function same(given: string, expected: string): boolean {
+  const digest = (value: string) => createHash('sha256').update(value).digest();
+  return timingSafeEqual(digest(given), digest(expected));
+}
+
+/** Where to go after sign-in: a surface page only, never another site. */
+function nextPath(posted: unknown): string {
+  return typeof posted === 'string' && /^\/comments(\/[\w-]*)*$/.test(posted)
+    ? posted
+    : '/comments';
+}
+
+/**
+ * The sign-in form. The hidden user name lets a password manager save and
+ * fill the password as one login.
+ */
+function signInPage(
+  status: number,
+  next: string,
+  problem?: string
+): FunctionResponse {
+  const note = problem ? `<p class="notice">${escape(problem)}</p>` : '';
+  return {
+    ...page(
+      'Sign in to moderate',
+      `${note}<form method="post" action="/comments/sign-in">
+  <input type="text" name="username" value="owner" autocomplete="username" hidden>
+  <input type="hidden" name="next" value="${escape(next)}">
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" autocomplete="current-password" required autofocus>
+  <button type="submit">Sign in</button>
+</form>`,
+      false
+    ),
+    status,
+  };
+}
+
+/**
+ * A form on another site must not post here as the owner, or sign the owner
+ * in to a session of its choosing. SameSite=Strict already keeps the cookie
+ * off such a post; this check is the second guard.
  */
 function sameSite(headers: Record<string, string | undefined>): boolean {
   const site = headers['sec-fetch-site'];
@@ -449,7 +539,11 @@ function escape(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
-function page(title: string, content: string): FunctionResponse {
+function page(
+  title: string,
+  content: string,
+  signOut = true
+): FunctionResponse {
   return {
     status: 200,
     headers: { 'Content-Type': 'text/html; charset=utf-8' },
@@ -469,13 +563,15 @@ function page(title: string, content: string): FunctionResponse {
   dd { margin: 0; overflow-wrap: anywhere; }
   .body { white-space: pre-line; overflow-wrap: anywhere; }
   form { display: grid; gap: 0.5rem; margin-block: 1rem; }
-  textarea { font: inherit; inline-size: 100%; box-sizing: border-box; }
+  textarea, input { font: inherit; inline-size: 100%; box-sizing: border-box; padding: 0.4rem; }
+  .sign-out { margin: 0; float: inline-end; }
   .hint { font-size: 0.9em; color: #555; margin: 0; }
   button { justify-self: start; font: inherit; padding: 0.5rem 1rem; cursor: pointer; }
   .quiet { background: none; border: 1px solid #999; }
   .replies { list-style: none; padding-inline-start: 1.5rem; }
   .notice { border-inline-start: 4px solid #c2410c; padding-inline-start: 0.75rem; }
 </style>
+${signOut ? '<form class="sign-out" method="post" action="/comments/sign-out"><button type="submit" class="quiet">Sign out</button></form>' : ''}
 <h1>${escape(title)}</h1>
 ${content}
 </html>
