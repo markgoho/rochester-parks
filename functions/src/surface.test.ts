@@ -6,6 +6,7 @@ import {
   type FunctionRequest,
   type StoredComment,
 } from './handler.js';
+import { session } from './surface.js';
 
 const PASSWORD = 'correct horse battery staple';
 const BASE = 'https://comments-test.a.run.app';
@@ -86,8 +87,11 @@ beforeEach(() => {
   };
 });
 
-const basic = (password: string) =>
-  `Basic ${Buffer.from(`owner:${password}`).toString('base64')}`;
+const NOW = new Date('2026-09-22T12:00:00Z').getTime();
+const DAY = 24 * 60 * 60 * 1000;
+
+const cookie = (password: string, expires = NOW + DAY) =>
+  `other=1; __Host-session=${session(password, expires)}`;
 
 /** A request as the owner's browser sends it, signed in. */
 function owner(
@@ -101,7 +105,7 @@ function owner(
     path,
     form,
     headers: {
-      authorization: basic(PASSWORD),
+      cookie: cookie(PASSWORD),
       origin: BASE,
       host: new URL(BASE).host,
       ...headers,
@@ -121,20 +125,102 @@ describe('the password', () => {
     comment('a');
     const response = await handle({ method: m, path: p, form: {} }, deps);
     expect(response.status).toBe(401);
-    expect(response.headers['WWW-Authenticate']).toContain('Basic');
+    expect(response.headers['WWW-Authenticate']).toBeUndefined();
+    expect(response.body).toContain('action="/comments/sign-in"');
+    expect(response.body).toContain('autocomplete="current-password"');
     expect(response.body).not.toContain('Barbara');
     expect(docs.get('a')?.state).toBe('queue');
   });
 
-  test.each(routes)('%s %s refuses a wrong password', async (m, p) => {
-    comment('a');
+  test.each(routes)(
+    '%s %s refuses a session of another password',
+    async (m, p) => {
+      comment('a');
+      const response = await handle(
+        owner(m, p, {}, { cookie: cookie('wrong') }),
+        deps
+      );
+      expect(response.status).toBe(401);
+      expect(docs.get('a')?.state).toBe('queue');
+      expect(closed).toEqual([]);
+    }
+  );
+
+  test('refuses an expired or forged session', async () => {
+    for (const bad of [
+      cookie(PASSWORD, NOW - 1),
+      `__Host-session=${NOW + DAY}.${'0'.repeat(64)}`,
+      '__Host-session=nonsense',
+    ]) {
+      const response = await handle(
+        owner('GET', '/comments', {}, { cookie: bad }),
+        deps
+      );
+      expect(response.status).toBe(401);
+    }
+  });
+
+  test('the right password sets a session cookie that signs in', async () => {
     const response = await handle(
-      owner(m, p, {}, { authorization: basic('wrong') }),
+      owner(
+        'POST',
+        '/comments/sign-in',
+        { username: 'owner', password: PASSWORD, next: '/comments/approved' },
+        { cookie: '' }
+      ),
+      deps
+    );
+    expect(response.status).toBe(303);
+    expect(response.headers.Location).toBe('/comments/approved');
+    const set = response.headers['Set-Cookie'];
+    for (const part of ['Secure', 'HttpOnly', 'SameSite=Strict', 'Path=/']) {
+      expect(set).toContain(part);
+    }
+    const signedIn = await handle(
+      owner('GET', '/comments', {}, { cookie: set.split(';')[0] }),
+      deps
+    );
+    expect(signedIn.status).toBe(200);
+  });
+
+  test('a wrong password shows the form again and sets no cookie', async () => {
+    const response = await handle(
+      owner('POST', '/comments/sign-in', { password: 'wrong' }, { cookie: '' }),
       deps
     );
     expect(response.status).toBe(401);
-    expect(docs.get('a')?.state).toBe('queue');
-    expect(closed).toEqual([]);
+    expect(response.headers['Set-Cookie']).toBeUndefined();
+    expect(response.body).toContain('Wrong password.');
+  });
+
+  test('sign-in never sends the owner to another site', async () => {
+    for (const next of ['https://evil.example', '//evil.example', '/other']) {
+      const response = await handle(
+        owner('POST', '/comments/sign-in', { password: PASSWORD, next }),
+        deps
+      );
+      expect(response.headers.Location).toBe('/comments');
+    }
+  });
+
+  test('a sign-in from another site is refused', async () => {
+    const response = await handle(
+      owner(
+        'POST',
+        '/comments/sign-in',
+        { password: PASSWORD },
+        { origin: 'https://evil.example' }
+      ),
+      deps
+    );
+    expect(response.status).toBe(403);
+    expect(response.headers['Set-Cookie']).toBeUndefined();
+  });
+
+  test('sign-out clears the cookie', async () => {
+    const response = await handle(owner('POST', '/comments/sign-out'), deps);
+    expect(response.status).toBe(303);
+    expect(response.headers['Set-Cookie']).toContain('Max-Age=0');
   });
 
   test('every surface response is private and not indexed', async () => {
