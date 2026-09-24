@@ -25,7 +25,7 @@ function comment(id: string, overrides: Partial<StoredComment> = {}) {
     name: 'Barbara',
     email: 'barbara@example.com',
     body: 'Call me at 585-555-0100 about the lodge.',
-    subject: 'reservation-question',
+    subject: 'correction',
     created: new Date('2026-09-20T12:00:00Z'),
     owner: false,
     flags: [],
@@ -207,7 +207,7 @@ describe('the queue', () => {
     const { body } = await handle(owner('GET', '/comments'), deps);
     for (const shown of [
       '/town-parks/riga-parks/sanford-road-park/',
-      'reservation-question',
+      'correction',
       '2026-09-20',
       'links',
       'Barbara',

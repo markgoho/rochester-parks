@@ -22,7 +22,7 @@ function stored(
     name: 'Barbara',
     email: 'barbara@example.com',
     body: 'How do I reserve the lodge?',
-    subject: 'reservation-question',
+    subject: 'correction',
     created: new Date('2015-06-14T16:00:00Z'),
     owner: false,
     flags: ['links'],
@@ -51,7 +51,7 @@ describe('shapeComments', () => {
     for (const secret of [
       'barbara@example.com',
       '203.0.113.9',
-      'reservation-question',
+      'correction',
       'links',
       'approved',
     ]) {

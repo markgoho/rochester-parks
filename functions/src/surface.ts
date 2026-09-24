@@ -174,7 +174,7 @@ async function queuePage(
   query: Record<string, string>
 ): Promise<FunctionResponse> {
   // Unflagged by date first, flagged last, so likely spam does not bury a
-  // real Comment. A reservation question gets no special place (#213).
+  // real Comment.
   const queue = (await deps.store.inQueue()).sort(
     (a, b) =>
       Number(a.flags.length > 0) - Number(b.flags.length > 0) ||

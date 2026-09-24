@@ -81,10 +81,6 @@
         <label
           ><input type="radio" name="subject" value="correction" /> A correction</label
         >
-        <label
-          ><input type="radio" name="subject" value="reservation-question" /> A reservation
-          question</label
-        >
       </fieldset>
       <div class="field">
         <label for="name-{uid}">Name</label>

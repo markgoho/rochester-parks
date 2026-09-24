@@ -150,7 +150,7 @@ describe('the public post', () => {
   test.each([
     ['an empty body', { body: '   ' }],
     ['a missing name', { name: ' ' }],
-    ['a bad Subject', { subject: 'reservation' }],
+    ['a bad Subject', { subject: 'reservation-question' }],
     ['a 5001-character body', { body: 'a'.repeat(5001) }],
     ['a 101-character name', { name: 'a'.repeat(101) }],
     ['an email with no @', { email: 'barbara.example.com' }],
@@ -162,14 +162,10 @@ describe('the public post', () => {
   });
 
   test('each Subject token is accepted', async () => {
-    for (const subject of ['comment', 'correction', 'reservation-question']) {
+    for (const subject of ['comment', 'correction']) {
       expect((await post({ subject })).status).toBe(303);
     }
-    expect(written.map((c) => c.subject)).toEqual([
-      'comment',
-      'correction',
-      'reservation-question',
-    ]);
+    expect(written.map((c) => c.subject)).toEqual(['comment', 'correction']);
   });
 
   test('HTML is stripped from the stored body, not rejected', async () => {
@@ -336,11 +332,11 @@ describe('the spam check', () => {
 
 describe('the announcement', () => {
   test('a valid post dispatches one announcement with no private words', async () => {
-    await post({ subject: 'reservation-question' });
+    await post({ subject: 'correction' });
     expect(announced).toEqual([
       {
         pageTitle: 'Sanford Road Park',
-        subject: 'reservation-question',
+        subject: 'correction',
         date: '2026-09-22',
         flag: 'none',
         commentId: 'id-1',
