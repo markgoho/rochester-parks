@@ -118,11 +118,10 @@ const NAME_MAX = 100;
 const BODY_MAX = 5000;
 
 /**
- * Spam thresholds (#259), set on the 21 spam posts of 2026-09-23 and the 127
- * Archive comments, and checked again for the off-topic question (#281) on
- * the 4 spam posts of 2026-09-24 and 2026-09-25 and the same Archive: at 0.9
- * every spam post was refused and no real Comment was. From 0.7, 5 of the
- * 100 real Comments would be flagged; from 0.5, 12.
+ * Spam thresholds (#259), checked for the current question (#281) on the 4
+ * spam posts of 2026-09-24 and 2026-09-25 and the 127 Archive comments: at
+ * 0.9 all 4 spam posts were refused and no real Comment was. From 0.7, 5 of
+ * the 100 real Comments would be flagged; from 0.5, 12.
  */
 const SPAM_REJECT = 0.9;
 const SPAM_FLAG = 0.7;
@@ -210,7 +209,7 @@ async function receive(
   if (spam !== null && spam >= SPAM_REJECT) {
     deps.logInfo(`Refused as spam (${spam}) on ${page}`);
     return notSent(
-      'It looks like an advertisement or a post about another subject to our spam check, so it was not sent. If it is a real comment about this page, please reword it and send it again.'
+      'It looks like an advertisement, or not about this page, to our spam check, so it was not sent. If it is a real comment about this page, please reword it and send it again.'
     );
   }
 

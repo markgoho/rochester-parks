@@ -298,7 +298,7 @@ describe('the spam check', () => {
     const response = await post();
     expect(response.status).toBe(400);
     expect(response.body).toContain(
-      'looks like an advertisement or a post about another subject'
+      'looks like an advertisement, or not about this page'
     );
     expect(written).toEqual([]);
     expect(announced).toEqual([]);
