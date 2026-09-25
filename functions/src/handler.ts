@@ -190,9 +190,10 @@ async function receive(
     return notSent(`Your comment is longer than ${BODY_MAX} characters.`);
   }
 
-  // 4. Flag, never reject: two or more links, counted on the body as
-  //    posted, before HTML is stripped (#256).
-  const links = countLinks(posted);
+  // 4. Flag, never reject: two or more links, or any HTML or BBCode link,
+  //    counted on the body as posted, before HTML is stripped (#256). A
+  //    real Commenter pastes a URL; a link element hides one behind words.
+  const { elements, urls } = countLinks(posted);
 
   //    And a body written mostly in a non-Latin script (#257): the site is
   //    an English guide, and none of the Archive comments is in one.
@@ -200,8 +201,10 @@ async function receive(
 
   //    Likely spam is refused, not queued (#259). The page says so, so a
   //    real person caught by mistake can reword it; a bot does not read it.
+  //    The check sees the body as posted: stripped, a link's words read as
+  //    plain prose and its URL is gone.
   const pageTitle = titleOf(page);
-  const spam = await deps.spam({ pageTitle, name, body });
+  const spam = await deps.spam({ pageTitle, name, body: posted.trim() });
   if (spam !== null && spam >= SPAM_REJECT) {
     deps.logInfo(`Refused as spam (${spam}) on ${page}`);
     return notSent(
@@ -212,7 +215,7 @@ async function receive(
   // 5. Write one queue document. No IP, no user agent (#206).
   const created = deps.clock();
   const flags = [
-    ...(links >= 2 ? ['links'] : []),
+    ...(elements > 0 || elements + urls >= 2 ? ['links'] : []),
     ...(script ? ['script'] : []),
     ...(spam !== null && spam >= SPAM_FLAG ? ['spam'] : []),
   ];
@@ -262,11 +265,11 @@ const BARE_URL = /\b(?:https?:\/\/|www\.)[^\s"'<>[\]]+/gi;
  * Outside those elements each URL is one link, so https://www.example.com
  * counts once and the same URL posted twice counts twice.
  */
-function countLinks(posted: string): number {
+function countLinks(posted: string): { elements: number; urls: number } {
   const element = /<a\b[^>]*>[\s\S]*?<\/a>|\[url\b[^\]]*\][\s\S]*?\[\/url\]/gi;
   const elements = posted.match(element)?.length ?? 0;
   const urls = posted.replace(element, ' ').match(BARE_URL)?.length ?? 0;
-  return elements + urls;
+  return { elements, urls };
 }
 
 /**

@@ -209,24 +209,18 @@ describe('the public post', () => {
     expect(written[0].body).toBe('Try this or that');
   });
 
-  test('an HTML link whose words are its own URL counts once', async () => {
-    await post({
-      body: 'See <a href="https://a.example/x">https://a.example/x</a>',
+  test('one HTML link sets the links flag and still writes', async () => {
+    const response = await post({
+      body: 'A <a href="https://a.example">seasonal palette test</a> helps',
     });
-    expect(written[0].flags).toEqual([]);
-    expect(written[0].body).toBe('See https://a.example/x');
+    expect(response.status).toBe(303);
+    expect(written[0].flags).toEqual(['links']);
+    expect(written[0].body).toBe('A seasonal palette test helps');
   });
 
-  test('an HTML link whose words end in a full stop counts once', async () => {
-    await post({
-      body: 'See <a href="https://a.example">https://a.example.</a>',
-    });
-    expect(written[0].flags).toEqual([]);
-  });
-
-  test('a BBCode link counts once', async () => {
-    await post({ body: '[url=https://a.example]https://a.example[/url]' });
-    expect(written[0].flags).toEqual([]);
+  test('one BBCode link sets the links flag', async () => {
+    await post({ body: 'A [url=https://a.example]palette test[/url] helps' });
+    expect(written[0].flags).toEqual(['links']);
   });
 
   test('an HTML link and a plain link set the links flag', async () => {
@@ -278,6 +272,16 @@ describe('the public post', () => {
 });
 
 describe('the spam check', () => {
+  test('sends the body as posted, with its links, not as stored', async () => {
+    await post({
+      body: ' A <a href="https://a.example">palette test</a> helps ',
+    });
+    expect(judged[0].body).toBe(
+      'A <a href="https://a.example">palette test</a> helps'
+    );
+    expect(written[0].body).toBe('A palette test helps');
+  });
+
   test('sends the page title, the name and the body, never the email', async () => {
     await post();
     expect(judged).toEqual([
