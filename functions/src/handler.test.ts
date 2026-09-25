@@ -377,9 +377,19 @@ describe('the later check', () => {
   beforeEach(() => {
     queue = [];
     updates = [];
-    deps.store.inQueue = async () => queue;
+    // Like Firestore: a copy of each document per read, and setFlags drops
+    // `posted`.
+    deps.store.inQueue = async () =>
+      queue.filter((c) => c.state === 'queue').map((c) => ({ ...c }));
+    deps.store.get = async (id) => {
+      const comment = queue.find((c) => c.id === id);
+      return comment && { ...comment };
+    };
     deps.store.setFlags = async (id, flags) => {
       updates.push({ id, flags });
+      const comment = queue.find((c) => c.id === id)!;
+      comment.flags = flags;
+      delete comment.posted;
     };
   });
 
@@ -449,7 +459,59 @@ describe('the later check', () => {
     unchecked({ created: new Date(NOW.getTime() - 24 * 3_600_000) });
     await recheck(deps);
     expect(updates).toEqual([{ id: 'q-0', flags: ['unchecked'] }]);
+    expect(queue[0].posted).toBeUndefined();
+
+    spamScore = 0.1;
+    await recheck(deps);
+    expect(judged).toHaveLength(1);
+    expect(updates).toHaveLength(1);
     expect(announced).toEqual([]);
+  });
+
+  test('a Comment that passed is not checked again', async () => {
+    unchecked();
+    await recheck(deps);
+    await recheck(deps);
+    expect(judged).toHaveLength(1);
+    expect(announced).toHaveLength(1);
+  });
+
+  test('a Comment the owner approves during the check is left alone', async () => {
+    const comment = unchecked();
+    deps.spam = async () => {
+      comment.state = 'approved';
+      return 0.1;
+    };
+    await recheck(deps);
+    expect(updates).toEqual([]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a Comment the owner rejects during the check is left alone', async () => {
+    unchecked();
+    deps.spam = async () => {
+      queue.length = 0;
+      return 0.1;
+    };
+    await recheck(deps);
+    expect(updates).toEqual([]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a store failure on one Comment logs at error level and checks the rest', async () => {
+    unchecked();
+    unchecked();
+    const setFlags = deps.store.setFlags;
+    deps.store.setFlags = async (id, flags) => {
+      if (id === 'q-0') throw new Error('Firestore down');
+      await setFlags(id, flags);
+    };
+    const errors: string[] = [];
+    deps.logError = (message) => errors.push(message);
+    await recheck(deps);
+    expect(errors).toEqual(['The later spam check failed for Comment q-0']);
+    expect(updates).toEqual([{ id: 'q-1', flags: [] }]);
+    expect(announced).toHaveLength(1);
   });
 
   test('a Comment without the flag is not checked', async () => {

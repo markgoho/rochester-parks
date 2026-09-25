@@ -71,7 +71,7 @@ beforeEach(() => {
       },
       async setFlags(id, flags) {
         const doc = docs.get(id);
-        if (doc) docs.set(id, { ...doc, flags });
+        if (doc) docs.set(id, { ...doc, flags, posted: undefined });
       },
     },
     github: {

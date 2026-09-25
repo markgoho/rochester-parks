@@ -264,45 +264,69 @@ async function receive(
  * first check failed is checked again, on its body as posted. A score has
  * the effect the first check would have had, except that nothing is
  * deleted: the Commenter already saw "in the queue". Another failure waits
- * for the next run, until a day has passed; then the Comment stays
- * `unchecked` for the owner to judge.
+ * for the next run, until a day has passed; then `posted` goes, so the
+ * Comment stays `unchecked` for the owner and is never checked again.
  */
 export async function recheck(deps: Omit<Deps, 'secrets'>): Promise<void> {
-  const waiting = (await deps.store.inQueue()).filter((comment) =>
-    comment.flags.includes('unchecked')
+  const waiting = (await deps.store.inQueue()).filter(
+    (comment) =>
+      comment.flags.includes('unchecked') && comment.posted !== undefined
   );
-  for (const comment of waiting) {
-    const spam = await deps.spam({
-      pageTitle: titleOf(comment.page),
-      name: comment.name,
-      body: comment.posted ?? comment.body,
-    });
-    if (spam === null) {
-      const age = deps.clock().getTime() - comment.created.getTime();
-      if (age < RECHECK_FOR_MS) {
-        deps.logInfo(`The later spam check failed for Comment ${comment.id}`);
-      } else {
-        deps.logInfo(`Stopped checking Comment ${comment.id} after a day`);
-        await deps.store.setFlags(comment.id, comment.flags);
+  // In parallel, so a day of waiting posts fits in one run.
+  await Promise.all(
+    waiting.map(async (comment) => {
+      try {
+        await recheckOne(comment, comment.posted!, deps);
+      } catch (error) {
+        deps.logError(
+          `The later spam check failed for Comment ${comment.id}`,
+          error
+        );
       }
-      continue;
-    }
-    const flags = [
-      ...comment.flags.filter((flag) => flag !== 'unchecked'),
-      ...(spam >= SPAM_FLAG ? ['spam'] : []),
-    ];
-    await deps.store.setFlags(comment.id, flags);
-    if (flags.length === 0) {
-      await announce(
-        {
-          page: comment.page,
-          subject: comment.subject ?? 'comment',
-          created: comment.created,
-          id: comment.id,
-        },
-        deps
-      );
-    }
+    })
+  );
+}
+
+async function recheckOne(
+  comment: StoredComment,
+  posted: string,
+  deps: Omit<Deps, 'secrets'>
+): Promise<void> {
+  const spam = await deps.spam({
+    pageTitle: titleOf(comment.page),
+    name: comment.name,
+    body: posted,
+  });
+  const age = deps.clock().getTime() - comment.created.getTime();
+  if (spam === null && age < RECHECK_FOR_MS) {
+    deps.logInfo(`No spam score yet for Comment ${comment.id}`);
+    return;
+  }
+
+  // The owner may have approved or rejected it while Jev answered.
+  const now = await deps.store.get(comment.id);
+  if (now?.state !== 'queue' || !now.flags.includes('unchecked')) return;
+
+  if (spam === null) {
+    deps.logInfo(`Stopped checking Comment ${comment.id} after a day`);
+    await deps.store.setFlags(comment.id, now.flags);
+    return;
+  }
+  const flags = [
+    ...now.flags.filter((flag) => flag !== 'unchecked'),
+    ...(spam >= SPAM_FLAG ? ['spam'] : []),
+  ];
+  await deps.store.setFlags(comment.id, flags);
+  if (flags.length === 0) {
+    await announce(
+      {
+        page: comment.page,
+        subject: comment.subject ?? 'comment',
+        created: comment.created,
+        id: comment.id,
+      },
+      deps
+    );
   }
 }
 
