@@ -69,6 +69,10 @@ beforeEach(() => {
       async remove(id) {
         docs.delete(id);
       },
+      async setFlags(id, flags) {
+        const doc = docs.get(id);
+        if (doc) docs.set(id, { ...doc, flags });
+      },
     },
     github: {
       async announce() {},

@@ -1,10 +1,16 @@
 import { initializeApp } from 'firebase-admin/app';
-import { getFirestore, type Timestamp } from 'firebase-admin/firestore';
+import {
+  FieldValue,
+  getFirestore,
+  type Timestamp,
+} from 'firebase-admin/firestore';
 import { logger } from 'firebase-functions';
 import { defineSecret } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import {
   handle,
+  recheck,
   type CommentStore,
   type GitHubClient,
   type SpamInput,
@@ -193,11 +199,27 @@ const store: CommentStore = {
     await batch.commit();
   },
   async approve(id, body) {
-    await collection().doc(id).update({ state: 'approved', body });
+    await collection()
+      .doc(id)
+      .update({ state: 'approved', body, posted: FieldValue.delete() });
   },
   async remove(id) {
     await collection().doc(id).delete();
   },
+  async setFlags(id, flags) {
+    await collection().doc(id).update({ flags, posted: FieldValue.delete() });
+  },
+};
+
+/** What both Functions pass to the handler, apart from the secrets. */
+const shared = {
+  store,
+  github,
+  logError: (message: string, error?: unknown) =>
+    logger.error(message, { error: String(error) }),
+  logInfo: (message: string) => logger.info(message),
+  spam,
+  clock: () => new Date(),
 };
 
 export const comments = onRequest(
@@ -217,19 +239,28 @@ export const comments = onRequest(
         query: request.query as Record<string, string>,
       },
       {
-        store,
-        github,
-        logError: (message, error) =>
-          logger.error(message, { error: String(error) }),
-        logInfo: (message) => logger.info(message),
+        ...shared,
         secrets: {
           hmacKey: hmacKey.value(),
           password: moderationPassword.value(),
         },
-        spam,
-        clock: () => new Date(),
       }
     );
     response.status(result.status).set(result.headers).send(result.body);
   }
+);
+
+/**
+ * The later spam check (#285): every 10 minutes, each queued Comment whose
+ * first check failed is checked again. A run that finds none reads the
+ * queue once.
+ */
+export const recheckSpam = onSchedule(
+  {
+    schedule: 'every 10 minutes',
+    region: 'us-east4',
+    secrets: [githubToken, typesafeKey],
+    minInstances: 0,
+  },
+  () => recheck(shared)
 );

@@ -29,6 +29,11 @@ export interface StoredComment {
   created: Date;
   owner: boolean;
   flags: string[];
+  /**
+   * The body as posted, with its HTML, kept only while the Comment waits for
+   * a later spam check (#285), so that check sees the links (#280).
+   */
+  posted?: string;
 }
 
 export interface CommentStore {
@@ -44,6 +49,8 @@ export interface CommentStore {
   /** Sets `approved` and saves the body, which the owner may have redacted. */
   approve(id: string, body: string): Promise<void>;
   remove(id: string): Promise<void>;
+  /** Sets a Comment's flags after a later spam check and drops `posted`. */
+  setFlags(id: string, flags: string[]): Promise<void>;
 }
 
 /**
@@ -91,7 +98,8 @@ export interface Deps {
   };
   /**
    * The probability that a post is spam, from TypeSafe's Jev (#259), or
-   * null when the check failed. A failure is no signal (#32).
+   * null when the check failed. A failure never refuses a post (#32), but
+   * it sends no email until a later check passes (#285).
    */
   spam: (input: SpamInput) => Promise<number | null>;
   clock: () => Date;
@@ -125,6 +133,9 @@ const BODY_MAX = 5000;
  */
 const SPAM_REJECT = 0.9;
 const SPAM_FLAG = 0.7;
+
+/** A later spam check stops trying this long after the post (#285). */
+const RECHECK_FOR_MS = 24 * 60 * 60 * 1000;
 
 export async function handle(
   request: FunctionRequest,
@@ -213,12 +224,15 @@ async function receive(
     );
   }
 
-  // 5. Write one queue document. No IP, no user agent (#206).
+  // 5. Write one queue document. No IP, no user agent (#206). A failed
+  //    check writes the post `unchecked`, with its body as posted for the
+  //    later check (#285); that body goes when the check passes.
   const created = deps.clock();
   const flags = [
     ...(elements > 0 || elements + urls >= 2 ? ['links'] : []),
     ...(script ? ['script'] : []),
     ...(spam !== null && spam >= SPAM_FLAG ? ['spam'] : []),
+    ...(spam === null ? ['unchecked'] : []),
   ];
   const id = await deps.store.add({
     page,
@@ -231,27 +245,87 @@ async function receive(
     created,
     owner: false,
     flags,
+    ...(spam === null ? { posted: posted.trim() } : {}),
   });
 
   // 6. Announce an unflagged post only. A flagged one waits in the queue,
   //    sorted last, with no email (#258). A failure keeps the Comment: it
   //    waits in the queue, and the error log raises the alert (#30).
   if (flags.length === 0) {
-    try {
-      await deps.github.announce({
-        pageTitle,
-        subject,
-        date: rochesterDay.format(created),
-        flag: 'none',
-        commentId: id,
-      });
-    } catch (error) {
-      deps.logError(`Announcement failed for Comment ${id}`, error);
-    }
+    await announce({ page, subject, created, id }, deps);
   }
 
   // 7. Back to the page, where the banner shows.
   return sent;
+}
+
+/**
+ * The later spam check (#285), run on a schedule: each queued Comment whose
+ * first check failed is checked again, on its body as posted. A score has
+ * the effect the first check would have had, except that nothing is
+ * deleted: the Commenter already saw "in the queue". Another failure waits
+ * for the next run, until a day has passed; then the Comment stays
+ * `unchecked` for the owner to judge.
+ */
+export async function recheck(deps: Omit<Deps, 'secrets'>): Promise<void> {
+  const waiting = (await deps.store.inQueue()).filter((comment) =>
+    comment.flags.includes('unchecked')
+  );
+  for (const comment of waiting) {
+    const spam = await deps.spam({
+      pageTitle: titleOf(comment.page),
+      name: comment.name,
+      body: comment.posted ?? comment.body,
+    });
+    if (spam === null) {
+      const age = deps.clock().getTime() - comment.created.getTime();
+      if (age < RECHECK_FOR_MS) {
+        deps.logInfo(`The later spam check failed for Comment ${comment.id}`);
+      } else {
+        deps.logInfo(`Stopped checking Comment ${comment.id} after a day`);
+        await deps.store.setFlags(comment.id, comment.flags);
+      }
+      continue;
+    }
+    const flags = [
+      ...comment.flags.filter((flag) => flag !== 'unchecked'),
+      ...(spam >= SPAM_FLAG ? ['spam'] : []),
+    ];
+    await deps.store.setFlags(comment.id, flags);
+    if (flags.length === 0) {
+      await announce(
+        {
+          page: comment.page,
+          subject: comment.subject ?? 'comment',
+          created: comment.created,
+          id: comment.id,
+        },
+        deps
+      );
+    }
+  }
+}
+
+/**
+ * Opens the announcement for an unflagged Comment (#222, #258). A failure
+ * keeps the Comment: it waits in the queue, and the error log raises the
+ * alert (#30).
+ */
+async function announce(
+  comment: { page: string; subject: Subject; created: Date; id: string },
+  deps: Pick<Deps, 'github' | 'logError'>
+): Promise<void> {
+  try {
+    await deps.github.announce({
+      pageTitle: titleOf(comment.page),
+      subject: comment.subject,
+      date: rochesterDay.format(comment.created),
+      flag: 'none',
+      commentId: comment.id,
+    });
+  } catch (error) {
+    deps.logError(`Announcement failed for Comment ${comment.id}`, error);
+  }
 }
 
 /**
