@@ -2,6 +2,7 @@
 import { beforeEach, describe, expect, test } from 'bun:test';
 import {
   handle,
+  recheck,
   type Announcement,
   type Deps,
   type SpamInput,
@@ -47,6 +48,7 @@ beforeEach(() => {
       removeWithReplies: async () => {},
       approve: async () => {},
       remove: async () => {},
+      setFlags: async () => {},
     },
     secrets: { hmacKey: KEY, password: 'p' },
     spam: async (input) => {
@@ -320,12 +322,23 @@ describe('the spam check', () => {
     expect(announced).toHaveLength(1);
   });
 
-  test('a failed check is no signal: the post writes and announces', async () => {
+  test('a failed check writes the post unchecked, with its body as posted, and announces nothing', async () => {
     spamScore = null;
-    const response = await post();
+    const response = await post({
+      body: ' A <a href="https://a.example">palette test</a> helps ',
+    });
     expect(response.status).toBe(303);
-    expect(written[0].flags).toEqual([]);
-    expect(announced).toHaveLength(1);
+    expect(written[0].flags).toEqual(['links', 'unchecked']);
+    expect(written[0].body).toBe('A palette test helps');
+    expect(written[0].posted).toBe(
+      'A <a href="https://a.example">palette test</a> helps'
+    );
+    expect(announced).toEqual([]);
+  });
+
+  test('a checked post keeps no body as posted', async () => {
+    await post({ body: 'A <a href="https://a.example">palette test</a>' });
+    expect(Object.keys(written[0])).not.toContain('posted');
   });
 
   test('the honeypot, a bad token and a refused post are never checked', async () => {
@@ -333,6 +346,196 @@ describe('the spam check', () => {
     await post({ token: 'nope' });
     await post({ body: '' });
     expect(judged).toEqual([]);
+  });
+});
+
+describe('the later check', () => {
+  let queue: StoredComment[];
+  let updates: { id: string; flags: string[] }[];
+
+  /** A queued Comment whose first check failed, unless overridden. */
+  function unchecked(overrides: Partial<StoredComment> = {}): StoredComment {
+    const comment: StoredComment = {
+      id: `q-${queue.length}`,
+      page: PAGE,
+      parent: null,
+      state: 'queue',
+      name: 'Barbara',
+      email: 'barbara@example.com',
+      body: 'A palette test helps',
+      posted: 'A <a href="https://a.example">palette test</a> helps',
+      subject: 'comment',
+      created: new Date(NOW.getTime() - 10 * 60_000),
+      owner: false,
+      flags: ['unchecked'],
+      ...overrides,
+    };
+    queue.push(comment);
+    return comment;
+  }
+
+  beforeEach(() => {
+    queue = [];
+    updates = [];
+    // Like Firestore: a copy of each document per read, and setFlags drops
+    // `posted`.
+    deps.store.inQueue = async () =>
+      queue.filter((c) => c.state === 'queue').map((c) => ({ ...c }));
+    deps.store.get = async (id) => {
+      const comment = queue.find((c) => c.id === id);
+      return comment && { ...comment };
+    };
+    deps.store.setFlags = async (id, flags) => {
+      updates.push({ id, flags });
+      const comment = queue.find((c) => c.id === id)!;
+      comment.flags = flags;
+      delete comment.posted;
+    };
+  });
+
+  test('a score under 0.7 removes the flag and announces', async () => {
+    unchecked();
+    await recheck(deps);
+    expect(updates).toEqual([{ id: 'q-0', flags: [] }]);
+    expect(announced).toEqual([
+      {
+        pageTitle: 'Sanford Road Park',
+        subject: 'comment',
+        date: '2026-09-22',
+        flag: 'none',
+        commentId: 'q-0',
+      },
+    ]);
+  });
+
+  test('sends the body as posted, with its links', async () => {
+    unchecked();
+    await recheck(deps);
+    expect(judged).toEqual([
+      {
+        pageTitle: 'Sanford Road Park',
+        name: 'Barbara',
+        body: 'A <a href="https://a.example">palette test</a> helps',
+      },
+    ]);
+  });
+
+  test('a score from 0.7 sets the spam flag and announces nothing', async () => {
+    spamScore = 0.7;
+    unchecked();
+    await recheck(deps);
+    expect(updates).toEqual([{ id: 'q-0', flags: ['spam'] }]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a score from 0.9 keeps the Comment in the queue', async () => {
+    spamScore = 0.95;
+    unchecked();
+    deps.store.remove = async () => {
+      throw new Error('never deleted');
+    };
+    deps.store.removeWithReplies = deps.store.remove;
+    await recheck(deps);
+    expect(updates).toEqual([{ id: 'q-0', flags: ['spam'] }]);
+  });
+
+  test('other flags stay and stop the email', async () => {
+    unchecked({ flags: ['links', 'unchecked'] });
+    await recheck(deps);
+    expect(updates).toEqual([{ id: 'q-0', flags: ['links'] }]);
+    expect(announced).toEqual([]);
+  });
+
+  test('another failure under 24 hours changes nothing', async () => {
+    spamScore = null;
+    unchecked({ created: new Date(NOW.getTime() - 23 * 3_600_000) });
+    await recheck(deps);
+    expect(updates).toEqual([]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a failure at 24 hours stops the tries and keeps the flag', async () => {
+    spamScore = null;
+    unchecked({ created: new Date(NOW.getTime() - 24 * 3_600_000) });
+    await recheck(deps);
+    expect(updates).toEqual([{ id: 'q-0', flags: ['unchecked'] }]);
+    expect(queue[0].posted).toBeUndefined();
+
+    spamScore = 0.1;
+    await recheck(deps);
+    expect(judged).toHaveLength(1);
+    expect(updates).toHaveLength(1);
+    expect(announced).toEqual([]);
+  });
+
+  test('a Comment that passed is not checked again', async () => {
+    unchecked();
+    await recheck(deps);
+    await recheck(deps);
+    expect(judged).toHaveLength(1);
+    expect(announced).toHaveLength(1);
+  });
+
+  test('a Comment the owner approves during the check is left alone', async () => {
+    const comment = unchecked();
+    deps.spam = async () => {
+      comment.state = 'approved';
+      return 0.1;
+    };
+    await recheck(deps);
+    expect(updates).toEqual([]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a Comment the owner rejects during the check is left alone', async () => {
+    unchecked();
+    deps.spam = async () => {
+      queue.length = 0;
+      return 0.1;
+    };
+    await recheck(deps);
+    expect(updates).toEqual([]);
+    expect(announced).toEqual([]);
+  });
+
+  test('a store failure on one Comment logs at error level and checks the rest', async () => {
+    unchecked();
+    unchecked();
+    const setFlags = deps.store.setFlags;
+    deps.store.setFlags = async (id, flags) => {
+      if (id === 'q-0') throw new Error('Firestore down');
+      await setFlags(id, flags);
+    };
+    const errors: string[] = [];
+    deps.logError = (message) => errors.push(message);
+    await recheck(deps);
+    expect(errors).toEqual(['The later spam check failed for Comment q-0']);
+    expect(updates).toEqual([{ id: 'q-1', flags: [] }]);
+    expect(announced).toHaveLength(1);
+  });
+
+  test('a Comment without the flag is not checked', async () => {
+    unchecked({ flags: [] });
+    unchecked({ flags: ['spam'] });
+    await recheck(deps);
+    expect(judged).toEqual([]);
+    expect(updates).toEqual([]);
+  });
+
+  test('a failed announcement logs at error level and goes on', async () => {
+    unchecked();
+    unchecked();
+    deps.github.announce = async () => {
+      throw new Error('GitHub down');
+    };
+    const errors: string[] = [];
+    deps.logError = (message) => errors.push(message);
+    await recheck(deps);
+    expect(updates).toHaveLength(2);
+    expect(errors).toEqual([
+      'Announcement failed for Comment q-0',
+      'Announcement failed for Comment q-1',
+    ]);
   });
 });
 

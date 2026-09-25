@@ -1,10 +1,16 @@
 import { initializeApp } from 'firebase-admin/app';
-import { getFirestore, type Timestamp } from 'firebase-admin/firestore';
+import {
+  FieldValue,
+  getFirestore,
+  type Timestamp,
+} from 'firebase-admin/firestore';
 import { logger } from 'firebase-functions';
 import { defineSecret } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import {
   handle,
+  recheck,
   type CommentStore,
   type GitHubClient,
   type SpamInput,
@@ -108,7 +114,8 @@ const github: GitHubClient = {
  * Asks TypeSafe's Jev for the probability that a post is spam (#259). The
  * question is the one tested offline on the spam of 2026-09-24 and
  * 2026-09-25 and the Archive (#281); a change to it needs that test again.
- * Any failure is null: no signal, so the post goes on as if unchecked (#32).
+ * Any failure is null: the post is still written, but `unchecked` and with
+ * no email, until the later check scores it (#32, #285).
  */
 async function spam(input: SpamInput): Promise<number | null> {
   try {
@@ -138,7 +145,8 @@ async function spam(input: SpamInput): Promise<number | null> {
           },
         },
       }),
-      // The Commenter waits on this; a median call takes about 150 ms.
+      // The Commenter waits on the first check; a median call takes about
+      // 150 ms.
       signal: AbortSignal.timeout(3_000),
     });
     if (!response.ok) {
@@ -149,7 +157,7 @@ async function spam(input: SpamInput): Promise<number | null> {
     };
     return result.answers.spam.noul;
   } catch (error) {
-    logger.warn('The spam check failed; the post goes on unchecked', {
+    logger.warn('The spam check failed', {
       error: String(error),
     });
     return null;
@@ -193,11 +201,27 @@ const store: CommentStore = {
     await batch.commit();
   },
   async approve(id, body) {
-    await collection().doc(id).update({ state: 'approved', body });
+    await collection()
+      .doc(id)
+      .update({ state: 'approved', body, posted: FieldValue.delete() });
   },
   async remove(id) {
     await collection().doc(id).delete();
   },
+  async setFlags(id, flags) {
+    await collection().doc(id).update({ flags, posted: FieldValue.delete() });
+  },
+};
+
+/** What both Functions pass to the handler, apart from the secrets. */
+const baseDeps = {
+  store,
+  github,
+  logError: (message: string, error?: unknown) =>
+    logger.error(message, { error: String(error) }),
+  logInfo: (message: string) => logger.info(message),
+  spam,
+  clock: () => new Date(),
 };
 
 export const comments = onRequest(
@@ -217,19 +241,28 @@ export const comments = onRequest(
         query: request.query as Record<string, string>,
       },
       {
-        store,
-        github,
-        logError: (message, error) =>
-          logger.error(message, { error: String(error) }),
-        logInfo: (message) => logger.info(message),
+        ...baseDeps,
         secrets: {
           hmacKey: hmacKey.value(),
           password: moderationPassword.value(),
         },
-        spam,
-        clock: () => new Date(),
       }
     );
     response.status(result.status).set(result.headers).send(result.body);
   }
+);
+
+/**
+ * The later spam check (#285): every 10 minutes, each queued Comment whose
+ * first check failed is checked again. A run that finds none reads the
+ * queue once.
+ */
+export const recheckSpam = onSchedule(
+  {
+    schedule: 'every 10 minutes',
+    region: 'us-east4',
+    secrets: [githubToken, typesafeKey],
+    minInstances: 0,
+  },
+  () => recheck(baseDeps)
 );
