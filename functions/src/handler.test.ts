@@ -297,7 +297,9 @@ describe('the spam check', () => {
     spamScore = 0.9;
     const response = await post();
     expect(response.status).toBe(400);
-    expect(response.body).toContain('looks like an advertisement');
+    expect(response.body).toContain(
+      'looks like an advertisement or a post about another subject'
+    );
     expect(written).toEqual([]);
     expect(announced).toEqual([]);
     expect(logged).toEqual([`Refused as spam (0.9) on ${PAGE}`]);
