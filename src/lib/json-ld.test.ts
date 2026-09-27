@@ -9,6 +9,7 @@ const baseMeta: ParkMeta = {
   amenities: [],
   wordCount: 0,
   photoCount: 0,
+  commentCount: 0,
   status: { written: false, inventoried: false, photographed: false },
   links: [],
   section: { title: 'State', url: '/state-parks/' },

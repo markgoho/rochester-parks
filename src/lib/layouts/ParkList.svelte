@@ -129,6 +129,16 @@
   const SHOWN = 4;
 
   /**
+   * The Comments column self-labels (#260), like the Size and Write-up
+   * columns: the stacked layout hides the heading row, so each fact says
+   * what it is. An em dash for none, as Size gives for a park with no size.
+   */
+  function commentsLabel(count: number): string {
+    if (count === 0) return '—';
+    return `${count} ${count === 1 ? 'comment' : 'comments'}`;
+  }
+
+  /**
    * The two orderings of this section. Each is its own static page, so the
    * column heading that sorts is a plain link: the reader can sort with
    * JavaScript off, and can link to what they see.
@@ -297,6 +307,9 @@
             {#if park.status.written}{park.wordCount} words{:else if park.wordCount > 0}short
               note{:else}—{/if}
           </span>
+          <span class="mono end comments">
+            {commentsLabel(park.commentCount)}
+          </span>
         </span>
       </li>
     {/snippet}
@@ -440,6 +453,7 @@
             >
           {/if}
           <span class="end words" aria-hidden="true">Write-up</span>
+          <span class="end comments" aria-hidden="true">Comments</span>
         </div>
       {/if}
 
@@ -473,7 +487,16 @@
         <h2 class="more">Former parks</h2>
         <ul class="other">
           {#each page.formerParks as child (child.url)}
-            <li><a href={child.url}>{child.title}</a></li>
+            <li>
+              <a href={child.url}>{child.title}</a>
+              <!-- The cards view is out of scope for the Comments column
+               (#260); this shared list keeps the same content there too. -->
+              {#if !cards}
+                <span class="mono other__comments">
+                  {commentsLabel(child.park!.commentCount)}
+                </span>
+              {/if}
+            </li>
           {/each}
         </ul>
       {/if}
@@ -616,7 +639,8 @@
   .row--head .num,
   .row--head .status,
   .row--head .tags,
-  .row--head .words {
+  .row--head .words,
+  .row--head .comments {
     display: none;
   }
 
@@ -624,7 +648,8 @@
      type the rows set. */
   .row--head .name,
   .row--head .acres,
-  .row--head .words {
+  .row--head .words,
+  .row--head .comments {
     font-size: inherit;
     font-weight: inherit;
     color: inherit;
@@ -695,6 +720,12 @@
 
   .words {
     grid-area: words;
+    font-size: var(--step--2);
+    color: var(--ink-muted);
+  }
+
+  .comments {
+    grid-area: comments;
     font-size: var(--step--2);
     color: var(--ink-muted);
   }
@@ -925,12 +956,27 @@
     border-top: var(--line-hair) solid var(--rule);
   }
 
+  /* The link fills the row; the count sits at the row's end, on the same
+     border as the link used to carry alone. */
+  .other li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-14);
+    border-bottom: var(--line-hair) solid var(--rule-soft);
+  }
+
   .other a {
     display: flex;
     align-items: center;
+    flex: 1 1 auto;
     min-height: var(--tap-target);
-    border-bottom: var(--line-hair) solid var(--rule-soft);
     font-weight: var(--weight-bold);
+  }
+
+  .other__comments {
+    flex: 0 0 auto;
+    font-size: var(--step--2);
+    color: var(--ink-muted);
   }
 
   /* The same "list" container. The county, state and city maps sit beside
@@ -978,9 +1024,9 @@
 
   /* Wide: the map beside the list, on screen while the list scrolls, so the
      dot a row picks and the view switch are always in sight. The list keeps
-     the table's full width: 46.75rem table (below) + 2.5rem gap + 20rem
-     map = 69.25rem. */
-  @container list (inline-size >= 69.25rem) {
+     the table's full width: 53.75rem table (below) + 2.5rem gap + 20rem
+     map = 76.25rem. */
+  @container list (inline-size >= 76.25rem) {
     /* Two classes, to outrank the narrower layout above. */
     .layout.layout--side {
       display: grid;
@@ -1007,27 +1053,27 @@
 
   /* The table row, measured on the list column, so it stays stacked
      until the table fits beside the map: 2.5rem num + 10rem name + 5.5rem status + 10rem tags +
-     6rem acres + 6rem words + 5 * 1rem gap + 1.75rem of the row's own
-     horizontal padding (2 * --space-14) = 46.75rem. */
-  @container rows (inline-size >= 46.75rem) {
+     6rem acres + 6rem words + 6rem comments + 6 * 1rem gap + 1.75rem of the
+     row's own horizontal padding (2 * --space-14) = 53.75rem. */
+  @container rows (inline-size >= 53.75rem) {
     .row {
       grid-template-columns:
         2.5rem minmax(10rem, 13rem) 5.5rem minmax(10rem, 1fr)
-        6rem 6rem;
-      grid-template-areas: 'num name status tags acres words';
+        6rem 6rem 6rem;
+      grid-template-areas: 'num name status tags acres words comments';
       align-items: center;
       gap: var(--space-16);
       padding: var(--space-8) var(--space-14);
     }
 
-    /* A data row's four facts are one grid item, `.facts`, spanning the
-       status/tags/acres/words tracks. The head row keeps them as its own
-       four named areas, so it is excluded here. */
+    /* A data row's five facts are one grid item, `.facts`, spanning the
+       status/tags/acres/words/comments tracks. The head row keeps them as
+       its own five named areas, so it is excluded here. */
     .row:not(.row--head) {
-      grid-template-areas: 'num name facts facts facts facts';
+      grid-template-areas: 'num name facts facts facts facts facts';
     }
 
-    /* `.facts` takes the four tracks it spans as a subgrid, so each fact
+    /* `.facts` takes the five tracks it spans as a subgrid, so each fact
        still lands in its own column, lined up with the head row above it.
        `gap: normal` lets it inherit the row's own column gap for those
        tracks, instead of the wrapping layout's gap. Each fact is placed by
@@ -1061,6 +1107,10 @@
       grid-column: 4;
     }
 
+    .facts > .comments {
+      grid-column: 5;
+    }
+
     .row:nth-child(even) {
       background: var(--paper-zebra);
     }
@@ -1076,7 +1126,8 @@
     .row--head .num,
     .row--head .status,
     .row--head .tags,
-    .row--head .words {
+    .row--head .words,
+    .row--head .comments {
       display: block;
     }
 
