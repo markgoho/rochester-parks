@@ -48,6 +48,7 @@ beforeEach(() => {
       removeWithReplies: async () => {},
       approve: async () => {},
       remove: async () => {},
+      rejectAsSpam: async () => {},
       setFlags: async () => {},
     },
     secrets: { hmacKey: KEY, password: 'p' },
@@ -97,6 +98,7 @@ describe('the public post', () => {
         created: NOW,
         owner: false,
         flags: [],
+        posted: 'How do I reserve the lodge?',
       },
     ]);
   });
@@ -336,9 +338,12 @@ describe('the spam check', () => {
     expect(announced).toEqual([]);
   });
 
-  test('a checked post keeps no body as posted', async () => {
-    await post({ body: 'A <a href="https://a.example">palette test</a>' });
-    expect(Object.keys(written[0])).not.toContain('posted');
+  test('a checked post keeps its body as posted too, for a reject as spam', async () => {
+    await post({ body: ' A <a href="https://a.example">palette test</a> ' });
+    expect(written[0].flags).toEqual(['links']);
+    expect(written[0].posted).toBe(
+      'A <a href="https://a.example">palette test</a>'
+    );
   });
 
   test('the honeypot, a bad token and a refused post are never checked', async () => {
@@ -377,8 +382,7 @@ describe('the later check', () => {
   beforeEach(() => {
     queue = [];
     updates = [];
-    // Like Firestore: a copy of each document per read, and setFlags drops
-    // `posted`.
+    // Like Firestore: a copy of each document per read.
     deps.store.inQueue = async () =>
       queue.filter((c) => c.state === 'queue').map((c) => ({ ...c }));
     deps.store.get = async (id) => {
@@ -389,7 +393,6 @@ describe('the later check', () => {
       updates.push({ id, flags });
       const comment = queue.find((c) => c.id === id)!;
       comment.flags = flags;
-      delete comment.posted;
     };
   });
 
@@ -454,18 +457,24 @@ describe('the later check', () => {
     expect(announced).toEqual([]);
   });
 
-  test('a failure at 24 hours stops the tries and keeps the flag', async () => {
-    spamScore = null;
+  test('after 24 hours the tries stop and the flag stays', async () => {
     unchecked({ created: new Date(NOW.getTime() - 24 * 3_600_000) });
     await recheck(deps);
-    expect(updates).toEqual([{ id: 'q-0', flags: ['unchecked'] }]);
-    expect(queue[0].posted).toBeUndefined();
+    await recheck(deps);
+    expect(judged).toEqual([]);
+    expect(updates).toEqual([]);
+    expect(queue[0].flags).toEqual(['unchecked']);
+    expect(announced).toEqual([]);
+  });
 
-    spamScore = 0.1;
+  test('a passed check keeps the body as posted, for a reject as spam', async () => {
+    unchecked();
+    await recheck(deps);
     await recheck(deps);
     expect(judged).toHaveLength(1);
-    expect(updates).toHaveLength(1);
-    expect(announced).toEqual([]);
+    expect(queue[0].posted).toBe(
+      'A <a href="https://a.example">palette test</a> helps'
+    );
   });
 
   test('a Comment that passed is not checked again', async () => {

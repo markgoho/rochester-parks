@@ -30,10 +30,27 @@ export interface StoredComment {
   owner: boolean;
   flags: string[];
   /**
-   * The body as posted, with its HTML, kept only while the Comment waits for
-   * a later spam check (#285), so that check sees the links (#280).
+   * The body as posted, with its HTML, kept while the Comment is in the
+   * queue: a later spam check sees the links (#280, #285), and a reject as
+   * spam keeps them in the spam set (#284). Approval removes it.
    */
   posted?: string;
+}
+
+/**
+ * A spam post the owner rejected as spam, kept for the offline test of the
+ * spam check (#284) until `functions/scripts/spam-eval.ts pull` moves it
+ * into the repo. Never the email.
+ */
+export interface SpamSample {
+  /** The id the Comment had. */
+  comment: string;
+  page: string;
+  name: string;
+  /** The body as posted, with its links, when the Comment kept it. */
+  body: string;
+  flags: string[];
+  created: Date;
 }
 
 export interface CommentStore {
@@ -49,7 +66,9 @@ export interface CommentStore {
   /** Sets `approved` and saves the body, which the owner may have redacted. */
   approve(id: string, body: string): Promise<void>;
   remove(id: string): Promise<void>;
-  /** Sets a Comment's flags after a later spam check and drops `posted`. */
+  /** Keeps a spam sample and deletes the Comment, in one batch. */
+  rejectAsSpam(id: string, sample: SpamSample): Promise<void>;
+  /** Sets a Comment's flags after a later spam check. */
   setFlags(id: string, flags: string[]): Promise<void>;
 }
 
@@ -225,8 +244,8 @@ async function receive(
   }
 
   // 5. Write one queue document. No IP, no user agent (#206). A failed
-  //    check writes the post `unchecked`, with its body as posted for the
-  //    later check (#285); that body goes when the check passes.
+  //    check writes the post `unchecked`, for the later check (#285). The
+  //    body as posted stays until approval (#284).
   const created = deps.clock();
   const flags = [
     ...(elements > 0 || elements + urls >= 2 ? ['links'] : []),
@@ -245,7 +264,7 @@ async function receive(
     created,
     owner: false,
     flags,
-    ...(spam === null ? { posted: posted.trim() } : {}),
+    posted: posted.trim(),
   });
 
   // 6. Announce an unflagged post only. A flagged one waits in the queue,
@@ -264,13 +283,16 @@ async function receive(
  * first check failed is checked again, on its body as posted. A score has
  * the effect the first check would have had, except that nothing is
  * deleted: the Commenter already saw "in the queue". Another failure waits
- * for the next run, until a day has passed; then `posted` goes, so the
- * Comment stays `unchecked` for the owner and is never checked again.
+ * for the next run, until a day has passed; then the Comment stays
+ * `unchecked` for the owner and is never checked again.
  */
 export async function recheck(deps: Omit<Deps, 'secrets'>): Promise<void> {
+  const now = deps.clock().getTime();
   const waiting = (await deps.store.inQueue()).filter(
     (comment) =>
-      comment.flags.includes('unchecked') && comment.posted !== undefined
+      comment.flags.includes('unchecked') &&
+      comment.posted !== undefined &&
+      now - comment.created.getTime() < RECHECK_FOR_MS
   );
   // In parallel, so a day of waiting posts fits in one run.
   await Promise.all(
@@ -297,8 +319,7 @@ async function recheckOne(
     name: comment.name,
     body: posted,
   });
-  const age = deps.clock().getTime() - comment.created.getTime();
-  if (spam === null && age < RECHECK_FOR_MS) {
+  if (spam === null) {
     deps.logInfo(`No spam score yet for Comment ${comment.id}`);
     return;
   }
@@ -306,12 +327,6 @@ async function recheckOne(
   // The owner may have approved or rejected it while Jev answered.
   const now = await deps.store.get(comment.id);
   if (now?.state !== 'queue' || !now.flags.includes('unchecked')) return;
-
-  if (spam === null) {
-    deps.logInfo(`Stopped checking Comment ${comment.id} after a day`);
-    await deps.store.setFlags(comment.id, now.flags);
-    return;
-  }
   const flags = [
     ...now.flags.filter((flag) => flag !== 'unchecked'),
     ...(spam >= SPAM_FLAG ? ['spam'] : []),
@@ -390,7 +405,7 @@ function mostlyNonLatin(body: string): boolean {
  * write into a public issue title. The site's content loader titles an
  * untitled page the same way (`titleFromUrl` in src/lib/server/content.ts).
  */
-function titleOf(path: string): string {
+export function titleOf(path: string): string {
   const slug = path.split('/').filter(Boolean).pop() ?? '';
   return slug
     .split('-')
