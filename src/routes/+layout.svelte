@@ -72,7 +72,10 @@
 <footer class="site-footer">
   <p class="eyebrow" style="margin: 0">
     {SITE_TITLE} · every park in Monroe County, New York ·
-    <a href="/about/">About</a>
+    <a href="/about/">About</a> ·
+    <a href="https://www.openstreetmap.org/copyright"
+      >© OpenStreetMap contributors</a
+    >
   </p>
 </footer>
 
