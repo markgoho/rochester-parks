@@ -44,6 +44,16 @@
         "type": 301
       },
       {
+        "source": "/town-parks/mendon-parks/big-eddy-park",
+        "destination": "/town-parks/mendon-parks/rotary-park/",
+        "type": 301
+      },
+      {
+        "source": "/town-parks/pittsford-parks/pittsford-town-dog-park",
+        "destination": "/town-parks/pittsford-parks/habecker-fields/",
+        "type": 301
+      },
+      {
         "source": "/town-parks/webster-parks/north-ponds-park",
         "destination": "/town-parks/webster-parks/charles-e-sexton-memorial-park/",
         "type": 301

@@ -568,8 +568,8 @@ export const PICKS: Record<string, Pick> = {
   /**
    * The grass triangle where Union Street meets Brockport Road is in no tax
    * parcel. OpenStreetMap draws it as Memorial Park (way 546687679, fetched
-   * 2026-09-27) at 0.81 ac, the page's 0.82 ac. #299 asks whether a road
-   * triangle is a Park (ADR-0005).
+   * 2026-09-27) at 0.81 ac, the page's 0.82 ac. It is a Park: Ogden's 2024
+   * Parks Master Plan calls it a Village park (#299, ADR-0005).
    */
   '/town-parks/ogden-parks/ogden-memorial-park/': {
     layer: 'openstreetmap',
@@ -817,7 +817,8 @@ export const PICKS: Record<string, Pick> = {
   },
   /**
    * 34 East St (25.76 ac, Rec facility) holds the three ball fields, their
-   * parking, the dog park and the woods behind them. The fields are its main
+   * parking, the dog park (a Facility of this Park, #299) and the woods
+   * behind them. The fields are its main
    * use, so this Park gets the parcel; the page's 6 ac counts only the fields
    * (ADR-0003).
    */
@@ -836,46 +837,10 @@ export const PICKS: Record<string, Pick> = {
     ids: ['26468915012000010340000000'],
   },
   /**
-   * The dog park is two fenced areas, one for all dogs and one for small
-   * dogs, inside the 25.76 ac parcel at 34 East St that Habecker Fields is
-   * drawn from. OpenStreetMap draws both (ways 1245960782 and 1245960783,
-   * fetched 2026-09-27): 1.83 ac of the town's 2 ac. Its outline sits
-   * inside Habecker Fields' outline; #299 asks whether it is a Facility of
-   * Habecker Fields.
-   */
-  '/town-parks/pittsford-parks/pittsford-town-dog-park/': {
-    layer: 'openstreetmap',
-    ids: ['way/1245960782', 'way/1245960783'],
-    rings: [
-      [
-        [-77.496535, 43.074442],
-        [-77.495179, 43.074155],
-        [-77.495388, 43.073604],
-        [-77.495787, 43.073677],
-        [-77.495689, 43.073957],
-        [-77.496594, 43.074126],
-        [-77.496609, 43.074084],
-        [-77.496662, 43.074094],
-        [-77.496535, 43.074442],
-      ],
-      [
-        [-77.496696, 43.073847],
-        [-77.496626, 43.074046],
-        [-77.496676, 43.074055],
-        [-77.496662, 43.074094],
-        [-77.496609, 43.074084],
-        [-77.496594, 43.074126],
-        [-77.495689, 43.073957],
-        [-77.495787, 43.073677],
-        [-77.496696, 43.073847],
-      ],
-    ],
-  },
-  /**
    * The tree-covered triangle on Park Avenue between High and Spring
    * streets is street land with no tax parcel. OpenStreetMap draws it
-   * (way 538345349, fetched 2026-09-27) at 0.18 ac. #299 asks whether a
-   * traffic triangle is a Park (ADR-0005).
+   * (way 538345349, fetched 2026-09-27) at 0.18 ac. It is a Park: the
+   * village lists it with its parks (#299, ADR-0005).
    */
   '/town-parks/sweden-parks/remembrance-park/': {
     layer: 'openstreetmap',
@@ -958,8 +923,6 @@ export const NO_OUTLINE: Record<string, string> = {
     'The basketball court and green sit on land that no tax parcel covers, between Wilder St, the I-490 ramps and the railroad; the only parcel there is a 0.006 ac sliver. OpenStreetMap maps only the 0.16 ac basketball court, not the green (#304).',
   '/state-parks/high-falls-state-park/':
     "The park is planned, not open. The state's framework plan puts about 40 ac on both sides of the gorge across many City, utility and private parcels, and no official boundary exists yet.",
-  '/town-parks/mendon-parks/big-eddy-park/':
-    'Big Eddy is a wide pool of Honeoye Creek inside Rotary Park ("the Big Eddy in Honeoye Creek in Rotary Park"), not a Park of its own: the village lists four parks and no Big Eddy, and the point is on a private taxable house lot at 57 Maplewood Ave. The page is a second page for Rotary Park\'s land (ADR-0007); the nearby 17.2-acre class-963 parcel is Clover Meadows subdivision open space, not this place.',
   '/town-parks/perinton-parks/bushnells-basin-docks/':
     'The docks, restrooms and parking are a strip of canal-bank land with no tax parcel. The parcels next to it are private shops on Pittsford-Victor Rd. OpenStreetMap maps only the dock as a line (way 824181917), and no park area (#304).',
   '/town-parks/pittsford-parks/copper-beech-park/':
