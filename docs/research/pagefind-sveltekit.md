@@ -11,7 +11,7 @@ Research for [#296](https://github.com/markgoho/rochester-parks/issues/296), 202
 - Mark each indexable page with `data-pagefind-body`. A Former Park page gets no `data-pagefind-body`, so it is not in the index.
 - A Park name is the page `h1`, so it is the Pagefind `title`. Version 1.5 searches the title and gives it a 5x boost by default. No extra weight is necessary.
 - Style the UI with `--pf-*` CSS custom properties only. The UI does not follow `prefers-color-scheme` by itself. It has no view-transition support; it opens a native `<dialog>` with `showModal()`.
-- This site now: 387 pages, 3,768 words, index made in 0.27 s. The first search costs about 100 KB compressed.
+- This site now: 387 pages, 3,768 words, index made in 0.27 s. The first search costs about 125 KB compressed.
 
 ## Where current Pagefind differs from dod-db
 
@@ -52,7 +52,7 @@ URLs: `src/routes/+layout.ts` sets `trailingSlash = 'always'`, so each page is `
 
 ## Under `vite dev`
 
-Pagefind has no dev mode for Vite. Under `vite dev`, `/pagefind/pagefind-component-ui.js` is a 404, so the custom elements never upgrade. `<pagefind-modal-trigger>` stays an empty inline-block element with no button, and nothing breaks. The Pagefind CLI has `--serve` (`docs/config-options.md`), but `vite preview` does the same job and is how this project measures speed.
+Pagefind has no dev mode for Vite. Under `vite dev`, the requests for `/pagefind/pagefind-component-ui.js` and `.css` fail, so the custom elements never upgrade and get no styles. `<pagefind-modal-trigger>` stays an unknown element with no children and no size. The page works; the console shows two load errors. The Pagefind CLI has `--serve` (`docs/config-options.md`), but `vite preview` does the same job and is how this project measures speed.
 
 - Recommended: test search with `bun run build && bun run preview`.
 - Not recommended: index into `static/pagefind/` for dev. `vite build` would copy that old bundle into `public/`, and the build step would then have to overwrite it.
@@ -94,7 +94,7 @@ This choice is site-wide: once one page has `data-pagefind-body`, every page typ
 - **View transitions:** the UI has no view-transition code (no `startViewTransition` and no `view-transition-name` in the source). A result is a normal link, so the site's cross-document view transition runs as for any link. There is no morph from the trigger to the dialog.
 - **Keyboard:** the trigger listens for `mod+k` (Cmd+K or Ctrl+K) on the whole document. Change it with `shortcut="/"`; hide the key hint with `hide-shortcut`; show only the icon with `compact`. The trigger button gets `aria-haspopup="dialog"`, `aria-expanded` and `aria-keyshortcuts` (`pagefind-modal-trigger.ts`).
 - **Own button:** the trigger always renders its own button (see dod-db difference 2). To use a site button, call `open()` on the `<pagefind-modal>` element. `open()` is a public method in the source but is not in the docs, so it can change.
-- **Before the script runs** the trigger is an empty `inline-block` element. The header must keep space for it, or the header moves when the button appears. This is a #298 point.
+- **Before the script runs** the trigger has no children, so it has no width (with the CSS loaded it is an empty `inline-block`). The header must keep space for it, or the header moves when the button appears. This is a #298 point.
 
 ## Size and load cost
 
@@ -104,7 +104,7 @@ Test run on this site, 2026-09-27, commit `614c321`, `bunx pagefind@1.5.2 --site
 |---|---|
 | HTML pages indexed | 387 (no `data-pagefind-body` yet, so every page) |
 | of which `/cards/` and `/by-size/` list pages | 68 |
-| Unique words | 3,768 |
+| Words (Pagefind's count) | 3,768 |
 | Index time | 0.27 s (2.0 s with the `bunx` start) |
 | Index chunks (`index/`) | 8 files, 177 KB total, largest 26 KB (already gzip) |
 | Fragments (`fragment/`) | 387 files, 317 KB total, about 0.8 KB each (already gzip) |
@@ -116,7 +116,7 @@ Test run on this site, 2026-09-27, commit `614c321`, `bunx pagefind@1.5.2 --site
 Cost to a reader:
 
 - **Every page:** the UI script (39 KB gzip) and CSS (7 KB gzip). The script is a module, so it does not block the first render. It is the same file on each page, so the browser caches it.
-- **First search:** `pagefind.js`, the worker, the WASM, the meta file and one or two index chunks: about 100–130 KB compressed. Then one fragment (about 1 KB) for each result shown. `preload` is off by default, so none of this loads before the reader types (`docs/components/config.md`).
+- **First search:** `pagefind.js`, the worker, the WASM, the meta file and one or two index chunks: about 125 KB compressed (13 + 12 + 73 + 3 + one chunk of about 22). Then one fragment (about 1 KB) for each result shown. `preload` is off by default, so none of this loads before the reader types (`docs/components/config.md`).
 - **About 500 pages:** the chunk count and the fragment count grow with the pages; the per-search cost stays near the same, because a search loads only the chunks for its words. `docs/hosting.md`: Pagefind compresses its own files, so the server needs no gzip.
 - Firebase Hosting: only the files in `index/` and `fragment/` and the `.pf_meta` file have a hash in the name. `pagefind.js`, `pagefind-worker.js`, the `wasm.*` files, `pagefind-entry.json` and the UI `.js`/`.css` do not. Do not add the `/_app/immutable/**` long-cache header to all of `/pagefind/**`.
 
