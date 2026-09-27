@@ -7,7 +7,10 @@
   let { page }: { page: Page } = $props();
 </script>
 
-<div class="single">
+<div class="single" data-pagefind-body>
+  <span hidden data-pagefind-ignore data-pagefind-meta="line"
+    >{page.url.startsWith('/blog/') ? 'Blog post' : ''}</span
+  >
   <Breadcrumbs ancestors={page.ancestors} current={page} />
   <h1 style:--longest-word={longestWord(page.title)}>{page.title}</h1>
   <article class="prose" style="margin-top: var(--space-20)">

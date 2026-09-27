@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ParkIndexEntry } from '#lib/types.js';
+  import { RESULT_TEMPLATE } from '#lib/prototype-search.js';
 
   let { data } = $props();
 
@@ -66,7 +67,38 @@
   </p>
 </header>
 
+<!-- PROTOTYPE (#298): A opens the header's dialog; B shows results here and
+     hides the amenity filter while it has results. -->
+<div class="pr-find" data-pf-variant="A">
+  <pagefind-modal-trigger
+    placeholder="Search by name, place or word"
+    shortcut="ctrl+alt+shift+f18"
+    hide-shortcut
+  ></pagefind-modal-trigger>
+</div>
+<div class="pr-find" data-pf-variant="B">
+  <pagefind-input instance="find-b" placeholder="Search by name, place or word"
+  ></pagefind-input>
+  <pagefind-summary instance="find-b"></pagefind-summary>
+  <pagefind-results instance="find-b" hide-sub-results
+    >{@html RESULT_TEMPLATE}</pagefind-results
+  >
+</div>
+
 <section class="panel filters">
+  <!-- PROTOTYPE (#298): C puts the text box in the filter panel. -->
+  <div class="pr-find pr-find--c" data-pf-variant="C">
+    <div class="panel__head">
+      <span class="eyebrow">By name or word</span>
+    </div>
+    <div class="panel__body">
+      <pagefind-input instance="find-c" placeholder="Glen, Greece, pavilion…"
+      ></pagefind-input>
+      <pagefind-results instance="find-c" hide-sub-results max-results="5"
+        >{@html RESULT_TEMPLATE}</pagefind-results
+      >
+    </div>
+  </div>
   <div class="panel__head">
     <span class="eyebrow">
       Must have{selected.length ? ` · ${selected.length} selected` : ''}
