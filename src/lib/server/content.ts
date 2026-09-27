@@ -562,7 +562,17 @@ function cardsPage(listUrl: string): Page | undefined {
     url: `${listUrl}${CARDS}`,
     canonical: base.canonical ?? listUrl,
     view: 'cards',
+    children: base.children.map(withCardOutline),
   };
+}
+
+/**
+ * A Park with no photo shows its own outline on its card (#291), so the card
+ * page carries the outline of each such Park, and no other.
+ */
+function withCardOutline(child: ChildLink): ChildLink {
+  const outline = child.park?.photo ? undefined : PARK_OUTLINES[child.url];
+  return outline ? { ...child, outline: outlinePaths(outline) } : child;
 }
 
 export function getAllUrls(): string[] {

@@ -4,6 +4,7 @@
   import ViewSwitch from '#lib/components/ViewSwitch.svelte';
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
+  import ParkShape from '#lib/components/ParkShape.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
   import MapDefs from '#lib/components/MapDefs.svelte';
   import { formatAcres, longestWord, parkTransitionName } from '#lib/format.js';
@@ -165,9 +166,12 @@
     return shape && key ? { shape, villages: villagesIn(key) } : undefined;
   }
 
-  /** What a card's picture shows in place of a photo, if it has none. */
+  /**
+   * What a card's picture shows in place of a photo, if it has none and no
+   * outline of its own to show.
+   */
   const cardPlace = (child: ChildLink) =>
-    child.park!.photo ? undefined : placeOf(child);
+    child.park!.photo || child.outline ? undefined : placeOf(child);
 
   /** Each place a card draws, once. See `MapDefs`. */
   const cardPlaces = $derived.by(() => {
@@ -299,7 +303,7 @@
 
     <!-- A park as a card. Its picture is its photo, in the site's two colours
      until the card is under the pointer or the focus. A park with no photo
-     shows where it is instead. The card takes the row's transition names, so
+     shows its own outline, or, with no outline, where it is. The card takes the row's transition names, so
      a park moves between the table and the cards. -->
     {#snippet parkCard(child: ChildLink, i: number)}
       {@const park = child.park!}
@@ -315,6 +319,14 @@
               <span class="duotone"
                 ><img src={park.photo} alt="" loading="lazy" /></span
               >
+            {:else if child.outline}
+              <span class="card__place">
+                <ParkShape
+                  paths={child.outline}
+                  square
+                  label="The outline of {child.title}"
+                />
+              </span>
             {:else if place}
               <span class="card__place">
                 <TownShape
@@ -787,7 +799,8 @@
     padding: var(--space-12);
   }
 
-  .card__place :global(.town-shape) {
+  .card__place :global(.town-shape),
+  .card__place :global(.park-shape) {
     block-size: 100%;
     inline-size: auto;
   }

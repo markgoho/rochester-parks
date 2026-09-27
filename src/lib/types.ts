@@ -287,6 +287,12 @@ export interface ParkHours {
 /** A child of a section. Parks carry their metadata so lists can show it. */
 export interface ChildLink extends PageLink {
   park?: ParkMeta;
+  /**
+   * On a card page only, for a Park with no photo: its outline in the county
+   * map space, which its card draws in place of the photo (#291). No other
+   * list carries it, since no other list draws it.
+   */
+  outline?: string[];
 }
 
 /** A rendered content page, as returned by the catch-all route's load. */
@@ -339,7 +345,8 @@ export interface Page extends PageLink {
   /**
    * Present on a Park or Trail page that has an outline: the outline in the
    * county map space, one path per polygon (#173). Not on `ParkMeta`, so a
-   * list of Parks does not carry every outline.
+   * list of Parks does not carry every outline. A card page carries the
+   * outlines its cards draw on `ChildLink.outline`.
    */
   outline?: string[];
   /** Present on Park and Trail pages: the hours, resolved against the build date. */
