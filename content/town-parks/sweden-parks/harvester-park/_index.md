@@ -3,8 +3,8 @@ title: 'Harvester Park'
 description: 'A park in Sweden'
 type: 'park'
 geo:
-  latitude: 43.21571038872937
-  longitude: -77.93871411982283
+  latitude: 43.21598
+  longitude: -77.93698
 acres: 0.49
 sameAs:
   - 'https://brockportny.gov/village-parks/'

@@ -3,8 +3,8 @@ title: 'Barry Street Park'
 description: 'A park in Sweden'
 type: 'park'
 geo:
-  latitude: 43.2166641
-  longitude: -77.9301463
+  latitude: 43.216254
+  longitude: -77.931516
 address:
   streetAddress: 'Barry Street'
   addressLocality: 'Brockport'

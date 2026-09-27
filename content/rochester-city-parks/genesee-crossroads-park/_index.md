@@ -8,8 +8,8 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 geo:
-  latitude: 43.1580225
-  longitude: -77.6122625
+  latitude: 43.157527
+  longitude: -77.610462
 sameAs:
   - 'https://www.cityofrochester.gov/locations/genesee-crossroads-park'
 ---

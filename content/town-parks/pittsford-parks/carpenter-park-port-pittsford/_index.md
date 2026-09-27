@@ -13,8 +13,8 @@ sameAs:
   - 'https://www.townofpittsfordny.gov/boating'
   - 'https://maps.google.com/?cid=11562283856268848788'
 geo:
-  latitude: 43.092742
-  longitude: -77.514404
+  latitude: 43.091814
+  longitude: -77.514322
 hoursCheckedOn: '2026-09-18'
 openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']

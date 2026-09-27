@@ -3,8 +3,8 @@ title: 'Lucien Morin Park'
 description: 'A monroe county park called Lucien Morin Park'
 type: 'county-parks'
 geo:
-  latitude: 43.166697551524166
-  longitude: -77.53623190738503
+  latitude: 43.169122
+  longitude: -77.527293
 acres: 348.98
 address:
   streetAddress: '1135 Empire Blvd'

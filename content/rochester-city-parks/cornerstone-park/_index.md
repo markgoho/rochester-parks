@@ -9,6 +9,6 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 geo:
-  latitude: 43.1550421
-  longitude: -77.6069184
+  latitude: 43.155136
+  longitude: -77.607181
 ---

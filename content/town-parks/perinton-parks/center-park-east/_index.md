@@ -3,8 +3,8 @@ title: 'Center Park East'
 description: 'A park in Perinton'
 type: 'park'
 geo:
-  latitude: 43.08051984444608
-  longitude: -77.42690977799242
+  latitude: 43.080889
+  longitude: -77.424687
 address:
   streetAddress: '1466 Ayrault Road'
   addressLocality: 'Fairport'
