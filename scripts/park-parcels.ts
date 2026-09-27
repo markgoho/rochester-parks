@@ -23,9 +23,14 @@
  * gives `acres`, the joined parcels must total within a factor of 2.5 of
  * it, or the pick is rejected as a likely mismatch.
  *
- * #300 measured each rule against the hand picks and dropped two that
- * reproduced none: a seed search to 400 m ranked by address, and growth into
- * a touching parcel at the seed's own address.
+ * #300 measured each rule against the 98 hand picks, with `PICKS` off
+ * (`MEASURE=1`, see scripts/park-outlines.ts). With no rule, 12 came out
+ * right. Each rule turned off alone loses: rule 2, 20 picks; its O-S
+ * signal, 2; the stop at another Park's seed, 2; the acres cap, 2; no
+ * growth for a rule-2 seed, 1. Together: 39, and no outline the search drew
+ * before changed. Three rules reproduced no pick and were dropped: a seed
+ * search to 400 m ranked by address, and growth into a touching parcel with
+ * the seed's address or with the Park's name in its City owner name.
  */
 
 export type Point = [number, number];
@@ -134,13 +139,14 @@ export function isMiss<T extends object>(choice: T | ParcelMiss): choice is Parc
 /** Growth rounds capped so a data error cannot loop forever. */
 export const GROWTH_ROUNDS = 10;
 
-/** Words a street name may end with, or open with, that say nothing. */
-const STREET_WORDS: Record<string, string> = {
+/** The short form of each compass word, as parcel addresses write it. */
+const DIRECTIONS: Record<string, string> = {
   north: 'n',
   south: 's',
   east: 'e',
   west: 'w',
 };
+/** Words a street name may end with that say nothing. */
 const STREET_SUFFIXES = new Set(
   'st street rd road ave avenue av dr drive blvd boulevard ln lane pkwy parkway ter terrace cir circle ct court pl place way crs crescent trl trail hwy'.split(
     ' '
@@ -153,7 +159,7 @@ function streetWords(street: string): string {
     .replace(/[^a-z0-9 ]/g, ' ')
     .split(/\s+/)
     .filter(Boolean)
-    .map((word) => STREET_WORDS[word] ?? word);
+    .map((word) => DIRECTIONS[word] ?? word);
   while (words.length > 1 && STREET_SUFFIXES.has(words[words.length - 1])) {
     words.pop();
   }
@@ -164,7 +170,7 @@ function streetWords(street: string): string {
  * Whether a page address names a parcel: `full` for the same number and
  * street, `street` for the same street when either side has no number. A
  * page address like "Harding Rd and Brewster" or "Adams St at Frederick
- * Douglass St" is read up to its first "and", "at", "," or "(".
+ * Douglass St" is read up to its first "and", "at", "&", "," or "(".
  */
 export function addressMatch(
   pageAddress: string | undefined,
@@ -172,8 +178,10 @@ export function addressMatch(
 ): 'full' | 'street' | undefined {
   if (!pageAddress || !parcel?.street) return undefined;
   const first = pageAddress.split(/\s+(?:and|at|&)\s+|[,(]/i)[0].trim();
-  const [, number, street] = first.match(/^(\d+\S*)\s+(.*)$/) ?? [, undefined, first];
-  if (streetWords(street ?? '') !== streetWords(parcel.street)) return undefined;
+  const numbered = first.match(/^(\d+\S*)\s+(.*)$/);
+  const number = numbered?.[1];
+  const street = numbered ? numbered[2] : first;
+  if (streetWords(street) !== streetWords(parcel.street)) return undefined;
   if (number && parcel.number) {
     return number.toLowerCase() === parcel.number.toLowerCase() ? 'full' : undefined;
   }
@@ -247,16 +255,22 @@ export async function chooseSeed(
   };
 }
 
+function byId(a: ParcelFeature, b: ParcelFeature): number {
+  return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+}
+
 /**
- * Picks a Park's parcels. `claimed` holds the ids of other Parks' seeds,
- * which growth never takes.
+ * Picks a Park's parcels. `othersIds` holds the parcel ids of other Parks,
+ * which growth never takes. `knownSeed` is the Park's `chooseSeed` result, when
+ * the caller has it already.
  */
 export async function chooseParcels(
   park: ParkFacts,
   source: ParcelSource,
-  claimed: ReadonlySet<string> = new Set()
+  othersIds: ReadonlySet<string> = new Set(),
+  knownSeed?: Seed | ParcelMiss
 ): Promise<ParcelChoice> {
-  const seedChoice = await chooseSeed(park, source);
+  const seedChoice = knownSeed ?? (await chooseSeed(park, source));
   if (isMiss(seedChoice)) return seedChoice;
   const { feature: seed, via } = seedChoice;
   const parkAcres = park.acres;
@@ -276,11 +290,9 @@ export async function chooseParcels(
   for (let round = 0; !stable && round < GROWTH_ROUNDS; round++) {
     const before = chosen.size;
     // By id, so the acres cap takes the same parcels on every run.
-    const touching = (await source.touching([...chosen.values()])).sort(
-      (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
-    );
+    const touching = (await source.touching([...chosen.values()])).sort(byId);
     for (const candidate of touching) {
-      if (chosen.has(candidate.id) || claimed.has(candidate.id)) continue;
+      if (chosen.has(candidate.id) || othersIds.has(candidate.id)) continue;
       if (!candidate.parkType) continue;
       if (source.hasSwis && candidate.swis !== seed.swis) continue;
       if (total + candidate.acres > maxAcres) continue;
@@ -295,9 +307,7 @@ export async function chooseParcels(
 
   // Sorted by id, not fetch order, so the joined geometry (and so the union
   // and simplify that follow) comes out the same on every run.
-  const features = [...chosen.values()].sort((a, b) =>
-    a.id < b.id ? -1 : a.id > b.id ? 1 : 0
-  );
+  const features = [...chosen.values()].sort(byId);
   const ids = features.map((f) => f.id);
   const acres = features.reduce((sum, f) => sum + f.acres, 0);
 

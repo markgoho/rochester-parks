@@ -46,7 +46,9 @@ import {
   chooseParcels,
   chooseSeed,
   isMiss,
+  type ParcelMiss,
   type ParkFacts,
+  type Seed,
   type ParcelFeature,
   type ParcelSource,
   type Point,
@@ -384,6 +386,10 @@ function parentUrl(url: string): string {
   return segments.length <= 1 ? '/' : `/${segments.slice(0, -1).join('/')}/`;
 }
 
+function isCityPark(page: PageRecord): boolean {
+  return page.url.startsWith('/rochester-city-parks/');
+}
+
 /** Same rule as `content.ts`'s `isPark`: a Park hangs directly off a container. */
 function isParkPage(page: PageRecord): boolean {
   if (!isParkType(page.type)) return false;
@@ -551,7 +557,8 @@ async function resolvePage(
   parcelSource: ParcelSource,
   citySource: ParcelSource,
   picks: typeof PICKS,
-  claimed: Map<string, string>
+  claimed: Map<string, string>,
+  seeds: Map<string, Seed | ParcelMiss>
 ): Promise<Resolved | Missed> {
   const section = sectionOf(page.url);
 
@@ -606,14 +613,15 @@ async function resolvePage(
     return { url: page.url, section, reason: 'no geo point on the page' };
   }
 
-  const city = page.url.startsWith('/rochester-city-parks/');
-  const others = new Set(
+  const city = isCityPark(page);
+  const othersIds = new Set(
     [...claimed].filter(([, url]) => url !== page.url).map(([id]) => id)
   );
   const choice = await chooseParcels(
-    factsOf(page)!,
+    factsOf(page, page.geo),
     city ? citySource : parcelSource,
-    others
+    othersIds,
+    seeds.get(page.url)
   );
   if (isMiss(choice)) {
     return {
@@ -637,10 +645,12 @@ async function resolvePage(
   };
 }
 
-function factsOf(page: PageRecord): ParkFacts | undefined {
-  if (!page.geo) return undefined;
+function factsOf(
+  page: PageRecord,
+  geo: { latitude: number; longitude: number }
+): ParkFacts {
   return {
-    ...page.geo,
+    ...geo,
     acres: page.acres,
     address: page.address,
     name: page.title,
@@ -872,8 +882,9 @@ function printMeasure(
     if (pick) {
       const wanted = key(pickLayer(pick.layer), pick.ids);
       let verdict: string;
-      if (gotKey === wanted && !pick.clip) verdict = 'reproduced';
-      else if (!got) verdict = 'missed';
+      if (!got) verdict = 'missed';
+      else if (pick.clip) verdict = 'needs a clip';
+      else if (gotKey === wanted) verdict = 'reproduced';
       else if (got.layer !== pickLayer(pick.layer)) verdict = 'other layer';
       else if (pick.ids.every((id) => got.ids.includes(id))) verdict = 'too many';
       else if (got.ids.every((id) => pick.ids.includes(id))) verdict = 'too few';
@@ -962,17 +973,22 @@ async function main(): Promise<void> {
       for (const id of pick.ids) claimed.set(id, url);
     }
   }
+  // Every Park `resolvePage` sends to the parcel search.
   const searched = targets.filter(
-    (p) => p.geo && !picks[p.url] && !NO_OUTLINE[p.url] && !countyNameByUrl.has(p.url)
+    (p) =>
+      p.geo !== undefined &&
+      !picks[p.url] &&
+      !NO_OUTLINE[p.url] &&
+      !countyNameByUrl.has(p.url)
   );
-  const seeds = await mapWithConcurrency(searched, 8, (page) =>
-    chooseSeed(
-      factsOf(page)!,
-      page.url.startsWith('/rochester-city-parks/') ? citySource : parcelSource
-    )
-  );
-  seeds.forEach((seed, i) => {
-    if (!isMiss(seed)) claimed.set(seed.feature.id, searched[i].url);
+  const seeds = new Map<string, Seed | ParcelMiss>();
+  await mapWithConcurrency(searched, 8, async (page) => {
+    const seed = await chooseSeed(
+      factsOf(page, page.geo!),
+      isCityPark(page) ? citySource : parcelSource
+    );
+    seeds.set(page.url, seed);
+    if (!isMiss(seed)) claimed.set(seed.feature.id, page.url);
   });
 
   const outcomes = await mapWithConcurrency(targets, 8, (page) =>
@@ -983,7 +999,8 @@ async function main(): Promise<void> {
       parcelSource,
       citySource,
       picks,
-      claimed
+      claimed,
+      seeds
     )
   );
   const resolved = outcomes.filter((o): o is Resolved => 'polys' in o);
