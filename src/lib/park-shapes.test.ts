@@ -66,4 +66,28 @@ describe('parkFrame', () => {
     expect(metres).toBeLessThanOrEqual(420);
     expect(metres % 10).toBe(0);
   });
+
+  test('frames a long, thin outline in a square around its middle', () => {
+    const strip: [number, number][] = [
+      [-77.7, 43.2],
+      [-77.69, 43.2],
+      [-77.69, 43.201],
+      [-77.7, 43.201],
+      [-77.7, 43.2],
+    ];
+    const stripPaths = outlinePaths({ polygons: [[strip]], source });
+    const [x, y, width, height] = parkFrame(stripPaths, { square: true })
+      .viewBox.split(' ')
+      .map(Number);
+    expect(width).toBeCloseTo(height, 3);
+    const middle = project(43.2005, -77.695);
+    expect(x + width / 2).toBeCloseTo(middle.x, 2);
+    expect(y + height / 2).toBeCloseTo(middle.y, 2);
+  });
+
+  test('keeps the same scale in a square', () => {
+    expect(parkFrame(paths, { square: true }).metres).toBe(
+      parkFrame(paths).metres
+    );
+  });
 });

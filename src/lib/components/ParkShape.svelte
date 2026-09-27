@@ -8,17 +8,24 @@
   let {
     paths,
     label,
+    square = false,
   }: {
     /** The outline in the county map space. See `outlinePaths`. */
     paths: string[];
     label: string;
+    /**
+     * Frame the outline in a square with no caption: a tile for a card, the
+     * same room for every Park, where the card gives the size in acres.
+     */
+    square?: boolean;
   } = $props();
 
-  const frame = $derived(parkFrame(paths));
+  const frame = $derived(parkFrame(paths, { square }));
 </script>
 
-<figure class="park-shape">
+{#snippet map(className: string)}
   <svg
+    class={className}
     viewBox={frame.viewBox}
     xmlns="http://www.w3.org/2000/svg"
     role="img"
@@ -28,10 +35,18 @@
       <path class="land" vector-effect="non-scaling-stroke" {d} />
     {/each}
   </svg>
-  <figcaption class="mono">
-    About {frame.metres.toLocaleString('en-US')} m across
-  </figcaption>
-</figure>
+{/snippet}
+
+{#if square}
+  {@render map('park-tile')}
+{:else}
+  <figure class="park-shape">
+    {@render map('park-shape__map')}
+    <figcaption class="mono">
+      About {frame.metres.toLocaleString('en-US')} m across
+    </figcaption>
+  </figure>
+{/if}
 
 <style>
   .park-shape {
@@ -42,11 +57,19 @@
 
   svg {
     display: block;
+    overflow: visible;
+  }
+
+  .park-shape__map {
     width: 100%;
     height: auto;
     /* A tall, thin Park would otherwise run down the whole rail. */
     max-block-size: 16rem;
-    overflow: visible;
+  }
+
+  /* The card sizes the tile. A square view box keeps it square. */
+  .park-tile {
+    aspect-ratio: 1;
   }
 
   /* The Park's land, in green. A hole in the outline, such as a private lot

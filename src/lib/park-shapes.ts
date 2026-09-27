@@ -1,4 +1,4 @@
-import { outlineBox, project } from './municipalities';
+import { outlineBox, project, squareBox } from './municipalities';
 import type { ParkOutline } from './types';
 
 /**
@@ -33,18 +33,22 @@ const METRES_PER_UNIT = 76;
 /**
  * A map framed to the Park itself: a view box around its outline, padded so
  * the stroke is not cut, and its widest side in metres, to the nearest 10,
- * for a caption that gives the reader the scale.
+ * for a caption that gives the reader the scale. With `square`, the box is
+ * square, the outline in its middle, so every card gives its Park the same
+ * room.
  */
-export function parkFrame(paths: string[]): {
+export function parkFrame(
+  paths: string[],
+  { square = false }: { square?: boolean } = {}
+): {
   viewBox: string;
   metres: number;
 } {
-  const tight = outlineBox({ key: '', name: '', paths }, 0);
+  const outline = { key: '', name: '', paths };
+  const tight = outlineBox(outline, 0);
   const span = Math.max(tight.width, tight.height);
-  const { x, y, width, height } = outlineBox(
-    { key: '', name: '', paths },
-    span * 0.04
-  );
+  const padded = outlineBox(outline, span * 0.04);
+  const { x, y, width, height } = square ? squareBox(padded) : padded;
   return {
     viewBox: [x, y, width, height].map((n) => Number(n.toFixed(3))).join(' '),
     metres: Math.round((span * METRES_PER_UNIT) / 10) * 10,
