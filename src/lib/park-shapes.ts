@@ -44,9 +44,10 @@ export function parkFrame(
   viewBox: string;
   metres: number;
 } {
-  const tight = outlineBox({ key: '', name: '', paths }, 0);
+  const outline = { key: '', name: '', paths };
+  const tight = outlineBox(outline, 0);
   const span = Math.max(tight.width, tight.height);
-  const padded = outlineBox({ key: '', name: '', paths }, span * 0.04);
+  const padded = outlineBox(outline, span * 0.04);
   const { x, y, width, height } = square ? squareBox(padded) : padded;
   return {
     viewBox: [x, y, width, height].map((n) => Number(n.toFixed(3))).join(' '),

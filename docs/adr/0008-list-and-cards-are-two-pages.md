@@ -25,7 +25,7 @@ Two icon links at the end of the section's counts line change the view: rows for
 
 A card page carries a canonical link to the A to Z table, and the sitemap does not list it.
 
-**A card shows a photo, or where the Park is.** A photo shows in ink and paper, and changes to full colour under the pointer or the focus. A Park with no photo shows the town or Neighborhood that holds it, with one dot for the Park. A county Park shows the town it stands in.
+**A card shows a photo, or where the Park is.** A photo shows in ink and paper, and changes to full colour under the pointer or the focus. A Park with no photo shows its own outline, framed in a square, north up, with nothing around it (#291). A Park with no photo and no outline shows the town or Neighborhood that holds it, with one dot for the Park. A county Park shows the town it stands in. Only the card page carries the outlines, and only for the cards that draw one.
 
 We rejected two alternatives:
 

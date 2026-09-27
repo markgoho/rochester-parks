@@ -303,8 +303,9 @@
 
     <!-- A park as a card. Its picture is its photo, in the site's two colours
      until the card is under the pointer or the focus. A park with no photo
-     shows its own outline, or, with no outline, where it is. The card takes the row's transition names, so
-     a park moves between the table and the cards. -->
+     shows its own outline, or, with no outline, where it is. The card takes
+     the row's transition names, so a park moves between the table and the
+     cards. -->
     {#snippet parkCard(child: ChildLink, i: number)}
       {@const park = child.park!}
       {@const place = cardPlace(child)}
@@ -800,7 +801,7 @@
   }
 
   .card__place :global(.town-shape),
-  .card__place :global(.park-shape) {
+  .card__place :global(.park-tile) {
     block-size: 100%;
     inline-size: auto;
   }

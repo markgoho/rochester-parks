@@ -38,7 +38,7 @@
 {/snippet}
 
 {#if square}
-  {@render map('park-shape park-shape--square')}
+  {@render map('park-tile')}
 {:else}
   <figure class="park-shape">
     {@render map('park-shape__map')}
@@ -68,7 +68,7 @@
   }
 
   /* The card sizes the tile. A square view box keeps it square. */
-  .park-shape--square {
+  .park-tile {
     aspect-ratio: 1;
   }
 
