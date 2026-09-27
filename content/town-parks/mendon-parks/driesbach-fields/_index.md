@@ -3,8 +3,8 @@ title: 'Driesbach Fields'
 description: 'A park in Mendon'
 type: 'park'
 geo:
-  latitude: 42.9780239
-  longitude: -77.5584609
+  latitude: 42.9795
+  longitude: -77.558385
 sameAs:
   - 'https://townofmendonny.gov/wp-content/uploads/2020/10/Driesbach_Fields.pdf'
 ---

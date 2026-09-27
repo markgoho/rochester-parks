@@ -9,8 +9,8 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 geo:
-  latitude: 43.1765115
-  longitude: -77.6286596
+  latitude: 43.1786
+  longitude: -77.62843
 amenities:
   - Fishing
   - Trails

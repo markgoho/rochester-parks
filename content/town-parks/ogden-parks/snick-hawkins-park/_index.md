@@ -3,8 +3,8 @@ title: 'Snick Hawkins Park'
 description: 'A park in Ogden'
 type: 'park'
 geo:
-  latitude: 43.193263390169164
-  longitude: -77.80200871982332
+  latitude: 43.197214
+  longitude: -77.848916
 acres: 0.28
 amenities:
   - Bench

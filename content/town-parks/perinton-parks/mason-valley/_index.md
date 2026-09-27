@@ -3,8 +3,8 @@ title: 'Mason Valley'
 description: 'A park in Perinton'
 type: 'park'
 geo:
-  latitude: 43.0691627
-  longitude: -77.4040953
+  latitude: 43.071186
+  longitude: -77.403554
 address:
   streetAddress: 'Broadmoor Trail'
   addressLocality: 'Fairport'

@@ -3,8 +3,8 @@ title: 'Andrews Park'
 description: 'A park in Henrietta'
 type: 'park'
 geo:
-  latitude: 43.0772749
-  longitude: -77.6164913
+  latitude: 43.078775
+  longitude: -77.614991
 address:
   streetAddress: 'Wildbriar Road'
   addressCountry: 'US'

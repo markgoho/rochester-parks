@@ -3,8 +3,8 @@ title: 'Vest Pocket Park'
 description: 'A park in Mendon'
 type: 'park'
 geo:
-  latitude: 42.9518206
-  longitude: -77.5926749
+  latitude: 42.951796
+  longitude: -77.592445
 sameAs:
   - 'https://www.villageofhoneoyefalls.gov/1208/Parks'
 ---

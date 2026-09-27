@@ -3,8 +3,8 @@ title: 'Scout Park'
 description: 'A park in Hamlin'
 type: 'park'
 geo:
-  latitude: 43.3141592
-  longitude: -77.9481598
+  latitude: 43.314817
+  longitude: -77.94469
 address:
   streetAddress: '4250 Brick Schoolhouse Road'
   addressLocality: 'Hamlin'

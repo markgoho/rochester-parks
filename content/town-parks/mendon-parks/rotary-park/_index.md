@@ -3,8 +3,8 @@ title: 'Rotary Park'
 description: 'A park in Mendon'
 type: 'park'
 geo:
-  latitude: 42.9601381
-  longitude: -77.5908845
+  latitude: 42.961443
+  longitude: -77.592868
 sameAs:
   - 'https://www.villageofhoneoyefalls.gov/1208/Parks'
   - 'https://maps.google.com/?cid=4457057556241165491'

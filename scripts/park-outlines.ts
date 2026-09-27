@@ -36,7 +36,7 @@ import {
   type Poly,
   type Ring,
 } from './park-parcels';
-import { PICKS } from './park-outline-picks';
+import { NO_OUTLINE, PICKS } from './park-outline-picks';
 import type { OutlineSource, ParkOutline } from '../src/lib/types';
 
 const CONTENT_ROOT = new URL('../content', import.meta.url).pathname;
@@ -464,6 +464,8 @@ interface Missed {
   evidence?: ParcelFeature;
   joinedIds?: string[];
   joinedAcres?: number;
+  /** Why a person decided this Park has no outline (NO_OUTLINE). */
+  decided?: string;
 }
 
 async function resolvePage(
@@ -474,6 +476,17 @@ async function resolvePage(
   citySource: ParcelSource
 ): Promise<Resolved | Missed> {
   const section = sectionOf(page.url);
+
+  const decided = NO_OUTLINE[page.url];
+  if (decided) {
+    return {
+      url: page.url,
+      section,
+      reason: 'no outline, by decision',
+      pageAcres: page.acres,
+      decided,
+    };
+  }
 
   const pick = PICKS[page.url];
   if (pick) {
@@ -607,6 +620,24 @@ function evidenceLine(evidence: ParcelFeature | undefined): string {
   return parts.join(', ');
 }
 
+/** Even-odd ray cast, so a point in a hole counts as outside. */
+function insidePolys(point: Point, polys: Poly[]): boolean {
+  const [x, y] = point;
+  let inside = false;
+  for (const rings of polys) {
+    for (const ring of rings) {
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const [xi, yi] = ring[i];
+        const [xj, yj] = ring[j];
+        if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+          inside = !inside;
+        }
+      }
+    }
+  }
+  return inside;
+}
+
 function writeReport(
   targets: PageRecord[],
   resolved: Resolved[],
@@ -658,8 +689,9 @@ function writeReport(
       const acres = miss.pageAcres !== undefined ? `${miss.pageAcres} ac` : 'no acres on the page';
       // The acres check runs on parcels already joined, so its evidence is
       // the joined total, not "what the point falls on" (that check never ran).
-      const detail =
-        miss.joinedAcres !== undefined
+      const detail = miss.decided
+        ? miss.decided
+        : miss.joinedAcres !== undefined
           ? `joined parcels ${miss.joinedAcres.toFixed(2)} ac (${(miss.joinedIds ?? []).join(', ')})`
           : evidenceLine(miss.evidence);
       lines.push(`- ${miss.url} — page acres ${acres} — ${detail}`);
@@ -677,6 +709,43 @@ function writeReport(
     .sort((a, b) => a.url.localeCompare(b.url))) {
     lines.push(`- ${r.url}`);
   }
+  lines.push('');
+
+  // Two Parks on one parcel is almost always a mistake: two pages for one
+  // place, or one Park's search that grew into another's land (#292).
+  const byParcel = new Map<string, string[]>();
+  for (const r of resolved) {
+    for (const id of r.ids) {
+      const key = `${r.layer} ${id}`;
+      byParcel.set(key, [...(byParcel.get(key) ?? []), r.url]);
+    }
+  }
+  const shared = [...byParcel]
+    .filter(([, urls]) => urls.length > 1)
+    .sort(([a], [b]) => a.localeCompare(b));
+  lines.push('## Parcels in more than one outline', '');
+  if (shared.length === 0) lines.push('_None._');
+  for (const [key, urls] of shared) {
+    lines.push(`- ${key.split(' ').pop()}: ${urls.sort().join(', ')}`);
+  }
+  lines.push('');
+
+  // A point outside its own outline puts the Park's map pin in the wrong place.
+  const geoByUrl = new Map(targets.map((p) => [p.url, p.geo]));
+  const outside = resolved
+    .filter((r) => {
+      const geo = geoByUrl.get(r.url);
+      return geo && !insidePolys([geo.longitude, geo.latitude], r.polys);
+    })
+    .map((r) => r.url)
+    .sort();
+  lines.push("## Parks whose `geo` point is outside their outline", '');
+  lines.push(
+    '_Some are right: a lock or a parking lot on land with no tax parcel. Move the others._',
+    ''
+  );
+  if (outside.length === 0) lines.push('_None._');
+  for (const url of outside) lines.push(`- ${url}`);
   lines.push('');
 
   writeFileSync(REPORT_PATH, lines.join('\n'));
@@ -717,6 +786,14 @@ async function main(): Promise<void> {
   for (const url of Object.keys(PICKS)) {
     if (!targetUrls.has(url)) {
       throw new Error(`PICKS: "${url}" is not a target page`);
+    }
+  }
+  for (const url of Object.keys(NO_OUTLINE)) {
+    if (!targetUrls.has(url)) {
+      throw new Error(`NO_OUTLINE: "${url}" is not a target page`);
+    }
+    if (PICKS[url]) {
+      throw new Error(`"${url}" is in both PICKS and NO_OUTLINE`);
     }
   }
 

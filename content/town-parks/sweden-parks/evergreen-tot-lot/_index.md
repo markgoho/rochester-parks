@@ -3,8 +3,8 @@ title: 'Evergreen Park'
 description: 'A park in Sweden'
 type: 'park'
 geo:
-  latitude: 43.21509168876888
-  longitude: -77.95275801982294
+  latitude: 43.215081
+  longitude: -77.950628
 acres: 0.3
 sameAs:
   - 'https://brockportny.gov/village-parks/'

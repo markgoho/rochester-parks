@@ -3,8 +3,8 @@ title: 'Ayrault Boat Launch'
 description: 'A park in Perinton'
 type: 'park'
 geo:
-  latitude: 43.07939289746402
-  longitude: -77.46167831982596
+  latitude: 43.079402
+  longitude: -77.459548
 address:
   streetAddress: '426 Ayrault Road'
   addressLocality: 'Fairport'

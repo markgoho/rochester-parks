@@ -3,8 +3,8 @@ title: 'Village Park'
 description: 'A park in Parma'
 type: 'park'
 geo:
-  latitude: 43.2852658
-  longitude: -77.8005369
+  latitude: 43.28417
+  longitude: -77.801546
 address:
   streetAddress: '1111 West Ave'
   addressLocality: 'Hilton'

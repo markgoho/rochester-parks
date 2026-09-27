@@ -13,6 +13,6 @@ amenities:
   - Basketball Court
   - Playground
 geo:
-  latitude: 43.1473723
-  longitude: -77.6294488
+  latitude: 43.14765
+  longitude: -77.6295
 ---
