@@ -96,12 +96,12 @@
   const byNeighborhood = $derived(page.order === 'neighborhood');
 
   /**
-   * The table or the cards. Each is its own static page, one level below the
-   * ordering, so every link to another ordering stays in the same view. See
-   * ADR-0008.
+   * The cards or the table. The cards are the ordering's own page; the table
+   * is its own static page, one level below the ordering, so every link to
+   * another ordering stays in the same view. See ADR-0008.
    */
-  const cards = $derived(page.view === 'cards');
-  const view = $derived(cards ? 'cards/' : '');
+  const cards = $derived(page.view !== 'table');
+  const view = $derived(cards ? '' : 'table/');
   const neighborhoodUrl = $derived(`${section.url}by-neighborhood/${view}`);
 
   /** A dot for each park with a place, keyed on its URL like its row. */
@@ -142,8 +142,8 @@
   const orderUrl = $derived(
     `${section.url}${bySize ? 'by-size/' : byNeighborhood ? 'by-neighborhood/' : ''}`
   );
-  const tableUrl = $derived(orderUrl);
-  const cardsUrl = $derived(`${orderUrl}cards/`);
+  const tableUrl = $derived(`${orderUrl}table/`);
+  const cardsUrl = $derived(orderUrl);
   /** A size order needs two figures to compare. See ADR-0001. */
   const sortable = $derived(measured >= 2);
 

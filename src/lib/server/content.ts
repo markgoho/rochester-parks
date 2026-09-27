@@ -500,7 +500,7 @@ function bySizePage(sectionUrl: string): Page | undefined {
   if (!node || !isParkSection(sectionUrl) || measuredIn(sectionUrl) < 2) {
     return undefined;
   }
-  const base = getPage(sectionUrl);
+  const base = pageWithoutOutlines(sectionUrl);
   if (!base) return undefined;
   const self = {
     title: `${node.title} by size`,
@@ -529,7 +529,7 @@ const BY_NEIGHBORHOOD = 'by-neighborhood/';
 function byNeighborhoodPage(sectionUrl: string): Page | undefined {
   const node = nodes.get(sectionUrl);
   if (!node || !isCitySection(sectionUrl)) return undefined;
-  const base = getPage(sectionUrl);
+  const base = pageWithoutOutlines(sectionUrl);
   if (!base) return undefined;
   const self = {
     title: `${node.title} by neighborhood`,
@@ -548,21 +548,21 @@ function byNeighborhoodPage(sectionUrl: string): Page | undefined {
 }
 
 /**
- * The path segment that holds the card view of a park list. It goes below
- * the ordering, so every ordering has its own card page. See ADR-0008.
+ * The path segment that holds the table view of a park list. It goes below
+ * the ordering, so every ordering has its own table page. The ordering's own
+ * URL shows the cards (#307). See ADR-0008.
  */
-const CARDS = 'cards/';
+const TABLE = 'table/';
 
-/** An ordering of a park section, shown as cards, as its own static page. */
-function cardsPage(listUrl: string): Page | undefined {
-  const base = getPage(listUrl);
+/** An ordering of a park section, shown as a table, as its own static page. */
+function tablePage(listUrl: string): Page | undefined {
+  const base = pageWithoutOutlines(listUrl);
   if (!base || base.layout !== 'park-list') return undefined;
   return {
     ...base,
-    url: `${listUrl}${CARDS}`,
+    url: `${listUrl}${TABLE}`,
     canonical: base.canonical ?? listUrl,
-    view: 'cards',
-    children: base.children.map(withCardOutline),
+    view: 'table',
   };
 }
 
@@ -587,7 +587,7 @@ export function getAllUrls(): string[] {
   return [
     ...nodes.keys(),
     ...lists.filter((url) => !nodes.has(url)),
-    ...lists.map((url) => `${url}${CARDS}`),
+    ...lists.map((url) => `${url}${TABLE}`),
   ];
 }
 
@@ -601,14 +601,25 @@ export function getIndexableUrls(): string[] {
     (url) =>
       !url.endsWith(`/${BY_SIZE}`) &&
       !url.endsWith(`/${BY_NEIGHBORHOOD}`) &&
-      !url.endsWith(`/${CARDS}`)
+      !url.endsWith(`/${TABLE}`)
   );
 }
 
 export function getPage(url: string): Page | undefined {
-  if (url.endsWith(`/${CARDS}`)) {
-    return cardsPage(url.slice(0, -CARDS.length));
+  if (url.endsWith(`/${TABLE}`)) {
+    return tablePage(url.slice(0, -TABLE.length));
   }
+  const page = pageWithoutOutlines(url);
+  return page?.layout === 'park-list'
+    ? { ...page, children: page.children.map(withCardOutline) }
+    : page;
+}
+
+/**
+ * Any page, but a park list here carries no outlines: `getPage` adds them
+ * for the cards, and the table goes without.
+ */
+function pageWithoutOutlines(url: string): Page | undefined {
   if (url.endsWith(`/${BY_SIZE}`)) {
     return bySizePage(url.slice(0, -BY_SIZE.length));
   }
