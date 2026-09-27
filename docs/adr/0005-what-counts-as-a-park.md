@@ -1,6 +1,6 @@
 # ADR-0005: What counts as a Park
 
-- **Status**: Accepted, amended by ADR-0006, ADR-0009 and ADR-0010
+- **Status**: Accepted, amended by ADR-0006, ADR-0009 and ADR-0010, clarified by #299
 - **Date**: 2026-09-18
 
 ## Context
@@ -13,7 +13,7 @@
 
 These are not Parks:
 
-- A street median or "mall", a traffic triangle, a street corner, a bridge, or the plaza around a building.
+- A street median or "mall", a traffic triangle, a street corner, a bridge, or the plaza around a building. A small piece of land between streets is a traffic triangle only when its owner does not list it as a park. The shape alone does not decide (#299).
 - School grounds, even when the public can use the fields after school.
 - A building. An R-Center, a lodge or a rink is a **Facility** of the Park that holds it.
 
@@ -33,5 +33,5 @@ For a city row, the city's own park GIS layer (`Hosted/Parks_Open_Space_Points`)
 - #75 deleted six pages and moved a seventh, with no redirect. Five R-Centers share an address with an operating RCSD school: `adams-street-rec-center`, `clinton-baden-rec-center`, `humboldt-recreation-center`, `south-avenue-recreation-center` and `ryan-community-center`. `danforth-community-center` sits on a parcel classed Benevolent, beside a Street Mall. `seneca-park-zoo` became a `Zoo` Facility of `seneca-park`, and its own page went.
 - #75 kept six pages. `gardiner-avenue` took the layer's `name2`, Gardiner Ave. Playground, as its title. Five R-Centers sit on City parcels that ADR-0009's test proves are grounds, so they stay on the Edgerton pattern: `avenue-d-rec-center`, `campbell-st-rec-center`, `carter-st-rec-center`, `david-f-gantt-recreation-center` and `flint-st-recreation-center`. Each gained its R-Center as a Facility.
 - This ADR sorts a place into two states: it is a Park, or it never was one. `forest-hills-playground` is neither. ADR-0010 adds the third state, a Former Park, and amends this one.
-- #299 kept two small triangles bounded by streets, with no tax parcel under either: Remembrance Park in Brockport and Memorial Park (`ogden-memorial-park`) in Spencerport. Each owner calls its triangle a park. Brockport lists Remembrance Park with its village parks, and Ogden's 2024 Parks Master Plan calls Memorial Park a Village park. The shape does not make a place a traffic triangle. As with a city row, the owner's own listing decides: a triangle is a traffic triangle when its owner does not list it as a park.
+- #299 kept two small triangles bounded by streets, with no tax parcel under either: Remembrance Park in Brockport and Veteran's Memorial Park (`ogden-memorial-park`) in Spencerport, which Ogden calls Memorial Park. Each owner calls its triangle a park. Brockport lists Remembrance Park with its village parks, and Ogden's 2024 Parks Master Plan calls Memorial Park a Village park. The shape does not make a place a traffic triangle. The owner's own listing decides, as the city GIS layer decides for a city row. The Decision section now says this.
 - #299 made `pittsford-town-dog-park` a Facility of Habecker Fields. It is two fenced areas inside the parcel that holds Habecker Fields, so it is not a standalone Park, and it keeps its own hours. Its old URL redirects to Habecker Fields.

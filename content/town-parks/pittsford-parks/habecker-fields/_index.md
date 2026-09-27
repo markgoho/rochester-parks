@@ -35,8 +35,8 @@ facilities:
         closes: 'dusk'
 ---
 
-Habecker Fields covers 6 acres at 34 East Street in Pittsford. It has two Little League fields and one T-ball field for youth baseball and softball.
+Habecker Fields covers 6 acres at 34 East Street in Pittsford. It has two Little League fields and a T-ball field for youth baseball and softball.
 
-The Pittsford Town Dog Park is next to the fields, open 7:00am to dusk all year. It has a fenced area for all dogs and one for small dogs under 40 pounds. There are dog play structures, a dog wash station, water fountains and benches. Trails lead to the Cartersville and Simon Stone's Mill trails.
+The Pittsford Town Dog Park, next to the fields, is open 7:00am to dusk all year. It has a fenced area for all dogs and separate areas for small dogs under 40 pounds. It has dog play structures, a dog wash station and water fountains. It links to the Cartersville and Simon Stone's Mill trails.
 
-The dog park is in the Monroe County Dog Park System. License your dog in its home town. Then register it at the County Parks Department, 171 Reservoir Avenue.
+The dog park is in the Monroe County Dog Park System. License your dog in its home town, then register it at the County Parks Department, 171 Reservoir Avenue.

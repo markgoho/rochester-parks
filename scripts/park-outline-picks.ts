@@ -818,9 +818,8 @@ export const PICKS: Record<string, Pick> = {
   /**
    * 34 East St (25.76 ac, Rec facility) holds the three ball fields, their
    * parking, the dog park (a Facility of this Park, #299) and the woods
-   * behind them. The fields are its main
-   * use, so this Park gets the parcel; the page's 6 ac counts only the fields
-   * (ADR-0003).
+   * behind them. The fields are its main use, so this Park gets the parcel;
+   * the page's 6 ac counts only the fields (ADR-0003).
    */
   '/town-parks/pittsford-parks/habecker-fields/': {
     layer: 'county parcels',
