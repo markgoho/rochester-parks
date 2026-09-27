@@ -9,7 +9,9 @@
  *   2. The parcel under the point of any other class, when two signals
  *      agree: the page address, a City owner name that holds the Park's
  *      name, the City's O-S Open Space zoning at the point, or acres within
- *      15% of the page's. A house or apartment lot never counts its acres.
+ *      15% of the page's. The same street counts as the page address when
+ *      either side has no number. A house or apartment lot never counts its
+ *      acres.
  *      One signal is not enough: a page address alone gives a firehouse or
  *      a police station (#292).
  *   3. The nearest park-type parcel within 60 m.
