@@ -31,14 +31,14 @@ All source links are at tag `v1.5.2`. The built file on `prototype/search-map` i
 
 From the docs table ([docs/custom-components.md L52-L63](https://github.com/Pagefind/pagefind/blob/v1.5.2/docs/content/docs/custom-components.md?plain=1#L52-L63)) and the types ([types.ts L65-L74](https://github.com/Pagefind/pagefind/blob/v1.5.2/pagefind_ui/component/types.ts#L65-L74)):
 
-| Event | Callback arguments | When |
-|---|---|---|
-| `search` | `(term: string, filters: FilterSelection)` | At once, when a search starts |
-| `loading` | none | Before each search |
-| `results` | `(searchResult: PagefindSearchResult)` | When results are ready |
-| `filters` | `({ available, total })` | When filter counts change |
-| `error` | `(error: PagefindError)` | When Pagefind cannot load or search |
-| `translations` | `(translations, direction)` | When the language changes |
+| Event          | Callback arguments                         | When                                |
+| -------------- | ------------------------------------------ | ----------------------------------- |
+| `search`       | `(term: string, filters: FilterSelection)` | At once, when a search starts       |
+| `loading`      | none                                       | Before each search                  |
+| `results`      | `(searchResult: PagefindSearchResult)`     | When results are ready              |
+| `filters`      | `({ available, total })`                   | When filter counts change           |
+| `error`        | `(error: PagefindError)`                   | When Pagefind cannot load or search |
+| `translations` | `(translations, direction)`                | When the language changes           |
 
 `PagefindSearchResult` is `{ results: PagefindRawResult[], filters?, totalFilters?, unfilteredTotalCount? }`, and each raw result is `{ id, data: () => Promise<PagefindResultData> }` ([types.ts L4-L14](https://github.com/Pagefind/pagefind/blob/v1.5.2/pagefind_ui/component/types.ts#L4-L14)). The count is available at once; the URL and title of a result need `await result.data()` ([docs/custom-components.md L146-L160](https://github.com/Pagefind/pagefind/blob/v1.5.2/docs/content/docs/custom-components.md?plain=1#L146-L160)).
 
@@ -78,11 +78,24 @@ This is not a design; it shows how the pieces connect. `send` is a placeholder f
 
 ```js
 const instance = window.PagefindComponents.getInstanceManager().getInstance('default');
-let term = '', count = 0, sent = '', timer;
-const flush = (how) => { if (term && term !== sent) { sent = term; send(term, count, how); } };
+let term = '',
+  count = 0,
+  sent = '',
+  timer;
+const flush = (how) => {
+  if (term && term !== sent) {
+    sent = term;
+    send(term, count, how);
+  }
+};
 instance.on('search', (t) => {
   clearTimeout(timer);
-  if (!t.trim()) { flush('left'); term = ''; sent = ''; return; }
+  if (!t.trim()) {
+    flush('left');
+    term = '';
+    sent = '';
+    return;
+  }
   term = t.trim();
 });
 instance.on('results', (r) => {
@@ -92,7 +105,9 @@ instance.on('results', (r) => {
 });
 document.querySelector('pagefind-results').addEventListener('click', (e) => {
   const a = e.target.closest('a');
-  if (a) { flush('open'); /* also send a.getAttribute('href') and the rank */ }
+  if (a) {
+    flush('open'); /* also send a.getAttribute('href') and the rank */
+  }
 });
 ```
 
@@ -160,7 +175,7 @@ From the [API v1 reference](https://docs.pirsch.io/api-sdks/api-v1) (API v2 "wil
 
 ### Pagefind
 
-- Pagefind is "a fully static search library … without hosting any infrastructure" ([docs/_index.md L6](https://github.com/Pagefind/pagefind/blob/v1.5.2/docs/content/_index.md?plain=1#L6)). The search runs in the browser. The only requests are for index and fragment files on the site's own host (Firebase Hosting). Which index chunks load depends on the words, so host logs show a rough word range at most, not the query.
+- Pagefind is "a fully static search library … without hosting any infrastructure" ([docs/\_index.md L6](https://github.com/Pagefind/pagefind/blob/v1.5.2/docs/content/_index.md?plain=1#L6)). The search runs in the browser. The only requests are for index and fragment files on the site's own host (Firebase Hosting). Which index chunks load depends on the words, so host logs show a rough word range at most, not the query.
 - The Component UI does not write the query to the URL, `localStorage` or `sessionStorage`. A search of `pagefind_ui/component/` finds no `history.`, `URLSearchParams`, `localStorage` or `sessionStorage`. The only `location` use is navigation in `<pagefind-searchbox>`, which this site does not use.
 - Thus a query leaves the browser only if the site's own code sends it.
 
