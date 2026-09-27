@@ -52,7 +52,11 @@
   <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
   <link rel="stylesheet" href="/prototype-search.css" />
   <script defer src="/prototype-search.js"></script>
-  <script type="module" src="/pagefind/pagefind-component-ui.js"></script>
+  <!-- /find hydrates. Pagefind changes its elements when it runs, so there
+       it loads after hydration (see find/+page.svelte). -->
+  {#if page.url.pathname !== '/find/'}
+    <script type="module" src="/pagefind/pagefind-component-ui.js"></script>
+  {/if}
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="description" content={page.data.description} />

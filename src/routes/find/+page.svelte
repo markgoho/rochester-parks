@@ -1,6 +1,16 @@
 <script lang="ts">
   import type { ParkIndexEntry } from '#lib/types.js';
+  import { onMount } from 'svelte';
   import { RESULT_TEMPLATE } from '#lib/prototype-search.js';
+
+  // PROTOTYPE (#298): Pagefind renders into its elements, so it must run
+  // after hydration here, or Svelte rebuilds the page and the dialog is lost.
+  onMount(() => {
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = '/pagefind/pagefind-component-ui.js';
+    document.head.append(script);
+  });
 
   let { data } = $props();
 
