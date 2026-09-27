@@ -20,11 +20,19 @@
  * moves the samples that "Reject as spam" kept in Firestore into
  * `spam-set.json`, with any email address removed. Commit the file.
  *
+ *   bun scripts/spam-eval.ts queue
+ *   bun scripts/spam-eval.ts reject <id>...
+ *
+ * do the same with no browser: `queue` lists the Moderation queue, and
+ * `reject` does what "Reject as spam" does for each Comment named, then adds
+ * it to `spam-set.json`. It closes an announcement issue with `gh`.
+ *
  * Firestore is read with Application Default Credentials
  * (`gcloud auth application-default login`).
  */
 import { initializeApp } from 'firebase-admin/app';
 import { getFirestore, type Timestamp } from 'firebase-admin/firestore';
+import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { titleOf } from '../src/handler.js';
 import {
@@ -198,31 +206,112 @@ const writeSet = (set: SpamSetPost[]) =>
 const noEmail = (text: string) =>
   text.replace(/[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+/g, '[email removed]');
 
-async function pull(): Promise<void> {
+/**
+ * Adds each sample to `spam-set.json` that is not in it yet, with any email
+ * address removed. The caller deletes from Firestore only after this write,
+ * so a failed write loses nothing.
+ */
+function addToSet(samples: FirebaseFirestore.DocumentData[]): void {
   const set = readSet();
   const known = new Set(set.map((post) => post.comment));
-  const snapshot = await getFirestore().collection('spam').get();
-  let added = 0;
-  for (const doc of snapshot.docs) {
-    const sample = doc.data();
-    if (!known.has(sample.comment)) {
-      set.push({
-        comment: sample.comment,
-        page: sample.page,
-        name: noEmail(sample.name),
-        body: noEmail(sample.body),
-        flags: sample.flags,
-        created: (sample.created as Timestamp).toDate().toISOString(),
-      });
-      added++;
-    }
+  const fresh = samples.filter((sample) => !known.has(sample.comment));
+  for (const sample of fresh) {
+    set.push({
+      comment: sample.comment,
+      page: sample.page,
+      name: noEmail(sample.name),
+      body: noEmail(sample.body),
+      flags: sample.flags,
+      created: (sample.created as Timestamp).toDate().toISOString(),
+    });
   }
-  // Written before the delete, so a failed write loses nothing.
   writeSet(set);
+  console.log(`${fresh.length} added, ${set.length} in the spam set.`);
+}
+
+async function pull(): Promise<void> {
+  const snapshot = await getFirestore().collection('spam').get();
+  addToSet(snapshot.docs.map((doc) => doc.data()));
   const batch = getFirestore().batch();
   for (const doc of snapshot.docs) batch.delete(doc.ref);
   await batch.commit();
-  console.log(`${added} added, ${set.length} in the spam set.`);
+}
+
+/** The Moderation queue, oldest first. Never the email. */
+async function queue(): Promise<void> {
+  const snapshot = await getFirestore()
+    .collection('comments')
+    .where('state', '==', 'queue')
+    .get();
+  if (snapshot.empty) console.log('The queue is empty.');
+  // Sorted here: an orderBy on `created` would need a composite index.
+  const docs = snapshot.docs.sort(
+    (a, b) => a.data().created.toMillis() - b.data().created.toMillis()
+  );
+  for (const doc of docs) {
+    const comment = doc.data();
+    const created = (comment.created as Timestamp).toDate().toISOString();
+    console.log(
+      `${doc.id}  ${created.slice(0, 10)}  [${comment.flags.join(', ')}]  ${comment.page}\n  ${comment.name}: ${JSON.stringify(comment.body.slice(0, 160))}`
+    );
+  }
+}
+
+/**
+ * "Reject as spam" with no browser: each queued Comment named goes into the
+ * spam set, with its body as posted, and is then deleted. Its announcement
+ * issue, if any, is closed, as the surface closes it.
+ */
+async function reject(ids: string[]): Promise<void> {
+  const docs = await Promise.all(
+    ids.map((id) => getFirestore().collection('comments').doc(id).get())
+  );
+  const queued = docs.filter((doc) => doc.data()?.state === 'queue');
+  for (const doc of docs.filter((doc) => !queued.includes(doc))) {
+    console.log(`${doc.id}: not in the queue, left alone.`);
+  }
+  addToSet(
+    queued.map((doc) => {
+      const comment = doc.data()!;
+      return {
+        comment: doc.id,
+        page: comment.page,
+        name: comment.name,
+        body: comment.posted ?? comment.body,
+        flags: comment.flags,
+        created: comment.created,
+      };
+    })
+  );
+  const batch = getFirestore().batch();
+  for (const doc of queued) batch.delete(doc.ref);
+  await batch.commit();
+  for (const doc of queued) closeAnnouncement(doc.id);
+}
+
+function closeAnnouncement(commentId: string): void {
+  const gh = (...args: string[]) =>
+    execFileSync('gh', ['-R', 'markgoho/rochester-parks', ...args], {
+      encoding: 'utf8',
+    });
+  const issues = JSON.parse(
+    gh(
+      'issue',
+      'list',
+      '--label',
+      'comment',
+      '--state',
+      'open',
+      '--search',
+      commentId,
+      '--json',
+      'number'
+    )
+  ) as { number: number }[];
+  for (const { number } of issues) {
+    gh('issue', 'close', String(number), '--reason', 'completed');
+    console.log(`${commentId}: announcement issue #${number} closed.`);
+  }
 }
 
 async function posts(): Promise<Post[]> {
@@ -339,6 +428,10 @@ function summary(scored: Scored[]): void {
 initializeApp({ projectId: 'rochester-parks' });
 if (process.argv[2] === 'pull') {
   await pull();
+} else if (process.argv[2] === 'queue') {
+  await queue();
+} else if (process.argv[2] === 'reject') {
+  await reject(process.argv.slice(3));
 } else {
   if (!process.env.TYPESAFE_API_KEY) throw new Error('Set TYPESAFE_API_KEY.');
   const all = await posts();
