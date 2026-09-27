@@ -255,7 +255,10 @@ export interface ParkOutline {
 
 /** Where a Park's outline came from. */
 export interface OutlineSource {
-  /** The ArcGIS layer's own URL (not its `/query` endpoint). */
+  /**
+   * The ArcGIS layer's own URL (not its `/query` endpoint), or
+   * https://www.openstreetmap.org for a way drawn from OpenStreetMap.
+   */
   layer: string;
   /** The feature ids that were joined into the outline, sorted. */
   ids: string[];

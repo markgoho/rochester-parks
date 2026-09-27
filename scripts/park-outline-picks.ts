@@ -7,7 +7,11 @@
  *
  * A pick may also give `clip`, a ring of [longitude, latitude] points: the
  * outline is then only the part of its parcels inside that ring. Use it when
- * one parcel holds two Parks.
+ * one parcel holds two Parks, or a Park is one part of a larger parcel.
+ *
+ * A Park on land that no tax parcel covers can take its outline from
+ * OpenStreetMap: layer 'openstreetmap', `ids` the ways, and `rings` their
+ * points, copied here so a run needs no OpenStreetMap server (#304).
  *
  * `NO_OUTLINE` records the Parks a person decided can have no outline, with
  * the reason; the report prints it.
@@ -114,14 +118,35 @@ function sideOf(line: Ring, side: 'west' | 'east'): Ring {
   ];
 }
 
-export const PICKS: Record<
-  string,
-  {
-    layer: 'county parks' | 'county parcels' | 'city parcels';
-    ids: string[];
-    clip?: Ring;
-  }
-> = {
+/**
+ * St John's Park as OpenStreetMap draws it (way 1507808610, fetched
+ * 2026-09-27): the green at the south tip of the Charlotte fire station
+ * parcel, reaching into the streets around it.
+ */
+const ST_JOHNS_PARK: Ring = [
+  [-77.618246, 43.244461],
+  [-77.61802, 43.24442],
+  [-77.617874, 43.244309],
+  [-77.61825, 43.243985],
+  [-77.618295, 43.243967],
+  [-77.618337, 43.243962],
+  [-77.618376, 43.24397],
+  [-77.618414, 43.243983],
+  [-77.618445, 43.243997],
+  [-77.61846, 43.24402],
+  [-77.61846, 43.244034],
+  [-77.618246, 43.244461],
+];
+
+export type Pick =
+  | {
+      layer: 'county parks' | 'county parcels' | 'city parcels';
+      ids: string[];
+      clip?: Ring;
+    }
+  | { layer: 'openstreetmap'; ids: string[]; rings: Ring[] };
+
+export const PICKS: Record<string, Pick> = {
   /**
    * City-owned vacant lot, 0.31 of 0.4 ac. The only City parcel at Union and
    * University.
@@ -223,6 +248,39 @@ export const PICKS: Record<
   '/rochester-city-parks/ralph-avery-mall/': {
     layer: 'city parcels',
     ids: ['12146000010290010000'],
+  },
+  /**
+   * The skatepark is inside the bridge's ramp loop, on highway land that no
+   * tax parcel covers. OpenStreetMap draws it (way 1333365029, fetched
+   * 2026-09-27) at 0.48 ac. The phase 2 area beside it is still being built,
+   * so it is left out.
+   */
+  '/rochester-city-parks/roc-city-skatepark/': {
+    layer: 'openstreetmap',
+    ids: ['way/1333365029'],
+    rings: [
+      [
+        [-77.607686, 43.151714],
+        [-77.607855, 43.151848],
+        [-77.60813, 43.151565],
+        [-77.608157, 43.151495],
+        [-77.608127, 43.151425],
+        [-77.608024, 43.151338],
+        [-77.607889, 43.151292],
+        [-77.60756, 43.151269],
+        [-77.607686, 43.151714],
+      ],
+    ],
+  },
+  /**
+   * The 0.2 ac green is the south tip of the Charlotte fire station parcel
+   * (4050 Lake Ave, class 662 Police/Fire, 1.08 ac). OpenStreetMap's outline
+   * of the green cuts it out of the parcel: 0.196 ac.
+   */
+  '/rochester-city-parks/st-johns-park/': {
+    layer: 'county parcels',
+    ids: ['26140006121000010180010000'],
+    clip: ST_JOHNS_PARK,
   },
   /**
    * The ruined church and its tower stand on the county's class 960 Public
@@ -334,6 +392,29 @@ export const PICKS: Record<
       '26280002502000010021100000',
       '26280002501000020022000000',
       '26280002501000020023000000',
+    ],
+  },
+  /**
+   * The playground, paths and parking lot sit on the strip between Long Pond
+   * Road and the canal to Lake Ontario, which no tax parcel covers.
+   * OpenStreetMap draws the strip (way 219746926, fetched 2026-09-27) at 2.0
+   * ac, the page's 2 ac.
+   */
+  '/town-parks/greece-parks/goodwin-park/': {
+    layer: 'openstreetmap',
+    ids: ['way/219746926'],
+    rings: [
+      [
+        [-77.67598, 43.292006],
+        [-77.675177, 43.291363],
+        [-77.674243, 43.290397],
+        [-77.673571, 43.290711],
+        [-77.674206, 43.291037],
+        [-77.674868, 43.291533],
+        [-77.675055, 43.291677],
+        [-77.675877, 43.292041],
+        [-77.67598, 43.292006],
+      ],
     ],
   },
   /**
@@ -483,6 +564,28 @@ export const PICKS: Record<
   '/town-parks/mendon-parks/vest-pocket-park/': {
     layer: 'county parcels',
     ids: ['26360122843000010540000000'],
+  },
+  /**
+   * The grass triangle where Union Street meets Brockport Road is in no tax
+   * parcel. OpenStreetMap draws it as Memorial Park (way 546687679, fetched
+   * 2026-09-27) at 0.81 ac, the page's 0.82 ac. #299 asks whether a road
+   * triangle is a Park (ADR-0005).
+   */
+  '/town-parks/ogden-parks/ogden-memorial-park/': {
+    layer: 'openstreetmap',
+    ids: ['way/546687679'],
+    rings: [
+      [
+        [-77.804891, 43.186108],
+        [-77.804547, 43.185721],
+        [-77.804097, 43.185557],
+        [-77.80399, 43.186108],
+        [-77.804081, 43.186158],
+        [-77.804687, 43.186189],
+        [-77.804842, 43.18616],
+        [-77.804891, 43.186108],
+      ],
+    ],
   },
   /**
    * The point is on the tax-exempt 0.28 ac lot at 20 Canal Street on the
@@ -733,6 +836,64 @@ export const PICKS: Record<
     ids: ['26468915012000010340000000'],
   },
   /**
+   * The dog park is two fenced areas, one for all dogs and one for small
+   * dogs, inside the 25.76 ac parcel at 34 East St that Habecker Fields is
+   * drawn from. OpenStreetMap draws both (ways 1245960782 and 1245960783,
+   * fetched 2026-09-27): 1.83 ac of the town's 2 ac. Its outline sits
+   * inside Habecker Fields' outline; #299 asks whether it is a Facility of
+   * Habecker Fields.
+   */
+  '/town-parks/pittsford-parks/pittsford-town-dog-park/': {
+    layer: 'openstreetmap',
+    ids: ['way/1245960782', 'way/1245960783'],
+    rings: [
+      [
+        [-77.496535, 43.074442],
+        [-77.495179, 43.074155],
+        [-77.495388, 43.073604],
+        [-77.495787, 43.073677],
+        [-77.495689, 43.073957],
+        [-77.496594, 43.074126],
+        [-77.496609, 43.074084],
+        [-77.496662, 43.074094],
+        [-77.496535, 43.074442],
+      ],
+      [
+        [-77.496696, 43.073847],
+        [-77.496626, 43.074046],
+        [-77.496676, 43.074055],
+        [-77.496662, 43.074094],
+        [-77.496609, 43.074084],
+        [-77.496594, 43.074126],
+        [-77.495689, 43.073957],
+        [-77.495787, 43.073677],
+        [-77.496696, 43.073847],
+      ],
+    ],
+  },
+  /**
+   * The tree-covered triangle on Park Avenue between High and Spring
+   * streets is street land with no tax parcel. OpenStreetMap draws it
+   * (way 538345349, fetched 2026-09-27) at 0.18 ac. #299 asks whether a
+   * traffic triangle is a Park (ADR-0005).
+   */
+  '/town-parks/sweden-parks/remembrance-park/': {
+    layer: 'openstreetmap',
+    ids: ['way/538345349'],
+    rings: [
+      [
+        [-77.936513, 43.211809],
+        [-77.937018, 43.211483],
+        [-77.937018, 43.211465],
+        [-77.936993, 43.211455],
+        [-77.936652, 43.211451],
+        [-77.936619, 43.211466],
+        [-77.936604, 43.211486],
+        [-77.936513, 43.211809],
+      ],
+    ],
+  },
+  /**
    * Address matches (1002 vs 1000 Ridge Rd), 36.8 of 40.8 ac.
    */
   '/town-parks/webster-parks/ridge-park/': {
@@ -790,33 +951,21 @@ export const PICKS: Record<
 /** Parks with no outline by decision, and why (#292). Key: the page's URL. */
 export const NO_OUTLINE: Record<string, string> = {
   '/rochester-city-parks/jefferson-terrace-park/':
-    'The lawn and play area wrap around the School #4 building on the school parcel, which ADR-0005 excludes. Only two small City lots at the edges are not school land, and they do not draw the Park, so the page keeps its point with no outline.',
+    'The lawn and play area wrap around the School #4 building on the school parcel, which ADR-0005 excludes. Only two small City lots at the edges are not school land, and they do not draw the Park, so the page keeps its point with no outline. OpenStreetMap maps only the ball field, courts and playground, and they are on the school parcel too (#304).',
   '/rochester-city-parks/field-st-park/':
-    'The field is the north half of the School #35 parcel (194 Field St, class 612 School, 3.74 ac); no separate parcel holds it, and ADR-0005 excludes school land.',
+    'The field is the north half of the School #35 parcel (194 Field St, class 612 School, 3.74 ac); no separate parcel holds it, and ADR-0005 excludes school land. OpenStreetMap draws the field (way 545631859, 1.39 ac), but it is all on the school parcel, and a clip does not change who owns the land (#304).',
   '/rochester-city-parks/grape-and-wilder/':
-    'The basketball court and green sit on land that no tax parcel covers, between Wilder St, the I-490 ramps and the railroad; the only parcel there is a 0.006 ac sliver.',
-  '/rochester-city-parks/roc-city-skatepark/':
-    'The skatepark is inside the ramp loop of the Frederick Douglass-Susan B. Anthony Bridge, on highway land that no tax parcel covers.',
-  '/rochester-city-parks/st-johns-park/':
-    'The 0.2 ac green is the south tip of the Charlotte fire station parcel (4050 Lake Ave, class 662 Police/Fire, 1.08 ac), a triangle between Lake Ave and River St; no parcel holds the park alone.',
+    'The basketball court and green sit on land that no tax parcel covers, between Wilder St, the I-490 ramps and the railroad; the only parcel there is a 0.006 ac sliver. OpenStreetMap maps only the 0.16 ac basketball court, not the green (#304).',
   '/state-parks/high-falls-state-park/':
     "The park is planned, not open. The state's framework plan puts about 40 ac on both sides of the gorge across many City, utility and private parcels, and no official boundary exists yet.",
-  '/town-parks/greece-parks/goodwin-park/':
-    "The playground, paths and parking lot sit on the strip between Long Pond Road and the canal to Lake Ontario, and that strip is in no tax parcel. The address, 15 Long Pond Road, is the fire station's parcel across the road.",
   '/town-parks/mendon-parks/big-eddy-park/':
     'Big Eddy is a wide pool of Honeoye Creek inside Rotary Park ("the Big Eddy in Honeoye Creek in Rotary Park"), not a Park of its own: the village lists four parks and no Big Eddy, and the point is on a private taxable house lot at 57 Maplewood Ave. The page is a second page for Rotary Park\'s land (ADR-0007); the nearby 17.2-acre class-963 parcel is Clover Meadows subdivision open space, not this place.',
-  '/town-parks/ogden-parks/ogden-memorial-park/':
-    "The point is on the grass triangle where Union Street meets Brockport Road, and that triangle is in no tax parcel. No park-type parcel is within 450 m, and Ogden's 2024 plan says only that the village owns it. A road triangle may also fail ADR-0005.",
   '/town-parks/perinton-parks/bushnells-basin-docks/':
-    'The docks, restrooms and parking are a strip of canal-bank land with no tax parcel. The parcels next to it are private shops on Pittsford-Victor Rd.',
+    'The docks, restrooms and parking are a strip of canal-bank land with no tax parcel. The parcels next to it are private shops on Pittsford-Victor Rd. OpenStreetMap maps only the dock as a line (way 824181917), and no park area (#304).',
   '/town-parks/pittsford-parks/copper-beech-park/':
-    'The 0.23 ac park is a corner of 14 State St, a 1.08 ac town parcel that is mostly the public parking lot behind State St. The 10 North Main St section has no parcel of its own. No parcel set draws the park without the parking lot.',
+    'The 0.23 ac park is a corner of 14 State St, a 1.08 ac town parcel that is mostly the public parking lot behind State St. The 10 North Main St section has no parcel of its own. No parcel set draws the park without the parking lot. OpenStreetMap draws only the State St section (way 758277550, 0.08 of 0.23 ac), not the North Main St section with the page\'s point (#304).',
   '/town-parks/pittsford-parks/great-embankment-park/':
-    'The ball fields, playground and parking between the canal and Marsh Rd are on canal land with no tax parcel.',
-  '/town-parks/pittsford-parks/pittsford-town-dog-park/':
-    'The dog park is a fenced 2-acre area inside the 25.76 ac parcel at 34 East St that is drawn as Habecker Fields. It has no parcel of its own.',
+    'The ball fields, playground and parking between the canal and Marsh Rd are on canal land with no tax parcel. OpenStreetMap draws the Park (way 468745025) at 35.8 ac, three times the town\'s 12 ac, so it holds canal land that is not the Park (#304).',
   '/town-parks/sweden-parks/harvester-park/':
-    'Harvester Park and the Welcome Center at 11 Water St sit on the south canal bank inside the 93.7-acre state Barge Canal parcel; the park has no tax parcel of its own. The old point was on a Main St shop; it now sits on the canal bank by the Welcome Center.',
-  '/town-parks/sweden-parks/remembrance-park/':
-    'The small tree-covered triangle on Park Avenue between High and Spring streets has no tax parcel: it is street land in the county layer, so no outline can be drawn.',
+    'Harvester Park and the Welcome Center at 11 Water St sit on the south canal bank inside the 93.7-acre state Barge Canal parcel; the park has no tax parcel of its own. The old point was on a Main St shop; it now sits on the canal bank by the Welcome Center. OpenStreetMap has no area for the park to clip the canal parcel with (#304).',
 };

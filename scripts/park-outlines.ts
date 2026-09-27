@@ -55,7 +55,7 @@ import {
   type Poly,
   type Ring,
 } from './park-parcels';
-import { NO_OUTLINE, PICKS } from './park-outline-picks';
+import { NO_OUTLINE, PICKS, type Pick } from './park-outline-picks';
 import type { OutlineSource, ParkOutline } from '../src/lib/types';
 
 const CONTENT_ROOT = new URL('../content', import.meta.url).pathname;
@@ -72,6 +72,8 @@ const PARCELS_LAYER =
   'https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0';
 const CITY_LAYER =
   'https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4';
+/** With a pick's `way/<id>`, the URL of the way the outline came from. */
+const OSM_LAYER = 'https://www.openstreetmap.org';
 const CITY_ZONING_LAYER =
   'https://maps.cityofrochester.gov/server/rest/services/Open_Data/Zoning_Districts_Open_Data/FeatureServer/0';
 
@@ -434,14 +436,16 @@ async function loadCountyParks(): Promise<Map<string, CountyPark>> {
   return parks;
 }
 
-type PickLayer = 'county parks' | 'county parcels' | 'city parcels';
+type PickLayer = Exclude<Pick['layer'], 'openstreetmap'>;
 
-function pickLayer(kind: PickLayer): string {
-  return kind === 'county parks'
-    ? COUNTY_LAYER
-    : kind === 'county parcels'
-      ? PARCELS_LAYER
-      : CITY_LAYER;
+function pickLayer(kind: Pick['layer']): string {
+  return kind === 'openstreetmap'
+    ? OSM_LAYER
+    : kind === 'county parks'
+      ? COUNTY_LAYER
+      : kind === 'county parcels'
+        ? PARCELS_LAYER
+        : CITY_LAYER;
 }
 
 /** Fetches a hand-picked list of feature ids straight from their layer. */
@@ -556,7 +560,7 @@ async function resolvePage(
   countyNameByUrl: Map<string, string>,
   parcelSource: ParcelSource,
   citySource: ParcelSource,
-  picks: typeof PICKS,
+  picks: Record<string, Pick>,
   claimed: Map<string, string>,
   seeds: Map<string, Seed | ParcelMiss>
 ): Promise<Resolved | Missed> {
@@ -574,6 +578,17 @@ async function resolvePage(
   }
 
   const pick = picks[page.url];
+  if (pick?.layer === 'openstreetmap') {
+    return {
+      url: page.url,
+      section,
+      polys: pick.rings.map((ring) => [ring]),
+      ids: [...pick.ids].sort(),
+      layer: OSM_LAYER,
+      picked: true,
+      viaNear: false,
+    };
+  }
   if (pick) {
     const { layer, polys } = await fetchByIds(pick.layer, pick.ids);
     return {
@@ -882,7 +897,8 @@ function printMeasure(
     if (pick) {
       const wanted = key(pickLayer(pick.layer), pick.ids);
       let verdict: string;
-      if (!got) verdict = 'missed';
+      if (pick.layer === 'openstreetmap') verdict = 'no parcel to find';
+      else if (!got) verdict = 'missed';
       else if (pick.clip) verdict = 'needs a clip';
       else if (gotKey === wanted) verdict = 'reproduced';
       else if (got.layer !== pickLayer(pick.layer)) verdict = 'other layer';
@@ -962,14 +978,14 @@ async function main(): Promise<void> {
   const parcelSource = makeParcelSource(PARCELS_LAYER, false);
   const citySource = makeParcelSource(CITY_LAYER, true);
 
-  const picks = MEASURE ? {} : PICKS;
+  const picks: Record<string, Pick> = MEASURE ? {} : PICKS;
 
   // Growth never takes another Park's parcel: a picked Park's ids, or the
   // seed of a Park the search will place (#300). Key: parcel id, value: the
   // Park's URL.
   const claimed = new Map<string, string>();
   for (const [url, pick] of Object.entries(picks)) {
-    if (pick.layer !== 'county parks') {
+    if (pick.layer !== 'county parks' && pick.layer !== 'openstreetmap') {
       for (const id of pick.ids) claimed.set(id, url);
     }
   }
