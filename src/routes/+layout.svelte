@@ -3,6 +3,7 @@
   import { page } from '$app/state';
   import Header from '#lib/components/Header.svelte';
   import JsonLd from '#lib/components/JsonLd.svelte';
+  import { RESULT_TEMPLATE } from '#lib/prototype-search.js';
   import { SITE_TITLE, absUrl } from '#lib/site.js';
   import archivoBlack from '#lib/fonts/ArchivoBlack-400.woff2?url';
   import publicSans from '#lib/fonts/PublicSans-300_700.woff2?url';
@@ -45,6 +46,13 @@
     type="font/woff2"
     crossorigin="anonymous"
   />
+  <!-- PROTOTYPE (#298): Pagefind UI, then the variant switch. The deferred
+       classic script runs before the module, so it sets the dead shortcuts
+       before the triggers read them. -->
+  <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
+  <link rel="stylesheet" href="/prototype-search.css" />
+  <script defer src="/prototype-search.js"></script>
+  <script type="module" src="/pagefind/pagefind-component-ui.js"></script>
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="description" content={page.data.description} />
@@ -74,6 +82,21 @@
     {SITE_TITLE} · every park in Monroe County, New York
   </p>
 </footer>
+
+<!-- PROTOTYPE (#298): the one search dialog every header trigger opens. -->
+<pagefind-modal reset-on-close>
+  <pagefind-modal-header>
+    <pagefind-input placeholder="Search parks, trails and posts"
+    ></pagefind-input>
+  </pagefind-modal-header>
+  <pagefind-modal-body>
+    <pagefind-summary></pagefind-summary>
+    <pagefind-results hide-sub-results>{@html RESULT_TEMPLATE}</pagefind-results>
+  </pagefind-modal-body>
+  <pagefind-modal-footer>
+    <pagefind-keyboard-hints></pagefind-keyboard-hints>
+  </pagefind-modal-footer>
+</pagefind-modal>
 
 {#each page.data.jsonLd ?? [] as data, i (i)}
   <JsonLd {data} />

@@ -1,0 +1,138 @@
+/* PROTOTYPE (#298): throwaway. Pagefind styles only through --pf-*; its own
+   rules use three-ID selectors and all: revert, so no class rule here can
+   change a pf-* element. Custom properties still inherit through them. */
+
+:root {
+  --pf-font: var(--sans);
+  --pf-text: var(--ink);
+  --pf-text-secondary: var(--ink-soft);
+  --pf-text-muted: var(--ink-muted);
+  --pf-background: var(--card);
+  --pf-border: var(--rule);
+  --pf-border-focus: var(--orange);
+  --pf-outline-focus: var(--orange);
+  --pf-hover: var(--paper-zebra);
+  --pf-mark: var(--orange-ink);
+  --pf-skeleton: var(--paper-sunk);
+  --pf-skeleton-shine: var(--paper);
+  --pf-border-radius: 0;
+  --pf-modal-backdrop: hsl(148 34% 12% / 0.55);
+  --pf-result-title-font-size: var(--step-0);
+  --pf-result-excerpt-font-size: var(--step--1);
+  --pf-input-font-size: var(--step-0);
+}
+
+/* Only the chosen variant's pieces show. */
+html:not([data-variant='A']) [data-pf-variant='A'],
+html:not([data-variant='B']) [data-pf-variant='B'],
+html:not([data-variant='C']) [data-pf-variant='C'] {
+  display: none;
+}
+
+/* The second line of a result. Not a pf-* class, so site CSS reaches it. */
+.pr-line {
+  margin: 0.15em 0 0.35em;
+  font-family: var(--mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink-muted);
+}
+
+/* The header slot keeps the trigger's space before the script runs. */
+.site-header .pr-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--tap-target);
+  min-block-size: var(--tap-target);
+  --pf-background: transparent;
+  --pf-hover: transparent;
+  --pf-border: transparent;
+  --pf-text: var(--paper);
+  --pf-text-secondary: var(--paper);
+  --pf-text-muted: var(--paper);
+}
+
+/* A: one more item in the nav line; a centred panel. */
+html[data-variant='A'] {
+  --pf-modal-top: 12dvh;
+  --pf-modal-max-width: 40rem;
+}
+
+/* B: next to the site name; a sheet that drops from the top edge. */
+.site-header .pr-slot[data-pf-variant='B'] {
+  margin-inline-end: auto;
+  margin-inline-start: calc(-1 * var(--space-12));
+}
+html[data-variant='B'] {
+  --pf-modal-top: 0;
+  --pf-modal-max-width: 100vw;
+  --pf-modal-max-height: 85dvh;
+}
+
+/* C: an orange tool button at the end of the line; the whole screen, with the
+   results in columns. */
+.site-header .pr-slot[data-pf-variant='C'] {
+  background: var(--orange);
+  --pf-hover: var(--orange-ink);
+}
+html[data-variant='C'] {
+  --pf-modal-top: 0;
+  --pf-modal-max-width: 100vw;
+  --pf-modal-max-height: 100dvh;
+  --pf-results-display: grid;
+  --pf-results-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  --pf-results-gap: var(--space-16);
+}
+
+/* /find */
+.pr-find[data-pf-variant='A'],
+.pr-find[data-pf-variant='B'] {
+  margin-block: var(--space-24);
+  max-inline-size: var(--measure);
+}
+.pr-find[data-pf-variant='A'] pagefind-modal-trigger {
+  display: block;
+  --pf-input-height: var(--control-height);
+}
+/* B: while the box has results, the amenity filter steps aside. */
+html[data-variant='B'] main:has(pagefind-results[instance='find-b'] .pf-result)
+  > :is(.filters, .summary-frame, .results) {
+  display: none;
+}
+.pr-find--c {
+  border-block-end: var(--line-hair) solid var(--rule);
+}
+
+/* The switcher. Not part of the design. */
+.pr-switcher {
+  position: fixed;
+  inset-block-end: 12px;
+  inset-inline: 0;
+  margin-inline: auto;
+  inline-size: fit-content;
+  max-inline-size: calc(100vw - 24px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font: 13px/1.3 system-ui, sans-serif;
+  box-shadow: 0 4px 16px #0006;
+}
+.pr-switcher button {
+  border: 0;
+  border-radius: 999px;
+  background: #333;
+  color: #fff;
+  font: inherit;
+  inline-size: 28px;
+  block-size: 28px;
+  cursor: pointer;
+}
+.pr-switcher b {
+  color: #ffb070;
+}

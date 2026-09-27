@@ -186,7 +186,11 @@
 <!-- The list is the container the town layout queries, and the box a row
      picks its dot inside. A container cannot query itself, so the grid is
      the element inside it. -->
-<div class="list">
+<div
+  class="list"
+  data-pagefind-body={cards || bySize || byNeighborhood ? undefined : ''}
+>
+  <span hidden data-pagefind-ignore data-pagefind-meta="line">Park List</span>
   <!-- Each card that shows its place draws its map from here, so each place
        and the river are in the page once, not once for each card. -->
   {#if cardPlaces.length}

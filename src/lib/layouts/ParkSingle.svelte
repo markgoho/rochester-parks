@@ -17,6 +17,7 @@
   import {
     isCitySection,
     isCountySection,
+    isStateSection,
     municipality,
     placeAt,
     townAt,
@@ -126,11 +127,28 @@
       .length
   );
   const facilities = $derived(meta?.facilities ?? []);
+  // PROTOTYPE (#298): the second line of a search result, per #297.
+  const searchLine = $derived(
+    [
+      trailPage ? 'Trail' : page.park?.planned ? 'Planned' : undefined,
+      trailPage ? undefined : city && where !== 'Rochester' ? `${where}, Rochester` : where,
+      county ? 'Monroe County' : undefined,
+      meta && isStateSection(meta.section.url) ? 'New York State' : undefined,
+      meta?.acres !== undefined ? `${formatAcres(meta.acres)} acres` : undefined,
+    ]
+      .filter(Boolean)
+      .join(' · ')
+  );
 </script>
 
 <!-- The article is the container the layout queries. A container cannot query
      itself, so the grid is the element inside it. -->
-<article class="park">
+<article
+  class="park"
+  data-pagefind-body={page.park?.former ? undefined : ''}
+>
+  <!-- PROTOTYPE (#298): the result's second line. -->
+  <span hidden data-pagefind-ignore data-pagefind-meta="line">{searchLine}</span>
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <div class="layout">
@@ -158,7 +176,7 @@
     {#if meta}
       <!-- The facts about the park. Beside the write-up when there is room for
            both, above it when there is not. -->
-      <aside class="rail" aria-label="About {page.title}">
+      <aside class="rail" data-pagefind-ignore aria-label="About {page.title}">
         <section class="panel basics">
           <div class="panel__head">
             <span class="eyebrow">The basics</span>
@@ -275,7 +293,7 @@
            grows with the park, and a rail that holds both panels outgrows the
            screen, which would leave the reader scrolling the rail. -->
       {#if meta?.amenities.length}
-        <section class="panel amenities">
+        <section class="panel amenities" data-pagefind-ignore>
           <div class="panel__head">
             <span class="eyebrow"
               >{meta.former ? 'What was there' : 'What is there'}</span
@@ -291,7 +309,7 @@
       {/if}
 
       {#if meta && recorded === 0}
-        <div class="panel empty">
+        <div class="panel empty" data-pagefind-ignore>
           <div class="panel__head">
             <span class="eyebrow">What we know</span>
             <span class="eyebrow eyebrow--accent mono">0 of 3</span>
@@ -359,7 +377,7 @@
         </nav>
       {/if}
 
-      {#if page.commentArea}<CommentArea area={page.commentArea} />{/if}
+      {#if page.commentArea}<div data-pagefind-ignore><CommentArea area={page.commentArea} /></div>{/if}
     </div>
   </div>
 
