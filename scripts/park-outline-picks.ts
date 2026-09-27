@@ -123,14 +123,6 @@ export const PICKS: Record<
   }
 > = {
   /**
-   * Owner name is the Park ("City Of Roch Aberdeen Pk"), acres and address
-   * match.
-   */
-  '/rochester-city-parks/aberdeen-square-park/': {
-    layer: 'city parcels',
-    ids: ['12072000020490000000'],
-  },
-  /**
    * City-owned vacant lot, 0.31 of 0.4 ac. The only City parcel at Union and
    * University.
    */
@@ -172,74 +164,6 @@ export const PICKS: Record<
   '/rochester-city-parks/brewster-harding-park/': {
     layer: 'city parcels',
     ids: ['07621000010940000000'],
-  },
-  /**
-   * Address matches (37 Merchants Rd), acres match.
-   */
-  '/rochester-city-parks/browncroft-rose-garden-park/': {
-    layer: 'city parcels',
-    ids: ['10783000010340000000'],
-  },
-  /**
-   * 4.36 of 4.6 ac, City-owned, at Latta Rd.
-   */
-  '/rochester-city-parks/charlotte-village-green/': {
-    layer: 'city parcels',
-    ids: ['04762000010010000000'],
-  },
-  /**
-   * Owner name is the Park ("Cobbs Hill Reserv"), 104 of 109 ac. The reservoir
-   * is inside the Park.
-   */
-  '/rochester-city-parks/cobbs-hill-park-and-washington-grove/': {
-    layer: 'city parcels',
-    ids: ['12270000010010000000'],
-  },
-  /**
-   * The City's class 590 Park parcel at 67-71 Stone St (0.30 ac) is the lawn
-   * at Stone St and Broad St. The old point sat on the parcel edge in the
-   * street.
-   */
-  '/rochester-city-parks/cornerstone-park/': {
-    layer: 'city parcels',
-    ids: ['12123000020290000000'],
-  },
-  /**
-   * 31.7 of 30.9 ac. ADR-0009 already treats the grounds around the R-Center
-   * as the Park.
-   */
-  '/rochester-city-parks/edgerton-park/': {
-    layer: 'city parcels',
-    ids: ['10542000010870010000'],
-  },
-  /**
-   * The City page puts the park on the east bank from Andrews St to the Sister
-   * Cities Bridge and Bragdon Place; that strip is the City's class 963
-   * Municipal Park parcel at 65 N Water St (0.81 ac). The old point was on the
-   * west-bank garage under Austin Steward Plaza.
-   */
-  '/rochester-city-parks/genesee-crossroads-park/': {
-    layer: 'city parcels',
-    ids: ['10679000010630000000'],
-  },
-  /**
-   * The current nine City class 590 Park parcels are right: the riverside
-   * strip at 600 Ford St, the court and playground at 171-191 Mt Hope Ave and
-   * the lawns at Mt Hope Ave and Ford St. They come to 11.9 ac, the page's 12.
-   */
-  '/rochester-city-parks/genesee-gateway-park/': {
-    layer: 'city parcels',
-    ids: [
-      '12155000010010000000',
-      '12155000010550010000',
-      '12155000010560000000',
-      '12155000010570000000',
-      '12155000010580000000',
-      '12155000010600010000',
-      '12162000010330000000',
-      '12162000010340000000',
-      '12162000010350000000',
-    ],
   },
   /**
    * The three City parcels on the west rim of the gorge from Driving Park Ave
@@ -294,13 +218,6 @@ export const PICKS: Record<
     ],
   },
   /**
-   * Address matches (26 vs 25 Quamina Dr), acres match.
-   */
-  '/rochester-city-parks/quamina-park/': {
-    layer: 'city parcels',
-    ids: ['10639000030360000000'],
-  },
-  /**
    * City-owned, 0.38 of 0.3 ac, near Adams St.
    */
   '/rochester-city-parks/ralph-avery-mall/': {
@@ -316,13 +233,6 @@ export const PICKS: Record<
   '/rochester-city-parks/st-josephs-park/': {
     layer: 'county parcels',
     ids: ['26140010680000010450000000'],
-  },
-  /**
-   * Owner name is the Park, address and acres match.
-   */
-  '/rochester-city-parks/susan-b-anthony-square-park/': {
-    layer: 'city parcels',
-    ids: ['12036000010110000000'],
   },
   /**
    * The City's own vacant parcels at the Park's address (350 Boxart St), the
@@ -363,13 +273,6 @@ export const PICKS: Record<
     ids: ['12128000030050000000'],
   },
   /**
-   * City-owned, 0.77 of 0.8 ac, at Marshall St.
-   */
-  '/rochester-city-parks/wadsworth-square/': {
-    layer: 'city parcels',
-    ids: ['12140000020020000000'],
-  },
-  /**
    * The three tax-exempt lots of the Brighton Recreation subdivision are
    * certain: R-1A (26.54 ac, lodge, fields and courts), R-1B (5.46 ac, the
    * Buckland farmhouse) and Lot 2 (18.09 ac, the south ball diamonds, classed
@@ -387,39 +290,6 @@ export const PICKS: Record<
       '26200013620000010222000000',
       '26200014908000010021110000',
     ],
-  },
-  /**
-   * 74.6 of 76.6 ac, on Crittenden Rd.
-   */
-  '/town-parks/brighton-parks/lynch-woods-park/': {
-    layer: 'county parcels',
-    ids: ['26200014815000030391000000'],
-  },
-  /**
-   * 73.1 of 72 ac, on Elmwood Ave.
-   */
-  '/town-parks/brighton-parks/sandra-l-frankel-nature-park/': {
-    layer: 'county parcels',
-    ids: ['26200013616000020292100000'],
-  },
-  /**
-   * The tax roll names the 14.58 ac parcel at 100 Kentucky Avenue 'Lions
-   * Park'. This matches the page's 14 ac and holds the tennis courts and
-   * playground. The old search also joined 160 Spencerport Road, which is
-   * Memorial Park.
-   */
-  '/town-parks/gates-parks/lions-park/': {
-    layer: 'county parcels',
-    ids: ['26260010410000020020000000'],
-  },
-  /**
-   * Memorial Park's outline also had Lions Park's parcel. It is only the 29.47
-   * ac parcel at its own address, 160 Spencerport Road, which matches the
-   * page's 30 ac.
-   */
-  '/town-parks/gates-parks/memorial-park/': {
-    layer: 'county parcels',
-    ids: ['26260010410000020031000000'],
   },
   /**
    * The town's land at Latta Road and Dewey Avenue is one block of three
@@ -467,23 +337,6 @@ export const PICKS: Record<
     ],
   },
   /**
-   * Address matches (461 Bonesteel St), 9.6 of 9 ac.
-   */
-  '/town-parks/greece-parks/columbus-park/': {
-    layer: 'county parcels',
-    ids: ['26280007514000030400000000'],
-  },
-  /**
-   * The tax roll names this 6.9 ac picnic-site parcel 'Henpeck Park'. The old
-   * search also joined Greece Canal Park (565 ac) and other county park land.
-   * The parking lot and boat launch beside it are on untaxed canal land in no
-   * parcel.
-   */
-  '/town-parks/greece-parks/henpeck-park/': {
-    layer: 'county parcels',
-    ids: ['26280008804000010240000000'],
-  },
-  /**
    * The tax roll marks both parcels 'Town Rec': 43.6 ac at 3688 Latta Road and
    * 17.97 ac 'Rear Of 3688'. Together they are 61.6 of the page's 73.64 ac;
    * the rest is not found, and Firemen's Field next door belongs to the fire
@@ -492,14 +345,6 @@ export const PICKS: Record<
   '/town-parks/greece-parks/klafehn-park/': {
     layer: 'county parcels',
     ids: ['26280004403000010011000000', '26280004401000020380000000'],
-  },
-  /**
-   * The point is on the YMCA next door. The touching 593 Picnic-site parcel is
-   * at the page address (732 Long Pond Rd): pick it. 10 of 16.7 ac.
-   */
-  '/town-parks/greece-parks/sawyer-park/': {
-    layer: 'county parcels',
-    ids: ['26280004503000040130000000'],
   },
   /**
    * The same block as Badgerow Park South: Veteran's Memorial Park takes the
@@ -516,13 +361,6 @@ export const PICKS: Record<
     clip: sideOf(SLATER_CREEK, 'west'),
   },
   /**
-   * Address matches (1658 Lake Rd), acres match.
-   */
-  '/town-parks/hamlin-parks/hamlin-recreation-area/': {
-    layer: 'county parcels',
-    ids: ['26300002103000020363000000'],
-  },
-  /**
    * The DEC notice for Scout Park's 2023 work gives 4180 Brick Schoolhouse Rd,
    * the mowed 5.2-acre class-963 parcel with the pavilion; the tax-exempt
    * 9.36-acre wooded creek parcel beside it matches the page's 9.13 acres and
@@ -533,36 +371,11 @@ export const PICKS: Record<
     ids: ['26300001204000020082200000', '26300001204000020100000000'],
   },
   /**
-   * The page puts the 30-acre Park between Victory Baptist Church, I-390 and
-   * Wildbriar Road. The tax-exempt 30.1 ac wooded parcel behind the Wildbriar
-   * Road houses fits all three. The old point was on a house lot.
-   */
-  '/town-parks/henrietta-parks/andrews-park/': {
-    layer: 'county parcels',
-    ids: ['26320016213000010031100000'],
-  },
-  /**
-   * The tax-exempt 1 ac Playground parcel at 108 Belmanor Drive is an open
-   * lawn, which matches the Park's one amenity, an open field. The old point
-   * was on a storage lot in the office park next to it.
-   */
-  '/town-parks/henrietta-parks/belmanor-park/': {
-    layer: 'county parcels',
-    ids: ['26320016305000010010000000'],
-  },
-  /**
    * 98 of 90 ac, a government parcel on Calkins Rd.
    */
   '/town-parks/henrietta-parks/henrietta-veterans-memorial-park/': {
     layer: 'county parcels',
     ids: ['26320017605000010551100000'],
-  },
-  /**
-   * Address and acres match exactly (19.49 ac). Class is golf course.
-   */
-  '/town-parks/henrietta-parks/lookup-park/': {
-    layer: 'county parcels',
-    ids: ['26320019005000010311000000'],
   },
   /**
    * The town says the hill is on Erie Station Road across from Windelin Drive.
@@ -573,13 +386,6 @@ export const PICKS: Record<
   '/town-parks/henrietta-parks/sledding-hill/': {
     layer: 'county parcels',
     ids: ['26320018912000030774000000'],
-  },
-  /**
-   * Address matches (1585 Calkins Rd), 69.5 of 68 ac.
-   */
-  '/town-parks/henrietta-parks/tinker-nature-park/': {
-    layer: 'county parcels',
-    ids: ['26320017705000010700000000'],
   },
   /**
    * The playground and lawn are on the tax-exempt 1.5 ac parcel at 361 Lake
@@ -668,16 +474,6 @@ export const PICKS: Record<
     ids: ['26360122120000010010000000'],
   },
   /**
-   * The current outline is right: the 79.32-acre class-963 parcel at 95 Semmel
-   * Road matches the page's 79.08 acres and holds the ball field, tennis
-   * courts and playground. The old point was on the town highway garage next
-   * door; it now sits by the ball field.
-   */
-  '/town-parks/mendon-parks/semmel-road-park/': {
-    layer: 'county parcels',
-    ids: ['26368922201000010032000000'],
-  },
-  /**
    * The tax-exempt 0.43-acre village strip between W Main St and Honeoye
    * Creek, across from Norton St, is the only public land where the village
    * page puts the park (creek view, picnic tables); it is classed Parking lot
@@ -687,25 +483,6 @@ export const PICKS: Record<
   '/town-parks/mendon-parks/vest-pocket-park/': {
     layer: 'county parcels',
     ids: ['26360122843000010540000000'],
-  },
-  /**
-   * The 0.44 ac parcel at 416 Washington Street matches the address and acres
-   * in Ogden's 2024 plan. The Canal Road park parcel, 375 m east, is Snick
-   * Hawkins Park.
-   */
-  '/town-parks/ogden-parks/adams-basin-schoolhouse/': {
-    layer: 'county parcels',
-    ids: ['26388908502000030090000000'],
-  },
-  /**
-   * Ogden gives Snick Hawkins Park as 0.28 ac on Canal Road, Adams Basin,
-   * beside the canal. This 0.28 ac Municipal Park parcel on Canal Road in
-   * Adams Basin ('Former Canal Parcel 1227A') matches all three. The old point
-   * was in Spencerport, 4 km east.
-   */
-  '/town-parks/ogden-parks/snick-hawkins-park/': {
-    layer: 'county parcels',
-    ids: ['26388908601000020270000000'],
   },
   /**
    * The point is on the tax-exempt 0.28 ac lot at 20 Canal Street on the
@@ -726,16 +503,6 @@ export const PICKS: Record<
     ids: ['26408904303000020180000000', '26408904303000020092000000'],
   },
   /**
-   * The current parcels are right. The 1111 West Avenue parcel is 'Jennejahn
-   * Park' (31.24 ac, the page's 30.86), and Jennejahn Lodge stands on the 1123
-   * West Avenue park parcel next to it. The old point was on the school's
-   * baseball field. The new point is at the lodge.
-   */
-  '/town-parks/parma-parks/village-park/': {
-    layer: 'county parcels',
-    ids: ['26400103209000040010000000', '26400103209000040410000000'],
-  },
-  /**
    * The town page calls the Park "this 19-acre parcel", which is the 19.1-acre
    * exempt parcel at 1717 Linear Park Dr with the pavilion and Parks office.
    * The 21-acre class-963 parcel east of Linear Park Dr (Paper Mill and
@@ -745,13 +512,6 @@ export const PICKS: Record<
   '/town-parks/penfield-parks/channing-philbrick-park/': {
     layer: 'county parcels',
     ids: ['26420013909000010010000000'],
-  },
-  /**
-   * Address matches (1862 Penfield Rd), 3.8 of 3.38 ac.
-   */
-  '/town-parks/penfield-parks/heritage-park/': {
-    layer: 'county parcels',
-    ids: ['26420013906000020421000000'],
   },
   /**
    * The assessor marks both parcels "p/o La Salle's Landing": the 0.23-acre
@@ -821,17 +581,6 @@ export const PICKS: Record<
     ],
   },
   /**
-   * The launch's trailer parking and lawn are on two town Municipal Park
-   * parcels, 426 Ayrault Rd (0.7 ac, the page's address and acres) and 434
-   * Ayrault Rd (0.5 ac); the ramp itself is on canal land with no tax parcel.
-   * The old point sat on a condo building across the canal, so it moves to the
-   * parking lot.
-   */
-  '/town-parks/perinton-parks/ayrault-boat-launch/': {
-    layer: 'county parcels',
-    ids: ['26448916511000030540000000', '26448916511000030530000000'],
-  },
-  /**
    * 1160 Ayrault Rd (26.6 ac, Municipal Park) is the soccer fields, restroom
    * and parking east of the Trolley Trail on the town's Center Park sheet. The
    * field to the north is in a 36.37 ac parcel (1334 Turk Hill Rd) that also
@@ -842,24 +591,6 @@ export const PICKS: Record<
   '/town-parks/perinton-parks/center-park-east/': {
     layer: 'county parcels',
     ids: ['26448916610000010030000000'],
-  },
-  /**
-   * 1350 Turk Hill Rd (47.69 ac, class Govt bldgs) holds the Community Center,
-   * amphitheater, playground and soccer fields west of the Trolley Trail,
-   * close to the page's 49 ac. 1160 Ayrault Rd is Center Park East, east of
-   * the trail, and the 43.2 ac Old Trolley Rte parcel is the RS&E Trolley
-   * Trail corridor, so neither one is part of this Park.
-   */
-  '/town-parks/perinton-parks/center-park-west/': {
-    layer: 'county parcels',
-    ids: ['26448916610000010041000000'],
-  },
-  /**
-   * Acres match exactly (56.40 ac), on Turk Hill Rd.
-   */
-  '/town-parks/perinton-parks/dewitt-property/': {
-    layer: 'county parcels',
-    ids: ['26448918001000010152000000'],
   },
   /**
    * Lots 1 and 2 of the Lollypop Farm subdivision at Route 31 and Victor Rd
@@ -877,13 +608,6 @@ export const PICKS: Record<
   '/town-parks/perinton-parks/harts-woods/': {
     layer: 'county parcels',
     ids: ['26448916508000010080000000'],
-  },
-  /**
-   * Acres match exactly (73.5 ac), on Garnsey Rd.
-   */
-  '/town-parks/perinton-parks/horizon-hill/': {
-    layer: 'county parcels',
-    ids: ['26448917904000010060000000'],
   },
   /**
    * Thirteen tax-exempt parcels between Whitney Rd E, Wakeman Rd and Macedon
@@ -1009,63 +733,6 @@ export const PICKS: Record<
     ids: ['26468915012000010340000000'],
   },
   /**
-   * A tax-exempt 89.96 ac parcel off West Bloomfield Rd, north of the Thruway,
-   * has the page's acres exactly and the fields and paths of the town's Royal
-   * Coach Trails map. The old point was on West Bloomfield Rd 700 m to the
-   * northeast, so it moves into the field.
-   */
-  '/town-parks/pittsford-parks/royal-coach-park/': {
-    layer: 'county parcels',
-    ids: ['26468919201000010272000000'],
-  },
-  /**
-   * The current parcel is right, but it is only part of the Park. It is the
-   * 1.1 ac Municipal Park parcel on the north bank of Honeoye Creek at the
-   * falls. The memorial and gazebo on the south bank are at the tip of an 83.8
-   * ac greenway parcel, which cannot be added. This explains 1.1 of the page's
-   * 2.30 ac.
-   */
-  '/town-parks/rush-parks/veterans-memorial-park/': {
-    layer: 'county parcels',
-    ids: ['26500021311000010740000000'],
-  },
-  /**
-   * Address and acres match (215.7 of 215 ac).
-   */
-  '/town-parks/rush-parks/white-springs-farm/': {
-    layer: 'county parcels',
-    ids: ['26500020103000010320000000'],
-  },
-  /**
-   * The 1.5-acre class-591 Playground parcel between Barry and Lyman streets
-   * matches the village's 1.5 acres and shows the courts and playground. The
-   * old point was on a house lot about 110 m east.
-   */
-  '/town-parks/sweden-parks/barry-street-park/': {
-    layer: 'county parcels',
-    ids: ['26520106909000040090000000'],
-  },
-  /**
-   * The 0.32-acre class-591 Playground parcel between 207 and 215 Evergreen
-   * Road (so 211, the village's address) backs onto the canal and matches the
-   * village's three-tenths of an acre. The old point was on a house four lots
-   * west.
-   */
-  '/town-parks/sweden-parks/evergreen-tot-lot/': {
-    layer: 'county parcels',
-    ids: ['26520106811000060160000000'],
-  },
-  /**
-   * 760 Herman Rd (28.7 ac, Municipal Park, described as "Herman Rd Forever
-   * Wild Forest", town resolution 295-2023) is the Park at its page address
-   * and acres. Whiting Road Nature Preserve's current outline also holds this
-   * parcel and must drop it.
-   */
-  '/town-parks/webster-parks/herman-road-forever-wild-forest/': {
-    layer: 'county parcels',
-    ids: ['26548906401000010170000000'],
-  },
-  /**
    * Address matches (1002 vs 1000 Ridge Rd), 36.8 of 40.8 ac.
    */
   '/town-parks/webster-parks/ridge-park/': {
@@ -1087,20 +754,6 @@ export const PICKS: Record<
       '2654890630900001078130000',
       '26548906309000010781210000',
       '26548906309000010370000000',
-    ],
-  },
-  /**
-   * The script's own parcels, less 26548906401000010170000000 (760 Herman Rd):
-   * its deed names the Herman Road Forever Wild Forest, which is a Park of its
-   * own.
-   */
-  '/town-parks/webster-parks/whiting-road-nature-preserve/': {
-    layer: 'county parcels',
-    ids: [
-      '26548904903000010120000000',
-      '26548904903000010230000000',
-      '26548904903000010240000000',
-      '26548906401000010451000000',
     ],
   },
   /**
