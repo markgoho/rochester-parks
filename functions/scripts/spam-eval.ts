@@ -28,8 +28,8 @@ import { getFirestore, type Timestamp } from 'firebase-admin/firestore';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { titleOf } from '../src/handler.js';
 import {
-  SPAM_MODEL,
   SPAM_QUESTION,
+  spamRequest,
   type NoulQuestion,
 } from '../src/spam-question.js';
 
@@ -63,128 +63,128 @@ interface Post {
 type Scored = Post & { scores: Record<string, number>; ms: number };
 
 const SET = new URL('./spam-set.json', import.meta.url);
-const P = '/blog/what-makes-a-rochester-park-great/';
-const S = '/town-parks/riga-parks/sanford-road-park/';
+const BLOG_POST = '/blog/what-makes-a-rochester-park-great/';
+const PARK_PAGE = '/town-parks/riga-parks/sanford-road-park/';
 
 /** Written for #259 (the first 14) and #281 (off-topic posts). */
 const SYNTHETIC: [Post['label'], string, string, string][] = [
   [
     'spam',
-    P,
+    BLOG_POST,
     'Jennifer Smith',
     'Great article! I learned a lot. If anyone needs help with their essays, our writing service offers affordable prices and fast delivery. Check us out at essaypro-help.com',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'CryptoMike',
     'Parks are nice but have you heard about the new staking platform? I made 300% in two weeks. DM me on Telegram @cryptomike_real to learn how.',
   ],
   [
     'spam',
-    S,
+    PARK_PAGE,
     'Best Roofing Rochester',
     'Nice park! By the way, if you need roof repair in Rochester NY, we offer free estimates and 24/7 emergency service. Call 585-555-0199 today.',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'Lucy',
     'I really like this post. Very informative content and well written. Keep up the good work, I will bookmark your site and come back for more.',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'SEO Expert',
     'Your website could rank #1 on Google. We noticed some issues with your site SEO. Reply to get a free audit of your website.',
   ],
   [
     'spam',
-    S,
+    PARK_PAGE,
     'Mark',
     'Buy cheap viagra and cialis online without prescription, discreet shipping to USA.',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'Samantha',
     'Online casino with the best bonuses in 2026, 200 free spins for new players, fast withdrawals.',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'Kevin',
     'Hello, I am writing to offer a guest post partnership. We publish high quality articles with dofollow links on your blog for a small fee.',
   ],
   [
     'real',
-    S,
+    PARK_PAGE,
     'Barbara',
     'How much does it cost to rent the Maher Lodge for a birthday party in June? Is there a kitchen?',
   ],
   [
     'real',
-    S,
+    PARK_PAGE,
     'Tom K.',
     'The trail behind the ball fields was flooded last Saturday, bring boots. Still a great walk.',
   ],
   [
     'real',
-    P,
+    BLOG_POST,
     'Dana',
     'I think you left out Durand Eastman. The beach and the arboretum there make it one of the best parks in Rochester. See https://www.cityofrochester.gov/durandeastman/',
   ],
   [
     'real',
-    S,
+    PARK_PAGE,
     'Pete',
     'Correction: the pavilion is now called the Sanford Pavilion, not the Riga Shelter. The town changed the sign in 2025.',
   ],
   [
     'real',
-    P,
+    BLOG_POST,
     'Maria',
     'Great list. My kids love the splash pad at Genesee Valley Park. Do you know when it opens for the summer?',
   ],
   [
     'real',
-    S,
+    PARK_PAGE,
     'Jim',
     'Is the dog park fenced? My dog does not come back when called lol',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'Ellaviody',
     'I have been comparing two ways to store winter tires in a small garage. One forum says to stack them flat, another says to hang them on hooks. My garage gets damp in spring and I worry about the rubber. Has anyone tried a <a href="https://tire-racks.example">wall mounted tire rack</a> for more than one season? I would like to decide before the snow comes.',
   ],
   [
     'spam',
-    P,
+    BLOG_POST,
     'Brianvot',
     'My grandmother is moving into assisted living next month and we are trying to understand the paperwork. The facility gave us a long list of forms and I am not sure which ones come first. Would you start with the medical records or the insurance? I found this <a href="https://senior-help.example/checklist">moving checklist</a> but it seems quite general.',
   ],
   [
     'real',
-    S,
+    PARK_PAGE,
     'Carol',
     'Does anyone know a good place to get ice cream near here after a walk? We always end up at the same stand.',
   ],
   [
     'real',
-    P,
+    BLOG_POST,
     'Mike R.',
     'My dad used to take us fishing off the pier in the 70s. He passed away last year and I found this page while looking through his old photos. Thank you for writing it.',
   ],
   [
     'real',
-    S,
+    PARK_PAGE,
     'Anne',
     'Is there a bus from downtown Rochester that stops near this park? I do not drive.',
   ],
   [
     'real',
-    P,
+    BLOG_POST,
     'Greg',
     'Off topic, but does anyone know if the Wegmans on East Ave still has the cafe upstairs? Going there before the park on Saturday.',
   ],
@@ -194,7 +194,7 @@ const readSet = (): SpamSetPost[] => JSON.parse(readFileSync(SET, 'utf8'));
 const writeSet = (set: SpamSetPost[]) =>
   writeFileSync(SET, JSON.stringify(set, null, 2) + '\n');
 
-/** The surface's own redaction words. Spam is not personal data; an email in it may be. */
+/** Spam is not personal data, but an email address in it may be. The words are the ones the surface asks the owner to use. */
 const noEmail = (text: string) =>
   text.replace(/[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+/g, '[email removed]');
 
@@ -263,15 +263,9 @@ async function judge(post: Post): Promise<Scored> {
       Authorization: `Bearer ${process.env.TYPESAFE_API_KEY}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      model: SPAM_MODEL,
-      state: {
-        page_title: titleOf(post.page),
-        name: post.name,
-        comment: post.body,
-      },
-      questions: QUESTIONS,
-    }),
+    body: JSON.stringify(
+      spamRequest({ ...post, pageTitle: titleOf(post.page) }, QUESTIONS)
+    ),
   });
   if (!response.ok) {
     throw new Error(`${response.status} ${await response.text()}`);

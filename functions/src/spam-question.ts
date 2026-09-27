@@ -24,3 +24,22 @@ export const SPAM_QUESTION: NoulQuestion = {
       'A real comment: a question, a correction, a memory or an opinion about this park, this post or parks in Rochester, even if short, misspelled or with a link to a real source.',
   },
 };
+
+/**
+ * The body of one TypeSafe call. The Function asks one question; the
+ * offline test asks the shipped one beside its candidates.
+ */
+export function spamRequest(
+  input: { pageTitle: string; name: string; body: string },
+  questions: Record<string, NoulQuestion>
+) {
+  return {
+    model: SPAM_MODEL,
+    state: {
+      page_title: input.pageTitle,
+      name: input.name,
+      comment: input.body,
+    },
+    questions,
+  };
+}

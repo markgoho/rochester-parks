@@ -287,12 +287,12 @@ async function receive(
  * `unchecked` for the owner and is never checked again.
  */
 export async function recheck(deps: Omit<Deps, 'secrets'>): Promise<void> {
-  const now = deps.clock().getTime();
+  const time = deps.clock().getTime();
   const waiting = (await deps.store.inQueue()).filter(
     (comment) =>
       comment.flags.includes('unchecked') &&
       comment.posted !== undefined &&
-      now - comment.created.getTime() < RECHECK_FOR_MS
+      time - comment.created.getTime() < RECHECK_FOR_MS
   );
   // In parallel, so a day of waiting posts fits in one run.
   await Promise.all(

@@ -16,7 +16,7 @@ import {
   type SpamInput,
   type StoredComment,
 } from './handler.js';
-import { SPAM_MODEL, SPAM_QUESTION } from './spam-question.js';
+import { SPAM_QUESTION, spamRequest } from './spam-question.js';
 
 /**
  * The one comments Function (#217, ADR-0012): 2nd gen, `us-east4` beside the
@@ -126,15 +126,7 @@ async function spam(input: SpamInput): Promise<number | null> {
         Authorization: `Bearer ${typesafeKey.value()}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model: SPAM_MODEL,
-        state: {
-          page_title: input.pageTitle,
-          name: input.name,
-          comment: input.body,
-        },
-        questions: { spam: SPAM_QUESTION },
-      }),
+      body: JSON.stringify(spamRequest(input, { spam: SPAM_QUESTION })),
       // The Commenter waits on the first check; a median call takes about
       // 150 ms.
       signal: AbortSignal.timeout(3_000),
