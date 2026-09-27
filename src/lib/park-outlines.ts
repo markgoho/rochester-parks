@@ -213,7 +213,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["12072000020490000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/anderson-park/": {
@@ -319,7 +318,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["10783000010340000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/campbell-st-rec-center/": {
@@ -350,7 +348,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["04762000010010000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/cobbs-hill-park-and-washington-grove/": {
@@ -362,7 +359,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["12270000010010000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/conkey-corner-park-el-camino-trail/": {
@@ -383,7 +379,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["12123000020290000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/david-f-gantt-recreation-center/": {
@@ -434,7 +429,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["10542000010870010000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/ellwanger-and-barry-park/": {
@@ -525,7 +519,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["10679000010630000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/genesee-gateway-park/": {
@@ -536,7 +529,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["12155000010010000000", "12155000010550010000", "12155000010560000000", "12155000010570000000", "12155000010580000000", "12155000010600010000", "12162000010330000000", "12162000010340000000", "12162000010350000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/genesee-valley-west/": {
@@ -744,7 +736,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["10639000030360000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/ralph-avery-mall/": {
@@ -797,7 +788,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["12036000010110000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/tacoma-playground/": {
@@ -872,7 +862,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["12140000020020000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/washington-playground/": {
@@ -966,7 +955,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26200014815000030391000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/brighton-parks/meridian-centre-park/": {
@@ -998,7 +986,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26200013616000020292100000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/chili-parks/ballantyne-park/": {
@@ -1169,7 +1156,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26260010410000020020000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/gates-parks/memorial-park/": {
@@ -1180,7 +1166,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26260010410000020031000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/gates-parks/wegman-road-park/": {
@@ -1297,7 +1282,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26280007514000030400000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/greece-parks/frisbee-hill-park/": {
@@ -1329,7 +1313,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26280008804000010240000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/greece-parks/klafehn-park/": {
@@ -1351,7 +1334,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26280004503000040130000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/greece-parks/veterans-memorial-park/": {
@@ -1373,7 +1355,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26300002103000020363000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/hamlin-parks/scout-park/": {
@@ -1396,7 +1377,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26320016213000010031100000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/henrietta-parks/belmanor-park/": {
@@ -1407,7 +1387,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26320016305000010010000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/henrietta-parks/breese-park/": {
@@ -1469,7 +1448,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26320019005000010311000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/henrietta-parks/martin-road-park/": {
@@ -1501,7 +1479,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26320017705000010700000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/irondequoit-parks/bateau-play-area/": {
@@ -1694,7 +1671,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26368922201000010032000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/mendon-parks/vest-pocket-park/": {
@@ -1716,7 +1692,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26388908502000030090000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/ogden-parks/buffalo-road-park/": {
@@ -1768,7 +1743,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26388908601000020270000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/ogden-parks/towpath-park/": {
@@ -1811,7 +1785,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26400103209000040010000000", "26400103209000040410000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/penfield-parks/channing-philbrick-park/": {
@@ -1853,7 +1826,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26420013906000020421000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/penfield-parks/lasalles-landing-park/": {
@@ -1941,7 +1913,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26448916511000030530000000", "26448916511000030540000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/perinton-parks/beechwoods/": {
@@ -1975,7 +1946,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26448916610000010041000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/perinton-parks/dewitt-property/": {
@@ -1986,7 +1956,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26448918001000010152000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/perinton-parks/egypt-park/": {
@@ -2039,7 +2008,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26448917904000010060000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/perinton-parks/howell-road-park/": {
@@ -2331,7 +2299,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26468919201000010272000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/pittsford-parks/thornell-farm-park/": {
@@ -2393,7 +2360,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26500021311000010740000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/rush-parks/white-springs-farm/": {
@@ -2404,7 +2370,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26500020103000010320000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/sweden-parks/barry-street-park/": {
@@ -2415,7 +2380,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26520106909000040090000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/sweden-parks/corbett-park/": {
@@ -2436,7 +2400,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26520106811000060160000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/sweden-parks/havenwood-park/": {
@@ -2567,7 +2530,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26548906401000010170000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/webster-parks/kent-park/": {
@@ -2671,7 +2633,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26548904903000010120000000", "26548904903000010230000000", "26548904903000010240000000", "26548906401000010451000000"],
       fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/town-parks/webster-parks/wilmorite-recreation-area/": {

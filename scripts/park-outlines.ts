@@ -22,14 +22,33 @@
  *      take one fine.
  *
  * Writes docs/park-outlines-report.md alongside src/lib/park-outlines.ts.
+ *
+ * To measure a rule change against the hand picks (#300), run
+ *
+ *   MEASURE=1 QUERY_CACHE=<dir> bun scripts/park-outlines.ts
+ *
+ * It turns `PICKS` off, writes nothing, and prints which picks the search
+ * now reproduces and which searched outlines it changes. `QUERY_CACHE`
+ * keeps each layer response on disk, so a rerun makes no network calls.
  */
-import { existsSync, globSync, readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import {
+  existsSync,
+  globSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
 import matter from 'gray-matter';
 import polygonClipping from 'polygon-clipping';
 import { isParkContainer, isParkType, isTrailType } from '../src/lib/park-types';
 import {
   chooseParcels,
+  chooseSeed,
   isMiss,
+  type ParcelMiss,
+  type ParkFacts,
+  type Seed,
   type ParcelFeature,
   type ParcelSource,
   type Point,
@@ -53,6 +72,8 @@ const PARCELS_LAYER =
   'https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0';
 const CITY_LAYER =
   'https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4';
+const CITY_ZONING_LAYER =
+  'https://maps.cityofrochester.gov/server/rest/services/Open_Data/Zoning_Districts_Open_Data/FeatureServer/0';
 
 function queryUrl(layer: string): string {
   return `${layer}/query`;
@@ -91,11 +112,16 @@ const COUNTY_ALIASES: Record<string, string> = {
   'Lucien Morin': '/monroe-county-parks/lucien-morin-park/',
 };
 
+const MEASURE = process.env.MEASURE === '1';
+const QUERY_CACHE = process.env.QUERY_CACHE;
+
+type RawFeature = { properties: Record<string, unknown>; geometry: GeoJsonGeometry };
+
 /** POSTs a query, since the polygon geometry a search sends can be long. */
 async function query(
   url: string,
   params: Record<string, string>
-): Promise<{ properties: Record<string, unknown>; geometry: GeoJsonGeometry }[]> {
+): Promise<RawFeature[]> {
   const body = new URLSearchParams({
     outSR: '4326',
     geometryPrecision: '7',
@@ -103,12 +129,26 @@ async function query(
     outFields: '*',
     ...params,
   });
+  if (!QUERY_CACHE) return fetchQuery(url, body);
+  const key = createHash('sha256').update(`${url}?${body}`).digest('hex');
+  const file = `${QUERY_CACHE}/${key}.json`;
+  if (existsSync(file)) return JSON.parse(readFileSync(file, 'utf8'));
+  const features = await fetchQuery(url, body);
+  mkdirSync(QUERY_CACHE, { recursive: true });
+  writeFileSync(file, JSON.stringify(features));
+  return features;
+}
+
+async function fetchQuery(
+  url: string,
+  body: URLSearchParams
+): Promise<RawFeature[]> {
   for (let attempt = 0; ; attempt++) {
     const response = await fetch(url, { method: 'POST', body });
     if (response.ok) {
       const json = (await response.json()) as {
         error?: unknown;
-        features?: { properties: Record<string, unknown>; geometry: GeoJsonGeometry }[];
+        features?: RawFeature[];
       };
       if (!json.error) return json.features ?? [];
       if (attempt > 0) throw new Error(`${url}: ${JSON.stringify(json.error)}`);
@@ -181,8 +221,8 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
     ? `CLASSCD in (${PARK_CLASSES.map((c) => `'${c}'`).join(',')})`
     : `propertyclass in (${PARK_CLASSES.join(',')})`;
   const outFields = city
-    ? 'PARCELID,CLASSCD,SHAPEACRES,OWNERNME1'
-    : 'countysbl,swis,acres,propertyclass,propertyclassdescription';
+    ? 'PARCELID,CLASSCD,SHAPEACRES,OWNERNME1,STREET_NUM,STREET_NAME'
+    : 'countysbl,swis,acres,propertyclass,propertyclassdescription,parceladdressnumber,parceladdressstreetname';
 
   function toFeature(raw: {
     properties: Record<string, unknown>;
@@ -191,9 +231,16 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
     const p = raw.properties;
     const classCode = Number(city ? p.CLASSCD : p.propertyclass);
     const owner = city ? String(p.OWNERNME1 ?? '').trim() : '';
+    const number = String(
+      (city ? p.STREET_NUM : p.parceladdressnumber) ?? ''
+    ).trim();
+    const street = String(
+      (city ? p.STREET_NAME : p.parceladdressstreetname) ?? ''
+    ).trim();
     return {
       id: String(city ? p.PARCELID : p.countysbl),
       parkType: PARK_CLASSES.includes(classCode),
+      classCode,
       swis: city ? undefined : ((p.swis as string) ?? undefined),
       acres: Number(city ? p.SHAPEACRES : p.acres),
       geometry: polysOf(raw.geometry),
@@ -201,6 +248,7 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
         ? `class ${p.CLASSCD}`
         : `class ${p.propertyclass} ${p.propertyclassdescription ?? ''}`.trim(),
       owner: owner || undefined,
+      address: street ? { number: number || undefined, street } : undefined,
     };
   }
 
@@ -241,6 +289,23 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
         );
     },
 
+    // Only the City has a zoning layer (#300).
+    ...(city
+      ? {
+          async openSpace(point: { latitude: number; longitude: number }) {
+            const raw = await query(queryUrl(CITY_ZONING_LAYER), {
+              geometry: `${point.longitude},${point.latitude}`,
+              geometryType: 'esriGeometryPoint',
+              inSR: '4326',
+              spatialRel: 'esriSpatialRelIntersects',
+              outFields: 'LABEL',
+              returnGeometry: 'false',
+            });
+            return raw.some((f) => f.properties.LABEL === 'O-S');
+          },
+        }
+      : {}),
+
     // The city layer's polygon query fails with a `distance` (server error
     // during the buffer operation), so only the county layer asks for one.
     async touching(features) {
@@ -271,6 +336,8 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
 
 interface PageRecord {
   url: string;
+  title: string | undefined;
+  address: string | undefined;
   type: string | undefined;
   former: boolean;
   acres: number | undefined;
@@ -291,6 +358,8 @@ function loadPages(): PageRecord[] {
     .map((file) => {
       const { data } = matter(readFileSync(file, 'utf8'));
       const front = data as {
+        title?: string;
+        address?: { streetAddress?: string };
         type?: string;
         former?: boolean;
         acres?: number;
@@ -302,6 +371,8 @@ function loadPages(): PageRecord[] {
           : undefined;
       return {
         url: urlFor(file),
+        title: front.title,
+        address: front.address?.streetAddress,
         type: front.type,
         former: front.former === true,
         acres: front.acres,
@@ -313,6 +384,10 @@ function loadPages(): PageRecord[] {
 function parentUrl(url: string): string {
   const segments = url.split('/').filter(Boolean);
   return segments.length <= 1 ? '/' : `/${segments.slice(0, -1).join('/')}/`;
+}
+
+function isCityPark(page: PageRecord): boolean {
+  return page.url.startsWith('/rochester-city-parks/');
 }
 
 /** Same rule as `content.ts`'s `isPark`: a Park hangs directly off a container. */
@@ -359,17 +434,22 @@ async function loadCountyParks(): Promise<Map<string, CountyPark>> {
   return parks;
 }
 
+type PickLayer = 'county parks' | 'county parcels' | 'city parcels';
+
+function pickLayer(kind: PickLayer): string {
+  return kind === 'county parks'
+    ? COUNTY_LAYER
+    : kind === 'county parcels'
+      ? PARCELS_LAYER
+      : CITY_LAYER;
+}
+
 /** Fetches a hand-picked list of feature ids straight from their layer. */
 async function fetchByIds(
-  kind: 'county parks' | 'county parcels' | 'city parcels',
+  kind: PickLayer,
   ids: string[]
 ): Promise<{ layer: string; polys: Poly[] }> {
-  const layer =
-    kind === 'county parks'
-      ? COUNTY_LAYER
-      : kind === 'county parcels'
-        ? PARCELS_LAYER
-        : CITY_LAYER;
+  const layer = pickLayer(kind);
   const idField =
     kind === 'county parks'
       ? 'objectid'
@@ -475,7 +555,10 @@ async function resolvePage(
   countyParks: Map<string, CountyPark>,
   countyNameByUrl: Map<string, string>,
   parcelSource: ParcelSource,
-  citySource: ParcelSource
+  citySource: ParcelSource,
+  picks: typeof PICKS,
+  claimed: Map<string, string>,
+  seeds: Map<string, Seed | ParcelMiss>
 ): Promise<Resolved | Missed> {
   const section = sectionOf(page.url);
 
@@ -490,7 +573,7 @@ async function resolvePage(
     };
   }
 
-  const pick = PICKS[page.url];
+  const pick = picks[page.url];
   if (pick) {
     const { layer, polys } = await fetchByIds(pick.layer, pick.ids);
     return {
@@ -530,11 +613,15 @@ async function resolvePage(
     return { url: page.url, section, reason: 'no geo point on the page' };
   }
 
-  const city = page.url.startsWith('/rochester-city-parks/');
+  const city = isCityPark(page);
+  const othersIds = new Set(
+    [...claimed].filter(([, url]) => url !== page.url).map(([id]) => id)
+  );
   const choice = await chooseParcels(
-    page.geo,
-    page.acres,
-    city ? citySource : parcelSource
+    factsOf(page, page.geo),
+    city ? citySource : parcelSource,
+    othersIds,
+    seeds.get(page.url)
   );
   if (isMiss(choice)) {
     return {
@@ -555,6 +642,18 @@ async function resolvePage(
     layer: city ? CITY_LAYER : PARCELS_LAYER,
     picked: false,
     viaNear: choice.via === 'near',
+  };
+}
+
+function factsOf(
+  page: PageRecord,
+  geo: { latitude: number; longitude: number }
+): ParkFacts {
+  return {
+    ...geo,
+    acres: page.acres,
+    address: page.address,
+    name: page.title,
   };
 }
 
@@ -760,6 +859,60 @@ function writeReport(
   writeFileSync(REPORT_PATH, lines.join('\n'));
 }
 
+/**
+ * Prints how the search, with `PICKS` off, compares with each pick and with
+ * each outline the search draws now (#300). A pick is reproduced only when
+ * the layer and every id match; a searched outline must not change.
+ */
+function printMeasure(
+  outcomes: (Resolved | Missed)[],
+  previous: Record<string, ParkOutline>
+): void {
+  const key = (layer: string, ids: string[]) =>
+    `${layer} ${[...ids].sort().join(',')}`;
+  const picked: Record<string, string[]> = {};
+  const searched: string[] = [];
+  for (const outcome of outcomes) {
+    const got = 'polys' in outcome ? outcome : undefined;
+    const gotKey = got ? key(got.layer, got.ids) : 'none';
+    const gotLine = got
+      ? `${got.ids.length} parcel(s): ${got.ids.join(', ')}`
+      : `miss: ${(outcome as Missed).reason}`;
+    const pick = PICKS[outcome.url];
+    if (pick) {
+      const wanted = key(pickLayer(pick.layer), pick.ids);
+      let verdict: string;
+      if (!got) verdict = 'missed';
+      else if (pick.clip) verdict = 'needs a clip';
+      else if (gotKey === wanted) verdict = 'reproduced';
+      else if (got.layer !== pickLayer(pick.layer)) verdict = 'other layer';
+      else if (pick.ids.every((id) => got.ids.includes(id))) verdict = 'too many';
+      else if (got.ids.every((id) => pick.ids.includes(id))) verdict = 'too few';
+      else verdict = 'different';
+      (picked[verdict] ??= []).push(
+        verdict === 'reproduced'
+          ? outcome.url
+          : `${outcome.url}\n    want ${pick.ids.join(', ')}\n    got  ${gotLine}`
+      );
+      continue;
+    }
+    const prior = previous[outcome.url];
+    const priorKey = prior ? key(prior.source.layer, prior.source.ids) : 'none';
+    if (prior?.source.picked || gotKey === priorKey) continue;
+    searched.push(
+      `${outcome.url}\n    was ${prior ? prior.source.ids.join(', ') : 'none'}\n    now ${gotLine}`
+    );
+  }
+  const total = Object.values(picked).reduce((n, list) => n + list.length, 0);
+  console.log(`Picks reproduced: ${picked.reproduced?.length ?? 0} of ${total}`);
+  for (const [verdict, list] of Object.entries(picked).sort()) {
+    console.log(`\n## ${verdict} (${list.length})`);
+    for (const line of list.sort()) console.log(`- ${line}`);
+  }
+  console.log(`\n## searched outlines changed (${searched.length})`);
+  for (const line of searched.sort()) console.log(`- ${line}`);
+}
+
 async function main(): Promise<void> {
   const pages = loadPages();
   const pageUrls = new Set(pages.map((p) => p.url));
@@ -809,8 +962,46 @@ async function main(): Promise<void> {
   const parcelSource = makeParcelSource(PARCELS_LAYER, false);
   const citySource = makeParcelSource(CITY_LAYER, true);
 
+  const picks = MEASURE ? {} : PICKS;
+
+  // Growth never takes another Park's parcel: a picked Park's ids, or the
+  // seed of a Park the search will place (#300). Key: parcel id, value: the
+  // Park's URL.
+  const claimed = new Map<string, string>();
+  for (const [url, pick] of Object.entries(picks)) {
+    if (pick.layer !== 'county parks') {
+      for (const id of pick.ids) claimed.set(id, url);
+    }
+  }
+  // Every Park `resolvePage` sends to the parcel search.
+  const searched = targets.filter(
+    (p) =>
+      p.geo !== undefined &&
+      !picks[p.url] &&
+      !NO_OUTLINE[p.url] &&
+      !countyNameByUrl.has(p.url)
+  );
+  const seeds = new Map<string, Seed | ParcelMiss>();
+  await mapWithConcurrency(searched, 8, async (page) => {
+    const seed = await chooseSeed(
+      factsOf(page, page.geo!),
+      isCityPark(page) ? citySource : parcelSource
+    );
+    seeds.set(page.url, seed);
+    if (!isMiss(seed)) claimed.set(seed.feature.id, page.url);
+  });
+
   const outcomes = await mapWithConcurrency(targets, 8, (page) =>
-    resolvePage(page, countyParks, countyNameByUrl, parcelSource, citySource)
+    resolvePage(
+      page,
+      countyParks,
+      countyNameByUrl,
+      parcelSource,
+      citySource,
+      picks,
+      claimed,
+      seeds
+    )
   );
   const resolved = outcomes.filter((o): o is Resolved => 'polys' in o);
   const missed = outcomes.filter((o): o is Missed => 'reason' in o);
@@ -819,6 +1010,11 @@ async function main(): Promise<void> {
     ? ((await import(OUTPUT_URL.href)) as { PARK_OUTLINES: Record<string, ParkOutline> })
         .PARK_OUTLINES
     : {};
+
+  if (MEASURE) {
+    printMeasure(outcomes, previous);
+    return;
+  }
 
   const today = new Date().toISOString().slice(0, 10);
   const outlines: Record<string, ParkOutline> = {};
