@@ -8,18 +8,18 @@
  * Three sources, tried in order:
  *   1. scripts/park-outline-picks.ts: a hand-picked list of feature ids.
  *   2. The Monroe County Park-boundary layer, by an exact name match: the
- *      county Parks, plus the two Parks the layer names outside that
- *      section (a Trail and a State Park).
+ *      county Parks, plus a State Park page and a Trail page the layer also
+ *      names.
  *   3. The tax parcel layer under the Park's point (scripts/park-parcels.ts
  *      picks which parcels join): Monroe County's Parcels_Public for a
  *      town, village or state Park, or the City of Rochester's
  *      Tax_Parcels_City_Owned_Land_Open_Data for a city Park. IMPORTANT:
- *      that City layer, not the plain Tax_Parcels_Open_Data layer, whose
- *      OWNERSHIPCODE does not mark City ownership — this layer holds only
- *      City-owned parcels, so a parcel found in it also proves the Park has
- *      grounds (ADR-0009's test). Its polygon query cannot take a
- *      `distance` (the service errors on the buffer), so the city adapter's
- *      `touching` uses a plain intersects; its point queries take one fine.
+ *      use that City layer, not the plain Tax_Parcels_Open_Data layer:
+ *      only this layer carries an owner name (`OWNERNME1`), so a parcel
+ *      found in it also confirms City ownership. Its polygon query cannot
+ *      take a `distance` (the service errors on the buffer), so the city
+ *      adapter's `touching` uses a plain intersects; its point queries
+ *      take one fine.
  *
  * Writes docs/park-outlines-report.md alongside src/lib/park-outlines.ts.
  */
@@ -45,20 +45,26 @@ const OUTPUT_PATH = OUTPUT_URL.pathname;
 const REPORT_PATH = new URL('../docs/park-outlines-report.md', import.meta.url)
   .pathname;
 
+// Each layer's own URL, without `/query`: this is what `source.layer` stores.
+// A fetch always adds `/query` itself (see `queryUrl`).
 const COUNTY_LAYER =
-  'https://maps.monroecounty.gov/server/rest/services/Hosted/County_Park_Boundaries_View/FeatureServer/0/query';
+  'https://maps.monroecounty.gov/server/rest/services/Hosted/County_Park_Boundaries_View/FeatureServer/0';
 const PARCELS_LAYER =
-  'https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0/query';
+  'https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0';
 const CITY_LAYER =
-  'https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4/query';
+  'https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4';
+
+function queryUrl(layer: string): string {
+  return `${layer}/query`;
+}
 
 /** Tax-parcel classes that mark park land (county and city share the list). */
 const PARK_CLASSES = [590, 591, 592, 593, 682, 960, 961, 962, 963];
 
 /**
- * The county layer's own `park` name for each of its 21 Parks, mapped to
- * that Park's page. Most sit in `/monroe-county-parks/`; two do not, because
- * the county draws a boundary for a Trail and a State Park too.
+ * The county layer's own `park` name for each of its 21 named areas, mapped
+ * to that area's page: 19 county Parks, one State Park page and one Trail
+ * page (a Trail is not a Park — CONTEXT.md, ADR-0006).
  */
 const COUNTY_ALIASES: Record<string, string> = {
   'Oatka Creek': '/monroe-county-parks/oatka-creek-park/',
@@ -99,12 +105,16 @@ async function query(
   });
   for (let attempt = 0; ; attempt++) {
     const response = await fetch(url, { method: 'POST', body });
-    const json = (await response.json()) as {
-      error?: unknown;
-      features?: { properties: Record<string, unknown>; geometry: GeoJsonGeometry }[];
-    };
-    if (!json.error) return json.features ?? [];
-    if (attempt > 0) throw new Error(`${url}: ${JSON.stringify(json.error)}`);
+    if (response.ok) {
+      const json = (await response.json()) as {
+        error?: unknown;
+        features?: { properties: Record<string, unknown>; geometry: GeoJsonGeometry }[];
+      };
+      if (!json.error) return json.features ?? [];
+      if (attempt > 0) throw new Error(`${url}: ${JSON.stringify(json.error)}`);
+    } else if (attempt > 0) {
+      throw new Error(`${url}: ${response.status} ${response.statusText}`);
+    }
   }
 }
 
@@ -195,8 +205,12 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
   }
 
   return {
+    // The city layer carries no `swis` at all, so it never applies the
+    // same-municipality growth rule (scripts/park-parcels.ts).
+    hasSwis: !city,
+
     async containing(point) {
-      const raw = await query(layer, {
+      const raw = await query(queryUrl(layer), {
         geometry: `${point.longitude},${point.latitude}`,
         geometryType: 'esriGeometryPoint',
         inSR: '4326',
@@ -207,7 +221,7 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
     },
 
     async near(point, metres) {
-      const raw = await query(layer, {
+      const raw = await query(queryUrl(layer), {
         geometry: `${point.longitude},${point.latitude}`,
         geometryType: 'esriGeometryPoint',
         inSR: '4326',
@@ -249,7 +263,7 @@ function makeParcelSource(layer: string, city: boolean): ParcelSource {
         params.distance = '1';
         params.units = 'esriSRUnit_Meter';
       }
-      const raw = await query(layer, params);
+      const raw = await query(queryUrl(layer), params);
       return raw.map(toFeature);
     },
   };
@@ -315,7 +329,8 @@ function sectionOf(url: string): Section {
   if (url.startsWith('/town-parks/')) return 'town and village';
   if (url.startsWith('/rochester-city-parks/')) return 'city';
   if (url.startsWith('/state-parks/')) return 'state';
-  return 'trail';
+  if (url.startsWith('/trails/')) return 'trail';
+  throw new Error(`sectionOf: unrecognised page url ${url}`);
 }
 
 interface CountyPark {
@@ -325,7 +340,7 @@ interface CountyPark {
 
 /** Fetches the whole county Park-boundary layer once, grouped by its `park` name. */
 async function loadCountyParks(): Promise<Map<string, CountyPark>> {
-  const raw = await query(COUNTY_LAYER, { where: '1=1' });
+  const raw = await query(queryUrl(COUNTY_LAYER), { where: '1=1' });
   const byName = new Map<string, { id: string; polys: Poly[] }[]>();
   for (const f of raw) {
     const name = String(f.properties.park);
@@ -365,7 +380,7 @@ async function fetchByIds(
     kind === 'county parks'
       ? `objectid in (${ids.join(',')})`
       : `${idField} in (${ids.map((id) => `'${id}'`).join(',')})`;
-  const raw = await query(layer, { where });
+  const raw = await query(queryUrl(layer), { where });
   const byId = new Map(
     raw.map((f) => [String(f.properties[idField]), polysOf(f.geometry)])
   );
@@ -418,6 +433,9 @@ function simplifyPolygons(polys: Poly[], latitude: number): Poly[] {
   const result: Poly[] = [];
   for (const [outer, ...holes] of polys) {
     const simpleOuter = simplifyRing(outer, k);
+    // An outer ring this small only happens when the whole polygon is a
+    // sliver under a metre or two across (a sub-metre parcel artifact);
+    // dropping it loses nothing worth keeping.
     if (simpleOuter.length < 4) continue;
     const simpleHoles = holes
       .map((ring) => simplifyRing(ring, k))
@@ -695,6 +713,13 @@ async function main(): Promise<void> {
       (isTrailType(p.type) && countyNameByUrl.has(p.url))
   );
 
+  const targetUrls = new Set(targets.map((p) => p.url));
+  for (const url of Object.keys(PICKS)) {
+    if (!targetUrls.has(url)) {
+      throw new Error(`PICKS: "${url}" is not a target page`);
+    }
+  }
+
   const parcelSource = makeParcelSource(PARCELS_LAYER, false);
   const citySource = makeParcelSource(CITY_LAYER, true);
 
@@ -714,7 +739,7 @@ async function main(): Promise<void> {
   const byUrl = new Map(targets.map((p) => [p.url, p]));
   for (const r of resolved) {
     const page = byUrl.get(r.url)!;
-    const latitude = page.geo?.latitude ?? r.polys[0]?.[0]?.[1] ?? 0;
+    const latitude = page.geo?.latitude ?? r.polys[0]?.[0]?.[0]?.[1] ?? 0;
     const polygons = simplifyPolygons(
       polygonClipping.union(...r.polys),
       latitude

@@ -2,6 +2,7 @@
 import { describe, expect, test } from 'bun:test';
 import {
   chooseParcels,
+  GROWTH_ROUNDS,
   isMiss,
   type ParcelFeature,
   type ParcelSource,
@@ -20,9 +21,14 @@ function feature(overrides: Partial<ParcelFeature>): ParcelFeature {
   };
 }
 
-/** A source whose behaviour each test sets by hand: no network, no geometry. */
+/**
+ * A source whose behaviour each test sets by hand: no network, no geometry.
+ * Defaults to `hasSwis: true` (a county-style source); a test for the city
+ * rule sets it `false`.
+ */
 function fakeSource(overrides: Partial<ParcelSource>): ParcelSource {
   return {
+    hasSwis: true,
     containing: async () => [],
     near: async () => [],
     touching: async () => [],
@@ -91,6 +97,47 @@ describe('chooseParcels', () => {
     const choice = await chooseParcels(POINT, undefined, source);
     if (isMiss(choice)) throw new Error('unreachable');
     expect(choice.ids).toEqual(['a']);
+  });
+
+  test('a county seed with no swis joins no neighbours', async () => {
+    const seed = feature({ id: 'a', swis: undefined, acres: 5 });
+    const other = feature({ id: 'b', swis: 'Town of Brighton', acres: 5 });
+    const source = fakeSource({
+      containing: async () => [seed],
+      touching: async () => [other],
+    });
+    const choice = await chooseParcels(POINT, undefined, source);
+    if (isMiss(choice)) throw new Error('unreachable');
+    expect(choice.ids).toEqual(['a']);
+  });
+
+  test('a city seed with no swis still joins touching park-type parcels', async () => {
+    const seed = feature({ id: 'a', swis: undefined, acres: 5 });
+    const other = feature({ id: 'b', swis: undefined, acres: 5 });
+    const source = fakeSource({
+      hasSwis: false,
+      containing: async () => [seed],
+      touching: async (chosen) =>
+        chosen.map((f) => f.id).includes('b') ? [] : [other],
+    });
+    const choice = await chooseParcels(POINT, undefined, source);
+    if (isMiss(choice)) throw new Error('unreachable');
+    expect(choice.ids).toEqual(['a', 'b']);
+  });
+
+  test('growth that never stabilizes is a miss, not an incomplete outline', async () => {
+    let round = 0;
+    const source = fakeSource({
+      containing: async () => [feature({ id: 's-0', acres: 1 })],
+      touching: async (chosen) => {
+        round++;
+        return [...chosen, feature({ id: `s-${round}`, acres: 1 })];
+      },
+    });
+    const choice = await chooseParcels(POINT, undefined, source);
+    expect(isMiss(choice)).toBe(true);
+    if (!isMiss(choice)) throw new Error('unreachable');
+    expect(choice.reason).toBe(`parcels kept growing past ${GROWTH_ROUNDS} rounds`);
   });
 
   test('growth is transitive: a parcel two hops away still joins', async () => {

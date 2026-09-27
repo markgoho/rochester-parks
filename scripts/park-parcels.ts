@@ -41,6 +41,13 @@ export const ACRES_FACTOR = 2.5;
 
 /** Where a Park's parcels can be looked up. Each call may hit the network. */
 export interface ParcelSource {
+  /**
+   * Whether `swis` means anything for this source. The city layer carries no
+   * `swis` at all, by design, so it never applies the same-municipality rule;
+   * a county-style source does, so a seed missing `swis` there is a data gap,
+   * not permission to join everything.
+   */
+  hasSwis: boolean;
   /** Every parcel under the point, park-type or not. */
   containing(point: { latitude: number; longitude: number }): Promise<
     ParcelFeature[]
@@ -79,7 +86,7 @@ export function isMiss(choice: ParcelChoice): choice is ParcelMiss {
 }
 
 /** Growth rounds capped so a data error cannot loop forever. */
-const GROWTH_ROUNDS = 10;
+export const GROWTH_ROUNDS = 10;
 
 export async function chooseParcels(
   point: { latitude: number; longitude: number },
@@ -103,15 +110,22 @@ export async function chooseParcels(
   }
 
   const chosen = new Map<string, ParcelFeature>([[seed.id, seed]]);
-  for (let round = 0; round < GROWTH_ROUNDS; round++) {
+  // A county-style seed with no `swis` cannot be matched to any neighbour's
+  // municipality, so it joins nothing rather than joining everything. The
+  // city source sets `hasSwis: false` and skips this rule entirely.
+  let stable = source.hasSwis && seed.swis === undefined;
+  for (let round = 0; !stable && round < GROWTH_ROUNDS; round++) {
     const before = chosen.size;
     const touching = await source.touching([...chosen.values()]);
     for (const candidate of touching) {
       if (!candidate.parkType) continue;
-      if (seed.swis !== undefined && candidate.swis !== seed.swis) continue;
+      if (source.hasSwis && candidate.swis !== seed.swis) continue;
       chosen.set(candidate.id, candidate);
     }
-    if (chosen.size === before) break;
+    if (chosen.size === before) stable = true;
+  }
+  if (!stable) {
+    return { reason: `parcels kept growing past ${GROWTH_ROUNDS} rounds` };
   }
 
   // Sorted by id, not fetch order, so the joined geometry (and so the union

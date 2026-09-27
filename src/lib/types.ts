@@ -253,9 +253,9 @@ export interface ParkOutline {
   source: OutlineSource;
 }
 
-/** Where a Park's outline came from, and how sure the pick was. */
+/** Where a Park's outline came from. */
 export interface OutlineSource {
-  /** The ArcGIS layer's query URL. */
+  /** The ArcGIS layer's own URL (not its `/query` endpoint). */
   layer: string;
   /** The feature ids that were joined into the outline, sorted. */
   ids: string[];
