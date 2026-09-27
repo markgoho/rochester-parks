@@ -77,7 +77,7 @@ The set of Comments that have been submitted and are not yet Approved. Nothing i
 _Avoid_: Pending list, inbox, drafts
 
 **Moderation surface**:
-The owner-only pages where the Moderation queue is read and a Comment is Approved, rejected, redacted before approval, answered with a Reply, or, once Approved, deleted. Nothing on it is public.
+The owner-only pages where the Moderation queue is read and a Comment is Approved, rejected (or rejected as spam, which keeps its words for the offline test of the spam check), redacted before approval, answered with a Reply, or, once Approved, deleted. Nothing on it is public.
 _Avoid_: Admin, dashboard, back end, console
 
 **Approved**:

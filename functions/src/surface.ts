@@ -20,6 +20,7 @@ import { rochesterDay, text } from './respond.js';
  *   GET  /comments/{id}         one Comment, with its actions
  *   POST /comments/{id}/approve approve, with the body as edited
  *   POST /comments/{id}/reject  delete
+ *   POST /comments/{id}/reject-spam  delete, and keep a spam sample (#284)
  *   GET  /comments/approved     Approved Comments per page (#224)
  *   POST /comments/{id}/reply   reply as the site, under a top-level Comment
  *   POST /comments/{id}/delete  delete an Approved Comment and its Replies
@@ -125,12 +126,12 @@ async function route(
   switch (action) {
     case 'approve':
     case 'reject':
+    case 'reject-spam':
       if (comment.state !== 'queue') {
         return text(409, 'This Comment is already Approved.');
       }
-      return action === 'approve'
-        ? approve(comment, field('body'), deps)
-        : reject(comment, deps);
+      if (action === 'approve') return approve(comment, field('body'), deps);
+      return reject(comment, action === 'reject-spam', deps);
     case 'reply':
       if (isReply(comment)) return text(409, 'A Reply never has a Reply.');
       return reply(comment, field('reply'), field('body'), deps);
@@ -238,6 +239,11 @@ function notices(query: Record<string, string>): string[] {
   const said: string[] = [];
   if (query.done === 'approved') said.push('Approved.');
   if (query.done === 'rejected') said.push('Rejected. The Comment is deleted.');
+  if (query.done === 'rejected-spam') {
+    said.push(
+      'Rejected as spam. The Comment is deleted; its words are kept for the spam test.'
+    );
+  }
   if (query.done === 'replied') said.push('Your Reply is saved and Approved.');
   if (query.done === 'deleted') said.push('Deleted, with its Replies.');
   if (query.done === 'deleted-reply') said.push('The Reply is deleted.');
@@ -314,7 +320,7 @@ async function commentPage(
   <p class="actions"><button type="submit">Approve</button> <button type="submit" formaction="${at}/reply">Approve and reply</button></p>
 </form>
 <form method="post" action="${at}/reject">
-  <button type="submit" class="quiet">Reject and delete</button>
+  <button type="submit" class="quiet">Reject and delete</button> <button type="submit" class="quiet" formaction="${at}/reject-spam">Reject as spam</button>
 </form>`
       : `<p>This ${isReply(comment) ? 'Reply' : 'Comment'} is Approved and on its page.</p>
 ${replyForm(comment, draft)}${deleteForm(comment)}`;
@@ -410,12 +416,29 @@ async function approve(
   return toQueue(`done=approved&issue=${issue}&deploy=${deploy}`);
 }
 
+/**
+ * Deletes a queued Comment. As spam, it first keeps the body as posted, with
+ * its links, for the offline test of the spam check (#284).
+ */
 async function reject(
   comment: StoredComment,
+  asSpam: boolean,
   deps: Deps
 ): Promise<FunctionResponse> {
-  await deps.store.remove(comment.id);
-  return toQueue(`done=rejected&issue=${await closeIssue(comment.id, deps)}`);
+  if (asSpam) {
+    await deps.store.rejectAsSpam(comment.id, {
+      comment: comment.id,
+      page: comment.page,
+      name: comment.name,
+      body: comment.posted ?? comment.body,
+      flags: comment.flags,
+      created: comment.created,
+    });
+  } else {
+    await deps.store.remove(comment.id);
+  }
+  const done = asSpam ? 'rejected-spam' : 'rejected';
+  return toQueue(`done=${done}&issue=${await closeIssue(comment.id, deps)}`);
 }
 
 async function reply(

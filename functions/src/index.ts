@@ -16,6 +16,7 @@ import {
   type SpamInput,
   type StoredComment,
 } from './handler.js';
+import { SPAM_QUESTION, spamRequest } from './spam-question.js';
 
 /**
  * The one comments Function (#217, ADR-0012): 2nd gen, `us-east4` beside the
@@ -111,9 +112,9 @@ const github: GitHubClient = {
 };
 
 /**
- * Asks TypeSafe's Jev for the probability that a post is spam (#259). The
- * question is the one tested offline on the spam of 2026-09-24 and
- * 2026-09-25 and the Archive (#281); a change to it needs that test again.
+ * Asks TypeSafe's Jev for the probability that a post is spam (#259). A
+ * change to the question or the model needs the offline test again:
+ * `functions/scripts/spam-eval.ts` (#284).
  * Any failure is null: the post is still written, but `unchecked` and with
  * no email, until the later check scores it (#32, #285).
  */
@@ -125,26 +126,7 @@ async function spam(input: SpamInput): Promise<number | null> {
         Authorization: `Bearer ${typesafeKey.value()}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model: 'jev-1.13.0',
-        state: {
-          page_title: input.pageTitle,
-          name: input.name,
-          comment: input.body,
-        },
-        questions: {
-          spam: {
-            type: 'noul',
-            instructions:
-              'Was `comment` written to advertise, to get a link seen or about some other subject, rather than by a real visitor to a page about `page_title`, a park guide for Rochester, NY?',
-            criteria: {
-              true: 'Spam: it promotes a product, service, website, clinic, casino, crypto scheme or SEO offer, or it is generic praise that could be pasted on any website, or it is about a subject that has nothing to do with this page, parks or Rochester.',
-              false:
-                'A real comment: a question, a correction, a memory or an opinion about this park, this post or parks in Rochester, even if short, misspelled or with a link to a real source.',
-            },
-          },
-        },
-      }),
+      body: JSON.stringify(spamRequest(input, { spam: SPAM_QUESTION })),
       // The Commenter waits on the first check; a median call takes about
       // 150 ms.
       signal: AbortSignal.timeout(3_000),
@@ -208,8 +190,14 @@ const store: CommentStore = {
   async remove(id) {
     await collection().doc(id).delete();
   },
+  async rejectAsSpam(id, sample) {
+    const batch = getFirestore().batch();
+    batch.set(getFirestore().collection('spam').doc(id), sample);
+    batch.delete(collection().doc(id));
+    await batch.commit();
+  },
   async setFlags(id, flags) {
-    await collection().doc(id).update({ flags, posted: FieldValue.delete() });
+    await collection().doc(id).update({ flags });
   },
 };
 

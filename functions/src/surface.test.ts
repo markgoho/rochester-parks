@@ -4,6 +4,7 @@ import {
   handle,
   type Deps,
   type FunctionRequest,
+  type SpamSample,
   type StoredComment,
 } from './handler.js';
 import { session } from './surface.js';
@@ -15,6 +16,7 @@ let docs: Map<string, StoredComment>;
 let closed: string[];
 let deploys: number;
 let logged: string[];
+let kept: SpamSample[];
 let deps: Deps;
 
 function comment(id: string, overrides: Partial<StoredComment> = {}) {
@@ -41,6 +43,7 @@ beforeEach(() => {
   closed = [];
   deploys = 0;
   logged = [];
+  kept = [];
   deps = {
     store: {
       async add(doc) {
@@ -69,9 +72,13 @@ beforeEach(() => {
       async remove(id) {
         docs.delete(id);
       },
+      async rejectAsSpam(id, sample) {
+        kept.push(sample);
+        docs.delete(id);
+      },
       async setFlags(id, flags) {
         const doc = docs.get(id);
-        if (doc) docs.set(id, { ...doc, flags, posted: undefined });
+        if (doc) docs.set(id, { ...doc, flags });
       },
     },
     github: {
@@ -123,6 +130,7 @@ describe('the password', () => {
     ['GET', '/comments/a'],
     ['POST', '/comments/a/approve'],
     ['POST', '/comments/a/reject'],
+    ['POST', '/comments/a/reject-spam'],
   ];
 
   test.each(routes)('%s %s refuses a missing password', async (m, p) => {
@@ -323,6 +331,7 @@ describe('one Comment', () => {
     expect(status).toBe(200);
     expect(body).toContain('action="/comments/a/approve"');
     expect(body).toContain('action="/comments/a/reject"');
+    expect(body).toContain('formaction="/comments/a/reject-spam"');
     expect(body).toContain('585-555-0100');
   });
 
@@ -400,7 +409,8 @@ describe('approve', () => {
     const { body } = await handle(owner('GET', '/comments/a'), deps);
     expect(body).not.toContain('/approve"');
     expect(body).not.toContain('/reject"');
-    for (const action of ['approve', 'reject']) {
+    expect(body).not.toContain('/reject-spam"');
+    for (const action of ['approve', 'reject', 'reject-spam']) {
       const response = await handle(
         owner('POST', `/comments/a/${action}`, { body: 'x' }),
         deps
@@ -423,6 +433,51 @@ describe('reject', () => {
     expect(docs.has('a')).toBe(false);
     expect(closed).toEqual(['a']);
     expect(deploys).toBe(0);
+    expect(kept).toEqual([]);
+  });
+
+  test('as spam keeps the body as posted, never the email, and deletes the Comment', async () => {
+    comment('a', {
+      name: 'Noahham',
+      body: 'Try the palette test.',
+      posted: 'Try the <a href="https://a.example">palette test</a>.',
+      flags: ['links', 'spam'],
+    });
+    const response = await handle(
+      owner('POST', '/comments/a/reject-spam'),
+      deps
+    );
+    expect(response.status).toBe(303);
+    expect(response.headers.Location).toBe(
+      '/comments?done=rejected-spam&issue=closed'
+    );
+    expect(kept).toEqual([
+      {
+        comment: 'a',
+        page: '/town-parks/riga-parks/sanford-road-park/',
+        name: 'Noahham',
+        body: 'Try the <a href="https://a.example">palette test</a>.',
+        flags: ['links', 'spam'],
+        created: new Date('2026-09-20T12:00:00Z'),
+      },
+    ]);
+    expect(JSON.stringify(kept)).not.toContain('barbara@example.com');
+    expect(docs.has('a')).toBe(false);
+    expect(closed).toEqual(['a']);
+  });
+
+  test('as spam, a Comment with no body as posted keeps its stored body', async () => {
+    comment('a');
+    await handle(owner('POST', '/comments/a/reject-spam'), deps);
+    expect(kept[0].body).toBe('Call me at 585-555-0100 about the lodge.');
+  });
+
+  test('the queue says a Comment was rejected as spam', async () => {
+    const { body } = await handle(
+      { ...owner('GET', '/comments'), query: { done: 'rejected-spam' } },
+      deps
+    );
+    expect(body).toContain('Rejected as spam.');
   });
 });
 

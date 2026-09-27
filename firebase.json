@@ -6,7 +6,7 @@
   "functions": {
     "source": "functions",
     "runtime": "nodejs24",
-    "ignore": ["node_modules", "src", "**/*.test.*", "bun.lock"],
+    "ignore": ["node_modules", "src", "scripts", "**/*.test.*", "bun.lock"],
     "predeploy": [
       "bun install --cwd \"$RESOURCE_DIR\"",
       "bun run --cwd \"$RESOURCE_DIR\" build"
