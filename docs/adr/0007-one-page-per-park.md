@@ -36,3 +36,4 @@ We rejected two alternatives:
 - `:target-current` is not exposed to a screen reader, and without a script there is no `aria-current`. A screen reader user gets the list and the headings, but not the current topic.
 - The Facilities topic needs a Facility that can have no hours, with how to rent it and its place in the Park (#77).
 - ADR-0011 answers #111: the write-up has no standard set of topics, and tracks no figure per topic.
+- #299 removed `big-eddy-park`, a second page for Rotary Park's land in Honeoye Falls. The Big Eddy is a pool of Honeoye Creek inside Rotary Park, and the village lists no park by that name. Its old URL redirects to Rotary Park.
