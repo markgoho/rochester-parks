@@ -307,10 +307,11 @@ export interface Page extends PageLink {
    */
   order?: 'size' | 'neighborhood';
   /**
-   * How a park list shows its parks. Absent means the table. `'cards'` marks
-   * the prerendered card view of an ordering, one level below it.
+   * How a park list shows its parks. Absent means the cards (#307).
+   * `'table'` marks the prerendered table view of an ordering, one level
+   * below it.
    */
-  view?: 'cards';
+  view?: 'table';
   /**
    * On a park list, the section the parks belong to, named the short way.
    * A second ordering is still the same section, so the layout reads the

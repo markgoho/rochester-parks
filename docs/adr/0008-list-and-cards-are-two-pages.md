@@ -13,17 +13,17 @@ A prototype tried three card designs on the `prototype/park-cards` branch. The o
 
 ## Decision
 
-**A card view is a second page below each ordering.**
+**A table view is a second page below each ordering.** The ordering's own URL shows the cards (#307). At first the table was the default and the cards were the second page. Once a card with no photo showed the Park's own outline (#291), the cards looked better than the table, so they became the default. An old `/cards/` URL redirects (301) to the ordering one level up.
 
-| Table | Cards |
+| Cards | Table |
 |---|---|
-| `/town-parks/greece-parks/` | `/town-parks/greece-parks/cards/` |
-| `/town-parks/greece-parks/by-size/` | `/town-parks/greece-parks/by-size/cards/` |
-| `/rochester-city-parks/by-neighborhood/` | `/rochester-city-parks/by-neighborhood/cards/` |
+| `/town-parks/greece-parks/` | `/town-parks/greece-parks/table/` |
+| `/town-parks/greece-parks/by-size/` | `/town-parks/greece-parks/by-size/table/` |
+| `/rochester-city-parks/by-neighborhood/` | `/rochester-city-parks/by-neighborhood/table/` |
 
-Two icon links at the end of the section's counts line change the view: rows for the table, a grid of squares for the cards. The view is a property of the whole section, so the switch sits with the section's counts, in the same place on both views, and adds no line above the table. Each icon has a tooltip. Each order link on a card page goes to the card page of that order, so the view stays when the reader sorts.
+Two icon links at the end of the section's counts line change the view: rows for the table, a grid of squares for the cards. The view is a property of the whole section, so the switch sits with the section's counts, in the same place on both views, and adds no line above the table. Each icon has a tooltip. Each order link on a table page goes to the table page of that order, so the view stays when the reader sorts.
 
-A card page carries a canonical link to the A to Z table, and the sitemap does not list it.
+A table page carries a canonical link to the A to Z cards, and the sitemap does not list it.
 
 **A card shows a photo, or where the Park is.** A photo shows in ink and paper, and changes to full colour under the pointer or the focus. A Park with no photo shows its own outline, framed in a square, north up, with nothing around it (#291). A Park with no photo and no outline shows the town or Neighborhood that holds it, with one dot for the Park. A county Park shows the town it stands in. Only the card page carries the outlines, and only for the cards that draw one.
 
@@ -36,6 +36,6 @@ We rejected two alternatives:
 
 - Each park section gets one more page for each ordering: 46 more pages.
 - `ParkMeta` gets `photo?: string`. The photo for a card is a WordPress featured image first, then the first body image. A WordPress thumbnail is only 144px wide, so it comes last.
-- `Page` gets `view?: 'cards'`.
+- `Page` gets `view?: 'table'`. Absent means the cards.
 - A card takes the same view transition names as its table row. A Park moves between the table and the cards, and between two orders.
 - Each card draws its own map, but not from its own copy of the paths. Each place's outline and clip, and the river and the canal, are in a card page once, and each card points at them with `<use>`. The status icons point into one sprite file, `/icons.svg`, that the browser keeps for all pages. Before, the city card page was 574 KB, and the river alone repeated 43 times. It is now 297 KB, and the city table page is 238 KB, not 330 KB (#137).

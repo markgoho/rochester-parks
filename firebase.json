@@ -214,6 +214,11 @@
         "type": 301
       },
       {
+        "source": "/:path*/cards",
+        "destination": "/:path*/",
+        "type": 301
+      },
+      {
         "source": "/:path*/amp",
         "destination": "/:path*/",
         "type": 301
