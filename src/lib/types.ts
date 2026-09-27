@@ -336,6 +336,12 @@ export interface Page extends PageLink {
    * never a Park, so it carries its own field rather than reusing `park`.
    */
   trail?: ParkMeta;
+  /**
+   * Present on a Park or Trail page that has an outline: the outline in the
+   * county map space, one path per polygon (#173). Not on `ParkMeta`, so a
+   * list of Parks does not carry every outline.
+   */
+  outline?: string[];
   /** Present on Park and Trail pages: the hours, resolved against the build date. */
   hours?: ParkHours;
   /** Present on the home page only. */

@@ -10,6 +10,8 @@ import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType, isTrailType } from '#lib/park-types.js';
 import { isFormerPark, splitFormerParks } from '#lib/park-split.js';
+import { PARK_OUTLINES } from '#lib/park-outlines.js';
+import { outlinePaths } from '#lib/park-shapes.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
 import { FACILITIES_TOPIC, topicsOf } from '#lib/topics.js';
 import type {
@@ -609,6 +611,7 @@ export function getPage(url: string): Page | undefined {
   const layout = layoutOf(node);
   const park = isPark(node) ? parkMetaOf(node) : undefined;
   const trailMeta = isTrail(node) ? parkMetaOf(node) : undefined;
+  const parkOutline = park || trailMeta ? PARK_OUTLINES[url] : undefined;
   const ancestors = ancestorsOf(url);
   const crumbs = [...ancestors, link(node)];
   // A Park takes its section's reservation link; a village Park is filed
@@ -678,6 +681,7 @@ export function getPage(url: string): Page | undefined {
           ),
         }
       : {}),
+    ...(parkOutline ? { outline: outlinePaths(parkOutline) } : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
     ...(commentArea ? { commentArea } : {}),
   };

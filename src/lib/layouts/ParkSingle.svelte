@@ -6,9 +6,9 @@
   import CityLocator from '#lib/components/CityLocator.svelte';
   import TownLocator from '#lib/components/TownLocator.svelte';
   import TownShape from '#lib/components/TownShape.svelte';
+  import ParkShape from '#lib/components/ParkShape.svelte';
   import {
     formatAcres,
-    formatCoordinates,
     hostOf,
     longestWord,
     parkTransitionName,
@@ -112,36 +112,20 @@
             hours.grounds.note !== undefined ||
             hours.grounds.closedOn !== undefined)))
   );
-  /**
-   * The official page is where the facts come from (ADR-0004), so it is
-   * cited on its own. The other links stay under "Elsewhere".
-   */
-  const official = $derived(
-    meta?.links.find((item) => item.label === 'Official page')
-  );
-  const elsewhere = $derived(
-    meta?.links.filter((item) => item !== official) ?? []
-  );
-  /** The site the facts come from, as a reader would name it. */
-  const officialHost = $derived(official ? hostOf(official.url) : '');
   const uid = $props.id();
   /** The panel is worth drawing only once one of its rows has content. */
   const hasBasics = $derived(
     hasHours ||
       Boolean(address) ||
       meta?.acres !== undefined ||
-      (meta?.links.length ?? 0) > 0
+      page.outline !== undefined ||
+      Boolean(meta?.geo && where)
   );
   const recorded = $derived(
     [status?.written, status?.inventoried, status?.photographed].filter(Boolean)
       .length
   );
   const facilities = $derived(meta?.facilities ?? []);
-  /**
-   * Already reduced to `[]` unless the page has two or more topics
-   * (ADR-0007), so the nav below only has to check its length.
-   */
-  const topics = $derived(page.topics ?? []);
 </script>
 
 <!-- The article is the container the layout queries. A container cannot query
@@ -181,6 +165,10 @@
             <ParkFlags status={meta.status} />
           </div>
           <div class="panel__body">
+            <!-- The Park's own land, when an outline is known (#173). -->
+            {#if page.outline}
+              <ParkShape paths={page.outline} label="Outline of {page.title}" />
+            {/if}
             <!-- Where the park is: the outline beside the facts it stands for. -->
             {#if (meta.geo && where) || address}
               <div class="place" class:place--map={meta.geo && where}>
@@ -207,13 +195,13 @@
                   </div>
                 {/if}
                 <dl class="facts">
-                  {#if where}
+                  <!-- A town, the county or the state is already in the
+                       breadcrumb; a city neighborhood is not. -->
+                  {#if neighborhood}
                     <div class="fact">
                       <dt class="eyebrow">Where</dt>
                       <dd>
-                        {#if neighborhood}<a
-                            href={neighborhoodUrl(neighborhood.key)}>{where}</a
-                          >{:else}{where}{/if}
+                        <a href={neighborhoodUrl(neighborhood.key)}>{where}</a>
                       </dd>
                     </div>
                   {/if}
@@ -221,12 +209,6 @@
                     <div class="fact">
                       <dt class="eyebrow">Address</dt>
                       <dd>{address}</dd>
-                    </div>
-                  {/if}
-                  {#if meta.geo}
-                    <div class="fact">
-                      <dt class="eyebrow">Coordinates</dt>
-                      <dd class="mono">{formatCoordinates(meta.geo)}</dd>
                     </div>
                   {/if}
                 </dl>
@@ -275,46 +257,9 @@
                   <dd class="mono">{formatAcres(meta.acres)} acres</dd>
                 </div>
               {/if}
-              {#if official}
-                <div class="fact">
-                  <dt class="eyebrow">Source</dt>
-                  <dd class="links">
-                    <a href={official.url} rel="noopener"
-                      ><cite>{officialHost}</cite></a
-                    >
-                  </dd>
-                </div>
-              {/if}
-              {#if elsewhere.length}
-                <div class="fact">
-                  <dt class="eyebrow">Elsewhere</dt>
-                  <dd class="links">
-                    {#each elsewhere as item (item.url)}
-                      <a href={item.url} rel="noopener">{item.label}</a>
-                    {/each}
-                  </dd>
-                </div>
-              {/if}
             </dl>
           </div>
         </section>
-
-        {#if topics.length}
-          <!-- The page navigation (ADR-0007): a link to each h2 topic. The
-               current topic is marked with :target-current, CSS only, no
-               script. A browser without scroll-target-group shows the same
-               links with no highlight; they still jump to their heading. -->
-          <nav class="panel topics" aria-label="Topics on this page">
-            <div class="panel__head">
-              <span class="eyebrow">On this page</span>
-            </div>
-            <ol class="panel__body topics__list">
-              {#each topics as topic (topic.id)}
-                <li><a href="#{topic.id}">{topic.title}</a></li>
-              {/each}
-            </ol>
-          </nav>
-        {/if}
       </aside>
     {/if}
 
@@ -523,6 +468,13 @@
     gap: var(--space-20);
   }
 
+  /* The Park's own map sits above where it is, set off by a rule. */
+  .panel__body > :global(.park-shape) {
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-16);
+    border-bottom: var(--line-hair) solid var(--rule);
+  }
+
   /* A rule between where the park is and the rest of the facts. */
   .place + .facts {
     margin-top: var(--space-16);
@@ -594,20 +546,6 @@
     color: var(--ink);
   }
 
-  cite {
-    font-style: normal;
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-6) var(--space-20);
-  }
-
-  .links a {
-    font-weight: var(--weight-bold);
-  }
-
   .empty p {
     margin: 0;
     max-width: var(--measure);
@@ -669,29 +607,8 @@
     text-underline-offset: var(--underline-offset-prose);
   }
 
-  /* The list of anchor links to this page's topics (ADR-0007). Marked as a
-     scroll-target-group so the browser can track which target is in view;
-     `:target-current` below marks the current link with no script. */
-  .topics__list {
-    scroll-target-group: auto;
-    display: grid;
-    gap: var(--space-8);
-    margin: 0;
-    list-style: none;
-  }
-
-  /* Weight and an underline mark the current topic, not color alone. A
-     browser without scroll-target-group matches no link here, so the list
-     shows plain and every link still works. */
-  .topics__list a:target-current {
-    font-weight: var(--weight-bold);
-    text-decoration: underline;
-    text-underline-offset: var(--underline-offset-prose);
-  }
-
-  /* Links to a Park's own subpages (for example a Trails page), separate
-     from the in-page topics nav above: these go to other pages, not to a
-     heading here. */
+  /* Links to a Park's own subpages (for example a Trails page): these go
+     to other pages, not to a heading here. */
   .sub {
     margin-top: var(--space-40);
   }

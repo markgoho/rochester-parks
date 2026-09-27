@@ -37,6 +37,9 @@
 
   /* Map */
   --land: hsl(107 13% 79%);
+  /* A Park's own land on its map: a deeper green than the land around it,
+     quieter than the orange a Park's dot takes. */
+  --park: hsl(118 24% 56%);
   /* The hover fill must carry white label text, so it is the darker orange. */
   --land-active: var(--orange-ink);
   /* The Genesee River and the Erie Canal. A quiet blue that reads as water
@@ -168,6 +171,7 @@
     --on-orange-quiet: oklch(94.63% 0.011 88.86 / 0.72);
 
     --land: oklch(84.66% 0.0224 138.9);
+    --park: oklch(64.6% 0.0829 142.5);
     --water: oklch(53.55% 0.0867 241.91);
   }
 }
