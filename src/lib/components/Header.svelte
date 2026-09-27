@@ -11,7 +11,6 @@
     { href: '/rochester-city-parks/', label: 'City' },
     { href: '/state-parks/', label: 'State' },
     { href: '/trails/', label: 'Trails' },
-    { href: '/about/', label: 'About' },
   ];
 
   const current = $derived(page.url?.pathname ?? '/');
