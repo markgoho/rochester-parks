@@ -21,7 +21,6 @@ amenities:
   - Trails
 sameAs:
   - 'https://www.cityofrochester.gov/locations/maplewood-park-and-rose-garden'
-  - 'https://www.cityofrochester.gov/locations/lower-falls-park'
   - 'https://olmstedrochester.org/maplewood-park/'
 geo:
   latitude: 43.1952197
