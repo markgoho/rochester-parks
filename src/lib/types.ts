@@ -239,6 +239,32 @@ export interface ParkMeta {
   former: boolean;
 }
 
+/**
+ * The outline of a Park's grounds (#173), keyed by page URL in
+ * `src/lib/park-outlines.ts`. A Park with no outline is simply absent.
+ */
+export interface ParkOutline {
+  /**
+   * GeoJSON MultiPolygon coordinates: an array of polygons, each an array of
+   * rings (the outer ring first, then any holes), each ring an array of
+   * `[longitude, latitude]` points.
+   */
+  polygons: [number, number][][][];
+  source: OutlineSource;
+}
+
+/** Where a Park's outline came from, and how sure the pick was. */
+export interface OutlineSource {
+  /** The ArcGIS layer's query URL. */
+  layer: string;
+  /** The feature ids that were joined into the outline, sorted. */
+  ids: string[];
+  /** ISO date the layer was queried. */
+  fetched: string;
+  /** True when `scripts/park-outline-picks.ts` chose this by hand. */
+  picked?: true;
+}
+
 /** What the facts panel shows for one set of hours. */
 export interface HoursView {
   /** The hours in effect today, one line each. */
