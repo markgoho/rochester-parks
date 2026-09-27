@@ -500,7 +500,7 @@ function bySizePage(sectionUrl: string): Page | undefined {
   if (!node || !isParkSection(sectionUrl) || measuredIn(sectionUrl) < 2) {
     return undefined;
   }
-  const base = orderingPage(sectionUrl);
+  const base = pageWithoutOutlines(sectionUrl);
   if (!base) return undefined;
   const self = {
     title: `${node.title} by size`,
@@ -529,7 +529,7 @@ const BY_NEIGHBORHOOD = 'by-neighborhood/';
 function byNeighborhoodPage(sectionUrl: string): Page | undefined {
   const node = nodes.get(sectionUrl);
   if (!node || !isCitySection(sectionUrl)) return undefined;
-  const base = orderingPage(sectionUrl);
+  const base = pageWithoutOutlines(sectionUrl);
   if (!base) return undefined;
   const self = {
     title: `${node.title} by neighborhood`,
@@ -556,7 +556,7 @@ const TABLE = 'table/';
 
 /** An ordering of a park section, shown as a table, as its own static page. */
 function tablePage(listUrl: string): Page | undefined {
-  const base = orderingPage(listUrl);
+  const base = pageWithoutOutlines(listUrl);
   if (!base || base.layout !== 'park-list') return undefined;
   return {
     ...base,
@@ -609,17 +609,17 @@ export function getPage(url: string): Page | undefined {
   if (url.endsWith(`/${TABLE}`)) {
     return tablePage(url.slice(0, -TABLE.length));
   }
-  const page = orderingPage(url);
+  const page = pageWithoutOutlines(url);
   return page?.layout === 'park-list'
     ? { ...page, children: page.children.map(withCardOutline) }
     : page;
 }
 
 /**
- * A page as its ordering builds it. A park list here carries no outlines;
- * `getPage` adds them for the cards, and the table goes without.
+ * Any page, but a park list here carries no outlines: `getPage` adds them
+ * for the cards, and the table goes without.
  */
-function orderingPage(url: string): Page | undefined {
+function pageWithoutOutlines(url: string): Page | undefined {
   if (url.endsWith(`/${BY_SIZE}`)) {
     return bySizePage(url.slice(0, -BY_SIZE.length));
   }
