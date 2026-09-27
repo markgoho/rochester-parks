@@ -5,6 +5,7 @@ import { markedSmartypants } from 'marked-smartypants';
 import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
 import { commentAreaOf } from '#lib/comment-area.js';
+import { commentCountOf } from '#lib/comment-shaping.js';
 import { pageToken } from '../../../functions/src/token.js';
 import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
@@ -360,6 +361,7 @@ function parkMetaOf(node: Node): ParkMeta {
     amenities,
     wordCount: node.wordCount,
     photoCount: node.photoCount,
+    commentCount: commentCountOf(approvedComments[node.url] ?? []),
     photo: cardPhoto(node),
     geo:
       latitude !== undefined && longitude !== undefined

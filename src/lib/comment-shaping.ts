@@ -46,6 +46,22 @@ const oldestFirst = (a: StoredCommentWithId, b: StoredCommentWithId) =>
   a.created.getTime() - b.created.getTime() || a.id.localeCompare(b.id);
 
 /**
+ * How many Comments a Park List row counts for one page (#260): every
+ * reader Comment and every reader Reply, leaving out every `owner` one. The
+ * owner's own top-level Archive comments and every owner Reply are left out,
+ * so a reader's question and the owner's answer count once, not twice.
+ */
+export function commentCountOf(comments: CommentWithReplies[]): number {
+  return comments.reduce(
+    (total, comment) =>
+      total +
+      (comment.owner ? 0 : 1) +
+      comment.replies.filter((reply) => !reply.owner).length,
+    0
+  );
+}
+
+/**
  * Approved Comment documents in, the per-page render shape out, keyed by page
  * path. Only id, name, body, date and the owner mark survive: no email, IP,
  * Subject, flags or state. A Reply whose parent is not a top-level Comment in

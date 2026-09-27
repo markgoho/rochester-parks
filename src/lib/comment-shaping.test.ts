@@ -1,10 +1,12 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
 import {
+  commentCountOf,
   shapeComments,
   type StoredComment,
   type StoredCommentWithId,
 } from './comment-shaping.js';
+import type { CommentWithReplies } from './types.js';
 
 const PAGE = '/town-parks/riga-parks/sanford-road-park/';
 const OTHER = '/trails/erie-canal/';
@@ -124,5 +126,60 @@ describe('shapeComments', () => {
       stored('a', { created: new Date('2021-03-01T02:00:00Z') }),
     ]);
     expect(shaped[PAGE][0].created).toBe('2021-02-28');
+  });
+});
+
+/** A shaped Comment, as `shapeComments` hands the page. */
+function pageComment(
+  id: string,
+  overrides: Partial<CommentWithReplies> = {}
+): CommentWithReplies {
+  return {
+    id,
+    name: 'Barbara',
+    body: 'How do I reserve the lodge?',
+    created: '2015-06-14',
+    owner: false,
+    replies: [],
+    ...overrides,
+  };
+}
+
+describe('commentCountOf', () => {
+  test('counts a reader Comment and the owner Reply that answers it as one, not two', () => {
+    const comments = [
+      pageComment('a', {
+        replies: [pageComment('r', { owner: true, name: 'Rochester Parks' })],
+      }),
+    ];
+    expect(commentCountOf(comments)).toBe(1);
+  });
+
+  test('leaves out the owner top-level Comment, keeps a reader Reply to it', () => {
+    const comments = [
+      pageComment('a', { owner: true, name: 'Rochester Parks' }),
+    ];
+    expect(commentCountOf(comments)).toBe(0);
+
+    const withReaderReply = [
+      pageComment('a', {
+        owner: true,
+        name: 'Rochester Parks',
+        replies: [pageComment('r')],
+      }),
+    ];
+    expect(commentCountOf(withReaderReply)).toBe(1);
+  });
+
+  test('counts every reader Comment and reader Reply', () => {
+    const comments = [
+      pageComment('a', { replies: [pageComment('r1'), pageComment('r2')] }),
+      pageComment('b'),
+    ];
+    expect(commentCountOf(comments)).toBe(4);
+  });
+
+  test('is zero for a page with no Comments', () => {
+    expect(commentCountOf([])).toBe(0);
   });
 });

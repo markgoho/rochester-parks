@@ -208,6 +208,11 @@ export interface ParkMeta {
   /** Body words, excluding embeds and image syntax. */
   wordCount: number;
   photoCount: number;
+  /**
+   * How many Comments the Park List counts for this page (#260): every
+   * reader Comment and reader Reply, leaving out every `owner` one.
+   */
+  commentCount: number;
   /** The photo a park card shows, site-relative. Absent when there is none. */
   photo?: string;
   status: ParkStatus;
