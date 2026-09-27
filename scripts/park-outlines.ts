@@ -436,7 +436,7 @@ async function loadCountyParks(): Promise<Map<string, CountyPark>> {
   return parks;
 }
 
-type PickLayer = 'county parks' | 'county parcels' | 'city parcels';
+type PickLayer = Exclude<Pick['layer'], 'openstreetmap'>;
 
 function pickLayer(kind: Pick['layer']): string {
   return kind === 'openstreetmap'
@@ -897,8 +897,9 @@ function printMeasure(
     if (pick) {
       const wanted = key(pickLayer(pick.layer), pick.ids);
       let verdict: string;
-      if (!got) verdict = 'missed';
-      else if (pick.layer !== 'openstreetmap' && pick.clip) verdict = 'needs a clip';
+      if (pick.layer === 'openstreetmap') verdict = 'no parcel to find';
+      else if (!got) verdict = 'missed';
+      else if (pick.clip) verdict = 'needs a clip';
       else if (gotKey === wanted) verdict = 'reproduced';
       else if (got.layer !== pickLayer(pick.layer)) verdict = 'other layer';
       else if (pick.ids.every((id) => got.ids.includes(id))) verdict = 'too many';
