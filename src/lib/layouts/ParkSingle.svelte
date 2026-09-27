@@ -26,6 +26,7 @@
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
   import { FACILITIES_TOPIC } from '#lib/topics.js';
+  import { countyDot, outlineSvg, placeSvg } from '#lib/prototype-search.js';
   import type { HoursView, Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
@@ -147,6 +148,10 @@
   class="park"
   data-pagefind-body={page.park?.former ? undefined : ''}
 >
+  <!-- PROTOTYPE (#310): the result's small maps, as text Pagefind decodes. -->
+  {#if meta?.geo && shape}<span hidden data-pagefind-ignore data-pagefind-meta="map">{placeSvg(shape, villages, meta.geo, page.url.replaceAll('/', '-'))}</span>{/if}
+  {#if page.outline}<span hidden data-pagefind-ignore data-pagefind-meta="shape">{outlineSvg(page.outline)}</span>{/if}
+  {#if meta?.geo}<span hidden data-pagefind-ignore data-pagefind-meta="dot">{countyDot(meta.geo)}</span>{/if}
   <!-- PROTOTYPE (#298): the result's second line. -->
   <span hidden data-pagefind-ignore data-pagefind-meta="line">{searchLine}</span>
   <Breadcrumbs ancestors={page.ancestors} current={page} />

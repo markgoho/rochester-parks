@@ -1,16 +1,17 @@
-// PROTOTYPE (#298): throwaway. Picks the variant from ?variant= (or the last
-// one seen in this tab), shows its triggers, and draws the switcher bar.
+// PROTOTYPE (#310): throwaway. The header is #298's winner (A) on every
+// variant. ?variant= now picks what a result shows beside its text.
 (() => {
   const VARIANTS = {
-    A: 'Nav icon · centred panel · / key · /find opens the dialog',
-    B: 'Icon by the name · top sheet · Cmd-K · /find results on the page',
-    C: 'Icon at the edge · full screen · Cmd-K · /find box in the filter',
+    A: 'Place map: the town or Neighborhood with the dot',
+    B: "The Park's own outline (the card's figure)",
+    C: 'No map: text only (the #298 result)',
+    D: 'County dot: one shared county map, the dot moves',
   };
   const keys = Object.keys(VARIANTS);
   const url = new URL(location.href);
   let stored = null;
   try {
-    stored = sessionStorage.getItem('pf-variant');
+    stored = sessionStorage.getItem('pf-fig');
   } catch {}
   const variant = keys.includes(url.searchParams.get('variant'))
     ? url.searchParams.get('variant')
@@ -18,14 +19,15 @@
       ? stored
       : 'A';
   try {
-    sessionStorage.setItem('pf-variant', variant);
+    sessionStorage.setItem('pf-fig', variant);
   } catch {}
-  document.documentElement.dataset.variant = variant;
+  document.documentElement.dataset.variant = 'A';
+  document.documentElement.dataset.fig = variant;
 
-  // A hidden trigger still listens on the whole document. Give it a key
-  // nobody presses. Attributes only: /find hydrates, so no node may go.
+  // The #298 losers' triggers still listen on the whole document. Give them a
+  // key nobody presses. Attributes only: /find hydrates, so no node may go.
   for (const el of document.querySelectorAll('[data-pf-variant]')) {
-    if (el.dataset.pfVariant === variant) continue;
+    if (el.dataset.pfVariant === 'A') continue;
     for (const trigger of el.querySelectorAll('pagefind-modal-trigger')) {
       trigger.setAttribute('shortcut', 'ctrl+alt+shift+f19');
     }

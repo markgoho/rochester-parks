@@ -136,3 +136,74 @@ html[data-variant='B'] main:has(pagefind-results[instance='find-b'] .pf-result)
 .pr-switcher b {
   color: #ffb070;
 }
+
+/* PROTOTYPE (#310): the figure beside a result. Site classes only (pr-*), so
+   Pagefind's pf-* reset does not reach them. */
+.pr-row {
+  display: grid;
+  grid-template-columns: var(--pr-fig, 0) 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+html[data-fig='A'],
+html[data-fig='B'],
+html[data-fig='D'] {
+  --pr-fig: 4.5rem;
+}
+@media (width <= 640px) {
+  html[data-fig='A'],
+  html[data-fig='B'],
+  html[data-fig='D'] {
+    --pr-fig: 3.25rem;
+  }
+}
+.pr-fig > span {
+  display: none;
+}
+.pr-fig svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+}
+html[data-fig='A'] .pr-map,
+html[data-fig='B'] .pr-shape,
+html[data-fig='B'] .pr-fig:not(:has(.pr-shape)) .pr-map,
+html[data-fig='D'] .pr-county {
+  display: block;
+}
+.pr-county svg {
+  aspect-ratio: 673 / 633;
+}
+.pr-fig .outline {
+  fill: var(--land);
+  stroke: var(--rule-strong);
+}
+.pr-fig .village {
+  fill: var(--paper-sunk);
+  stroke: var(--rule-strong);
+}
+.pr-fig .water {
+  fill: none;
+  stroke: var(--water);
+  stroke-width: var(--stroke-water);
+}
+.pr-fig .river {
+  stroke-width: var(--stroke-river);
+}
+.pr-fig .land {
+  fill: var(--park);
+  fill-rule: evenodd;
+  stroke: var(--ink-soft);
+}
+.pr-fig .dot {
+  fill: var(--orange);
+  stroke: var(--ink);
+}
+.pr-fig path,
+.pr-fig circle {
+  vector-effect: non-scaling-stroke;
+  stroke-width: var(--stroke-base);
+  stroke-linejoin: round;
+}
