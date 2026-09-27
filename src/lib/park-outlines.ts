@@ -749,6 +749,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       picked: true,
     },
   },
+  "/rochester-city-parks/roc-city-skatepark/": {
+    polygons: [
+      [[[-77.608157,43.151495],[-77.608127,43.151425],[-77.608024,43.151338],[-77.607889,43.151292],[-77.60756,43.151269],[-77.607686,43.151714],[-77.607855,43.151848],[-77.60813,43.151565],[-77.608157,43.151495]]]
+    ],
+    source: {
+      layer: "https://www.openstreetmap.org",
+      ids: ["way/1333365029"],
+      fetched: "2026-09-27",
+      picked: true,
+    },
+  },
   "/rochester-city-parks/schiller-park/": {
     polygons: [
       [[[-77.605648,43.161004],[-77.605597,43.160794],[-77.605554,43.160709],[-77.605505,43.160664],[-77.605429,43.16063],[-77.60533,43.160618],[-77.605235,43.16064],[-77.605155,43.160685],[-77.605109,43.160742],[-77.605057,43.160878],[-77.60505,43.161089],[-77.605648,43.161004]]]
@@ -767,6 +778,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["10529000020200010000"],
       fetched: "2026-09-27",
+    },
+  },
+  "/rochester-city-parks/st-johns-park/": {
+    polygons: [
+      [[[-77.618392,43.244001],[-77.618323,43.24398],[-77.617916,43.244341],[-77.61802,43.24442],[-77.618163,43.244446],[-77.618392,43.244001]]]
+    ],
+    source: {
+      layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
+      ids: ["26140006121000010180010000"],
+      fetched: "2026-09-27",
+      picked: true,
     },
   },
   "/rochester-city-parks/st-josephs-park/": {
@@ -1294,6 +1316,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       fetched: "2026-09-27",
     },
   },
+  "/town-parks/greece-parks/goodwin-park/": {
+    polygons: [
+      [[[-77.67598,43.292006],[-77.675177,43.291363],[-77.674243,43.290397],[-77.673571,43.290711],[-77.674206,43.291037],[-77.675055,43.291677],[-77.675877,43.292041],[-77.67598,43.292006]]]
+    ],
+    source: {
+      layer: "https://www.openstreetmap.org",
+      ids: ["way/219746926"],
+      fetched: "2026-09-27",
+      picked: true,
+    },
+  },
   "/town-parks/greece-parks/grandview-park/": {
     polygons: [
       [[[-77.691328,43.295777],[-77.691047,43.295273],[-77.690994,43.294234],[-77.690753,43.294294],[-77.689592,43.295488],[-77.690034,43.29573],[-77.690244,43.296107],[-77.691328,43.295777]]]
@@ -1712,6 +1745,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26388908703000010020000000"],
       fetched: "2026-09-27",
+    },
+  },
+  "/town-parks/ogden-parks/ogden-memorial-park/": {
+    polygons: [
+      [[[-77.804891,43.186108],[-77.804547,43.185721],[-77.804097,43.185557],[-77.80399,43.186108],[-77.804081,43.186158],[-77.804687,43.186189],[-77.804842,43.18616],[-77.804891,43.186108]]]
+    ],
+    source: {
+      layer: "https://www.openstreetmap.org",
+      ids: ["way/546687679"],
+      fetched: "2026-09-27",
+      picked: true,
     },
   },
   "/town-parks/ogden-parks/pineway-ponds-park/": {
@@ -2291,6 +2335,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       fetched: "2026-09-27",
     },
   },
+  "/town-parks/pittsford-parks/pittsford-town-dog-park/": {
+    polygons: [
+      [[[-77.496696,43.073847],[-77.495388,43.073604],[-77.495179,43.074155],[-77.496535,43.074442],[-77.496676,43.074055],[-77.496626,43.074046],[-77.496696,43.073847]]]
+    ],
+    source: {
+      layer: "https://www.openstreetmap.org",
+      ids: ["way/1245960782", "way/1245960783"],
+      fetched: "2026-09-27",
+      picked: true,
+    },
+  },
   "/town-parks/pittsford-parks/royal-coach-park/": {
     polygons: [
       [[[-77.541387,43.040799],[-77.540545,43.040184],[-77.530903,43.036881],[-77.530328,43.036895],[-77.530329,43.03668],[-77.529395,43.036355],[-77.525406,43.036415],[-77.525487,43.037004],[-77.52657,43.036982],[-77.526705,43.037932],[-77.524331,43.037972],[-77.524469,43.038947],[-77.524465,43.039162],[-77.526246,43.039173],[-77.528802,43.039154],[-77.52885,43.040801],[-77.541387,43.040799]]]
@@ -2420,6 +2475,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
       ids: ["26520106860000040030000000"],
       fetched: "2026-09-27",
+    },
+  },
+  "/town-parks/sweden-parks/remembrance-park/": {
+    polygons: [
+      [[[-77.937018,43.211465],[-77.936652,43.211451],[-77.936619,43.211466],[-77.936513,43.211809],[-77.937018,43.211483],[-77.937018,43.211465]]]
+    ],
+    source: {
+      layer: "https://www.openstreetmap.org",
+      ids: ["way/538345349"],
+      fetched: "2026-09-27",
+      picked: true,
     },
   },
   "/town-parks/sweden-parks/sagawa-park/": {
