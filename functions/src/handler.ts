@@ -145,10 +145,10 @@ const NAME_MAX = 100;
 const BODY_MAX = 5000;
 
 /**
- * Spam thresholds (#259), checked for the current question (#281) on the 4
- * spam posts of 2026-09-24 and 2026-09-25 and the 127 Archive comments: at
- * 0.9 all 4 spam posts were refused and no real Comment was. From 0.7, 5 of
- * the 100 real Comments would be flagged; from 0.5, 12.
+ * Spam thresholds (#259, #281). The last run of `scripts/spam-eval.ts`
+ * (2026-09-27, #284): at 0.9 all 5 posts of the spam set were refused and
+ * no real Comment was. From 0.7, 4 of the 100 real Comments were flagged.
+ * Jev's scores move a little between runs.
  */
 const SPAM_REJECT = 0.9;
 const SPAM_FLAG = 0.7;
