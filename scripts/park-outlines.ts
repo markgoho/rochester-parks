@@ -454,6 +454,8 @@ interface Resolved {
   picked: boolean;
   /** The seed parcel sat near the point, not under it: `geo` may be off. */
   viaNear: boolean;
+  /** A pick cut to its `clip` area, so it may share parcels on purpose. */
+  clipped?: boolean;
 }
 
 interface Missed {
@@ -494,11 +496,16 @@ async function resolvePage(
     return {
       url: page.url,
       section,
-      polys,
+      polys: pick.clip
+        ? polygonClipping.intersection(polygonClipping.union(...polys), [
+            [pick.clip],
+          ])
+        : polys,
       ids: [...pick.ids].sort(),
       layer,
       picked: true,
       viaNear: false,
+      clipped: pick.clip !== undefined,
     };
   }
 
@@ -720,8 +727,10 @@ function writeReport(
       byParcel.set(key, [...(byParcel.get(key) ?? []), r.url]);
     }
   }
+  // Clipped picks cut one parcel between Parks, so they share it on purpose.
+  const clipped = new Set(resolved.filter((r) => r.clipped).map((r) => r.url));
   const shared = [...byParcel]
-    .filter(([, urls]) => urls.length > 1)
+    .filter(([, urls]) => urls.length > 1 && !urls.every((u) => clipped.has(u)))
     .sort(([a], [b]) => a.localeCompare(b));
   lines.push('## Parcels in more than one outline', '');
   if (shared.length === 0) lines.push('_None._');

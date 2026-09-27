@@ -5,15 +5,122 @@
  * park-outlines.ts` never overwrites a picked Park from its own search, and
  * marks its outline `source.picked: true`.
  *
+ * A pick may also give `clip`, a ring of [longitude, latitude] points: the
+ * outline is then only the part of its parcels inside that ring. Use it when
+ * one parcel holds two Parks.
+ *
  * `NO_OUTLINE` records the Parks a person decided can have no outline, with
  * the reason; the report prints it.
  *
  * Key: the Park page's URL. Add an entry, then rerun `bun scripts/
  * park-outlines.ts`.
  */
+type Ring = [number, number][];
+
+/**
+ * Slater Creek through the Badgerow Park land in Greece, from OpenStreetMap
+ * (ways 792683615 to 792683057, fetched 2026-09-27), simplified to about 2 m.
+ * It divides the common area between Veteran's Memorial Park and Badgerow
+ * Park South.
+ */
+const SLATER_CREEK: Ring = [
+  [-77.657028, 43.249104],
+  [-77.656865, 43.249229],
+  [-77.656557, 43.249588],
+  [-77.656059, 43.249923],
+  [-77.655979, 43.250064],
+  [-77.655804, 43.250171],
+  [-77.655722, 43.250351],
+  [-77.654696, 43.25059],
+  [-77.654258, 43.250618],
+  [-77.652949, 43.25111],
+  [-77.652654, 43.251401],
+  [-77.652583, 43.251689],
+  [-77.652509, 43.251746],
+  [-77.652353, 43.251787],
+  [-77.65214, 43.251926],
+  [-77.652011, 43.251915],
+  [-77.650565, 43.251418],
+  [-77.650287, 43.251374],
+  [-77.650145, 43.251388],
+  [-77.649386, 43.251871],
+  [-77.648438, 43.252609],
+  [-77.648181, 43.252734],
+  [-77.648049, 43.252962],
+  [-77.648047, 43.253054],
+  [-77.64789, 43.253262],
+  [-77.647832, 43.253547],
+  [-77.647541, 43.253743],
+  [-77.647409, 43.253932],
+  [-77.6473, 43.253987],
+  [-77.64695, 43.25406],
+  [-77.6468, 43.25416],
+  [-77.646414, 43.254273],
+  [-77.645858, 43.254629],
+  [-77.645106, 43.255178],
+  [-77.644097, 43.256396],
+  [-77.643731, 43.256741],
+  [-77.643108, 43.257232],
+  [-77.642214, 43.257712],
+  [-77.642062, 43.258135],
+  [-77.641987, 43.258569],
+  [-77.641659, 43.2591],
+  [-77.641578, 43.259541],
+  [-77.641158, 43.260311],
+  [-77.641017, 43.260426],
+  [-77.641088, 43.260522],
+  [-77.640948, 43.260655],
+  [-77.640934, 43.260779],
+  [-77.640746, 43.260973],
+  [-77.640522, 43.261075],
+  [-77.640301, 43.26156],
+  [-77.640136, 43.261685],
+  [-77.639509, 43.261835],
+  [-77.639343, 43.26191],
+  [-77.63919, 43.262094],
+  [-77.639087, 43.262153],
+  [-77.638886, 43.262167],
+  [-77.638641, 43.262108],
+  [-77.638499, 43.262293],
+  [-77.638378, 43.262316],
+  [-77.638117, 43.262268],
+  [-77.637935, 43.262328],
+  [-77.637788, 43.262482],
+  [-77.637542, 43.262516],
+  [-77.637263, 43.262683],
+  [-77.637151, 43.262777],
+  [-77.636972, 43.263124],
+  [-77.637012, 43.263436],
+  [-77.63716, 43.263604],
+  [-77.637213, 43.263725],
+  [-77.637219, 43.263815],
+  [-77.637088, 43.263927],
+  [-77.636948, 43.263963],
+  [-77.635901, 43.263953],
+];
+
+/** The land on one side of a line that crosses a Park's parcels. */
+function sideOf(line: Ring, side: 'west' | 'east'): Ring {
+  const [start, end] = [line[0], line[line.length - 1]];
+  const [south, north] = [start[1] - 0.01, end[1] + 0.01];
+  const far = side === 'west' ? start[0] - 0.01 : end[0] + 0.01;
+  return [
+    [start[0], south],
+    ...line,
+    [end[0], north],
+    [far, north],
+    [far, south],
+    [start[0], south],
+  ];
+}
+
 export const PICKS: Record<
   string,
-  { layer: 'county parks' | 'county parcels' | 'city parcels'; ids: string[] }
+  {
+    layer: 'county parks' | 'county parcels' | 'city parcels';
+    ids: string[];
+    clip?: Ring;
+  }
 > = {
   /**
    * Owner name is the Park ("City Of Roch Aberdeen Pk"), acres and address
@@ -315,17 +422,21 @@ export const PICKS: Record<
     ids: ['26260010410000020031000000'],
   },
   /**
-   * Badgerow Park South takes the 37.1 ac parcel at its own address, 1120
-   * Latta Road: the ball fields on Latta Road, its tennis courts and parking,
-   * and the wooded trails that join it to Veteran's Memorial Park. The roll
-   * names this parcel and 4614 Dewey Avenue 'Latta Rd Park'. It also takes
-   * the 14.6 ac parcel at 1100 Latta Road (class 853 Sewage), woods and a
-   * trailhead lot beside it: the town's figures for the two Parks (33.1 and
-   * 33.2 ac) add up to all three parcels, 66.3 ac.
+   * The town's land at Latta Road and Dewey Avenue is one block of three
+   * parcels (66.3 ac) that holds two Parks and a common area of woods and
+   * trails between them; no parcel line divides them. The town's figures
+   * (33.1 and 33.2 ac) add up to the whole block. Slater Creek splits it:
+   * Badgerow Park South takes the land east of the creek, with its ball
+   * fields on Latta Road.
    */
   '/town-parks/greece-parks/badgerow-park-south/': {
     layer: 'county parcels',
-    ids: ['26280004604000010130000000', '26280004604000010140000000'],
+    ids: [
+      '26280004604000010120000000',
+      '26280004604000010130000000',
+      '26280004604000010140000000',
+    ],
+    clip: sideOf(SLATER_CREEK, 'east'),
   },
   /**
    * The Town of Greece runs 375 acres inside the state's Braddock Bay Wildlife
@@ -391,15 +502,18 @@ export const PICKS: Record<
     ids: ['26280004503000040130000000'],
   },
   /**
-   * The two named Parks are one block of town land, but no parcel line divides
-   * them. Veteran's Memorial takes the 14.6 ac parcel at its own address, 4614
-   * Dewey Avenue, which holds its entrance, parking, playground and ball
-   * field. The shared woods and trails go with Badgerow Park South, so the
-   * outline is smaller than the town's 33.2 ac.
+   * The same block as Badgerow Park South: Veteran's Memorial Park takes the
+   * land west of Slater Creek, with its fields, courts and parking on Dewey
+   * Avenue.
    */
   '/town-parks/greece-parks/veterans-memorial-park/': {
     layer: 'county parcels',
-    ids: ['26280004604000010120000000'],
+    ids: [
+      '26280004604000010120000000',
+      '26280004604000010130000000',
+      '26280004604000010140000000',
+    ],
+    clip: sideOf(SLATER_CREEK, 'west'),
   },
   /**
    * Address matches (1658 Lake Rd), acres match.
