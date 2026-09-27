@@ -238,6 +238,17 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       picked: true,
     },
   },
+  "/rochester-city-parks/austin-steward-plaza/": {
+    polygons: [
+      [[[-77.613252,43.158634],[-77.612228,43.157482],[-77.611754,43.156661],[-77.611266,43.156867],[-77.612417,43.158898],[-77.613043,43.15872],[-77.613252,43.158634]]]
+    ],
+    source: {
+      layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
+      ids: ["10679000010650000000"],
+      fetched: "2026-09-27",
+      picked: true,
+    },
+  },
   "/rochester-city-parks/avenue-d-rec-center/": {
     polygons: [
       [[[-77.619373,43.182049],[-77.619259,43.180356],[-77.618601,43.180375],[-77.618557,43.180786],[-77.618103,43.180798],[-77.617907,43.181688],[-77.618432,43.181682],[-77.618441,43.182055],[-77.619373,43.182049]]]
@@ -577,18 +588,6 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
       layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
       ids: ["10549000030010000000"],
       fetched: "2026-09-27",
-    },
-  },
-  "/rochester-city-parks/jefferson-terrace-park/": {
-    polygons: [
-      [[[-77.630859,43.147458],[-77.629132,43.14746],[-77.629134,43.147772],[-77.630859,43.147773],[-77.630859,43.147458]]],
-      [[[-77.629961,43.146689],[-77.629128,43.146692],[-77.62913,43.147011],[-77.62996,43.147009],[-77.629961,43.146689]]]
-    ],
-    source: {
-      layer: "https://maps.cityofrochester.gov/server/rest/services/Open_Data/Tax_Parcels_City_Owned_Land_Open_Data/FeatureServer/4",
-      ids: ["12051000030230000000", "12051000030270010000"],
-      fetched: "2026-09-27",
-      picked: true,
     },
   },
   "/rochester-city-parks/jones-square-park/": {
@@ -1216,11 +1215,11 @@ export const PARK_OUTLINES: Record<string, ParkOutline> = {
   },
   "/town-parks/greece-parks/badgerow-park-south/": {
     polygons: [
-      [[[-77.644816,43.255504],[-77.642038,43.255506],[-77.642109,43.253051],[-77.640682,43.253037],[-77.640617,43.255981],[-77.63749,43.256386],[-77.637384,43.256373],[-77.638563,43.256874],[-77.640556,43.257898],[-77.640609,43.25623],[-77.642874,43.256239],[-77.642778,43.259936],[-77.644743,43.259946],[-77.644816,43.255504]]]
+      [[[-77.644816,43.255504],[-77.642038,43.255506],[-77.642109,43.253051],[-77.640682,43.253037],[-77.640617,43.255981],[-77.63749,43.256386],[-77.637384,43.256373],[-77.638563,43.256874],[-77.640556,43.257898],[-77.642373,43.259933],[-77.644743,43.259946],[-77.644816,43.255504]]]
     ],
     source: {
       layer: "https://maps.monroecounty.gov/server/rest/services/Hosted/Parcels_Public/FeatureServer/0",
-      ids: ["26280004604000010130000000"],
+      ids: ["26280004604000010130000000", "26280004604000010140000000"],
       fetched: "2026-09-27",
       picked: true,
     },

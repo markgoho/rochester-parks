@@ -42,6 +42,15 @@ export const PICKS: Record<
     ids: ['26140012123000010240020000', '26140012123000010240030000'],
   },
   /**
+   * The plaza is the roof of the City's Genesee Crossroads parking garage
+   * (69 Andrews St, class 437), and the garage parcel traces the plaza
+   * exactly on the aerial, so the parcel is the outline.
+   */
+  '/rochester-city-parks/austin-steward-plaza/': {
+    layer: 'city parcels',
+    ids: ['10679000010650000000'],
+  },
+  /**
    * The pocket park is the City's class 590 Park parcel at 105 Barrington St
    * (0.22 ac); the aerial shows the whole lawn on it. The page's 1 ac is the
    * City park layer's rounded figure.
@@ -124,18 +133,6 @@ export const PICKS: Record<
       '12162000010340000000',
       '12162000010350000000',
     ],
-  },
-  /**
-   * The park is the lawn, play area and playground around School #4. The two
-   * City parcels that are not school land (365 Jefferson Ave, 1.21 ac, and 176
-   * Dr Samuel McCree Way, 0.59 ac) hold the north field and the playground
-   * corner; the lawn between them is on the School #4 parcel, which ADR-0005
-   * excludes. The page's 4.7 ac counts the whole block with the school. The
-   * old point was on the school parcel.
-   */
-  '/rochester-city-parks/jefferson-terrace-park/': {
-    layer: 'city parcels',
-    ids: ['12051000030230000000', '12051000030270010000'],
   },
   /**
    * The three City parcels on the west rim of the gorge from Driving Park Ave
@@ -321,12 +318,14 @@ export const PICKS: Record<
    * Badgerow Park South takes the 37.1 ac parcel at its own address, 1120
    * Latta Road: the ball fields on Latta Road, its tennis courts and parking,
    * and the wooded trails that join it to Veteran's Memorial Park. The roll
-   * names this parcel and 4614 Dewey Avenue 'Latta Rd Park'. The 14.6 ac
-   * sewage parcel at 1100 Latta Road is left out; it is a working plant.
+   * names this parcel and 4614 Dewey Avenue 'Latta Rd Park'. It also takes
+   * the 14.6 ac parcel at 1100 Latta Road (class 853 Sewage), woods and a
+   * trailhead lot beside it: the town's figures for the two Parks (33.1 and
+   * 33.2 ac) add up to all three parcels, 66.3 ac.
    */
   '/town-parks/greece-parks/badgerow-park-south/': {
     layer: 'county parcels',
-    ids: ['26280004604000010130000000'],
+    ids: ['26280004604000010130000000', '26280004604000010140000000'],
   },
   /**
    * The Town of Greece runs 375 acres inside the state's Braddock Bay Wildlife
@@ -1023,8 +1022,8 @@ export const PICKS: Record<
 
 /** Parks with no outline by decision, and why (#292). Key: the page's URL. */
 export const NO_OUTLINE: Record<string, string> = {
-  '/rochester-city-parks/austin-steward-plaza/':
-    "The plaza is the roof of the City's Genesee Crossroads parking garage (69 Andrews St, class 437 Parking Garage, 3.34 ac); the City page says it 'sits atop the 658-space Genesee Crossroads parking garage'. No parcel holds the plaza apart from the garage.",
+  '/rochester-city-parks/jefferson-terrace-park/':
+    'The lawn and play area wrap around the School #4 building on the school parcel, which ADR-0005 excludes. Only two small City lots at the edges are not school land, and they do not draw the Park, so the page keeps its point with no outline.',
   '/rochester-city-parks/field-st-park/':
     'The field is the north half of the School #35 parcel (194 Field St, class 612 School, 3.74 ac); no separate parcel holds it, and ADR-0005 excludes school land.',
   '/rochester-city-parks/grape-and-wilder/':
