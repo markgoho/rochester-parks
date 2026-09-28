@@ -46,7 +46,7 @@
       >.
     {:else}
       Each park's page names who takes its bookings. Start at
-      <a href="/all-parks-in-rochester-ny/">All Parks in Rochester NY</a>.
+      <a href="/find/">Find a park</a>.
     {/if}
   </p>
 
