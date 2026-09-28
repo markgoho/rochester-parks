@@ -52,35 +52,61 @@ const highFalls: ParkMeta = {
   geo: { latitude: 43.161314, longitude: -77.6134002 },
 };
 
+/** A point far outside Monroe County: in no town and no Neighborhood. */
+const outside = { latitude: 42.5, longitude: -76.5 };
+
 describe('placeShape', () => {
   test('a City Park takes its Neighborhood, with no villages', () => {
     const found = placeShape(westHigh, false);
-    expect(found?.shape.name).toBe('19th Ward');
+    expect(found?.city).toBe(true);
+    expect(found?.neighborhood?.name).toBe('19th Ward');
+    expect(found?.shape?.name).toBe('19th Ward');
     expect(found?.villages).toEqual([]);
+    expect(found?.where).toBe('19th Ward');
   });
 
   test("a County Park takes the town its point stands in, with the town's villages", () => {
     const found = placeShape(mendonPonds, false);
-    expect(found?.shape.key).toBe('mendon');
+    expect(found?.city).toBe(false);
+    expect(found?.neighborhood).toBeUndefined();
+    expect(found?.shape?.key).toBe('mendon');
     expect(found?.villages.map((v) => v.key)).toEqual(['honeoye-falls']);
+    expect(found?.where).toBe('Mendon');
   });
 
   test("a Town Park takes its own town, with the town's villages", () => {
     const found = placeShape(egyptPark, false);
-    expect(found?.shape.key).toBe('perinton');
+    expect(found?.shape?.key).toBe('perinton');
     expect(found?.villages.map((v) => v.key)).toEqual(['fairport']);
+    expect(found?.where).toBe('Perinton');
   });
 
-  test('a Park with no point has no shape', () => {
+  test('a Park with no point has no place', () => {
     expect(placeShape({ ...baseMeta, geo: undefined }, false)).toBeUndefined();
   });
 
-  test('a State Park standing in the city falls back like the Park page does, with no shape', () => {
-    // The Park page draws its TownLocator fallback here (no Neighborhood
-    // lookup off a state section, and `townAt` excludes the city): the
-    // search result must match, not fall back to `parkPlace`'s more lenient
-    // `placeAt`, or it would show a map the Park page itself does not draw.
-    expect(placeShape(highFalls, false)).toBeUndefined();
+  test('a State Park standing in the city has no shape and no place name', () => {
+    // No Neighborhood lookup off a state section, and `townAt` excludes the
+    // city, so the Park page draws no map here: the search result must
+    // match, not fall back to `parkPlace`'s more lenient `placeAt`.
+    const found = placeShape(highFalls, false);
+    expect(found?.shape).toBeUndefined();
+    expect(found?.where).toBeUndefined();
+  });
+
+  test('a County Park outside every outline is placed in the county, with no shape', () => {
+    const found = placeShape({ ...mendonPonds, geo: outside }, false);
+    expect(found?.shape).toBeUndefined();
+    expect(found?.villages).toEqual([]);
+    expect(found?.where).toBe('Monroe County');
+  });
+
+  test('a City Park outside every Neighborhood is placed in the city, with no shape', () => {
+    const found = placeShape({ ...westHigh, geo: outside }, false);
+    expect(found?.city).toBe(true);
+    expect(found?.neighborhood).toBeUndefined();
+    expect(found?.shape).toBeUndefined();
+    expect(found?.where).toBe('Rochester');
   });
 
   test('a Trail takes the place its point stands in, county-wide, even inside the city', () => {
@@ -92,7 +118,7 @@ describe('placeShape', () => {
       },
       true
     );
-    expect(inTown?.shape.key).toBe('perinton');
+    expect(inTown?.shape?.key).toBe('perinton');
 
     const inCity = placeShape(
       {
@@ -102,7 +128,9 @@ describe('placeShape', () => {
       },
       true
     );
-    expect(inCity?.shape.key).toBe('rochester');
+    expect(inCity?.city).toBe(false);
+    expect(inCity?.neighborhood).toBeUndefined();
+    expect(inCity?.shape?.key).toBe('rochester');
   });
 });
 

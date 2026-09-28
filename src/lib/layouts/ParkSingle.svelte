@@ -14,17 +14,9 @@
     parkTransitionName,
     telHref,
   } from '#lib/format.js';
-  import {
-    isCitySection,
-    isCountySection,
-    municipality,
-    placeAt,
-    townAt,
-    townKey,
-    villagesIn,
-  } from '#lib/municipalities.js';
-  import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
+  import { neighborhoodUrl } from '#lib/neighborhoods.js';
   import { searchEntryOf } from '#lib/search-index.js';
+  import { placeShape } from '#lib/search-map.js';
   import { FACILITIES_TOPIC } from '#lib/topics.js';
   import type { HoursView, Page } from '#lib/types.js';
 
@@ -45,51 +37,16 @@
    */
   const search = $derived(searchEntryOf(page));
   const meta = $derived(page.park ?? page.trail);
-  const county = $derived(
-    meta !== undefined && !trailPage && isCountySection(meta.section.url)
-  );
-  const city = $derived(
-    meta !== undefined && !trailPage && isCitySection(meta.section.url)
-  );
   /**
-   * The town to draw. The coordinates decide it, so a park filed under one
-   * section but standing in another is shown where it really is; the section
-   * is only the fallback. A county park has no town section to fall back on,
-   * and several stand in the city, so the city counts as a place for it. A
-   * city park is drawn on its neighborhood instead. A Trail is filed in one
-   * flat `/trails/` section, not a city or town section, so it always takes
-   * the same county-wide lookup a county park does: `city` is never true for
-   * a Trail, so it never takes the Neighborhood branch below, even when its
-   * point stands inside Rochester (it draws the city's own outline there,
-   * the same one the county-wide map uses).
+   * Where the Park stands, and so which map it draws: the same choice its
+   * search result's map makes (#334), from the one pure function.
    */
-  const town = $derived(
-    meta?.geo && !city
-      ? trailPage || county
-        ? placeAt(meta.geo.latitude, meta.geo.longitude)
-        : (townAt(meta.geo.latitude, meta.geo.longitude) ??
-          townKey(meta.section.url))
-      : undefined
-  );
-  const neighborhood = $derived(
-    meta?.geo && city
-      ? neighborhoodAt(meta.geo.latitude, meta.geo.longitude)
-      : undefined
-  );
-  const shape = $derived(
-    neighborhood ?? (town ? municipality(town) : undefined)
-  );
-  const villages = $derived(town ? villagesIn(town) : []);
-  /**
-   * A county park whose point falls outside every outline still gets the
-   * county map rather than no map at all, and a city park outside every
-   * neighborhood gets the city map.
-   */
-  const where = $derived(
-    neighborhood?.name ??
-      (town ? municipality(town)?.label.text : undefined) ??
-      (county ? 'Monroe County' : city ? 'Rochester' : undefined)
-  );
+  const place = $derived(meta ? placeShape(meta, trailPage) : undefined);
+  const city = $derived(place?.city ?? false);
+  const neighborhood = $derived(place?.neighborhood);
+  const shape = $derived(place?.shape);
+  const villages = $derived(place?.villages ?? []);
+  const where = $derived(place?.where);
   const status = $derived(meta?.status);
   /** The address on one line, with any part the front matter left out dropped. */
   const address = $derived(
