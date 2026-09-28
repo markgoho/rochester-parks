@@ -495,6 +495,51 @@ p {
   --pf-text-muted: var(--orange);
 }
 
+/* Narrow headers. The wordmark and the nav do not fit on one line until about
+   57rem, and a wrapping nav stacked three tap-target rows beside a wrapped
+   wordmark. Here the wordmark takes its own line and the nav stays one row
+   that scrolls sideways. Search sticks to the row's end, so it is always in
+   reach, and fades out the links that pass under it. */
+@media (width < 60rem) {
+  .site-header {
+    flex-wrap: wrap;
+    row-gap: 0;
+    padding-top: var(--space-12);
+  }
+
+  .wordmark {
+    white-space: nowrap;
+  }
+
+  .site-header nav {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav li {
+    flex-shrink: 0;
+  }
+
+  .nav .search {
+    position: sticky;
+    inset-inline-end: 0;
+    margin-inline-start: auto;
+    padding-inline-start: var(--space-16);
+    min-inline-size: calc(var(--tap-target) + var(--space-16));
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--ink) var(--space-16)
+    );
+  }
+}
+
 .main {
   display: grid;
   grid-template-columns:
