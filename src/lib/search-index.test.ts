@@ -207,6 +207,51 @@ describe('searchEntryOf: which pages are in the index', () => {
     expect(entry.map).toContain('<svg');
   });
 
+  test("a Park's picture is its photo first, as on its card (#341)", () => {
+    const page: Page = {
+      ...pageBase,
+      title: 'Belmanor Park',
+      url: '/town-parks/henrietta-parks/belmanor-park/',
+      layout: 'park-single',
+      park: {
+        ...belmanor,
+        photo: '/town-parks/henrietta-parks/belmanor-park/featured.jpg',
+      },
+      outline: ['M0 0L10 0L10 4Z'],
+    };
+    const entry = searchEntryOf(page);
+    expect(entry.photo).toBe(
+      '/town-parks/henrietta-parks/belmanor-park/featured.jpg'
+    );
+    expect(entry.map).toBeUndefined();
+  });
+
+  test("with no photo, a Park's picture is its own outline, not its place map (#341)", () => {
+    const page: Page = {
+      ...pageBase,
+      title: 'Belmanor Park',
+      url: '/town-parks/henrietta-parks/belmanor-park/',
+      layout: 'park-single',
+      park: belmanor,
+      outline: ['M0 0L10 0L10 4Z'],
+    };
+    const entry = searchEntryOf(page);
+    expect(entry.photo).toBeUndefined();
+    expect(entry.map).toContain('class="land"');
+    expect(entry.map).not.toContain('class="dot"');
+  });
+
+  test('with no photo and no outline, the picture is the place map', () => {
+    const page: Page = {
+      ...pageBase,
+      title: 'Belmanor Park',
+      url: '/town-parks/henrietta-parks/belmanor-park/',
+      layout: 'park-single',
+      park: belmanor,
+    };
+    expect(searchEntryOf(page).map).toContain('class="dot"');
+  });
+
   test('a Former Park is not in the index (ADR-0010)', () => {
     const page: Page = {
       ...pageBase,
@@ -280,7 +325,11 @@ describe('searchEntryOf: which pages are in the index', () => {
       title: 'Trails',
       url: '/monroe-county-parks/abraham-lincoln-park/trails/',
       layout: 'default-single',
-      trailsOf: { title: 'Abraham Lincoln Park', park: abrahamLincoln },
+      trailsOf: {
+        title: 'Abraham Lincoln Park',
+        park: abrahamLincoln,
+        outline: ['M0 0L10 0L10 4Z'],
+      },
     };
     const entry = searchEntryOf(page);
     expect(entry).toMatchObject({
@@ -289,7 +338,8 @@ describe('searchEntryOf: which pages are in the index', () => {
       line: 'Penfield · Monroe County · 182 acres',
       place: 'Penfield',
     });
-    expect(entry.map).toContain('<svg');
+    // The Park's own picture: here its outline (#341).
+    expect(entry.map).toContain('class="land"');
   });
 
   test('the main Park List of a section is in, marked "Park List"', () => {

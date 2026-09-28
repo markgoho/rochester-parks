@@ -33,9 +33,15 @@
            Park's own "Trails" sub-page (#297). -->
       <span hidden>{search.place}</span>
     {/if}
+    {#if search.photo}
+      <!-- The result's photo (#341): the Park's own, as its card shows. -->
+      <span hidden data-pagefind-ignore data-pagefind-meta="photo"
+        >{search.photo}</span
+      >
+    {/if}
     {#if search.map}
-      <!-- The result's place map (#310, #323): the Park's own, since this
-           sub-page's place is its Park's, served as this page's `map.svg`.
+      <!-- With no photo, the result's picture (#341): the Park's outline,
+           else its place map, served as this page's `map.svg`.
            Only a flag here, since Pagefind indexes every meta value (#333). -->
       <span hidden data-pagefind-meta="map:1"></span>
     {/if}
