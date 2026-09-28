@@ -1,6 +1,6 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { placeMapSvg, placeShape } from './search-map.js';
+import { MAP_STYLE, placeMapSvg, placeShape } from './search-map.js';
 import type { ParkMeta } from './types.js';
 
 const baseMeta: ParkMeta = {
@@ -80,13 +80,21 @@ describe('placeShape', () => {
 
   test('a Trail takes the place its point stands in, county-wide, even inside the city', () => {
     const inTown = placeShape(
-      { ...baseMeta, section: { title: 'Trails', url: '/trails/' }, geo: egyptPark.geo },
+      {
+        ...baseMeta,
+        section: { title: 'Trails', url: '/trails/' },
+        geo: egyptPark.geo,
+      },
       true
     );
     expect(inTown?.shape.key).toBe('perinton');
 
     const inCity = placeShape(
-      { ...baseMeta, section: { title: 'Trails', url: '/trails/' }, geo: highFalls.geo },
+      {
+        ...baseMeta,
+        section: { title: 'Trails', url: '/trails/' },
+        geo: highFalls.geo,
+      },
       true
     );
     expect(inCity?.shape.key).toBe('rochester');
@@ -95,8 +103,10 @@ describe('placeShape', () => {
 
 describe('placeMapSvg', () => {
   test('a City Park with a Neighborhood shape draws the outline, water and dot', () => {
-    const svg = placeMapSvg(westHigh, false, '/rochester-city-parks/west-high-park/');
-    expect(svg).toMatch(/^<svg viewBox="[-\d. ]+" aria-hidden="true">/);
+    const svg = placeMapSvg(westHigh, false);
+    expect(svg).toMatch(
+      /^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="[-\d. ]+">/
+    );
     expect(svg).toContain('class="outline"');
     expect(svg).toContain('class="water river"');
     expect(svg).toContain('class="water canal"');
@@ -105,33 +115,57 @@ describe('placeMapSvg', () => {
   });
 
   test("a Town Park's map carries its villages", () => {
-    const svg = placeMapSvg(egyptPark, false, '/town-parks/perinton-parks/egypt-park/');
+    const svg = placeMapSvg(egyptPark, false);
     expect(svg).toContain('class="village"');
     expect(svg).toContain('class="water canal"');
     expect(svg).not.toContain('class="water river"');
   });
 
   test('a Park with no water nearby draws no water path', () => {
-    const svg = placeMapSvg(mendonPonds, false, '/monroe-county-parks/mendon-ponds-park/');
+    const svg = placeMapSvg(mendonPonds, false);
     expect(svg).not.toContain('class="water');
   });
 
   test('a Park with no point has no map', () => {
-    expect(
-      placeMapSvg({ ...baseMeta, geo: undefined }, false, '/town-parks/henrietta-parks/x/')
-    ).toBeUndefined();
+    expect(placeMapSvg({ ...baseMeta, geo: undefined }, false)).toBeUndefined();
   });
 
   test('a Park with no shape (the Park page falls back) has no map', () => {
-    expect(placeMapSvg(highFalls, false, '/state-parks/high-falls-state-park/')).toBeUndefined();
+    expect(placeMapSvg(highFalls, false)).toBeUndefined();
   });
 
-  test('two different Parks give different clip-path ids', () => {
-    const a = placeMapSvg(egyptPark, false, '/town-parks/perinton-parks/egypt-park/')!;
-    const b = placeMapSvg(mendonPonds, false, '/monroe-county-parks/mendon-ponds-park/')!;
-    const idOf = (svg: string) => /id="([^"]+)"/.exec(svg)?.[1];
-    expect(idOf(a)).toBeDefined();
-    expect(idOf(b)).toBeDefined();
-    expect(idOf(a)).not.toBe(idOf(b));
+  test('the map is a file on its own, with its styles inside it', () => {
+    // Shown with `<img>` (#333), so it gets none of the page's CSS.
+    const svg = placeMapSvg(egyptPark, false)!;
+    expect(svg).toContain('<style>');
+    expect(svg).toContain(`fill:${MAP_STYLE['--land']}`);
+  });
+
+  test('the dot keeps its whole circle inside the view box', () => {
+    // An `<img>` clips at its edge, where the inline SVG could overflow.
+    const svg = placeMapSvg(egyptPark, false)!;
+    const [x, y, w, h] = /viewBox="([^"]+)"/
+      .exec(svg)![1]
+      .split(' ')
+      .map(Number);
+    const [cx, cy, r] = ['cx', 'cy', 'r'].map((a) =>
+      Number(new RegExp(` ${a}="([^"]+)"`).exec(svg)![1])
+    );
+    expect(cx - r).toBeGreaterThan(x);
+    expect(cy - r).toBeGreaterThan(y);
+    expect(cx + r).toBeLessThan(x + w);
+    expect(cy + r).toBeLessThan(y + h);
+  });
+});
+
+describe('MAP_STYLE', () => {
+  test('each value equals its token in app.css', async () => {
+    const appCss = await Bun.file(
+      new URL('../app.css', import.meta.url)
+    ).text();
+    for (const [token, value] of Object.entries(MAP_STYLE)) {
+      const found = new RegExp(`\\s${token}:\\s*([^;]+);`).exec(appCss)?.[1];
+      expect({ token, value: found }).toEqual({ token, value });
+    }
   });
 });
