@@ -14,9 +14,9 @@
     parkTransitionName,
     telHref,
   } from '#lib/format.js';
+  import { mapPlace } from '#lib/map-place.js';
   import { neighborhoodUrl } from '#lib/neighborhoods.js';
   import { searchEntryOf } from '#lib/search-index.js';
-  import { placeShape } from '#lib/search-map.js';
   import { FACILITIES_TOPIC } from '#lib/topics.js';
   import type { HoursView, Page } from '#lib/types.js';
 
@@ -41,7 +41,7 @@
    * Where the Park stands, and so which map it draws: the same choice its
    * search result's map makes (#334), from the one pure function.
    */
-  const place = $derived(meta ? placeShape(meta, trailPage) : undefined);
+  const place = $derived(meta ? mapPlace(meta, trailPage) : undefined);
   const city = $derived(place?.city ?? false);
   const neighborhood = $derived(place?.neighborhood);
   const shape = $derived(place?.shape);
