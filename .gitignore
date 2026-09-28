@@ -19,5 +19,5 @@ public
 # Approved Comments, fetched from Firestore before the deploy build
 generated
 
-# Pirsch API credentials for scripts/search-misses.ts (#313)
+# Pirsch API credentials, for the search-misses script (#313, #319)
 .env

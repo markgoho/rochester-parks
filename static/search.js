@@ -4,9 +4,10 @@
 import { createSearchLog } from './search-log.js';
 
 // Search analytics (#322): one search-log per page load, fed by Pagefind's
-// own instance events and a click on a result. Local and preview builds
-// never send a real event: `pa.js` puts a stub on `window.pirsch` there
-// that only logs (see docs/research/search-analytics.md).
+// own instance events and a click on a result. On localhost, and with no
+// `data-dev` attribute on the Pirsch script tag, `pa.js` puts a stub on
+// `window.pirsch` that only logs, so local and preview builds never send a
+// real event.
 const log = createSearchLog();
 
 function send(event) {
