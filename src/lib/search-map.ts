@@ -56,7 +56,7 @@ const round = (n: number) => Math.round(n * 10) / 10;
 
 /** The id an SVG's `<clipPath>` takes, unique in a dialog of many results
  * because it is keyed to the result's own page URL. */
-function clipId(url: string): string {
+function mapClipId(url: string): string {
   const slug = url.replace(/^\/|\/$/g, '').replace(/\//g, '-');
   return `search-map-${slug || 'home'}`;
 }
@@ -79,7 +79,7 @@ export function placeMapSvg(
   const { shape, villages } = found;
   const { latitude, longitude } = meta.geo!;
   const box = squareBox(outlineBox(shape));
-  const clip = clipId(url);
+  const clip = mapClipId(url);
   const dot = project(latitude, longitude);
   const side = Math.max(box.width, box.height);
   const outline = shape.paths.join(' ');
