@@ -658,7 +658,13 @@ function pageWithoutOutlines(url: string): Page | undefined {
     node.title === 'Trails' &&
     parentNode &&
     isPark(parentNode)
-      ? { title: parentNode.title, park: parkMetaOf(parentNode) }
+      ? {
+          title: parentNode.title,
+          park: parkMetaOf(parentNode),
+          outline: PARK_OUTLINES[parentNode.url]
+            ? outlinePaths(PARK_OUTLINES[parentNode.url])
+            : undefined,
+        }
       : undefined;
   const jsonLd =
     park && layout === 'park-single'

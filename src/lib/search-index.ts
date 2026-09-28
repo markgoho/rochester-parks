@@ -9,7 +9,7 @@ import {
   townKey,
 } from './municipalities.js';
 import { neighborhoodAt } from './neighborhoods.js';
-import { placeMapSvg } from './search-map.js';
+import { parkShapeSvg, placeMapSvg } from './search-map.js';
 import type { Page, ParkMeta } from './types.js';
 
 /**
@@ -33,17 +33,38 @@ export interface SearchEntry {
    */
   place?: string;
   /**
-   * The result's place map (#310, #323): an SVG file's text, the town or
-   * Neighborhood outline with the Park's dot, built by `placeMapSvg` and
-   * served at the page's own `map.svg` (#333). A layout never puts it in the
-   * page, only a `map` flag, since Pagefind indexes every meta value. Absent
-   * wherever the Park page itself falls back to its county-wide or city-wide
-   * locator, or the Park or Trail has no point.
+   * The result's photo (#341): the same one its card shows, site-relative
+   * or absolute. Carried as a `photo` meta value, not Pagefind's own
+   * `image`, which it fills on its own from the first image in the body.
+   */
+  photo?: string;
+  /**
+   * The result's picture when it has no photo (#341): an SVG file's text,
+   * the Park's own outline where it has one, else its place map (#310,
+   * #323), the town or Neighborhood with the Park's dot. Served at the
+   * page's own `map.svg` (#333); a layout puts only a `map` flag in the
+   * page, since Pagefind indexes every meta value. Absent when the Park has
+   * a photo, and where it has neither an outline nor a place map.
    */
   map?: string;
 }
 
 const NOT_INDEXED = (title: string): SearchEntry => ({ indexed: false, title });
+
+/**
+ * A Park's or Trail's result picture (#341), in its card's order: its
+ * photo, else its own outline, else its place map.
+ */
+function pictureOf(
+  meta: ParkMeta,
+  isTrail: boolean,
+  outline: string[] | undefined
+): Pick<SearchEntry, 'photo' | 'map'> {
+  if (meta.photo) return { photo: meta.photo };
+  return {
+    map: outline ? parkShapeSvg(outline) : placeMapSvg(meta, isTrail),
+  };
+}
 
 /**
  * The town or Neighborhood a Park's point falls in, on its own (#297): the
@@ -125,7 +146,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         title: page.title,
         line: parkLine(page.park),
         place: parkPlace(page.park),
-        map: placeMapSvg(page.park, false),
+        ...pictureOf(page.park, false, page.outline),
       };
 
     case 'trail-single':
@@ -135,7 +156,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         title: page.title,
         line: trailLine(page.trail),
         place: parkPlace(page.trail),
-        map: placeMapSvg(page.trail, true),
+        ...pictureOf(page.trail, true, page.outline),
       };
 
     case 'park-list':
@@ -155,7 +176,7 @@ export function searchEntryOf(page: Page): SearchEntry {
           title: `Trails, ${page.trailsOf.title}`,
           line: parkLine(page.trailsOf.park),
           place: parkPlace(page.trailsOf.park),
-          map: placeMapSvg(page.trailsOf.park, false),
+          ...pictureOf(page.trailsOf.park, false, page.trailsOf.outline),
         };
       }
       if (page.url.startsWith('/blog/')) {

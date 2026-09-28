@@ -1,6 +1,11 @@
 /// <reference types="bun" />
 import { describe, expect, test } from 'bun:test';
-import { MAP_STYLE, placeMapSvg, placeShape } from './search-map.js';
+import {
+  MAP_STYLE,
+  parkShapeSvg,
+  placeMapSvg,
+  placeShape,
+} from './search-map.js';
 import type { ParkMeta } from './types.js';
 
 const baseMeta: ParkMeta = {
@@ -158,14 +163,28 @@ describe('placeMapSvg', () => {
   });
 });
 
+describe('parkShapeSvg', () => {
+  test("draws the Park's own land in a square, with its styles inside it", () => {
+    const svg = parkShapeSvg(['M0 0L10 0L10 4Z', 'M20 0L22 0L22 2Z']);
+    const [, , w, h] = /viewBox="([^"]+)"/.exec(svg)![1].split(' ').map(Number);
+    expect(w).toBe(h);
+    expect(svg.match(/class="land"/g)).toHaveLength(2);
+    expect(svg).toContain(`fill:${MAP_STYLE['--park']}`);
+  });
+});
+
 describe('MAP_STYLE', () => {
-  test('each value equals its token in app.css', async () => {
+  test('each value is the value of its token in app.css', async () => {
+    // A color token is set twice, the `hsl` fallback and then the `oklch`
+    // value every current browser takes; the map takes the last one.
     const appCss = await Bun.file(
       new URL('../app.css', import.meta.url)
     ).text();
     for (const [token, value] of Object.entries(MAP_STYLE)) {
-      const found = new RegExp(`\\s${token}:\\s*([^;]+);`).exec(appCss)?.[1];
-      expect({ token, value: found }).toEqual({ token, value });
+      const all = [
+        ...appCss.matchAll(new RegExp(`\\s${token}:\\s*([^;]+);`, 'g')),
+      ];
+      expect({ token, value: all.at(-1)?.[1] }).toEqual({ token, value });
     }
   });
 });

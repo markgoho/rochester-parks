@@ -154,9 +154,16 @@
          nothing here. -->
     <span hidden>{search.place}</span>
   {/if}
+  {#if search.photo}
+    <!-- The result's photo (#341), the one the Park's card shows. -->
+    <span hidden data-pagefind-ignore data-pagefind-meta="photo"
+      >{search.photo}</span
+    >
+  {/if}
   {#if search.map}
-    <!-- The result's place map (#310, #323) is a file, this page's own
-         `map.svg`; the meta is only a flag that it exists. Pagefind indexes
+    <!-- With no photo, the result's picture (#341) is a file, this page's
+         own `map.svg`: the Park's outline, else its place map (#310, #323).
+         The meta is only a flag that it exists. Pagefind indexes
          every meta value, so the SVG text here would make "river" and
          "canal" find every Park whose map draws one (#333). -->
     <span hidden data-pagefind-meta="map:1"></span>

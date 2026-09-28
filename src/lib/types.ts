@@ -385,9 +385,10 @@ export interface Page extends PageLink {
    * Present on a "Trails" sub-page of a Park (#320): the Park it belongs to,
    * carried so the search index can title the result "Trails, <Park>" and
    * give it the Park's own second line, without every layout re-deriving a
-   * Park's whole line for itself.
+   * Park's whole line for itself. `outline` is the Park's, for the result's
+   * picture (#341).
    */
-  trailsOf?: { title: string; park: ParkMeta };
+  trailsOf?: { title: string; park: ParkMeta; outline?: string[] };
 }
 
 /**

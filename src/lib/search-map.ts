@@ -13,6 +13,7 @@ import {
   type Outline,
 } from './municipalities.js';
 import { neighborhoodAt } from './neighborhoods.js';
+import { parkFrame } from './park-shapes.js';
 import { ERIE_CANAL, GENESEE_RIVER } from './waterways.js';
 import type { ParkMeta } from './types.js';
 
@@ -62,16 +63,19 @@ const round = (n: number) => Math.round(n * 10) / 10;
 /**
  * The map's own styles. The map is a file shown with `<img>`, so the page's
  * CSS does not reach it: these are the values of the `app.css` tokens named
- * beside each (search-map.test.ts holds them equal). Class names match
- * `TownShape.svelte`, so the two stay easy to compare.
+ * beside each, the `oklch` ones every current browser takes
+ * (search-map.test.ts holds them equal). Class names match
+ * `TownShape.svelte` and `ParkShape.svelte`, so they stay easy to compare.
  */
 export const MAP_STYLE: Record<string, string> = {
-  '--land': 'hsl(107 13% 79%)',
-  '--paper-sunk': 'hsl(44 27% 86%)',
-  '--rule-strong': 'hsl(43 22% 69%)',
-  '--water': 'hsl(205 45% 42%)',
-  '--orange': 'hsl(18 75% 48%)',
-  '--ink': 'hsl(148 34% 12%)',
+  '--land': 'oklch(84.66% 0.0224 138.9)',
+  '--paper-sunk': 'oklch(90.63% 0.0198 90.27)',
+  '--rule-strong': 'oklch(78.24% 0.036 89)',
+  '--water': 'oklch(53.55% 0.0867 241.91)',
+  '--orange': 'oklch(61.28% 0.1741 40.62)',
+  '--ink': 'oklch(25.94% 0.0343 159.44)',
+  '--ink-soft': 'oklch(37.87% 0.033 159.49)',
+  '--park': 'oklch(64.6% 0.0829 142.5)',
   '--stroke-thin': '0.8px',
   '--stroke-base': '1.2px',
   '--stroke-water': '2px',
@@ -87,6 +91,7 @@ const STYLE =
   `.village{fill:${css('--paper-sunk')};stroke:${css('--rule-strong')};stroke-width:${css('--stroke-thin')}}` +
   `.water{fill:none;stroke:${css('--water')};stroke-width:${css('--stroke-water')};stroke-linecap:round}` +
   `.river{stroke-width:${css('--stroke-river')}}` +
+  `.land{fill:${css('--park')};fill-rule:evenodd;stroke:${css('--ink-soft')};stroke-width:${css('--stroke-base')}}` +
   `.dot{fill:${css('--orange')};stroke:${css('--ink')};stroke-width:${css('--stroke-base')};vector-effect:non-scaling-stroke}` +
   `</style>`;
 
@@ -135,6 +140,22 @@ export function placeMapSvg(
     villagePaths +
     water +
     `<circle class="dot" cx="${round(dot.x)}" cy="${round(dot.y)}" r="${round(side * DOT_RADIUS)}"/>` +
+    `</svg>`
+  );
+}
+
+/**
+ * A search result's picture when the Park has no photo but has an outline
+ * (#341): its own land, framed square the way its card frames it
+ * (`ParkShape.svelte` with `square`). Served at `<page>/map.svg` like the
+ * place map, for the same reason (#333).
+ */
+export function parkShapeSvg(paths: string[]): string {
+  const { viewBox } = parkFrame(paths, { square: true });
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">` +
+    STYLE +
+    paths.map((d) => `<path class="land" d="${d}"/>`).join('') +
     `</svg>`
   );
 }

@@ -586,7 +586,7 @@ p {
 }
 
 /* The custom result template's own layout (#320, #323): the map beside the
-   name, the second line and the excerpt. `search-row`, `search-map` and
+   name, the second line and the excerpt. `search-row`, `search-picture` and
    `search-line` are this site's classes; Pagefind resets every class that
    starts with "pf-", so this two-column layout could not live on a "pf-"
    element even if it wanted to. The map column is a fixed width, present or
@@ -609,23 +609,66 @@ p {
 /* A fixed width, present or not (an empty map keeps the space): the map
    never grows or shrinks, so `pf-result-content`'s own `flex: 1` (Pagefind's
    default) takes the rest. */
-.search-map {
+.search-picture {
   flex: 0 0 4.5rem;
 }
 
 @container (inline-size <= 30rem) {
-  .search-map {
+  .search-picture {
     flex-basis: 3.25rem;
   }
 }
 
-/* The map is the page's own `map.svg` (#333), with its colors inside it:
-   the page's CSS does not reach into an `<img>`. */
-.search-map img {
+/* The picture (#341): the page's own `map.svg` (#333), with its colors
+   inside it, since the page's CSS does not reach into an `<img>`; or the
+   Park's photo, cropped square. */
+.search-picture img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* The photo in the card's duotone (ParkList.svelte), in full color while
+   its result has the pointer or the focus. */
+.search-photo {
+  position: relative;
+  display: block;
+  background: var(--paper);
+}
+
+.search-photo img {
+  filter: grayscale(1) contrast(1.1);
+  mix-blend-mode: multiply;
+  transition: filter var(--duration-quick) var(--ease-out);
+}
+
+.search-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  mix-blend-mode: lighten;
+  transition: opacity var(--duration-quick) var(--ease-out);
+}
+
+.pf-result:focus-within .search-photo img {
+  filter: none;
+}
+
+.pf-result:focus-within .search-photo::after {
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .pf-result:hover .search-photo img {
+    filter: none;
+  }
+
+  .pf-result:hover .search-photo::after {
+    opacity: 0;
+  }
 }
 
 .search-line {
