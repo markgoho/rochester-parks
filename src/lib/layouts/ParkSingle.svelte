@@ -24,7 +24,7 @@
     villagesIn,
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
-  import { inSearchIndex } from '#lib/search-index.js';
+  import { searchEntryOf } from '#lib/search-index.js';
   import { FACILITIES_TOPIC } from '#lib/topics.js';
   import type { HoursView, Page } from '#lib/types.js';
 
@@ -39,12 +39,11 @@
    */
   const trailPage = $derived(page.trail !== undefined);
   /**
-   * Whether this page's own body belongs in the Pagefind index (#318). What
-   * the index shows for it is a later ticket's work; this is only in or out.
+   * Whether this page's own body belongs in the Pagefind index, and what a
+   * result shows for it (#320). The one pure module decides; this layout
+   * only puts its output into the page.
    */
-  const indexed = $derived(
-    inSearchIndex({ layout: page.layout, former: page.park?.former })
-  );
+  const search = $derived(searchEntryOf(page));
   const meta = $derived(page.park ?? page.trail);
   const county = $derived(
     meta !== undefined && !trailPage && isCountySection(meta.section.url)
@@ -138,10 +137,28 @@
 
 <!-- The article is the container the layout queries. A container cannot query
      itself, so the grid is the element inside it. -->
-<article class="park" data-pagefind-body={indexed ? '' : undefined}>
+<article class="park" data-pagefind-body={search.indexed ? '' : undefined}>
+  {#if search.indexed && search.line}
+    <!-- The result's second line (#320, #297): display-only, so it is
+         `data-pagefind-ignore`, read only through its meta value. A comma
+         ("1,000 acres") would split the attribute form, so it is its own
+         element rather than a `data-pagefind-meta` attribute. -->
+    <span hidden data-pagefind-ignore data-pagefind-meta="line"
+      >{search.line}</span
+    >
+  {/if}
+  {#if search.place}
+    <!-- The town or Neighborhood, kept as ordinary indexed text with no
+         extra weight (#297): the line above already shows it, but that line
+         is ignored, so "Greece" and "19th Ward" would otherwise find
+         nothing here. -->
+    <span hidden>{search.place}</span>
+  {/if}
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <div class="layout">
+    <!-- The name is the result title: Pagefind reads the first heading in
+         the indexed body for that, with its own built-in boost. -->
     <header class="head">
       <!-- The name shares its view-transition-name with the park's row in a
            Park List, so it moves between the list and this heading. -->
@@ -165,8 +182,11 @@
 
     {#if meta}
       <!-- The facts about the park. Beside the write-up when there is room for
-           both, above it when there is not. -->
-      <aside class="rail" aria-label="About {page.title}">
+           both, above it when there is not. Excluded from the index (#320):
+           an address, coordinates and an acreage read as noise in an
+           excerpt, and the rail repeats facts the second line already
+           states. -->
+      <aside class="rail" aria-label="About {page.title}" data-pagefind-ignore>
         <section class="panel basics">
           <div class="panel__head">
             <span class="eyebrow">The basics</span>
@@ -283,7 +303,10 @@
            grows with the park, and a rail that holds both panels outgrows the
            screen, which would leave the reader scrolling the rail. -->
       {#if meta?.amenities.length}
-        <section class="panel amenities">
+        <!-- Excluded from the index (#320): the tags read as noise in an
+             excerpt, and "splash pad" and the like are found through the
+             write-up or the Facilities section instead. -->
+        <section class="panel amenities" data-pagefind-ignore>
           <div class="panel__head">
             <span class="eyebrow"
               >{meta.former ? 'What was there' : 'What is there'}</span
@@ -299,7 +322,9 @@
       {/if}
 
       {#if meta && recorded === 0}
-        <div class="panel empty">
+        <!-- Excluded from the index (#320): boilerplate that repeats on
+             every under-documented park, not a fact about this one. -->
+        <div class="panel empty" data-pagefind-ignore>
           <div class="panel__head">
             <span class="eyebrow">What we know</span>
             <span class="eyebrow eyebrow--accent mono">0 of 3</span>
@@ -367,7 +392,11 @@
         </nav>
       {/if}
 
-      {#if page.commentArea}<CommentArea area={page.commentArea} />{/if}
+      {#if page.commentArea}
+        <!-- Excluded from the index (#320): the form's own boilerplate and a
+             reservation notice are not the park's write-up. -->
+        <div data-pagefind-ignore><CommentArea area={page.commentArea} /></div>
+      {/if}
     </div>
   </div>
 

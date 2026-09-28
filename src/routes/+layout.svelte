@@ -4,6 +4,7 @@
   import Header from '#lib/components/Header.svelte';
   import JsonLd from '#lib/components/JsonLd.svelte';
   import { PAGEFIND_UI_SRC, SITE_TITLE, absUrl } from '#lib/site.js';
+  import { SEARCH_RESULT_TEMPLATE } from '#lib/search-template.js';
   import archivoBlack from '#lib/fonts/ArchivoBlack-400.woff2?url';
   import publicSans from '#lib/fonts/PublicSans-300_700.woff2?url';
 
@@ -93,13 +94,17 @@
      opens this. reset-on-close: the dialog is empty the next time it opens. -->
 <pagefind-modal reset-on-close>
   <pagefind-modal-header>
-    <pagefind-input
-      placeholder="Search parks, trails and posts"
+    <pagefind-input placeholder="Search parks, trails and posts"
     ></pagefind-input>
   </pagefind-modal-header>
   <pagefind-modal-body>
     <pagefind-summary></pagefind-summary>
-    <pagefind-results></pagefind-results>
+    <!-- The custom result template (#320): the name, the second line, then
+         the excerpt, with no sub-results (a Park's own topics never show as
+         their own rows). -->
+    <pagefind-results hide-sub-results
+      >{@html SEARCH_RESULT_TEMPLATE}</pagefind-results
+    >
   </pagefind-modal-body>
   <pagefind-modal-footer>
     <pagefind-keyboard-hints></pagefind-keyboard-hints>

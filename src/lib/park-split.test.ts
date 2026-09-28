@@ -12,6 +12,7 @@ const baseMeta: ParkMeta = {
   links: [],
   section: { title: 'Greece', url: '/town-parks/greece-parks/' },
   former: false,
+  planned: false,
 };
 
 describe('splitFormerParks', () => {
