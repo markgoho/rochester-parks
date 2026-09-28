@@ -444,20 +444,34 @@ p {
   font-size: var(--step-0);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
+  margin-inline-end: auto;
 }
 
 .wordmark svg {
   flex-shrink: 0;
 }
 
+/* The nav as a row in the header, from 60rem. The popover attribute is for
+   narrow screens (see below), so this resets the browser's popover styles. */
 .nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-4) var(--space-16);
+  gap: var(--space-4) var(--space-24);
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.nav[popover] {
+  position: static;
+  inset: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  border: 0;
+  background: none;
+  color: inherit;
 }
 
 .nav a {
@@ -474,11 +488,15 @@ p {
   color: var(--orange);
 }
 
+.menu-button {
+  display: none;
+}
+
 /* The search trigger's slot (#318): a --tap-target square, so the header
    keeps its height and the icon its place before the Pagefind script
    upgrades the element. The --pf-* names are Pagefind's own, not site
    classes, so they carry no "pf-" prefix restriction. */
-.nav .search {
+.site-header .search {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -491,8 +509,80 @@ p {
   --pf-text-muted: var(--paper);
 }
 
-.nav .search:hover {
+.site-header .search:hover {
   --pf-text-muted: var(--orange);
+}
+
+/* Narrow headers. The wordmark and the links do not fit on one line until
+   about 57rem, so below 60rem the links open from a menu button as a panel
+   under the header, and the header stays one row: the wordmark, search, and
+   the menu button. The header is not sticky and nothing sits above it, so
+   the panel is placed at --header-height from the top of the page. */
+@media (width < 60rem) {
+  .site-header {
+    gap: var(--space-4);
+  }
+
+  /* Two short lines on the smallest phones, still inside --tap-target. */
+  .wordmark {
+    line-height: 1.1;
+  }
+
+  .site-header nav {
+    order: 1;
+  }
+
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--tap-target);
+    block-size: var(--tap-target);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--paper);
+    cursor: pointer;
+  }
+
+  .menu-button:hover {
+    color: var(--orange);
+  }
+
+  .menu-button .close,
+  .site-header:has(.nav:popover-open) .menu-button .open {
+    display: none;
+  }
+
+  .site-header:has(.nav:popover-open) .menu-button .close {
+    display: inline;
+  }
+
+  .nav[popover] {
+    position: absolute;
+    inset: var(--header-height) 0 auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0;
+    padding: 0 var(--page-inset) var(--space-12);
+    background: var(--ink);
+    box-shadow: 0 var(--space-8) var(--space-16) rgb(0 0 0 / 0.25);
+  }
+
+  .nav[popover]:not(:popover-open) {
+    display: none;
+  }
+
+  .nav li + li {
+    border-top: 1px solid color-mix(in srgb, var(--paper) 15%, transparent);
+  }
+
+  .nav a {
+    display: flex;
+    min-height: var(--space-48);
+    font-size: var(--step--1);
+  }
 }
 
 /* The custom result template's own layout (#320, #323): the map beside the
@@ -851,15 +941,11 @@ p {
 /* Wider viewports */
 
 /* Stays a viewport query: it sets the page's own margin (--gutter), which
-   every container below measures itself against, and sizes the header nav.
-   A container cannot query the viewport that defines its own width. */
+   every container below measures itself against. A container cannot query
+   the viewport that defines its own width. */
 @media (min-width: 48rem) {
   :root {
     --gutter: var(--space-44);
-  }
-
-  .nav {
-    gap: var(--space-24);
   }
 }
 
