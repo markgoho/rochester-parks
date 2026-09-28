@@ -195,12 +195,16 @@ describe('searchEntryOf: which pages are in the index', () => {
       layout: 'park-single',
       park: belmanor,
     };
-    expect(searchEntryOf(page)).toEqual({
+    const entry = searchEntryOf(page);
+    expect(entry).toMatchObject({
       indexed: true,
       title: 'Belmanor Park',
       line: 'Henrietta',
       place: 'Henrietta',
     });
+    // The map is #323's own seam, tested on `placeMapSvg` directly
+    // (search-map.test.ts); here it is enough to see the wiring reach it.
+    expect(entry.map).toContain('<svg');
   });
 
   test('a Former Park is not in the index (ADR-0010)', () => {
@@ -278,12 +282,14 @@ describe('searchEntryOf: which pages are in the index', () => {
       layout: 'default-single',
       trailsOf: { title: 'Abraham Lincoln Park', park: abrahamLincoln },
     };
-    expect(searchEntryOf(page)).toEqual({
+    const entry = searchEntryOf(page);
+    expect(entry).toMatchObject({
       indexed: true,
       title: 'Trails, Abraham Lincoln Park',
       line: 'Penfield · Monroe County · 182 acres',
       place: 'Penfield',
     });
+    expect(entry.map).toContain('<svg');
   });
 
   test('the main Park List of a section is in, marked "Park List"', () => {
