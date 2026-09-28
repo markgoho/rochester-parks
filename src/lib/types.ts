@@ -242,6 +242,13 @@ export interface ParkMeta {
    * An authored fact, not derived from the markdown like `ParkStatus`.
    */
   former: boolean;
+  /**
+   * Whether this is a Planned Park: a Park an official plan names but that is
+   * not open to the public yet (CONTEXT.md, ADR-0006). An authored fact, the
+   * same precedent `former` sets. The search index's second line says
+   * "Planned" instead of an acreage for one (#320).
+   */
+  planned: boolean;
 }
 
 /**
@@ -374,6 +381,13 @@ export interface Page extends PageLink {
    * posts (#212). Absent everywhere else, so no other page shows the area.
    */
   commentArea?: CommentArea;
+  /**
+   * Present on a "Trails" sub-page of a Park (#320): the Park it belongs to,
+   * carried so the search index can title the result "Trails, <Park>" and
+   * give it the Park's own second line, without every layout re-deriving a
+   * Park's whole line for itself.
+   */
+  trailsOf?: { title: string; park: ParkMeta };
 }
 
 /**

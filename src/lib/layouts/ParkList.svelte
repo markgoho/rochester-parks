@@ -20,9 +20,18 @@
     type Outline,
   } from '#lib/municipalities.js';
   import { neighborhoodAt } from '#lib/neighborhoods.js';
+  import { searchEntryOf } from '#lib/search-index.js';
   import type { ChildLink, Page } from '#lib/types.js';
 
   let { page }: { page: Page } = $props();
+
+  /**
+   * Whether this page belongs in the Pagefind index, and what a result shows
+   * for it (#320). Only the main list of a section is indexed; a second
+   * ordering or the table view carries a `canonical` link back to it, so its
+   * own parks are never a result twice.
+   */
+  const search = $derived(searchEntryOf(page));
 
   /**
    * The section these parks belong to. On a second ordering that is not this
@@ -200,7 +209,14 @@
 <!-- The list is the container the town layout queries, and the box a row
      picks its dot inside. A container cannot query itself, so the grid is
      the element inside it. -->
-<div class="list">
+<div class="list" data-pagefind-body={search.indexed ? '' : undefined}>
+  {#if search.indexed && search.line}
+    <!-- The result's second line (#320): "Park List", display-only and
+         `data-pagefind-ignore`, read only through its meta value. -->
+    <span hidden data-pagefind-ignore data-pagefind-meta="line"
+      >{search.line}</span
+    >
+  {/if}
   <!-- Each card that shows its place draws its map from here, so each place
        and the river are in the page once, not once for each card. -->
   {#if cardPlaces.length}
@@ -221,7 +237,10 @@
          switch sits with the section's counts; with a map, it sits under
          the map, so it stays in sight while the list scrolls. -->
         <div class="counts-line">
-          <p class="eyebrow counts">
+          <!-- Excluded from the index (#320): the same status words as
+               `ParkFlags` below, on every section's page, not a fact about
+               any one Park. -->
+          <p class="eyebrow counts" data-pagefind-ignore>
             <span><b class="mono">{parks.length}</b> parks</span>
             <span><b class="mono">{written}</b> written up</span>
             <span><b class="mono">{photographed}</b> photographed</span>
@@ -287,7 +306,11 @@
           ></a
         >
         <span class="facts">
-          <span class="status"><ParkFlags status={park.status} /></span>
+          <!-- Excluded from the index (#320): each icon's tooltip repeats
+               "written up"/"photographed" once per park, row after row. -->
+          <span class="status" data-pagefind-ignore
+            ><ParkFlags status={park.status} /></span
+          >
           <span class="tags">
             {#each park.amenities.slice(0, SHOWN) as amenity (amenity)}
               <span class="tag">{amenity}</span>
@@ -377,7 +400,8 @@
             .filter(Boolean)
             .join(' · ')}
         </span>
-        <ParkFlags status={park.status} />
+        <!-- Excluded from the index (#320): see the row's own `.status`. -->
+        <span data-pagefind-ignore><ParkFlags status={park.status} /></span>
       </li>
     {/snippet}
 
