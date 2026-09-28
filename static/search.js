@@ -23,7 +23,10 @@ function send(event) {
 function attachToPagefind(triesLeft = 200) {
   const manager = window.PagefindComponents?.getInstanceManager;
   if (!manager) {
-    if (triesLeft <= 0) return;
+    if (triesLeft <= 0) {
+      console.error('search.js: gave up waiting for the Pagefind module');
+      return;
+    }
     setTimeout(() => attachToPagefind(triesLeft - 1), 50);
     return;
   }
