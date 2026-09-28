@@ -255,11 +255,11 @@
      box reads as this site's search box, not Pagefind's default one. */
   .find-search {
     margin: 0 0 var(--space-24);
+    --pf-input-height: var(--control-height);
   }
 
   .find-search pagefind-modal-trigger {
     display: block;
-    --pf-input-height: var(--control-height);
   }
 
   .filters .tags {
