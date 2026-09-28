@@ -52,7 +52,10 @@
        Svelte finds a mismatch and rebuilds the page, so there it loads
        after hydration instead (see find/+page.svelte). -->
   <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
-  <script defer src="/search.js"></script>
+  <!-- A module for the import of search-log.js (#322); still deferred like
+       the plain script it replaces (see search.js for why load order
+       against the Pagefind module below does not matter). -->
+  <script type="module" src="/search.js"></script>
   {#if page.url.pathname !== '/find/'}
     <script type="module" src={PAGEFIND_UI_SRC}></script>
   {/if}
