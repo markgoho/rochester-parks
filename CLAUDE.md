@@ -6,6 +6,10 @@ A website for all the parks in Rochester NY. SvelteKit with `adapter-static`, bu
 
 `bun run build` also runs Pagefind and writes `public/pagefind/`. `vite dev` and `vite preview` do not serve that folder, so test search on the built site: `bun run build && bunx firebase serve --only hosting`.
 
+## Search terms that found nothing
+
+`bun scripts/search-misses.ts <from YYYY-MM-DD> <to YYYY-MM-DD>` lists the search terms that found nothing in that date range, with their counts, most first. Needs `PIRSCH_CLIENT_ID` and `PIRSCH_CLIENT_SECRET` in a local `.env`, from a read-only Pirsch OAuth client (`scope_statistics: r`).
+
 ## Agent skills
 
 ### Issue tracker
