@@ -391,6 +391,7 @@ function parkMetaOf(node: Node): ParkMeta {
       url: parent?.url ?? '/',
     },
     former: Boolean(node.frontMatter.former),
+    planned: Boolean(node.frontMatter.planned),
   };
 }
 
@@ -637,16 +638,28 @@ function pageWithoutOutlines(url: string): Page | undefined {
   const parkOutline = park || trailMeta ? PARK_OUTLINES[url] : undefined;
   const ancestors = ancestorsOf(url);
   const crumbs = [...ancestors, link(node)];
+  const parentNode = parentOf(node.url);
   // A Park takes its section's reservation link; a village Park is filed
   // under its town, so it takes the town's.
   const commentArea = commentAreaOf({
     layout,
     url: node.url,
     frontMatter: node.frontMatter,
-    reservations: parentOf(node.url)?.frontMatter.reservations,
+    reservations: parentNode?.frontMatter.reservations,
     comments: approvedComments[node.url],
     token: COMMENT_HMAC_KEY ? pageToken(node.url, COMMENT_HMAC_KEY) : '',
   });
+  // A "Trails" sub-page of a Park (#320): the only two pages that hang off a
+  // Park page rather than off a container (ADR-0007 predates them). The
+  // search index titles the result after the Park and gives it the Park's
+  // own second line.
+  const trailsOf =
+    layout === 'default-single' &&
+    node.title === 'Trails' &&
+    parentNode &&
+    isPark(parentNode)
+      ? { title: parentNode.title, park: parkMetaOf(parentNode) }
+      : undefined;
   const jsonLd =
     park && layout === 'park-single'
       ? [
@@ -707,6 +720,7 @@ function pageWithoutOutlines(url: string): Page | undefined {
     ...(parkOutline ? { outline: outlinePaths(parkOutline) } : {}),
     ...(layout === 'home' ? { summary: getSiteSummary() } : {}),
     ...(commentArea ? { commentArea } : {}),
+    ...(trailsOf ? { trailsOf } : {}),
   };
 }
 

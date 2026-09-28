@@ -14,6 +14,7 @@ const baseMeta: ParkMeta = {
   links: [],
   section: { title: 'State', url: '/state-parks/' },
   former: false,
+  planned: false,
 };
 
 const baseFrontMatter: FrontMatter = {
@@ -55,7 +56,9 @@ describe('parkJsonLd', () => {
       ...baseMeta,
       former: true,
       amenities: ['Playground', 'Swingset'],
-      openingHours: [{ dayOfWeek: ['Monday'], opens: '09:00', closes: '17:00' }],
+      openingHours: [
+        { dayOfWeek: ['Monday'], opens: '09:00', closes: '17:00' },
+      ],
       facilities: [{ name: 'Shelter 1', type: 'EventVenue' }],
     });
     expect('amenityFeature' in node).toBe(false);
