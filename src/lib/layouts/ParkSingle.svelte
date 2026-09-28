@@ -24,6 +24,7 @@
     villagesIn,
   } from '#lib/municipalities.js';
   import { neighborhoodAt, neighborhoodUrl } from '#lib/neighborhoods.js';
+  import { inSearchIndex } from '#lib/search-index.js';
   import { FACILITIES_TOPIC } from '#lib/topics.js';
   import type { HoursView, Page } from '#lib/types.js';
 
@@ -37,6 +38,13 @@
    * checks `trailPage` first, so a Trail never takes a Park-only path.
    */
   const trailPage = $derived(page.trail !== undefined);
+  /**
+   * Whether this page's own body belongs in the Pagefind index (#318). What
+   * the index shows for it is a later ticket's work; this is only in or out.
+   */
+  const indexed = $derived(
+    inSearchIndex({ layout: page.layout, former: page.park?.former })
+  );
   const meta = $derived(page.park ?? page.trail);
   const county = $derived(
     meta !== undefined && !trailPage && isCountySection(meta.section.url)
@@ -130,7 +138,7 @@
 
 <!-- The article is the container the layout queries. A container cannot query
      itself, so the grid is the element inside it. -->
-<article class="park">
+<article class="park" data-pagefind-body={indexed ? '' : undefined}>
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <div class="layout">

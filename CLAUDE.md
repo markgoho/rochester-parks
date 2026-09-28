@@ -2,6 +2,10 @@
 
 A website for all the parks in Rochester NY. SvelteKit with `adapter-static`, built to `public/` and deployed to Firebase Hosting by GitHub Actions on push to `main`. Content is markdown under `content/`.
 
+## Testing search
+
+`bun run build` also runs Pagefind and writes `public/pagefind/`. `vite dev` and `vite preview` do not serve that folder, so test search on the built site: `bun run build && bunx firebase serve --only hosting`.
+
 ## Agent skills
 
 ### Issue tracker

@@ -147,6 +147,23 @@
   --duration-quick: 160ms;
   --ease-out: ease-out;
   --lift-scale: 1.3;
+
+  /* Pagefind's search dialog (#318). Its own CSS resets any site class, so
+     these --pf-* custom properties, read from the tokens above, are the
+     only way in. Set once: the site has no dark mode to match a second
+     time. */
+  --pf-font: var(--sans);
+  --pf-border-radius: 0;
+  --pf-modal-top: 12dvh;
+  --pf-modal-max-width: 40rem;
+  --pf-background: var(--card);
+  --pf-text: var(--ink);
+  --pf-text-secondary: var(--ink-soft);
+  --pf-text-muted: var(--ink-muted);
+  --pf-border: var(--rule);
+  --pf-border-focus: var(--orange);
+  --pf-outline-focus: var(--orange);
+  --pf-mark: var(--orange-ink);
 }
 
 @supports (color: oklch(0% 0 0)) {
@@ -455,6 +472,27 @@ p {
 
 .nav a[aria-current='page'] {
   color: var(--orange);
+}
+
+/* The search trigger's slot (#318): a --tap-target square, so the header
+   keeps its height and the icon its place before the Pagefind script
+   upgrades the element. The --pf-* names are Pagefind's own, not site
+   classes, so they carry no "pf-" prefix restriction. */
+.nav .search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--tap-target);
+  min-block-size: var(--tap-target);
+  --pf-background: transparent;
+  --pf-border: transparent;
+  --pf-border-focus: var(--orange);
+  --pf-text: var(--paper);
+  --pf-text-muted: var(--paper);
+}
+
+.nav .search:hover {
+  --pf-text-muted: var(--orange);
 }
 
 .main {

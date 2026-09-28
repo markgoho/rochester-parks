@@ -33,5 +33,11 @@
         </a>
       </li>
     {/each}
+    <!-- The Pagefind script upgrades this into a search button (#318). The
+         list item keeps a --tap-target square before that happens, so the
+         header does not move when it does. -->
+    <li class="search">
+      <pagefind-modal-trigger compact hide-shortcut></pagefind-modal-trigger>
+    </li>
   </ul>
 </nav>

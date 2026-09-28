@@ -95,5 +95,5 @@ _Avoid_: Trackback, backlink
 ### Constraints
 
 **Web-native**:
-The standard this site holds itself to, with two sides. On the reader's side: plain HTML, working with JavaScript off, with no third-party iframe or widget. On the write side: the form may post to one small service the owner wrote and controls, and to no hosted comment product.
+The standard this site holds itself to, with two sides. On the reader's side: plain HTML, working with JavaScript off, with no third-party iframe or widget. On the write side: the form may post to one small service the owner wrote and controls, and to no hosted comment product. Search is the one exception on the reader's side: it needs JavaScript, and every page still works with JavaScript off; only search is missing (ADR-0013).
 _Avoid_: Vanilla, no-JS, progressive
