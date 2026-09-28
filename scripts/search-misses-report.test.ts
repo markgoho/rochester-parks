@@ -66,4 +66,16 @@ describe('pagesToMisses', () => {
       { term: 'creek', count: 2 },
     ]);
   });
+
+  test('a row whose results is not 0 is not a miss, even if the API sent it', () => {
+    const page = [
+      row('creek', 1, '0'),
+      row('trail', 1, 0),
+      row('genesee', 1, '3'),
+    ];
+    expect(pagesToMisses([page])).toEqual([
+      { term: 'creek', count: 1 },
+      { term: 'trail', count: 1 },
+    ]);
+  });
 });

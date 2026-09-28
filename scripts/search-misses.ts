@@ -111,7 +111,7 @@ for (;;) {
 
 const misses = pagesToMisses(pages);
 if (misses.length === 0) {
-  console.log('No no-result searches in this range.');
+  console.error('No search in this range found nothing.');
 } else {
   for (const { term, count } of misses) console.log(`${count}\t${term}`);
 }
