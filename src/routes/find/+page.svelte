@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { PAGEFIND_UI_SRC } from '#lib/site.js';
   import type { ParkIndexEntry } from '#lib/types.js';
 
   let { data } = $props();
@@ -13,7 +14,7 @@
   onMount(() => {
     const script = document.createElement('script');
     script.type = 'module';
-    script.src = '/pagefind/pagefind-component-ui.js';
+    script.src = PAGEFIND_UI_SRC;
     document.head.append(script);
   });
 

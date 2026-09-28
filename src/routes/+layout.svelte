@@ -3,7 +3,7 @@
   import { page } from '$app/state';
   import Header from '#lib/components/Header.svelte';
   import JsonLd from '#lib/components/JsonLd.svelte';
-  import { SITE_TITLE, absUrl } from '#lib/site.js';
+  import { PAGEFIND_UI_SRC, SITE_TITLE, absUrl } from '#lib/site.js';
   import archivoBlack from '#lib/fonts/ArchivoBlack-400.woff2?url';
   import publicSans from '#lib/fonts/PublicSans-300_700.woff2?url';
 
@@ -53,7 +53,7 @@
   <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
   <script defer src="/search.js"></script>
   {#if page.url.pathname !== '/find/'}
-    <script type="module" src="/pagefind/pagefind-component-ui.js"></script>
+    <script type="module" src={PAGEFIND_UI_SRC}></script>
   {/if}
   <title>{title}</title>
   <link rel="canonical" href={canonical} />

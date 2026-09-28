@@ -11,7 +11,7 @@ Pagefind indexes the built HTML at build time and searches that index in the rea
 
 ## Decision
 
-**Search needs JavaScript. This is the one exception to Web-native.** With JavaScript off, every page still works exactly as it does today; only the search dialog is missing. There is no JS-off fallback for search, and no outside search engine takes its place.
+**Search needs JavaScript. This is the one exception to Web-native.** Every page still works with JavaScript off; only search is missing. With JavaScript off, the header's search icon stays in its reserved space but never becomes a button, since the script that upgrades it never runs. There is no JS-off fallback for search, and no outside search engine takes its place.
 
 ## Consequences
 
