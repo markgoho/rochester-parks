@@ -45,6 +45,16 @@
     type="font/woff2"
     crossorigin="anonymous"
   />
+  <!-- Pagefind's Component UI (#318), loaded by script tag from the bundle
+       the build writes to /pagefind/, not by a Vite import. /find hydrates
+       (csr = true): if Pagefind renders into its elements before that,
+       Svelte finds a mismatch and rebuilds the page, so there it loads
+       after hydration instead (see find/+page.svelte). -->
+  <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
+  <script defer src="/search.js"></script>
+  {#if page.url.pathname !== '/find/'}
+    <script type="module" src="/pagefind/pagefind-component-ui.js"></script>
+  {/if}
   <title>{title}</title>
   <link rel="canonical" href={canonical} />
   <meta name="description" content={page.data.description} />
@@ -74,6 +84,23 @@
     {SITE_TITLE} · every park in Monroe County, New York
   </p>
 </footer>
+
+<!-- The one search dialog for the whole site (#318). Every header trigger
+     opens this. reset-on-close: the dialog is empty the next time it opens. -->
+<pagefind-modal reset-on-close>
+  <pagefind-modal-header>
+    <pagefind-input
+      placeholder="Search parks, trails and posts"
+    ></pagefind-input>
+  </pagefind-modal-header>
+  <pagefind-modal-body>
+    <pagefind-summary></pagefind-summary>
+    <pagefind-results></pagefind-results>
+  </pagefind-modal-body>
+  <pagefind-modal-footer>
+    <pagefind-keyboard-hints></pagefind-keyboard-hints>
+  </pagefind-modal-footer>
+</pagefind-modal>
 
 {#each page.data.jsonLd ?? [] as data, i (i)}
   <JsonLd {data} />

@@ -25,7 +25,12 @@ describe('the type scale', () => {
     const other = /^(var\(--text-map\)|inherit|100%)$/;
     const fixed: string[] = [];
     for (const [path, text] of files) {
-      for (const [, value] of text.matchAll(/font(?:-size)?:\s*([^;]+);/g)) {
+      // A negative lookbehind keeps this off a custom property that merely
+      // ends in "-font" or "-font-size", such as Pagefind's own --pf-font
+      // (#318): only a real `font`/`font-size` declaration starts here.
+      for (const [, value] of text.matchAll(
+        /(?<![\w-])font(?:-size)?:\s*([^;]+);/g
+      )) {
         const v = value.trim();
         if (!step.test(v) && !other.test(v)) fixed.push(`${path}: ${v}`);
       }

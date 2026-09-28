@@ -1,7 +1,21 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { ParkIndexEntry } from '#lib/types.js';
 
   let { data } = $props();
+
+  // This page hydrates (csr = true), unlike every other page. The root
+  // layout skips the Pagefind script tag here for that reason (#318): were
+  // it to run before hydration, it would render into its own elements,
+  // Svelte would find a mismatch and rebuild the page, and the header
+  // trigger's dialog would be lost. Loading it after hydration instead
+  // keeps the header's search icon and Cmd-K working on this page too.
+  onMount(() => {
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = '/pagefind/pagefind-component-ui.js';
+    document.head.append(script);
+  });
 
   let selected = $state<string[]>([]);
   let scope = $state('all');
