@@ -155,13 +155,11 @@
     <span hidden>{search.place}</span>
   {/if}
   {#if search.map}
-    <!-- The result's place map (#310, #323): an SVG string, plain text here
-         so Pagefind reads it back the same way it wrote it out. `{@html}`
-         would parse it into real elements with no text content, and the
-         meta would come back empty. -->
-    <span hidden data-pagefind-ignore data-pagefind-meta="map"
-      >{search.map}</span
-    >
+    <!-- The result's place map (#310, #323) is a file, this page's own
+         `map.svg`; the meta is only a flag that it exists. Pagefind indexes
+         every meta value, so the SVG text here would make "river" and
+         "canal" find every Park whose map draws one (#333). -->
+    <span hidden data-pagefind-meta="map:1"></span>
   {/if}
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 

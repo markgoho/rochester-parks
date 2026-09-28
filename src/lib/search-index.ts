@@ -33,8 +33,10 @@ export interface SearchEntry {
    */
   place?: string;
   /**
-   * The result's place map (#310, #323): an SVG string, the town or
-   * Neighborhood outline with the Park's dot, built by `placeMapSvg`. Absent
+   * The result's place map (#310, #323): an SVG file's text, the town or
+   * Neighborhood outline with the Park's dot, built by `placeMapSvg` and
+   * served at the page's own `map.svg` (#333). A layout never puts it in the
+   * page, only a `map` flag, since Pagefind indexes every meta value. Absent
    * wherever the Park page itself falls back to its county-wide or city-wide
    * locator, or the Park or Trail has no point.
    */
@@ -123,7 +125,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         title: page.title,
         line: parkLine(page.park),
         place: parkPlace(page.park),
-        map: placeMapSvg(page.park, false, page.url),
+        map: placeMapSvg(page.park, false),
       };
 
     case 'trail-single':
@@ -133,7 +135,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         title: page.title,
         line: trailLine(page.trail),
         place: parkPlace(page.trail),
-        map: placeMapSvg(page.trail, true, page.url),
+        map: placeMapSvg(page.trail, true),
       };
 
     case 'park-list':
@@ -153,7 +155,7 @@ export function searchEntryOf(page: Page): SearchEntry {
           title: `Trails, ${page.trailsOf.title}`,
           line: parkLine(page.trailsOf.park),
           place: parkPlace(page.trailsOf.park),
-          map: placeMapSvg(page.trailsOf.park, false, page.url),
+          map: placeMapSvg(page.trailsOf.park, false),
         };
       }
       if (page.url.startsWith('/blog/')) {
