@@ -81,6 +81,15 @@
   </p>
 </header>
 
+<!-- Opens the one site-wide search dialog (#318, #321). This page keeps no
+     results of its own; the amenity filter below still answers "what is
+     there", and this box answers "I know its name". -->
+<div class="find-search">
+  <pagefind-modal-trigger
+    placeholder="Search by name, place or word"
+  ></pagefind-modal-trigger>
+</div>
+
 <section class="panel filters">
   <div class="panel__head">
     <span class="eyebrow">
@@ -238,6 +247,19 @@
     margin: 0;
     font-size: var(--step-1);
     color: var(--ink-soft);
+  }
+
+  /* Pagefind's trigger defaults to `inline-block`, so its own `width: 100%`
+     button shrinks to its content. `block` lets it fill this width instead
+     (#321). --pf-input-height matches the site's own control height, so the
+     box reads as this site's search box, not Pagefind's default one. */
+  .find-search {
+    margin: 0 0 var(--space-24);
+  }
+
+  .find-search pagefind-modal-trigger {
+    display: block;
+    --pf-input-height: var(--control-height);
   }
 
   .filters .tags {
