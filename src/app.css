@@ -495,20 +495,83 @@ p {
   --pf-text-muted: var(--orange);
 }
 
-/* The custom result template's own layout (#320): the map beside the name,
-   the second line and the excerpt. `search-map`, `search-row` and
+/* The custom result template's own layout (#320, #323): the map beside the
+   name, the second line and the excerpt. `search-row`, `search-map` and
    `search-line` are this site's classes; Pagefind resets every class that
    starts with "pf-", so this two-column layout could not live on a "pf-"
-   element even if it wanted to. The map itself is a later ticket (#323); an
-   empty column collapses rather than leaving a gap. */
+   element even if it wanted to. The map column is a fixed width, present or
+   not, so a result with no map still lines its title up with the rest
+   (#310). It queries its own row rather than the viewport: the dialog is a
+   fixed 40rem on a wide screen and the full phone width when it goes
+   full-screen, so a viewport breakpoint would not track the two sizes the
+   spec asks for. */
 .search-row {
+  container-type: inline-size;
   display: flex;
-  align-items: baseline;
+  align-items: start;
   gap: var(--space-12);
+  /* `container-type` gives the row size containment, which cuts its own
+     width loose from its content; without an explicit basis it collapses to
+     0 as a flex child instead of filling `pf-result-card`. */
+  flex: 1;
 }
 
-.search-map:empty {
-  display: none;
+/* A fixed width, present or not (an empty map keeps the space): the map
+   never grows or shrinks, so `pf-result-content`'s own `flex: 1` (Pagefind's
+   default) takes the rest. */
+.search-map {
+  flex: 0 0 4.5rem;
+}
+
+@container (inline-size <= 30rem) {
+  .search-map {
+    flex-basis: 3.25rem;
+  }
+}
+
+.search-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+}
+
+/* The map's own figure, built as a string by `placeMapSvg` (#323): global
+   styles, since the string carries no styles of its own and the components'
+   scoped styles are not on every page. Class names match `TownShape.svelte`
+   so the two stay easy to compare, scoped under `.search-map` so they reach
+   nothing else on the page. */
+.search-map .outline {
+  fill: var(--land);
+  stroke: var(--rule-strong);
+  stroke-width: var(--stroke-thin);
+  stroke-linejoin: round;
+}
+
+.search-map .village {
+  fill: var(--paper-sunk);
+  stroke: var(--rule-strong);
+  stroke-width: var(--stroke-thin);
+  stroke-linejoin: round;
+}
+
+.search-map .water {
+  fill: none;
+  stroke: var(--water);
+  stroke-width: var(--stroke-water);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.search-map .water.river {
+  stroke-width: var(--stroke-river);
+}
+
+.search-map .dot {
+  fill: var(--orange);
+  stroke: var(--ink);
+  stroke-width: var(--stroke-base);
 }
 
 .search-line {

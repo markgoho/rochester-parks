@@ -10,9 +10,10 @@
  * own, so none of them may start with `pf-`: Pagefind resets every class
  * that does (`all: revert`, high specificity).
  *
- * `search-map` is always empty for now: the place map is a later ticket
- * (#323). It still reserves its column, so a title starts in the same place
- * whether or not the row beside it ever gets a map.
+ * `search-map` holds the place map (#310, #323), an SVG string carried by
+ * `meta.map` and drawn raw with `{{+ meta.map +}}` since Pagefind escapes a
+ * template variable by default. It still reserves its column when a result
+ * has no map, so a title starts in the same place either way.
  */
 export const SEARCH_RESULT_TEMPLATE = `<script type="text/pagefind-template">
 <li class="pf-result">

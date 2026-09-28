@@ -33,6 +33,15 @@
            Park's own "Trails" sub-page (#297). -->
       <span hidden>{search.place}</span>
     {/if}
+    {#if search.map}
+      <!-- The result's place map (#310, #323): the Park's own, since this
+           sub-page's place is its Park's. Plain text, not `{@html}`: Pagefind
+           reads the meta element's text content back the same way it was
+           written. -->
+      <span hidden data-pagefind-ignore data-pagefind-meta="map"
+        >{search.map}</span
+      >
+    {/if}
   {/if}
   <Breadcrumbs ancestors={page.ancestors} current={page} />
   <h1 style:--longest-word={longestWord(page.title)}>{page.title}</h1>

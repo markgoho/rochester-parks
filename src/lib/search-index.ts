@@ -9,6 +9,7 @@ import {
   townKey,
 } from './municipalities.js';
 import { neighborhoodAt } from './neighborhoods.js';
+import { placeMapSvg } from './search-map.js';
 import type { Page, ParkMeta } from './types.js';
 
 /**
@@ -17,8 +18,7 @@ import type { Page, ParkMeta } from './types.js';
  * that title. `title` matches the page's own `h1`, which Pagefind already
  * reads as the result title on its own; a layout only needs to render it as
  * a `data-pagefind-meta="title"` override where the two differ (the
- * "Trails" sub-page). The place map (#323) is a later ticket's field; every
- * layout leaves a slot for it and fills nothing yet.
+ * "Trails" sub-page).
  */
 export interface SearchEntry {
   indexed: boolean;
@@ -32,6 +32,13 @@ export interface SearchEntry {
    * `data-pagefind-ignore`.
    */
   place?: string;
+  /**
+   * The result's place map (#310, #323): an SVG string, the town or
+   * Neighborhood outline with the Park's dot, built by `placeMapSvg`. Absent
+   * wherever the Park page itself falls back to its county-wide or city-wide
+   * locator, or the Park or Trail has no point.
+   */
+  map?: string;
 }
 
 const NOT_INDEXED = (title: string): SearchEntry => ({ indexed: false, title });
@@ -116,6 +123,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         title: page.title,
         line: parkLine(page.park),
         place: parkPlace(page.park),
+        map: placeMapSvg(page.park, false, page.url),
       };
 
     case 'trail-single':
@@ -125,6 +133,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         title: page.title,
         line: trailLine(page.trail),
         place: parkPlace(page.trail),
+        map: placeMapSvg(page.trail, true, page.url),
       };
 
     case 'park-list':
@@ -144,6 +153,7 @@ export function searchEntryOf(page: Page): SearchEntry {
           title: `Trails, ${page.trailsOf.title}`,
           line: parkLine(page.trailsOf.park),
           place: parkPlace(page.trailsOf.park),
+          map: placeMapSvg(page.trailsOf.park, false, page.url),
         };
       }
       if (page.url.startsWith('/blog/')) {

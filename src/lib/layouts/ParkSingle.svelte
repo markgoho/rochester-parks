@@ -154,6 +154,15 @@
          nothing here. -->
     <span hidden>{search.place}</span>
   {/if}
+  {#if search.map}
+    <!-- The result's place map (#310, #323): an SVG string, plain text here
+         so Pagefind reads it back the same way it wrote it out. `{@html}`
+         would parse it into real elements with no text content, and the
+         meta would come back empty. -->
+    <span hidden data-pagefind-ignore data-pagefind-meta="map"
+      >{search.map}</span
+    >
+  {/if}
   <Breadcrumbs ancestors={page.ancestors} current={page} />
 
   <div class="layout">

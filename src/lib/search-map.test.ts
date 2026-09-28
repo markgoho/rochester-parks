@@ -1,0 +1,137 @@
+/// <reference types="bun" />
+import { describe, expect, test } from 'bun:test';
+import { placeMapSvg, placeShape } from './search-map.js';
+import type { ParkMeta } from './types.js';
+
+const baseMeta: ParkMeta = {
+  amenities: [],
+  wordCount: 0,
+  photoCount: 0,
+  commentCount: 0,
+  status: { written: false, inventoried: false, photographed: false },
+  links: [],
+  section: { title: 'Henrietta', url: '/town-parks/henrietta-parks/' },
+  former: false,
+  planned: false,
+};
+
+/** West High Park: a City Park in the 19th Ward. */
+const westHigh: ParkMeta = {
+  ...baseMeta,
+  section: { title: 'Rochester', url: '/rochester-city-parks/' },
+  geo: { latitude: 43.1430704, longitude: -77.6381868 },
+};
+
+/** Mendon Ponds Park: a County Park standing in the Town of Mendon, which
+ * holds the Village of Honeoye Falls. */
+const mendonPonds: ParkMeta = {
+  ...baseMeta,
+  section: { title: 'Monroe County', url: '/monroe-county-parks/' },
+  geo: { latitude: 43.021062601092915, longitude: -77.57617948425705 },
+};
+
+/** Egypt Park: a Town Park in Perinton, which holds the Village of
+ * Fairport. */
+const egyptPark: ParkMeta = {
+  ...baseMeta,
+  section: { title: 'Perinton', url: '/town-parks/perinton-parks/' },
+  geo: { latitude: 43.063189, longitude: -77.3987923 },
+};
+
+/** High Falls State Park: stands in the City of Rochester, but under the
+ * state section, so it takes neither the city's Neighborhood lookup nor a
+ * town's: the same fallback the Park page takes to its TownLocator. */
+const highFalls: ParkMeta = {
+  ...baseMeta,
+  section: { title: 'State', url: '/state-parks/' },
+  geo: { latitude: 43.161314, longitude: -77.6134002 },
+};
+
+describe('placeShape', () => {
+  test('a City Park takes its Neighborhood, with no villages', () => {
+    const found = placeShape(westHigh, false);
+    expect(found?.shape.name).toBe('19th Ward');
+    expect(found?.villages).toEqual([]);
+  });
+
+  test("a County Park takes the town its point stands in, with the town's villages", () => {
+    const found = placeShape(mendonPonds, false);
+    expect(found?.shape.key).toBe('mendon');
+    expect(found?.villages.map((v) => v.key)).toEqual(['honeoye-falls']);
+  });
+
+  test("a Town Park takes its own town, with the town's villages", () => {
+    const found = placeShape(egyptPark, false);
+    expect(found?.shape.key).toBe('perinton');
+    expect(found?.villages.map((v) => v.key)).toEqual(['fairport']);
+  });
+
+  test('a Park with no point has no shape', () => {
+    expect(placeShape({ ...baseMeta, geo: undefined }, false)).toBeUndefined();
+  });
+
+  test('a State Park standing in the city falls back like the Park page does, with no shape', () => {
+    // The Park page draws its TownLocator fallback here (no Neighborhood
+    // lookup off a state section, and `townAt` excludes the city): the
+    // search result must match, not fall back to `parkPlace`'s more lenient
+    // `placeAt`, or it would show a map the Park page itself does not draw.
+    expect(placeShape(highFalls, false)).toBeUndefined();
+  });
+
+  test('a Trail takes the place its point stands in, county-wide, even inside the city', () => {
+    const inTown = placeShape(
+      { ...baseMeta, section: { title: 'Trails', url: '/trails/' }, geo: egyptPark.geo },
+      true
+    );
+    expect(inTown?.shape.key).toBe('perinton');
+
+    const inCity = placeShape(
+      { ...baseMeta, section: { title: 'Trails', url: '/trails/' }, geo: highFalls.geo },
+      true
+    );
+    expect(inCity?.shape.key).toBe('rochester');
+  });
+});
+
+describe('placeMapSvg', () => {
+  test('a City Park with a Neighborhood shape draws the outline, water and dot', () => {
+    const svg = placeMapSvg(westHigh, false, '/rochester-city-parks/west-high-park/');
+    expect(svg).toMatch(/^<svg viewBox="[-\d. ]+" aria-hidden="true">/);
+    expect(svg).toContain('class="outline"');
+    expect(svg).toContain('class="water river"');
+    expect(svg).toContain('class="water canal"');
+    expect(svg).toContain('class="dot"');
+    expect(svg).not.toContain('class="village"');
+  });
+
+  test("a Town Park's map carries its villages", () => {
+    const svg = placeMapSvg(egyptPark, false, '/town-parks/perinton-parks/egypt-park/');
+    expect(svg).toContain('class="village"');
+    expect(svg).toContain('class="water canal"');
+    expect(svg).not.toContain('class="water river"');
+  });
+
+  test('a Park with no water nearby draws no water path', () => {
+    const svg = placeMapSvg(mendonPonds, false, '/monroe-county-parks/mendon-ponds-park/');
+    expect(svg).not.toContain('class="water');
+  });
+
+  test('a Park with no point has no map', () => {
+    expect(
+      placeMapSvg({ ...baseMeta, geo: undefined }, false, '/town-parks/henrietta-parks/x/')
+    ).toBeUndefined();
+  });
+
+  test('a Park with no shape (the Park page falls back) has no map', () => {
+    expect(placeMapSvg(highFalls, false, '/state-parks/high-falls-state-park/')).toBeUndefined();
+  });
+
+  test('two different Parks give different clip-path ids', () => {
+    const a = placeMapSvg(egyptPark, false, '/town-parks/perinton-parks/egypt-park/')!;
+    const b = placeMapSvg(mendonPonds, false, '/monroe-county-parks/mendon-ponds-park/')!;
+    const idOf = (svg: string) => /id="([^"]+)"/.exec(svg)?.[1];
+    expect(idOf(a)).toBeDefined();
+    expect(idOf(b)).toBeDefined();
+    expect(idOf(a)).not.toBe(idOf(b));
+  });
+});
