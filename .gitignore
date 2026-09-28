@@ -18,3 +18,6 @@ public
 .DS_Store
 # Approved Comments, fetched from Firestore before the deploy build
 generated
+
+# Pirsch API credentials for scripts/search-misses.ts (#313)
+.env
