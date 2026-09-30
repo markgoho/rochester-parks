@@ -22,6 +22,10 @@ _Avoid_: Future park, proposed park, park in progress
 A named place inside a Park that keeps its own hours, or that the public rents: a rec center, lodge, pavilion, ice rink, zoo, spray park, beach or dog park. A rented Facility often has no public hours at all. It is still a Facility, and the Park page tells the reader how to rent it: the link or the telephone number that takes a booking, and the season the Facility is rented in, when the source gives one. The page does not give a fee, because a fee changes more often than the site is built (ADR-0004 asks the site to replace the official page, not to copy each number off it). A number is a name: "Shelter 3" is a Facility. A Facility has its own place inside the Park, so a map of the Park can show where it is. A playground that keeps the same hours as the grounds is an amenity, not a Facility. A Facility always belongs to the Park that holds it. An R-Center with no grounds of its own is not a Park.
 _Avoid_: Venue, building, amenity
 
+**Curfew**:
+A law that closes a group of Parks for fixed hours, such as the Monroe County Parks Law, which closes every county Park from 10 p.m. to 6 a.m. (Ch. 323, § 323-3). It is not opening hours: it says when a Park is closed, not that the Park is open at all other hours, so it never goes to search engines as schema.org opening hours. A Park page shows it, linked to the law, only when the Park has no grounds hours; grounds hours from the official page already show the close. It is recorded once for the group, with its source and the date it was checked, not in the front matter of each Park (#182).
+_Avoid_: Park hours, closing time, opening hours
+
 **Trail**:
 A named path on government land that the public walks or rides and that is a place of its own, such as a rail trail, a greenway or a canal towpath. A Trail is not a Park, even when a government calls it a park. A path inside one Park is part of that Park (ADR-0006).
 _Avoid_: Linear park, greenway, path

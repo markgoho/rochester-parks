@@ -290,10 +290,23 @@ export interface HoursView {
   closedOn?: string;
 }
 
+/**
+ * What the facts panel shows for a Curfew: a law that closes the grounds for
+ * fixed hours but gives no opening hours (CONTEXT.md).
+ */
+export interface CurfewView {
+  /** When the grounds are closed, as printed: "Closed 10 p.m. to 6 a.m.". */
+  closed: string;
+  /** The law that closes them, as the line names and links it. */
+  law: { name: string; url: string };
+}
+
 /** A Park's hours as the facts panel shows them. */
 export interface ParkHours {
   /** Undefined when the grounds have no recorded hours. */
   grounds?: HoursView;
+  /** Present only when the grounds have no recorded hours of their own. */
+  curfew?: CurfewView;
   facilities: (HoursView & { name: string })[];
   /** When the hours were last checked, as printed. */
   checkedOn?: string;
