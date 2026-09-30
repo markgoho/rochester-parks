@@ -69,6 +69,10 @@
         hours.curfew !== undefined ||
         hours.facilities.length > 0)
   );
+  /** The grounds need a name only beside the Facilities' own hours. */
+  const groundsName = $derived(
+    hours?.facilities.length ? 'Grounds' : undefined
+  );
   /** One line of grounds hours fits a column; anything more needs the width. */
   const longHours = $derived(
     hours !== undefined &&
@@ -239,17 +243,14 @@
                 <dd class="hours">
                   {#if hours && hasHours}
                     {#if hours.grounds}
-                      {@render hoursOf(
-                        hours.grounds,
-                        hours.facilities.length ? 'Grounds' : undefined
-                      )}
+                      {@render hoursOf(hours.grounds, groundsName)}
                     {/if}
                     <!-- A Curfew is not opening hours, so it takes the place
                          of the grounds hours only where there are none. -->
                     {#if hours.curfew}
                       <div class="hours__place">
-                        {#if hours.facilities.length}
-                          <p class="hours__name">Grounds</p>
+                        {#if groundsName}
+                          <p class="hours__name">{groundsName}</p>
                         {/if}
                         <p>
                           {hours.curfew.closed} by
