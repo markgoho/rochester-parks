@@ -91,16 +91,19 @@ export function parkPlace(
   if (!park.geo) {
     // With no point there is no map, but the section still names a place.
     if (isCitySection(park.section.url)) return 'Rochester';
-    const key = townKey(park.section.url);
-    return key ? municipality(key)?.label.text : undefined;
+    return labelOf(townKey(park.section.url));
   }
   // A State Park in the city (High Falls): its map draws no shape, so the
   // Park page keeps its TownLocator, but search still names the city.
   if (isStateSection(park.section.url)) {
-    const key = placeAt(park.geo.latitude, park.geo.longitude);
-    return key ? municipality(key)?.label.text : undefined;
+    return labelOf(placeAt(park.geo.latitude, park.geo.longitude));
   }
   return undefined;
+}
+
+/** A town's or the city's name, as its map label spells it. */
+function labelOf(key: string | undefined): string | undefined {
+  return key ? municipality(key)?.label.text : undefined;
 }
 
 /** Who runs the Park, when the second line names an owner beside its place. */
