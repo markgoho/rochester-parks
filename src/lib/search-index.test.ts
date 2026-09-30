@@ -141,8 +141,8 @@ describe('parkPlace', () => {
     ).toBe('Rochester');
   });
 
-  test('a Trail on Town land by the Webster library names Webster', () => {
-    // Hickory Bark Woods: on tax parcel 079.11-1-10.1, 1002 Ridge Rd.
+  test('a Trail in a town names that town, the same place its map draws', () => {
+    // Hickory Bark Woods: `placeAt` finds the town through `townAt`.
     expect(
       parkPlace(
         {
