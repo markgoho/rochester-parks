@@ -65,7 +65,9 @@
   const hours = $derived(page.hours);
   const hasHours = $derived(
     hours !== undefined &&
-      (hours.grounds !== undefined || hours.facilities.length > 0)
+      (hours.grounds !== undefined ||
+        hours.curfew !== undefined ||
+        hours.facilities.length > 0)
   );
   /** One line of grounds hours fits a column; anything more needs the width. */
   const longHours = $derived(
@@ -241,6 +243,21 @@
                         hours.grounds,
                         hours.facilities.length ? 'Grounds' : undefined
                       )}
+                    {/if}
+                    <!-- A Curfew is not opening hours, so it takes the place
+                         of the grounds hours only where there are none. -->
+                    {#if hours.curfew}
+                      <div class="hours__place">
+                        {#if hours.facilities.length}
+                          <p class="hours__name">Grounds</p>
+                        {/if}
+                        <p>
+                          {hours.curfew.closed} by
+                          <a href={hours.curfew.law.url}
+                            >{hours.curfew.law.name}</a
+                          >
+                        </p>
+                      </div>
                     {/if}
                     {#each hours.facilities as facility (facility.name)}
                       {@render hoursOf(facility, facility.name)}
@@ -528,6 +545,14 @@
 
   .hours__note {
     color: var(--ink-soft);
+  }
+
+  /* The Curfew's link to its law. The panel sits outside .prose, so it
+     states the prose link rule itself, as .facility__book a does. */
+  .hours a {
+    color: var(--orange-ink);
+    text-decoration: underline;
+    text-underline-offset: var(--underline-offset-prose);
   }
 
   /* The "hours checked" trigger: a small circled i beside the label. */

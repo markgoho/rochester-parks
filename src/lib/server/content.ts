@@ -2,6 +2,7 @@ import matter from 'gray-matter';
 import { Marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { markedSmartypants } from 'marked-smartypants';
+import { curfewOf } from '#lib/curfew.js';
 import { buildDate, formatDate, hoursView, isTime } from '#lib/hours.js';
 import { normaliseAmenity } from '#lib/amenities.js';
 import { commentAreaOf } from '#lib/comment-area.js';
@@ -399,6 +400,7 @@ function parkMetaOf(node: Node): ParkMeta {
 function parkHours(meta: ParkMeta): ParkHours {
   return {
     grounds: hoursView(meta.openingHours ?? [], meta.closedOn ?? [], TODAY),
+    curfew: curfewOf(meta),
     // A Facility with no hours of its own adds no row: an empty row would say
     // less than no row. The Facilities section names it instead.
     facilities: (meta.facilities ?? []).flatMap((facility) => {
