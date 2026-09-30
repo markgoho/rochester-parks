@@ -343,6 +343,16 @@
               {@const rental = facility.rental}
               <li class="facility">
                 <h3>{facility.name}</h3>
+                {#if facility.amenities?.length}
+                  <!-- The same tags as the amenity panel, and kept out of the
+                       search index for the same reason (#156). -->
+                  <p class="facility__line" data-pagefind-ignore>
+                    <span class="eyebrow">Inside</span>
+                    {#each facility.amenities as amenity (amenity)}
+                      <span class="tag">{amenity}</span>
+                    {/each}
+                  </p>
+                {/if}
                 {#if rental?.season}
                   <!-- The season is printed as its source writes it, so it
                        takes a label rather than a sentence around it. -->

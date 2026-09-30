@@ -29,6 +29,7 @@ hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Carter Street R-Center'
     type: SportsActivityLocation
+    amenities: ['Game Room', 'Gym', 'Meeting Room']
     openingHours:
       - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday']
         opens: '08:30'

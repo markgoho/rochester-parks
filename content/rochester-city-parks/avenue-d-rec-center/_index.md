@@ -29,6 +29,7 @@ hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Avenue D R-Center'
     type: SportsActivityLocation
+    amenities: ['Computer Lab', 'Game Room', 'Gym', 'Meeting Room']
     openingHours:
       - dayOfWeek: ['Monday', 'Wednesday', 'Friday']
         opens: '08:30'

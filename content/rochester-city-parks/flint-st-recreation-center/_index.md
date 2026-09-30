@@ -28,6 +28,7 @@ hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Willie Walker Lightfoot R-Center'
     type: SportsActivityLocation
+    amenities: ['Computer Lab', 'Game Room', 'Gym', 'Meeting Room']
     openingHours:
       - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
         opens: '15:00'
