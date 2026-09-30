@@ -1,14 +1,13 @@
 import { formatAcres } from './format.js';
+import { mapPlace } from './map-place.js';
 import {
   isCitySection,
   isCountySection,
   isStateSection,
   municipality,
   placeAt,
-  townAt,
   townKey,
 } from './municipalities.js';
-import { neighborhoodAt } from './neighborhoods.js';
 import { parkShapeSvg, placeMapSvg } from './search-map.js';
 import type { Page, ParkMeta } from './types.js';
 
@@ -70,26 +69,38 @@ function pictureOf(
  * The town or Neighborhood a Park's point falls in, on its own (#297): the
  * word every result's second line also carries, but the line itself is
  * `data-pagefind-ignore`, so a layout renders this separately, as ordinary
- * indexed text, for "Greece" and "19th Ward" to match on.
+ * indexed text, for "Greece" and "19th Ward" to match on. It starts from
+ * `mapPlace` (#343), so a result names the same place its map draws.
  */
-export function parkPlace(park: ParkMeta): string | undefined {
-  if (isCitySection(park.section.url)) {
-    const n = park.geo && neighborhoodAt(park.geo.latitude, park.geo.longitude);
-    // A city Park outside every drawn Neighborhood still names the city, the
-    // way the Park page's own facts panel falls back for it.
-    return n ? `${n.name}, Rochester` : 'Rochester';
+export function parkPlace(
+  park: ParkMeta,
+  isTrail = false
+): string | undefined {
+  const found = mapPlace(park, isTrail);
+  if (found?.city) {
+    // Search names the city beside the Neighborhood, and still names it for
+    // a City Park outside every drawn Neighborhood, where the map has no
+    // shape.
+    return found.neighborhood
+      ? `${found.neighborhood.name}, Rochester`
+      : 'Rochester';
   }
-  if (isCountySection(park.section.url) || isStateSection(park.section.url)) {
-    const key = park.geo && placeAt(park.geo.latitude, park.geo.longitude);
+  // A County Park outside every outline gets no place here, though its map
+  // says "Monroe County": the second line already names that owner.
+  if (found?.shape) return found.where;
+  if (!park.geo) {
+    // With no point there is no map, but the section still names a place.
+    if (isCitySection(park.section.url)) return 'Rochester';
+    const key = townKey(park.section.url);
     return key ? municipality(key)?.label.text : undefined;
   }
-  // A town Park: the point decides it, the same way the Park page draws it
-  // (Belmanor Park is filed under Brighton and stands in Henrietta); the
-  // section's own town is the fallback when the point lands nowhere.
-  const key =
-    (park.geo && townAt(park.geo.latitude, park.geo.longitude)) ??
-    townKey(park.section.url);
-  return key ? municipality(key)?.label.text : undefined;
+  // A State Park in the city (High Falls): its map draws no shape, so the
+  // Park page keeps its TownLocator, but search still names the city.
+  if (isStateSection(park.section.url)) {
+    const key = placeAt(park.geo.latitude, park.geo.longitude);
+    return key ? municipality(key)?.label.text : undefined;
+  }
+  return undefined;
 }
 
 /** Who runs the Park, when the second line names an owner beside its place. */
@@ -155,7 +166,7 @@ export function searchEntryOf(page: Page): SearchEntry {
         indexed: true,
         title: page.title,
         line: trailLine(page.trail),
-        place: parkPlace(page.trail),
+        place: parkPlace(page.trail, true),
         ...pictureOf(page.trail, true, page.outline),
       };
 

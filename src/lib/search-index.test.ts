@@ -126,6 +126,20 @@ describe('parkPlace', () => {
       })
     ).toBeUndefined();
   });
+
+  test('a Trail in the city names Rochester, the same place its map draws', () => {
+    // El Camino Trail: `townAt` does not name the city, but `placeAt` does.
+    expect(
+      parkPlace(
+        {
+          ...baseMeta,
+          section: { title: 'Trails', url: '/trails/' },
+          geo: { latitude: 43.1749357, longitude: -77.6192927 },
+        },
+        true
+      )
+    ).toBe('Rochester');
+  });
 });
 
 describe('parkLine', () => {
