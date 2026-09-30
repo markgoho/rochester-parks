@@ -2,6 +2,9 @@
 title: 'Hickory Bark Woods'
 description: 'A Town of Webster trail called Hickory Bark Woods'
 type: 'trail'
+geo:
+  latitude: 43.2125811
+  longitude: -77.459049
 sameAs:
   - 'https://www.websterny.gov/577/Trails'
 ---

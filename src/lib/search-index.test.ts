@@ -140,6 +140,20 @@ describe('parkPlace', () => {
       )
     ).toBe('Rochester');
   });
+
+  test('a Trail on Town land by the Webster library names Webster', () => {
+    // Hickory Bark Woods: on tax parcel 079.11-1-10.1, 1002 Ridge Rd.
+    expect(
+      parkPlace(
+        {
+          ...baseMeta,
+          section: { title: 'Trails', url: '/trails/' },
+          geo: { latitude: 43.2125811, longitude: -77.459049 },
+        },
+        true
+      )
+    ).toBe('Webster');
+  });
 });
 
 describe('parkLine', () => {
