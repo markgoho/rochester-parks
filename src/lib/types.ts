@@ -156,6 +156,12 @@ export interface Facility {
   geo?: { latitude: number; longitude: number };
   /** How the public rents it, when the public can. */
   rental?: FacilityRental;
+  /**
+   * What is inside the Facility, in the Park's amenity names. These add to the
+   * Park's own `amenities` and never replace them: the finder filters on the
+   * Park's list only (#156).
+   */
+  amenities?: string[];
 }
 
 /** A content page's raw frontmatter, as `gray-matter` parses it. */

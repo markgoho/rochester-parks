@@ -8,7 +8,6 @@ address:
   addressRegion: 'NY'
   addressCountry: 'US'
 amenities:
-  - Amphitheater
   - Baseball Diamond
   - Basketball Court
   - Computer Lab
@@ -30,6 +29,7 @@ hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'David F. Gantt R-Center'
     type: SportsActivityLocation
+    amenities: ['Computer Lab', 'Game Room', 'Gym', 'Meeting Room']
     openingHours:
       - dayOfWeek: ['Monday', 'Wednesday']
         opens: '08:30'

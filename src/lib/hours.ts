@@ -394,6 +394,11 @@ export function facilitiesJsonLd(
     geo: facility.geo && { '@type': 'GeoCoordinates', ...facility.geo },
     url: facility.rental?.url,
     telephone: facility.rental?.phone,
+    amenityFeature: facility.amenities?.map((name) => ({
+      '@type': 'LocationFeatureSpecification',
+      name,
+      value: true,
+    })),
     ...(facility.openingHours?.length || facility.closedOn?.length
       ? hoursJsonLd(facility.openingHours ?? [], facility.closedOn ?? [], today)
       : {}),

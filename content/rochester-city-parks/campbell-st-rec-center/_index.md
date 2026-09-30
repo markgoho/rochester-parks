@@ -26,6 +26,7 @@ hoursCheckedOn: '2026-09-18'
 facilities:
   - name: 'Hope R-Center'
     type: SportsActivityLocation
+    amenities: ['Computer Lab', 'Game Room', 'Gym']
     openingHours:
       - dayOfWeek: ['Monday', 'Thursday', 'Friday']
         opens: '08:30'

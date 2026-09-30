@@ -328,6 +328,25 @@ describe('facilitiesJsonLd', () => {
     });
   });
 
+  test('a Facility names what is inside it', () => {
+    const center: Facility = {
+      name: 'Avenue D R-Center',
+      type: 'SportsActivityLocation',
+      amenities: ['Game Room', 'Gym'],
+    };
+    const [place] = facilitiesJsonLd([center], '2026-09-18');
+    expect(place).toMatchObject({
+      amenityFeature: [
+        {
+          '@type': 'LocationFeatureSpecification',
+          name: 'Game Room',
+          value: true,
+        },
+        { '@type': 'LocationFeatureSpecification', name: 'Gym', value: true },
+      ],
+    });
+  });
+
   test('a season a Facility is rented in is never a season of hours', () => {
     const [place] = facilitiesJsonLd([lodge], '2026-09-18');
     expect(JSON.stringify(place)).not.toContain('Early May');

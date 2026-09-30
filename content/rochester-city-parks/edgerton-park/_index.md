@@ -27,8 +27,9 @@ sameAs:
   - 'https://www.cityofrochester.gov/locations/edgerton-r-center'
 hoursCheckedOn: '2026-09-18'
 facilities:
-  - name: 'Recreation center'
+  - name: 'Edgerton R-Center'
     type: SportsActivityLocation
+    amenities: ['Computer Lab', 'Game Room', 'Meeting Room']
     openingHours:
       - dayOfWeek: ['Monday', 'Thursday', 'Friday']
         opens: '08:30'
