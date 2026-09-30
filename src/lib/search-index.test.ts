@@ -140,6 +140,20 @@ describe('parkPlace', () => {
       )
     ).toBe('Rochester');
   });
+
+  test('a Trail in a town names that town, the same place its map draws', () => {
+    // Hickory Bark Woods: `placeAt` finds the town through `townAt`.
+    expect(
+      parkPlace(
+        {
+          ...baseMeta,
+          section: { title: 'Trails', url: '/trails/' },
+          geo: { latitude: 43.2125811, longitude: -77.459049 },
+        },
+        true
+      )
+    ).toBe('Webster');
+  });
 });
 
 describe('parkLine', () => {
