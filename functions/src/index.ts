@@ -163,6 +163,14 @@ const store: CommentStore = {
   async add(comment) {
     return (await collection().add(comment)).id;
   },
+  async addOnce(id, comment) {
+    const ref = collection().doc(id);
+    return getFirestore().runTransaction(async (transaction) => {
+      if ((await transaction.get(ref)).exists) return false;
+      transaction.create(ref, comment);
+      return true;
+    });
+  },
   async get(id) {
     const doc = await collection().doc(id).get();
     return doc.exists ? stored(doc.id, doc.data()!) : undefined;

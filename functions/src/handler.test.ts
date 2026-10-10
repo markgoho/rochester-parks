@@ -15,6 +15,7 @@ const PAGE = '/town-parks/riga-parks/sanford-road-park/';
 const NOW = new Date('2026-09-22T12:00:00Z');
 
 let written: Omit<StoredComment, 'id'>[];
+let ids: string[];
 let announced: Announcement[];
 let logged: string[];
 let deps: Deps;
@@ -23,6 +24,7 @@ let spamScore: number | null;
 
 beforeEach(() => {
   written = [];
+  ids = [];
   announced = [];
   logged = [];
   judged = [];
@@ -41,6 +43,12 @@ beforeEach(() => {
       async add(comment) {
         written.push(comment);
         return `id-${written.length}`;
+      },
+      async addOnce(id, comment) {
+        if (ids.includes(id)) return false;
+        ids.push(id);
+        written.push(comment);
+        return true;
       },
       get: async () => undefined,
       inQueue: async () => [],
@@ -101,6 +109,39 @@ describe('the public post', () => {
         posted: 'How do I reserve the lodge?',
       },
     ]);
+  });
+
+  test('the same post sent twice writes and announces once', async () => {
+    const [first, second] = await Promise.all([post(), post()]);
+    expect(first.status).toBe(303);
+    expect(second.status).toBe(303);
+    expect(second.headers.Location).toBe(`${PAGE}#comment-sent`);
+    expect(written).toHaveLength(1);
+    expect(announced).toHaveLength(1);
+  });
+
+  test('a resent post with other line ends or email case is the same post', async () => {
+    await post({ body: 'Is the lodge open?\nIn winter?' });
+    await post({
+      body: 'Is the lodge open?\r\nIn winter?',
+      email: 'Barbara@Example.com',
+    });
+    expect(written).toHaveLength(1);
+  });
+
+  test('other words, another email or another page is a new post', async () => {
+    const OTHER = '/town-parks/perinton-parks/harts-woods/';
+    await post();
+    await post({ body: 'Is there parking?' });
+    await post({ email: 'tom@example.com' });
+    await post({ page: OTHER, token: pageToken(OTHER, KEY) });
+    expect(written).toHaveLength(4);
+  });
+
+  test('the id shows no part of the email', async () => {
+    await post();
+    expect(ids[0]).toHaveLength(20);
+    expect(ids[0]).not.toContain('barbara');
   });
 
   test('stores no IP and no user agent', async () => {
@@ -167,7 +208,7 @@ describe('the public post', () => {
 
   test('each Subject token is accepted', async () => {
     for (const subject of ['comment', 'correction']) {
-      expect((await post({ subject })).status).toBe(303);
+      expect((await post({ subject, body: subject })).status).toBe(303);
     }
     expect(written.map((c) => c.subject)).toEqual(['comment', 'correction']);
   });
@@ -557,7 +598,7 @@ describe('the announcement', () => {
         subject: 'correction',
         date: '2026-09-22',
         flag: 'none',
-        commentId: 'id-1',
+        commentId: ids[0],
       },
     ]);
     const inputs = JSON.stringify(announced);
@@ -589,7 +630,7 @@ describe('the announcement', () => {
     expect(response.status).toBe(303);
     expect(written).toHaveLength(1);
     expect(logged).toHaveLength(1);
-    expect(logged[0]).toContain('id-1');
+    expect(logged[0]).toContain(ids[0]);
   });
 
   test('the honeypot and a bad token announce nothing', async () => {

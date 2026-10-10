@@ -51,6 +51,7 @@ beforeEach(() => {
         docs.set(id, { ...doc, id });
         return id;
       },
+      addOnce: async () => true,
       async approved() {
         return [...docs.values()].filter((doc) => doc.state === 'approved');
       },
