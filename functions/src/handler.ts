@@ -1,6 +1,6 @@
 import { rochesterDay, text } from './respond.js';
 import { moderate } from './surface.js';
-import { tokenMatches } from './token.js';
+import { postId, tokenMatches } from './token.js';
 
 /**
  * The comments Function's one HTTP handler (#217). Request in, response out.
@@ -56,6 +56,11 @@ export interface SpamSample {
 export interface CommentStore {
   /** Writes one document and returns its id. */
   add(comment: Omit<StoredComment, 'id'>): Promise<string>;
+  /**
+   * Writes one document with this id, in one transaction, unless a document
+   * with the id is there already. Returns whether it wrote.
+   */
+  addOnce(id: string, comment: Omit<StoredComment, 'id'>): Promise<boolean>;
   get(id: string): Promise<StoredComment | undefined>;
   /** Every Comment in the Moderation queue. */
   inQueue(): Promise<StoredComment[]>;
@@ -246,6 +251,11 @@ async function receive(
   // 5. Write one queue document. No IP, no user agent (#206). A failed
   //    check writes the post `unchecked`, for the later check (#285). The
   //    body as posted stays until approval (#284).
+  //    The id comes from the post, so the same post sent twice, as with a
+  //    double click, writes one document and one announcement. It stays
+  //    one while the first is in the queue or approved; after a reject the
+  //    same words can come in again.
+  const id = postId(page, email, body, deps.secrets.hmacKey);
   const created = deps.clock();
   const flags = [
     ...(elements > 0 || elements + urls >= 2 ? ['links'] : []),
@@ -253,7 +263,7 @@ async function receive(
     ...(spam !== null && spam >= SPAM_FLAG ? ['spam'] : []),
     ...(spam === null ? ['unchecked'] : []),
   ];
-  const id = await deps.store.add({
+  const wrote = await deps.store.addOnce(id, {
     page,
     parent: null,
     state: 'queue',
@@ -266,6 +276,10 @@ async function receive(
     flags,
     posted: posted.trim(),
   });
+  if (!wrote) {
+    deps.logInfo(`The same post again, not written: Comment ${id}`);
+    return sent;
+  }
 
   // 6. Announce an unflagged post only. A flagged one waits in the queue,
   //    sorted last, with no email (#258). A failure keeps the Comment: it
