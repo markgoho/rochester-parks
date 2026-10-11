@@ -5,3 +5,6 @@ functions/scripts/spam-set.json
 src/lib/park-outlines.ts
 src/lib/waterways.ts
 docs/park-outlines-report.md
+# Gitignored in nested .gitignore files or local only; Prettier reads only the root .gitignore
+.claude
+functions/lib
