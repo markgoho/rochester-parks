@@ -111,7 +111,7 @@ async function line(waterway: string, name: string): Promise<Point[]> {
   let line: Point[] = [];
   let node = start.node;
   const left = new Set(ways);
-  for (let way = start.way; way; ) {
+  for (let way = start.way; way;) {
     left.delete(way);
     const forward = way.first === node;
     const points = forward ? way.points : [...way.points].reverse();

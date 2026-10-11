@@ -24,6 +24,7 @@ openingHours:
   - dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     closes: 'dusk'
 ---
+
 ![Great Embankment canal-side sitting area](Embankment-canalsde-sitting-area.jpg)
 
 Of all the canal parks, Great Embankment Park does not fail to impress. The park is one of Pittsford’s most beautiful parks, mostly because of the three athletic fields and the attention given to them. While Rochester Parks visited this park, a maintenance crew was hard at work mowing the baseball fields and lining the soccer field.

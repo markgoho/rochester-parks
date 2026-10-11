@@ -17,6 +17,7 @@ geo:
   latitude: 43.0889348
   longitude: -77.4870469
 ---
+
 ![Griffith Park open field](Griffith-field.jpg)
 
 ## Griffith Park Open field

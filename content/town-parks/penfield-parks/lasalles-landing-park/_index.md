@@ -1,5 +1,5 @@
 ---
-title: 'LaSalle''s Landing Park'
+title: "LaSalle's Landing Park"
 description: 'A park in Penfield'
 type: 'park'
 address:

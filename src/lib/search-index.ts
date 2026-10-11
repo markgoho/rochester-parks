@@ -72,10 +72,7 @@ function pictureOf(
  * indexed text, for "Greece" and "19th Ward" to match on. It starts from
  * `mapPlace` (#343), so a result names the same place its map draws.
  */
-export function parkPlace(
-  park: ParkMeta,
-  isTrail = false
-): string | undefined {
+export function parkPlace(park: ParkMeta, isTrail = false): string | undefined {
   const found = mapPlace(park, isTrail);
   if (found?.city) {
     // Search names the city beside the Neighborhood, and still names it for

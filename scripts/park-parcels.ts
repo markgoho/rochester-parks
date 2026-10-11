@@ -97,9 +97,10 @@ export interface ParcelSource {
    */
   hasSwis: boolean;
   /** Every parcel under the point, park-type or not. */
-  containing(point: { latitude: number; longitude: number }): Promise<
-    ParcelFeature[]
-  >;
+  containing(point: {
+    latitude: number;
+    longitude: number;
+  }): Promise<ParcelFeature[]>;
   /** Park-type parcels within `metres` of the point, nearest first. */
   near(
     point: { latitude: number; longitude: number },
@@ -134,7 +135,9 @@ export interface ParcelMiss {
 
 export type ParcelChoice = ParcelPick | ParcelMiss;
 
-export function isMiss<T extends object>(choice: T | ParcelMiss): choice is ParcelMiss {
+export function isMiss<T extends object>(
+  choice: T | ParcelMiss
+): choice is ParcelMiss {
   return 'reason' in choice;
 }
 
@@ -185,14 +188,18 @@ export function addressMatch(
   const street = numbered ? numbered[2] : first;
   if (streetWords(street) !== streetWords(parcel.street)) return undefined;
   if (number && parcel.number) {
-    return number.toLowerCase() === parcel.number.toLowerCase() ? 'full' : undefined;
+    return number.toLowerCase() === parcel.number.toLowerCase()
+      ? 'full'
+      : undefined;
   }
   return 'street';
 }
 
 /** Words in a Park's name that do not tell one Park from another. */
 const NAME_WORDS = new Set(
-  'the and of at a park parks square playground plaza mall green memorial city rochester roch'.split(' ')
+  'the and of at a park parks square playground plaza mall green memorial city rochester roch'.split(
+    ' '
+  )
 );
 
 /**
@@ -200,15 +207,27 @@ const NAME_WORDS = new Set(
  * name that is not a generic word, as a whole word ("Cobbs" in "City Of Roch
  * Cobbs Hill Reserv" for Cobb's Hill Park).
  */
-export function ownerNamesPark(owner: string | undefined, name: string | undefined): boolean {
+export function ownerNamesPark(
+  owner: string | undefined,
+  name: string | undefined
+): boolean {
   if (!owner || !name) return false;
   const words = (text: string) =>
-    text.toLowerCase().replace(/['’.]/g, '').split(/[^a-z0-9]+/).filter(Boolean);
-  const key = words(name).find((word) => word.length >= 3 && !NAME_WORDS.has(word));
+    text
+      .toLowerCase()
+      .replace(/['’.]/g, '')
+      .split(/[^a-z0-9]+/)
+      .filter(Boolean);
+  const key = words(name).find(
+    (word) => word.length >= 3 && !NAME_WORDS.has(word)
+  );
   return key !== undefined && words(owner).includes(key);
 }
 
-function acresAgree(parcelAcres: number, parkAcres: number | undefined): boolean {
+function acresAgree(
+  parcelAcres: number,
+  parkAcres: number | undefined
+): boolean {
   return (
     parkAcres !== undefined &&
     Math.abs(parcelAcres - parkAcres) <= ACRES_AGREE * parkAcres
@@ -222,7 +241,11 @@ function isHome(feature: ParcelFeature): boolean {
 }
 
 /** How many independent signals tie a parcel to the Park's page. */
-function signals(feature: ParcelFeature, park: ParkFacts, openSpace: boolean): number {
+function signals(
+  feature: ParcelFeature,
+  park: ParkFacts,
+  openSpace: boolean
+): number {
   let count = openSpace ? 1 : 0;
   if (addressMatch(park.address, feature.address)) count++;
   if (ownerNamesPark(feature.owner, park.name)) count++;
@@ -276,7 +299,8 @@ export async function chooseParcels(
   if (isMiss(seedChoice)) return seedChoice;
   const { feature: seed, via } = seedChoice;
   const parkAcres = park.acres;
-  const maxAcres = parkAcres === undefined ? Infinity : parkAcres * ACRES_FACTOR;
+  const maxAcres =
+    parkAcres === undefined ? Infinity : parkAcres * ACRES_FACTOR;
 
   // A seed of another class that already has the page's acres is the whole
   // Park, so nothing joins it. A park-type seed with the page's acres still

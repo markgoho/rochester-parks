@@ -25,7 +25,7 @@ geo:
 
 ![Goodwin Park playground](forweb-IMG_20120613_174704.jpg)
 
-*Full-size playground including slides and climbers*
+_Full-size playground including slides and climbers_
 
 Goodwin Park is one of the smallest parks in all of Greece. At just under 2 acres, this park sits runs along a small canal that links Lake Ontario to Long Pond. I can imagine this park might actually see some use from time to time, but when I went there were only a few men there fishing.
 
@@ -35,7 +35,7 @@ There were a number of picnic tables and barbecues and benches along a path that
 
 ![Goodwin Park geese](forweb-IMG_20120613_175101.jpg)
 
-*The geese are taking over at Goodwin Park*
+_The geese are taking over at Goodwin Park_
 
 ## Goose Poop
 

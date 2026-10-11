@@ -41,7 +41,11 @@ import {
 } from 'node:fs';
 import matter from 'gray-matter';
 import polygonClipping from 'polygon-clipping';
-import { isParkContainer, isParkType, isTrailType } from '../src/lib/park-types';
+import {
+  isParkContainer,
+  isParkType,
+  isTrailType,
+} from '../src/lib/park-types';
 import {
   chooseParcels,
   chooseSeed,
@@ -104,8 +108,7 @@ const COUNTY_ALIASES: Record<string, string> = {
   Webster: '/monroe-county-parks/webster-park/',
   'Lehigh Valley Trail Linear': '/trails/lehigh-valley-trail-linear-park/',
   Ellison: '/monroe-county-parks/ellison-park/',
-  'Irondequoit State Marine':
-    '/state-parks/irondequoit-bay-state-marine-park/',
+  'Irondequoit State Marine': '/state-parks/irondequoit-bay-state-marine-park/',
   'Black Creek': '/monroe-county-parks/black-creek-park/',
   'Mendon Ponds': '/monroe-county-parks/mendon-ponds-park/',
   'Ontario Beach': '/monroe-county-parks/ontario-beach-park/',
@@ -117,7 +120,10 @@ const COUNTY_ALIASES: Record<string, string> = {
 const MEASURE = process.env.MEASURE === '1';
 const QUERY_CACHE = process.env.QUERY_CACHE;
 
-type RawFeature = { properties: Record<string, unknown>; geometry: GeoJsonGeometry };
+type RawFeature = {
+  properties: Record<string, unknown>;
+  geometry: GeoJsonGeometry;
+};
 
 /** POSTs a query, since the polygon geometry a search sends can be long. */
 async function query(
@@ -194,7 +200,10 @@ function segmentDistance(
   const dx = bx - ax,
     dy = by - ay;
   const len2 = dx * dx + dy * dy;
-  const t = len2 === 0 ? 0 : Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / len2));
+  const t =
+    len2 === 0
+      ? 0
+      : Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / len2));
   return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
 }
 
@@ -422,12 +431,17 @@ async function loadCountyParks(): Promise<Map<string, CountyPark>> {
   for (const f of raw) {
     const name = String(f.properties.park);
     const list = byName.get(name) ?? [];
-    list.push({ id: String(f.properties.objectid), polys: polysOf(f.geometry) });
+    list.push({
+      id: String(f.properties.objectid),
+      polys: polysOf(f.geometry),
+    });
     byName.set(name, list);
   }
   const parks = new Map<string, CountyPark>();
   for (const [name, list] of byName) {
-    const sorted = list.sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    const sorted = list.sort((a, b) =>
+      a.id < b.id ? -1 : a.id > b.id ? 1 : 0
+    );
     parks.set(name, {
       ids: sorted.map((f) => f.id),
       polys: sorted.flatMap((f) => f.polys),
@@ -792,7 +806,9 @@ function writeReport(
   const trailFound = resolved.filter((r) => r.section === 'trail').length;
   const trailTotal = targets.filter((p) => sectionOf(p.url) === 'trail').length;
   if (trailTotal > 0) {
-    lines.push(`- trail (via the county layer): ${trailFound} of ${trailTotal}`);
+    lines.push(
+      `- trail (via the county layer): ${trailFound} of ${trailTotal}`
+    );
   }
   lines.push('');
 
@@ -804,10 +820,15 @@ function writeReport(
     byReason.set(miss.reason, list);
   }
   for (const reason of [...byReason.keys()].sort()) {
-    const list = byReason.get(reason)!.sort((a, b) => a.url.localeCompare(b.url));
+    const list = byReason
+      .get(reason)!
+      .sort((a, b) => a.url.localeCompare(b.url));
     lines.push(`### ${reason} (${list.length})`, '');
     for (const miss of list) {
-      const acres = miss.pageAcres !== undefined ? `${miss.pageAcres} ac` : 'no acres on the page';
+      const acres =
+        miss.pageAcres !== undefined
+          ? `${miss.pageAcres} ac`
+          : 'no acres on the page';
       // The acres check runs on parcels already joined, so its evidence is
       // the joined total, not "what the point falls on" (that check never ran).
       const detail = miss.decided
@@ -820,7 +841,10 @@ function writeReport(
     lines.push('');
   }
 
-  lines.push('## Parks placed from a nearby parcel, not one under the point', '');
+  lines.push(
+    '## Parks placed from a nearby parcel, not one under the point',
+    ''
+  );
   lines.push(
     "_The Park's `geo` point may be off. This script does not edit `geo`._",
     ''
@@ -862,7 +886,7 @@ function writeReport(
     })
     .map((r) => r.url)
     .sort();
-  lines.push("## Parks whose `geo` point is outside their outline", '');
+  lines.push('## Parks whose `geo` point is outside their outline', '');
   lines.push(
     '_Some are right: a lock or a parking lot on land with no tax parcel. Move the others._',
     ''
@@ -902,8 +926,10 @@ function printMeasure(
       else if (pick.clip) verdict = 'needs a clip';
       else if (gotKey === wanted) verdict = 'reproduced';
       else if (got.layer !== pickLayer(pick.layer)) verdict = 'other layer';
-      else if (pick.ids.every((id) => got.ids.includes(id))) verdict = 'too many';
-      else if (got.ids.every((id) => pick.ids.includes(id))) verdict = 'too few';
+      else if (pick.ids.every((id) => got.ids.includes(id)))
+        verdict = 'too many';
+      else if (got.ids.every((id) => pick.ids.includes(id)))
+        verdict = 'too few';
       else verdict = 'different';
       (picked[verdict] ??= []).push(
         verdict === 'reproduced'
@@ -920,7 +946,9 @@ function printMeasure(
     );
   }
   const total = Object.values(picked).reduce((n, list) => n + list.length, 0);
-  console.log(`Picks reproduced: ${picked.reproduced?.length ?? 0} of ${total}`);
+  console.log(
+    `Picks reproduced: ${picked.reproduced?.length ?? 0} of ${total}`
+  );
   for (const [verdict, list] of Object.entries(picked).sort()) {
     console.log(`\n## ${verdict} (${list.length})`);
     for (const line of list.sort()) console.log(`- ${line}`);
@@ -1023,8 +1051,11 @@ async function main(): Promise<void> {
   const missed = outcomes.filter((o): o is Missed => 'reason' in o);
 
   const previous: Record<string, ParkOutline> = existsSync(OUTPUT_PATH)
-    ? ((await import(OUTPUT_URL.href)) as { PARK_OUTLINES: Record<string, ParkOutline> })
-        .PARK_OUTLINES
+    ? (
+        (await import(OUTPUT_URL.href)) as {
+          PARK_OUTLINES: Record<string, ParkOutline>;
+        }
+      ).PARK_OUTLINES
     : {};
 
   if (MEASURE) {

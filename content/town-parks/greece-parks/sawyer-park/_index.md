@@ -30,7 +30,7 @@ Sawyer park is definitely one of those parks that you need to visit. There are a
 
 ![front side of sawyer park playground](forweb-IMG_20120612_191713.jpg)
 
-*Front view of larger Sawyer Park playground*
+_Front view of larger Sawyer Park playground_
 
 ## Large Playground
 
@@ -38,7 +38,7 @@ Sawyer Park has two playgrounds, one full-size and another that is for smaller c
 
 ![Covered pavilion at sawyer park](forweb-IMG_20120612_193948.jpg)
 
-*Large pavilion with 10 picnic tables*
+_Large pavilion with 10 picnic tables_
 
 ## Eating Areas
 
@@ -46,7 +46,7 @@ Eating areas are very respectable at this park. There is a large pavilion that w
 
 ![round pond creek running through sawyer park](forweb-IMG_20120612_193018.jpg)
 
-*Round Pond Creek runs through the park*
+_Round Pond Creek runs through the park_
 
 ## Special features of Sawyer Park
 

@@ -21,6 +21,7 @@ geo:
   latitude: 43.2147746
   longitude: -77.5486847
 ---
+
 ![Heyer-Bayer Memorial park playground](forweb-IMG_20120622_132325.jpg)
 
 ## Heyer-Bayer Memorial Park playground

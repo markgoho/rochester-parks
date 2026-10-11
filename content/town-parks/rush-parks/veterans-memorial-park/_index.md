@@ -1,6 +1,6 @@
 ---
-title: 'Veteran''s Memorial Park'
-description: 'A park in Rush, NY called Veteran''s Memorial Park'
+title: "Veteran's Memorial Park"
+description: "A park in Rush, NY called Veteran's Memorial Park"
 type: 'park'
 geo:
   latitude: 42.99237469403891

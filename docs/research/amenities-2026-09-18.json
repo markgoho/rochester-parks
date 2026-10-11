@@ -71,9 +71,7 @@
       "title": "Sandra L. Frankel Nature Park",
       "kind": "own-page",
       "sourceUrl": "https://www.brightonny.gov/827/Sandra-L-Frankel-Nature-Park",
-      "amenities": [
-        "The Brickyard Trail (0.8-mile multiuse, shared-use trail)"
-      ]
+      "amenities": ["The Brickyard Trail (0.8-mile multiuse, shared-use trail)"]
     },
     {
       "file": "content/town-parks/east-rochester-parks/concrest-park/_index.md",
@@ -147,9 +145,7 @@
       "title": "Aqueduct Park",
       "kind": "own-page",
       "sourceUrl": "https://www.cityofrochester.gov/locations/aqueduct-park",
-      "amenities": [
-        "Picnic benches and tables"
-      ]
+      "amenities": ["Picnic benches and tables"]
     },
     {
       "file": "content/rochester-city-parks/avenue-d-rec-center/_index.md",
@@ -235,11 +231,7 @@
       "title": "Conkey Corner Park & El Camino Trail",
       "kind": "own-page",
       "sourceUrl": "https://www.cityofrochester.gov/locations/conkey-corner-park-el-camino-trail",
-      "amenities": [
-        "Playground",
-        "Benches",
-        "Perennial gardens"
-      ]
+      "amenities": ["Playground", "Benches", "Perennial gardens"]
     },
     {
       "file": "content/rochester-city-parks/david-f-gantt-recreation-center/_index.md",
@@ -364,11 +356,7 @@
       "title": "Jones Square Park",
       "kind": "own-page",
       "sourceUrl": "https://www.cityofrochester.gov/locations/jones-square-park",
-      "amenities": [
-        "Historic fountain",
-        "benches",
-        "shade trees"
-      ]
+      "amenities": ["Historic fountain", "benches", "shade trees"]
     },
     {
       "file": "content/rochester-city-parks/jr-wilson-park/_index.md",
@@ -386,10 +374,7 @@
       "title": "Lunsford Circle Park",
       "kind": "own-page",
       "sourceUrl": "https://www.cityofrochester.gov/locations/lunsford-circle-park",
-      "amenities": [
-        "Manicured gardens",
-        "gazebo (performance stage)"
-      ]
+      "amenities": ["Manicured gardens", "gazebo (performance stage)"]
     },
     {
       "file": "content/rochester-city-parks/maplewood-park-and-rose-garden/_index.md",
@@ -422,10 +407,7 @@
       "title": "Susan B. Anthony Square Park",
       "kind": "own-page",
       "sourceUrl": "https://www.cityofrochester.gov/locations/susan-b-anthony-square-park",
-      "amenities": [
-        "Sculpture (\"Let's Have Tea\")",
-        "seating area"
-      ]
+      "amenities": ["Sculpture (\"Let's Have Tea\")", "seating area"]
     },
     {
       "file": "content/rochester-city-parks/troup-street-park/_index.md",
@@ -474,10 +456,7 @@
       "title": "Washington Square Park",
       "kind": "own-page",
       "sourceUrl": "https://www.cityofrochester.gov/locations/washington-square-park",
-      "amenities": [
-        "Benches",
-        "monument to Abraham Lincoln"
-      ]
+      "amenities": ["Benches", "monument to Abraham Lincoln"]
     },
     {
       "file": "content/rochester-city-parks/manhattan-square/_index.md",
@@ -838,10 +817,7 @@
       "title": "Tryon Park",
       "kind": "own-page",
       "sourceUrl": "https://www.monroecounty.gov/parks-tryon",
-      "amenities": [
-        "Hiking trails",
-        "Natural scenic areas"
-      ]
+      "amenities": ["Hiking trails", "Natural scenic areas"]
     },
     {
       "file": "content/monroe-county-parks/webster-park/_index.md",
@@ -1062,10 +1038,7 @@
       "title": "Beverly Papas Park",
       "kind": "own-page",
       "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/beverly-papas-park/",
-      "amenities": [
-        "Playground",
-        "Open Space"
-      ]
+      "amenities": ["Playground", "Open Space"]
     },
     {
       "file": "content/town-parks/greece-parks/braddock-bay-park/_index.md",
@@ -1101,30 +1074,21 @@
       "title": "Columbus Park",
       "kind": "own-page",
       "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/columbus-park/",
-      "amenities": [
-        "Playground (New as of May 2020!)",
-        "Open Space"
-      ]
+      "amenities": ["Playground (New as of May 2020!)", "Open Space"]
     },
     {
       "file": "content/town-parks/greece-parks/frisbee-hill-park/_index.md",
       "title": "Frisbee Hill Park",
       "kind": "own-page",
       "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/frisbee-hill-park/",
-      "amenities": [
-        "Playground",
-        "Open Space"
-      ]
+      "amenities": ["Playground", "Open Space"]
     },
     {
       "file": "content/town-parks/greece-parks/goodwin-park/_index.md",
       "title": "Goodwin Park",
       "kind": "own-page",
       "sourceUrl": "https://greeceny.gov/departments/parksandrecreation/parks/goodwin-park/",
-      "amenities": [
-        "Playground",
-        "Picnic Tables"
-      ]
+      "amenities": ["Playground", "Picnic Tables"]
     },
     {
       "file": "content/town-parks/greece-parks/grandview-park/_index.md",
@@ -1185,21 +1149,14 @@
       "title": "Andrews Park",
       "kind": "own-page",
       "sourceUrl": "https://www.henriettany.gov/community/park/andrews-park-0",
-      "amenities": [
-        "No Parking",
-        "Picnic Area",
-        "Walking Trail"
-      ]
+      "amenities": ["No Parking", "Picnic Area", "Walking Trail"]
     },
     {
       "file": "content/town-parks/henrietta-parks/belmanor-park/_index.md",
       "title": "Belmanor Park",
       "kind": "own-page",
       "sourceUrl": "https://www.henriettany.gov/community/park/belmanor-park",
-      "amenities": [
-        "Greenspace",
-        "No Parking"
-      ]
+      "amenities": ["Greenspace", "No Parking"]
     },
     {
       "file": "content/town-parks/henrietta-parks/breese-park/_index.md",
@@ -1218,20 +1175,14 @@
       "title": "Hoskins Park",
       "kind": "own-page",
       "sourceUrl": "https://www.henriettany.gov/community/park/hoskins-park",
-      "amenities": [
-        "Picnic Area",
-        "Walking Trail"
-      ]
+      "amenities": ["Picnic Area", "Walking Trail"]
     },
     {
       "file": "content/town-parks/henrietta-parks/kenwick-park/_index.md",
       "title": "Kenwick Park",
       "kind": "own-page",
       "sourceUrl": "https://www.henriettany.gov/community/park/kenwick-park",
-      "amenities": [
-        "Parking Areas",
-        "Playground"
-      ]
+      "amenities": ["Parking Areas", "Playground"]
     },
     {
       "file": "content/town-parks/henrietta-parks/lookup-park/_index.md",
@@ -1348,18 +1299,14 @@
       "title": "Bateau Play Area",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Bateau-Terrace-13",
-      "amenities": [
-        "Playground"
-      ]
+      "amenities": ["Playground"]
     },
     {
       "file": "content/town-parks/irondequoit-parks/bristol-tot-lot/_index.md",
       "title": "Bristol Tot Lot",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Bristol-Tot-Lot-Home-Depot-Play-Area-15",
-      "amenities": [
-        "Playground"
-      ]
+      "amenities": ["Playground"]
     },
     {
       "file": "content/town-parks/irondequoit-parks/camp-eastman/_index.md",
@@ -1379,10 +1326,7 @@
       "title": "Heyer-Bayer Memorial Park",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/HeyerBayer-Memorial-Park-10",
-      "amenities": [
-        "Baseball Fields",
-        "Playground"
-      ]
+      "amenities": ["Baseball Fields", "Playground"]
     },
     {
       "file": "content/town-parks/irondequoit-parks/joshua-park/_index.md",
@@ -1416,38 +1360,28 @@
       "title": "Pardee Tot Lot",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Pardee-Road-16",
-      "amenities": [
-        "Playground"
-      ]
+      "amenities": ["Playground"]
     },
     {
       "file": "content/town-parks/irondequoit-parks/sadies-place/_index.md",
       "title": "Sadie's Place",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Sadies-Place-17",
-      "amenities": [
-        "Playground"
-      ]
+      "amenities": ["Playground"]
     },
     {
       "file": "content/town-parks/irondequoit-parks/spezio-park/_index.md",
       "title": "Spezio Park",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Spezio-Park-11",
-      "amenities": [
-        "Tennis",
-        "Pickleball Court",
-        "Playground"
-      ]
+      "amenities": ["Tennis", "Pickleball Court", "Playground"]
     },
     {
       "file": "content/town-parks/irondequoit-parks/vinton-play-area/_index.md",
       "title": "Vinton Play Area",
       "kind": "own-page",
       "sourceUrl": "https://www.irondequoit.gov/Facilities/Facility/Details/Vinton-Road-12",
-      "amenities": [
-        "Playground"
-      ]
+      "amenities": ["Playground"]
     },
     {
       "file": "content/town-parks/ogden-parks/ogden-heritage-park/_index.md",
@@ -1496,10 +1430,7 @@
       "title": "Snick Hawkins Park",
       "kind": "own-page",
       "sourceUrl": "https://ogdenny.myrec.com/info/facilities/details.aspx?FacilityID=14709",
-      "amenities": [
-        "Seating",
-        "Access to Canal Trail"
-      ]
+      "amenities": ["Seating", "Access to Canal Trail"]
     },
     {
       "file": "content/town-parks/sweden-parks/sweden-town-park/_index.md",
@@ -1574,10 +1505,7 @@
       "title": "LaSalle's Landing Park",
       "kind": "own-page",
       "sourceUrl": "https://www.penfieldny.gov/detail_T12_R53.php",
-      "amenities": [
-        "Fishing access",
-        "small canoe/kayak launch"
-      ]
+      "amenities": ["Fishing access", "small canoe/kayak launch"]
     },
     {
       "file": "content/town-parks/penfield-parks/panorama-valley-park/_index.md",
@@ -1648,11 +1576,7 @@
       "title": "Ayrault Boat Launch",
       "kind": "own-page",
       "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/ayrault-boat-launch/",
-      "amenities": [
-        "Boat ramp",
-        "Docks",
-        "Parking designed for boat trailers"
-      ]
+      "amenities": ["Boat ramp", "Docks", "Parking designed for boat trailers"]
     },
     {
       "file": "content/town-parks/perinton-parks/center-park-east/_index.md",
@@ -1736,11 +1660,7 @@
       "title": "Garnsey Road Arboretum",
       "kind": "own-page",
       "sourceUrl": "https://perinton.gov/departments/randp/parks-department/parks/garnsey-road-arboretum/",
-      "amenities": [
-        "Arboretum",
-        "Hiking trails",
-        "Multi-use field"
-      ]
+      "amenities": ["Arboretum", "Hiking trails", "Multi-use field"]
     },
     {
       "file": "content/town-parks/perinton-parks/kreag-road-park/_index.md",
@@ -1830,9 +1750,7 @@
       "title": "Vincent G. Kennelley Park",
       "kind": "own-page",
       "sourceUrl": "https://www.fairportny.com/community/parks___recreation/index.php",
-      "amenities": [
-        "Gazebo"
-      ]
+      "amenities": ["Gazebo"]
     },
     {
       "file": "content/town-parks/webster-parks/charles-e-sexton-memorial-park/_index.md",
@@ -1853,20 +1771,14 @@
       "title": "D'Amico Park",
       "kind": "own-page",
       "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/DAmico-Park-22",
-      "amenities": [
-        "Baseball Fields"
-      ]
+      "amenities": ["Baseball Fields"]
     },
     {
       "file": "content/town-parks/webster-parks/empire-park/_index.md",
       "title": "Empire Park",
       "kind": "own-page",
       "sourceUrl": "https://www.websterny.gov/Facilities/Facility/Details/Empire-Park-23",
-      "amenities": [
-        "baseball fields",
-        "trails",
-        "restrooms"
-      ]
+      "amenities": ["baseball fields", "trails", "restrooms"]
     },
     {
       "file": "content/town-parks/webster-parks/finn-park/_index.md",

@@ -321,8 +321,8 @@
           <div class="panel__body">
             <p>
               Nobody has walked {page.title} and written it up, and there is no list
-              of what is there. What this page can tell you honestly is where it
-              is and who looks after it. The rest is waiting on a visit.
+              of what is there. What this page can tell you honestly is where it is
+              and who looks after it. The rest is waiting on a visit.
             </p>
           </div>
         </div>

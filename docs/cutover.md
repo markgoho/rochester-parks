@@ -6,14 +6,14 @@ Target: **the bare apex, no `www` anywhere.** WordPress currently 301s the apex 
 
 ## State before cutover
 
-| Thing | Value |
-|---|---|
-| Registrar | Squarespace |
-| Nameservers | Cloudflare (`asa`/`carter.ns.cloudflare.com`) — **DNS is edited in Cloudflare, not Squarespace** |
-| Apex today | 301 to `www.rochesterparks.org`, proxied through Cloudflare |
-| New site today | Live and public at `rochester-parks.web.app` |
-| `SITE_URL` | `https://rochesterparks.org` — already apex, no change needed |
-| `www` in the codebase | None, outside XML namespaces |
+| Thing                 | Value                                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------ |
+| Registrar             | Squarespace                                                                                      |
+| Nameservers           | Cloudflare (`asa`/`carter.ns.cloudflare.com`) — **DNS is edited in Cloudflare, not Squarespace** |
+| Apex today            | 301 to `www.rochesterparks.org`, proxied through Cloudflare                                      |
+| New site today        | Live and public at `rochester-parks.web.app`                                                     |
+| `SITE_URL`            | `https://rochesterparks.org` — already apex, no change needed                                    |
+| `www` in the codebase | None, outside XML namespaces                                                                     |
 
 ## Already done
 
@@ -93,13 +93,13 @@ If you do push something on launch day, allow about 2m30s for the deploy before 
 
 WordPress indexes URL classes this site has no equivalent for:
 
-| Class | Count |
-|---|---|
-| Attachment pages | 75 |
-| Category pages | 25 |
-| Tag pages | 37 |
-| Slide pages | 5 |
-| Author page | 1 |
+| Class            | Count |
+| ---------------- | ----- |
+| Attachment pages | 75    |
+| Category pages   | 25    |
+| Tag pages        | 37    |
+| Slide pages      | 5     |
+| Author page      | 1     |
 
 **Recommendation: let them 404.** They are thin, mostly unlinked, and Google drops 404s within a few weeks. A blanket redirect to the home page is worse — Google treats it as a soft 404 and it hides the loss instead of resolving it.
 

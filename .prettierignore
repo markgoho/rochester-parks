@@ -1,3 +1,7 @@
 public
 # Written by functions/scripts/spam-eval.ts pull
 functions/scripts/spam-set.json
+# Written by scripts/park-outlines.ts and scripts/waterways.ts
+src/lib/park-outlines.ts
+src/lib/waterways.ts
+docs/park-outlines-report.md
