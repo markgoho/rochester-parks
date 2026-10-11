@@ -6,7 +6,7 @@ geo:
   latitude: 43.1012874
   longitude: -77.4577283
 address:
-  streetAddress: '99 O''Connor Road'
+  streetAddress: "99 O'Connor Road"
   addressLocality: 'Fairport'
   addressRegion: 'NY'
   addressCountry: 'US'

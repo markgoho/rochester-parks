@@ -85,8 +85,7 @@
      results of its own; the amenity filter below still answers "what is
      there", and this box answers "I know its name". -->
 <div class="find-search">
-  <pagefind-modal-trigger
-    placeholder="Search by name, place or word"
+  <pagefind-modal-trigger placeholder="Search by name, place or word"
   ></pagefind-modal-trigger>
 </div>
 
@@ -140,33 +139,33 @@
 <!-- The frame is the container .summary queries below. A container cannot
      query itself. -->
 <div class="summary-frame">
-<div class="summary">
-  <p class="count-out">
-    <span class="mono">{matched.length}</span>
-    <span>
-      {matched.length === 1 ? 'park' : 'parks'} in {scopeName}
-      {selected.length ? 'have' : 'has'}
-      {phrase}
-    </span>
-  </p>
+  <div class="summary">
+    <p class="count-out">
+      <span class="mono">{matched.length}</span>
+      <span>
+        {matched.length === 1 ? 'park' : 'parks'} in {scopeName}
+        {selected.length ? 'have' : 'has'}
+        {phrase}
+      </span>
+    </p>
 
-  <div class="panel coverage">
-    <div class="panel__body">
-      <p class="coverage__head">
-        <span class="eyebrow">How much of {scopeName} this can see</span>
-        <span class="mono">{inventoried.length} / {scoped.length}</span>
-      </p>
-      <p class="meter" aria-hidden="true">
-        <span class="meter__fill" style="width: {coverage}%"></span>
-        <span style="width: {100 - coverage}%"></span>
-      </p>
-      <p class="coverage__note">
-        {unrecorded.length} of these parks have no amenity list. They are not missing
-        a shelter — nobody has written down whether they have one.
-      </p>
+    <div class="panel coverage">
+      <div class="panel__body">
+        <p class="coverage__head">
+          <span class="eyebrow">How much of {scopeName} this can see</span>
+          <span class="mono">{inventoried.length} / {scoped.length}</span>
+        </p>
+        <p class="meter" aria-hidden="true">
+          <span class="meter__fill" style="width: {coverage}%"></span>
+          <span style="width: {100 - coverage}%"></span>
+        </p>
+        <p class="coverage__note">
+          {unrecorded.length} of these parks have no amenity list. They are not missing
+          a shelter — nobody has written down whether they have one.
+        </p>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <section class="results" aria-live="polite">

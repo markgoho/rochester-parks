@@ -1,5 +1,5 @@
 ---
-title: 'Chapman''s Corner Park'
+title: "Chapman's Corner Park"
 description: 'A park in Henrietta'
 type: 'park'
 geo:

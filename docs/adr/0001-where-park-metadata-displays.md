@@ -18,11 +18,11 @@ Two constraints apply:
 
 **A field displays on the surface where the reader asks its question.**
 
-| Surface | The reader's question | What the surface shows |
-|---|---|---|
-| Park List | Which of these Parks do I go to? | Facts that compare Parks: acres, trail miles |
+| Surface   | The reader's question                | What the surface shows                                                |
+| --------- | ------------------------------------ | --------------------------------------------------------------------- |
+| Park List | Which of these Parks do I go to?     | Facts that compare Parks: acres, trail miles                          |
 | Park page | I chose this Park. What must I know? | Facts for one Park: address, hours, official site, who looks after it |
-| Finder | Show me each Park that... | Fields that filter or sort the full site |
+| Finder    | Show me each Park that...            | Fields that filter or sort the full site                              |
 
 Three rules follow:
 

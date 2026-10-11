@@ -6,15 +6,11 @@ The official town, county and city websites outrank the sheet for a park name. T
 
 **Park names now follow the database.** Fifteen pages had a name the database spells differently; each one took the database spelling. Folder slugs are untouched, so no URL changed and no redirect is needed. No page was moved or deleted.
 
-
 **Resolved since this audit ran.** This page is a record of one sync run, so the notes below keep the wording they had on the day. Where a note has since been settled, the resolution is here instead of an edit to the note: **Belmanor Park** was moved to Henrietta. The page now lives at `content/town-parks/henrietta-parks/belmanor-park/_index.md`, which matches the database, so every note below that files it under Brighton is out of date.
-
 
 One thing is NOT settled and needs you: `docs/cutover.md` says Gates Town Park was added on purpose, to cover the one old WordPress URL with no equivalent page. The Gates agent, not knowing that, read it as a duplicate of First Responders Park and suggested merging the two. Do not merge it — but the two pages do describe one physical park, so it is worth deciding what Gates Town Park should say.
 
-
 **The sheet has no State Parks tab.** Its three tabs are Town Parks, County Parks and City Parks only. **Hamlin Beach State Park** and **Irondequoit Bay State Marine Park** are covered indirectly, as County-tab rows that took their acreage, address and Google Maps link from the sheet before being filed under `content/state-parks/`. The other two pages under `content/state-parks/` have no row at all: **High Falls State Park** is a planned park under ADR-0006, named from New York State's own framework-plan announcement, not from the sheet; **Genesee Valley Greenway State Park** is named from its own `parks.ny.gov` page. Neither page gives an acreage.
-
 
 ## Done centrally, not per town
 
@@ -22,7 +18,6 @@ One thing is NOT settled and needs you: `docs/cutover.md` says Gates Town Park w
 - `acres` was added to the front-matter type and to the Park JSON-LD as a `PropertyValue` with `unitText: acre`, because schema.org `Park` has no size property.
 - A placeholder `telephone: +1-555-123-4567` was removed from Persimmon Park.
 - The first geo pass wrote `type: 'park'geo:` on one line in 83 files. That was my bug, caught early and repaired in all of them; several town reports mention it as pre-existing, which is wrong. The build parses every file cleanly now.
-
 
 ## Counts
 
@@ -34,36 +29,35 @@ Towns reported: 20 of 20
 - Pages not in the database: 7
 - Database rows judged not a park: 5
 
-
 ## Added park pages
 
-| Town | Park | Path |
-| --- | --- | --- |
-| brighton | Sandra L. Frankel Nature Park | `content/town-parks/brighton-parks/sandra-l-frankel-nature-park/_index.md` |
-| chili | Chili Nature Trail | `content/town-parks/chili-parks/chili-nature-trail/_index.md` |
-| henrietta | Chapman's Corner Park | `content/town-parks/henrietta-parks/chapmans-corner-park/_index.md` |
-| mendon | Driesbach Fields | `content/town-parks/mendon-parks/driesbach-fields/_index.md` |
-| mendon | Great Bend Park | `content/town-parks/mendon-parks/great-bend-park/_index.md` |
-| mendon | Mendon Center Park | `content/town-parks/mendon-parks/mendon-center-park/_index.md` |
-| mendon | Rotary Park | `content/town-parks/mendon-parks/rotary-park/_index.md` |
-| mendon | Vest Pocket Park | `content/town-parks/mendon-parks/vest-pocket-park/_index.md` |
-| ogden | Ogden Heritage Park | `content/town-parks/ogden-parks/ogden-heritage-park/_index.md` |
-| ogden | Towpath Park | `content/town-parks/ogden-parks/towpath-park/_index.md` |
-| penfield | Sherwood Fields Park | `content/town-parks/penfield-parks/sherwood-fields-park/_index.md` |
-| perinton | Misty Pine Park | `content/town-parks/perinton-parks/misty-pine-park/_index.md` |
-| perinton | Park Circle Park | `content/town-parks/perinton-parks/park-circle-park/_index.md` |
-| perinton | Vincent G. Kennelley Park | `content/town-parks/perinton-parks/vincent-g-kennelley-park/_index.md` |
-| perinton | Winding Brook Park | `content/town-parks/perinton-parks/winding-brook-park/_index.md` |
-| pittsford | Farm View Park | `content/town-parks/pittsford-parks/farm-view-park/_index.md` |
-| pittsford | Habecker Fields | `content/town-parks/pittsford-parks/habecker-fields/_index.md` |
-| rush | Hundred Acres Nature Park | `content/town-parks/rush-parks/hundred-acres-nature-park/_index.md` |
-| sweden | Havenwood Park | `content/town-parks/sweden-parks/havenwood-park/_index.md` |
-| webster | Charles E. Sexton Memorial Park | `content/town-parks/webster-parks/charles-e-sexton-memorial-park/_index.md` |
-| webster | Four Mile Creek Preserve | `content/town-parks/webster-parks/four-mile-creek-preserve/_index.md` |
-| webster | Gosnell Big Woods Preserve | `content/town-parks/webster-parks/gosnell-big-woods-preserve/_index.md` |
-| webster | Herman Road Forever Wild Forest | `content/town-parks/webster-parks/herman-road-forever-wild-forest/_index.md` |
-| webster | State Road Nature Preserve | `content/town-parks/webster-parks/state-road-nature-preserve/_index.md` |
-| webster | Whiting Road Nature Preserve | `content/town-parks/webster-parks/whiting-road-nature-preserve/_index.md` |
+| Town      | Park                            | Path                                                                         |
+| --------- | ------------------------------- | ---------------------------------------------------------------------------- |
+| brighton  | Sandra L. Frankel Nature Park   | `content/town-parks/brighton-parks/sandra-l-frankel-nature-park/_index.md`   |
+| chili     | Chili Nature Trail              | `content/town-parks/chili-parks/chili-nature-trail/_index.md`                |
+| henrietta | Chapman's Corner Park           | `content/town-parks/henrietta-parks/chapmans-corner-park/_index.md`          |
+| mendon    | Driesbach Fields                | `content/town-parks/mendon-parks/driesbach-fields/_index.md`                 |
+| mendon    | Great Bend Park                 | `content/town-parks/mendon-parks/great-bend-park/_index.md`                  |
+| mendon    | Mendon Center Park              | `content/town-parks/mendon-parks/mendon-center-park/_index.md`               |
+| mendon    | Rotary Park                     | `content/town-parks/mendon-parks/rotary-park/_index.md`                      |
+| mendon    | Vest Pocket Park                | `content/town-parks/mendon-parks/vest-pocket-park/_index.md`                 |
+| ogden     | Ogden Heritage Park             | `content/town-parks/ogden-parks/ogden-heritage-park/_index.md`               |
+| ogden     | Towpath Park                    | `content/town-parks/ogden-parks/towpath-park/_index.md`                      |
+| penfield  | Sherwood Fields Park            | `content/town-parks/penfield-parks/sherwood-fields-park/_index.md`           |
+| perinton  | Misty Pine Park                 | `content/town-parks/perinton-parks/misty-pine-park/_index.md`                |
+| perinton  | Park Circle Park                | `content/town-parks/perinton-parks/park-circle-park/_index.md`               |
+| perinton  | Vincent G. Kennelley Park       | `content/town-parks/perinton-parks/vincent-g-kennelley-park/_index.md`       |
+| perinton  | Winding Brook Park              | `content/town-parks/perinton-parks/winding-brook-park/_index.md`             |
+| pittsford | Farm View Park                  | `content/town-parks/pittsford-parks/farm-view-park/_index.md`                |
+| pittsford | Habecker Fields                 | `content/town-parks/pittsford-parks/habecker-fields/_index.md`               |
+| rush      | Hundred Acres Nature Park       | `content/town-parks/rush-parks/hundred-acres-nature-park/_index.md`          |
+| sweden    | Havenwood Park                  | `content/town-parks/sweden-parks/havenwood-park/_index.md`                   |
+| webster   | Charles E. Sexton Memorial Park | `content/town-parks/webster-parks/charles-e-sexton-memorial-park/_index.md`  |
+| webster   | Four Mile Creek Preserve        | `content/town-parks/webster-parks/four-mile-creek-preserve/_index.md`        |
+| webster   | Gosnell Big Woods Preserve      | `content/town-parks/webster-parks/gosnell-big-woods-preserve/_index.md`      |
+| webster   | Herman Road Forever Wild Forest | `content/town-parks/webster-parks/herman-road-forever-wild-forest/_index.md` |
+| webster   | State Road Nature Preserve      | `content/town-parks/webster-parks/state-road-nature-preserve/_index.md`      |
+| webster   | Whiting Road Nature Preserve    | `content/town-parks/webster-parks/whiting-road-nature-preserve/_index.md`    |
 
 ## Names taken from the official sites, then the database
 
@@ -73,44 +67,44 @@ Folder slugs, and therefore URLs, are unchanged. Nothing 404s and no redirect is
 
 Three names the database got wrong were caught this way and are NOT changed to what the sheet says: Gates calls its park **First Responders Park**, not "Gates First Responder Park"; Perinton calls its **Garnsey Road Arboretum**, not "Garnsey Arboretum"; and Greece spells it **Papas**, not "Pappas".
 
-| Was | Now | Source | URL, unchanged |
-| --- | --- | --- | --- |
-| Irondequoit Bay Park | **Irondequoit Bay Park West** | official Monroe County page | `/monroe-county-parks/irondequoit-bay-park-west/` |
-| Beverly Pappas Memorial Park | **Beverly Papas Park** | official Town of Greece page | `/town-parks/greece-parks/beverly-pappas-memorial-park/` |
-| Veterans Memorial Park | **Veteran's Memorial Park** | park database | `/town-parks/greece-parks/veterans-memorial-park/` |
-| Kenwick park | **Kenwick Park** | park database | `/town-parks/henrietta-parks/kenwick-park/` |
-| Memorial Park | **Veteran's Memorial Park** | park database | `/town-parks/ogden-parks/ogden-memorial-park/` |
-| LaSalles Landing Park | **LaSalle's Landing Park** | park database | `/town-parks/penfield-parks/lasalles-landing-park/` |
-| Veteran’s Memorial Park | **Veterans Memorial Park** | park database | `/town-parks/penfield-parks/veterans-memorial-park/` |
-| Ayrualt Boat Launch | **Ayrault Boat Launch** | park database | `/town-parks/perinton-parks/ayrualt-boat-launch/` |
-| Stoney Brook Road Park | **Stonybrook Road Park** | park database | `/town-parks/rush-parks/stoney-brook-road-park/` |
-| Veterans Memorial Park | **Veteran's Memorial Park** | park database | `/town-parks/rush-parks/veterans-memorial-park/` |
-| Corbet Park | **Corbett Park** | park database | `/town-parks/sweden-parks/corbet-park/` |
-| Kent Park | **Irving Kent Memorial Park** | park database | `/town-parks/webster-parks/kent-park/` |
-| Webster First Responders Park | **First Responders Park** | park database | `/town-parks/webster-parks/webster-first-responders-park/` |
-| Canawagus Park | **Canawaugus Park** | park database | `/town-parks/wheatland-parks/canawagus-park/` |
+| Was                           | Now                           | Source                       | URL, unchanged                                             |
+| ----------------------------- | ----------------------------- | ---------------------------- | ---------------------------------------------------------- |
+| Irondequoit Bay Park          | **Irondequoit Bay Park West** | official Monroe County page  | `/monroe-county-parks/irondequoit-bay-park-west/`          |
+| Beverly Pappas Memorial Park  | **Beverly Papas Park**        | official Town of Greece page | `/town-parks/greece-parks/beverly-pappas-memorial-park/`   |
+| Veterans Memorial Park        | **Veteran's Memorial Park**   | park database                | `/town-parks/greece-parks/veterans-memorial-park/`         |
+| Kenwick park                  | **Kenwick Park**              | park database                | `/town-parks/henrietta-parks/kenwick-park/`                |
+| Memorial Park                 | **Veteran's Memorial Park**   | park database                | `/town-parks/ogden-parks/ogden-memorial-park/`             |
+| LaSalles Landing Park         | **LaSalle's Landing Park**    | park database                | `/town-parks/penfield-parks/lasalles-landing-park/`        |
+| Veteran’s Memorial Park       | **Veterans Memorial Park**    | park database                | `/town-parks/penfield-parks/veterans-memorial-park/`       |
+| Ayrualt Boat Launch           | **Ayrault Boat Launch**       | park database                | `/town-parks/perinton-parks/ayrualt-boat-launch/`          |
+| Stoney Brook Road Park        | **Stonybrook Road Park**      | park database                | `/town-parks/rush-parks/stoney-brook-road-park/`           |
+| Veterans Memorial Park        | **Veteran's Memorial Park**   | park database                | `/town-parks/rush-parks/veterans-memorial-park/`           |
+| Corbet Park                   | **Corbett Park**              | park database                | `/town-parks/sweden-parks/corbet-park/`                    |
+| Kent Park                     | **Irving Kent Memorial Park** | park database                | `/town-parks/webster-parks/kent-park/`                     |
+| Webster First Responders Park | **First Responders Park**     | park database                | `/town-parks/webster-parks/webster-first-responders-park/` |
+| Canawagus Park                | **Canawaugus Park**           | park database                | `/town-parks/wheatland-parks/canawagus-park/`              |
 
 ## Pages with no database row — nothing was removed
 
-| Town | Park | Note |
-| --- | --- | --- |
-| brighton | Belmanor Park | not in the Brighton database. It is in the Henrietta database slice (municipality: Henrietta, 108 Belmanor Drive). Left in place per spec (no rename/delete/move). |
-| gates | Gates Town Park | No database row. Body content describes the same physical park as First Responders Park (Lyell Road, unpaved entry, four soccer fields, 9-hole disc golf course, pond with dock; the First Responders Park body even links to 'The Woodlands at Gates Town Park'). Appears to be a duplicate/earlier-named page for the same park that the database row was matched to. Not deleted, renamed, or given the database's address/cid to avoid duplicating structured data across two pages for one physical park. Merge or redirect is the owner's call. |
-| greece | Badgerow Park North | not in the database; only Badgerow Park South is in the database slice. Resolved 2026-09-22: it is Veteran's Memorial Park under its old name. The Badgerow Park North page was removed, and its URL redirects to Veteran's Memorial Park (#202). |
-| greece | Forest Hills Playground | not in the database; page body states the park has been decommissioned |
-| mendon | Big Eddy Park | not in the database. Resolved 2026-09-27: it was a second page for Rotary Park's land. The page was removed, and its URL redirects to Rotary Park (#299). |
-| pittsford | Lock 32 State Canal Park | not in the database; distinct location from the database's Lock 62 Canal Park row (different coordinates, ~1 mile apart) so this is not the same park under a different name |
-| webster | North Ponds Park | not in the database |
+| Town      | Park                     | Note                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| brighton  | Belmanor Park            | not in the Brighton database. It is in the Henrietta database slice (municipality: Henrietta, 108 Belmanor Drive). Left in place per spec (no rename/delete/move).                                                                                                                                                                                                                                                                                                                                                                                    |
+| gates     | Gates Town Park          | No database row. Body content describes the same physical park as First Responders Park (Lyell Road, unpaved entry, four soccer fields, 9-hole disc golf course, pond with dock; the First Responders Park body even links to 'The Woodlands at Gates Town Park'). Appears to be a duplicate/earlier-named page for the same park that the database row was matched to. Not deleted, renamed, or given the database's address/cid to avoid duplicating structured data across two pages for one physical park. Merge or redirect is the owner's call. |
+| greece    | Badgerow Park North      | not in the database; only Badgerow Park South is in the database slice. Resolved 2026-09-22: it is Veteran's Memorial Park under its old name. The Badgerow Park North page was removed, and its URL redirects to Veteran's Memorial Park (#202).                                                                                                                                                                                                                                                                                                     |
+| greece    | Forest Hills Playground  | not in the database; page body states the park has been decommissioned                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| mendon    | Big Eddy Park            | not in the database. Resolved 2026-09-27: it was a second page for Rotary Park's land. The page was removed, and its URL redirects to Rotary Park (#299).                                                                                                                                                                                                                                                                                                                                                                                             |
+| pittsford | Lock 32 State Canal Park | not in the database; distinct location from the database's Lock 62 Canal Park row (different coordinates, ~1 mile apart) so this is not the same park under a different name                                                                                                                                                                                                                                                                                                                                                                          |
+| webster   | North Ponds Park         | not in the database                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 ## Database rows that did not get a page
 
-| Town | Row | Why |
-| --- | --- | --- |
-| henrietta | Lehigh Valley Trail | already covered as a county park page at content/monroe-county-parks/lehigh-valley-trail-linear-park; a multi-town rail trail, not a standalone Henrietta town park |
-| henrietta | Sledding Hill | a recreational feature, not a formally named park |
-| ogden | Adams Basin Schoolhouse | a historic schoolhouse building, not a park |
-| pittsford | Auburn Line Park | database row has no address/acres/cid; web research found no distinct facility by this name, only the Auburn Trail, a multi-town rail-trail corridor on the former Auburn rail line. Treated as a trail corridor rather than a standalone park site, so no page was created. |
-| webster | Webster Arboretum | same parcel as Kent Park: identical address (1700 Schlegel Road) and near-identical acreage (84.50 vs Kent Park's 84.40). The arboretum is a feature inside Kent Park, not a separate park; creating a page would duplicate the existing kent-park page. |
+| Town      | Row                     | Why                                                                                                                                                                                                                                                                          |
+| --------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| henrietta | Lehigh Valley Trail     | already covered as a county park page at content/monroe-county-parks/lehigh-valley-trail-linear-park; a multi-town rail trail, not a standalone Henrietta town park                                                                                                          |
+| henrietta | Sledding Hill           | a recreational feature, not a formally named park                                                                                                                                                                                                                            |
+| ogden     | Adams Basin Schoolhouse | a historic schoolhouse building, not a park                                                                                                                                                                                                                                  |
+| pittsford | Auburn Line Park        | database row has no address/acres/cid; web research found no distinct facility by this name, only the Auburn Trail, a multi-town rail-trail corridor on the former Auburn rail line. Treated as a trail corridor rather than a standalone park site, so no page was created. |
+| webster   | Webster Arboretum       | same parcel as Kent Park: identical address (1700 Schlegel Road) and near-identical acreage (84.50 vs Kent Park's 84.40). The arboretum is a feature inside Kent Park, not a separate park; creating a page would duplicate the existing kent-park page.                     |
 
 ## Database errors worth fixing in the spreadsheet
 
@@ -204,187 +198,186 @@ The city tab lists 127 rows. It is a facilities list, not a park list, so each r
 
 The city tab carries no acreage and no coordinates, so no city page has `acres` or `geo`. Resolved since: the city's GIS (#60) and the old city Google map (#57) supplied both. Its amenity columns are well filled, unlike the town tab, and map onto the site vocabulary like this: `PLAY APPAR` to Playground, `BASEBALL LIGHTED` and `BASEBALL UNLIT` both to Baseball Diamond, `REC CNTR` to Recreation Center, `PLAY APPAR` and the rest as named. Football Field, Handball Court, Ice Rink, Arena, Gazebo and Recreation Center are new amenity names and will appear as new filters in the finder.
 
-
 ### Rows rejected as not a park
 
-| Row | Why |
-| --- | --- |
-| Allen Street | sheet notes confirm this is just a sliver of green space, no facilities |
-| Arnold Park Mall | sheet notes confirm this is the middle of a street, not a park |
-| Barrington Park | 'Barrington Park' is itself a street name (a townhouse drive off Barrington Street, e.g. 9/19/24 Barrington Park); the real nearby pocket park is named 'Barrington Street Park' at Park Ave & Barrington St, a different name. The row gives no location_text, amenities, or official link to confirm the two are the same site, so this was rejected rather than guessed. Same evidence profile as the Central Pk rejection below. |
-| Bishop's Backyard | no evidence of a real park at this site; named in the Broad-and-X corner pattern used elsewhere in this sheet for street corners (Broad & Allen, Broad & Chestnut, Broad & Main), and web research found no park by this name in Rochester |
-| Bloss and Saratoga | street intersection, not a park |
-| Boulevard Parkway | W. Boulevard Parkway is a residential street name, not a park |
-| Broad & Allen | street intersection, not a park |
-| Broad & Chestnut | street intersection, not a park |
-| Broad & Main | street intersection, not a park |
-| Burke Terrace Mall | named in the same street-mall pattern as Arnold Park Mall and Carthage Dr Mall; no evidence found of a distinct park space |
-| Carthage Dr Mall | named in the street-mall pattern; no evidence found of a distinct park space, only a residential street |
-| Central Pk | 'Central Park' is a real Rochester street name (confirmed street addresses on it); the location text 'between Goodman & Union' describes a street segment, not a park |
-| Charles Carroll Park | this is the pre-2022 name of the site now called Austin Steward Plaza, already created under that name; duplicate row |
-| Clinton Av Triangle | appears to be a traffic triangle, not a park; no evidence found of amenities or public recognition as a park |
-| Crittenden Blvd Mall | street mall/median on Crittenden Blvd (Mt. Hope to Lattimore), no facilities |
-| East and Chestnut | street intersection (East Avenue/Chestnut Street), no facilities |
-| Evergreen Park | street median along St. Paul (bet. Evergreen & Scrantom), no facilities, matches mall/median pattern |
-| Exchange Blvd | street median along Exchange Blvd (bet. Plymouth and Ford), no facilities, matches mall/median pattern |
-| Glendale Mall | street median (Glendale Park bet. Oriole & Malvern), no facilities |
-| Goodman / Linden | street intersection (Goodman and Linden), no facilities |
-| Hazelwood Terrace Mall | street median (Hazelwood bet. Merchants & Culver), no facilities |
-| Highland Pkway Mall | street median (Highland Parkway and Greenview Pk.), no facilities |
-| Hillside Ave Mall | street median (Winton and Hillside), no facilities |
-| Huntington Park Mall | street median (Huntington near Harris), no facilities |
-| KNICKERBOCKER STREET MALL | street mall/median (Knickerbocker/Summit Grove), no amenities |
-| LAFAYETTE PARK MALL | median at the Lafayette and South Union intersection, no amenities |
-| LAKE & RIDGE | street intersection (Lake Ave. and Ridge Road W.), no amenities |
-| LAKEVIEW MALL | median strip within Lakeview Park, between Pierpont & Lake, no amenities |
-| LIBERTY POLE | civic monument/plaza in the Main St & Franklin St intersection, no amenities; matches the street-intersection reject pattern |
-| LYNCHFORD PARK A & B | Lynchford Park is a residential street name near Danforth Community Center (addresses like '16 Lynchford Park A' exist, and the city's own lead-paint listing treats it as a street), not a park |
-| NUNDA BLVD MALL | median between Winton & Cobbs Hill Drive, no amenities |
-| NYE PARK MALL | median within Nye Park, midway between Strong & Norton, no amenities |
-| OLDE ROCHESTERVILLE O.S. | the North Water St. site was redeveloped into the private Water Street Commons development; the 'open space' is now a restaurant courtyard, not a public park |
-| OXFORD ST MALL | median between Wellesley & Park, no amenities |
-| PLEASANT ST/ST. JOSEPH'S | sliver of land behind the existing St. Joseph's Park, no amenities |
-| PONT DE RENNES | a pedestrian bridge over the Genesee Gorge, not a park with facilities |
-| PORTSMOUTH TERR. MALL | median between University & East, no amenities |
-| Raines Park Mall | named street mall/median, not a park |
-| Ralph Avery Mall | named street mall/median, not a park |
-| River Harbor | location text only ('Bet. River & Lake Ave. s. of beach'), no amenities, no official page, no independent evidence of a distinct public park at this name; reads as an unremarkable strip of city land |
-| Rockingham / Mulberry | row name is a street intersection (Rockingham St & Mulberry St), no 'Park'/'Square' designation, no amenities |
-| Rundel Park Mall | named street mall/median, not a park |
-| Seneca Parkway Mall | named street mall/median, not a park |
-| Sibley Place Mall | named street mall/median, not a park |
-| Sumner Park Mall | named street mall/median, not a park |
-| War Memorial Open Space | the outdoor memorial plaza/grounds at the War Memorial arena (Broad & Exchange), not a standalone park; no amenities, no official page, no evidence it is treated as a separate park site |
-| Werner Park Mall | named street mall/median, not a park |
-| Winton / Highland | row name is a street intersection (Winton Rd & Highland Ave), no 'Park'/'Square' designation, no amenities |
-| Winton / Merchants | row name and location are a street intersection (Winton Rd & Merchants Rd); the single 'Gazebo' amenity is a decorated corner, not the playground/ball-field carve-out the spec allows for a building-with-facilities exception |
+| Row                       | Why                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Allen Street              | sheet notes confirm this is just a sliver of green space, no facilities                                                                                                                                                                                                                                                                                                                                                              |
+| Arnold Park Mall          | sheet notes confirm this is the middle of a street, not a park                                                                                                                                                                                                                                                                                                                                                                       |
+| Barrington Park           | 'Barrington Park' is itself a street name (a townhouse drive off Barrington Street, e.g. 9/19/24 Barrington Park); the real nearby pocket park is named 'Barrington Street Park' at Park Ave & Barrington St, a different name. The row gives no location_text, amenities, or official link to confirm the two are the same site, so this was rejected rather than guessed. Same evidence profile as the Central Pk rejection below. |
+| Bishop's Backyard         | no evidence of a real park at this site; named in the Broad-and-X corner pattern used elsewhere in this sheet for street corners (Broad & Allen, Broad & Chestnut, Broad & Main), and web research found no park by this name in Rochester                                                                                                                                                                                           |
+| Bloss and Saratoga        | street intersection, not a park                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Boulevard Parkway         | W. Boulevard Parkway is a residential street name, not a park                                                                                                                                                                                                                                                                                                                                                                        |
+| Broad & Allen             | street intersection, not a park                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Broad & Chestnut          | street intersection, not a park                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Broad & Main              | street intersection, not a park                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Burke Terrace Mall        | named in the same street-mall pattern as Arnold Park Mall and Carthage Dr Mall; no evidence found of a distinct park space                                                                                                                                                                                                                                                                                                           |
+| Carthage Dr Mall          | named in the street-mall pattern; no evidence found of a distinct park space, only a residential street                                                                                                                                                                                                                                                                                                                              |
+| Central Pk                | 'Central Park' is a real Rochester street name (confirmed street addresses on it); the location text 'between Goodman & Union' describes a street segment, not a park                                                                                                                                                                                                                                                                |
+| Charles Carroll Park      | this is the pre-2022 name of the site now called Austin Steward Plaza, already created under that name; duplicate row                                                                                                                                                                                                                                                                                                                |
+| Clinton Av Triangle       | appears to be a traffic triangle, not a park; no evidence found of amenities or public recognition as a park                                                                                                                                                                                                                                                                                                                         |
+| Crittenden Blvd Mall      | street mall/median on Crittenden Blvd (Mt. Hope to Lattimore), no facilities                                                                                                                                                                                                                                                                                                                                                         |
+| East and Chestnut         | street intersection (East Avenue/Chestnut Street), no facilities                                                                                                                                                                                                                                                                                                                                                                     |
+| Evergreen Park            | street median along St. Paul (bet. Evergreen & Scrantom), no facilities, matches mall/median pattern                                                                                                                                                                                                                                                                                                                                 |
+| Exchange Blvd             | street median along Exchange Blvd (bet. Plymouth and Ford), no facilities, matches mall/median pattern                                                                                                                                                                                                                                                                                                                               |
+| Glendale Mall             | street median (Glendale Park bet. Oriole & Malvern), no facilities                                                                                                                                                                                                                                                                                                                                                                   |
+| Goodman / Linden          | street intersection (Goodman and Linden), no facilities                                                                                                                                                                                                                                                                                                                                                                              |
+| Hazelwood Terrace Mall    | street median (Hazelwood bet. Merchants & Culver), no facilities                                                                                                                                                                                                                                                                                                                                                                     |
+| Highland Pkway Mall       | street median (Highland Parkway and Greenview Pk.), no facilities                                                                                                                                                                                                                                                                                                                                                                    |
+| Hillside Ave Mall         | street median (Winton and Hillside), no facilities                                                                                                                                                                                                                                                                                                                                                                                   |
+| Huntington Park Mall      | street median (Huntington near Harris), no facilities                                                                                                                                                                                                                                                                                                                                                                                |
+| KNICKERBOCKER STREET MALL | street mall/median (Knickerbocker/Summit Grove), no amenities                                                                                                                                                                                                                                                                                                                                                                        |
+| LAFAYETTE PARK MALL       | median at the Lafayette and South Union intersection, no amenities                                                                                                                                                                                                                                                                                                                                                                   |
+| LAKE & RIDGE              | street intersection (Lake Ave. and Ridge Road W.), no amenities                                                                                                                                                                                                                                                                                                                                                                      |
+| LAKEVIEW MALL             | median strip within Lakeview Park, between Pierpont & Lake, no amenities                                                                                                                                                                                                                                                                                                                                                             |
+| LIBERTY POLE              | civic monument/plaza in the Main St & Franklin St intersection, no amenities; matches the street-intersection reject pattern                                                                                                                                                                                                                                                                                                         |
+| LYNCHFORD PARK A & B      | Lynchford Park is a residential street name near Danforth Community Center (addresses like '16 Lynchford Park A' exist, and the city's own lead-paint listing treats it as a street), not a park                                                                                                                                                                                                                                     |
+| NUNDA BLVD MALL           | median between Winton & Cobbs Hill Drive, no amenities                                                                                                                                                                                                                                                                                                                                                                               |
+| NYE PARK MALL             | median within Nye Park, midway between Strong & Norton, no amenities                                                                                                                                                                                                                                                                                                                                                                 |
+| OLDE ROCHESTERVILLE O.S.  | the North Water St. site was redeveloped into the private Water Street Commons development; the 'open space' is now a restaurant courtyard, not a public park                                                                                                                                                                                                                                                                        |
+| OXFORD ST MALL            | median between Wellesley & Park, no amenities                                                                                                                                                                                                                                                                                                                                                                                        |
+| PLEASANT ST/ST. JOSEPH'S  | sliver of land behind the existing St. Joseph's Park, no amenities                                                                                                                                                                                                                                                                                                                                                                   |
+| PONT DE RENNES            | a pedestrian bridge over the Genesee Gorge, not a park with facilities                                                                                                                                                                                                                                                                                                                                                               |
+| PORTSMOUTH TERR. MALL     | median between University & East, no amenities                                                                                                                                                                                                                                                                                                                                                                                       |
+| Raines Park Mall          | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Ralph Avery Mall          | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| River Harbor              | location text only ('Bet. River & Lake Ave. s. of beach'), no amenities, no official page, no independent evidence of a distinct public park at this name; reads as an unremarkable strip of city land                                                                                                                                                                                                                               |
+| Rockingham / Mulberry     | row name is a street intersection (Rockingham St & Mulberry St), no 'Park'/'Square' designation, no amenities                                                                                                                                                                                                                                                                                                                        |
+| Rundel Park Mall          | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Seneca Parkway Mall       | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Sibley Place Mall         | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Sumner Park Mall          | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| War Memorial Open Space   | the outdoor memorial plaza/grounds at the War Memorial arena (Broad & Exchange), not a standalone park; no amenities, no official page, no evidence it is treated as a separate park site                                                                                                                                                                                                                                            |
+| Werner Park Mall          | named street mall/median, not a park                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Winton / Highland         | row name is a street intersection (Winton Rd & Highland Ave), no 'Park'/'Square' designation, no amenities                                                                                                                                                                                                                                                                                                                           |
+| Winton / Merchants        | row name and location are a street intersection (Winton Rd & Merchants Rd); the single 'Gazebo' amenity is a decorated corner, not the playground/ball-field carve-out the spec allows for a building-with-facilities exception                                                                                                                                                                                                      |
 
 ### Settled in #38
 
 ADR-0005 now defines what counts as a Park. The city's park GIS layer (`Hosted/Parks_Open_Space_Points`) settled these rows on 2026-09-18:
 
-| Row | Result | Evidence |
-| --- | --- | --- |
-| Meigs / Linden | page removed, merged into Ellwanger and Barry Park | the layer's MEIGS/LINDEN PARK row is named Ellwanger & Barry Park, with the same 0.9 acres and coordinates |
-| James Madison School | page removed | school grounds, and in no city park layer |
-| West High Field | renamed West High Park | the layer names it West High Park, owned by the City of Rochester, not the school district |
-| Otto Henderberg | renamed Otto Henderberg Square Park | the layer and OpenStreetMap both give this name |
-| Barrington Park | Barrington Street Park page added | the layer lists Barrington Street Park as a city pocket park at Park Ave and Barrington St |
-| Winton / Merchants | rejection stands | the layer types it as a Street Mall |
-| Baden Park | address changed to Upper Falls Boulevard | the page had 485 N Clinton Ave, which is the R-Center about 800 m away; Baden Park and the R-Center are two sites with their own fields |
+| Row                  | Result                                             | Evidence                                                                                                                                |
+| -------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Meigs / Linden       | page removed, merged into Ellwanger and Barry Park | the layer's MEIGS/LINDEN PARK row is named Ellwanger & Barry Park, with the same 0.9 acres and coordinates                              |
+| James Madison School | page removed                                       | school grounds, and in no city park layer                                                                                               |
+| West High Field      | renamed West High Park                             | the layer names it West High Park, owned by the City of Rochester, not the school district                                              |
+| Otto Henderberg      | renamed Otto Henderberg Square Park                | the layer and OpenStreetMap both give this name                                                                                         |
+| Barrington Park      | Barrington Street Park page added                  | the layer lists Barrington Street Park as a city pocket park at Park Ave and Barrington St                                              |
+| Winton / Merchants   | rejection stands                                   | the layer types it as a Street Mall                                                                                                     |
+| Baden Park           | address changed to Upper Falls Boulevard           | the page had 485 N Clinton Ave, which is the R-Center about 800 m away; Baden Park and the R-Center are two sites with their own fields |
 
 ### Names changed
 
-| Sheet says | Page says | Why |
-| --- | --- | --- |
-| ABERDEEN SQUARE | Aberdeen Square Park | official cityofrochester.gov page gives this full name |
-| AVE. D REC. CENTER | Avenue D Rec. Center | sheet abbreviation Ave. expanded to Avenue per naming rule |
-| BRONSON AVE. PLAYGROUND | Bronson Avenue Playground | sheet abbreviation Ave. expanded to Avenue per naming rule |
-| BROWNCROFT ROSE GARDEN | Browncroft Rose Garden Park | official cityofrochester.gov page gives this full name |
-| CAMPBELL ST REC CNTR | Campbell St Rec Center | sheet abbreviation Cntr expanded to Center per naming rule; St kept as street abbreviation |
-| COBBS HILL | Cobb's Hill Park and Washington Grove | official cityofrochester.gov page gives this full name |
-| CONKEY CORNER PARK | Conkey Corner Park & El Camino Trail | official cityofrochester.gov page gives this full name |
-| DANFORTH COMM.  CENTER | Danforth Community Center | expanded abbreviation (Comm. to Community) |
-| DAVID F. GANTT REC. CENTER | David F. Gantt Recreation Center | expanded abbreviation (Rec. to Recreation) |
-| FLINT ST REC. CENTER | Flint St Recreation Center | expanded abbreviation (Rec. to Recreation), St kept as street abbreviation |
-| FOURTH & PECK PARK | Fourth Street and Peck Street Park | official cityofrochester.gov page |
-| GARDINER AVE. | Gardiner Avenue | expanded abbreviation (Ave. to Avenue) |
-| GENESEE GATEWAY | Genesee Gateway Park | official cityofrochester.gov page |
-| GRAND AVE PARK | Grand Avenue Park | expanded abbreviation (Ave to Avenue) |
-| HUMBOLDT REC CTR | Humboldt Recreation Center | expanded abbreviation (Rec Ctr to Recreation Center) |
-| J. R. WILSON | JR Wilson Park | official page heading |
-| JAS. MADISON SCHOOL | James Madison School | expanded abbreviation Jas. -> James |
-| JEFFERSON TERR PARK | Jefferson Terrace Park | expanded abbreviation Terr -> Terrace |
-| JONES SQUARE | Jones Square Park | official page heading |
-| LOWER MAPLEWOOD | Maplewood Park and Rose Garden | official page (250 Maplewood Ave) names the whole site; Lower Maplewood is a section, not a separate park |
-| LUNSFORD CIRCLE | Lunsford Circle Park | official page heading |
-| MAPLEWOOD ROSE GARDEN | Maplewood Park and Rose Garden | same official page as Lower/Middle Maplewood; merged rather than duplicated |
-| MARTIN LUTHER KING JR. PARK | Dr. Martin Luther King Jr. Park & Ice Rink | official page heading |
-| MIDDLE MAPLEWOOD | Maplewood Park and Rose Garden | official page names it as a section of Maplewood Park; no separate official link of its own |
-| SOUTH AVE REC. CNTR. | South Avenue Recreation Center | expanded sheet abbreviation (Ave/Rec/Cntr), no official page to check |
-| SUSAN B. ANTHONY SQUARE | Susan B. Anthony Square Park | official city page title |
-| TROUP ST PARK | Troup Street Park | official city page title |
-| WASHINGTON SQUARE | Washington Square Park | official city page title |
+| Sheet says                  | Page says                                  | Why                                                                                                       |
+| --------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| ABERDEEN SQUARE             | Aberdeen Square Park                       | official cityofrochester.gov page gives this full name                                                    |
+| AVE. D REC. CENTER          | Avenue D Rec. Center                       | sheet abbreviation Ave. expanded to Avenue per naming rule                                                |
+| BRONSON AVE. PLAYGROUND     | Bronson Avenue Playground                  | sheet abbreviation Ave. expanded to Avenue per naming rule                                                |
+| BROWNCROFT ROSE GARDEN      | Browncroft Rose Garden Park                | official cityofrochester.gov page gives this full name                                                    |
+| CAMPBELL ST REC CNTR        | Campbell St Rec Center                     | sheet abbreviation Cntr expanded to Center per naming rule; St kept as street abbreviation                |
+| COBBS HILL                  | Cobb's Hill Park and Washington Grove      | official cityofrochester.gov page gives this full name                                                    |
+| CONKEY CORNER PARK          | Conkey Corner Park & El Camino Trail       | official cityofrochester.gov page gives this full name                                                    |
+| DANFORTH COMM. CENTER       | Danforth Community Center                  | expanded abbreviation (Comm. to Community)                                                                |
+| DAVID F. GANTT REC. CENTER  | David F. Gantt Recreation Center           | expanded abbreviation (Rec. to Recreation)                                                                |
+| FLINT ST REC. CENTER        | Flint St Recreation Center                 | expanded abbreviation (Rec. to Recreation), St kept as street abbreviation                                |
+| FOURTH & PECK PARK          | Fourth Street and Peck Street Park         | official cityofrochester.gov page                                                                         |
+| GARDINER AVE.               | Gardiner Avenue                            | expanded abbreviation (Ave. to Avenue)                                                                    |
+| GENESEE GATEWAY             | Genesee Gateway Park                       | official cityofrochester.gov page                                                                         |
+| GRAND AVE PARK              | Grand Avenue Park                          | expanded abbreviation (Ave to Avenue)                                                                     |
+| HUMBOLDT REC CTR            | Humboldt Recreation Center                 | expanded abbreviation (Rec Ctr to Recreation Center)                                                      |
+| J. R. WILSON                | JR Wilson Park                             | official page heading                                                                                     |
+| JAS. MADISON SCHOOL         | James Madison School                       | expanded abbreviation Jas. -> James                                                                       |
+| JEFFERSON TERR PARK         | Jefferson Terrace Park                     | expanded abbreviation Terr -> Terrace                                                                     |
+| JONES SQUARE                | Jones Square Park                          | official page heading                                                                                     |
+| LOWER MAPLEWOOD             | Maplewood Park and Rose Garden             | official page (250 Maplewood Ave) names the whole site; Lower Maplewood is a section, not a separate park |
+| LUNSFORD CIRCLE             | Lunsford Circle Park                       | official page heading                                                                                     |
+| MAPLEWOOD ROSE GARDEN       | Maplewood Park and Rose Garden             | same official page as Lower/Middle Maplewood; merged rather than duplicated                               |
+| MARTIN LUTHER KING JR. PARK | Dr. Martin Luther King Jr. Park & Ice Rink | official page heading                                                                                     |
+| MIDDLE MAPLEWOOD            | Maplewood Park and Rose Garden             | official page names it as a section of Maplewood Park; no separate official link of its own               |
+| SOUTH AVE REC. CNTR.        | South Avenue Recreation Center             | expanded sheet abbreviation (Ave/Rec/Cntr), no official page to check                                     |
+| SUSAN B. ANTHONY SQUARE     | Susan B. Anthony Square Park               | official city page title                                                                                  |
+| TROUP ST PARK               | Troup Street Park                          | official city page title                                                                                  |
+| WASHINGTON SQUARE           | Washington Square Park                     | official city page title                                                                                  |
 
 ### City pages created
 
-| Park | Amenities | Address | Official link |
-| --- | --- | --- | --- |
-| Aberdeen Square Park | 0 | no | yes |
-| Adam's Street Rec Center | 7 | yes | no |
-| Anderson Park | 0 | no | no |
-| Aqueduct Park | 0 | no | no |
-| Austin Steward Plaza | 0 | no | yes |
-| Avenue D Rec. Center | 7 | yes | no |
-| Baden Park | 6 | no | no |
-| Brewster Harding Park | 2 | no | no |
-| Bronson Avenue Playground | 2 | no | no |
-| Brown Square Park | 0 | yes | yes |
-| Browncroft Rose Garden Park | 0 | no | yes |
-| Campbell St Rec Center | 5 | yes | no |
-| Carter St. Rec Center | 6 | yes | no |
-| Charlotte Village Green | 2 | no | no |
-| Clinton / Baden Rec Center | 6 | yes | no |
-| Cobb's Hill Park and Washington Grove | 7 | no | yes |
-| Conkey Corner Park & El Camino Trail | 0 | no | yes |
-| Cornerstone Park | 0 | no | no |
-| Danforth Community Center | 2 | yes | no |
-| David F. Gantt Recreation Center | 7 | yes | no |
-| Don Samuel Torres Park | 4 | yes | no |
-| Dr. Martin Luther King Jr. Park & Ice Rink | 0 | no | yes |
-| Eastmoreland Park | 1 | no | no |
-| Edgerton Park | 6 | no | no |
-| Emerson and Glide | 2 | no | no |
-| Exchange Playground | 1 | no | no |
-| Farmington Park | 3 | no | yes |
-| Field St Park | 3 | no | no |
-| First St Playground | 4 | yes | no |
-| Flint St Recreation Center | 6 | no | no |
-| Fourth Street and Peck Street Park | 3 | no | yes |
-| Gardiner Avenue | 4 | yes | no |
-| Genesee Crossroads Park | 0 | no | no |
-| Genesee Gateway Park | 1 | no | yes |
-| Genesee Valley West | 7 | no | no |
-| Goodwin Park | 1 | no | no |
-| Grand Avenue Park | 2 | yes | no |
-| Grape & Wilder | 1 | no | no |
-| High Falls Terrace | 0 | no | no |
-| Humboldt Recreation Center | 8 | yes | no |
-| J. P. Riley | 3 | yes | no |
-| JR Wilson Park | 4 | yes | yes |
-| James Madison School | 5 | no | no |
-| Jefferson Terrace Park | 3 | no | no |
-| Jones Square Park | 0 | no | yes |
-| La Grange Park | 5 | yes | no |
-| Lomb Memorial Park | 0 | no | no |
-| Lower Falls Park | 0 | no | no |
-| Lunsford Circle Park | 0 | no | yes |
-| Manhattan Square | 4 | yes | no |
-| Maplewood Park and Rose Garden | 3 | no | yes |
-| Marie Daley Park | 2 | yes | no |
-| Meigs / Linden | 1 | no | no |
-| Morrison Park | 0 | no | no |
-| Norton Village Playground | 5 | yes | no |
-| Orchard Playground | 2 | no | no |
-| Otto Henderberg | 1 | no | no |
-| Pulaski Park | 0 | no | yes |
-| Quamina Park | 0 | no | no |
-| Ryan Community Center | 7 | yes | no |
-| Schiller Park | 0 | no | no |
-| Sebastian Park | 5 | yes | yes |
-| South Avenue Recreation Center | 4 | yes | no |
-| St John's Park | 0 | no | no |
-| Susan B. Anthony Square Park | 0 | no | yes |
-| Tacoma Playground | 3 | yes | no |
-| Troup Street Park | 3 | no | yes |
-| Tryon Park West | 4 | no | yes |
-| Turning Point Park | 0 | no | yes |
-| University Avenue Playground | 2 | no | no |
-| Verona Playground | 3 | no | no |
-| Wadsworth Square | 0 | no | no |
-| Washington Playground | 2 | yes | no |
-| Washington Square Park | 0 | no | yes |
-| West High Field | 4 | no | no |
+| Park                                       | Amenities | Address | Official link |
+| ------------------------------------------ | --------- | ------- | ------------- |
+| Aberdeen Square Park                       | 0         | no      | yes           |
+| Adam's Street Rec Center                   | 7         | yes     | no            |
+| Anderson Park                              | 0         | no      | no            |
+| Aqueduct Park                              | 0         | no      | no            |
+| Austin Steward Plaza                       | 0         | no      | yes           |
+| Avenue D Rec. Center                       | 7         | yes     | no            |
+| Baden Park                                 | 6         | no      | no            |
+| Brewster Harding Park                      | 2         | no      | no            |
+| Bronson Avenue Playground                  | 2         | no      | no            |
+| Brown Square Park                          | 0         | yes     | yes           |
+| Browncroft Rose Garden Park                | 0         | no      | yes           |
+| Campbell St Rec Center                     | 5         | yes     | no            |
+| Carter St. Rec Center                      | 6         | yes     | no            |
+| Charlotte Village Green                    | 2         | no      | no            |
+| Clinton / Baden Rec Center                 | 6         | yes     | no            |
+| Cobb's Hill Park and Washington Grove      | 7         | no      | yes           |
+| Conkey Corner Park & El Camino Trail       | 0         | no      | yes           |
+| Cornerstone Park                           | 0         | no      | no            |
+| Danforth Community Center                  | 2         | yes     | no            |
+| David F. Gantt Recreation Center           | 7         | yes     | no            |
+| Don Samuel Torres Park                     | 4         | yes     | no            |
+| Dr. Martin Luther King Jr. Park & Ice Rink | 0         | no      | yes           |
+| Eastmoreland Park                          | 1         | no      | no            |
+| Edgerton Park                              | 6         | no      | no            |
+| Emerson and Glide                          | 2         | no      | no            |
+| Exchange Playground                        | 1         | no      | no            |
+| Farmington Park                            | 3         | no      | yes           |
+| Field St Park                              | 3         | no      | no            |
+| First St Playground                        | 4         | yes     | no            |
+| Flint St Recreation Center                 | 6         | no      | no            |
+| Fourth Street and Peck Street Park         | 3         | no      | yes           |
+| Gardiner Avenue                            | 4         | yes     | no            |
+| Genesee Crossroads Park                    | 0         | no      | no            |
+| Genesee Gateway Park                       | 1         | no      | yes           |
+| Genesee Valley West                        | 7         | no      | no            |
+| Goodwin Park                               | 1         | no      | no            |
+| Grand Avenue Park                          | 2         | yes     | no            |
+| Grape & Wilder                             | 1         | no      | no            |
+| High Falls Terrace                         | 0         | no      | no            |
+| Humboldt Recreation Center                 | 8         | yes     | no            |
+| J. P. Riley                                | 3         | yes     | no            |
+| JR Wilson Park                             | 4         | yes     | yes           |
+| James Madison School                       | 5         | no      | no            |
+| Jefferson Terrace Park                     | 3         | no      | no            |
+| Jones Square Park                          | 0         | no      | yes           |
+| La Grange Park                             | 5         | yes     | no            |
+| Lomb Memorial Park                         | 0         | no      | no            |
+| Lower Falls Park                           | 0         | no      | no            |
+| Lunsford Circle Park                       | 0         | no      | yes           |
+| Manhattan Square                           | 4         | yes     | no            |
+| Maplewood Park and Rose Garden             | 3         | no      | yes           |
+| Marie Daley Park                           | 2         | yes     | no            |
+| Meigs / Linden                             | 1         | no      | no            |
+| Morrison Park                              | 0         | no      | no            |
+| Norton Village Playground                  | 5         | yes     | no            |
+| Orchard Playground                         | 2         | no      | no            |
+| Otto Henderberg                            | 1         | no      | no            |
+| Pulaski Park                               | 0         | no      | yes           |
+| Quamina Park                               | 0         | no      | no            |
+| Ryan Community Center                      | 7         | yes     | no            |
+| Schiller Park                              | 0         | no      | no            |
+| Sebastian Park                             | 5         | yes     | yes           |
+| South Avenue Recreation Center             | 4         | yes     | no            |
+| St John's Park                             | 0         | no      | no            |
+| Susan B. Anthony Square Park               | 0         | no      | yes           |
+| Tacoma Playground                          | 3         | yes     | no            |
+| Troup Street Park                          | 3         | no      | yes           |
+| Tryon Park West                            | 4         | no      | yes           |
+| Turning Point Park                         | 0         | no      | yes           |
+| University Avenue Playground               | 2         | no      | no            |
+| Verona Playground                          | 3         | no      | no            |
+| Wadsworth Square                           | 0         | no      | no            |
+| Washington Playground                      | 2         | yes     | no            |
+| Washington Square Park                     | 0         | no      | yes           |
+| West High Field                            | 4         | no      | no            |
 
 ### City notes
 
@@ -431,118 +424,118 @@ The site went from 153 park pages to 254, counted the way the home page counts t
 
 ## Updated town pages
 
-| Town | Park | Fields added |
-| --- | --- | --- |
-| brighton | Brighton Town Park | address, acres, amenities, sameAs |
-| brighton | Buckland Park | address, acres, amenities, sameAs |
-| brighton | Corbett’s Glen Nature Park | address, acres, sameAs |
-| brighton | Lynch Woods Park | address, acres, sameAs |
-| brighton | Meridian Centre Park | address, acres, sameAs |
-| brighton | Persimmon Park | acres, sameAs |
-| chili | Ballantyne Park | address, acres, sameAs |
-| chili | Davis Park | address, acres, sameAs |
-| chili | Hubbard Park | address, acres, sameAs |
-| chili | Memorial Park | address, acres, sameAs |
-| chili | Union Station Park | address, acres, sameAs |
-| chili | Widener Park | address, acres, sameAs |
-| chili | Yolanda Park | address, acres, sameAs |
-| clarkson | Clarkson Recreation Park | address, acres, sameAs |
-| clarkson | Hafner Park | address, acres, sameAs |
-| clarkson | Sans Souci Park | address, acres, sameAs |
-| east-rochester | Concrest Park | address, acres, sameAs |
-| east-rochester | Edmund Lyon Park | address, acres, sameAs |
-| east-rochester | Legion Eyer Park | address, acres, sameAs |
-| east-rochester | Northside Park | address, acres, sameAs |
-| gates | First Responders Park | address, acres, amenities, sameAs |
-| gates | Lions Park | address, acres, sameAs |
-| gates | Memorial Park | address, acres, sameAs |
-| gates | Wegman Road Park | address, acres, sameAs |
-| gates | Westgate Park | address, acres, sameAs |
-| greece | Adeline Park | address, acres, sameAs |
-| greece | Badgerow Park South | address, acres, sameAs |
-| greece | Barnard Park | address, acres, sameAs |
-| greece | Basil Marella Park | address, acres, sameAs |
-| greece | Braddock Bay Park | address, acres, sameAs |
-| greece | Carter Park | address, acres, amenities, sameAs |
-| greece | Columbus Park | address, acres, sameAs |
-| greece | Frisbee Hill Park | address, acres, amenities, sameAs |
-| greece | Goodwin Park | address, acres, sameAs |
-| greece | Grandview Park | address, acres, sameAs |
-| greece | Henpeck Park | address, acres, sameAs |
-| greece | Pappas Park | address, acres, sameAs |
-| greece | Sawyer Park | address, acres, sameAs |
-| greece | Veteran's Memorial Park | address, acres, amenities, sameAs |
-| hamlin | Hamlin Recreation Area | address, acres, sameAs |
-| hamlin | Scout Park | address, acres, sameAs |
-| henrietta | Andrews Park | address, acres, sameAs |
-| henrietta | Breese Park | address, acres, sameAs |
-| henrietta | Hoskins Park | address, acres, sameAs |
-| henrietta | Kenwick park | address, acres, sameAs |
-| henrietta | Lookup Park | address, acres, sameAs |
-| henrietta | Martin Road Park | address, acres, sameAs |
-| henrietta | Tinker Nature Park | address, acres, sameAs |
-| henrietta | Veterans Memorial Park | address, acres, sameAs |
-| irondequoit | Heyer-Bayer Memorial Park | address, acres, sameAs |
-| irondequoit | Joshua Park | address, acres, sameAs |
-| irondequoit | McAvoy Park | address, acres, sameAs |
-| irondequoit | Spezio Park | acres, sameAs |
-| mendon | Harry Allen Park | address, acres, sameAs |
-| mendon | Monroe Street Village Park | address, acres, sameAs |
-| mendon | Semmel Road Park | address, acres, sameAs |
-| ogden | Memorial Park | acres, sameAs |
-| ogden | Pineway Ponds Park | address, acres, sameAs |
-| ogden | Rose Turner Park | address, acres, amenities, sameAs |
-| parma | Parma Park | acres, sameAs |
-| parma | Salmon Creek Park | address, acres, sameAs |
-| parma | Village Park | address, acres, sameAs |
-| penfield | Channing Philbrick Park | address, acres, sameAs |
-| penfield | Greenwood Park | address, acres, sameAs |
-| penfield | Harris Whalen Park | acres, sameAs |
-| penfield | Heritage Park | address, acres, sameAs |
-| penfield | LaSalles Landing Park | address, acres, sameAs |
-| penfield | Panorama Valley Park | address, acres, sameAs |
-| penfield | Rothfuss Park | address, acres, sameAs |
-| penfield | Schaufelberger Park | address, acres, sameAs |
-| penfield | Veteran’s Memorial Park | address, acres, sameAs |
-| perinton | Ayrualt Boat Launch | address, acres, sameAs |
-| perinton | Center Park East | address, sameAs |
-| perinton | Center Park West | address, acres, sameAs |
-| perinton | Egypt Park | address, acres, sameAs |
-| perinton | Fellows Road Park | address, acres, sameAs |
-| perinton | Garnsey Road Arboretum | address, acres, sameAs |
-| perinton | Kreag Road Park | address, acres, amenities, sameAs |
-| perinton | Perinton Park | address, acres, sameAs |
-| perinton | Potter Park | address, acres, sameAs |
-| perinton | Spring Lake Park | acres, sameAs |
-| pittsford | Carpenter Park at the Port of Pittsford | address, acres, sameAs |
-| pittsford | Copper Beech Park | address, acres, sameAs |
-| pittsford | Great Embankment Park | address, acres, sameAs |
-| pittsford | Griffith Park | address, acres, sameAs |
-| pittsford | Hopkins Park | address, acres, sameAs |
-| pittsford | Isaac Gordon Nature Park | address, acres, sameAs |
-| pittsford | King's Bend Park | address, acres |
-| pittsford | Lock 62 Canal Park | acres, sameAs |
-| pittsford | Royal Coach Park | address, acres, sameAs |
-| pittsford | Thornell Farm Park | address, acres, sameAs |
-| riga | Sanford Road Park | address, acres, sameAs |
-| rush | Stoney Brook Road Park | address, acres, sameAs |
-| rush | Veterans Memorial Park | acres, sameAs |
-| sweden | Barry Street Park | address, acres, sameAs |
-| sweden | Corbet Park | address, acres, sameAs |
-| sweden | Evergreen Tot Lot | acres |
-| sweden | Harvester Park | acres |
-| sweden | Monika Andrews Children's Park | acres |
-| sweden | Sagawa Park | acres |
-| sweden | South Avenue Park | acres |
-| sweden | Sweden Town Park | acres |
-| webster | D'Amico Park | address, acres |
-| webster | Empire Park | address, acres |
-| webster | Finn Park | address, acres |
-| webster | Kent Park | address, acres |
-| webster | Ridge Park | address, acres, sameAs |
-| webster | Ridgecrest Park | address, acres |
-| webster | Sandbar Park | address, acres, sameAs |
-| webster | Webster First Responders Park | address, acres, sameAs |
-| wheatland | Canawagus Park | acres, sameAs |
-| wheatland | Freeman Park | acres, sameAs |
-| wheatland | Johnson Park | acres, sameAs |
+| Town           | Park                                    | Fields added                      |
+| -------------- | --------------------------------------- | --------------------------------- |
+| brighton       | Brighton Town Park                      | address, acres, amenities, sameAs |
+| brighton       | Buckland Park                           | address, acres, amenities, sameAs |
+| brighton       | Corbett’s Glen Nature Park              | address, acres, sameAs            |
+| brighton       | Lynch Woods Park                        | address, acres, sameAs            |
+| brighton       | Meridian Centre Park                    | address, acres, sameAs            |
+| brighton       | Persimmon Park                          | acres, sameAs                     |
+| chili          | Ballantyne Park                         | address, acres, sameAs            |
+| chili          | Davis Park                              | address, acres, sameAs            |
+| chili          | Hubbard Park                            | address, acres, sameAs            |
+| chili          | Memorial Park                           | address, acres, sameAs            |
+| chili          | Union Station Park                      | address, acres, sameAs            |
+| chili          | Widener Park                            | address, acres, sameAs            |
+| chili          | Yolanda Park                            | address, acres, sameAs            |
+| clarkson       | Clarkson Recreation Park                | address, acres, sameAs            |
+| clarkson       | Hafner Park                             | address, acres, sameAs            |
+| clarkson       | Sans Souci Park                         | address, acres, sameAs            |
+| east-rochester | Concrest Park                           | address, acres, sameAs            |
+| east-rochester | Edmund Lyon Park                        | address, acres, sameAs            |
+| east-rochester | Legion Eyer Park                        | address, acres, sameAs            |
+| east-rochester | Northside Park                          | address, acres, sameAs            |
+| gates          | First Responders Park                   | address, acres, amenities, sameAs |
+| gates          | Lions Park                              | address, acres, sameAs            |
+| gates          | Memorial Park                           | address, acres, sameAs            |
+| gates          | Wegman Road Park                        | address, acres, sameAs            |
+| gates          | Westgate Park                           | address, acres, sameAs            |
+| greece         | Adeline Park                            | address, acres, sameAs            |
+| greece         | Badgerow Park South                     | address, acres, sameAs            |
+| greece         | Barnard Park                            | address, acres, sameAs            |
+| greece         | Basil Marella Park                      | address, acres, sameAs            |
+| greece         | Braddock Bay Park                       | address, acres, sameAs            |
+| greece         | Carter Park                             | address, acres, amenities, sameAs |
+| greece         | Columbus Park                           | address, acres, sameAs            |
+| greece         | Frisbee Hill Park                       | address, acres, amenities, sameAs |
+| greece         | Goodwin Park                            | address, acres, sameAs            |
+| greece         | Grandview Park                          | address, acres, sameAs            |
+| greece         | Henpeck Park                            | address, acres, sameAs            |
+| greece         | Pappas Park                             | address, acres, sameAs            |
+| greece         | Sawyer Park                             | address, acres, sameAs            |
+| greece         | Veteran's Memorial Park                 | address, acres, amenities, sameAs |
+| hamlin         | Hamlin Recreation Area                  | address, acres, sameAs            |
+| hamlin         | Scout Park                              | address, acres, sameAs            |
+| henrietta      | Andrews Park                            | address, acres, sameAs            |
+| henrietta      | Breese Park                             | address, acres, sameAs            |
+| henrietta      | Hoskins Park                            | address, acres, sameAs            |
+| henrietta      | Kenwick park                            | address, acres, sameAs            |
+| henrietta      | Lookup Park                             | address, acres, sameAs            |
+| henrietta      | Martin Road Park                        | address, acres, sameAs            |
+| henrietta      | Tinker Nature Park                      | address, acres, sameAs            |
+| henrietta      | Veterans Memorial Park                  | address, acres, sameAs            |
+| irondequoit    | Heyer-Bayer Memorial Park               | address, acres, sameAs            |
+| irondequoit    | Joshua Park                             | address, acres, sameAs            |
+| irondequoit    | McAvoy Park                             | address, acres, sameAs            |
+| irondequoit    | Spezio Park                             | acres, sameAs                     |
+| mendon         | Harry Allen Park                        | address, acres, sameAs            |
+| mendon         | Monroe Street Village Park              | address, acres, sameAs            |
+| mendon         | Semmel Road Park                        | address, acres, sameAs            |
+| ogden          | Memorial Park                           | acres, sameAs                     |
+| ogden          | Pineway Ponds Park                      | address, acres, sameAs            |
+| ogden          | Rose Turner Park                        | address, acres, amenities, sameAs |
+| parma          | Parma Park                              | acres, sameAs                     |
+| parma          | Salmon Creek Park                       | address, acres, sameAs            |
+| parma          | Village Park                            | address, acres, sameAs            |
+| penfield       | Channing Philbrick Park                 | address, acres, sameAs            |
+| penfield       | Greenwood Park                          | address, acres, sameAs            |
+| penfield       | Harris Whalen Park                      | acres, sameAs                     |
+| penfield       | Heritage Park                           | address, acres, sameAs            |
+| penfield       | LaSalles Landing Park                   | address, acres, sameAs            |
+| penfield       | Panorama Valley Park                    | address, acres, sameAs            |
+| penfield       | Rothfuss Park                           | address, acres, sameAs            |
+| penfield       | Schaufelberger Park                     | address, acres, sameAs            |
+| penfield       | Veteran’s Memorial Park                 | address, acres, sameAs            |
+| perinton       | Ayrualt Boat Launch                     | address, acres, sameAs            |
+| perinton       | Center Park East                        | address, sameAs                   |
+| perinton       | Center Park West                        | address, acres, sameAs            |
+| perinton       | Egypt Park                              | address, acres, sameAs            |
+| perinton       | Fellows Road Park                       | address, acres, sameAs            |
+| perinton       | Garnsey Road Arboretum                  | address, acres, sameAs            |
+| perinton       | Kreag Road Park                         | address, acres, amenities, sameAs |
+| perinton       | Perinton Park                           | address, acres, sameAs            |
+| perinton       | Potter Park                             | address, acres, sameAs            |
+| perinton       | Spring Lake Park                        | acres, sameAs                     |
+| pittsford      | Carpenter Park at the Port of Pittsford | address, acres, sameAs            |
+| pittsford      | Copper Beech Park                       | address, acres, sameAs            |
+| pittsford      | Great Embankment Park                   | address, acres, sameAs            |
+| pittsford      | Griffith Park                           | address, acres, sameAs            |
+| pittsford      | Hopkins Park                            | address, acres, sameAs            |
+| pittsford      | Isaac Gordon Nature Park                | address, acres, sameAs            |
+| pittsford      | King's Bend Park                        | address, acres                    |
+| pittsford      | Lock 62 Canal Park                      | acres, sameAs                     |
+| pittsford      | Royal Coach Park                        | address, acres, sameAs            |
+| pittsford      | Thornell Farm Park                      | address, acres, sameAs            |
+| riga           | Sanford Road Park                       | address, acres, sameAs            |
+| rush           | Stoney Brook Road Park                  | address, acres, sameAs            |
+| rush           | Veterans Memorial Park                  | acres, sameAs                     |
+| sweden         | Barry Street Park                       | address, acres, sameAs            |
+| sweden         | Corbet Park                             | address, acres, sameAs            |
+| sweden         | Evergreen Tot Lot                       | acres                             |
+| sweden         | Harvester Park                          | acres                             |
+| sweden         | Monika Andrews Children's Park          | acres                             |
+| sweden         | Sagawa Park                             | acres                             |
+| sweden         | South Avenue Park                       | acres                             |
+| sweden         | Sweden Town Park                        | acres                             |
+| webster        | D'Amico Park                            | address, acres                    |
+| webster        | Empire Park                             | address, acres                    |
+| webster        | Finn Park                               | address, acres                    |
+| webster        | Kent Park                               | address, acres                    |
+| webster        | Ridge Park                              | address, acres, sameAs            |
+| webster        | Ridgecrest Park                         | address, acres                    |
+| webster        | Sandbar Park                            | address, acres, sameAs            |
+| webster        | Webster First Responders Park           | address, acres, sameAs            |
+| wheatland      | Canawagus Park                          | acres, sameAs                     |
+| wheatland      | Freeman Park                            | acres, sameAs                     |
+| wheatland      | Johnson Park                            | acres, sameAs                     |

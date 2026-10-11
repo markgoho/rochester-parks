@@ -138,7 +138,9 @@ describe('chooseParcels', () => {
     const choice = await chooseParcels(POINT, source);
     expect(isMiss(choice)).toBe(true);
     if (!isMiss(choice)) throw new Error('unreachable');
-    expect(choice.reason).toBe(`parcels kept growing past ${GROWTH_ROUNDS} rounds`);
+    expect(choice.reason).toBe(
+      `parcels kept growing past ${GROWTH_ROUNDS} rounds`
+    );
   });
 
   test('growth is transitive: a parcel two hops away still joins', async () => {
@@ -164,7 +166,9 @@ describe('chooseParcels', () => {
     const choice = await chooseParcels({ ...POINT, acres: 26.5 }, source);
     expect(isMiss(choice)).toBe(true);
     if (!isMiss(choice)) throw new Error('unreachable');
-    expect(choice.reason).toBe("parcels much larger/smaller than the Park's acres");
+    expect(choice.reason).toBe(
+      "parcels much larger/smaller than the Park's acres"
+    );
     expect(choice.ids).toEqual(['a']);
     expect(choice.acres).toBe(93);
   });
@@ -187,37 +191,70 @@ describe('chooseParcels', () => {
 
 describe('addressMatch', () => {
   test('the same number and street is a full match', () => {
-    expect(addressMatch('1862 Penfield Road', { number: '1862', street: 'Penfield' })).toBe('full');
-    expect(addressMatch('199 East Manitou Road', { number: '199', street: 'E Manitou' })).toBe('full');
-    expect(addressMatch('3850 East Henrietta Rd.', { number: '3850', street: 'East Henrietta' })).toBe('full');
+    expect(
+      addressMatch('1862 Penfield Road', { number: '1862', street: 'Penfield' })
+    ).toBe('full');
+    expect(
+      addressMatch('199 East Manitou Road', {
+        number: '199',
+        street: 'E Manitou',
+      })
+    ).toBe('full');
+    expect(
+      addressMatch('3850 East Henrietta Rd.', {
+        number: '3850',
+        street: 'East Henrietta',
+      })
+    ).toBe('full');
   });
 
   test('a different number on the same street is no match', () => {
-    expect(addressMatch('1601 Penfield Road', { number: '1201', street: 'Penfield' })).toBeUndefined();
+    expect(
+      addressMatch('1601 Penfield Road', { number: '1201', street: 'Penfield' })
+    ).toBeUndefined();
   });
 
   test('the same street, with no number on one side, is a street match', () => {
-    expect(addressMatch('Elmwood Ave', { number: '2225', street: 'Elmwood' })).toBe('street');
-    expect(addressMatch('1133 Crittenden Rd', { street: 'Crittenden' })).toBe('street');
+    expect(
+      addressMatch('Elmwood Ave', { number: '2225', street: 'Elmwood' })
+    ).toBe('street');
+    expect(addressMatch('1133 Crittenden Rd', { street: 'Crittenden' })).toBe(
+      'street'
+    );
   });
 
   test('another street is no match', () => {
     expect(addressMatch('Rudman Road', { street: 'Seneca' })).toBeUndefined();
-    expect(addressMatch(undefined, { number: '1', street: 'Main' })).toBeUndefined();
+    expect(
+      addressMatch(undefined, { number: '1', street: 'Main' })
+    ).toBeUndefined();
     expect(addressMatch('1 Main St', undefined)).toBeUndefined();
   });
 });
 
 describe('a parcel under the point that is not park-type', () => {
   const vacant = (overrides: Partial<ParcelFeature>) =>
-    feature({ id: 'v', parkType: false, classCode: 311, acres: 9.6, ...overrides });
+    feature({
+      id: 'v',
+      parkType: false,
+      classCode: 311,
+      acres: 9.6,
+      ...overrides,
+    });
 
   test('seeds when the page address and acres agree', async () => {
     const source = fakeSource({
-      containing: async () => [vacant({ address: { number: '461', street: 'Bonesteel' } })],
+      containing: async () => [
+        vacant({ address: { number: '461', street: 'Bonesteel' } }),
+      ],
     });
     const choice = await chooseParcels(
-      { ...POINT, acres: 9, address: '461 Bonesteel Street', name: 'Columbus Park' },
+      {
+        ...POINT,
+        acres: 9,
+        address: '461 Bonesteel Street',
+        name: 'Columbus Park',
+      },
       source
     );
     if (isMiss(choice)) throw new Error(choice.reason);
@@ -229,7 +266,12 @@ describe('a parcel under the point that is not park-type', () => {
     const source = fakeSource({
       hasSwis: false,
       containing: async () => [
-        vacant({ swis: undefined, classCode: 822, acres: 104.5, owner: 'City Of Roch Cobbs Hill Reserv' }),
+        vacant({
+          swis: undefined,
+          classCode: 822,
+          acres: 104.5,
+          owner: 'City Of Roch Cobbs Hill Reserv',
+        }),
       ],
     });
     const choice = await chooseParcels(
@@ -241,10 +283,17 @@ describe('a parcel under the point that is not park-type', () => {
 
   test('one signal alone is not enough', async () => {
     const source = fakeSource({
-      containing: async () => [vacant({ address: { number: '15', street: 'Long Pond' }, acres: 3 })],
+      containing: async () => [
+        vacant({ address: { number: '15', street: 'Long Pond' }, acres: 3 }),
+      ],
     });
     const choice = await chooseParcels(
-      { ...POINT, acres: 2, address: '15 Long Pond Road', name: 'Goodwin Park' },
+      {
+        ...POINT,
+        acres: 2,
+        address: '15 Long Pond Road',
+        name: 'Goodwin Park',
+      },
       source
     );
     expect(isMiss(choice)).toBe(true);
@@ -252,7 +301,9 @@ describe('a parcel under the point that is not park-type', () => {
 
   test('acres that differ by more than 15% are not a signal', async () => {
     const source = fakeSource({
-      containing: async () => [vacant({ address: { street: 'Latta' }, acres: 43.6 })],
+      containing: async () => [
+        vacant({ address: { street: 'Latta' }, acres: 43.6 }),
+      ],
     });
     const choice = await chooseParcels(
       { ...POINT, acres: 73.64, address: 'Latta Road', name: 'Klafehn Park' },
@@ -267,7 +318,10 @@ describe('a parcel under the point that is not park-type', () => {
       containing: async () => [vacant({ swis: undefined, acres: 0.28 })],
       openSpace: async () => true,
     });
-    const choice = await chooseParcels({ ...POINT, acres: 0.3, name: 'Quamina Park' }, source);
+    const choice = await chooseParcels(
+      { ...POINT, acres: 0.3, name: 'Quamina Park' },
+      source
+    );
     expect(isMiss(choice)).toBe(false);
   });
 
@@ -286,14 +340,18 @@ describe('a parcel under the point that is not park-type', () => {
 });
 
 describe('growth', () => {
-  test('stops at a parcel that is another Park\'s seed', async () => {
+  test("stops at a parcel that is another Park's seed", async () => {
     const a = feature({ id: 'a', acres: 20 });
     const b = feature({ id: 'b', acres: 20 });
     const source = fakeSource({
       containing: async () => [a],
       touching: async () => [b],
     });
-    const choice = await chooseParcels({ ...POINT, acres: 20 }, source, new Set(['b']));
+    const choice = await chooseParcels(
+      { ...POINT, acres: 20 },
+      source,
+      new Set(['b'])
+    );
     if (isMiss(choice)) throw new Error(choice.reason);
     expect(choice.ids).toEqual(['a']);
   });
@@ -311,14 +369,25 @@ describe('growth', () => {
   });
 
   test('a seed of another class whose acres agree does not grow', async () => {
-    const seed = feature({ id: 'a', parkType: false, classCode: 652, acres: 47.7, address: { number: '1350', street: 'Turk Hill' } });
+    const seed = feature({
+      id: 'a',
+      parkType: false,
+      classCode: 652,
+      acres: 47.7,
+      address: { number: '1350', street: 'Turk Hill' },
+    });
     const trail = feature({ id: 'b', acres: 43.2 });
     const source = fakeSource({
       containing: async () => [seed],
       touching: async () => [trail],
     });
     const choice = await chooseParcels(
-      { ...POINT, acres: 49, address: '1350 Turk Hill Road', name: 'Center Park West' },
+      {
+        ...POINT,
+        acres: 49,
+        address: '1350 Turk Hill Road',
+        name: 'Center Park West',
+      },
       source
     );
     if (isMiss(choice)) throw new Error(choice.reason);

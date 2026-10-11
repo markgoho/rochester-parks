@@ -1,6 +1,6 @@
 ---
-title: "Monroe County Parks"
-description: "A list of Monroe County Parks"
+title: 'Monroe County Parks'
+description: 'A list of Monroe County Parks'
 reservations:
   name: 'Monroe County'
   url: 'https://www.monroecounty.gov/mcparks'

@@ -9,6 +9,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun install --frozen-lockfile --cwd functions
+      - run: bunx prettier --check .
       - run: bun test
       # Neither the tests nor the Vite build check types.
       - run: bun run check

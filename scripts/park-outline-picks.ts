@@ -925,9 +925,9 @@ export const NO_OUTLINE: Record<string, string> = {
   '/town-parks/perinton-parks/bushnells-basin-docks/':
     'The docks, restrooms and parking are a strip of canal-bank land with no tax parcel. The parcels next to it are private shops on Pittsford-Victor Rd. OpenStreetMap maps only the dock as a line (way 824181917), and no park area (#304).',
   '/town-parks/pittsford-parks/copper-beech-park/':
-    'The 0.23 ac park is a corner of 14 State St, a 1.08 ac town parcel that is mostly the public parking lot behind State St. The 10 North Main St section has no parcel of its own. No parcel set draws the park without the parking lot. OpenStreetMap draws only the State St section (way 758277550, 0.08 of 0.23 ac), not the North Main St section with the page\'s point (#304).',
+    "The 0.23 ac park is a corner of 14 State St, a 1.08 ac town parcel that is mostly the public parking lot behind State St. The 10 North Main St section has no parcel of its own. No parcel set draws the park without the parking lot. OpenStreetMap draws only the State St section (way 758277550, 0.08 of 0.23 ac), not the North Main St section with the page's point (#304).",
   '/town-parks/pittsford-parks/great-embankment-park/':
-    'The ball fields, playground and parking between the canal and Marsh Rd are on canal land with no tax parcel. OpenStreetMap draws the Park (way 468745025) at 35.8 ac, three times the town\'s 12 ac, so it holds canal land that is not the Park (#304).',
+    "The ball fields, playground and parking between the canal and Marsh Rd are on canal land with no tax parcel. OpenStreetMap draws the Park (way 468745025) at 35.8 ac, three times the town's 12 ac, so it holds canal land that is not the Park (#304).",
   '/town-parks/sweden-parks/harvester-park/':
     'Harvester Park and the Welcome Center at 11 Water St sit on the south canal bank inside the 93.7-acre state Barge Canal parcel; the park has no tax parcel of its own. The old point was on a Main St shop; it now sits on the canal bank by the Welcome Center. OpenStreetMap has no area for the park to clip the canal parcel with (#304).',
 };

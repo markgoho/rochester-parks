@@ -1,5 +1,5 @@
 ---
-title: 'Veteran''s Memorial Park'
+title: "Veteran's Memorial Park"
 description: 'A park in Ogden'
 type: 'park'
 geo:

@@ -1,5 +1,5 @@
 ---
-title: 'Bushnell''s Basin Docks'
+title: "Bushnell's Basin Docks"
 description: 'A park in Perinton'
 type: 'park'
 geo:

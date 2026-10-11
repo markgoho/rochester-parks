@@ -44,7 +44,7 @@ In addition to the play structure and swing set, there are three additional play
 
 ![Grandview Park barbecue](forweb-IMG_20120613_1817421.jpg)
 
-*The lone barbecue at Grandview Park*
+_The lone barbecue at Grandview Park_
 
 ## Eating Area
 

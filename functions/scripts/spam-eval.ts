@@ -315,9 +315,11 @@ function closeAnnouncement(commentId: string): void {
 }
 
 async function posts(): Promise<Post[]> {
-  const spamSet = readSet().map(
-    (post): Post => ({ label: 'spam', source: 'spam set', ...post })
-  );
+  const spamSet = readSet().map((post): Post => ({
+    label: 'spam',
+    source: 'spam set',
+    ...post,
+  }));
   const approved = await getFirestore()
     .collection('comments')
     .where('state', '==', 'approved')
@@ -332,15 +334,13 @@ async function posts(): Promise<Post[]> {
       body: comment.body,
     };
   });
-  const synthetic = SYNTHETIC.map(
-    ([label, page, name, body]): Post => ({
-      label,
-      source: `synthetic ${label}`,
-      page,
-      name,
-      body,
-    })
-  );
+  const synthetic = SYNTHETIC.map(([label, page, name, body]): Post => ({
+    label,
+    source: `synthetic ${label}`,
+    page,
+    name,
+    body,
+  }));
   return [...spamSet, ...real, ...synthetic];
 }
 

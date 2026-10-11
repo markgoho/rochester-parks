@@ -15,10 +15,10 @@ A prototype tried three card designs on the `prototype/park-cards` branch. The o
 
 **A table view is a second page below each ordering.** The ordering's own URL shows the cards (#307). At first the table was the default and the cards were the second page. Once a card with no photo showed the Park's own outline (#291), the cards looked better than the table, so they became the default. An old `/cards/` URL redirects (301) to the ordering one level up.
 
-| Cards | Table |
-|---|---|
-| `/town-parks/greece-parks/` | `/town-parks/greece-parks/table/` |
-| `/town-parks/greece-parks/by-size/` | `/town-parks/greece-parks/by-size/table/` |
+| Cards                                    | Table                                          |
+| ---------------------------------------- | ---------------------------------------------- |
+| `/town-parks/greece-parks/`              | `/town-parks/greece-parks/table/`              |
+| `/town-parks/greece-parks/by-size/`      | `/town-parks/greece-parks/by-size/table/`      |
 | `/rochester-city-parks/by-neighborhood/` | `/rochester-city-parks/by-neighborhood/table/` |
 
 Two icon links at the end of the section's counts line change the view: rows for the table, a grid of squares for the cards. The view is a property of the whole section, so the switch sits with the section's counts, in the same place on both views, and adds no line above the table. Each icon has a tooltip. Each order link on a table page goes to the table page of that order, so the view stays when the reader sorts.

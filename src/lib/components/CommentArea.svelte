@@ -27,8 +27,8 @@
   <!-- The Function sends the reader back to this page with #comment-sent.
        :target shows the banner; nothing else does, and no script runs. -->
   <p id="comment-sent" class="sent" role="status">
-    <strong>Thanks.</strong> Your comment is in the queue. It shows here once it
-    has been read.
+    <strong>Thanks.</strong> Your comment is in the queue. It shows here once it has
+    been read.
   </p>
 
   <div class="head">

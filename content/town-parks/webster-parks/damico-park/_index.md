@@ -1,5 +1,5 @@
 ---
-title: 'D''Amico Park'
+title: "D'Amico Park"
 description: 'A park in Webster'
 type: 'park'
 geo:
