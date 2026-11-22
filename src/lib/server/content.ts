@@ -12,6 +12,7 @@ import { parkJsonLd } from '#lib/json-ld.js';
 import { isCitySection } from '#lib/municipalities.js';
 import { isParkContainer, isParkType, isTrailType } from '#lib/park-types.js';
 import { isFormerPark, splitFormerParks } from '#lib/park-split.js';
+import { shareCardSlug } from '#lib/site.js';
 import { PARK_OUTLINES } from '#lib/park-outlines.js';
 import { outlinePaths } from '#lib/park-shapes.js';
 import { SITE_TITLE, absUrl } from '#lib/site.js';
@@ -730,6 +731,31 @@ function pageWithoutOutlines(url: string): Page | undefined {
     ...(commentArea ? { commentArea } : {}),
     ...(trailsOf ? { trailsOf } : {}),
   };
+}
+
+/**
+ * The Parks that get a generated share card: the ones with no photo, since a
+ * Park with a photo shares the photo. A Park with no outline still gets a
+ * card, with no shape.
+ */
+export function getShareCards(): {
+  slug: string;
+  name: string;
+  section: string;
+  paths?: string[];
+}[] {
+  return [...nodes.values()]
+    .filter(isPark)
+    .map((node) => ({ node, meta: parkMetaOf(node) }))
+    .filter(({ meta }) => !meta.photo)
+    .map(({ node, meta }) => ({
+      slug: shareCardSlug(node.url),
+      name: node.title,
+      section: meta.section.title,
+      paths: PARK_OUTLINES[node.url]
+        ? outlinePaths(PARK_OUTLINES[node.url])
+        : undefined,
+    }));
 }
 
 /** Totals the home page states, all counted from the content itself. */

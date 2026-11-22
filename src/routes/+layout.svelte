@@ -3,7 +3,12 @@
   import { page } from '$app/state';
   import Header from '#lib/components/Header.svelte';
   import JsonLd from '#lib/components/JsonLd.svelte';
-  import { PAGEFIND_UI_SRC, SITE_TITLE, absUrl } from '#lib/site.js';
+  import {
+    PAGEFIND_UI_SRC,
+    SITE_TITLE,
+    absUrl,
+    shareCardSlug,
+  } from '#lib/site.js';
   import { SEARCH_RESULT_TEMPLATE } from '#lib/search-template.js';
   import archivoBlack from '#lib/fonts/ArchivoBlack-400.woff2?url';
   import publicSans from '#lib/fonts/PublicSans-300_700.woff2?url';
@@ -16,13 +21,32 @@
     absUrl(page.data.canonical ?? page.data.url ?? '/')
   );
   /**
-   * A park page shares its photo. Every other page shares no image: the tag
-   * must name an image file, and the site has no general one yet.
+   * What a shared link shows (#369). A park page with a photo shares the
+   * photo; one without gets a card with its outline, name and section,
+   * generated at build time. Every other page gets the one site card.
    */
-  const image = $derived.by(() => {
-    const photo: string | undefined = page.data.park?.photo;
-    if (!photo) return undefined;
-    return /^https?:\/\//.test(photo) ? photo : absUrl(photo);
+  const share = $derived.by(() => {
+    const park = page.data.park;
+    const photo: string | undefined = park?.photo;
+    if (park && photo) {
+      return {
+        url: /^https?:\/\//.test(photo) ? photo : absUrl(photo),
+        alt: `${page.data.title}, a park in ${park.section.title}`,
+        generated: false,
+      };
+    }
+    if (park) {
+      return {
+        url: absUrl(`/og/${shareCardSlug(page.data.url ?? '/')}.png`),
+        alt: `${page.data.title}, ${park.section.title}: the park's outline on a Rochester Parks card`,
+        generated: true,
+      };
+    }
+    return {
+      url: absUrl('/og/site.png'),
+      alt: `${SITE_TITLE}: every park in Monroe County, New York`,
+      generated: true,
+    };
   });
   const title = $derived(
     page.data.url === '/' ? SITE_TITLE : `${page.data.title} · ${SITE_TITLE}`
@@ -68,14 +92,15 @@
   <meta property="og:site_name" content={SITE_TITLE} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonical} />
-  {#if image}
-    <meta property="og:image" content={image} />
+  <meta property="og:image" content={share.url} />
+  <meta property="og:image:alt" content={share.alt} />
+  {#if share.generated}
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
   {/if}
-  <!-- X and some chat apps read this, not og:*, to pick the card size. -->
-  <meta
-    name="twitter:card"
-    content={image ? 'summary_large_image' : 'summary'}
-  />
+  <!-- X and some chat apps read this, not og:*, to pick the card size. Every
+       page has a large image now. -->
+  <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:description" content={page.data.description} />
 </svelte:head>
 
