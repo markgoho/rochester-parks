@@ -243,6 +243,16 @@
         "type": 301
       },
       {
+        "source": "/categories{,/**}",
+        "destination": "/",
+        "type": 301
+      },
+      {
+        "source": "/tags{,/**}",
+        "destination": "/",
+        "type": 301
+      },
+      {
         "source": "/:path*/cards",
         "destination": "/:path*/",
         "type": 301
