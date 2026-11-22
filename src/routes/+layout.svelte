@@ -26,19 +26,21 @@
    * generated at build time. Every other page gets the one site card.
    */
   const share = $derived.by(() => {
-    const park = page.data.park;
+    const park = page.data.park ?? page.data.trail;
     const photo: string | undefined = park?.photo;
     if (park && photo) {
       return {
         url: /^https?:\/\//.test(photo) ? photo : absUrl(photo),
-        alt: `${page.data.title}, a park in ${park.section.title}`,
+        alt: page.data.trail
+          ? `${page.data.title}, a trail`
+          : `${page.data.title}, a park in ${park.section.title}`,
         generated: false,
       };
     }
     if (park) {
       return {
         url: absUrl(`/og/${shareCardSlug(page.data.url ?? '/')}.png`),
-        alt: `${page.data.title}, ${park.section.title}: the park's outline on a Rochester Parks card`,
+        alt: `${page.data.title}, ${page.data.trail ? 'a trail' : park.section.title}: the ${page.data.trail ? 'trail' : 'park'}'s outline on a Rochester Parks card`,
         generated: true,
       };
     }
