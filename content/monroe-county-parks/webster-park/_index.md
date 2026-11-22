@@ -1,6 +1,6 @@
 ---
 title: 'Webster Park'
-description: 'A monroe county park called Webster Park'
+description: 'A 550-acre Monroe County park on the shore of Lake Ontario in Webster, with camping, a dog park, a pier, fishing and a playground.'
 type: 'park'
 geo:
   latitude: 43.25611958603375

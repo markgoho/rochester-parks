@@ -1,6 +1,6 @@
 ---
 title: 'Grand Avenue Park'
-description: 'A Rochester City Park called Grand Avenue Park'
+description: 'A 2.1-acre city park at 250 Grand Avenue in Rochester, with a baseball diamond and a playground.'
 type: 'park'
 acres: 2.1
 address:

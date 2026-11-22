@@ -1,6 +1,6 @@
 ---
 title: 'Stonybrook Road Park'
-description: 'A park in Rush, NY called Stonybrook Road Park'
+description: 'A 24-acre town park at 151 Stoney Brook Road in Rush, with picnic tables, a shelter, swings and an open field by a pond.'
 type: 'park'
 geo:
   latitude: 42.98117652311839

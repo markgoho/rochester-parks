@@ -1,6 +1,6 @@
 ---
 title: 'John Unger Nature Trail'
-description: 'A Town of Webster trail called John Unger Nature Trail'
+description: 'A 0.35-mile Town of Webster walking trail off the Hojack Trail, between Drumm Road and Van Alstyne Road. Wood stairs lead down to it.'
 type: 'trail'
 geo:
   latitude: 43.2351637

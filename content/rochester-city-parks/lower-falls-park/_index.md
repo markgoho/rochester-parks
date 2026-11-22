@@ -1,6 +1,6 @@
 ---
 title: 'Lower Falls Park'
-description: 'A Rochester City Park called Lower Falls Park'
+description: 'A park in the Genesee River gorge just downriver from High Falls, with waterfalls, cliffs, a walking and biking path and views of the river.'
 type: 'park'
 acres: 5.2
 address:

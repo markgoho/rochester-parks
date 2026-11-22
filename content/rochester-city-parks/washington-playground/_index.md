@@ -1,6 +1,6 @@
 ---
 title: 'Washington Playground'
-description: 'A Rochester City Park called Washington Playground'
+description: 'A city park at 48 1/2 Thomas Street in Rochester, with a basketball court and a playground.'
 type: 'park'
 address:
   streetAddress: '48 1/2 Thomas Street'

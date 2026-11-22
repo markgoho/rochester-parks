@@ -1,6 +1,6 @@
 ---
 title: 'Northampton Park'
-description: 'A monroe county park called Northampton Park'
+description: 'A 973-acre Monroe County park with camping, trails, a ski slope, a bridle trail, fishing, a model airplane field and a playground.'
 type: 'county-parks'
 geo:
   latitude: 43.183523790466225

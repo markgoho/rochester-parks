@@ -1,6 +1,6 @@
 ---
 title: 'Pulaski Park'
-description: 'A Rochester City Park called Pulaski Park'
+description: 'A neighborhood park of about 7 acres between North Street and Carter Street, with open green space and winding paths for walking, games and picnics.'
 type: 'park'
 address:
   streetAddress: '1200 North St'

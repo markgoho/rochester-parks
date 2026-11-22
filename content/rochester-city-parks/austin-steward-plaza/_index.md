@@ -1,6 +1,6 @@
 ---
 title: 'Austin Steward Plaza'
-description: 'A Rochester City Park called Austin Steward Plaza'
+description: 'A City of Rochester park.'
 type: 'park'
 geo:
   latitude: 43.1573727

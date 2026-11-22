@@ -1,6 +1,6 @@
 ---
 title: 'Durand Eastman Park'
-description: 'A monroe county park called Durand Eastman Park'
+description: 'A 977-acre Monroe County park with a golf course, a playground, a lodge, shelters and bathrooms.'
 type: 'county-parks'
 geo:
   latitude: 43.22795894781158

@@ -1,6 +1,6 @@
 ---
 title: 'Jefferson Terrace Park'
-description: 'A Rochester City Park called Jefferson Terrace Park'
+description: 'A 4.7-acre city park at Jefferson Avenue and Jefferson Terrace in Rochester, with a baseball diamond, a basketball court and a playground.'
 type: 'park'
 acres: 4.7
 address:

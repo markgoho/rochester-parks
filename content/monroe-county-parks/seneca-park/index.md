@@ -1,6 +1,6 @@
 ---
 title: 'Seneca Park'
-description: 'A monroe county park called Seneca Park'
+description: 'A 297-acre Monroe County park with trails, open fields, a playground, a lodge and shelters. Seneca Park Zoo is here too.'
 type: 'county-parks'
 geo:
   latitude: 43.20859728908339

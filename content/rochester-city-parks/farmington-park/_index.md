@@ -1,6 +1,6 @@
 ---
 title: 'Farmington Park'
-description: 'A Rochester City Park called Farmington Park'
+description: 'A park at 600 Merchants Road in North Winton Village, with a tennis court, two pickleball courts, a half-court basketball court and ball fields.'
 type: 'park'
 acres: 3.6
 address:

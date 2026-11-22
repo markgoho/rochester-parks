@@ -1,6 +1,6 @@
 ---
 title: 'Wadsworth Square'
-description: 'A Rochester City Park called Wadsworth Square'
+description: 'A 0.8-acre city park at Marshall and Broadway Streets in Rochester.'
 type: 'park'
 acres: 0.8
 address:

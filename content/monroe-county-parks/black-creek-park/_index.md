@@ -1,6 +1,6 @@
 ---
 title: 'Black Creek Park'
-description: 'A monroe county park called Black Creek Park'
+description: 'One of the largest Monroe County parks at about 1,500 acres, in Chili. It has over 8 miles of trails, a boat launch, fishing and a playground.'
 type: 'park'
 geo:
   latitude: 43.074781

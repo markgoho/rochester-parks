@@ -1,6 +1,6 @@
 ---
 title: 'Schiller Park'
-description: 'A Rochester City Park called Schiller Park'
+description: 'A small park at Andrews Street and Franklin Square in Rochester, designed by the Olmsted firm. It has benches and a picnic table.'
 type: 'park'
 acres: 0.5
 address:

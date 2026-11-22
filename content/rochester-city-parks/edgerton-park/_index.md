@@ -1,6 +1,6 @@
 ---
 title: 'Edgerton Park'
-description: 'A Rochester City Park called Edgerton Park'
+description: 'A 31-acre city park at 41 Backus Street with a spray park, sports fields, courts, a playground and the Edgerton R-Center.'
 type: 'park'
 acres: 30.9
 address:

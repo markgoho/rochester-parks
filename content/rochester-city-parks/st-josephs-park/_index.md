@@ -1,6 +1,6 @@
 ---
 title: "St. Joseph's Park"
-description: "A Rochester City Park called St. Joseph's Park"
+description: 'A park built from a Catholic church that burned in 1974. Its tower and walls remain. You can sit on the steps or rent the space for events.'
 type: 'park'
 acres: 1.8
 address:

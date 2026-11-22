@@ -1,6 +1,6 @@
 ---
 title: 'Persimmon Park'
-description: 'A Town of Brighton park called Persimmon Park'
+description: 'A wooded 10-acre Town of Brighton park off South Clinton Avenue, with a half-acre open lawn and a sitting area near the main entrance.'
 type: 'park'
 geo:
   latitude: 43.128540108685556

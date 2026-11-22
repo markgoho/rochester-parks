@@ -1,6 +1,6 @@
 ---
 title: 'Hamlin Beach State Park'
-description: 'A New York State park called Hamlin Beach State Park'
+description: 'A 672-acre state park on the Lake Ontario shore in Hamlin, with a sandy beach, 264 campsites, trails, fishing and picnic grounds.'
 type: 'park'
 acres: 671.98
 address:

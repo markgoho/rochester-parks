@@ -1,6 +1,6 @@
 ---
 title: 'Lunsford Circle Park'
-description: 'A Rochester City Park called Lunsford Circle Park'
+description: 'A circular park in the Corn Hill neighborhood with gardens and a gazebo. Musicians play in the gazebo during the Corn Hill Arts Festival.'
 type: 'park'
 acres: 0.5
 address:

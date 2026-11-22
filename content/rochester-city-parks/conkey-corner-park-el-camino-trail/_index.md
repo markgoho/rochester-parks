@@ -1,6 +1,6 @@
 ---
 title: 'Conkey Corner Park'
-description: 'A Rochester City Park called Conkey Corner Park'
+description: 'A park built on an old railroad right of way at Conkey and Clifford Avenues, with a playground, benches and gardens. El Camino Trail starts here.'
 type: 'park'
 address:
   streetAddress: 'Conkey Ave and Clifford Ave'

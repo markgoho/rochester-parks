@@ -1,6 +1,6 @@
 ---
 title: 'ROC City Skatepark'
-description: 'A Rochester City Park called ROC City Skatepark'
+description: 'A public skatepark in downtown Rochester under the Frederick Douglass-Susan B. Anthony Bridge, with ramps, ledges, rails and bowls.'
 type: 'park'
 geo:
   latitude: 43.151416

@@ -1,6 +1,6 @@
 ---
 title: 'Fourth Street and Peck Street Park'
-description: 'A Rochester City Park called Fourth Street and Peck Street Park'
+description: 'A park in northeast Rochester at Fourth and Peck Streets, with green space, a half-court basketball court, a playground and a summer water spray.'
 type: 'park'
 acres: 1.5
 address:

@@ -1,6 +1,6 @@
 ---
 title: 'Barrington Street Park'
-description: 'A Rochester City Park called Barrington Street Park'
+description: 'A one-acre city park with a bench, at Park Avenue and Barrington Street in Rochester.'
 type: 'park'
 acres: 1
 address:

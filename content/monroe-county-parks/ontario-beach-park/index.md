@@ -1,6 +1,6 @@
 ---
 title: 'Ontario Beach Park'
-description: 'A monroe county park called Ontario Beach Park'
+description: 'A 39-acre Monroe County park with a beach, a carousel, a spray park, a playground, fishing, an ice rink and picnic areas.'
 type: 'county-parks'
 geo:
   latitude: 43.2578985859195

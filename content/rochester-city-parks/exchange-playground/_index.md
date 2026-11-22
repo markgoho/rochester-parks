@@ -1,6 +1,6 @@
 ---
 title: 'Exchange Playground'
-description: 'A Rochester City Park called Exchange Playground'
+description: 'A playground on Exchange Street in the Plymouth-Exchange neighborhood, built on the old bed of the Genesee Valley Canal.'
 type: 'park'
 acres: 4
 address:

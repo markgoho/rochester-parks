@@ -1,6 +1,6 @@
 ---
 title: 'Bird Sanctuary Trail'
-description: 'A Town of Webster trail called Bird Sanctuary Trail'
+description: 'A 0.8-mile Town of Webster trail along Mill Creek with a pond and birdwatching spots. It links Sexton Memorial Park to State Route 250.'
 type: 'trail'
 address:
   streetAddress: '1200 Orchard Street'

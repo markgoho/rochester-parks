@@ -1,6 +1,6 @@
 ---
 title: 'Genesee Gateway Park'
-description: 'A Rochester City Park called Genesee Gateway Park'
+description: 'A 12-acre riverside park at Mount Hope Avenue and Gregory Street, with a playground, a basketball court, picnic areas and a boat launch for canoes and kayaks.'
 type: 'park'
 acres: 12
 address:

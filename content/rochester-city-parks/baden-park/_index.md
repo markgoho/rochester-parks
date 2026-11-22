@@ -1,6 +1,6 @@
 ---
 title: 'Baden Park'
-description: 'A Rochester City Park called Baden Park'
+description: 'A 9-acre city park in the Upper Falls neighborhood of Rochester, with ball fields, courts and a playground. The 1964 uprising began on part of its land.'
 type: 'park'
 acres: 9.1
 address:

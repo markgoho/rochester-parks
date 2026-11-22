@@ -1,6 +1,6 @@
 ---
 title: 'Gardiner Ave. Playground'
-description: 'A Rochester City Park called Gardiner Ave. Playground'
+description: 'A city playground at 75 Grover Street in Rochester, with a spray park, a basketball court, a baseball diamond and the Roxie Ann Sinkler R-Center.'
 type: 'park'
 acres: 2.9
 address:

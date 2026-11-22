@@ -1,6 +1,6 @@
 ---
 title: 'Vosburg Hollow Nature Trail'
-description: 'A Town of Webster trail called Vosburg Hollow Nature Trail'
+description: 'A 0.25-mile Town of Webster trail for walking, hiking, jogging and snowshoeing. Park at 595 Vosburg Road, then walk an eighth of a mile on the Hojack Trail.'
 type: 'trail'
 address:
   streetAddress: '595 Vosburg Road'

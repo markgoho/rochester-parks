@@ -1,6 +1,6 @@
 ---
 title: 'Highland Park'
-description: 'A monroe county park called Highland Park'
+description: 'A 150-acre Monroe County park on Highland Drive, with an amphitheater, a garden, an ice rink, a lodge, open fields and a playground.'
 type: 'county-parks'
 geo:
   latitude: 43.13506124862759

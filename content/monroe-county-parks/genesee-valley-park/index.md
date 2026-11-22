@@ -1,6 +1,6 @@
 ---
 title: 'Genesee Valley Park'
-description: 'A monroe county park called Genesee Valley Park'
+description: 'An 800-acre Monroe County park at 1000 East River Road in Rochester, with a golf course, a cricket pitch, ball fields and a playground.'
 type: 'county-parks'
 geo:
   latitude: 43.120744494714565

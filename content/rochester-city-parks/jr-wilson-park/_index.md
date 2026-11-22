@@ -1,6 +1,6 @@
 ---
 title: 'JR Wilson Park'
-description: 'A Rochester City Park called JR Wilson Park'
+description: 'A neighborhood park on Burrows Street in northwest Rochester, with open green space, a full basketball court and a modern playground.'
 type: 'park'
 acres: 2.7
 address:

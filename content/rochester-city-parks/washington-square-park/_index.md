@@ -1,6 +1,6 @@
 ---
 title: 'Washington Square Park'
-description: 'A Rochester City Park called Washington Square Park'
+description: 'A downtown park near the GEVA Theater with benches, dedicated to veterans. A monument to Abraham Lincoln stands here, and it hosts summer concerts.'
 type: 'park'
 acres: 1.1
 address:

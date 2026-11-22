@@ -1,6 +1,6 @@
 ---
 title: "St John's Park"
-description: "A Rochester City Park called St John's Park"
+description: 'A small city park at Lake Avenue and River Street in Rochester.'
 type: 'park'
 acres: 0.2
 address:

@@ -1,6 +1,6 @@
 ---
 title: 'Bronson Avenue Playground'
-description: 'A Rochester City Park called Bronson Avenue Playground'
+description: 'A playground at Bronson Avenue and Olean Street, renovated in 2022 with a full-size basketball court, an outdoor classroom and benches.'
 type: 'park'
 address:
   streetAddress: 'Bronson Ave and Olean St'

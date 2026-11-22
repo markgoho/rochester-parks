@@ -1,6 +1,6 @@
 ---
 title: 'Morrison Park'
-description: 'A Rochester City Park called Morrison Park'
+description: 'A City of Rochester park.'
 type: 'park'
 geo:
   latitude: 43.1441358

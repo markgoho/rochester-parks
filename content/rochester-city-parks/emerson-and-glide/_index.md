@@ -1,6 +1,6 @@
 ---
 title: 'Emerson and Glide'
-description: 'A Rochester City Park called Emerson and Glide'
+description: 'A 7-acre city park at Emerson and Glide Streets in Rochester, with a baseball diamond and a playground.'
 type: 'park'
 acres: 7.3
 address:

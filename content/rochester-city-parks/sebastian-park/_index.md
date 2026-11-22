@@ -1,6 +1,6 @@
 ---
 title: 'Sebastian Park'
-description: 'A Rochester City Park called Sebastian Park'
+description: 'An 8-acre neighborhood park at 20 Planet Street, with a playground, a picnic pavilion, ball fields and courts. It honors Father Sebastian Contegiacomo.'
 type: 'park'
 acres: 8
 address:

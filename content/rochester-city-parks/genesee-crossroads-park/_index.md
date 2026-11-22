@@ -1,6 +1,6 @@
 ---
 title: 'Genesee Crossroads Park'
-description: 'A Rochester City Park called Genesee Crossroads Park'
+description: 'A long, narrow park on the east bank of the Genesee River in downtown Rochester, from Andrews Street to the Sister Cities Pedestrian Bridge.'
 type: 'park'
 address:
   streetAddress: 'Andrews St at Front St'

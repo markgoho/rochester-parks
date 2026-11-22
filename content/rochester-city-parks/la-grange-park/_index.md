@@ -1,6 +1,6 @@
 ---
 title: 'La Grange Park'
-description: 'A Rochester City Park called La Grange Park'
+description: 'A 17-acre city park at 409 LaGrange Avenue, with a recreation center, a tennis court, a baseball diamond, a basketball court and a playground.'
 type: 'park'
 acres: 17
 address:
