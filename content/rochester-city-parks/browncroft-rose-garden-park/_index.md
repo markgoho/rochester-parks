@@ -1,6 +1,6 @@
 ---
 title: 'Browncroft Rose Garden Park'
-description: 'A Rochester City Park called Browncroft Rose Garden Park'
+description: 'A small rose garden park at 37 Merchants Road, with antique roses that neighbors tend. It marks the entrance to the historic Browncroft neighborhood.'
 type: 'park'
 acres: 1.4
 address:

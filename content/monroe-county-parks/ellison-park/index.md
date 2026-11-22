@@ -1,6 +1,6 @@
 ---
 title: 'Ellison Park'
-description: 'A monroe county park called Ellison Park'
+description: 'A 447-acre Monroe County park at 1879 Blossom Road, with a dog park, a boat launch, a sledding hill, tennis and pickleball courts and a playground.'
 type: 'county-parks'
 geo:
   latitude: 43.14625019308076

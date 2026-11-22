@@ -1,6 +1,6 @@
 ---
 title: 'Tryon Park West'
-description: 'A Rochester City Park called Tryon Park West'
+description: 'A 14-acre city park at Loudisa Drive in Rochester, with a baseball diamond, a basketball court, a tennis court and a playground.'
 type: 'park'
 acres: 14
 address:

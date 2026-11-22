@@ -1,6 +1,6 @@
 ---
 title: 'Ralph Avery Mall'
-description: 'A Rochester City Park called Ralph Avery Mall'
+description: 'A small green space of about 0.3 acres in the Corn Hill neighborhood, with benches. It is named for Rochester artist Ralph Avery.'
 type: 'park'
 geo:
   latitude: 43.149123

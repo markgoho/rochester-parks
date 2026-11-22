@@ -1,6 +1,6 @@
 ---
 title: 'Lehigh Valley Trail Linear Park'
-description: 'A Monroe County trail called Lehigh Valley Trail Linear Park'
+description: 'A 15-mile Monroe County trail with a bridle trail and cross-country skiing. One way on is the Stevens-Connor Lodge lot on Pinnacle Road in Rush.'
 type: 'trail'
 geo:
   latitude: 43.0035602

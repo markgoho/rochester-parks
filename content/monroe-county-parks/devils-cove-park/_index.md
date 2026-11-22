@@ -1,6 +1,6 @@
 ---
 title: "Devil's Cove Park"
-description: "A monroe county park called Devil's Cove Park"
+description: 'An undeveloped 18-acre Monroe County park on the east shore of Irondequoit Bay. Visitors get there by boat.'
 type: 'park'
 geo:
   latitude: 43.209306

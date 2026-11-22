@@ -1,6 +1,6 @@
 ---
 title: 'Tacoma Playground'
-description: 'A Rochester City Park called Tacoma Playground'
+description: 'A 1.2-acre city playground at 30 Tacoma Street in Rochester, with a baseball diamond, a basketball court and a playground.'
 type: 'park'
 acres: 1.2
 address:

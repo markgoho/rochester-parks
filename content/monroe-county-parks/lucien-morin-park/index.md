@@ -1,6 +1,6 @@
 ---
 title: 'Lucien Morin Park'
-description: 'A monroe county park called Lucien Morin Park'
+description: 'A Monroe County park of about 349 acres at 1135 Empire Blvd in Rochester.'
 type: 'county-parks'
 geo:
   latitude: 43.169122

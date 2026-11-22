@@ -1,6 +1,6 @@
 ---
 title: 'Aberdeen Square Park'
-description: 'A Rochester City Park called Aberdeen Square Park'
+description: 'A large grassy field in the 19th Ward neighborhood at 330 Post Ave, where neighbors play soccer and football. It hosts the annual Aberdeen Square Fair.'
 type: 'park'
 acres: 1.5
 address:

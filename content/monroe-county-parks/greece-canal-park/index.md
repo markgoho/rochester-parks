@@ -1,6 +1,6 @@
 ---
 title: 'Greece Canal Park'
-description: 'A monroe county park called Greece Canal Park'
+description: 'A 577-acre Monroe County park at 343 Elmgrove Road, with camping, a dog park, fishing, a boat launch, trails, courts and a playground.'
 type: 'county-parks'
 geo:
   latitude: 43.19935528967629

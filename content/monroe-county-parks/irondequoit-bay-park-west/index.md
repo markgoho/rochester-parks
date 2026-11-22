@@ -1,6 +1,6 @@
 ---
 title: 'Irondequoit Bay Park West'
-description: 'A monroe county park called Irondequoit Bay Park West'
+description: 'A 147-acre Monroe County park on South Glen Road in Irondequoit, with a boat launch, fishing, and trails for skiing and snowshoeing.'
 type: 'county-parks'
 geo:
   latitude: 43.18656191032798

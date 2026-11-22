@@ -1,6 +1,6 @@
 ---
 title: 'Tryon Park'
-description: 'A monroe county park called Tryon Park'
+description: 'An 82-acre Monroe County park with trails, at 998 Winton Road North in Rochester.'
 type: 'county-parks'
 geo:
   latitude: 43.16659099177715

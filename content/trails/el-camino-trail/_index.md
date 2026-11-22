@@ -1,6 +1,6 @@
 ---
 title: 'El Camino Trail'
-description: 'A Rochester trail called El Camino Trail'
+description: 'A 2.25-mile trail in Rochester on an old railroad right of way. It crosses the Genesee River and links Conkey Corner Park and Seneca Park.'
 type: 'trail'
 address:
   streetAddress: 'Conkey Ave and Clifford Ave'

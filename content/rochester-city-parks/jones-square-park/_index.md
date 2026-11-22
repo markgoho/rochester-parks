@@ -1,6 +1,6 @@
 ---
 title: 'Jones Square Park'
-description: 'A Rochester City Park called Jones Square Park'
+description: 'A six-acre park at 170 Saratoga Avenue in northwest Rochester, with a historic fountain, benches and many trees. Frederick Law Olmsted redesigned it.'
 type: 'park'
 acres: 6
 address:

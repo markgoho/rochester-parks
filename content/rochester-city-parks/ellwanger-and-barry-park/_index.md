@@ -1,6 +1,6 @@
 ---
 title: 'Ellwanger and Barry Park'
-description: 'A Rochester City Park called Ellwanger and Barry Park'
+description: 'A small park at Meigs and Linden Streets in southeast Rochester, with two playgrounds, swings, a sandbox and an open field for picnics.'
 type: 'park'
 acres: 0.9
 address:

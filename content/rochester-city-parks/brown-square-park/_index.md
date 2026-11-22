@@ -1,6 +1,6 @@
 ---
 title: 'Brown Square Park'
-description: 'A Rochester City Park called Brown Square Park'
+description: "A 4.5-acre Rochester park at 251 Verona Street, designed by Olmsted's firm. It is a good spot for a picnic or a short walk."
 type: 'park'
 acres: 4.5
 address:

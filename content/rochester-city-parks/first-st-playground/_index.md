@@ -1,6 +1,6 @@
 ---
 title: 'First St Playground'
-description: 'A Rochester City Park called First St Playground'
+description: 'A 2.2-acre city park at 140 First Street in Rochester, with a playground, a basketball court, a baseball diamond and a lodge.'
 type: 'park'
 acres: 2.2
 address:

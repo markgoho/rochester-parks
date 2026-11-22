@@ -1,6 +1,6 @@
 ---
 title: 'Maplewood Park and Rose Garden'
-description: 'A Rochester City Park called Maplewood Park and Rose Garden'
+description: 'A 110-acre Olmsted-designed park along the Genesee River, with a Rose Garden of over 250 kinds of rose, a gazebo, and tennis and pickleball courts.'
 type: 'park'
 acres: 110
 address:

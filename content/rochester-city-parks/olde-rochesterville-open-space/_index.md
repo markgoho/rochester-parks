@@ -1,6 +1,6 @@
 ---
 title: 'Olde Rochesterville Open Space'
-description: 'A Rochester City Park called Olde Rochesterville Open Space'
+description: 'A small downtown green space at 179 North Water Street with benches, planting beds and lighting. A private group looks after it for the city.'
 type: 'park'
 geo:
   latitude: 43.159789

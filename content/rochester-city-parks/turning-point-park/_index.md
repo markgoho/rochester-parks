@@ -1,6 +1,6 @@
 ---
 title: 'Turning Point Park'
-description: 'A Rochester City Park called Turning Point Park'
+description: "A 275-acre wooded park in Rochester's Charlotte neighborhood along the Genesee River, with trails, river views and a boardwalk."
 type: 'park'
 acres: 275
 address:

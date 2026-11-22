@@ -1,6 +1,6 @@
 ---
 title: 'Abraham Lincoln Park'
-description: 'A monroe county park called Abraham Lincoln Park'
+description: 'A Monroe County park of over 180 acres on Irondequoit Bay in Webster, with a natural playground, covered shelters and 3.5 miles of trails.'
 type: 'park'
 geo:
   latitude: 43.184527

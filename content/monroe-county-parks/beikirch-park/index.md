@@ -1,6 +1,6 @@
 ---
 title: 'Beikirch Park'
-description: 'A monroe county park called Beikirch Park'
+description: 'A Monroe County park with a garden and a memorial.'
 type: 'county-parks'
 geo:
   latitude: 43.12822

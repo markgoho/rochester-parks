@@ -1,6 +1,6 @@
 ---
 title: 'Genesee Valley West'
-description: 'A Rochester City Park called Genesee Valley West'
+description: 'A Rochester city park on Elmwood Avenue at the Genesee River, with a playground, an ice rink, an arena, tennis courts and a baseball diamond.'
 type: 'park'
 address:
   streetAddress: 'Elmwood Ave at the Genesee River'

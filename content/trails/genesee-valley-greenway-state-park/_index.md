@@ -1,6 +1,6 @@
 ---
 title: 'Genesee Valley Greenway State Park'
-description: 'A New York State trail called Genesee Valley Greenway State Park'
+description: 'A 90-mile trail on the old Genesee Valley Canal and railroad bed, from Genesee Valley Park in Rochester south to Cuba, with a bridle trail.'
 type: 'trail'
 geo:
   latitude: 43.0187388

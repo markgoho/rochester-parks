@@ -1,6 +1,6 @@
 ---
 title: 'Goodwin Park'
-description: 'A Rochester City Park called Goodwin Park'
+description: 'A 0.9-acre city park with a playground, at the end of Sibley Place in Rochester.'
 type: 'park'
 acres: 0.9
 address:

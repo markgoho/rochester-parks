@@ -1,6 +1,6 @@
 ---
 title: 'Hickory Bark Woods'
-description: 'A Town of Webster trail called Hickory Bark Woods'
+description: 'A short, ADA accessible boardwalk trail of about 400 feet through 10 acres of woods on Van Ingen Drive, across from the Webster Public Library.'
 type: 'trail'
 geo:
   latitude: 43.2125811

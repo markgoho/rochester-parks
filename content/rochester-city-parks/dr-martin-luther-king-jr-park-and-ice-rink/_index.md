@@ -1,6 +1,6 @@
 ---
 title: 'Dr. Martin Luther King Jr. Park & Ice Rink'
-description: 'A Rochester City Park called Dr. Martin Luther King Jr. Park & Ice Rink'
+description: 'A downtown park at 353 Court Street with a playground and an outdoor ice rink with a warming shelter. Lawrence Halprin designed it.'
 type: 'park'
 acres: 4.4
 address:

@@ -1,6 +1,6 @@
 ---
 title: 'Anderson Park'
-description: 'A Rochester City Park called Anderson Park'
+description: 'A small park in Rochester where North Union Street, University Avenue and Main Street meet. The Olmsted firm designed it in 1904.'
 type: 'park'
 acres: 0.4
 address:

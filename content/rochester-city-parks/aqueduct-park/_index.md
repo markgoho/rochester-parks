@@ -1,6 +1,6 @@
 ---
 title: 'Aqueduct Park'
-description: 'A Rochester City Park called Aqueduct Park'
+description: 'A green space on the Genesee River in downtown Rochester, just west of the Main Street Bridge, with benches and picnic tables.'
 type: 'park'
 geo:
   latitude: 43.1556926

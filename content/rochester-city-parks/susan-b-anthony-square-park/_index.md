@@ -1,6 +1,6 @@
 ---
 title: 'Susan B. Anthony Square Park'
-description: 'A Rochester City Park called Susan B. Anthony Square Park'
+description: 'A small park at 39 King Street near the Susan B. Anthony House Museum. Its bronze sculpture shows Anthony and Frederick Douglass.'
 type: 'park'
 acres: 0.9
 address:

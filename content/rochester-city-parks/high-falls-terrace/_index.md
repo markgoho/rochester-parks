@@ -1,6 +1,6 @@
 ---
 title: 'High Falls Terrace'
-description: 'A Rochester City Park called High Falls Terrace'
+description: 'A City of Rochester park.'
 type: 'park'
 geo:
   latitude: 43.1627593

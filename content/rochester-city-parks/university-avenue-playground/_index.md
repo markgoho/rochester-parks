@@ -1,6 +1,6 @@
 ---
 title: 'University Avenue Playground'
-description: 'A Rochester City Park called University Avenue Playground'
+description: 'A 1-acre city playground at University Avenue and Merriman Street in Rochester, with a basketball court and a playground.'
 type: 'park'
 acres: 1
 address:

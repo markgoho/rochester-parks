@@ -1,6 +1,6 @@
 ---
 title: 'Don Samuel Torres Park'
-description: 'A Rochester City Park called Don Samuel Torres Park'
+description: 'A 2.5-acre city park at 70 Oakman Street, rebuilt in 2021 with basketball courts, a baseball field, a playground and a dominoes table.'
 type: 'park'
 acres: 2.5
 address:

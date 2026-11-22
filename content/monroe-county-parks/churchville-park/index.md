@@ -1,6 +1,6 @@
 ---
 title: 'Churchville Park'
-description: 'A monroe county park called Churchville Park'
+description: 'A 742-acre Monroe County park at 629 Kendall Road in Churchville, with a golf course, disc golf, an ice rink, fishing and a boat launch.'
 type: 'county-parks'
 geo:
   latitude: 43.10777267914372

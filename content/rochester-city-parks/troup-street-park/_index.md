@@ -1,6 +1,6 @@
 ---
 title: 'Troup Street Park'
-description: 'A Rochester City Park called Troup Street Park'
+description: 'A 4.1-acre park near the center of Rochester, with ball and soccer fields, a basketball court, play structures, a spray feature and an exercise trail.'
 type: 'park'
 acres: 4.1
 address:

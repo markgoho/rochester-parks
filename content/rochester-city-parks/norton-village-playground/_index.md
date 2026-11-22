@@ -1,6 +1,6 @@
 ---
 title: 'Norton Village Playground'
-description: 'A Rochester City Park called Norton Village Playground'
+description: 'A park on Waring Road in the Norton Village neighborhood, with ball fields, tennis and basketball courts, a playground and a lodge for events.'
 type: 'park'
 acres: 11.3
 address:

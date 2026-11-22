@@ -1,6 +1,6 @@
 ---
 title: "Cobb's Hill Park and Washington Grove"
-description: "A Rochester City Park called Cobb's Hill Park and Washington Grove"
+description: "A 109-acre park on Rochester's east side with a reservoir, walking trails, sports fields, a playground and Washington Grove, an old growth forest."
 type: 'park'
 acres: 109
 address:
