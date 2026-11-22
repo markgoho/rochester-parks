@@ -6,4 +6,11 @@ export const prerender = true;
 // against the prerendered index, so the rest of the site stays JS-free.
 export const csr = true;
 
-export const load: PageServerLoad = () => getParkIndex();
+// The layout builds the title, canonical and share tags from these.
+export const load: PageServerLoad = () => ({
+  ...getParkIndex(),
+  url: '/find/',
+  title: 'Find a Park',
+  description:
+    'Find a park in Monroe County, New York by what it has: playgrounds, trails, dog parks, beaches and more.',
+});

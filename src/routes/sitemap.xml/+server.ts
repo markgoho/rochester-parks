@@ -4,7 +4,8 @@ import { absUrl } from '#lib/site.js';
 export const prerender = true;
 
 export function GET() {
-  const urls = getIndexableUrls()
+  // /find is a route, not content, so the content list leaves it out.
+  const urls = [...getIndexableUrls(), '/find/']
     .map((url) => `<url><loc>${absUrl(url)}</loc></url>`)
     .join('');
   const xml = `<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>`;
