@@ -1,6 +1,6 @@
 ---
 title: 'Grand Avenue Park'
-description: 'A 2.1-acre city park at 250 Grand Avenue in Rochester, with a baseball diamond and a playground.'
+description: 'A 2.1-acre City of Rochester park at 250 Grand Avenue, at Chamberlain, in Rochester, with one baseball diamond and one playground.'
 type: 'park'
 acres: 2.1
 address:

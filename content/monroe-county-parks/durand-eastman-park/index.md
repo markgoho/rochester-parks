@@ -1,6 +1,6 @@
 ---
 title: 'Durand Eastman Park'
-description: 'A 977-acre Monroe County park with a golf course, a playground, a lodge, shelters and bathrooms.'
+description: 'A 977-acre Monroe County park on Lake Ontario, with wooded slopes, small lakes, three trails, a golf course, a playground and shelters.'
 type: 'county-parks'
 geo:
   latitude: 43.22795894781158

@@ -1,6 +1,6 @@
 ---
 title: 'Austin Steward Plaza'
-description: 'Austin Steward Plaza is a City of Rochester park in Rochester, New York.'
+description: 'A City of Rochester plaza on the west bank of the Genesee River between Main and Andrews Streets, with seating, a promenade and green space.'
 type: 'park'
 geo:
   latitude: 43.1573727

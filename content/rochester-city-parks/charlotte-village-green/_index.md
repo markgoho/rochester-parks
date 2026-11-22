@@ -1,6 +1,6 @@
 ---
 title: 'Charlotte Village Green'
-description: 'A 4.6-acre city park at Latta Road and Spanish Trail in Rochester, with a basketball court and a tennis court.'
+description: 'A 4.6-acre City of Rochester park at Latta Road and Spanish Trail in Rochester, with one basketball court and one tennis court.'
 type: 'park'
 acres: 4.6
 address:

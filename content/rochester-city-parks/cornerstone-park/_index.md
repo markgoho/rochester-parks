@@ -1,6 +1,6 @@
 ---
 title: 'Cornerstone Park'
-description: 'Cornerstone Park is a half-acre City of Rochester park at 67 Stone Street in Rochester, New York.'
+description: 'A half-acre City of Rochester park at 67 Stone Street, at the corner of Broad Street, in Rochester.'
 type: 'park'
 acres: 0.5
 address:

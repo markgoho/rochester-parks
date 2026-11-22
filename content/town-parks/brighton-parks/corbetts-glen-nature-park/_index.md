@@ -1,6 +1,6 @@
 ---
 title: 'Corbett’s Glen Nature Park'
-description: 'A 52-acre nature park in Brighton along Allens Creek, with two miles of trails and a deck for viewing Postcard Falls.'
+description: 'A 52-acre nature park in Brighton along Allens Creek, with two miles of trails, a boardwalk and a deck overlooking Postcard Falls.'
 type: 'park'
 geo:
   latitude: 43.1335385

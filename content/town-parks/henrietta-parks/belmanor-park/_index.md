@@ -1,6 +1,6 @@
 ---
 title: 'Belmanor Park'
-description: 'A town park in Henrietta with an open field.'
+description: 'An open-field greenspace on Belmanor Drive in Henrietta, with no parking lot.'
 type: 'park'
 geo:
   latitude: 43.090607

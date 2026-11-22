@@ -1,6 +1,6 @@
 ---
 title: 'J. P. Riley'
-description: 'A 1.5-acre city park at 130 Santee Street in Rochester, with a baseball diamond, a basketball court and a playground.'
+description: 'A 1.5-acre City of Rochester park at 130 Santee Street in Rochester, with a baseball diamond, a basketball court and a playground.'
 type: 'park'
 acres: 1.5
 address:

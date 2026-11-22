@@ -1,6 +1,6 @@
 ---
 title: 'Braddock Bay Park'
-description: 'A 375-acre park in Greece with a lodge, shelters, a boat launch, an overlook, trails, a playground and barbecues.'
+description: 'A 375-acre park in Greece on Braddock Bay, with trails, a boardwalk, an observation platform, a playground, shelters and two lodges.'
 type: 'park'
 address:
   streetAddress: '199 East Manitou Road'

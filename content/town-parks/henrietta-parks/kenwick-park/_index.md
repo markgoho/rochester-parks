@@ -1,6 +1,6 @@
 ---
 title: 'Kenwick Park'
-description: 'A 10.39-acre town park in Henrietta on Kenwick Drive with a playground.'
+description: 'A 10.39-acre Town of Henrietta park at 165 Kenwick Drive with a playground and parking.'
 type: 'park'
 geo:
   latitude: 43.078703

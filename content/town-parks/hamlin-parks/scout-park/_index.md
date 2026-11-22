@@ -1,6 +1,6 @@
 ---
 title: 'Scout Park'
-description: 'A 9.13-acre town park in Hamlin at 4250 Brick Schoolhouse Road.'
+description: 'A 9.13-acre Town of Hamlin park at 4250 Brick Schoolhouse Road.'
 type: 'park'
 geo:
   latitude: 43.314817
@@ -12,5 +12,6 @@ address:
   addressCountry: 'US'
 acres: 9.13
 sameAs:
+  - 'https://hamlinny.org/places-of-interest/'
   - 'https://maps.google.com/?cid=6580967996290003523'
 ---

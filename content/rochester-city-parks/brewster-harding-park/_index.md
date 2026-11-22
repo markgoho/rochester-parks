@@ -1,6 +1,6 @@
 ---
 title: 'Brewster Harding Park'
-description: 'A 4-acre city park at Harding Road and Brewster in Rochester, with a baseball diamond and a playground.'
+description: 'A 4-acre City of Rochester park at Harding Road and Brewster in Rochester, with one baseball diamond and one playground.'
 type: 'park'
 acres: 4
 address:

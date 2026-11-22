@@ -1,6 +1,6 @@
 ---
 title: "D'Amico Park"
-description: 'A 9.65-acre park at 605 Phillips Road in Webster where the Webster Athletic Association plays baseball on its fields.'
+description: 'A 9.65-acre park on Phillips Road in Webster that is the home of Webster Athletic Association baseball and has baseball fields.'
 type: 'park'
 geo:
   latitude: 43.2355653

@@ -1,6 +1,6 @@
 ---
 title: 'Milton R. Case Memorial Park'
-description: 'A 14-acre park in the Village of Webster between South Avenue and Wood Street, with nature trails through the woods.'
+description: 'A 14-acre wooded park in the Village of Webster, between South Avenue and Wood Street, with nature trails that run through the woods.'
 type: 'park'
 geo:
   latitude: 43.204956

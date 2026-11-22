@@ -1,6 +1,6 @@
 ---
 title: 'Wilmorite Recreation Area'
-description: 'A park in the Village of Webster off Iroquois Street with playground equipment and a baseball field.'
+description: 'A park in the Village of Webster, off Iroquois Street, with playground equipment and a baseball field.'
 type: 'park'
 geo:
   latitude: 43.2026084

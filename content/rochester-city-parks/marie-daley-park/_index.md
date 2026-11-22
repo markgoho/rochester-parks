@@ -1,6 +1,6 @@
 ---
 title: 'Marie Daley Park'
-description: 'A 2.2-acre city park at 160 Gregory Street in Rochester, with a baseball diamond and a playground.'
+description: 'Marie Daley Park is a 2.2-acre city park at 160 Gregory Street in Rochester, with an unlit baseball diamond and a playground.'
 type: 'park'
 acres: 2.2
 address:

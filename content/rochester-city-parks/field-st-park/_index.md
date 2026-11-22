@@ -1,6 +1,6 @@
 ---
 title: 'Field St Park'
-description: 'A 1.4-acre city park at 194 Field Street in Rochester, with a baseball diamond, a football field and a playground.'
+description: 'A 1.4-acre City of Rochester park at 194 Field Street in Rochester, with a baseball diamond, a football field and a playground.'
 type: 'park'
 acres: 1.4
 address:

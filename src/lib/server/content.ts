@@ -514,7 +514,7 @@ function bySizePage(sectionUrl: string): Page | undefined {
   return {
     ...base,
     ...self,
-    description: `${listPlace(node)}, sorted from largest to smallest, with the acres of each park.`,
+    description: `${listPlace(node)}, sorted from largest to smallest. See the acres of each park, what it has and where to find it.`,
     canonical: sectionUrl,
     order: 'size',
     children: [...base.children].sort(bySize),
@@ -543,7 +543,7 @@ function byNeighborhoodPage(sectionUrl: string): Page | undefined {
   return {
     ...base,
     ...self,
-    description: `${listPlace(node)}, grouped by neighborhood, from the 19th Ward to the South Wedge.`,
+    description: `${listPlace(node)}, grouped by neighborhood from the 19th Ward to the South Wedge, with what each park has and where to find it.`,
     canonical: sectionUrl,
     order: 'neighborhood',
     ancestors: [...base.ancestors, link(node)],

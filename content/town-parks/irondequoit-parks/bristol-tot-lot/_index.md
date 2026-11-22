@@ -1,6 +1,6 @@
 ---
 title: 'Bristol Tot Lot'
-description: 'A small town tot lot with a playground in Irondequoit.'
+description: 'A small Town of Irondequoit tot lot with a playground, off Cooper Road. The town also calls it the Home Depot Play Area.'
 type: 'park'
 amenities:
   - Playground
