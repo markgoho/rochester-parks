@@ -43,6 +43,11 @@
     ],
     "redirects": [
       {
+        "source": "/rochester-city-parks/meigs-linden",
+        "destination": "/rochester-city-parks/ellwanger-and-barry-park/",
+        "type": 301
+      },
+      {
         "source": "/rochester-city-parks/manhattan-square",
         "destination": "/rochester-city-parks/dr-martin-luther-king-jr-park-and-ice-rink/",
         "type": 301
