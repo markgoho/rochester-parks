@@ -1,6 +1,6 @@
 ---
 title: 'Potter Park'
-description: 'A 9.58-acre Village of Fairport park run by Perinton, with ball fields, courts, a playground, a community garden and the Lion''s Den teen center.'
+description: "A 9.58-acre Village of Fairport park run by Perinton, with ball fields, courts, a playground, a community garden and the Lion's Den teen center."
 type: 'park'
 geo:
   latitude: 43.096658

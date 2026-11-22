@@ -1,6 +1,6 @@
 ---
 title: 'Basil Marella Park'
-description: 'A 101.7-acre park in Greece, the town''s largest developed park, with trails, a disc golf course, athletic fields, a playground and a shelter.'
+description: "A 101.7-acre park in Greece, the town's largest developed park, with trails, a disc golf course, athletic fields, a playground and a shelter."
 type: 'park'
 geo:
   latitude: 43.2348356

@@ -1,6 +1,6 @@
 ---
 title: 'Barry Street Park'
-description: 'A 1.5-acre village park in Brockport with the only basketball court among the village''s parks, two pickleball courts, a playground and a pavilion.'
+description: "A 1.5-acre village park in Brockport with the only basketball court among the village's parks, two pickleball courts, a playground and a pavilion."
 type: 'park'
 geo:
   latitude: 43.216254

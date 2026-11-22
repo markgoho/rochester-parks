@@ -1,6 +1,6 @@
 ---
 title: 'First Responders Park'
-description: 'A 68-acre park in Gates, the town''s largest, with a playground, disc golf, fishing, trails, a shelter and ball and soccer fields.'
+description: "A 68-acre park in Gates, the town's largest, with a playground, disc golf, fishing, trails, a shelter and ball and soccer fields."
 type: 'park'
 address:
   streetAddress: '4310 Lyell Road'
