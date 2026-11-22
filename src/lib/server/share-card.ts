@@ -3,6 +3,7 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import opentype from 'opentype.js';
+import sharp from 'sharp';
 import wawoff2 from 'wawoff2';
 import { parkFrame } from '../park-shapes.js';
 
@@ -180,18 +181,13 @@ export function parkCard({
   name,
   section,
   paths,
-  photo,
 }: {
   name: string;
   section: string;
   paths?: string[];
-  /** A site-relative path under `static/`. */
-  photo?: string;
 }): Uint8Array {
   name = curly(name);
   section = curly(section);
-  const uri = photoDataUri(photo);
-  if (uri) return photoCard(name, section, uri);
   const { size, lines } = fitName(name, paths ? 560 : 1056, 4);
   const lineHeight = Math.round(size * 1.08);
   const block = lines.length * lineHeight;
@@ -221,22 +217,22 @@ export function parkCard({
 }
 
 /**
- * The photo is cover-cropped by resvg. Only the formats it decodes, and only a
- * file on disk: an http URL or an unreadable file gives no photo, and the
- * caller falls back to the paper card.
+ * The photo, upright (EXIF orientation applied) and cropped to the card,
+ * as a data URI: a 1200x630 JPEG keeps the SVG small. Undefined for an http
+ * URL or a file that cannot be read or decoded.
  */
-function photoDataUri(photo: string | undefined): string | undefined {
+async function photoDataUri(
+  photo: string | undefined
+): Promise<string | undefined> {
   if (!photo || /^https?:\/\//.test(photo)) return undefined;
   try {
     const file = join(process.cwd(), 'static', decodeURI(photo));
-    const bytes = readFileSync(file);
-    const isJpeg = bytes[0] === 0xff && bytes[1] === 0xd8;
-    const isPng = bytes.subarray(1, 4).toString('latin1') === 'PNG';
-    const isWebp = bytes.subarray(8, 12).toString('latin1') === 'WEBP';
-    const type = isJpeg ? 'jpeg' : isPng ? 'png' : isWebp ? 'webp' : undefined;
-    return type
-      ? `data:image/${type};base64,${bytes.toString('base64')}`
-      : undefined;
+    const jpeg = await sharp(file)
+      .rotate()
+      .resize(WIDTH, HEIGHT, { fit: 'cover' })
+      .jpeg({ quality: 90 })
+      .toBuffer();
+    return `data:image/jpeg;base64,${jpeg.toString('base64')}`;
   } catch {
     return undefined;
   }
@@ -307,6 +303,25 @@ export function titleCard(title: string, subtitle: string): Uint8Array {
     footer(),
   ].join('');
   return render(frameSvg(body));
+}
+
+/**
+ * The card of a Park or Trail with a photo on disk, as a JPEG: a photo as PNG
+ * is over a megabyte, and some chat apps drop a share image over a few
+ * hundred KB. A photo that cannot be read gives the paper card, as a JPEG
+ * too, since the page already points at the `.jpg`.
+ */
+export async function photoShareCard(card: {
+  name: string;
+  section: string;
+  paths?: string[];
+  photo?: string;
+}): Promise<Uint8Array> {
+  const uri = await photoDataUri(card.photo);
+  const png = uri
+    ? photoCard(curly(card.name), curly(card.section), uri)
+    : parkCard(card);
+  return sharp(png).jpeg({ quality: 80, mozjpeg: true }).toBuffer();
 }
 
 /** The card for every page that has no card of its own. */

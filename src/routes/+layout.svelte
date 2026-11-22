@@ -7,7 +7,7 @@
     PAGEFIND_UI_SRC,
     SITE_TITLE,
     absUrl,
-    shareCardSlug,
+    shareCardPath,
   } from '#lib/site.js';
   import { SEARCH_RESULT_TEMPLATE } from '#lib/search-template.js';
   import archivoBlack from '#lib/fonts/ArchivoBlack-400.woff2?url';
@@ -32,8 +32,10 @@
       const what = page.data.trail
         ? 'a trail'
         : `a park in ${park.section.title}`;
+      const path = shareCardPath(page.data.url ?? '/', park.photo);
       return {
-        url: absUrl(`/og/${shareCardSlug(page.data.url ?? '/')}.png`),
+        url: absUrl(path),
+        type: path.endsWith('.jpg') ? 'image/jpeg' : 'image/png',
         alt: park.photo
           ? `${page.data.title}, ${what}: a photo on a Rochester Parks card`
           : `${page.data.title}, ${what}: its outline on a Rochester Parks card`,
@@ -96,6 +98,9 @@
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={share.url} />
   <meta property="og:image:alt" content={share.alt} />
+  {#if share.type}
+    <meta property="og:image:type" content={share.type} />
+  {/if}
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- X and some chat apps read this, not og:*, to pick the card size. Every

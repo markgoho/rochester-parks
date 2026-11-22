@@ -1,14 +1,19 @@
 import { error } from '@sveltejs/kit';
 import { getListCards, getShareCards } from '#lib/server/content.js';
 import { parkCard, siteCard, titleCard } from '#lib/server/share-card.js';
+import { hasPhotoCard } from '#lib/site.js';
 import type { EntryGenerator, RequestHandler } from './$types';
 
 export const prerender = true;
 
-const cards = new Map(getShareCards().map((card) => [card.slug, card]));
+const cards = new Map(
+  getShareCards()
+    .filter((card) => !hasPhotoCard(card.photo))
+    .map((card) => [card.slug, card])
+);
 const lists = new Map(getListCards().map((card) => [card.slug, card]));
 
-/** `site` is the card for every page that has none of its own. */
+/** Cards with a photo on disk are JPEGs, in `../[slug].jpg`. `site` is the card for every page that has none of its own. */
 export const entries: EntryGenerator = () => [
   { slug: 'site' },
   ...[...cards.keys(), ...lists.keys()].map((slug) => ({ slug })),
