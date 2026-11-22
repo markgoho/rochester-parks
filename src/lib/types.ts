@@ -341,6 +341,11 @@ export interface Page extends PageLink {
    */
   order?: 'size' | 'neighborhood';
   /**
+   * The name of the section list's own share card, under `/og/`. A second
+   * ordering of the section carries its section's.
+   */
+  shareCard?: string;
+  /**
    * How a park list shows its parks. Absent means the cards (#307).
    * `'table'` marks the prerendered table view of an ordering, one level
    * below it.

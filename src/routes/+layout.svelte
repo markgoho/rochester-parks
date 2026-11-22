@@ -21,33 +21,33 @@
     absUrl(page.data.canonical ?? page.data.url ?? '/')
   );
   /**
-   * What a shared link shows (#369). A park page with a photo shares the
-   * photo; one without gets a card with its outline, name and section,
-   * generated at build time. Every other page gets the one site card.
+   * What a shared link shows (#369): every park and trail has its own
+   * generated card, with its photo behind the name when it has one. A
+   * section list has one too, and a second ordering of it shares it. Every
+   * other page gets the one site card.
    */
   const share = $derived.by(() => {
     const park = page.data.park ?? page.data.trail;
-    const photo: string | undefined = park?.photo;
-    if (park && photo) {
-      return {
-        url: /^https?:\/\//.test(photo) ? photo : absUrl(photo),
-        alt: page.data.trail
-          ? `${page.data.title}, a trail`
-          : `${page.data.title}, a park in ${park.section.title}`,
-        generated: false,
-      };
-    }
     if (park) {
+      const what = page.data.trail
+        ? 'a trail'
+        : `a park in ${park.section.title}`;
       return {
         url: absUrl(`/og/${shareCardSlug(page.data.url ?? '/')}.png`),
-        alt: `${page.data.title}, ${page.data.trail ? 'a trail' : park.section.title}: the ${page.data.trail ? 'trail' : 'park'}'s outline on a Rochester Parks card`,
-        generated: true,
+        alt: park.photo
+          ? `${page.data.title}, ${what}: a photo on a Rochester Parks card`
+          : `${page.data.title}, ${what}: its outline on a Rochester Parks card`,
+      };
+    }
+    if (page.data.shareCard) {
+      return {
+        url: absUrl(`/og/${page.data.shareCard}.png`),
+        alt: `${page.data.title}: a list of parks on a Rochester Parks card`,
       };
     }
     return {
       url: absUrl('/og/site.png'),
       alt: `${SITE_TITLE}: every park in Monroe County, New York`,
-      generated: true,
     };
   });
   const title = $derived(
@@ -96,10 +96,8 @@
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={share.url} />
   <meta property="og:image:alt" content={share.alt} />
-  {#if share.generated}
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-  {/if}
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <!-- X and some chat apps read this, not og:*, to pick the card size. Every
        page has a large image now. -->
   <meta name="twitter:card" content="summary_large_image" />
