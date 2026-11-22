@@ -1,6 +1,6 @@
 ---
 title: 'Rothfuss Park'
-description: 'A park in Penfield'
+description: 'A 70-acre park in Penfield with athletic fields, a dinosaur-themed playground, an inclusive playground, a fitness trail and hiking trails.'
 type: 'park'
 geo:
   latitude: 43.164269

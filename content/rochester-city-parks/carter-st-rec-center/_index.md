@@ -1,6 +1,6 @@
 ---
 title: 'Carter St. Rec Center'
-description: 'The city grounds that hold the Carter Street R-Center'
+description: 'City grounds at 500 Carter Street in Rochester with the Carter Street R-Center, a gym, a spray park, a playground, tennis courts and ball fields.'
 type: 'park'
 address:
   streetAddress: '500 Carter Street'

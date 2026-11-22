@@ -1,6 +1,6 @@
 ---
 title: 'Vest Pocket Park'
-description: 'A park in Mendon'
+description: 'A small village park in Honeoye Falls on West Main Street with the Honeoye Falls Totem Pole, picnic tables, benches and a creek view.'
 type: 'park'
 geo:
   latitude: 42.951796

@@ -1,6 +1,6 @@
 ---
 title: 'Quamina Park'
-description: 'A 0.3-acre city park at 25 Quamina Drive in Rochester.'
+description: 'Quamina Park is a 0.3-acre City of Rochester park at 25 Quamina Drive in Rochester, New York.'
 type: 'park'
 acres: 0.3
 address:

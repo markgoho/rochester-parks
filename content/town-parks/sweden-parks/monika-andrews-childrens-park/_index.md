@@ -1,6 +1,6 @@
 ---
 title: 'Monika Andrews Children’s Park'
-description: 'A park in Sweden'
+description: 'A 0.9-acre park in Brockport with accessible play equipment, a pavilion and picnic tables, named for Monika Andrews and once a school site.'
 type: 'park'
 geo:
   latitude: 43.2138234

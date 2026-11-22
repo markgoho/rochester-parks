@@ -1,6 +1,6 @@
 ---
 title: 'Ridge Park'
-description: 'A park in Webster'
+description: 'A 40.8-acre park at 1000 Ridge Road in Webster with eight softball fields, the Challenger Miracle Field, a playground, a pavilion and trails.'
 type: 'park'
 geo:
   latitude: 43.2124299

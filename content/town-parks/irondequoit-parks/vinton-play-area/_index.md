@@ -1,6 +1,6 @@
 ---
 title: 'Vinton Play Area'
-description: 'A park in Irondequoit'
+description: 'A small town playground in Irondequoit.'
 type: 'park'
 amenities:
   - Playground

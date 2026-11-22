@@ -1,6 +1,6 @@
 ---
 title: 'Rotary Park'
-description: 'A park in Mendon'
+description: 'A village park in Honeoye Falls on North Main Street with two soccer fields, a pavilion, restrooms and playground equipment.'
 type: 'park'
 geo:
   latitude: 42.961443

@@ -1,6 +1,6 @@
 ---
 title: 'Kreag Road Park'
-description: 'A park in Perinton'
+description: 'A 9-acre park in Perinton with a playground, shuffleboard, tennis, basketball and volleyball courts, a sandbox and a boat dock on the Erie Canal.'
 type: 'park'
 geo:
   latitude: 43.06427986545538

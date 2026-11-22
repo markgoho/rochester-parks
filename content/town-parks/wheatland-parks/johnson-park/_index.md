@@ -1,6 +1,6 @@
 ---
 title: 'Johnson Park'
-description: 'A park in Wheatland'
+description: 'A 2.7-acre park in Scottsville in Wheatland with baseball diamonds, a playground, a skate park and a winter ice rink, named for Jack Johnson.'
 type: 'park'
 acres: 2.72
 amenities:

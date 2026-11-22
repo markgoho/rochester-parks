@@ -1,6 +1,6 @@
 ---
 title: 'Great Bend Park'
-description: 'A park in Mendon'
+description: 'An 88.52-acre Town of Mendon park on Clover Street (State Route 65) with walking trails, south of Stoney Lonesome Road.'
 type: 'park'
 address:
   streetAddress: 'Clover Street'

@@ -1,6 +1,6 @@
 ---
 title: 'McAvoy Park'
-description: 'A park in Irondequoit'
+description: 'A 7.29-acre park in Irondequoit with two softball fields, lighted turf fields, a playground, a snack bar and restrooms.'
 type: 'park'
 geo:
   latitude: 43.1757205

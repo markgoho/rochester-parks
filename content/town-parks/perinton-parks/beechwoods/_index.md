@@ -1,6 +1,6 @@
 ---
 title: 'Beechwoods'
-description: 'A park in Perinton'
+description: 'A 22.8-acre nature preserve in Perinton off High Street Extension, with nature trails through low forest and along a stream, open to skiers in winter.'
 type: 'park'
 geo:
   latitude: 43.0974326

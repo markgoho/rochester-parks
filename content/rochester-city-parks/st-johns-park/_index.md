@@ -1,6 +1,6 @@
 ---
 title: "St John's Park"
-description: 'A small city park at Lake Avenue and River Street in Rochester.'
+description: 'St John''s Park is a small, 0.2-acre city park at Lake Avenue and River Street in Rochester, New York.'
 type: 'park'
 acres: 0.2
 address:

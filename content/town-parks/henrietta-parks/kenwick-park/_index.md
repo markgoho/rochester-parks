@@ -1,6 +1,6 @@
 ---
 title: 'Kenwick Park'
-description: 'A park in Henrietta'
+description: 'A 10.39-acre town park in Henrietta on Kenwick Drive with a playground.'
 type: 'park'
 geo:
   latitude: 43.078703

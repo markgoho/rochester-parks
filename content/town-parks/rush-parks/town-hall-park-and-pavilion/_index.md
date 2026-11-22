@@ -1,6 +1,6 @@
 ---
 title: 'Town Hall Park and Pavilion'
-description: 'A park in Rush'
+description: 'A park by the Rush Town Hall with a playground, a basketball court, a gaga pit, sports fields, creekside trails and a rentable pavilion.'
 type: 'park'
 geo:
   latitude: 42.9962785

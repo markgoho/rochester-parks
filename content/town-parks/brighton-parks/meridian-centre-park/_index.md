@@ -1,6 +1,6 @@
 ---
 title: 'Meridian Centre Park'
-description: 'A park in Brighton'
+description: 'A 24-acre park in Brighton with ball fields, a playground, tennis courts, an amphitheater, boat and fishing docks and a trail to the Erie Canal path.'
 type: 'park'
 geo:
   latitude: 43.1048201

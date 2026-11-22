@@ -1,6 +1,6 @@
 ---
 title: 'Sherwood Fields Park'
-description: 'A park in Penfield'
+description: 'An 82-acre park in East Penfield with meadows and wetlands, and a multi-use trail system with accessible crushed-stone paths.'
 type: 'park'
 address:
   streetAddress: '2514 Penfield Road'

@@ -1,6 +1,6 @@
 ---
 title: 'Camp Eastman'
-description: 'A park in Irondequoit'
+description: 'An Irondequoit park on Lake Shore Boulevard with rentable lodges and cabins, a spray park, a playground, athletic fields and walking trails.'
 type: 'park'
 amenities:
   - Camping

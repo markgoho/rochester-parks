@@ -1,6 +1,6 @@
 ---
 title: 'Greenwood Park'
-description: 'A park in Penfield'
+description: 'A 21-acre park in Penfield at Scribner Road and Embury Road with a baseball diamond, basketball, tennis and pickleball courts and a playground.'
 type: 'park'
 address:
   streetAddress: '1550 Scribner Road'

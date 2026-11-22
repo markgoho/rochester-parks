@@ -1,6 +1,6 @@
 ---
 title: 'Horizon Hill'
-description: 'A park in Perinton'
+description: 'A 73.5-acre open space in Perinton off Garnsey Road with several hiking trails, including sections of the Crescent Trail. It has no buildings.'
 type: 'park'
 geo:
   latitude: 43.050611

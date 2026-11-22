@@ -1,6 +1,6 @@
 ---
 title: 'South Avenue Park'
-description: 'A park in Sweden'
+description: 'A 1-acre park at 52 South Avenue in Brockport with open green space for games and picnics and a beech tree about 125 years old.'
 type: 'park'
 geo:
   latitude: 43.2082688

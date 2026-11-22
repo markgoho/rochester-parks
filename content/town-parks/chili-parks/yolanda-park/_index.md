@@ -1,6 +1,6 @@
 ---
 title: 'Yolanda Park'
-description: 'A park in Chili'
+description: 'A 4-acre neighborhood park in Chili on Yolanda Drive next to Interstate 490, with open space and a playground.'
 type: 'park'
 geo:
   latitude: 43.1210257

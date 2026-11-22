@@ -1,6 +1,6 @@
 ---
 title: 'Sawyer Park'
-description: 'A park in Greece'
+description: 'A 16.7-acre park in Greece with two playgrounds, a 9-hole disc golf course, a rentable pavilion, a creek, nature trails and restrooms.'
 type: 'park'
 address:
   streetAddress: '732 Long Pond Road'

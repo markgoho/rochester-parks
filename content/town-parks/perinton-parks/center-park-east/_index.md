@@ -1,6 +1,6 @@
 ---
 title: 'Center Park East'
-description: 'A park in Perinton'
+description: 'A 45-acre park in Perinton off Ayrault Road with soccer fields, hiking trails and a cross-country ski course. Dogs may be off leash.'
 type: 'park'
 geo:
   latitude: 43.080889

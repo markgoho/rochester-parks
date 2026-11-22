@@ -1,6 +1,6 @@
 ---
 title: 'Joshua Park'
-description: 'A park in Irondequoit'
+description: 'A 5.62-acre park in Irondequoit on Titus Avenue with a playground, soccer field, basketball court, bocce, horseshoes and trails.'
 type: 'park'
 geo:
   latitude: 43.20730004667224

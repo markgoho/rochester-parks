@@ -1,6 +1,6 @@
 ---
 title: 'Lock 32 State Canal Park'
-description: 'A park in Pittsford'
+description: 'A 14-acre canal park in Pittsford on the Erie Canalway Trail, with a basic campsite for people traveling the canal by bike or boat.'
 type: 'park'
 geo:
   latitude: 43.0923175

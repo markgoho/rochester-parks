@@ -1,6 +1,6 @@
 ---
 title: 'Canawaugus Park'
-description: 'A park in Wheatland'
+description: 'A 3-acre village park on Oatka Creek in Scottsville with picnic tables and benches, a view of old canal walls and a nearby walking bridge.'
 type: 'park'
 acres: 3.04
 sameAs:

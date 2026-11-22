@@ -1,6 +1,6 @@
 ---
 title: "Veteran's Memorial Park"
-description: 'A park in Greece'
+description: 'A 33.2-acre park in Greece with a playground, a reservable shelter, tennis and basketball courts, athletic fields, trails and restrooms.'
 type: 'park'
 address:
   streetAddress: '4614 Dewey Avenue'

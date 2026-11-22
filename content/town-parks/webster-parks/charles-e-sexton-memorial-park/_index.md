@@ -1,6 +1,6 @@
 ---
 title: 'Charles E. Sexton Memorial Park'
-description: 'A park in Webster'
+description: 'A 46-acre park at 750 Holt Road in Webster with a paved path with fitness stations, disc golf, fishing, a pavilion and a rentable lodge.'
 type: 'park'
 address:
   streetAddress: '750 Holt Road'

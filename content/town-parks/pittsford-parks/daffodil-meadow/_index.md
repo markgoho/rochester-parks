@@ -1,6 +1,6 @@
 ---
 title: 'Daffodil Meadow'
-description: 'A park in Pittsford'
+description: 'A Town of Pittsford park in the woods beside Irondequoit Creek, between Thornell Road and Park Road, where daffodils bloom in spring.'
 type: 'park'
 geo:
   latitude: 43.0530903

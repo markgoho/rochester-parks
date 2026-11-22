@@ -1,6 +1,6 @@
 ---
 title: 'About Rochester Parks'
-description: 'Learn more about Rochester Parks website and its mission.'
+description: 'Why Rochester Parks exists: a page for every park in Monroe County, city, town, county and state, so people find more than the same few parks.'
 ---
 
 ## About Rochester Parks (.org)

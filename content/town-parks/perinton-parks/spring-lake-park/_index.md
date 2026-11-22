@@ -1,6 +1,6 @@
 ---
 title: 'Spring Lake Park'
-description: 'A park in Perinton'
+description: 'A 39.16-acre park in Perinton on Irondequoit Creek with fishing, trails, a playground, a softball field and a trail to Channing Philbrick Park.'
 type: 'park'
 geo:
   latitude: 43.1177009

@@ -1,6 +1,6 @@
 ---
 title: 'Snick Hawkins Park'
-description: 'A park in Ogden'
+description: 'A small 0.28-acre pocket park in Ogden on Canal Road beside the Erie Canal, with a bench and a link to the Canal Trail. It has no parking lot.'
 type: 'park'
 geo:
   latitude: 43.197214

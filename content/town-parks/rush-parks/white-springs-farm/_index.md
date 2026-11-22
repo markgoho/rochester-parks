@@ -1,6 +1,6 @@
 ---
 title: 'White Springs Farm'
-description: 'A park in Rush'
+description: 'A 215-acre town property at 6565 East River Road in Rush, once a BOCES campus, with marked walking trails, bridle trails and pastures.'
 type: 'park'
 geo:
   latitude: 43.0131415

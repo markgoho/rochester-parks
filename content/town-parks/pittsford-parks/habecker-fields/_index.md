@@ -1,6 +1,6 @@
 ---
 title: 'Habecker Fields'
-description: 'A park in Pittsford'
+description: 'A 6-acre park at 34 East Street in Pittsford with Little League and T-ball fields and the Pittsford Town Dog Park, which has a fenced area.'
 type: 'park'
 acres: 6
 geo:

@@ -1,6 +1,6 @@
 ---
 title: 'Buckland Park'
-description: 'A park in Brighton'
+description: 'A 93-acre park in Brighton with baseball fields, three playgrounds, tennis and basketball courts, a perimeter trail, a lodge and a restored farmhouse.'
 type: 'park'
 geo:
   latitude: 43.1132391

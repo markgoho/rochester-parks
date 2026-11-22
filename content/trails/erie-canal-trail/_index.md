@@ -1,6 +1,6 @@
 ---
 title: 'Erie Canal Trail'
-description: 'A trail that follows the Erie Canal towpath through Monroe County'
+description: 'A 360-mile trail on the old Erie Canal towpath from Buffalo to Albany through Rochester, mostly level and paved, part of the Empire State Trail.'
 type: 'trail'
 geo:
   latitude: 43.0923175

@@ -1,6 +1,6 @@
 ---
 title: 'Hoskins Park'
-description: 'A park in Henrietta'
+description: 'A 3.14-acre town park in Henrietta on Pinnacle Road with trails, picnic tables and an Educators Grove honoring local teachers.'
 type: 'park'
 geo:
   latitude: 43.082152

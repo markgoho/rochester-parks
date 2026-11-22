@@ -1,6 +1,6 @@
 ---
 title: 'Center Park West'
-description: 'A park in Perinton'
+description: 'A 49-acre park in Perinton with a playground, shelter, soccer field, trails, an amphitheater and the Perinton Community and Aquatics Center.'
 type: 'park'
 geo:
   latitude: 43.0793138

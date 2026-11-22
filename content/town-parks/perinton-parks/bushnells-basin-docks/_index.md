@@ -1,6 +1,6 @@
 ---
 title: "Bushnell's Basin Docks"
-description: 'A park in Perinton'
+description: 'A one-acre boat dock area in Perinton on the Erie Canal with overnight docking, restrooms and showers, picnic tables and fishing.'
 type: 'park'
 geo:
   latitude: 43.0625371

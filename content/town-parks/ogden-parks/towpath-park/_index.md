@@ -1,6 +1,6 @@
 ---
 title: 'Towpath Park'
-description: 'A park in Ogden'
+description: 'Towpath Park is a 0.28-acre park in Ogden, New York.'
 type: 'park'
 acres: 0.28
 geo:

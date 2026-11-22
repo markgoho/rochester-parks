@@ -1,6 +1,6 @@
 ---
 title: 'Howell Road Park'
-description: 'A park in Perinton'
+description: 'A 208.6-acre park in Perinton with open fields and woods, sections of the Crescent Trail, cross-country skiing and a gravel parking lot.'
 type: 'park'
 geo:
   latitude: 43.1048184

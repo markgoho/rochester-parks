@@ -1,6 +1,6 @@
 ---
 title: 'Royal Coach Park'
-description: 'A park in Pittsford'
+description: 'An 89.96-acre open space park on West Bloomfield Road in Pittsford, with the 1.26-mile natural-surface Royal Coach Loop trail.'
 type: 'park'
 address:
   streetAddress: 'West Bloomfield Road'

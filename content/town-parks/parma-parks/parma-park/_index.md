@@ -1,6 +1,6 @@
 ---
 title: 'Parma Park'
-description: 'A park in Parma'
+description: 'A 72.9-acre park in Parma with baseball and soccer fields, tennis and basketball courts, a disc golf course, four pavilions and trails.'
 type: 'park'
 geo:
   latitude: 43.2525426

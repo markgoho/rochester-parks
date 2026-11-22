@@ -1,6 +1,6 @@
 ---
 title: 'Sandbar Park'
-description: 'A park in Webster'
+description: 'A 1.57-acre park at 302 Lake Road in Webster on Lake Ontario and Irondequoit Bay, with a playground, fishing and a canoe and kayak launch.'
 type: 'park'
 geo:
   latitude: 43.2378755

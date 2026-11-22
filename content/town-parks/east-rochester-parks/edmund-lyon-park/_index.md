@@ -1,6 +1,6 @@
 ---
 title: 'Edmund Lyon Park'
-description: 'A park in East Rochester'
+description: 'An 11-acre park in the center of East Rochester with a gazebo, a fountain, a ball field, a basketball court and veterans memorials.'
 type: 'park'
 geo:
   latitude: 43.1093692

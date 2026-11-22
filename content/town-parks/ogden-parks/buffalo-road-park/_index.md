@@ -1,6 +1,6 @@
 ---
 title: 'Buffalo Road Park'
-description: 'A planned park in Ogden'
+description: 'A planned 41.5-acre Town of Ogden park at 3975 Buffalo Road, with wetlands and plans for pickleball, disc golf and a mountain bike trail.'
 type: 'park'
 geo:
   latitude: 43.1324673

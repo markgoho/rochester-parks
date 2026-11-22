@@ -1,6 +1,6 @@
 ---
 title: 'Vincent G. Kennelley Park'
-description: 'A park in Perinton'
+description: 'A Village of Fairport park with a gazebo at its center that hosts a summer concert series and can be rented for weddings and private events.'
 type: 'park'
 amenities:
   - Gazebo

@@ -1,6 +1,6 @@
 ---
 title: 'Flint St Recreation Center'
-description: 'The city grounds that hold the Willie Walker Lightfoot R-Center'
+description: 'City grounds on Flint Street in Rochester with the Willie Walker Lightfoot R-Center, a pool, a gym, a playground, a basketball court and ball fields.'
 type: 'park'
 address:
   streetAddress: 'Flint St and Costello Pk'

@@ -1,6 +1,6 @@
 ---
 title: 'Thornell Farm Park'
-description: 'A park in Pittsford'
+description: 'A 27-acre park at 480 Mendon Road in Pittsford with turf and grass fields, softball fields, lighted courts, a sledding hill and a pavilion.'
 type: 'park'
 geo:
   latitude: 43.0570488

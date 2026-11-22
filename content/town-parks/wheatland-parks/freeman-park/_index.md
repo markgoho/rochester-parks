@@ -1,6 +1,6 @@
 ---
 title: 'Freeman Park'
-description: 'A park in Wheatland'
+description: 'A 4.6-acre park in the hamlet of Mumford in Wheatland with a pavilion, a playground, a baseball and softball field and open green space.'
 type: 'park'
 acres: 4.60
 amenities:

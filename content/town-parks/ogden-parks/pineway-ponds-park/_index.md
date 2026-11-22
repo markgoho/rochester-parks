@@ -1,6 +1,6 @@
 ---
 title: 'Pineway Ponds Park'
-description: 'A park in Ogden'
+description: 'A 76-acre park in Ogden with seven playfields, a playground with a splash pad, four lodges you can rent, walking paths and ponds for fishing.'
 type: 'park'
 geo:
   latitude: 43.1985112

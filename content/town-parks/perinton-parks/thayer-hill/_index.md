@@ -1,6 +1,6 @@
 ---
 title: 'Thayer Hill'
-description: 'A park in Perinton'
+description: 'A 68-acre open space in Perinton off Route 31 with hiking trails through regrowing woods, part of the Crescent Trail, and good bird watching.'
 type: 'park'
 geo:
   latitude: 43.0622553

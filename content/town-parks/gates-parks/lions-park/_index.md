@@ -1,6 +1,6 @@
 ---
 title: 'Lions Park'
-description: 'A park in Gates'
+description: 'A 14-acre park in Gates with lighted tennis and basketball courts, a sand volleyball court, a soccer and football field, a playground and a heated shelter.'
 type: 'park'
 address:
   streetAddress: '100 Kentucky Avenue'

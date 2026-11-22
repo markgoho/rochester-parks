@@ -1,6 +1,6 @@
 ---
 title: 'Lynch Woods Nature Park'
-description: 'A park in Brighton'
+description: 'A 76-acre nature park in Brighton between Crittenden Road and the town line, with forest and wetlands along Crittenden Creek.'
 type: 'park'
 geo:
   latitude: 43.099069

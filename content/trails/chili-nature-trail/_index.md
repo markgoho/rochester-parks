@@ -1,6 +1,6 @@
 ---
 title: 'Chili Nature Trail'
-description: 'A trail in Chili'
+description: 'A 36-acre trail off Chili Avenue, behind the Chili Heights Apartments, with walking paths, an open field, a pond and two overlooks.'
 type: 'trail'
 address:
   streetAddress: '3613 Chili Ave'

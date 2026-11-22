@@ -1,6 +1,6 @@
 ---
 title: 'Egypt Park'
-description: 'A park in Perinton'
+description: 'A 15.31-acre park in Perinton with a playground, a shelter, a multi-use field, grills and picnic tables, linked to the RS&E Trolley Trail.'
 type: 'park'
 geo:
   latitude: 43.063189

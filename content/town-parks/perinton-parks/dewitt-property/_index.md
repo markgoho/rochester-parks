@@ -1,6 +1,6 @@
 ---
 title: 'DeWitt Property'
-description: 'A park in Perinton'
+description: 'A 56.4-acre open space in Perinton off Turk Hill Road with meadows, forest and rolling valleys, plus hiking and biking trails.'
 type: 'park'
 geo:
   latitude: 43.0579707

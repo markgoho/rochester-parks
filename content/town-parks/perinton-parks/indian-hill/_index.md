@@ -1,6 +1,6 @@
 ---
 title: 'Indian Hill'
-description: 'A park in Perinton'
+description: 'A 35-acre conservation area in Perinton off Route 31 with wooded trails on the Crescent Trail, open fields, horse use and one parking lot.'
 type: 'park'
 geo:
   latitude: 43.0666428

@@ -1,6 +1,6 @@
 ---
 title: 'Grandview Park'
-description: 'A park in Greece'
+description: 'A 6.9-acre park in Greece with a playground, ball diamond, tennis, basketball and volleyball courts, a soccer field and restrooms.'
 type: 'park'
 address:
   streetAddress: '225 Beechwood Park'

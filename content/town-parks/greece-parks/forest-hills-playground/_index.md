@@ -1,6 +1,6 @@
 ---
 title: 'Forest Hills Playground'
-description: 'A park in Greece'
+description: 'A small park in Greece built around a playground with swings, rockers and a climbing structure, plus a large field, a picnic table and a barbecue.'
 type: 'park'
 former: true
 amenities:

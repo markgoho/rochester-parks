@@ -1,6 +1,6 @@
 ---
 title: 'Otto Henderberg Square Park'
-description: 'A small city park on Avon Place in Rochester, with a gazebo.'
+description: 'Otto Henderberg Square Park is a half-acre city park on Avon Place in Rochester with a gazebo.'
 type: 'park'
 acres: 0.5
 address:

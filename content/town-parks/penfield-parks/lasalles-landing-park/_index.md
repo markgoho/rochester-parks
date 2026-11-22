@@ -1,6 +1,6 @@
 ---
 title: "LaSalle's Landing Park"
-description: 'A park in Penfield'
+description: 'A 2.11-acre park in Penfield at the south end of Irondequoit Bay, with a boat launch for canoes and kayaks and a place to fish.'
 type: 'park'
 address:
   streetAddress: '1080 Empire Blvd'

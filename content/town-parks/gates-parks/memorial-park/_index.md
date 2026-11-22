@@ -1,6 +1,6 @@
 ---
 title: 'Memorial Park'
-description: 'A park in Gates'
+description: 'A 30-acre park in Gates with three ball diamonds, football and soccer fields, a pond, a playground, bocce and a heated shelter.'
 type: 'park'
 geo:
   latitude: 43.17105640582264

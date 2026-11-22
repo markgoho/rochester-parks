@@ -1,6 +1,6 @@
 ---
 title: 'Breese Park'
-description: 'A park in Henrietta'
+description: 'A 72.68-acre town park in Henrietta along the Genesee River with an accessible stone-dust trail, a wildlife blind, restrooms and picnic tables.'
 type: 'park'
 geo:
   latitude: 43.0279591

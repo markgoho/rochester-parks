@@ -1,6 +1,6 @@
 ---
 title: 'Brighton Town Park'
-description: 'A park in Brighton'
+description: 'A 28-acre park in Brighton with a lodge, two pavilions, a playground, a softball field and a nature path by a 12-acre pond.'
 type: 'park'
 geo:
   latitude: 43.1128344

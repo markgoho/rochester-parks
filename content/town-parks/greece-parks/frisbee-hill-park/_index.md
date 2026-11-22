@@ -1,6 +1,6 @@
 ---
 title: 'Frisbee Hill Park'
-description: 'A park in Greece'
+description: 'A 36.76-acre park in Greece on a capped landfill, with a sledding hill, a winter skating pond, a playground, picnic areas and restrooms.'
 type: 'park'
 address:
   streetAddress: '141 Frisbee Hill Road'

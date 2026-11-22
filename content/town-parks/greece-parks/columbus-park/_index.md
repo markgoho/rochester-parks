@@ -1,6 +1,6 @@
 ---
 title: 'Columbus Park'
-description: 'A park in Greece'
+description: 'A 9-acre neighborhood park in Greece with a play area, a swing set, picnic tables, barbecues, an open field and restrooms.'
 type: 'park'
 geo:
   latitude: 43.2133021

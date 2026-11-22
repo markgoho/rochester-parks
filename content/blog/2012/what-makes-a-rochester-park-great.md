@@ -1,6 +1,6 @@
 ---
 title: 'What Makes a Rochester Park Great?'
-description: 'Learn about what makes a Rochester Park great'
+description: 'Playgrounds, safety, size, water: what should count when you rank a Rochester park? A first try at a rubric for judging every park we visit.'
 ---
 
 So, I have a huge task ahead of me. There are well over one hundred parks in Rochester and I’m going to visit them all. Over the past few months I’ve only visited a few of the Rochester parks. As I visit each one I add items to my list of things to look for and document. Pictures become more targeted and specific and my commentary gets more detailed. I am constantly developing my vision for what I want the finished site to look like. Each Rochester park has things that make it unique (disc golf course) and things that make it the same as every other park (grass).

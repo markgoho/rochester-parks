@@ -1,6 +1,6 @@
 ---
 title: 'Shadow Pines Property'
-description: 'A park in Penfield'
+description: 'A 212-acre Penfield park on a former golf course, with a disc golf course, pickleball courts, two inclusive playgrounds, a pavilion and trails.'
 type: 'park'
 geo:
   latitude: 43.151258

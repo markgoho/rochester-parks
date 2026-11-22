@@ -1,6 +1,6 @@
 ---
 title: 'Ayrault Boat Launch'
-description: 'A park in Perinton'
+description: 'A 0.7-acre park in Perinton off Ayrault Road with a boat ramp, docks and trailer parking for boaters putting in on the Erie Canal.'
 type: 'park'
 geo:
   latitude: 43.079402

@@ -1,6 +1,6 @@
 ---
 title: 'Gosnell Big Woods Preserve'
-description: 'A park in Webster'
+description: 'A 168-acre preserve at 680 Vosburg Road in Webster with old-growth woods, fields, meadows and three trails.'
 type: 'park'
 address:
   streetAddress: '680 Vosburg Road'

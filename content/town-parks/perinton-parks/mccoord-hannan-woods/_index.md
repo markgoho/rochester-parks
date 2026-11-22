@@ -1,6 +1,6 @@
 ---
 title: 'McCoord Hannan Woods'
-description: 'A park in Perinton'
+description: 'A 29.2-acre wooded preserve in Perinton between Garnsey Road and Kreag Road with steep hiking trails. Most trail entrances are on private land.'
 type: 'park'
 geo:
   latitude: 43.0621354

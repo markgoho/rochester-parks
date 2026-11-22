@@ -1,6 +1,6 @@
 ---
 title: 'Winding Brook Park'
-description: 'A park in Perinton'
+description: 'Winding Brook Park is a town park in Perinton, New York.'
 type: 'park'
 geo:
   latitude: 43.0913425

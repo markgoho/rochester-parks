@@ -1,6 +1,6 @@
 ---
 title: 'Penfield Parks'
-description: 'Parks in Penfield New York'
+description: 'Every park in Penfield, New York, including Veterans Memorial Park, Sherwood Fields Park and Rothfuss Park, with what each park has and where to find it.'
 type: 'park'
 reservations:
   name: 'Town of Penfield'

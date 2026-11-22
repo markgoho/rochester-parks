@@ -1,6 +1,6 @@
 ---
 title: 'Schantz Park'
-description: 'A park in Webster'
+description: 'A park in the Village of Webster between Hawley Drive and State Road with a basketball court, tennis courts, baseball fields and a playground.'
 type: 'park'
 geo:
   latitude: 43.2015876

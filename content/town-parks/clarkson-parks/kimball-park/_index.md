@@ -1,6 +1,6 @@
 ---
 title: 'Kimball Park'
-description: 'A park in Clarkson'
+description: 'A 50-acre park in Clarkson on Ridge Road with a playground, woods, three softball diamonds and a lodge that seats up to 166 people.'
 type: 'park'
 geo:
   latitude: 43.2295341

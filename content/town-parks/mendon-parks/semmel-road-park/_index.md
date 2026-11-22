@@ -1,6 +1,6 @@
 ---
 title: 'Semmel Road Park'
-description: 'A park in Mendon'
+description: 'A 79.08-acre Town of Mendon park with ball fields, tennis and basketball courts, a playground, trails, an ice rink and restrooms.'
 type: 'park'
 address:
   streetAddress: '95 Semmel Road'

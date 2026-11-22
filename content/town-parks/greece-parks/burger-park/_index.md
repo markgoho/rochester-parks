@@ -1,6 +1,6 @@
 ---
 title: 'Burger Park'
-description: 'A park in Greece'
+description: 'A Town of Greece park on Salmon Creek with a car-top boat launch, creek fishing and the 2.9-mile Burger Park Nature Trail.'
 type: 'park'
 geo:
   latitude: 43.3092118

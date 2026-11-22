@@ -1,6 +1,6 @@
 ---
 title: 'Adeline Park'
-description: 'A park in Greece'
+description: 'A 6.5-acre park in Greece with two playgrounds, tennis and basketball courts, a lodge, a shelter and a soccer field.'
 type: 'park'
 address:
   streetAddress: '124 Armstrong Road'

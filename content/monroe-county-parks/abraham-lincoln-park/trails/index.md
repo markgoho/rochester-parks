@@ -1,6 +1,6 @@
 ---
 title: 'Trails'
-description: 'Trails at Abraham Lincoln Park'
+description: 'Trails at Abraham Lincoln Park, a Monroe County park. The trails total 3.5 miles, from a third of a mile to nearly a mile and a half each.'
 type: 'park'
 ---
 

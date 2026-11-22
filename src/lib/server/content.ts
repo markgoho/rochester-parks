@@ -514,7 +514,7 @@ function bySizePage(sectionUrl: string): Page | undefined {
   return {
     ...base,
     ...self,
-    description: `Every park in ${sectionLabel(node.title)}, largest first.`,
+    description: `${listPlace(node)}, sorted from largest to smallest, with the acres of each park.`,
     canonical: sectionUrl,
     order: 'size',
     children: [...base.children].sort(bySize),
@@ -543,7 +543,7 @@ function byNeighborhoodPage(sectionUrl: string): Page | undefined {
   return {
     ...base,
     ...self,
-    description: `Every park in ${sectionLabel(node.title)}, grouped by neighborhood.`,
+    description: `${listPlace(node)}, grouped by neighborhood, from the 19th Ward to the South Wedge.`,
     canonical: sectionUrl,
     order: 'neighborhood',
     ancestors: [...base.ancestors, link(node)],
@@ -792,6 +792,11 @@ const LIST_SUBTITLES: Record<string, string> = {
   '/town-parks/': 'Every town park in Monroe County',
   '/trails/': 'Every trail in Monroe County',
 };
+
+/** What a list holds, for the alternate orderings' descriptions. */
+function listPlace(node: Node): string {
+  return listSubtitle(node) ?? `Every park in ${sectionLabel(node.title)}`;
+}
 
 function listSubtitle(node: Node): string | undefined {
   if (node.kind !== 'section') return undefined;

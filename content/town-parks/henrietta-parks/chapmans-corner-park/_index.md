@@ -1,6 +1,6 @@
 ---
 title: "Chapman's Corner Park"
-description: 'A park in Henrietta'
+description: 'A town park in Henrietta, New York.'
 type: 'park'
 geo:
   latitude: 43.0398245

@@ -1,6 +1,6 @@
 ---
 title: 'White Brook Nature Area'
-description: 'A park in Perinton'
+description: 'A 196-acre nature area in Perinton with trails through fields and woods, cross-country skiing, a nature center and shelters with grills.'
 type: 'park'
 geo:
   latitude: 43.0700025

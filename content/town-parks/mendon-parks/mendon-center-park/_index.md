@@ -1,6 +1,6 @@
 ---
 title: 'Mendon Center Park'
-description: 'A park in Mendon'
+description: 'A 1.81-acre Town of Mendon park on Rush-Mendon Road (State Route 251) with three tennis courts and a drinking fountain.'
 type: 'park'
 address:
   streetAddress: '3315 Rush Mendon Road'

@@ -1,6 +1,6 @@
 ---
 title: 'King’s Bend Park'
-description: 'A park in Pittsford'
+description: 'A 19-acre park at 170 West Jefferson Road in Pittsford with a playground, fishing ponds and two heated lodges you can rent.'
 type: 'park'
 geo:
   latitude: 43.0890541

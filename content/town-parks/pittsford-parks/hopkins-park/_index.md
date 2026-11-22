@@ -1,6 +1,6 @@
 ---
 title: 'Hopkins Park'
-description: 'A park in Pittsford'
+description: 'A 9.6-acre park in Pittsford on Barker Road at Mendon Center Road, with two multipurpose fields, a playground and restrooms.'
 type: 'park'
 address:
   streetAddress: 'Barker Road'

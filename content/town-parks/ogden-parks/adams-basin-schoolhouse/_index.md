@@ -1,6 +1,6 @@
 ---
 title: 'Adams Basin Schoolhouse'
-description: 'A park in Ogden'
+description: 'A half-acre Town of Ogden pocket park in Adams Basin with a playground, a basketball hoop and the old Little Red Schoolhouse.'
 type: 'park'
 geo:
   latitude: 43.1972406

@@ -1,6 +1,6 @@
 ---
 title: 'Spezio Park'
-description: 'A park in Irondequoit'
+description: 'A 0.63-acre park in Irondequoit with a playground, tennis courts and a pickleball court. It has no open field or eating area.'
 type: 'park'
 geo:
   latitude: 43.25273145778468

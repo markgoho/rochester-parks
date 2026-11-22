@@ -1,6 +1,6 @@
 ---
 title: 'Wegman Road Park'
-description: 'A park in Gates'
+description: 'A 2-acre park in Gates with two play structures, a climbing wall, a swing set, an open pavilion and an accessible restroom.'
 type: 'park'
 geo:
   latitude: 43.16112496868358
