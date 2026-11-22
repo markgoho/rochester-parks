@@ -734,9 +734,25 @@ function pageWithoutOutlines(url: string): Page | undefined {
 }
 
 /**
- * The Parks that get a generated share card: the ones with no photo, since a
- * Park with a photo shares the photo. A Park with no outline still gets a
- * card, with no shape.
+ * The label under the name on a share card. A town Park shows its town, in
+ * the site's own spelling ("Town of Pittsford"), since a town section's title
+ * is "Pittsford Parks". A Trail shows "Trail", then its town if the file
+ * names one. County, city and state Parks keep their section.
+ */
+function shareCardLabel(meta: ParkMeta, trail: boolean): string {
+  if (trail) {
+    const town = meta.address?.addressLocality;
+    return town ? `Trail \u00b7 ${town}` : 'Trail';
+  }
+  return meta.section.url.startsWith('/town-parks/')
+    ? `Town of ${meta.section.title}`
+    : meta.section.title;
+}
+
+/**
+ * The Parks and Trails that get a generated share card: the ones with no
+ * photo, since one with a photo shares the photo. One with no outline still
+ * gets a card, with no shape.
  */
 export function getShareCards(): {
   slug: string;
@@ -745,13 +761,13 @@ export function getShareCards(): {
   paths?: string[];
 }[] {
   return [...nodes.values()]
-    .filter(isPark)
+    .filter((node) => isPark(node) || isTrail(node))
     .map((node) => ({ node, meta: parkMetaOf(node) }))
     .filter(({ meta }) => !meta.photo)
     .map(({ node, meta }) => ({
       slug: shareCardSlug(node.url),
       name: node.title,
-      section: meta.section.title,
+      section: shareCardLabel(meta, isTrail(node)),
       paths: PARK_OUTLINES[node.url]
         ? outlinePaths(PARK_OUTLINES[node.url])
         : undefined,

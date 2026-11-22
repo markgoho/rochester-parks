@@ -9,8 +9,8 @@ import { parkFrame } from '../park-shapes.js';
 /**
  * The share image (`og:image`, #369): a 1200x630 PNG. Social platforms
  * reject SVG, so the card is drawn as SVG and rasterised here, at build time,
- * from the site's own two fonts. A park page with no photo gets its outline,
- * name and section; every other page gets the site card.
+ * from the site's own two fonts. A park or trail page with no photo gets its
+ * outline, name and label; every other page gets the site card.
  */
 
 const WIDTH = 1200;
@@ -38,6 +38,18 @@ const display = await loadFont('ArchivoBlack-400.woff2');
 const mono = await loadFont('SpaceMono-400.woff2');
 const monoBold = await loadFont('SpaceMono-700.woff2');
 const displayFont = opentype.parse(display.buffer as ArrayBuffer);
+
+/**
+ * Curly quotes, as the site's smartypants sets them in page text: an
+ * apostrophe or closing quote after a letter, number or punctuation, an
+ * opening quote anywhere else.
+ */
+export const curly = (value: string) =>
+  value
+    .replace(/(^|[\s(\[\u2014-])'/g, '$1\u2018')
+    .replace(/'/g, '\u2019')
+    .replace(/(^|[\s(\[\u2014-])"/g, '$1\u201c')
+    .replace(/"/g, '\u201d');
 
 const escapeXml = (value: string) =>
   value.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -168,6 +180,8 @@ export function parkCard({
   section: string;
   paths?: string[];
 }): Uint8Array {
+  name = curly(name);
+  section = curly(section);
   const { size, lines } = fitName(name, paths ? 560 : 1056, 4);
   const lineHeight = Math.round(size * 1.08);
   const block = lines.length * lineHeight;
