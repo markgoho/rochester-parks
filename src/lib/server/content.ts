@@ -180,8 +180,6 @@ function buildNodes(): Map<string, Node> {
     });
 
   add({ url: '/', title: SITE_TITLE, kind: 'home' });
-  add({ url: '/categories/', title: 'Categories', kind: 'section' });
-  add({ url: '/tags/', title: 'Tags', kind: 'section' });
 
   for (const [file, raw] of Object.entries(files)) {
     const { data, content } = matter(raw);
