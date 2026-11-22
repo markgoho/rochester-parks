@@ -20,3 +20,17 @@ export function absUrl(path: string): string {
 export function shareCardSlug(url: string): string {
   return url.replace(/^\/|\/$/g, '').replaceAll('/', '--');
 }
+
+/**
+ * The path of a Park's or Trail's share image. A photo on disk makes it a
+ * JPEG (a photo as PNG is too big for some chat apps); otherwise a PNG of
+ * its outline. `photo` is as `ParkMeta.photo` has it.
+ */
+export function shareCardPath(url: string, photo?: string): string {
+  return `/og/${shareCardSlug(url)}.${hasPhotoCard(photo) ? 'jpg' : 'png'}`;
+}
+
+/** Whether a photo, as `ParkMeta.photo` has it, is a file on this site. */
+export function hasPhotoCard(photo?: string): boolean {
+  return !!photo && !/^https?:\/\//.test(photo);
+}

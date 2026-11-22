@@ -3,14 +3,17 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import opentype from 'opentype.js';
+import sharp from 'sharp';
 import wawoff2 from 'wawoff2';
 import { parkFrame } from '../park-shapes.js';
 
 /**
  * The share image (`og:image`, #369): a 1200x630 PNG. Social platforms
  * reject SVG, so the card is drawn as SVG and rasterised here, at build time,
- * from the site's own two fonts. A park or trail page with no photo gets its
- * outline, name and label; every other page gets the site card.
+ * from the site's own two fonts. A park or trail with a photo gets the photo
+ * under a dark gradient with its name and label; one without gets its outline
+ * on paper. A section list gets a title card; every other page gets the site
+ * card.
  */
 
 const WIDTH = 1200;
@@ -170,7 +173,10 @@ function render(svg: string): Uint8Array {
     .asPng();
 }
 
-/** One park: shape on the right, name and section on the left. */
+/**
+ * One park: with a photo, the photo card; without, the shape on the right,
+ * name and section on the left.
+ */
 export function parkCard({
   name,
   section,
@@ -210,13 +216,115 @@ export function parkCard({
   return render(frameSvg(body));
 }
 
-/** The card for every page that is not a park without a photo. */
-export function siteCard(): Uint8Array {
+/**
+ * The photo, upright (EXIF orientation applied) and cropped to the card,
+ * as a data URI: a 1200x630 JPEG keeps the SVG small. Undefined for an http
+ * URL or a file that cannot be read or decoded.
+ */
+async function photoDataUri(
+  photo: string | undefined
+): Promise<string | undefined> {
+  if (!photo || /^https?:\/\//.test(photo)) return undefined;
+  try {
+    const file = join(process.cwd(), 'static', decodeURI(photo));
+    const jpeg = await sharp(file)
+      .rotate()
+      .resize(WIDTH, HEIGHT, { fit: 'cover' })
+      .jpeg({ quality: 90 })
+      .toBuffer();
+    return `data:image/jpeg;base64,${jpeg.toString('base64')}`;
+  } catch {
+    return undefined;
+  }
+}
+
+const WHITE = '#ffffff';
+
+/** A park or trail with a photo: the photo, a dark gradient, then the text. */
+function photoCard(name: string, section: string, uri: string): Uint8Array {
+  const { size, lines } = fitName(name, 1056, 3);
+  const lineHeight = Math.round(size * 1.08);
+  const last = 482;
+  const first = last - (lines.length - 1) * lineHeight;
+  const body = `
+  <defs>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1610" stop-opacity="0.62"/>
+      <stop offset="0.2" stop-color="#0b1610" stop-opacity="0.25"/>
+      <stop offset="0.4" stop-color="#0b1610" stop-opacity="0.5"/>
+      <stop offset="0.62" stop-color="#0b1610" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#0b1610" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0b1610" stop-opacity="0.35"/>
+      <stop offset="0.7" stop-color="#0b1610" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="frame"><rect width="${WIDTH}" height="${HEIGHT}"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame)">
+    <image href="${uri}" x="0" y="0" width="${WIDTH}" height="${HEIGHT}"
+           preserveAspectRatio="xMidYMid slice"/>
+  </g>
+  <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#side)"/>
+  <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#shade)"/>
+  <rect width="${WIDTH}" height="14" fill="${ORANGE}"/>
+  ${mark(72, 50, 44)}
+  ${text('ROCHESTER PARKS', 128, 82, 26, { family: 'Space Mono', fill: WHITE, weight: 700, spacing: 3 })}
+  ${lines.map((l, i) => text(l, 72, first + i * lineHeight, size, { family: 'Archivo Black', fill: WHITE })).join('')}
+  ${text(section.toUpperCase(), 72, last + 46, 30, { family: 'Space Mono', fill: WHITE, weight: 700, spacing: 4 })}
+  <rect x="72" y="556" width="1056" height="2" fill="#ffffff" fill-opacity="0.45"/>
+  ${text('rochesterparks.org', 72, 598, 26, { family: 'Space Mono', fill: WHITE })}`;
+  return render(`
+<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}"
+     viewBox="0 0 ${WIDTH} ${HEIGHT}">${body}</svg>`);
+}
+
+/**
+ * A title and a line under it, on the mark: the card for a section list, and,
+ * with the site's own name, for every other page.
+ */
+export function titleCard(title: string, subtitle: string): Uint8Array {
+  title = curly(title);
+  // One line at the largest size that fits, else two lines.
+  let size = 112;
+  let lines = wrap(title, size, 1056, 1);
+  while (!lines && size > 64) {
+    size -= 4;
+    lines = wrap(title, size, 1056, 1);
+  }
+  if (!lines) ({ size, lines } = fitName(title, 1056, 2));
+  const lineHeight = Math.round(size * 1.08);
   const body = [
     mark(72, 96, 96),
-    text('Rochester Parks', 72, 330, 112, DISPLAY),
-    text('Every park in Monroe County, New York', 72, 410, 44, SANS),
+    lines
+      .map((l, i) => text(l, 72, 330 + i * lineHeight, size, DISPLAY))
+      .join(''),
+    text(subtitle, 72, 330 + (lines.length - 1) * lineHeight + 80, 44, SANS),
     footer(),
   ].join('');
   return render(frameSvg(body));
+}
+
+/**
+ * The card of a Park or Trail with a photo on disk, as a JPEG: a photo as PNG
+ * is over a megabyte, and some chat apps drop a share image over a few
+ * hundred KB. A photo that cannot be read gives the paper card, as a JPEG
+ * too, since the page already points at the `.jpg`.
+ */
+export async function photoShareCard(card: {
+  name: string;
+  section: string;
+  paths?: string[];
+  photo?: string;
+}): Promise<Uint8Array> {
+  const uri = await photoDataUri(card.photo);
+  const png = uri
+    ? photoCard(curly(card.name), curly(card.section), uri)
+    : parkCard(card);
+  return sharp(png).jpeg({ quality: 80, mozjpeg: true }).toBuffer();
+}
+
+/** The card for every page that has no card of its own. */
+export function siteCard(): Uint8Array {
+  return titleCard('Rochester Parks', 'Every park in Monroe County, New York');
 }

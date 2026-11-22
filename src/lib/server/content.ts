@@ -690,6 +690,7 @@ function pageWithoutOutlines(url: string): Page | undefined {
     ...link(node),
     description: node.frontMatter.description ?? '',
     layout,
+    ...(listSubtitle(node) ? { shareCard: shareCardSlug(node.url) } : {}),
     html: node.html,
     children: childrenOf(url),
     ancestors,
@@ -755,28 +756,62 @@ const OWNER_LABELS: Record<string, string> = {
 };
 
 /**
- * The Parks and Trails that get a generated share card: the ones with no
- * photo, since one with a photo shares the photo. One with no outline still
- * gets a card, with no shape.
+ * The Parks and Trails that get a generated share card: all of them. One
+ * with a photo gets the photo under a gradient; one with neither photo nor
+ * outline still gets a card, with no shape.
  */
 export function getShareCards(): {
   slug: string;
   name: string;
   section: string;
   paths?: string[];
+  photo?: string;
 }[] {
   return [...nodes.values()]
     .filter((node) => isPark(node) || isTrail(node))
     .map((node) => ({ node, meta: parkMetaOf(node) }))
-    .filter(({ meta }) => !meta.photo)
     .map(({ node, meta }) => ({
       slug: shareCardSlug(node.url),
+      photo: meta.photo,
       name: node.title,
       section: shareCardLabel(meta, isTrail(node)),
       paths: PARK_OUTLINES[node.url]
         ? outlinePaths(PARK_OUTLINES[node.url])
         : undefined,
     }));
+}
+
+/**
+ * The section lists that get a share card of their own: every park section
+ * and the trails. The line under the title says what the list holds.
+ */
+const LIST_SUBTITLES: Record<string, string> = {
+  '/rochester-city-parks/': 'Every park in Rochester, New York',
+  '/monroe-county-parks/': 'Every Monroe County park',
+  '/state-parks/': 'Every state park in Monroe County',
+  '/town-parks/': 'Every town park in Monroe County',
+  '/trails/': 'Every trail in Monroe County',
+};
+
+function listSubtitle(node: Node): string | undefined {
+  if (node.kind !== 'section') return undefined;
+  if (LIST_SUBTITLES[node.url]) return LIST_SUBTITLES[node.url];
+  return /^\/town-parks\/[^/]+\/$/.test(node.url)
+    ? `Every park in ${sectionLabel(node.title)}, New York`
+    : undefined;
+}
+
+export function getListCards(): {
+  slug: string;
+  title: string;
+  subtitle: string;
+}[] {
+  return [...nodes.values()].flatMap((node) => {
+    const subtitle = listSubtitle(node);
+    return subtitle
+      ? [{ slug: shareCardSlug(node.url), title: node.title, subtitle }]
+      : [];
+  });
 }
 
 /** Totals the home page states, all counted from the content itself. */
