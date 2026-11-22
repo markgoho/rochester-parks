@@ -1,6 +1,6 @@
 ---
 title: 'Gates Parks'
-description: 'Every park in Gates, New York, including First Responders Park, Memorial Park and Westgate Park, with what each park has and where to find it.'
+description: 'Parks in Gates, New York, led by 68-acre First Responders Park with disc golf, fishing and trails, plus pickleball at Westgate Park and Memorial Park.'
 type: 'park'
 reservations:
   name: 'Town of Gates'

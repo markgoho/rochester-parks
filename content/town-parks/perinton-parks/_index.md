@@ -1,6 +1,6 @@
 ---
 title: 'Perinton Parks'
-description: 'Every park in Perinton, New York, including Howell Road Park, White Brook Nature Area and Horizon Hill, with what each park has and where to find it.'
+description: 'Most Perinton parks are wooded and laced with trails, like White Brook Nature Area and Howell Road Park. Perinton Park adds a skate park and lodge.'
 type: 'park'
 reservations:
   name: 'Town of Perinton'

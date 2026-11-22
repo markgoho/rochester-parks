@@ -1,6 +1,6 @@
 ---
 title: 'Irondequoit Parks'
-description: 'Every park in Irondequoit, New York, including McAvoy Park, Joshua Park and Heyer-Bayer Memorial Park, with what each park has and where to find it.'
+description: "Irondequoit's parks: Camp Eastman's lodges and spray park on Lake Shore Boulevard, McAvoy Park's lighted turf field, Joshua Park and small tot lots."
 type: 'park'
 reservations:
   name: 'Town of Irondequoit'

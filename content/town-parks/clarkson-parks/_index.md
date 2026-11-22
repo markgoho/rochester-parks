@@ -1,6 +1,6 @@
 ---
 title: 'Clarkson Parks'
-description: 'Every park in Clarkson, New York, including Kimball Park, Hafner Park and Sans Souci Park, with what each park has and where to find it.'
+description: "Clarkson's three parks: Kimball Park's lodge on Ridge Road, Hafner Park's fishing and skating ponds and horse arena, and Sans Souci Park on the Erie Canal."
 reservations:
   name: 'Town of Clarkson'
   url: 'https://townofclarksonny.gov/parks-rec/'

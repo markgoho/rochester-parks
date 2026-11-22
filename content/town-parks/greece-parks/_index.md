@@ -1,6 +1,6 @@
 ---
 title: 'Greece Parks'
-description: 'Every park in Greece, New York, including Braddock Bay Park, Basil Marella Park and Klafehn Park, with what each park has and where to find it.'
+description: 'Greece parks run from 375-acre Braddock Bay Park on Braddock Bay to disc golf at Basil Marella and Sawyer parks and boat launches at Burger and Henpeck.'
 type: 'park'
 reservations:
   name: 'Town of Greece'

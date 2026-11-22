@@ -1,6 +1,6 @@
 ---
 title: 'Sweden Parks'
-description: 'Every park in Sweden, New York, including Sweden Town Park, Corbett Park and Barry Street Park, with what each park has and where to find it.'
+description: 'Parks in Sweden and the village of Brockport, led by 155-acre Sweden Town Park with disc golf, a dog park, a skate park, a spray park and a lodge.'
 type: 'park'
 reservations:
   name: 'Town of Sweden'

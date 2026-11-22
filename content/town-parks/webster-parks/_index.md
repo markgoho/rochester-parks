@@ -1,6 +1,6 @@
 ---
 title: 'Webster Parks'
-description: 'Every park in Webster, New York, including Whiting Road Nature Preserve, Gosnell Big Woods Preserve and Irving Kent Memorial Park, with what each park has.'
+description: 'Webster parks include big nature preserves like Whiting Road and Gosnell Big Woods, a skate park at Ridgecrest Park and a boat launch at Sandbar Park.'
 type: 'park'
 reservations:
   name: 'Town of Webster'

@@ -1,6 +1,6 @@
 ---
 title: 'Mendon Parks'
-description: 'Every park in Mendon, New York, including Great Bend Park, Semmel Road Park and Monroe Street Village Park, with what each park has and where to find it.'
+description: 'Parks in Mendon and the village of Honeoye Falls, from the ice rink at Semmel Road Park and trails at Great Bend Park to the totem pole at Vest Pocket Park.'
 type: 'park'
 reservations:
   name: 'Town of Mendon'
