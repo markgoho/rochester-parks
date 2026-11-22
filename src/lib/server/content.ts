@@ -732,20 +732,27 @@ function pageWithoutOutlines(url: string): Page | undefined {
 }
 
 /**
- * The label under the name on a share card. A town Park shows its town, in
- * the site's own spelling ("Town of Pittsford"), since a town section's title
- * is "Pittsford Parks". A Trail shows "Trail", then its town if the file
- * names one. County, city and state Parks keep their section.
+ * The label under the name on a share card. A town Park shows its town
+ * ("Pittsford"); a city Park "Rochester"; county and state Parks who runs
+ * them. A Trail shows "Trail", then its town if the file names one.
  */
 function shareCardLabel(meta: ParkMeta, trail: boolean): string {
   if (trail) {
     const town = meta.address?.addressLocality;
     return town ? `Trail \u00b7 ${town}` : 'Trail';
   }
-  return meta.section.url.startsWith('/town-parks/')
-    ? `Town of ${meta.section.title}`
-    : meta.section.title;
+  return OWNER_LABELS[meta.section.url] ?? meta.section.title;
 }
+
+/**
+ * Card labels for the sections whose title does not read well alone. A town
+ * section's title ("Pittsford") already does.
+ */
+const OWNER_LABELS: Record<string, string> = {
+  '/rochester-city-parks/': 'Rochester',
+  '/monroe-county-parks/': 'Monroe County',
+  '/state-parks/': 'New York State',
+};
 
 /**
  * The Parks and Trails that get a generated share card: the ones with no
