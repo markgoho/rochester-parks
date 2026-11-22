@@ -23,7 +23,7 @@ For a city row, the city's own park GIS layer (`Hosted/Parks_Open_Space_Points`)
 
 ## Consequences
 
-- `meigs-linden` was the city's "MEIGS/LINDEN PARK" row, which the city also names Ellwanger & Barry Park. It was a second page for `ellwanger-and-barry-park` and is removed.
+- `meigs-linden` was the city's "MEIGS/LINDEN PARK" row, which the city also names Ellwanger & Barry Park. It was a second page for `ellwanger-and-barry-park` and is removed. Because it named the same place, its URL 301s to `ellwanger-and-barry-park`.
 - `james-madison-school` is removed. It is school grounds and is in no city park layer.
 - `west-high-field` stays, renamed West High Park. It is not school land: the layer gives its owner as the City of Rochester. The layer's school ballfields (School #12, Charlotte Middle School) give their owner as the City of Rochester School District, so the owner field is the test.
 - Winton / Merchants stays rejected. The city layer types it as a Street Mall.
