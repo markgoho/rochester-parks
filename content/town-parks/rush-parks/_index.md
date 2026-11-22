@@ -1,6 +1,6 @@
 ---
 title: 'Rush Parks'
-description: "Every park in Rush, New York, including White Springs Farm, Stonybrook Road Park and Veteran's Memorial Park, with what each park has and where to find it."
+description: "Rush parks include White Springs Farm's bridle trails, Hundred Acres Nature Park on the Genesee River, and the waterfall overlook at Veteran's Memorial Park."
 type: 'park'
 reservations:
   name: 'Town of Rush'

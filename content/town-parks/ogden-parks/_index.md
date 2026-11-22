@@ -1,6 +1,6 @@
 ---
 title: 'Ogden Parks'
-description: 'Every park in Ogden, New York, including Pineway Ponds Park, Rose Turner Park and Ogden Heritage Park, with what each park has and where to find it.'
+description: 'Ogden parks include Pineway Ponds Park with fishing, a lodge and a spray park, trails at Rose Turner Park, and canal-side parks along the Erie Canal.'
 type: 'park'
 reservations:
   name: 'Town of Ogden'

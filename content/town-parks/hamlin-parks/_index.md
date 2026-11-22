@@ -1,6 +1,6 @@
 ---
 title: 'Hamlin Parks'
-description: 'Every park in Hamlin, New York, including Hamlin Recreation Area and Scout Park, with what each park has and where to find it.'
+description: 'The two town parks in Hamlin, New York: Hamlin Recreation Area by Town Hall on Lake Road and Scout Park on Brick Schoolhouse Road.'
 type: 'park'
 reservations:
   name: 'Town of Hamlin'

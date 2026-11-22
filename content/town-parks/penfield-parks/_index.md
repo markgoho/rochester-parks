@@ -1,6 +1,6 @@
 ---
 title: 'Penfield Parks'
-description: 'Every park in Penfield, New York, including Veterans Memorial Park, Sherwood Fields Park and Rothfuss Park, with what each park has and where to find it.'
+description: "Penfield parks include Shadow Pines with disc golf, boat launches at LaSalle's Landing and Panorama Valley, and an amphitheater at Veterans Memorial Park."
 type: 'park'
 reservations:
   name: 'Town of Penfield'

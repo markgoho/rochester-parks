@@ -1,6 +1,6 @@
 ---
 title: 'Parma Parks'
-description: 'Every park in Parma, New York, including Parma Park, Village Park and Salmon Creek Park, with what each park has and where to find it.'
+description: "Parma's parks: 73-acre Parma Park with disc golf and trails, Village Park in Hilton, and Salmon Creek Park on East Avenue."
 type: 'park'
 reservations:
   name: 'Town of Parma'
