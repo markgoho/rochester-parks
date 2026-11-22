@@ -1,6 +1,6 @@
 ---
 title: 'Irondequoit Bay State Marine Park'
-description: 'A New York State boat launch and fishing spot at the north end of Irondequoit Bay, off Culver Road near Route 590.'
+description: 'A 20-acre state park on Irondequoit Bay in Irondequoit, off Culver Road, with a year-round boat launch, a marina, fishing and a bathroom.'
 type: 'park'
 geo:
   latitude: 43.23128728762771

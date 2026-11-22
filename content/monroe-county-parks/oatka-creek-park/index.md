@@ -1,6 +1,6 @@
 ---
 title: 'Oatka Creek Park'
-description: 'Oatka Creek Park is a large, 461-acre Monroe County park. Its amenities include a lodge and a soccer field.'
+description: 'A 461-acre, mostly undeveloped Monroe County park in Wheatland, with a mile of creek, hiking and horseback riding, a lodge and soccer fields.'
 type: 'county-parks'
 geo:
   latitude: 43.00579420206882

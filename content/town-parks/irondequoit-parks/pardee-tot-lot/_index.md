@@ -1,6 +1,6 @@
 ---
 title: 'Pardee Tot Lot'
-description: 'A small town tot lot with a playground in Irondequoit.'
+description: 'A small Town of Irondequoit tot lot with a playground on Pardee Road, near Overbrook Avenue.'
 type: 'park'
 amenities:
   - Playground

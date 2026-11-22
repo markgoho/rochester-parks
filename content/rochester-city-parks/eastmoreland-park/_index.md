@@ -1,6 +1,6 @@
 ---
 title: 'Eastmoreland Park'
-description: 'A small city park with a playground, at Eastmoreland Drive and Shelbourne Road in Rochester.'
+description: 'A 0.7-acre City of Rochester park with one playground, at the corner of Eastmoreland Drive and Shelbourne Road in Rochester, New York.'
 type: 'park'
 acres: 0.7
 address:

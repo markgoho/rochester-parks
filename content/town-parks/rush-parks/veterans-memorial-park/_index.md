@@ -1,6 +1,6 @@
 ---
 title: "Veteran's Memorial Park"
-description: 'A small Rush park that honors veterans, with benches, two overlooks of Honeoye Creek and a white gazebo.'
+description: 'A small Rush park honoring veterans, with benches, two overlooks of Honeoye Creek and its waterfall, and a white gazebo with flower beds.'
 type: 'park'
 geo:
   latitude: 42.99237469403891

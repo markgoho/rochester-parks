@@ -1,6 +1,6 @@
 ---
 title: 'Vinton Play Area'
-description: 'A small town playground in Irondequoit.'
+description: 'A small Town of Irondequoit playground on Vinton Road, off Culver Road.'
 type: 'park'
 amenities:
   - Playground

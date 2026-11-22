@@ -1,6 +1,6 @@
 ---
 title: 'Lucien Morin Park'
-description: 'A Monroe County park of about 349 acres at 1135 Empire Blvd in Rochester.'
+description: 'A 349-acre Monroe County marsh park on Irondequoit Bay, north of Ellison Park, with canoe and kayak access, fishing and birdwatching.'
 type: 'county-parks'
 geo:
   latitude: 43.169122

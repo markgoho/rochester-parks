@@ -1,6 +1,6 @@
 ---
 title: 'Orchard Playground'
-description: 'A 3.7-acre city park at Saxton and Campbell Streets in Rochester, with a basketball court and a tennis court.'
+description: 'Orchard Playground is a 3.7-acre city park at Saxton and Campbell Streets in Rochester, with one basketball court and one tennis court.'
 type: 'park'
 acres: 3.7
 address:

@@ -12,5 +12,5 @@ export const load: PageServerLoad = () => ({
   url: '/find/',
   title: 'Find a Park',
   description:
-    'Find a park in Monroe County, New York by what it has: playgrounds, trails, dog parks, beaches and more.',
+    'Find a park in Monroe County, New York by what it has: playgrounds, trails, dog parks, spray parks, pickleball, disc golf, sledding hills and more.',
 });

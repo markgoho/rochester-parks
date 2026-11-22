@@ -1,6 +1,6 @@
 ---
 title: 'West High Park'
-description: 'A 7-acre city park with a baseball diamond, a basketball court, a football field and a playground.'
+description: 'West High Park is a 7-acre city park in Rochester between Frost and Arnett, with two baseball diamonds, a football field, a playground and courts.'
 type: 'park'
 acres: 7
 amenities:

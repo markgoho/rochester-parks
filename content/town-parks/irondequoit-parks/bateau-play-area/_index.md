@@ -1,6 +1,6 @@
 ---
 title: 'Bateau Play Area'
-description: 'A small town playground in Irondequoit.'
+description: 'A small Town of Irondequoit playground on Bateau Terrace, off Rock Beach Road.'
 type: 'park'
 amenities:
   - Playground

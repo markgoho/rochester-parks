@@ -1,6 +1,6 @@
 ---
 title: 'Hamlin Recreation Area'
-description: 'A 47.55-acre town park in Hamlin at 1658 Lake Road.'
+description: 'A 47.55-acre town park in Hamlin at 1658 Lake Road, the same address as Hamlin Town Hall.'
 type: 'park'
 geo:
   latitude: 43.2966732

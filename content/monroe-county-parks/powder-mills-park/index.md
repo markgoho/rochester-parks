@@ -1,6 +1,6 @@
 ---
 title: 'Powder Mills Park'
-description: 'A 380-acre Monroe County park with a lodge, shelters, a playground and bathrooms.'
+description: 'A 380-acre Monroe County park with five marked trails, creekside meadows, a trout hatchery, a playground, lodges and shelters.'
 type: 'county-parks'
 geo:
   latitude: 43.04433899960454

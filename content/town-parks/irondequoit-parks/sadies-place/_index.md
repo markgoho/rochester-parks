@@ -1,6 +1,6 @@
 ---
 title: "Sadie's Place"
-description: "Sadie's Place is a small town playground in Irondequoit."
+description: "Sadie's Place is a small Town of Irondequoit playground at 75 Wahl Road."
 type: 'park'
 amenities:
   - Playground

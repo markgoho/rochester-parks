@@ -1,6 +1,6 @@
 ---
 title: 'Beikirch Park'
-description: 'Beikirch Park is a Monroe County park with a garden and a memorial.'
+description: 'A Monroe County memorial park by Highland Park, with the Lilac Arches and memorials for veterans, 9/11 first responders and others.'
 type: 'county-parks'
 geo:
   latitude: 43.12822

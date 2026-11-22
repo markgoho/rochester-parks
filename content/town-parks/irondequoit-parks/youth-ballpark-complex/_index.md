@@ -1,6 +1,6 @@
 ---
 title: 'Youth Ballpark Complex'
-description: 'A Town of Irondequoit park of youth baseball fields at 117 Kings Highway North, behind town hall and the library.'
+description: 'A Town of Irondequoit park of youth baseball fields at 117 Kings Highway North, behind Irondequoit Town Hall and the library.'
 type: 'park'
 geo:
   latitude: 43.2139758
