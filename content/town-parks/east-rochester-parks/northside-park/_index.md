@@ -1,6 +1,6 @@
 ---
 title: 'Northside Park'
-description: 'A park in East Rochester'
+description: 'A half-acre neighborhood park in East Rochester with a playground, a pavilion, a basketball court and open space.'
 type: 'park'
 geo:
   latitude: 43.1183769

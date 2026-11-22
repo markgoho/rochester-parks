@@ -1,6 +1,6 @@
 ---
 title: 'Whiting Road Nature Preserve'
-description: 'A park in Webster'
+description: 'A 240-acre preserve at 403 Whiting Road in Webster with seven miles of trails through woods, fields and wetlands, open to leashed dogs.'
 type: 'park'
 address:
   streetAddress: '403 Whiting Road'

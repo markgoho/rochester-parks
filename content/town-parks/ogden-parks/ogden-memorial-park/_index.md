@@ -1,6 +1,6 @@
 ---
 title: "Veteran's Memorial Park"
-description: 'A park in Ogden'
+description: 'A 0.82-acre park on Union Street in Spencerport, owned by the Village of Spencerport and maintained by the Town of Ogden.'
 type: 'park'
 geo:
   latitude: 43.1859146

@@ -1,6 +1,6 @@
 ---
 title: 'Beverly Papas Park'
-description: 'A park in Greece'
+description: 'A 5-acre neighborhood park in Greece with a playground, swings, rockers, a handicap swing and a large open field in a shallow valley.'
 type: 'park'
 address:
   streetAddress: '67 Haviland Park'

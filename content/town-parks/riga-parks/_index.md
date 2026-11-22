@@ -1,6 +1,6 @@
 ---
 title: 'Riga Parks'
-description: 'A list of Riga Town Parks'
+description: 'Parks in Riga, New York, including Sanford Road Park: 43.5 acres south of Churchville with ball fields, courts, playgrounds and a lodge.'
 type: 'park'
 reservations:
   name: 'Town of Riga'

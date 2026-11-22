@@ -1,6 +1,6 @@
 ---
 title: 'Avenue D Rec. Center'
-description: 'The city grounds that hold the Avenue D R-Center'
+description: 'City grounds at 212 Avenue D in Rochester with the Avenue D R-Center, a pool, a playground, a baseball diamond, and tennis and basketball courts.'
 type: 'park'
 address:
   streetAddress: '212 Avenue D'

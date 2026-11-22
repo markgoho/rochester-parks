@@ -1,6 +1,6 @@
 ---
 title: 'Davis Park'
-description: 'A park in Chili'
+description: 'A 53-acre sports park in Chili with four baseball and softball diamonds, seven athletic fields, two playgrounds, two pavilions and paved paths.'
 type: 'park'
 address:
   streetAddress: '551 Chestnut Ridge Rd'

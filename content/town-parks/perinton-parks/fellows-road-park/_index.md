@@ -1,6 +1,6 @@
 ---
 title: 'Fellows Road Park'
-description: 'A park in Perinton'
+description: 'A 33.5-acre park in Perinton with softball, tennis, pickleball and beach volleyball, a playground, two shelters and a community building to reserve.'
 type: 'park'
 geo:
   latitude: 43.1096208

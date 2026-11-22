@@ -1,6 +1,6 @@
 ---
 title: 'Driesbach Fields'
-description: 'A park in Mendon'
+description: 'A Town of Mendon park on Semmel Road with soccer fields and restrooms, about 0.87 miles east of Quaker Meeting House Road.'
 type: 'park'
 geo:
   latitude: 42.9795

@@ -1,6 +1,6 @@
 ---
 title: 'Ogden Heritage Park'
-description: 'A park in Ogden'
+description: 'A 3.4-acre park in Ogden on the Erie Canal with benches, a small dock, a canal view and a trail linking to the Canal Trail.'
 type: 'park'
 address:
   streetAddress: '2750 Spencerport Road'

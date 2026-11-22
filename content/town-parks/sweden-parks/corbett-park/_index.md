@@ -1,6 +1,6 @@
 ---
 title: 'Corbett Park'
-description: 'A park in Sweden'
+description: "A 9.7-acre park in Brockport, the village's largest, with a pond, a play area, tennis courts, a basketball area, a pavilion and a paved path."
 type: 'park'
 geo:
   latitude: 43.2173903

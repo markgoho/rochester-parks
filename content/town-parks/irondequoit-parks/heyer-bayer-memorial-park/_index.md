@@ -1,6 +1,6 @@
 ---
 title: 'Heyer-Bayer Memorial Park'
-description: 'A park in Irondequoit'
+description: 'A 2.72-acre park in Irondequoit on Rudman Road with a baseball diamond, an open field, a swing set and two play structures.'
 type: 'park'
 address:
   streetAddress: 'Rudman Road'

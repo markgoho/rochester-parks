@@ -1,6 +1,6 @@
 ---
 title: 'Greece Parks'
-description: 'Parks in Greece New York'
+description: 'Every park in Greece, New York, including Braddock Bay Park, Basil Marella Park and Klafehn Park, with what each park has and where to find it.'
 type: 'park'
 reservations:
   name: 'Town of Greece'

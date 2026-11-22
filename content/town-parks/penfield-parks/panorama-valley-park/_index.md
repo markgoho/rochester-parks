@@ -1,6 +1,6 @@
 ---
 title: 'Panorama Valley Park'
-description: 'A park in Penfield'
+description: 'A 1.8-acre park in Penfield behind Panorama Plaza, on Irondequoit Creek, with a canoe and kayak launch and a picnic pavilion.'
 type: 'park'
 geo:
   latitude: 43.1329241193716

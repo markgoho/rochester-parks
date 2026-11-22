@@ -1,6 +1,6 @@
 ---
 title: 'Lookup Park'
-description: 'A park in Henrietta'
+description: 'A 19.49-acre town park in Henrietta with a 9-hole disc golf course, a golf driving range, a dog park and the Baldwin Cabin.'
 type: 'park'
 geo:
   latitude: 43.0460778

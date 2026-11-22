@@ -1,6 +1,6 @@
 ---
 title: 'Badgerow Park South'
-description: 'A park in Greece'
+description: 'A 33-acre park in Greece with athletic fields, tennis courts, a playground, a shelter and a trail to Veterans Memorial Park.'
 type: 'park'
 geo:
   latitude: 43.2555295

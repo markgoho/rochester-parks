@@ -1,6 +1,6 @@
 ---
 title: 'Carpenter Park at the Port of Pittsford'
-description: 'A park in Pittsford'
+description: 'A 2-acre park at the Port of Pittsford on the Erie Canal with benches, picnic tables, a boat dock with hookups, an outdoor stage and a veterans monument.'
 type: 'park'
 address:
   streetAddress: '22 North Main Street'

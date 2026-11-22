@@ -1,6 +1,6 @@
 ---
 title: 'Tinker Nature Park'
-description: 'A park in Henrietta'
+description: 'A 68-acre nature park in Henrietta with the Hansen Nature Center, the Tinker Homestead and Farm Museum, trails, a playground and an amphitheater.'
 type: 'park'
 geo:
   latitude: 43.066003

@@ -1,6 +1,6 @@
 ---
 title: 'Sagawa Park'
-description: 'A park in Sweden'
+description: "A 0.17-acre park at 96 Main Street in Brockport, the village's smallest, used for community events like the Christmas tree lighting."
 type: 'park'
 geo:
   latitude: 43.2143525

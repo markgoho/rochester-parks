@@ -1,6 +1,6 @@
 ---
 title: 'Union Station Park'
-description: 'A park in Chili'
+description: 'A 63-acre park in Chili with sports fields, nature trails, a fitness court, a sprayground, a rental lodge and a kayak launch onto Black Creek.'
 type: 'park'
 geo:
   latitude: 43.0900405

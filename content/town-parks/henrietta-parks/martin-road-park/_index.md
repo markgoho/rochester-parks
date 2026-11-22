@@ -1,6 +1,6 @@
 ---
 title: 'Martin Road Park'
-description: 'A park in Henrietta'
+description: 'An 80-acre town park in Henrietta with a large playground, soccer fields, tennis and pickleball courts, a fishing pond and a pavilion.'
 type: 'park'
 geo:
   latitude: 43.0302265

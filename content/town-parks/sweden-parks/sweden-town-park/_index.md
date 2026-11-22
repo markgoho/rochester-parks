@@ -1,6 +1,6 @@
 ---
 title: 'Sweden Town Park'
-description: 'A park in Sweden'
+description: 'A 155-acre park at 4745 Redman Road in Brockport with sports fields, a skate park, disc golf, trails, a dog park, a splash pad and a lodge.'
 type: 'park'
 geo:
   latitude: 43.2029776

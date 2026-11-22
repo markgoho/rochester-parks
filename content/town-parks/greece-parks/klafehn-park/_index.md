@@ -1,6 +1,6 @@
 ---
 title: 'Klafehn Park'
-description: 'A town park in Greece with nature trails'
+description: "A 73.64-acre Town of Greece park on Latta Road with nature trails, next to the Firemen's Field pavilion that you can rent."
 type: 'park'
 geo:
   latitude: 43.2569495

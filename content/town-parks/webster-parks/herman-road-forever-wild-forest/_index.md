@@ -1,6 +1,6 @@
 ---
 title: 'Herman Road Forever Wild Forest'
-description: 'A park in Webster'
+description: 'A 28-acre forest at 760 Hermann Road in Webster with trails through mature woods, linked to the Whiting Road Nature Preserve.'
 type: 'park'
 address:
   streetAddress: '760 Hermann Road'

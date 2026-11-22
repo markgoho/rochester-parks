@@ -1,6 +1,6 @@
 ---
 title: 'Veterans Memorial Park'
-description: 'A park in Penfield'
+description: 'An 85.55-acre park in Penfield with a playground, tennis and basketball courts, a baseball diamond, trails, an amphitheater and a lodge to rent.'
 type: 'park'
 geo:
   latitude: 43.1609267

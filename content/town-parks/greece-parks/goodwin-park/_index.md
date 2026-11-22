@@ -1,6 +1,6 @@
 ---
 title: 'Goodwin Park'
-description: 'A park in Greece'
+description: 'A 2-acre park in Greece beside the canal linking Lake Ontario to Long Pond, with a playground, picnic tables, barbecues and a path.'
 type: 'park'
 address:
   streetAddress: '15 Long Pond Road'

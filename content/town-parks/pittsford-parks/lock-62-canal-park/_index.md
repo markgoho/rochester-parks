@@ -1,6 +1,6 @@
 ---
 title: 'Lock 62 Canal Park'
-description: 'A park in Pittsford'
+description: 'A 15-acre canal park at 3195 Monroe Avenue in Pittsford, with trails to a viewing area at an old double lock from the Erie Canal.'
 type: 'park'
 geo:
   latitude: 43.1038645

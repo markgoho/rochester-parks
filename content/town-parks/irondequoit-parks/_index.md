@@ -1,6 +1,6 @@
 ---
 title: 'Irondequoit Parks'
-description: 'Parks in Irondequoit, NY'
+description: 'Every park in Irondequoit, New York, including McAvoy Park, Joshua Park and Heyer-Bayer Memorial Park, with what each park has and where to find it.'
 type: 'park'
 reservations:
   name: 'Town of Irondequoit'

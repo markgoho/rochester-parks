@@ -1,6 +1,6 @@
 ---
 title: 'Westgate Park'
-description: 'A park in Gates'
+description: 'A 16.5-acre park in Gates with tennis, pickleball and basketball courts, two baseball fields, two playgrounds and a nature trail.'
 type: 'park'
 geo:
   latitude: 43.1321664

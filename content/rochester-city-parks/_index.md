@@ -1,6 +1,6 @@
 ---
 title: 'Rochester City Parks'
-description: 'A list of Rochester City Parks'
+description: "Every park in Rochester, New York, from riverside parks to small neighborhood playgrounds, with what each park has and a map of the city's neighborhoods."
 type: 'park'
 reservations:
   name: 'City of Rochester'

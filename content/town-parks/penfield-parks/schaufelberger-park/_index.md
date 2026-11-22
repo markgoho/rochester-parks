@@ -1,6 +1,6 @@
 ---
 title: 'Schaufelberger Park'
-description: 'A park in Penfield'
+description: "A 0.06-acre pocket park at Penfield's Historic Four Corners, home to a bronze statue of town founder Daniel Penfield put up in 2012."
 type: 'park'
 address:
   streetAddress: '1820 Penfield Road'

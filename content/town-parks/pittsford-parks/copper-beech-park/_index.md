@@ -1,6 +1,6 @@
 ---
 title: 'Copper Beech Park'
-description: 'A park in Pittsford'
+description: 'A 0.23-acre park in Pittsford at State Street and North Main Street, built around an old copper beech tree, with a patio, a pergola and game tables.'
 type: 'park'
 address:
   streetAddress: '14 State Street'

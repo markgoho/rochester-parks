@@ -1,6 +1,6 @@
 ---
 title: 'Campbell St Rec Center'
-description: 'The city grounds that hold the Hope R-Center'
+description: 'City grounds at 524 Campbell St. in Rochester with the Hope R-Center, a gym, a computer lab, a spray park, a playground and ball fields.'
 type: 'park'
 address:
   streetAddress: '524 Campbell St.'

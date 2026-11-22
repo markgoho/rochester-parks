@@ -1,6 +1,6 @@
 ---
 title: 'Griffith Park'
-description: 'A park in Pittsford'
+description: 'A 7.83-acre town park at 366 Marsh Road in Pittsford with an open field, a parking lot and two very short trails.'
 type: 'park'
 address:
   streetAddress: '366 Marsh Road'

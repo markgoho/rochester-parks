@@ -1,6 +1,6 @@
 ---
 title: 'Lomb Memorial Park'
-description: 'A City of Rochester park.'
+description: 'Lomb Memorial Park is a City of Rochester park in Rochester, New York.'
 type: 'park'
 geo:
   latitude: 43.1678258

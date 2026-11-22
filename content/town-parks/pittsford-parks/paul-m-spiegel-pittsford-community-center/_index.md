@@ -1,6 +1,6 @@
 ---
 title: 'Paul M. Spiegel Pittsford Community Center'
-description: 'A park in Pittsford'
+description: 'A 4.2-acre community center in the Village of Pittsford with a playground, picnic tables, an open lawn, a senior center and recreation offices.'
 type: 'park'
 geo:
   latitude: 43.0899668

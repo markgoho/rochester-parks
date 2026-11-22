@@ -1,6 +1,6 @@
 ---
 title: 'Hundred Acres Nature Park'
-description: 'A park in Rush'
+description: 'A 100-acre nature park on Route 251 in Rush with a mile of Genesee River frontage, old forest, a vernal pool and trails along the river.'
 type: 'park'
 geo:
   latitude: 43.0043703

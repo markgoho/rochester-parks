@@ -1,6 +1,6 @@
 ---
 title: 'High Falls State Park'
-description: 'A planned New York State park at High Falls in downtown Rochester'
+description: 'A planned state park of about 40 acres at High Falls in downtown Rochester, with more than 2.5 miles of trails and a waterfall overlook.'
 type: 'park'
 planned: true
 address:

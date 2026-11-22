@@ -1,6 +1,6 @@
 ---
 title: 'Scout Park'
-description: 'A park in Hamlin'
+description: 'A 9.13-acre town park in Hamlin at 4250 Brick Schoolhouse Road.'
 type: 'park'
 geo:
   latitude: 43.314817

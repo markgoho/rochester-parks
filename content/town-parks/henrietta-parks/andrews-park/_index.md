@@ -1,6 +1,6 @@
 ---
 title: 'Andrews Park'
-description: 'A park in Henrietta'
+description: 'A 30-acre town park in Henrietta with a flat, accessible three-quarter-mile loop trail past wetlands and woods, plus picnic tables.'
 type: 'park'
 geo:
   latitude: 43.078775

@@ -1,6 +1,6 @@
 ---
 title: 'Sandra L. Frankel Nature Park'
-description: 'A park in Brighton'
+description: 'A 72-acre nature park in Brighton with the 0.8-mile Brickyard Trail, which crosses woods and one of the largest urban wetlands in the area.'
 type: 'park'
 address:
   streetAddress: 'Elmwood Ave'

@@ -1,6 +1,6 @@
 ---
 title: "Hart's Woods"
-description: 'A park in Perinton'
+description: 'A 10-acre National Natural Landmark in Perinton, a forest of beech, maple and oak with some trees 250 years old, and a trail system.'
 type: 'park'
 geo:
   latitude: 43.0881332

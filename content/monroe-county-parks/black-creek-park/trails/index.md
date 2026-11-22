@@ -1,6 +1,6 @@
 ---
 title: 'Trails'
-description: 'Trails at Black Creek Park'
+description: 'Trails at Black Creek Park, a large Monroe County park. There are well over 8 miles of trails, and most of them are well marked.'
 type: 'park'
 ---
 

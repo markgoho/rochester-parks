@@ -1,6 +1,6 @@
 ---
 title: 'Havenwood Park'
-description: 'A park in Sweden'
+description: 'A small playground of about 0.2 acres at 47 Havenwood Drive in Brockport for younger children, with swings, a slide, climbers and benches.'
 type: 'park'
 acres: 0.2
 geo:

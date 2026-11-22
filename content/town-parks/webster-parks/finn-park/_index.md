@@ -1,6 +1,6 @@
 ---
 title: 'Finn Park'
-description: 'A park in Webster'
+description: 'A 50-acre park in Webster between Maple Drive and Gravel Road, with a playground, a walking and biking trail and a rentable lodge.'
 type: 'park'
 geo:
   latitude: 43.2169084

@@ -1,6 +1,6 @@
 ---
 title: 'Concrest Park'
-description: 'A park in East Rochester'
+description: 'A 1.2-acre park in East Rochester at 511 West Ave with a basketball court, a pavilion and a playground built for younger children.'
 type: 'park'
 geo:
   latitude: 43.1156913

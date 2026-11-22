@@ -1,6 +1,6 @@
 ---
 title: 'Henpeck Park'
-description: 'A park in Greece'
+description: 'A 4-acre park in Greece on the Erie Canal with a non-motorized boat launch, picnic tables, charcoal grills and Erie Canalway Trail access.'
 type: 'park'
 address:
   streetAddress: '2901 Ridgeway Avenue'

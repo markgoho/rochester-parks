@@ -1,6 +1,6 @@
 ---
 title: 'Memorial Park'
-description: 'A park in Chili'
+description: 'An 11.6-acre park in Chili next to the Chili Community Center, with a playground, a basketball court, five baseball fields and a lighted soccer field.'
 type: 'park'
 address:
   streetAddress: '3235 Chili Ave'

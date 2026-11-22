@@ -1,6 +1,6 @@
 ---
 title: 'Salmon Creek Park'
-description: 'A park in Parma'
+description: 'Salmon Creek Park is a 4.32-acre park at 283 East Avenue in Parma, New York.'
 type: 'park'
 geo:
   latitude: 43.2879119

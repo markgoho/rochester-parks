@@ -1,6 +1,6 @@
 ---
 title: 'State Road Nature Preserve'
-description: 'A park in Webster'
+description: 'An 83-acre nature preserve in Webster with a 1.1-mile loop trail through woods and grasslands along part of Four Mile Creek.'
 type: 'park'
 address:
   streetAddress: '1571 County Rd 9'

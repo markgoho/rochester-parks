@@ -1,6 +1,6 @@
 ---
 title: 'Remembrance Park'
-description: 'A park in Sweden'
+description: 'A small triangular park on Park Avenue in Brockport that honors civilians who died on September 11, 2001, with a sculpture and a bench.'
 type: 'park'
 geo:
   latitude: 43.2116473

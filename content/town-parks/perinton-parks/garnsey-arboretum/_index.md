@@ -1,6 +1,6 @@
 ---
 title: 'Garnsey Road Arboretum'
-description: 'A park in Perinton'
+description: 'A 26.67-acre wooded park in Perinton off Garnsey Road with hiking trails, a plant collection, birdwatching and a multi-use field.'
 type: 'park'
 geo:
   latitude: 43.0585639

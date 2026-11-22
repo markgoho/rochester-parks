@@ -1,6 +1,6 @@
 ---
 title: 'Harvester Park'
-description: 'A park in Sweden'
+description: 'A 0.49-acre park on the Erie Canal in Brockport, site of an early reaper factory, with a welcome center, boat docks and a canoe landing.'
 type: 'park'
 geo:
   latitude: 43.21598

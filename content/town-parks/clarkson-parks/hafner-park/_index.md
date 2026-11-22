@@ -1,6 +1,6 @@
 ---
 title: 'Hafner Park'
-description: 'A park in Clarkson'
+description: 'A 39-acre park in Clarkson with a playground, two pavilions, sports fields, a fishing pond, a skating pond, a horse arena and a veterans memorial.'
 type: 'park'
 geo:
   latitude: 43.2376761

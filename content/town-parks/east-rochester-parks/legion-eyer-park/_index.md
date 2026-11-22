@@ -1,6 +1,6 @@
 ---
 title: 'Legion Eyer Park'
-description: 'A park in East Rochester'
+description: 'A 20-acre park in East Rochester with a pavilion, a lodge, baseball and soccer fields, a playground and basketball courts.'
 type: 'park'
 geo:
   latitude: 43.110199

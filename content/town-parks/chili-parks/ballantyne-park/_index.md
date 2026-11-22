@@ -1,6 +1,6 @@
 ---
 title: 'Ballantyne Park'
-description: 'A park in Chili'
+description: 'A 1.6-acre neighborhood park in Chili with a playground, a walking trail and open green space, next to a boat launch on Black Creek.'
 type: 'park'
 geo:
   latitude: 43.0935178

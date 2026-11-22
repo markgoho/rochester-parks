@@ -1,6 +1,6 @@
 ---
 title: 'First Responders Park'
-description: 'A park in Webster'
+description: 'A 74.8-acre park at 1350 Chiyoda Drive in Webster with a spray park, a playground, tennis, pickleball and basketball courts, and a pavilion.'
 type: 'park'
 geo:
   latitude: 43.2281133

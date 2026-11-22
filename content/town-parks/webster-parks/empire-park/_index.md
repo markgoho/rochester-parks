@@ -1,6 +1,6 @@
 ---
 title: 'Empire Park'
-description: 'A park in Webster'
+description: 'A 62-acre park at 2130 Empire Boulevard in Webster with baseball fields, walking trails and restrooms.'
 type: 'park'
 geo:
   latitude: 43.198782

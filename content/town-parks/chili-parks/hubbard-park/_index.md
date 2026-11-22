@@ -1,6 +1,6 @@
 ---
 title: 'Hubbard Park'
-description: 'A park in Chili'
+description: 'A 7-acre neighborhood park in Chili on Union Street with a baseball field, tennis courts, a basketball court and a playground.'
 type: 'park'
 geo:
   latitude: 43.1193773

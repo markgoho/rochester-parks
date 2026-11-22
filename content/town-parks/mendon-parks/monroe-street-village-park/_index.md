@@ -1,6 +1,6 @@
 ---
 title: 'Monroe Street Village Park'
-description: 'A park in Mendon'
+description: 'A 24.85-acre village park in Honeoye Falls with two softball fields, a soccer field, a skateboard area, restrooms and trails to Honeoye Creek.'
 type: 'park'
 address:
   streetAddress: '321 Monroe Street'

@@ -1,6 +1,6 @@
 ---
 title: 'Harry Allen Park'
-description: 'A park in Mendon'
+description: 'A 12.36-acre village park in Honeoye Falls with a gazebo, a playground, the local history museum and the start of the Zebulon Norton Trail.'
 type: 'park'
 geo:
   latitude: 42.9542122

@@ -1,6 +1,6 @@
 ---
 title: 'Milk House Park'
-description: 'A planned park in Chili'
+description: 'A planned park in Chili on the former Zuber Farms land at 177 Archer Road, with trails, playgrounds, a skate park, a lodge and a dog park.'
 type: 'park'
 geo:
   latitude: 43.1012648

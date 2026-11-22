@@ -1,6 +1,6 @@
 ---
 title: 'Sledding Hill'
-description: 'A park in Henrietta'
+description: 'A Town of Henrietta sledding hill on Erie Station Road, across from Windelin Drive. It is separate from Lookup Park.'
 type: 'park'
 geo:
   latitude: 43.0406212

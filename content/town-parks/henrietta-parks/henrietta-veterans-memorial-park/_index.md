@@ -1,6 +1,6 @@
 ---
 title: 'Veterans Memorial Park'
-description: 'A park in Henrietta'
+description: 'A 90-acre town park in Henrietta with two playgrounds, ball fields, tennis, pickleball and basketball courts, an amphitheater and cabins.'
 type: 'park'
 address:
   streetAddress: '595 Calkins Road'

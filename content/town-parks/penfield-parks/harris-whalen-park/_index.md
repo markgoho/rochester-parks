@@ -1,6 +1,6 @@
 ---
 title: 'Harris Whalen Park'
-description: 'A park in Penfield'
+description: 'A 45-acre park in Penfield with tennis and basketball courts, bocce, hiking trails, a playground, an open pavilion and an enclosed lodge.'
 type: 'park'
 address:
   streetAddress: '2126 Penfield Road'

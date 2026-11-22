@@ -1,6 +1,6 @@
 ---
 title: 'Gates Parks'
-description: 'Parks in Gates, NY'
+description: 'Every park in Gates, New York, including First Responders Park, Memorial Park and Westgate Park, with what each park has and where to find it.'
 type: 'park'
 reservations:
   name: 'Town of Gates'

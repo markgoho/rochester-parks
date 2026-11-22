@@ -1,6 +1,6 @@
 ---
 title: "Sadie's Place"
-description: 'A park in Irondequoit'
+description: "Sadie's Place is a small town playground in Irondequoit."
 type: 'park'
 amenities:
   - Playground

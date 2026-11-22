@@ -1,6 +1,6 @@
 ---
 title: 'Farm View Park'
-description: 'A park in Pittsford'
+description: 'A 19-acre park at 1901 Calkins Road in Pittsford with three multipurpose fields used for baseball and softball, plus restrooms.'
 type: 'park'
 acres: 19
 geo:

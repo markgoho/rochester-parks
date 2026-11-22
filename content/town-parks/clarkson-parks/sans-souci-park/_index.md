@@ -1,6 +1,6 @@
 ---
 title: 'Sans Souci Park'
-description: 'A park in Clarkson'
+description: 'A 6-acre park on the Erie Canal in Clarkson with a boat launch, two docks, a playground, a picnic pavilion and plenty of parking.'
 type: 'park'
 geo:
   latitude: 43.222056

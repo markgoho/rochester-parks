@@ -1,6 +1,6 @@
 ---
 title: 'Austin Steward Plaza'
-description: 'A City of Rochester park.'
+description: 'Austin Steward Plaza is a City of Rochester park in Rochester, New York.'
 type: 'park'
 geo:
   latitude: 43.1573727

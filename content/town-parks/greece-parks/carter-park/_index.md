@@ -1,6 +1,6 @@
 ---
 title: 'Carter Park'
-description: 'A park in Greece'
+description: 'A 12-acre park in Greece with baseball fields, tennis and basketball courts, a playground, an open-air shelter and restrooms.'
 type: 'park'
 address:
   streetAddress: '1281 Long Pond Road'

@@ -1,6 +1,6 @@
 ---
 title: 'Evergreen Park'
-description: 'A park in Sweden'
+description: 'A small playground of about 0.3 acres at 211 Evergreen Road in Brockport for younger children, with swings, a slide and a path up to the Erie Canal.'
 type: 'park'
 geo:
   latitude: 43.215081

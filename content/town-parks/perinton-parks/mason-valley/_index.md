@@ -1,6 +1,6 @@
 ---
 title: 'Mason Valley'
-description: 'A park in Perinton'
+description: 'A 39.3-acre natural area in Perinton off Broadmoor Trail with a constructed wetland and a section of the Crescent Trail. It has no facilities.'
 type: 'park'
 geo:
   latitude: 43.071186

@@ -1,6 +1,6 @@
 ---
 title: 'Erie Canal Nature Preserve'
-description: 'A park in Pittsford'
+description: 'A 20-acre Town of Pittsford preserve beside the Erie Canal with hiking trails and an elevated boardwalk, linking the Towpath and Auburn trails.'
 type: 'park'
 geo:
   latitude: 43.0960856

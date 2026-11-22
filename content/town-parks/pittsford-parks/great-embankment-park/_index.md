@@ -1,6 +1,6 @@
 ---
 title: 'Great Embankment Park'
-description: 'A park in Pittsford'
+description: 'A 12-acre Pittsford park along the Erie Canal with two baseball fields, a soccer field, restrooms and an upper lot 30 feet above the entrance.'
 type: 'park'
 address:
   streetAddress: 'Marsh Road'

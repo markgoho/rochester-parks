@@ -1,6 +1,6 @@
 ---
 title: 'Four Mile Creek Preserve'
-description: 'A park in Webster'
+description: 'A 72-acre preserve at 160 Phillips Road in Webster with color-coded loop trails through forest and wetlands along Four Mile Creek.'
 type: 'park'
 address:
   streetAddress: '160 Phillips Road'

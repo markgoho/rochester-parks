@@ -1,6 +1,6 @@
 ---
 title: 'Perinton Park'
-description: 'A park in Perinton'
+description: "A 43.6-acre park at 99 O'Connor Road in Perinton with a playground, tennis courts, a lodge, a skatepark, fishing, a dock and trails."
 type: 'park'
 geo:
   latitude: 43.1012874

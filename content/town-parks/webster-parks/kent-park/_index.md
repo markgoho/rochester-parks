@@ -1,6 +1,6 @@
 ---
 title: 'Irving Kent Memorial Park'
-description: 'A park in Webster'
+description: 'An 84.5-acre park at 1700 Schlegel Road in Webster with the Webster Arboretum, trails, an accessible playground, sports fields and a pavilion.'
 type: 'park'
 geo:
   latitude: 43.2449898

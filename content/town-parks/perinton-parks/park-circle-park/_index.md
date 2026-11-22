@@ -1,6 +1,6 @@
 ---
 title: 'Park Circle Park'
-description: 'A park in Perinton'
+description: 'Park Circle Park is a town park in Perinton, New York.'
 type: 'park'
 geo:
   latitude: 43.0912422

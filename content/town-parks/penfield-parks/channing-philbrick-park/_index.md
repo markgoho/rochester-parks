@@ -1,6 +1,6 @@
 ---
 title: 'Channing Philbrick Park'
-description: 'A park in Penfield'
+description: 'A 19-acre park in Penfield off Route 441 with an accessible fishing spot, charcoal grills, picnic tables, a pavilion and two hiking trails.'
 type: 'park'
 geo:
   latitude: 43.1258715

@@ -1,6 +1,6 @@
 ---
 title: 'Ridgecrest Park'
-description: 'A park in Webster'
+description: 'A 33-acre park at 985 Ebner Drive in Webster with a skate park, a basketball court, a box lacrosse rink, a playground and a spray park.'
 type: 'park'
 geo:
   latitude: 43.2056576

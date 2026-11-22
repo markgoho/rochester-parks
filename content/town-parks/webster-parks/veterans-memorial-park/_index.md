@@ -1,6 +1,6 @@
 ---
 title: 'Veterans Memorial Park'
-description: 'A park in Webster'
+description: 'A small park in the Village of Webster on North Avenue, just north of the Four Corners, with a veterans monument and a gazebo with gardens.'
 type: 'park'
 geo:
   latitude: 43.2129615

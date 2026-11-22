@@ -1,6 +1,6 @@
 ---
 title: 'Sanford Road Park'
-description: 'A list of Riga Town Parks'
+description: 'A 43.5-acre park in Riga, south of Churchville, with ball fields, a soccer field, a basketball court, playgrounds, a lodge and a shelter.'
 type: 'park'
 geo:
   latitude: 43.07967128631228

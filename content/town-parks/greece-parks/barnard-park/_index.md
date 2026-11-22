@@ -1,6 +1,6 @@
 ---
 title: 'Barnard Park'
-description: 'A park in Greece'
+description: 'A 17-acre park in Greece on Maiden Lane with a baseball diamond, a clubhouse, a shelter with picnic tables, a playground and a grill.'
 type: 'park'
 address:
   streetAddress: '410 Maiden Lane'

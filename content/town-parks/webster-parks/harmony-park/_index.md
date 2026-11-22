@@ -1,6 +1,6 @@
 ---
 title: 'Harmony Park'
-description: 'A park in Webster'
+description: 'A park in the Village of Webster at Phillips Road and Foster Drive with the Village Band Shell and open space for outdoor activities.'
 type: 'park'
 geo:
   latitude: 43.2105781

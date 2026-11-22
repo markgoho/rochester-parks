@@ -1,6 +1,6 @@
 ---
 title: 'Widener Park'
-description: 'A park in Chili'
+description: 'A 28-acre park in Chili with wooded trails, an 18-hole disc golf course, a butterfly garden and a picnic pavilion with electricity.'
 type: 'park'
 geo:
   latitude: 43.0783248

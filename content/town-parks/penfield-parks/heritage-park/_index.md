@@ -1,6 +1,6 @@
 ---
 title: 'Heritage Park'
-description: 'A park in Penfield'
+description: "A 3.38-acre passive park in Penfield's Historic Four Corners, behind Penfield Fire Hall Station 1 and the First Baptist Church, off Route 441."
 type: 'park'
 geo:
   latitude: 43.1318009

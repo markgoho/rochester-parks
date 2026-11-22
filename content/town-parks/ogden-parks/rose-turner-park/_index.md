@@ -1,6 +1,6 @@
 ---
 title: 'Rose Turner Park'
-description: 'A park in Ogden'
+description: 'A 16.3-acre park in Ogden along the Erie Canal, set up in 1968, with trails built by Eagle Scouts, a log bench and a picnic table.'
 type: 'park'
 geo:
   latitude: 43.19406704997022

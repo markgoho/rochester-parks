@@ -1,6 +1,6 @@
 ---
 title: 'Isaac Gordon Nature Park'
-description: 'A park in Pittsford'
+description: 'A 118.5-acre nature park in Pittsford on Clover Street, set around a natural pond, with trails for hiking and cross-country skiing.'
 type: 'park'
 geo:
   latitude: 43.0485798

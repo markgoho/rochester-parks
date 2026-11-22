@@ -1,6 +1,6 @@
 ---
 title: 'Village Park'
-description: 'A park in Parma'
+description: 'A 30.86-acre park in Parma behind Hilton Quest School, with Jennejahn Lodge, which seats 99 and has a kitchen and a wood-burning fireplace.'
 type: 'park'
 geo:
   latitude: 43.28417
