@@ -12,3 +12,11 @@ export const PAGEFIND_UI_SRC = '/pagefind/pagefind-component-ui.js';
 export function absUrl(path: string): string {
   return `${SITE_URL}/${path.replace(/^\//, '')}`;
 }
+
+/**
+ * The name of a Park's generated share image, under `/og/`, without `.png`
+ * (#369). One flat name, since the route takes one segment.
+ */
+export function shareCardSlug(url: string): string {
+  return url.replace(/^\/|\/$/g, '').replaceAll('/', '--');
+}
