@@ -65,11 +65,17 @@
   <!-- --ink as hex. A meta tag cannot read a CSS token. -->
   <meta name="theme-color" content="#14291e" />
   <meta property="og:title" content={page.data.title} />
+  <meta property="og:site_name" content={SITE_TITLE} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonical} />
   {#if image}
     <meta property="og:image" content={image} />
   {/if}
+  <!-- X and some chat apps read this, not og:*, to pick the card size. -->
+  <meta
+    name="twitter:card"
+    content={image ? 'summary_large_image' : 'summary'}
+  />
   <meta property="og:description" content={page.data.description} />
 </svelte:head>
 
